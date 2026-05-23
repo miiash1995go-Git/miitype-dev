@@ -1,0 +1,36 @@
+{
+    "weekId": "2024-W10",
+    "topic": "実務ITリテラシー基礎",
+    "items": [
+        {
+            "id": 1,
+            "kanji": "Windowsを起動します。",
+            "kana": "うぃんどうずをきどうします。",
+            "romaji": "uindouzuwokidousimasu"
+        },
+        {
+            "id": 2,
+            "kanji": "Excelで表を作成します。",
+            "kana": "えくせるでひょうをさくせいします。",
+            "romaji": "ekuserudehyouwosakuseisimasu"
+        },
+        {
+            "id": 3,
+            "kanji": "Wordの文書を保存する。",
+            "kana": "わーどのぶんしょをほぞんする。",
+            "romaji": "wa-donobunsyowohozonsuru"
+        },
+        {
+            "id": 4,
+            "kanji": "ショートカットキーを活用する。",
+            "kana": "しょーとかっときーをかつようする。",
+            "romaji": "syo-tokattoki-wokatsuyousuru"
+        },
+        {
+            "id": 5,
+            "kanji": "メールを送信しました。",
+            "kana": "めーるをそうしんしました。",
+            "romaji": "me-ruwosousinsimasu"
+        }
+    ]
+}

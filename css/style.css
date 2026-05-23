@@ -1,0 +1,198 @@
+/* --- 変数定義（保守性を高める） --- */
+:root {
+    --primary-color: #1a365d;   /* 深い紺色：教育的な信頼感 */
+    --secondary-color: #2b6cb0;
+    --accent-color: #ed8936;    /* オレンジ：注意・ハイライト */
+    --bg-color: #f7fafc;
+    --text-color: #2d3748;
+    --typed-color: #cbd5e0;    /* 入力済みの文字色（薄いグレー） */
+    --current-color: #2b6cb0;  /* 現在打つべき文字色（青） */
+    --error-bg: #fff5f5;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* --- 全体レイアウト --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+#app-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.ad-placeholder-top {
+    width: 468px;
+    height: 60px;
+    background: #edf2f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed #cbd5e0;
+}
+
+/* --- 画面制御 --- */
+.hidden {
+    display: none !important;
+}
+
+.screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- コンポーネント --- */
+.card {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    text-align: center;
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+.badge {
+    display: inline-block;
+    background: #e2e8f0;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin: 5px;
+}
+
+/* --- タイピングエリア --- */
+.stats-panel {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.typing-card {
+    background: white;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: var(--card-shadow);
+    width: 100%;
+    text-align: center;
+}
+
+.kanji-area {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.kana-area {
+    font-size: 1.1rem;
+    color: #718096;
+    margin-bottom: 20px;
+}
+
+.romaji-area {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2.2rem;
+    letter-spacing: 0.1em;
+    border-top: 1px solid #edf2f7;
+    padding-top: 20px;
+}
+
+/* 文字ハイライト */
+.typed { color: var(--typed-color); }
+.current { 
+    color: var(--current-color); 
+    border-bottom: 3px solid var(--current-color);
+    background-color: #ebf8ff;
+}
+.mistake {
+    background-color: #fed7d7;
+    color: #c53030;
+}
+
+/* --- リザルト --- */
+.result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.result-score #final-score {
+    font-size: 4rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.analysis-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.weak-keys-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.key-box {
+    background: white;
+    border: 2px solid var(--accent-color);
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #718096;
+    font-size: 0.9rem;
+}

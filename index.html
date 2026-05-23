@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduTyping Next | 実務特化型タイピング練習</title>
+    <meta name="description" content="パソコン初心者・職業訓練生のための実務に役立つタイピング練習アプリ。Word/Excel/Windows操作の基礎を打ちながら学べます。">
+    <!-- Google Fonts: 視認性の高いフォントを採用 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="app-container">
+        <!-- ヘッダー：ナビゲーションと広告枠（将来用） -->
+        <header>
+            <div class="logo-container">
+                <h1 class="logo">EduTyping <span>Next</span></h1>
+                <p class="tagline">実務スキルを指先に。</p>
+            </div>
+            <div class="ad-placeholder-top">
+                <small>スポンサーリンク</small>
+                <!-- ここに将来 Google AdSense を配置 -->
+            </div>
+        </header>
+
+        <main>
+            <!-- 1. スタート画面 -->
+            <section id="start-screen" class="screen">
+                <div class="card">
+                    <h2>今週のお題：<span id="weekly-topic-title">読み込み中...</span></h2>
+                    <p class="description">実務で役立つフレーズを練習します。制限時間は60秒です。</p>
+                    <button id="start-button" class="btn-primary">タイピング練習を始める</button>
+                    <div class="category-badge-container">
+                        <span class="badge">Windows</span>
+                        <span class="badge">Excel</span>
+                        <span class="badge">Word</span>
+                        <span class="badge">ビジネス</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. タイピング実行画面 -->
+            <section id="game-screen" class="screen hidden">
+                <div class="stats-panel">
+                    <div class="stat-item">残り時間: <span id="timer">60</span>s</div>
+                    <div class="stat-item">正確率: <span id="accuracy">100</span>%</div>
+                    <div class="stat-item">WPM: <span id="wpm">0</span></div>
+                </div>
+
+                <div class="typing-card">
+                    <div id="display-kanji" class="kanji-area">準備中...</div>
+                    <div id="display-kana" class="kana-area">じゅんびちゅう</div>
+                    <div id="display-romaji" class="romaji-area">
+                        <!-- ここにJSで動的に文字が挿入されます -->
+                    </div>
+                </div>
+
+                <div class="keyboard-helper">
+                    <p>※ 半角入力でタイピングしてください</p>
+                </div>
+            </section>
+
+            <!-- 3. リザルト画面 -->
+            <section id="result-screen" class="screen hidden">
+                <div class="card result-card">
+                    <h2>練習結果</h2>
+                    <div class="result-grid">
+                        <div class="result-score">
+                            <label>スコア</label>
+                            <div id="final-score">0</div>
+                        </div>
+                        <div class="result-details">
+                            <p>WPM (文字/分): <span id="final-wpm">0</span></p>
+                            <p>正確率: <span id="final-accuracy">0</span>%</p>
+                            <p>ミス入力数: <span id="final-miss">0</span></p>
+                        </div>
+                    </div>
+
+                    <div class="analysis-section">
+                        <h3>苦手キー分析</h3>
+                        <div id="weak-keys" class="weak-keys-container">
+                            <!-- 苦手キーがここに表示される -->
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button onclick="location.reload()" class="btn-secondary">もう一度挑戦</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 EduTyping Next - 職業訓練・初心者向け学習プラットフォーム</p>
+        </footer>
+    </div>
+
+    <!-- スクリプト読み込み（順序が重要） -->
+    <script src="js/engine.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
