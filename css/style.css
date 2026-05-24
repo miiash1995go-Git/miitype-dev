@@ -1,7 +1,6 @@
 :root {
     --primary: #2c3e50;
     --accent: #3498db;
-    --success: #2ecc71;
     --error: #e74c3c;
     --bg: #f8f9fa;
 }
@@ -12,7 +11,7 @@ body {
     display: flex; justify-content: center; overflow-x: hidden;
 }
 
-#app { width: 100%; max-width: 1000px; padding: 20px; }
+#app { width: 100%; max-width: 1100px; padding: 20px; }
 
 header { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 30px; }
 .logo { font-size: 2rem; font-weight: bold; }
@@ -28,13 +27,21 @@ header { display: flex; flex-direction: column; align-items: center; gap: 15px; 
 
 .card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; }
 
+/* 設定ボタン */
+.settings-area { margin-bottom: 20px; }
+.btn-toggle {
+    background: #ecf0f1; border: 1px solid #bdc3c7; padding: 8px 16px;
+    border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: bold;
+}
+.btn-toggle.off { color: #95a5a6; text-decoration: line-through; }
+
 .btn-group { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
-.btn-category { padding: 10px 20px; border: 2px solid #ddd; background: white; border-radius: 25px; cursor: pointer; }
+.btn-category { padding: 10px 20px; border: 2px solid #ddd; background: white; border-radius: 25px; cursor: pointer; font-weight: bold; }
 .btn-category.active { background: var(--accent); color: white; border-color: var(--accent); }
 
 .btn-main {
     background: var(--primary); color: white; border: none; padding: 15px 50px;
-    font-size: 1.2rem; border-radius: 30px; cursor: pointer; margin-top: 20px;
+    font-size: 1.2rem; border-radius: 30px; cursor: pointer; margin-top: 20px; font-weight: bold;
 }
 
 .stats { display: flex; justify-content: center; gap: 40px; margin-bottom: 20px; font-family: 'Roboto Mono', monospace; font-weight: bold; }
@@ -58,12 +65,34 @@ header { display: flex; flex-direction: column; align-items: center; gap: 15px; 
 }
 .key.highlight { background: var(--accent); color: white; transform: translateY(-2px); box-shadow: 0 4px 0 #2980b9; }
 
-.result-container { display: flex; gap: 30px; width: 100%; }
-.result-main { flex: 2; background: white; padding: 30px; border-radius: 15px; text-align: center; }
-.result-ad { flex: 1; }
-.ad-video-placeholder { width: 100%; min-height: 300px; height: 100%; background: #333; color: #777; display: flex; align-items: center; justify-content: center; border-radius: 15px; }
+.guide-text { text-align: center; color: #95a5a6; font-size: 0.8rem; margin-top: 15px; }
+
+/* 結果画面レイアウト */
+.result-container { display: flex; gap: 20px; width: 100%; align-items: flex-start; }
+
+.result-side {
+    flex: 1; background: white; padding: 20px; border-radius: 15px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 450px; display: flex; flex-direction: column;
+}
+.result-side h3 { font-size: 1rem; margin-top: 0; border-bottom: 2px solid var(--bg); padding-bottom: 10px; }
+
+.scroll-list {
+    flex: 1; overflow-y: auto; padding-right: 5px;
+}
+.miss-item {
+    display: flex; justify-content: space-between; padding: 8px 0;
+    border-bottom: 1px solid #f1f1f1; font-family: 'Roboto Mono', monospace;
+}
+.miss-key { font-weight: bold; color: var(--error); }
+
+/* スクロールバーのカスタマイズ */
+.scroll-list::-webkit-scrollbar { width: 6px; }
+.scroll-list::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+.scroll-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+
+.result-main { flex: 2; background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.result-ad { flex: 1; min-height: 450px; background: #333; color: #777; display: flex; align-items: center; justify-content: center; border-radius: 15px; }
 
 .rank-display { margin: 10px 0; }
 #result-rank { font-size: 6rem; font-weight: bold; color: var(--accent); line-height: 1; }
 .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 1.1rem; text-align: left; max-width: 260px; margin: 0 auto; }
-.key-box { display: inline-block; padding: 4px 10px; border: 2px solid var(--error); border-radius: 5px; margin: 3px; font-weight: bold; font-size: 0.9rem; }

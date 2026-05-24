@@ -1,6 +1,5 @@
 /**
  * EduTyping Next - Professional Logic v8.6
- * 【完全修正】ガイド表示の「っ」変換バグ ＆ データ同期バグ 対策版
  */
 
 const ROMAJI_TABLE = {
@@ -40,12 +39,15 @@ class TypingApp {
         this.data = null;
         this.currentCategory = 'business';
         this.state = "START";
+        this.soundEnabled = true; // 音設定
+        
         this.kanaList = [];
         this.pendingRomajiOptions = [];
         this.currentRomajiStr = "";
         this.typedFullRomaji = "";
         this.guideRemainRomaji = "";
         this.currentQuestion = null;
+
         this.startTime = 0;
         this.lastInputTime = 0;
         this.misses = 0;
@@ -54,9 +56,11 @@ class TypingApp {
         this.targetLimit = 350;
         this.maxTimeLimit = 240000;
         this.inactivityLimit = 120000;
+        
         this.missMap = {};
         this.audioCtx = null;
         this.timerInterval = null;
+
         this.init();
     }
 
@@ -74,7 +78,7 @@ class TypingApp {
         for (let cat in this.data.categories) {
             this.data.categories[cat].forEach((item, idx) => {
                 if (/[一-龠々]/.test(item.kana)) {
-                    console.error(`【重大不備】カテゴリ:${cat} ${idx+1}: かなに漢字があります: ${item.kana}`);
+                    console.error(`【データ不備】カテゴリ:${cat} ${idx+1}: かなに漢字があります: ${item.kana}`);
                 }
             });
         }
@@ -88,6 +92,15 @@ class TypingApp {
                 this.currentCategory = btn.dataset.cat;
             });
         });
+
+        // 音声切替ボタン
+        const soundBtn = document.getElementById('sound-toggle');
+        soundBtn.addEventListener('click', () => {
+            this.soundEnabled = !this.soundEnabled;
+            soundBtn.innerText = `タイプ音: ${this.soundEnabled ? 'ON' : 'OFF'}`;
+            soundBtn.classList.toggle('off', !this.soundEnabled);
+        });
+
         document.getElementById('start-btn').addEventListener('click', () => this.startGame());
         window.addEventListener('keydown', (e) => this.handleKeyDown(e));
     }
@@ -114,13 +127,17 @@ class TypingApp {
             this.endGame();
             return;
         }
+
         const questions = this.data.categories[this.currentCategory];
         this.currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+        
         this.kanaList = this.splitKana(this.currentQuestion.kana);
         this.typedFullRomaji = "";
         this.currentRomajiStr = "";
+        
         document.getElementById('display-kanji').innerText = this.currentQuestion.kanji;
         document.getElementById('display-kana').innerText = this.currentQuestion.kana;
+
         this.prepareNextChar();
     }
 
@@ -140,7 +157,9 @@ class TypingApp {
             setTimeout(() => this.nextQuestion(), 50);
             return;
         }
+
         let char = this.kanaList.shift();
+        
         if (char === 'ん' && this.kanaList.length > 0) {
             let nextKana = this.kanaList[0];
             let nextFirsts = ROMAJI_TABLE[nextKana] ? ROMAJI_TABLE[nextKana].map(opt => opt[0]) : [];
@@ -158,6 +177,7 @@ class TypingApp {
         else {
             this.pendingRomajiOptions = [...(ROMAJI_TABLE[char] || [char])];
         }
+
         this.currentRomajiStr = "";
         this.refreshDisplay();
     }
@@ -169,11 +189,10 @@ class TypingApp {
         let futureRemain = "";
         for(let i=0; i < this.kanaList.length; i++) {
             let k = this.kanaList[i];
-            // ガイド文字列内での「っ」の先読み処理
             if (k === 'っ' && this.kanaList[i+1]) {
                 let nextK = this.kanaList[i+1];
                 let nextR = ROMAJI_TABLE[nextK] ? ROMAJI_TABLE[nextK][0] : nextK;
-                futureRemain += nextR[0]; // 子音のみ追加
+                futureRemain += nextR[0];
             } else {
                 futureRemain += (ROMAJI_TABLE[k] ? ROMAJI_TABLE[k][0] : k);
             }
@@ -187,17 +206,28 @@ class TypingApp {
     }
 
     handleKeyDown(e) {
-        if (this.state !== "PLAYING" || e.key.length !== 1) return;
+        if (this.state !== "PLAYING") return;
+
+        // Escキー中断機能
+        if (e.key === "Escape") {
+            this.endGame("abort");
+            return;
+        }
+
+        if (e.key.length !== 1) return;
         this.lastInputTime = performance.now();
         const key = e.key.toLowerCase();
+
         let matches = this.pendingRomajiOptions.filter(opt => opt.startsWith(this.currentRomajiStr + key));
+
         if (matches.length > 0) {
             this.currentRomajiStr += key;
             this.typedFullRomaji += key;
             this.totalTypedCount++;
             this.cumTypedCount++;
             this.pendingRomajiOptions = matches;
-            this.playSound(600, 0.05);
+            if(this.soundEnabled) this.playSound(600, 0.05);
+
             if (this.pendingRomajiOptions.includes(this.currentRomajiStr)) {
                 this.prepareNextChar();
             } else {
@@ -207,7 +237,7 @@ class TypingApp {
             this.misses++;
             let expected = this.guideRemainRomaji[0];
             this.logMiss(expected);
-            this.playSound(200, 0.1);
+            if(this.soundEnabled) this.playSound(200, 0.1);
             this.flashError();
         }
         this.updateStats();
@@ -235,20 +265,38 @@ class TypingApp {
         this.state = "RESULT";
         cancelAnimationFrame(this.timerInterval);
         const totalTimeMs = performance.now() - this.startTime;
+
         document.getElementById('game-screen').classList.add('hidden');
         document.getElementById('result-screen').classList.remove('hidden');
-        if(reason === "inactivity") document.getElementById('result-title').innerText = "練習終了 (無操作による中断)";
+
+        if(reason === "inactivity") document.getElementById('result-title').innerText = "練習終了 (無操作中断)";
+        if(reason === "abort") document.getElementById('result-title').innerText = "練習終了 (途中中断)";
+
         const cpm = parseInt(document.getElementById('wpm').innerText);
         const acc = parseInt(document.getElementById('accuracy').innerText);
         const score = Math.floor(cpm * (acc/100)**3);
+
         document.getElementById('res-score').innerText = score;
         document.getElementById('res-time').innerText = this.formatTimeResult(totalTimeMs);
         document.getElementById('res-wpm').innerText = cpm;
         document.getElementById('res-acc').innerText = acc;
         document.getElementById('res-miss').innerText = this.misses;
         document.getElementById('result-rank').innerText = this.getRank(score);
-        const weak = Object.entries(this.missMap).sort((a,b)=>b[1]-a[1]).slice(0,3);
-        document.getElementById('res-weak').innerHTML = weak.length ? weak.map(w => `<span class="key-box">${w[0].toUpperCase()}</span>`).join('') : "なし";
+
+        // ミス内訳の表示生成
+        const missContainer = document.getElementById('miss-detail-list');
+        const sortedMisses = Object.entries(this.missMap).sort((a,b) => b[1] - a[1]);
+        
+        if (sortedMisses.length === 0) {
+            missContainer.innerHTML = "<p>ミスなし！完璧です。</p>";
+        } else {
+            missContainer.innerHTML = sortedMisses.map(([key, count]) => `
+                <div class="miss-item">
+                    <span class="miss-key">${key.toUpperCase()}</span>
+                    <span class="miss-count">${count}回</span>
+                </div>
+            `).join('');
+        }
     }
 
     formatTimeResult(ms) {
