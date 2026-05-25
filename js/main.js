@@ -1,6 +1,6 @@
 /**
- * EduTyping Next - Professional Logic v9.1
- * スペース待機 ＆ カウントダウン機能 ＆ 完全データ同期
+ * EduTyping Next - Professional Logic v9.2
+ * 修正：スペースキーのスクロール防止 ＆ 段ズレキーボード ＆ 中断採点不可
  */
 
 const ROMAJI_TABLE = {
@@ -39,7 +39,7 @@ class TypingApp {
     constructor() {
         this.data = null;
         this.currentCategory = 'it_terms';
-        this.state = "START"; // START, READY, COUNTDOWN, PLAYING, RESULT
+        this.state = "START"; 
         this.soundEnabled = true;
         this.kanaList = [];
         this.pendingRomajiOptions = [];
@@ -63,18 +63,9 @@ class TypingApp {
         try {
             const res = await fetch('./data/weekly.json');
             this.data = await res.json();
-            this.validateData();
         } catch (e) { console.error(e); }
         this.setupEventListeners();
         this.renderKeyboard();
-    }
-
-    validateData() {
-        for (let cat in this.data.categories) {
-            this.data.categories[cat].forEach((item, idx) => {
-                if (/[一-龠々]/.test(item.kana)) console.error(`重大不備: ${cat} ${idx+1}: かなに漢字混入`);
-            });
-        }
     }
 
     setupEventListeners() {
@@ -90,18 +81,22 @@ class TypingApp {
             e.target.innerText = `タイプ音: ${this.soundEnabled ? 'ON' : 'OFF'}`;
         });
         document.getElementById('start-btn').addEventListener('click', () => this.prepareReady());
-        window.addEventListener('keydown', (e) => this.handleKeyDown(e));
+        
+        // 修正：スクロール防止とキー入力処理
+        window.addEventListener('keydown', (e) => {
+            if (e.key === " " && (this.state === "READY" || this.state === "PLAYING")) {
+                e.preventDefault(); // スペースキーでのスクロールを防止
+            }
+            this.handleKeyDown(e);
+        });
     }
 
     prepareReady() {
         this.state = "READY";
         document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('game-screen').classList.remove('hidden');
-        
         const area = document.getElementById('typing-container');
         area.innerHTML = '<div class="ready-text">スペースキーを押して開始</div>';
-        
-        // キーボードをスペースのみハイライト
         this.highlightKey(' ');
     }
 
@@ -109,7 +104,6 @@ class TypingApp {
         this.state = "COUNTDOWN";
         let count = 3;
         const area = document.getElementById('typing-container');
-        
         const timer = setInterval(() => {
             if (count > 0) {
                 area.innerHTML = `<div class="countdown-overlay">${count}</div>`;
@@ -125,7 +119,6 @@ class TypingApp {
     startGame() {
         const area = document.getElementById('typing-container');
         area.innerHTML = '<div id="display-kanji"></div><div id="display-kana"></div><div id="display-romaji"></div>';
-        
         this.state = "PLAYING";
         const now = performance.now();
         this.startTime = now; this.lastInputTime = now;
@@ -166,8 +159,7 @@ class TypingApp {
         }
         let char = this.kanaList.shift();
         if (char === 'ん' && this.kanaList.length > 0) {
-            let nextKana = this.kanaList[0];
-            let nextFirsts = ROMAJI_TABLE[nextKana] ? ROMAJI_TABLE[nextKana].map(opt => opt[0]) : [];
+            let nextFirsts = ROMAJI_TABLE[this.kanaList[0]] ? ROMAJI_TABLE[this.kanaList[0]].map(opt => opt[0]) : [];
             this.pendingRomajiOptions = (nextFirsts.every(f => !['a','i','u','e','o','y','n'].includes(f))) ? ['n','nn','xn'] : ['nn','xn'];
         } else if (char === 'っ' && this.kanaList.length > 0) {
             let nextFirst = ROMAJI_TABLE[this.kanaList[0]] ? ROMAJI_TABLE[this.kanaList[0]][0][0] : "";
@@ -182,13 +174,12 @@ class TypingApp {
         if (this.state !== "PLAYING") return;
         let currentBest = this.pendingRomajiOptions.find(opt => opt.startsWith(this.currentRomajiStr)) || this.pendingRomajiOptions[0];
         let future = "";
-        for(let i=0; i < this.kanaList.length; i++) {
-            let k = this.kanaList[i];
-            if (k === 'っ' && this.kanaList[i+1]) {
-                let nr = ROMAJI_TABLE[this.kanaList[i+1]] ? ROMAJI_TABLE[this.kanaList[i+1]][0] : this.kanaList[i+1];
+        this.kanaList.forEach((k, idx) => {
+            if (k === 'っ' && this.kanaList[idx+1]) {
+                let nr = ROMAJI_TABLE[this.kanaList[idx+1]] ? ROMAJI_TABLE[this.kanaList[idx+1]][0] : this.kanaList[idx+1];
                 future += nr[0];
             } else { future += (ROMAJI_TABLE[k] ? ROMAJI_TABLE[k][0] : k); }
-        }
+        });
         this.guideRemainRomaji = currentBest.substring(this.currentRomajiStr.length) + future;
         const nextChar = this.guideRemainRomaji[0] || "";
         document.getElementById('display-romaji').innerHTML = `<span class="typed">${this.typedFullRomaji}</span><span class="current">${nextChar}</span><span>${this.guideRemainRomaji.substring(1)}</span>`;
@@ -261,16 +252,31 @@ class TypingApp {
         const totalMs = performance.now() - this.startTime;
         document.getElementById('game-screen').classList.add('hidden');
         document.getElementById('result-screen').classList.remove('hidden');
-        if(reason) document.getElementById('result-title').innerText = "練習終了 (中断)";
-        const cpm = parseInt(document.getElementById('wpm').innerText);
-        const acc = parseInt(document.getElementById('accuracy').innerText);
-        const score = Math.floor(cpm * (acc/100)**3);
-        document.getElementById('res-score').innerText = score;
+        
+        const resScore = document.getElementById('res-score');
+        const resRank = document.getElementById('result-rank');
+        const resTitle = document.getElementById('result-title');
+
+        if(reason === "abort") {
+            resTitle.innerText = "練習中止";
+            resScore.innerText = "---";
+            resRank.innerText = "不可";
+            resRank.style.color = "#95a5a6";
+        } else {
+            resTitle.innerText = "練習結果";
+            const cpm = parseInt(document.getElementById('wpm').innerText);
+            const acc = parseInt(document.getElementById('accuracy').innerText);
+            const score = Math.floor(cpm * (acc/100)**3);
+            resScore.innerText = score;
+            resRank.innerText = this.getRank(score);
+            resRank.style.color = "var(--accent)";
+        }
+
         document.getElementById('res-time').innerText = this.formatTime(totalMs);
-        document.getElementById('res-wpm').innerText = cpm;
-        document.getElementById('res-acc').innerText = acc;
+        document.getElementById('res-wpm').innerText = document.getElementById('wpm').innerText;
+        document.getElementById('res-acc').innerText = document.getElementById('accuracy').innerText;
         document.getElementById('res-miss').innerText = this.misses;
-        document.getElementById('result-rank').innerText = this.getRank(score);
+
         const missList = document.getElementById('miss-detail-list');
         const sorted = Object.entries(this.missMap).sort((a,b)=>b[1]-a[1]);
         missList.innerHTML = sorted.length ? sorted.map(([k,v])=>`<div class="miss-item"><span class="miss-key">${k}</span><span>${v}回</span></div>`).join('') : "ミスなし！";
@@ -299,14 +305,15 @@ class TypingApp {
             ["Space"]
         ];
         const container = document.getElementById('keyboard-container');
-        layout.forEach(row => {
+        container.innerHTML = "";
+        layout.forEach((row, i) => {
             const rowEl = document.createElement('div');
-            rowEl.className = 'keyboard-row';
+            rowEl.className = `keyboard-row row-${i}`; // row-0, row-1... のクラスを付与
             row.forEach(key => {
                 const keyEl = document.createElement('div');
                 keyEl.className = 'key';
                 if(key === "Space") keyEl.classList.add('space');
-                if(key === "Shift") keyEl.classList.add('wide-15');
+                if(key === "Shift") keyEl.classList.add('wide-shift');
                 keyEl.innerText = key;
                 keyEl.id = `k-${key === "Space" ? "space" : key.toLowerCase()}`;
                 rowEl.appendChild(keyEl);
