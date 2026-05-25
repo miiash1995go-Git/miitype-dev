@@ -1,6 +1,6 @@
 /**
  * EduTyping Next - Professional Logic v9.3
- * 修正：ガイド表示バグ（ちぇ等）＆ 超軽量演出
+ * 修正：絶対的な画面切り替え ＆ 段ズレキーボード ＆ 入力バグ修正
  */
 
 const ROMAJI_TABLE = {
@@ -27,7 +27,7 @@ const ROMAJI_TABLE = {
     'みゃ':['mya'], 'みゅ':['myu'], 'みょ':['myo'],
     'りゃ':['rya'], 'りゅ':['ryu'], 'りょ':['ryo'],
     'ぎゃ':['gya'], 'ぎゅ':['gyu'], 'ぎょ':['gyo'],
-    'じゃ':['ja','ji'], 'じゅ':['ju'], 'じょ':['jo'],
+    'じゃ':['ja','zi'], 'じゅ':['ju'], 'じょ':['jo'],
     'びゃ':['bya'], 'びゅ':['byu'], 'びょ':['byo'],
     'ぴゃ':['pya'], 'ぴゅ':['pyu'], 'ぴょ':['pyo'],
     'ふぁ':['fa'], 'ふぃ':['fi'], 'ふぇ':['fe'], 'ふぉ':['fo'],
@@ -39,7 +39,7 @@ class TypingApp {
     constructor() {
         this.data = null;
         this.currentCategory = 'it_terms';
-        this.state = "START"; 
+        this.state = "START";
         this.soundEnabled = true;
         this.targetLimit = 320;
         this.inactivityLimit = 120000;
@@ -68,6 +68,7 @@ class TypingApp {
             e.target.innerText = `タイプ音: ${this.soundEnabled ? 'ON' : 'OFF'}`;
         });
         document.getElementById('start-btn').addEventListener('click', () => this.prepareReady());
+        
         window.addEventListener('keydown', (e) => {
             if (e.key === " " && (this.state === "READY" || this.state === "PLAYING")) e.preventDefault();
             this.handleKeyDown(e);
@@ -162,10 +163,7 @@ class TypingApp {
                 let nk = this.kanaList[i+1];
                 let nr = ROMAJI_TABLE[nk] ? ROMAJI_TABLE[nk][0] : nk;
                 future += nr[0];
-            } else {
-                // ここでガイド生成時のバグ（ちぇ等）を修正
-                future += (ROMAJI_TABLE[k] ? ROMAJI_TABLE[k][0] : k);
-            }
+            } else { future += (ROMAJI_TABLE[k] ? ROMAJI_TABLE[k][0] : k); }
         }
         this.guideRemainRomaji = best.substring(this.currentRomajiStr.length) + future;
         const next = this.guideRemainRomaji[0] || "";
