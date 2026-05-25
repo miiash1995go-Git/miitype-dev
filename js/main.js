@@ -1,6 +1,6 @@
 /**
  * EduTyping Next - Professional Logic v9.3
- * 修正：絶対的な画面切り替え ＆ 段ズレキーボード ＆ 入力バグ修正
+ * 修正：ガイド文字列の「拗音（ちぇ等）」先読み対応
  */
 
 const ROMAJI_TABLE = {
@@ -32,7 +32,7 @@ const ROMAJI_TABLE = {
     'ぴゃ':['pya'], 'ぴゅ':['pyu'], 'ぴょ':['pyo'],
     'ふぁ':['fa'], 'ふぃ':['fi'], 'ふぇ':['fe'], 'ふぉ':['fo'],
     'うぃ':['wi'], 'うぇ':['we'], 'うぉ':['wo'],
-    'てぃ':['ti'], 'でぃ':['di'], 'っ':['xtu','ltu'], 'ー':['-'], '-':['-'], ' ':[' ']
+    'てぃ':['ti'], 'でぃ':['di'], 'ちぇ':['che','tye'], 'っ':['xtu','ltu'], 'ー':['-'], '-':['-'], ' ':[' ']
 };
 
 class TypingApp {
@@ -68,7 +68,6 @@ class TypingApp {
             e.target.innerText = `タイプ音: ${this.soundEnabled ? 'ON' : 'OFF'}`;
         });
         document.getElementById('start-btn').addEventListener('click', () => this.prepareReady());
-        
         window.addEventListener('keydown', (e) => {
             if (e.key === " " && (this.state === "READY" || this.state === "PLAYING")) e.preventDefault();
             this.handleKeyDown(e);
@@ -156,15 +155,21 @@ class TypingApp {
     refreshDisplay() {
         if (this.state !== "PLAYING") return;
         let best = this.pendingRomajiOptions.find(o => o.startsWith(this.currentRomajiStr)) || this.pendingRomajiOptions[0];
+        
+        // 残りのかなリストからも「拗音」や「促音」を正しく解析してガイドを作る
         let future = "";
-        for(let i=0; i < this.kanaList.length; i++) {
-            let k = this.kanaList[i];
-            if (k === 'っ' && this.kanaList[i+1]) {
-                let nk = this.kanaList[i+1];
+        let tempKana = [...this.kanaList];
+        while(tempKana.length > 0) {
+            let k = tempKana.shift();
+            if (k === 'っ' && tempKana.length > 0) {
+                let nk = tempKana[0];
                 let nr = ROMAJI_TABLE[nk] ? ROMAJI_TABLE[nk][0] : nk;
                 future += nr[0];
-            } else { future += (ROMAJI_TABLE[k] ? ROMAJI_TABLE[k][0] : k); }
+            } else {
+                future += (ROMAJI_TABLE[k] ? ROMAJI_TABLE[k][0] : k);
+            }
         }
+
         this.guideRemainRomaji = best.substring(this.currentRomajiStr.length) + future;
         const next = this.guideRemainRomaji[0] || "";
         document.getElementById('display-romaji').innerHTML = `<span class="typed">${this.typedFullRomaji}</span><span class="current">${next}</span><span>${this.guideRemainRomaji.substring(1)}</span>`;
@@ -199,7 +204,7 @@ class TypingApp {
     triggerDamage() {
         const el = document.getElementById('typing-container');
         el.classList.add('damage-effect');
-        setTimeout(() => el.classList.remove('damage-effect'), 100);
+        setTimeout(() => el.classList.remove('damage-effect'), 50);
     }
 
     highlightKey(char) {
