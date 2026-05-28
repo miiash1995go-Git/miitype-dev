@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タイピング練習 | ぱそトレ！</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <nav class="nav-menu">
+                <a href="index.html">ホーム</a>
+                <a href="play.html">タイピング</a>
+                <a href="ai-tools.html">AI活用</a>
+                <a href="career.html">転職・副業</a>
+                <a href="https://note.com/miitype" target="_blank">note</a>
+                <a href="glossary.html">用語集</a>
+                <a href="contact.html">お問い合わせ</a>
+            </nav>
+            <div class="logo">ぱそトレ！ <span>by miitype</span></div>
+        </header>
+
+        <main>
+            <section id="start-screen" class="screen">
+                <div class="card">
+                    <h1>タイピング練習</h1>
+                    <div id="category-selector" class="btn-group">
+                        <button class="btn-category active" data-cat="it_terms">IT用語</button>
+                        <button class="btn-category" data-cat="word">Word (MOS)</button>
+                        <button class="btn-category" data-cat="excel">Excel (MOS)</button>
+                        <button class="btn-category" data-cat="business">ビジネス用語</button>
+                        <button class="btn-category" data-cat="daily">日常会話</button>
+                    </div>
+                    <div class="settings-area">
+                        <button id="sound-toggle" class="btn-toggle">タイプ音: OFF</button>
+                    </div>
+                    <button id="start-btn" class="btn-main">練習開始</button>
+                </div>
+            </section>
+
+            <section id="game-screen" class="screen hidden">
+                <div class="stats"></div>
+                <div id="typing-container" class="typing-display"></div>
+                <div id="keyboard-container"></div>
+                <p class="guide-text">中断して終了するには [Esc] キー</p>
+            </section>
+
+            <section id="result-screen" class="screen hidden">
+                <div class="result-container">
+                    <div class="result-side">
+                        <h3>ミス内訳</h3>
+                        <div id="miss-detail-list" class="scroll-list"></div>
+                    </div>
+                    <div class="result-main">
+                        <h2 id="result-title">練習結果</h2>
+                        <div class="rank-display">
+                            <span class="rank-label">RANK</span>
+                            <span id="result-rank">-</span>
+                        </div>
+                        <div class="result-grid">
+                            <div class="res-item">スコア: <span id="res-score">0</span></div>
+                            <div class="res-item">タイム: <span id="res-time">0</span></div>
+                            <div class="res-item">WPM: <span id="res-wpm">0</span></div>
+                            <div class="res-item">正確率: <span id="res-acc">0</span>%</div>
+                            <div class="res-item">ミス数: <span id="res-miss">0</span></div>
+                            <div class="res-item">総タイプ数: <span id="res-total">0</span></div>
+                        </div>
+                        <button onclick="location.reload()" class="btn-main">もう一度挑戦</button>
+                    </div>
+                    <div class="result-ad-box">
+                        <div class="ad-video-placeholder">広告スペース</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>

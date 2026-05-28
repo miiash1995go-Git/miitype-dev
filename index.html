@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ぱそトレ！～パソコンスキル訓練タイピング～</title>
-    <meta name="description" content="パソコン初心者・職業訓練生のための実務特化型タイピング練習サイト。IT用語、Word、Excel、MOS対策のフレーズを打ちながら学べます。">
+    <title>ぱそトレ！by miitype｜初心者から仕事へ。タイピング・PC・生成AI・転職＆副業スキルの総合訓練サイト</title>
+    <meta name="description" content="職業訓練講師「みい先生」が運営。タイピング、PC基礎、生成AI活用、転職・副業スキルを実務目線で徹底解説。初心者から仕事で活躍するための総合学習サイト。">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -13,93 +13,123 @@
         <header>
             <nav class="nav-menu">
                 <a href="index.html">ホーム</a>
-                <a href="guide.html">学習ガイド</a>
-                <a href="about.html">使い方・当サイトについて</a>
+                <a href="play.html">タイピング</a>
+                <a href="ai-tools.html">AI活用</a>
+                <a href="career.html">転職・副業</a>
+                <a href="https://note.com/miitype" target="_blank">note</a>
+                <a href="glossary.html">用語集</a>
                 <a href="contact.html">お問い合わせ</a>
-                <a href="privacy.html">プライバシーポリシー</a>
             </nav>
-            <div class="logo">ぱそトレ！ <span>～パソコンスキル訓練タイピング～</span></div>
-            <div class="ad-container-top">
-                <div class="ad-placeholder">【広告スペース】</div>
-            </div>
+            <div class="logo">ぱそトレ！ <span>by miitype</span></div>
         </header>
 
-        <main>
-            <!-- 1. スタート画面 -->
-            <section id="start-screen" class="screen">
-                <div class="card">
-                    <h1>練習カテゴリを選択</h1>
-                    <p>実務や資格試験（MOS）に役立つフレーズを練習しましょう</p>
-                    <div id="category-selector" class="btn-group">
-                        <button class="btn-category active" data-cat="it_terms">IT用語</button>
-                        <button class="btn-category" data-cat="word">Word (MOS)</button>
-                        <button class="btn-category" data-cat="excel">Excel (MOS)</button>
-                        <button class="btn-category" data-cat="business">ビジネス用語</button>
-                        <button class="btn-category" data-cat="daily">日常会話</button>
-                    </div>
-                    <div class="settings-area">
-                        <button id="sound-toggle" class="btn-toggle">タイプ音: OFF</button>
-                    </div>
-                    <button id="start-btn" class="btn-main">練習開始</button>
+        <main class="portal-main">
+            <!-- ヒーローセクション -->
+            <section class="hero-section">
+                <h1>初心者から仕事へ。<br>PC・AI・転職スキルの総合訓練サイト</h1>
+                <p>「打てる」のその先へ。職業訓練講師が実務目線で最短ルートをナビゲートします。</p>
+                <div class="hero-btns">
+                    <a href="play.html" class="btn-main">さっそくタイピング練習を始める</a>
                 </div>
-
-                <section class="site-info-section">
-                    <h2>実務スキルを指先で習得</h2>
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <h3>ITリテラシーの向上</h3>
-                            <p>現代のビジネスに不可欠なIT用語をタイピングしながら自然に習得できます。</p>
-                        </div>
-                        <div class="info-item">
-                            <h3>MOS試験対策</h3>
-                            <p>WordやExcelの操作手順を練習文に採用。初心者の資格取得を応援します。</p>
-                        </div>
-                        <div class="info-item">
-                            <h3>職業訓練校準拠</h3>
-                            <p>物理キーボードの配列を再現したガイドで、正しいホームポジションを養います。</p>
-                        </div>
-                    </div>
-                </section>
             </section>
 
-            <!-- 2. ゲーム画面 -->
-            <section id="game-screen" class="screen hidden">
-                <div class="stats"></div>
-                <div id="typing-container" class="typing-display"></div>
-                <div id="keyboard-container"></div>
-                <p class="guide-text">中断して終了するには [Esc] キー</p>
+            <!-- このサイトについて -->
+            <section class="section-container">
+                <h2>このサイトについて</h2>
+                <div class="card about-card">
+                    <h3>初心者でも安心して学べるPC・仕事スキル学習サイト</h3>
+                    <p>当サイトは、PC操作に不慣れな方や、これから事務職・フリーランスを目指す方のための「オンライン訓練校」です。タイピングという基礎から、最新のAI活用術、そして再就職まで、一つひとつステップを踏んで学べる構造になっています。</p>
+                    <h3>職業訓練講師が実務目線で解説</h3>
+                    <p>年間200名以上の求職者をサポートする講師「みい先生」が、実際の現場で求められる「本当に必要なスキル」だけを厳選して発信しています。仕事が速くなるコツを、実務目線で伝えます。</p>
+                </div>
             </section>
 
-            <!-- 3. 結果画面 -->
-            <section id="result-screen" class="screen hidden">
-                <div class="result-container">
-                    <div class="result-side">
-                        <h3>ミス内訳</h3>
-                        <div id="miss-detail-list" class="scroll-list"></div>
+            <!-- 学べる4つのカテゴリ -->
+            <section class="section-container">
+                <h2>学べる4つのカテゴリ</h2>
+                <div class="category-grid">
+                    <div class="category-card">
+                        <div class="cat-icon">⌨️</div>
+                        <h3>タイピング</h3>
+                        <p>実務IT用語やWord/Excelの用語を打ちながら習得。MOS試験対策にも最適です。</p>
+                        <a href="guide-typing.html">→ 上達ガイドを見る</a>
                     </div>
-                    <div class="result-main">
-                        <h2 id="result-title">練習結果</h2>
-                        <div class="rank-display">
-                            <span class="rank-label">RANK</span>
-                            <span id="result-rank">-</span>
-                        </div>
-                        <div class="result-grid">
-                            <div class="res-item">スコア: <span id="res-score">0</span></div>
-                            <div class="res-item">タイム: <span id="res-time">0</span></div>
-                            <div class="res-item">WPM: <span id="res-wpm">0</span></div>
-                            <div class="res-item">正確率: <span id="res-acc">0</span>%</div>
-                            <div class="res-item">ミス数: <span id="res-miss">0</span></div>
-                            <div class="res-item">総タイプ数: <span id="res-total">0</span></div>
-                        </div>
-                        <button onclick="location.reload()" class="btn-main">もう一度挑戦</button>
+                    <div class="category-card">
+                        <div class="cat-icon">🤖</div>
+                        <h3>AI活用</h3>
+                        <p>ChatGPTやClaudeなど、最新AIを仕事のパートナーとして使いこなす方法を解説。</p>
+                        <a href="ai-tools.html">→ 主要AIツール一覧へ</a>
                     </div>
-                    <div class="result-ad-box">
-                        <div class="ad-video-placeholder">広告スペース</div>
+                    <div class="category-card">
+                        <div class="cat-icon">🚀</div>
+                        <h3>転職・副業</h3>
+                        <p>通過する職務経歴書の書き方から、面接対策、副業の始め方まで幅広く支援。</p>
+                        <a href="career.html">→ キャリア形成のコツへ</a>
+                    </div>
+                    <div class="category-card">
+                        <div class="cat-icon">📝</div>
+                        <h3>note</h3>
+                        <p>より踏み込んだ実践術や、講師の裏話をnoteで公開中。学びを深めたい方へ。</p>
+                        <a href="https://note.com/miitype" target="_blank">→ note記事一覧へ</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AIカテゴリ紹介 -->
+            <section class="section-container bg-white-card">
+                <h2>AI活用カテゴリ：主要AIツール一覧</h2>
+                <div class="info-item">
+                    <h3>AI活用とは</h3>
+                    <p>AIは人間の代わりではなく、あなたの能力を10倍にする「優秀な助手」です。文章作成、要約、情報収集をAIに任せることで、あなたはより重要な判断に集中できるようになります。当サイトでは以下のツールを推奨しています。</p>
+                </div>
+                <div class="tool-list">
+                    <ul>
+                        <li><strong>ChatGPT:</strong> 思考の整理、要約、添削に強い万能ツール。</li>
+                        <li><strong>Claude:</strong> 自然な日本語表現と、大量の資料読み込みに最適。</li>
+                        <li><strong>Gemini:</strong> 最新のGoogle検索結果を反映した調査に強い。</li>
+                        <li><strong>Copilot:</strong> ExcelやWordなど、Office作業の自動化をサポート。</li>
+                        <li><strong>Google AI Studio:</strong> プログラム生成や高度なカスタマイズに活用。</li>
+                        <li><strong>Canva AI:</strong> プレゼン資料や画像をプロ級に自動作成。</li>
+                        <li><strong>NotebookLM:</strong> 自分専用の資料から回答を導き出すAI図書館。</li>
+                        <li><strong>Manus:</strong> 複雑なWeb調査を代行する次世代AIエージェント。</li>
+                    </ul>
+                </div>
+                <div class="note-promotion">
+                    <p>💡 各ツールの具体的な「仕事での使い分け」は、noteの無料記事で詳しく解説しています。</p>
+                    <a href="https://note.com/miitype" class="btn-outline">noteでAI活用術を読む</a>
+                </div>
+            </section>
+
+            <!-- ロードマップ -->
+            <section class="section-container">
+                <h2>初めての方へ：学習の進め方</h2>
+                <div class="roadmap">
+                    <div class="roadmap-step"><span>1</span>タイピングでPC操作の土台を作る</div>
+                    <div class="roadmap-step"><span>2</span>Officeソフトの操作を実務レベルへ</div>
+                    <div class="roadmap-step"><span>3</span>生成AIを導入して業務効率を劇的に上げる</div>
+                    <div class="roadmap-step"><span>4</span>学んだスキルで理想の転職・副業を実現</div>
+                </div>
+            </section>
+
+            <!-- 運営者情報 -->
+            <section class="section-container">
+                <h2>運営者プロフィール</h2>
+                <div class="operator-card">
+                    <div class="operator-info">
+                        <h3>みい先生 <span>（現役職業訓練講師）</span></h3>
+                        <p>PC初心者から再就職を目指す方まで、累計数千時間の指導実績。ITリテラシーの格差をなくし、誰もがテクノロジーを味方にできる社会を目指しています。現場でしか得られない「生の情報」をお届けします。</p>
                     </div>
                 </div>
             </section>
         </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+            </div>
+            <p>&copy; 2024 ぱそトレ！by miitype - All Rights Reserved.</p>
+        </footer>
     </div>
-    <script src="js/main.js"></script>
 </body>
 </html>
