@@ -1,6 +1,6 @@
 /**
- * ぱそトレ！ Logic v10.1
- * 実装：自動スクロール表示 ＆ 大文字ガイド ＆ 拗音/促音バグ完全修正
+ * ぱそトレ！ Logic v10.2
+ * 修正：左寄せ固定スクロール ＆ ミス数表示バグ修正 ＆ 文章重複禁止 ＆ 320文字制限
  */
 
 const ROMAJI_TABLE = {
@@ -42,13 +42,13 @@ class TypingApp {
         this.currentCategory = 'it_terms';
         this.state = "START"; 
         this.soundEnabled = false;
-        this.targetLimit = 320;
+        this.targetLimit = 320; // 320文字目標
         this.inactivityLimit = 120000;
         this.startTime = null;
-        this.misses = 0;
         this.totalTypedCount = 0;
         this.totalMissedCount = 0;
         this.missMap = {};
+        this.lastQuestion = null; // 直前の問題を記憶
         this.init();
     }
 
@@ -56,9 +56,18 @@ class TypingApp {
         try {
             const res = await fetch('./data/weekly.json');
             this.data = await res.json();
+            this.validateData();
         } catch (e) { console.error(e); }
         this.setupEventListeners();
         this.renderKeyboard();
+    }
+
+    validateData() {
+        for (let cat in this.data.categories) {
+            this.data.categories[cat].forEach((item, idx) => {
+                if (/[一-龠々]/.test(item.kana)) console.error(`重大不備: ${cat} ${idx+1}: かなに漢字混入`);
+            });
+        }
     }
 
     setupEventListeners() {
@@ -109,7 +118,8 @@ class TypingApp {
         this.state = "PLAYING";
         this.startTime = performance.now();
         this.lastInputTime = this.startTime;
-        this.misses = 0; this.totalTypedCount = 0; this.totalMissedCount = 0;
+        this.totalTypedCount = 0;
+        this.totalMissedCount = 0;
         this.missMap = {};
         this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         this.nextQuestion();
@@ -118,8 +128,14 @@ class TypingApp {
 
     nextQuestion() {
         if (this.totalTypedCount >= this.targetLimit) { this.endGame(); return; }
+        
         const questions = this.data.categories[this.currentCategory];
-        const nextQ = questions[Math.floor(Math.random() * questions.length)];
+        
+        // 重複回避ロジック：直前の問題以外から選ぶ
+        let availableQuestions = questions.filter(q => q !== this.lastQuestion);
+        const nextQ = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+        this.lastQuestion = nextQ;
+
         this.kanaList = this.splitKana(nextQ.kana);
         this.typedFullRomaji = ""; this.currentRomajiStr = "";
         document.getElementById('display-kanji').innerText = nextQ.kanji;
@@ -144,6 +160,7 @@ class TypingApp {
             return;
         }
         let char = this.kanaList.shift();
+        
         if (char === 'ん' && this.kanaList.length > 0) {
             let nextK = this.kanaList[0];
             let nextF = ROMAJI_TABLE[nextK] ? ROMAJI_TABLE[nextK].map(o => o[0]) : [];
@@ -179,15 +196,13 @@ class TypingApp {
         this.guideRemainRomaji = best.substring(this.currentRomajiStr.length) + future;
         const next = this.guideRemainRomaji[0] || "";
         
-        // 大文字で表示
         el.innerHTML = `<span class="typed">${this.typedFullRomaji.toUpperCase()}</span><span class="current">${next.toUpperCase()}</span><span>${this.guideRemainRomaji.substring(1).toUpperCase()}</span>`;
         
-        // --- 自動スクロールロジック ---
-        // 現在の文字位置（span.current）が常に中央、あるいは一定位置に来るようずらす
+        // --- 修正：自動スクロールを左寄せ基準に変更 ---
         const typedSpan = el.querySelector('.typed');
         const offset = typedSpan.offsetWidth;
-        // 入力した分だけ左にスライドさせる（文字サイズが大きいので大胆にずらす）
-        el.style.transform = `translateX(calc(50% - ${offset}px - 2rem))`;
+        // 常に「入力済み文字」の幅分だけ左にスライドさせることで、現在文字(current)の位置を左側に固定する
+        el.style.transform = `translateX(-${offset}px)`;
         
         this.highlightKey(next);
     }
@@ -213,6 +228,7 @@ class TypingApp {
             if (this.pendingRomajiOptions.includes(this.currentRomajiStr)) this.prepareNextChar();
             else this.refreshDisplay();
         } else {
+            // ミス数を正しく加算
             this.totalMissedCount++;
             this.logMiss(this.guideRemainRomaji[0]);
             if(this.soundEnabled) this.playSound(200, 0.1);
@@ -256,11 +272,12 @@ class TypingApp {
         const resAcc = document.getElementById('res-acc');
         const resTotal = document.getElementById('res-total');
         const resWpm = document.getElementById('res-wpm');
+        const resMiss = document.getElementById('res-miss'); // 結果画面のミス数枠
         resRank.classList.remove('sparkle');
 
         if(reason === "abort") {
             resTitle.innerText = "練習中止"; resScore.innerText = "---"; resRank.innerText = "評価不可"; resRank.style.color = "#95a5a6"; resAcc.innerText = "---";
-            document.getElementById('res-time').innerText = "---"; resWpm.innerText = "---"; resTotal.innerText = "---";
+            document.getElementById('res-time').innerText = "---"; resWpm.innerText = "---"; resMiss.innerText = "---"; resTotal.innerText = "---";
         } else {
             resTitle.innerText = "練習結果";
             const sec = (performance.now() - this.startTime) / 1000;
@@ -273,6 +290,7 @@ class TypingApp {
             document.getElementById('res-time').innerText = this.formatTime(performance.now() - this.startTime);
             resWpm.innerText = cpm;
             resAcc.innerText = (accNum < 0 ? 0 : accNum);
+            resMiss.innerText = this.totalMissedCount; // 修正：ここに正しいミス数を表示
             resTotal.innerText = this.totalTypedCount + this.totalMissedCount;
             if (["SSS", "SS", "S", "A+", "A", "A-"].includes(rank)) resRank.classList.add('sparkle');
         }
