@@ -259,7 +259,7 @@ class TypingApp {
         const cpm = Math.floor(this.totalTypedCount / (sec / 60)) || 0;
         const accNum = Math.floor(((this.totalTypedCount - this.totalMissedCount) / this.totalTypedCount) * 100);
         document.getElementById('wpm').innerText = cpm;
-        document.getElementById('accuracy').innerText = (accNum < 0 ? 0 : accNum); // 数値のみ流し込む
+        document.getElementById('accuracy').innerText = (accNum < 0 ? 0 : accNum); // ★％％バグ根絶
     }
 
     endGame(reason = "") {
@@ -284,7 +284,7 @@ class TypingApp {
             resScore.innerText = score; resRank.innerText = rank; resRank.style.color = "var(--accent)";
             document.getElementById('res-time').innerText = this.formatTime(performance.now() - this.startTime);
             document.getElementById('res-wpm').innerText = cpm;
-            document.getElementById('res-acc').innerText = (accNum < 0 ? 0 : accNum); // ％％バグ根絶
+            resAcc.innerText = (accNum < 0 ? 0 : accNum); // ★％％バグ根絶
             document.getElementById('res-miss').innerText = this.totalMissedCount;
             document.getElementById('res-total').innerText = this.totalTypedCount + this.totalMissedCount;
             if (["SSS", "SS", "S", "A+", "A", "A-"].includes(rank)) resRank.classList.add('sparkle');
