@@ -55,9 +55,18 @@ class TypingApp {
         try {
             const res = await fetch('./data/weekly.json');
             this.data = await res.json();
+            this.validateData();
         } catch (e) { console.error(e); }
         this.setupEventListeners();
         this.renderKeyboard();
+    }
+
+    validateData() {
+        for (let cat in this.data.categories) {
+            this.data.categories[cat].forEach((item, idx) => {
+                if (/[一-龠々]/.test(item.kana)) console.error(`重大不備: ${cat} ${idx+1}: かなに漢字混入`);
+            });
+        }
     }
 
     setupEventListeners() {
@@ -199,11 +208,9 @@ class TypingApp {
         if (e.key === "Escape") { if (this.state !== "START") this.endGame("abort"); return; }
         if (this.state === "READY" && e.key === " ") { this.startCountdown(); return; }
         if (this.state !== "PLAYING" || e.key.length !== 1) return;
-        
         this.lastInputTime = performance.now();
         const key = e.key.toLowerCase();
         let matches = this.pendingRomajiOptions.filter(o => o.startsWith(this.currentRomajiStr + key));
-
         if (matches.length > 0) {
             this.currentRomajiStr += key; this.typedFullRomaji += key;
             this.totalTypedCount++;
@@ -245,6 +252,15 @@ class TypingApp {
         requestAnimationFrame(() => this.updateLoop());
     }
 
+    updateStats() {
+        if (!this.startTime) return;
+        const sec = (performance.now() - this.startTime) / 1000;
+        const cpm = Math.floor(this.totalTypedCount / (sec / 60)) || 0;
+        const accNum = Math.floor(((this.totalTypedCount - this.totalMissedCount) / this.totalTypedCount) * 100);
+        document.getElementById('wpm').innerText = cpm;
+        document.getElementById('accuracy').innerText = (accNum < 0 ? 0 : accNum); // ★％％バグの根絶
+    }
+
     endGame(reason = "") {
         this.state = "RESULT";
         document.getElementById('game-screen').classList.add('hidden');
@@ -255,13 +271,8 @@ class TypingApp {
         const resAcc = document.getElementById('res-acc');
 
         if(reason === "abort") {
-            resTitle.innerText = "練習中止"; resScore.innerText = "---"; resRank.innerText = "評価不可";
-            resRank.style.color = "#95a5a6";
-            document.getElementById('res-time').innerText = "---";
-            document.getElementById('res-wpm').innerText = "---";
-            document.getElementById('res-acc').innerText = "---";
-            document.getElementById('res-miss').innerText = "---";
-            document.getElementById('res-total').innerText = "---";
+            resTitle.innerText = "練習中止"; resScore.innerText = "---"; resRank.innerText = "評価不可"; resRank.style.color = "#95a5a6"; resAcc.innerText = "---";
+            document.getElementById('res-time').innerText = "---"; document.getElementById('res-wpm').innerText = "---"; document.getElementById('res-miss').innerText = "---"; document.getElementById('res-total').innerText = "---";
         } else {
             resTitle.innerText = "練習結果";
             const sec = (performance.now() - this.startTime) / 1000;
@@ -272,7 +283,7 @@ class TypingApp {
             resScore.innerText = score; resRank.innerText = rank; resRank.style.color = "var(--accent)";
             document.getElementById('res-time').innerText = this.formatTime(performance.now() - this.startTime);
             document.getElementById('res-wpm').innerText = cpm;
-            document.getElementById('res-acc').innerText = (accNum < 0 ? 0 : accNum) + "%";
+            resAcc.innerText = (accNum < 0 ? 0 : accNum); // ★％％バグの根絶
             document.getElementById('res-miss').innerText = this.totalMissedCount;
             document.getElementById('res-total').innerText = this.totalTypedCount + this.totalMissedCount;
             if (["SSS", "SS", "S", "A+", "A", "A-"].includes(rank)) resRank.classList.add('sparkle');
@@ -290,7 +301,7 @@ class TypingApp {
     getRank(s) {
         if(s >= 350) return "SSS"; if(s >= 325) return "SS"; if(s >= 300) return "S";
         if(s >= 275) return "A+"; if(s >= 250) return "A"; if(s >= 225) return "A-";
-        if(s >= 200) return "B+"; if(s >= 175) return "B"; if(s >= 150) return "B-";
+        if(s >= 210) return "B+"; if(s >= 180) return "B"; if(s >= 150) return "B-";
         if(s >= 125) return "C+"; if(s >= 100) return "C"; if(s >= 80) return "C-";
         if(s >= 65) return "D+"; if(s >= 50) return "D"; if(s >= 35) return "D-";
         if(s >= 20) return "E+"; if(s >= 10) return "E";
