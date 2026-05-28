@@ -1,6 +1,6 @@
 /**
- * ぱそトレ！ Logic v10.5
- * 修正：カウントダウンの中央揃え ＆ 総タイプ数・WPM表示
+ * ぱそトレ！ Logic v10.6
+ * 特徴：準備画面のセンター配置 ＆ Escガイドの連動 ＆ 左詰めスクロール
  */
 
 const ROMAJI_TABLE = {
@@ -57,18 +57,9 @@ class TypingApp {
         try {
             const res = await fetch('./data/weekly.json');
             this.data = await res.json();
-            this.validateData();
         } catch (e) { console.error(e); }
         this.setupEventListeners();
         this.renderKeyboard();
-    }
-
-    validateData() {
-        for (let cat in this.data.categories) {
-            this.data.categories[cat].forEach((item, idx) => {
-                if (/[一-龠々]/.test(item.kana)) console.error(`重大不備: ${cat} ${idx+1}: かなに漢字混入`);
-            });
-        }
     }
 
     setupEventListeners() {
@@ -94,7 +85,12 @@ class TypingApp {
         this.state = "READY";
         document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('game-screen').classList.remove('hidden');
-        document.getElementById('typing-container').innerHTML = '<div class="ready-text">スペースキーを押して開始</div>';
+        // ★準備画面：文字を中央に寄せ、Escガイドを真下へ配置
+        document.getElementById('typing-container').innerHTML = `
+            <div class="ready-container">
+                <div class="ready-text">スペースキーを押して開始</div>
+                <div class="esc-guide-ready">中断して終了するには [Esc] キー</div>
+            </div>`;
         this.highlightKey(' ');
     }
 
@@ -102,11 +98,13 @@ class TypingApp {
         this.state = "COUNTDOWN";
         let count = 3;
         const area = document.getElementById('typing-container');
+        area.innerHTML = `<div class="countdown-overlay">${count}</div>`;
+        
         const timer = setInterval(() => {
+            count--;
             if (count > 0) {
                 area.innerHTML = `<div class="countdown-overlay">${count}</div>`;
                 if(this.soundEnabled) this.playSound(800, 0.1);
-                count--;
             } else {
                 clearInterval(timer);
                 this.startGame();
@@ -115,6 +113,7 @@ class TypingApp {
     }
 
     startGame() {
+        // ★ゲーム開始：左詰め用のラッパー構造を生成
         document.getElementById('typing-container').innerHTML = `
             <div class="text-wrapper-left">
                 <div id="display-kanji"></div>
@@ -140,6 +139,7 @@ class TypingApp {
         let available = questions.filter(q => q !== this.lastQuestion);
         const nextQ = available[Math.floor(Math.random() * available.length)];
         this.lastQuestion = nextQ;
+
         this.kanaList = this.splitKana(nextQ.kana);
         this.typedFullRomaji = ""; this.currentRomajiStr = "";
         document.getElementById('display-kanji').innerText = nextQ.kanji;
@@ -194,6 +194,7 @@ class TypingApp {
         this.guideRemainRomaji = best.substring(this.currentRomajiStr.length) + future;
         const next = this.guideRemainRomaji[0] || "";
         el.innerHTML = `<span class="typed">${this.typedFullRomaji.toUpperCase()}</span><span class="current">${next.toUpperCase()}</span><span>${this.guideRemainRomaji.substring(1).toUpperCase()}</span>`;
+        
         const offset = el.querySelector('.typed').offsetWidth;
         el.style.transform = `translateX(-${offset}px)`;
         this.highlightKey(next);
@@ -203,9 +204,11 @@ class TypingApp {
         if (e.key === "Escape") { if (this.state !== "START") this.endGame("abort"); return; }
         if (this.state === "READY" && e.key === " ") { this.startCountdown(); return; }
         if (this.state !== "PLAYING" || e.key.length !== 1) return;
+        
         this.lastInputTime = performance.now();
         const key = e.key.toLowerCase();
         let matches = this.pendingRomajiOptions.filter(o => o.startsWith(this.currentRomajiStr + key));
+
         if (matches.length > 0) {
             this.currentRomajiStr += key; this.typedFullRomaji += key;
             this.totalTypedCount++;
@@ -254,14 +257,15 @@ class TypingApp {
         const resTitle = document.getElementById('result-title');
         const resScore = document.getElementById('res-score');
         const resRank = document.getElementById('result-rank');
-        const resAcc = document.getElementById('res-acc');
-        const resTotal = document.getElementById('res-total');
-        const resWpm = document.getElementById('res-wpm');
-        const resMiss = document.getElementById('res-miss');
 
         if(reason === "abort") {
-            resTitle.innerText = "練習中止"; resScore.innerText = "---"; resRank.innerText = "評価不可"; resRank.style.color = "#95a5a6"; resAcc.innerText = "---";
-            document.getElementById('res-time').innerText = "---"; resWpm.innerText = "---"; resMiss.innerText = "---"; resTotal.innerText = "---";
+            resTitle.innerText = "練習中止"; resScore.innerText = "---"; resRank.innerText = "評価不可";
+            resRank.style.color = "#95a5a6";
+            document.getElementById('res-time').innerText = "---";
+            document.getElementById('res-wpm').innerText = "---";
+            document.getElementById('res-acc').innerText = "---";
+            document.getElementById('res-miss').innerText = "---";
+            document.getElementById('res-total').innerText = "---";
         } else {
             resTitle.innerText = "練習結果";
             const sec = (performance.now() - this.startTime) / 1000;
@@ -269,10 +273,13 @@ class TypingApp {
             const accNum = Math.floor(((this.totalTypedCount - this.totalMissedCount) / this.totalTypedCount) * 100);
             const score = Math.floor(cpm * ((accNum < 0 ? 0 : accNum)/100)**3);
             const rank = this.getRank(score);
+
             resScore.innerText = score; resRank.innerText = rank; resRank.style.color = "var(--accent)";
             document.getElementById('res-time').innerText = this.formatTime(performance.now() - this.startTime);
-            resWpm.innerText = cpm; resAcc.innerText = (accNum < 0 ? 0 : accNum);
-            resMiss.innerText = this.totalMissedCount; resTotal.innerText = this.totalTypedCount + this.totalMissedCount;
+            document.getElementById('res-wpm').innerText = cpm;
+            document.getElementById('res-acc').innerText = (accNum < 0 ? 0 : accNum) + "%";
+            document.getElementById('res-miss').innerText = this.totalMissedCount;
+            document.getElementById('res-total').innerText = this.totalTypedCount + this.totalMissedCount;
             if (["SSS", "SS", "S", "A+", "A", "A-"].includes(rank)) resRank.classList.add('sparkle');
         }
         const sorted = Object.entries(this.missMap).sort((a,b)=>b[1]-a[1]);
