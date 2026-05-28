@@ -1,6 +1,6 @@
 /**
- * ぱそトレ！ Logic v12.0
- * 変更点：オートスケーリング、設定の永続化、ベストスコア、X(Twitter)シェア機能
+ * ぱそトレ！ Logic v12.1
+ * 修正内容：オートスケーリングの基準調整、シェア機能の安定化
  */
 
 const ROMAJI_TABLE = {
@@ -42,7 +42,6 @@ class TypingApp {
         this.currentCategory = 'it_terms';
         this.state = "START"; 
         
-        // 設定とベストスコアをLocalStorageから復元
         this.soundEnabled = localStorage.getItem('pasotore_sound') === 'true';
         this.bestScores = JSON.parse(localStorage.getItem('pasotore_best')) || {};
         
@@ -70,7 +69,6 @@ class TypingApp {
         this.updateSoundBtnDisplay();
         this.updateBestScoreDisplay();
         
-        // オートスケーリングの初期実行とイベント登録
         this.handleResize();
         window.addEventListener('resize', () => this.handleResize());
     }
@@ -79,12 +77,11 @@ class TypingApp {
         const app = document.getElementById('app');
         const width = window.innerWidth;
         const height = window.innerHeight;
-        // 1100px幅、850px高さを基準に、はみ出す場合は縮小する
         const baseWidth = 1100;
-        const baseHeight = 850;
+        const baseHeight = 900; // 少し余裕を持たせる
         
         let scale = Math.min(width / baseWidth, height / baseHeight);
-        if (scale > 1) scale = 1; // 拡大はさせない
+        if (scale > 1) scale = 1;
 
         app.style.transform = `scale(${scale})`;
         app.style.transformOrigin = 'top center';
@@ -114,7 +111,6 @@ class TypingApp {
         });
         document.getElementById('start-btn').addEventListener('click', () => this.prepareReady());
         
-        // シェアボタンのイベント
         document.getElementById('share-btn').addEventListener('click', () => this.shareResult());
 
         window.addEventListener('keydown', (e) => {
@@ -140,7 +136,7 @@ class TypingApp {
         document.getElementById('typing-container').innerHTML = `
             <div class="ready-container">
                 <div class="ready-text">スペースキーを押して開始</div>
-                <div class="esc-guide-ready">中断して終了するには [Esc] キー</div>
+                <div class="esc-guide-card">中断して終了するには [Esc] キー</div>
             </div>`;
         this.highlightKey(' ');
     }
@@ -247,7 +243,6 @@ class TypingApp {
         
         const typedSpan = el.querySelector('.typed');
         const offset = typedSpan.offsetWidth;
-        // 40px左固定スクロール
         el.style.transform = `translateX(${40 - offset}px)`;
         
         this.highlightKey(next);
@@ -349,7 +344,6 @@ class TypingApp {
             document.getElementById('res-total').innerText = this.totalTypedCount + this.totalMissedCount;
             if (["SSS", "SS", "S", "A+", "A", "A-"].includes(rank)) resRank.classList.add('sparkle');
             
-            // 自己ベストの保存
             if (!this.bestScores[this.currentCategory] || score > this.bestScores[this.currentCategory]) {
                 this.bestScores[this.currentCategory] = score;
                 localStorage.setItem('pasotore_best', JSON.stringify(this.bestScores));
