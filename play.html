@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="game-page">
+<body class="game-body">
     <div id="app">
         <header>
             <nav class="nav-menu">
@@ -21,9 +21,13 @@
                 <a href="contact.html">お問い合わせ</a>
             </nav>
             <div class="logo">ぱそトレ！ <span>タイピング練習</span></div>
+            <div class="ad-container-top">
+                <div class="ad-placeholder">【広告スペース】</div>
+            </div>
         </header>
 
         <main>
+            <!-- 練習開始画面 -->
             <section id="start-screen" class="screen">
                 <div class="card">
                     <h1>練習カテゴリを選択</h1>
@@ -41,12 +45,14 @@
                 </div>
             </section>
 
+            <!-- ゲーム画面 -->
             <section id="game-screen" class="screen hidden">
                 <div id="typing-container" class="typing-display"></div>
                 <div id="keyboard-container"></div>
-                <p class="esc-guide">中断して終了するには [Esc] キー</p>
+                <p class="guide-text">中断して終了するには [Esc] キー</p>
             </section>
 
+            <!-- 結果画面 -->
             <section id="result-screen" class="screen hidden">
                 <div class="result-container">
                     <div class="result-side">
