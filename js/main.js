@@ -1,6 +1,6 @@
 /**
- * ぱそトレ！ Logic v10.8
- * 修正：正確率「%%」バグ修正 ＆ スクロール位置の更なる左寄せ対応
+ * ぱそトレ！ Logic v10.9
+ * 修正：準備画面のセンター配置 ＆ Escガイドの文章エリア移動 ＆ 余白バグ回避
  */
 
 const ROMAJI_TABLE = {
@@ -94,6 +94,7 @@ class TypingApp {
         this.state = "READY";
         document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('game-screen').classList.remove('hidden');
+        // ★準備画面：中央寄せ ＆ ガイド内包
         document.getElementById('typing-container').innerHTML = `
             <div class="ready-container">
                 <div class="ready-text">スペースキーを押して開始</div>
@@ -254,15 +255,6 @@ class TypingApp {
         requestAnimationFrame(() => this.updateLoop());
     }
 
-    updateStats() {
-        if (!this.startTime) return;
-        const sec = (performance.now() - this.startTime) / 1000;
-        const cpm = Math.floor(this.totalTypedCount / (sec / 60)) || 0;
-        const accNum = Math.floor(((this.totalTypedCount - this.totalMissedCount) / this.totalTypedCount) * 100);
-        document.getElementById('wpm').innerText = cpm;
-        document.getElementById('accuracy').innerText = accNum; // 数値のみ流し込む
-    }
-
     endGame(reason = "") {
         this.state = "RESULT";
         document.getElementById('game-screen').classList.add('hidden');
@@ -280,12 +272,12 @@ class TypingApp {
             const sec = (performance.now() - this.startTime) / 1000;
             const cpm = Math.floor(this.totalTypedCount / (sec / 60)) || 0;
             const accNum = Math.floor(((this.totalTypedCount - this.totalMissedCount) / this.totalTypedCount) * 100);
-            const score = Math.floor(cpm * ((accNum < 0 ? 0 : accNum)/100)**3);
+            const score = Math.floor(cpm * (accNum/100)**3);
             const rank = this.getRank(score);
             resScore.innerText = score; resRank.innerText = rank; resRank.style.color = "var(--accent)";
             document.getElementById('res-time').innerText = this.formatTime(performance.now() - this.startTime);
             document.getElementById('res-wpm').innerText = cpm;
-            resAcc.innerText = (accNum < 0 ? 0 : accNum);
+            document.getElementById('res-acc').innerText = (accNum < 0 ? 0 : accNum) + "%";
             document.getElementById('res-miss').innerText = this.totalMissedCount;
             document.getElementById('res-total').innerText = this.totalTypedCount + this.totalMissedCount;
             if (["SSS", "SS", "S", "A+", "A", "A-"].includes(rank)) resRank.classList.add('sparkle');
