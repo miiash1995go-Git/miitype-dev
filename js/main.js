@@ -1,5 +1,5 @@
 /**
- * ぱそトレ！ Logic v11.0
+ * ぱそトレ！ Logic v11.1
  */
 
 const ROMAJI_TABLE = {
@@ -93,6 +93,7 @@ class TypingApp {
         this.state = "READY";
         document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('game-screen').classList.remove('hidden');
+        // ★準備画面：中央寄せ ＆ ガイド内包
         document.getElementById('typing-container').innerHTML = `
             <div class="ready-container">
                 <div class="ready-text">スペースキーを押して開始</div>
@@ -209,9 +210,11 @@ class TypingApp {
         if (e.key === "Escape") { if (this.state !== "START") this.endGame("abort"); return; }
         if (this.state === "READY" && e.key === " ") { this.startCountdown(); return; }
         if (this.state !== "PLAYING" || e.key.length !== 1) return;
+        
         this.lastInputTime = performance.now();
         const key = e.key.toLowerCase();
         let matches = this.pendingRomajiOptions.filter(o => o.startsWith(this.currentRomajiStr + key));
+
         if (matches.length > 0) {
             this.currentRomajiStr += key; this.typedFullRomaji += key;
             this.totalTypedCount++;
@@ -302,7 +305,7 @@ class TypingApp {
     getRank(s) {
         if(s >= 350) return "SSS"; if(s >= 325) return "SS"; if(s >= 300) return "S";
         if(s >= 275) return "A+"; if(s >= 250) return "A"; if(s >= 225) return "A-";
-        if(s >= 200) return "B+"; if(s >= 175) return "B"; if(s >= 150) return "B-";
+        if(s >= 210) return "B+"; if(s >= 180) return "B"; if(s >= 150) return "B-";
         if(s >= 125) return "C+"; if(s >= 100) return "C"; if(s >= 80) return "C-";
         if(s >= 65) return "D+"; if(s >= 50) return "D"; if(s >= 35) return "D-";
         if(s >= 20) return "E+"; if(s >= 10) return "E";
