@@ -27,6 +27,7 @@
         </header>
 
         <main>
+            <!-- 練習開始前の選択画面 -->
             <section id="start-screen" class="screen">
                 <div class="card">
                     <h1>練習カテゴリを選択</h1>
@@ -44,12 +45,16 @@
                 </div>
             </section>
 
+            <!-- ゲーム画面 -->
             <section id="game-screen" class="screen hidden">
-                <div id="typing-container" class="typing-display"></div>
+                <div id="typing-container" class="typing-display">
+                    <!-- JSがここに準備画面・カウントダウン・練習文を注入 -->
+                </div>
                 <div id="keyboard-container"></div>
-                <p class="esc-guide">中断して終了するには [Esc] キー</p>
+                <!-- ★最下部のテキストは完全に削除しました -->
             </section>
 
+            <!-- 結果画面 -->
             <section id="result-screen" class="screen hidden">
                 <div class="result-container">
                     <div class="result-side">
@@ -72,6 +77,7 @@
                         </div>
                         <button onclick="location.reload()" class="btn-main">もう一度挑戦</button>
                     </div>
+                    <!-- ★広告スペースを確実に固定 -->
                     <div class="result-ad-box">
                         <div class="ad-video-placeholder">広告スペース</div>
                     </div>
