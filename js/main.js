@@ -225,7 +225,6 @@ class TypingApp {
             if(this.soundEnabled) this.playSound(200, 0.1);
             this.triggerDamage();
         }
-        this.updateStats();
     }
 
     triggerDamage() {
@@ -260,7 +259,7 @@ class TypingApp {
         const cpm = Math.floor(this.totalTypedCount / (sec / 60)) || 0;
         const accNum = Math.floor(((this.totalTypedCount - this.totalMissedCount) / this.totalTypedCount) * 100);
         document.getElementById('wpm').innerText = cpm;
-        document.getElementById('accuracy').innerText = (accNum < 0 ? 0 : accNum); // ★％％バグ根絶
+        document.getElementById('accuracy').innerText = (accNum < 0 ? 0 : accNum);
     }
 
     endGame(reason = "") {
@@ -285,7 +284,7 @@ class TypingApp {
             resScore.innerText = score; resRank.innerText = rank; resRank.style.color = "var(--accent)";
             document.getElementById('res-time').innerText = this.formatTime(performance.now() - this.startTime);
             document.getElementById('res-wpm').innerText = cpm;
-            resAcc.innerText = (accNum < 0 ? 0 : accNum); // ★％％バグ根絶
+            resAcc.innerText = (accNum < 0 ? 0 : accNum); // %%バグ根絶
             document.getElementById('res-miss').innerText = this.totalMissedCount;
             document.getElementById('res-total').innerText = this.totalTypedCount + this.totalMissedCount;
             if (["SSS", "SS", "S", "A+", "A", "A-"].includes(rank)) resRank.classList.add('sparkle');
@@ -303,7 +302,7 @@ class TypingApp {
     getRank(s) {
         if(s >= 350) return "SSS"; if(s >= 325) return "SS"; if(s >= 300) return "S";
         if(s >= 275) return "A+"; if(s >= 250) return "A"; if(s >= 225) return "A-";
-        if(s >= 210) return "B+"; if(s >= 180) return "B"; if(s >= 150) return "B-";
+        if(s >= 200) return "B+"; if(s >= 175) return "B"; if(s >= 150) return "B-";
         if(s >= 125) return "C+"; if(s >= 100) return "C"; if(s >= 80) return "C-";
         if(s >= 65) return "D+"; if(s >= 50) return "D"; if(s >= 35) return "D-";
         if(s >= 20) return "E+"; if(s >= 10) return "E";
