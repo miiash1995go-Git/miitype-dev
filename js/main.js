@@ -1,6 +1,6 @@
 /**
- * ぱそトレ！ Logic v12.3
- * 修正：LPのレイアウト維持 ＆ ゲーム画面の絶対中央固定スケーリング
+ * ぱそトレ！ Logic v12.4
+ * 修正：スケーリングの完全分離 ＆ ローマ字位置計算の適正化
  */
 
 const ROMAJI_TABLE = {
@@ -71,24 +71,29 @@ class TypingApp {
     handleResize() {
         const app = document.getElementById('app');
         if (!app) return;
-        // ゲーム中以外のページ（LP等）ではスケーリングしない
-        if (!document.body.classList.contains('game-body')) {
-            app.style.transform = 'none';
-            app.style.position = 'relative';
-            app.style.left = 'auto';
-            app.style.top = 'auto';
+        
+        // 1. LPや静的ページ（portal-page）の場合はスケーリングをリセット
+        if (document.body.classList.contains('portal-page')) {
+            app.style.transform = "none";
+            app.style.position = "relative";
+            app.style.left = "auto";
+            app.style.top = "auto";
+            app.style.margin = "0 auto";
             return;
         }
+
+        // 2. ゲーム画面（game-body）の場合のみ中央固定スケーリング
         const width = window.innerWidth;
         const height = window.innerHeight;
         const baseWidth = 1100;
         const baseHeight = 850;
         let scale = Math.min(width / baseWidth, height / baseHeight);
         if (scale > 1) scale = 1;
+
+        app.style.position = "absolute";
+        app.style.left = "50%";
+        app.style.top = "50%";
         app.style.transform = `translate(-50%, -50%) scale(${scale})`;
-        app.style.left = '50%';
-        app.style.top = '50%';
-        app.style.position = 'absolute';
     }
 
     validateData() {
@@ -244,6 +249,7 @@ class TypingApp {
         el.innerHTML = `<span class="typed">${this.typedFullRomaji.toUpperCase()}</span><span class="current">${next.toUpperCase()}</span><span>${this.guideRemainRomaji.substring(1).toUpperCase()}</span>`;
         const typedSpan = el.querySelector('.typed');
         const offset = typedSpan.offsetWidth;
+        // 40px地点を死守
         el.style.transform = `translateX(${40 - offset}px)`;
         this.highlightKey(next);
     }
