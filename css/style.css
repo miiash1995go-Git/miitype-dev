@@ -102,7 +102,7 @@ body.portal-page main { justify-content: flex-start; padding-top: 20px; }
 .portal-page .section-container { max-width: 1050px; margin: 0 auto 100px auto; width: 100%; }
 .portal-page .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%; }
 .portal-page .category-card { background: white; padding: 35px 20px; border-radius: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-decoration: none; color: inherit; border: 1px solid #eee; transition: all 0.2s; }
-.portal-page .category-card:hover { border-color: var(--accent); transform: translateY(-50px); }
+.portal-page .category-card:hover { border-color: var(--accent); transform: translateY(-8px); }
 .portal-page .cat-icon { font-size: 4.5rem; margin-bottom: 15px; }
 
 /* 共通パーツ */
