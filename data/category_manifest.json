@@ -1,0 +1,15 @@
+{
+  "categories": [
+    {"id": "windows", "name": "Windows操作", "file": "windows.json"},
+    {"id": "it_terms", "name": "IT用語", "file": "it_terms.json"},
+    {"id": "word_basic", "name": "Word基礎", "file": "word_basic.json"},
+    {"id": "word_mos", "name": "Word(MOS)", "file": "word_mos.json"},
+    {"id": "excel_basic", "name": "Excel基礎", "file": "excel_basic.json"},
+    {"id": "excel_mos", "name": "Excel(MOS)", "file": "excel_mos.json"},
+    {"id": "ai_terms", "name": "AI用語", "file": "ai_terms.json"},
+    {"id": "business", "name": "ビジネス", "file": "business.json"},
+    {"id": "career", "name": "就職・転職", "file": "career.json"},
+    {"id": "daily", "name": "日常会話", "file": "daily.json"},
+    {"id": "total_test", "name": "ぱそトレ！総合判定", "file": "all"}
+  ]
+}

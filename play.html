@@ -20,47 +20,36 @@
                 <a href="contact.html">お問い合わせ</a>
             </nav>
             <div class="logo">ぱそトレ！ <span>実務スキル訓練</span></div>
-            <div class="ad-container-top"></div>
         </header>
 
         <main>
-            <!-- スタート画面：10カテゴリ＋総合判定を表示 -->
             <section id="start-screen" class="screen">
                 <div class="card">
                     <h1>練習カテゴリを選択</h1>
-                    
                     <div id="category-selector" class="btn-group-container">
-                        <!-- 基礎グループ -->
                         <div class="category-group">
-                            <span class="group-label">【基礎】</span>
-                            <button class="btn-category" data-cat="windows">Windows操作</button>
+                            <span class="group-label">基礎</span>
+                            <button class="btn-category" data-cat="windows">Windows</button>
                             <button class="btn-category" data-cat="daily">日常会話</button>
                         </div>
-                        
-                        <!-- Officeグループ -->
                         <div class="category-group">
-                            <span class="group-label">【Office】</span>
+                            <span class="group-label">Office</span>
                             <button class="btn-category" data-cat="word_basic">Word基礎</button>
                             <button class="btn-category" data-cat="word_mos">Word(MOS)</button>
                             <button class="btn-category" data-cat="excel_basic">Excel基礎</button>
                             <button class="btn-category" data-cat="excel_mos">Excel(MOS)</button>
                         </div>
-                        
-                        <!-- 実務グループ -->
                         <div class="category-group">
-                            <span class="group-label">【実務】</span>
+                            <span class="group-label">実務</span>
                             <button class="btn-category active" data-cat="it_terms">IT用語</button>
                             <button class="btn-category" data-cat="ai_terms">AI用語</button>
                             <button class="btn-category" data-cat="business">ビジネス</button>
                             <button class="btn-category" data-cat="career">就職・転職</button>
                         </div>
-
-                        <!-- スペシャル -->
                         <div class="category-group special">
-                            <button class="btn-category btn-total" data-cat="total_test">🔥 ぱそトレ！総合判定</button>
+                            <button class="btn-category btn-total" data-cat="total_test">🔥 総合判定</button>
                         </div>
                     </div>
-
                     <div id="best-score-display">自己ベストスコア: 0</div>
                     <div class="settings-area">
                         <button id="sound-toggle" class="btn-toggle">タイプ音: OFF</button>
@@ -69,21 +58,19 @@
                 </div>
             </section>
 
-            <!-- ゲーム画面 -->
             <section id="game-screen" class="screen hidden">
                 <div id="typing-container" class="typing-display"></div>
                 <div id="keyboard-container"></div>
             </section>
 
-            <!-- 結果画面 -->
             <section id="result-screen" class="screen hidden">
                 <div class="result-container">
                     <div class="result-side">
-                        <h3 style="margin-top:0;">ミス内訳</h3>
+                        <h3>ミス内訳</h3>
                         <div id="miss-detail-list" class="scroll-list"></div>
                     </div>
                     <div class="result-main">
-                        <h2 id="result-title" style="margin:0;">練習結果</h2>
+                        <h2 id="result-title">練習結果</h2>
                         <div class="rank-area">
                             <span class="rank-label">RANK</span><br>
                             <div id="result-rank">-</div>
@@ -96,9 +83,7 @@
                             <div class="res-item">ミス数: <span id="res-miss">0</span></div>
                             <div class="res-item">総タイプ数: <span id="res-total">0</span></div>
                         </div>
-                        <div class="result-btns">
-                            <button onclick="location.reload()" class="btn-main">もう一度挑戦</button>
-                        </div>
+                        <button onclick="location.reload()" class="btn-main">もう一度挑戦</button>
                     </div>
                 </div>
             </section>

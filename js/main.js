@@ -1,6 +1,6 @@
 /**
- * ぱそトレ！ Logic v13.2
- * 変更点：マルチJSON動的ロード、総合判定（全統合）モードの実装
+ * ぱそトレ！ Logic v13.5
+ * 修正：非同期データロードの完全同期、DOM構築とレンダリングの分離、スケーリングの安定化
  */
 
 const ROMAJI_TABLE = {
@@ -72,9 +72,9 @@ class TypingApp {
     }
 
     async loadQuestions(categoryId) {
-        if (!this.manifest) return;
+        if (!this.manifest) return false;
         const category = this.manifest.categories.find(c => c.id === categoryId);
-        if (!category) return;
+        if (!category) return false;
 
         try {
             if (category.file === "all") {
@@ -88,8 +88,10 @@ class TypingApp {
                 const data = await res.json();
                 this.currentQuestions = data.questions;
             }
+            return this.currentQuestions && this.currentQuestions.length > 0;
         } catch (e) {
             console.error("Data Load Error:", e);
+            return false;
         }
     }
 
@@ -97,8 +99,7 @@ class TypingApp {
         const app = document.getElementById('app');
         if (!app) return;
         if (document.body.classList.contains('portal-page')) {
-            app.style.transform = "none";
-            app.style.position = "relative";
+            app.style.transform = "none"; app.style.position = "relative";
             app.style.left = "auto"; app.style.top = "auto"; app.style.margin = "0 auto";
             return;
         }
@@ -108,6 +109,7 @@ class TypingApp {
         const baseHeight = 820; 
         let scale = Math.min(width / baseWidth, height / baseHeight);
         if (scale > 1) scale = 1;
+
         app.style.position = "absolute";
         app.style.left = "50%"; app.style.top = "10px"; 
         app.style.transform = `translateX(-50%) scale(${scale})`;
@@ -137,8 +139,12 @@ class TypingApp {
         if (startBtn) {
             startBtn.addEventListener('click', async () => {
                 startBtn.disabled = true;
-                await this.loadQuestions(this.currentCategoryId);
-                this.prepareReady();
+                const success = await this.loadQuestions(this.currentCategoryId);
+                if (success) {
+                    this.prepareReady();
+                } else {
+                    alert("読み込みエラーが発生しました。");
+                }
                 startBtn.disabled = false;
             });
         }
@@ -171,11 +177,14 @@ class TypingApp {
         if (startScreen) startScreen.classList.add('hidden');
         if (gameScreen) gameScreen.classList.remove('hidden');
 
-        document.getElementById('typing-container').innerHTML = `
-            <div class="ready-container">
-                <div class="ready-text">スペースキーを押して開始</div>
-                <div class="esc-guide-card">中断して終了するには [Esc] キー</div>
-            </div>`;
+        const container = document.getElementById('typing-container');
+        if (container) {
+            container.innerHTML = `
+                <div class="ready-container">
+                    <div class="ready-text">スペースキーを押して開始</div>
+                    <div class="esc-guide-card">中断して終了するには [Esc] キー</div>
+                </div>`;
+        }
         this.highlightKey(' ');
     }
 
@@ -183,11 +192,11 @@ class TypingApp {
         this.state = "COUNTDOWN";
         let count = 3;
         const area = document.getElementById('typing-container');
-        area.innerHTML = `<div class="countdown-overlay">${count}</div>`;
+        if (area) area.innerHTML = `<div class="countdown-overlay">${count}</div>`;
         const timer = setInterval(() => {
             count--;
             if (count > 0) {
-                area.innerHTML = `<div class="countdown-overlay">${count}</div>`;
+                if (area) area.innerHTML = `<div class="countdown-overlay">${count}</div>`;
                 if(this.soundEnabled) this.playSound(800, 0.1);
             } else {
                 clearInterval(timer);
@@ -197,14 +206,17 @@ class TypingApp {
     }
 
     startGame() {
-        document.getElementById('typing-container').innerHTML = `
-            <div class="text-wrapper-left">
-                <div id="display-kanji"></div>
-                <div id="display-kana"></div>
-                <div class="romaji-scroll-window">
-                    <div id="display-romaji" class="romaji-content"></div>
-                </div>
-            </div>`;
+        const container = document.getElementById('typing-container');
+        if (container) {
+            container.innerHTML = `
+                <div class="text-wrapper-left">
+                    <div id="display-kanji"></div>
+                    <div id="display-kana"></div>
+                    <div class="romaji-scroll-window">
+                        <div id="display-romaji" class="romaji-content"></div>
+                    </div>
+                </div>`;
+        }
         this.state = "PLAYING";
         this.startTime = performance.now();
         this.lastInputTime = this.startTime;
@@ -218,7 +230,7 @@ class TypingApp {
 
     nextQuestion() {
         if (this.totalTypedCount >= this.targetLimit) { this.endGame(); return; }
-        if (!this.currentQuestions.length) return;
+        if (!this.currentQuestions || this.currentQuestions.length === 0) return;
         
         let nextQ;
         do {
@@ -228,8 +240,12 @@ class TypingApp {
         this.lastQuestion = nextQ;
         this.kanaList = this.splitKana(nextQ.kana);
         this.typedFullRomaji = ""; this.currentRomajiStr = "";
-        document.getElementById('display-kanji').innerText = nextQ.kanji;
-        document.getElementById('display-kana').innerText = nextQ.kana;
+        
+        const kanjiEl = document.getElementById('display-kanji');
+        const kanaEl = document.getElementById('display-kana');
+        if (kanjiEl) kanjiEl.innerText = nextQ.kanji;
+        if (kanaEl) kanaEl.innerText = nextQ.kana;
+        
         this.prepareNextChar();
     }
 
@@ -281,13 +297,15 @@ class TypingApp {
         this.guideRemainRomaji = best.substring(this.currentRomajiStr.length) + future;
         const next = this.guideRemainRomaji[0] || "";
         el.innerHTML = `<span class="typed">${this.typedFullRomaji.toUpperCase()}</span><span class="current">${next.toUpperCase()}</span><span>${this.guideRemainRomaji.substring(1).toUpperCase()}</span>`;
+        
         const typedSpan = el.querySelector('.typed');
-        const offset = typedSpan.offsetWidth;
+        const offset = typedSpan ? typedSpan.offsetWidth : 0;
         el.style.transform = `translateX(${40 - offset}px)`;
         this.highlightKey(next);
     }
 
     handleKeyDown(e) {
+        if (this.state !== "PLAYING") return;
         this.lastInputTime = performance.now();
         const key = e.key.toLowerCase();
         let matches = this.pendingRomajiOptions.filter(o => o.startsWith(this.currentRomajiStr + key));
@@ -368,7 +386,11 @@ class TypingApp {
             const score = Math.floor(cpm * ((accNum < 0 ? 0 : accNum)/100)**3);
             const rank = this.getRank(score);
             if (resScore) resScore.innerText = score; 
-            if (resRank) { resRank.innerText = rank; resRank.style.color = "var(--accent)"; }
+            if (resRank) {
+                resRank.innerText = rank; 
+                resRank.style.color = "var(--accent)"; 
+                resRank.style.fontSize = "6rem";
+            }
             document.getElementById('res-time').innerText = this.formatTime(performance.now() - this.startTime);
             document.getElementById('res-wpm').innerText = cpm;
             document.getElementById('res-acc').innerText = (accNum < 0 ? 0 : accNum);
