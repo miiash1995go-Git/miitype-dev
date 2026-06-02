@@ -26,12 +26,14 @@
             <section id="start-screen" class="screen">
                 <div class="card">
                     <h1>練習カテゴリを選択</h1>
+                    
                     <div id="category-selector" class="btn-group-container">
                         <div class="category-group">
                             <span class="group-label">基礎</span>
                             <button class="btn-category" data-cat="windows">Windows操作</button>
                             <button class="btn-category" data-cat="daily">日常会話</button>
                         </div>
+                        
                         <div class="category-group">
                             <span class="group-label">Office</span>
                             <button class="btn-category" data-cat="word_basic">Word基礎</button>
@@ -39,6 +41,7 @@
                             <button class="btn-category" data-cat="excel_basic">Excel基礎</button>
                             <button class="btn-category" data-cat="excel_mos">Excel(MOS)</button>
                         </div>
+                        
                         <div class="category-group">
                             <span class="group-label">実務</span>
                             <button class="btn-category active" data-cat="it_terms">IT用語</button>
@@ -46,10 +49,12 @@
                             <button class="btn-category" data-cat="business">ビジネス</button>
                             <button class="btn-category" data-cat="career">就職・転職</button>
                         </div>
+
                         <div class="category-group special">
-                            <button class="btn-category btn-total" data-cat="total_test">🔥 ぱそトレ！総合判定</button>
+                            <button class="btn-category btn-total" data-cat="total_test">🔥 ぱそトレ！<br>総合判定</button>
                         </div>
                     </div>
+
                     <div id="best-score-display">自己ベストスコア: 0</div>
                     <div class="settings-area">
                         <button id="sound-toggle" class="btn-toggle">タイプ音: OFF</button>
@@ -58,15 +63,17 @@
                 </div>
             </section>
 
+            <!-- ゲーム画面 -->
             <section id="game-screen" class="screen hidden">
                 <div id="typing-container" class="typing-display"></div>
                 <div id="keyboard-container"></div>
             </section>
 
+            <!-- 結果画面 -->
             <section id="result-screen" class="screen hidden">
                 <div class="result-container">
                     <div class="result-side">
-                        <h3 style="margin:0 0 10px 0;">ミス内訳</h3>
+                        <h3 style="margin:0 0 15px 0;">ミス内訳</h3>
                         <div id="miss-detail-list" class="scroll-list"></div>
                     </div>
                     <div class="result-main">

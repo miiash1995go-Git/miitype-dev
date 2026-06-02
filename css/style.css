@@ -13,17 +13,16 @@
 
 body { margin: 0; padding: 0; font-family: 'Noto Sans JP', sans-serif; background-color: var(--bg); color: var(--primary); line-height: 1.6; min-height: 100vh; width: 100vw; display: flex; flex-direction: column; overflow-x: hidden; }
 
-/* ポータル（LP）設定 */
+/* 画面タイプ別設定 */
 body.portal-page { overflow-y: auto; height: auto; background-color: var(--bg); }
 body.portal-page main { justify-content: flex-start; padding: 20px 0; display: block; }
 
-/* ゲーム画面設定 */
 body.game-body { overflow: hidden; height: 100vh; background-color: #d1d5db; position: relative; }
 body.game-body main { justify-content: flex-start; padding-top: 10px; display: flex; flex-direction: column; align-items: center; }
 
 .hidden { display: none !important; }
 
-/* 全体コンテナ */
+/* コンテナ：馴染み深い1000pxサイズ */
 #app { width: 1000px; margin: 0 auto; padding: 10px; display: flex; flex-direction: column; box-sizing: border-box; min-height: 100vh; }
 
 header { flex-shrink: 0; text-align: center; margin-bottom: 25px; width: 100%; }
@@ -37,7 +36,7 @@ header { flex-shrink: 0; text-align: center; margin-bottom: 25px; width: 100%; }
 
 main { flex: 1; width: 100%; min-height: 0; }
 
-/* --- プレイ画面 --- */
+/* --- タイピング画面 --- */
 .screen { width: 100%; display: flex; flex-direction: column; align-items: center; }
 
 .typing-display { 
@@ -51,50 +50,37 @@ main { flex: 1; width: 100%; min-height: 0; }
     width: 2px; height: 90px; background-color: rgba(52, 152, 219, 0.3); z-index: 10; pointer-events: none;
 }
 
+/* 準備画面 */
 .ready-container { text-align: center; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .ready-text { font-size: 2.8rem; font-weight: 800; color: var(--primary); animation: pulse 1.5s infinite; margin-bottom: 10px; }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
 
-#display-kanji { font-size: 1.9rem; margin-bottom: 2px; font-weight: bold; color: var(--primary); text-align: left; }
-#display-kana { font-size: 1.1rem; color: #888; margin-bottom: 5px; text-align: left; }
+/* 打鍵エリア */
+.text-wrapper-left { text-align: left; width: 100%; }
+#display-kanji { font-size: 1.9rem; margin-bottom: 2px; font-weight: bold; color: var(--primary); }
+#display-kana { font-size: 1.1rem; color: #888; margin-bottom: 5px; }
+.romaji-scroll-window { width: 100%; overflow: hidden; position: relative; height: 4.5rem; display: flex; justify-content: flex-start; align-items: center; background: #fafafa; border-radius: 12px; padding: 0; }
+.romaji-content { font-family: 'Roboto Mono', monospace; font-size: 2.6rem; font-weight: 700; letter-spacing: 0.1em; color: #333; white-space: nowrap; text-transform: uppercase; transition: transform 0.1s ease-out; margin: 0; }
 
-.romaji-scroll-window { 
-    width: 100%; overflow: hidden; position: relative; height: 4.8rem; 
-    display: flex; justify-content: flex-start; align-items: center; 
-    background: #fafafa; border-radius: 12px; padding: 0;
-}
-.romaji-content { 
-    font-family: 'Roboto Mono', monospace; font-size: 2.6rem; font-weight: 700; 
-    letter-spacing: 0.1em; color: #333; white-space: nowrap; text-transform: uppercase; 
-    transition: transform 0.1s ease-out; margin: 0;
-}
 .typed { color: #d1d5db !important; }
 
-/* 修正：現在入力位置の強調を強化 */
+/* 修正：現在入力位置の強調を復元 */
 .current { 
     color: var(--accent) !important; 
     border-bottom: 5px solid var(--accent); 
-    display: inline-block;
-    line-height: 1;
 }
 
-/* キーボード：中央配置の最適化 */
+/* キーボード：スペースキーをVBNの下に中央配置 */
 #keyboard-container { width: 860px; padding: 20px; background: #f1f2f6; border-radius: 20px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; }
 .keyboard-row { display: flex; justify-content: flex-start; gap: 6px; width: fit-content; margin-bottom: 6px; }
 .row-1 { padding-left: 22px; } .row-2 { padding-left: 40px; }
+.row-4 { justify-content: center; width: 100%; }
 
 .key { width: 44px; height: 44px; background: white; border-radius: 8px; border: 1px solid var(--key-border); border-bottom-width: 3px; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: bold; color: #57606f; }
-
-/* 修正：スペースキーの位置（VBNの下に中央寄せ） */
-.row-4 { justify-content: center; padding-left: 0; }
-.key.space { 
-    width: 300px; 
-    margin-left: 0; /* 固定マージンを排除 */
-    background: #3498db; border-color: #2980b9; color: white; 
-}
+.key.space { width: 300px; background: #3498db; border-color: #2980b9; color: white; }
 .key.highlight { background: var(--accent); color: white; border-color: #2980b9; transform: translateY(2px); border-bottom-width: 1px; }
 
-/* カテゴリ選択タイルUI */
+/* カテゴリタイルUI */
 .card { background: white; padding: 20px 30px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; width: 900px; }
 .btn-group-container { display: flex; justify-content: center; gap: 12px; width: 100%; margin-bottom: 15px; }
 .category-group { flex: 1; display: flex; flex-direction: column; gap: 8px; padding: 12px; background: #f8f9fa; border-radius: 15px; border: 1px solid #eee; }
@@ -105,20 +91,67 @@ main { flex: 1; width: 100%; min-height: 0; }
 .btn-category.active { background: var(--accent); color: white; border-color: var(--accent); }
 .btn-total { height: 100%; background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%) !important; color: white !important; border: none !important; font-size: 1.1rem !important; }
 
+/* ボタンと設定 */
 .btn-toggle { background: #ecf0f1; border: 1px solid #bdc3c7; padding: 8px 30px; border-radius: 30px; cursor: pointer; font-weight: bold; font-size: 0.9rem; }
 .btn-main { background: var(--primary); color: white; border: none; padding: 14px 70px; font-size: 1.3rem; border-radius: 40px; cursor: pointer; font-weight: bold; box-shadow: 0 5px 0 #1a252f; transition: all 0.1s; text-decoration: none; }
 .btn-main:hover:not(:disabled) { background: var(--accent); transform: translateY(-2px); box-shadow: 0 7px 0 #2980b9; }
 
-/* 結果画面 */
-.result-container { display: flex !important; flex-direction: row !important; gap: 20px; width: 1000px; margin: 0 auto; height: 460px; align-items: stretch; justify-content: center; }
-.result-side { flex: 1.2; background: white; padding: 25px; border-radius: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; }
-.result-main { flex: 2; background: white; padding: 25px; border-radius: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; justify-content: space-around; }
+/* 結果画面：以前のしっかりした黄金レイアウトを完全復元 */
+.result-container { 
+    display: flex !important; 
+    flex-direction: row !important; /* 強制横並び */
+    gap: 20px; 
+    width: 1000px; 
+    margin: 0 auto; 
+    height: 460px; 
+    align-items: stretch; 
+    justify-content: center; 
+}
+.result-side { 
+    flex: 1.2; 
+    background: white; 
+    padding: 25px; 
+    border-radius: 25px; 
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
+    display: flex; 
+    flex-direction: column; 
+    overflow: hidden; 
+}
+.result-main { 
+    flex: 2; 
+    background: white; 
+    padding: 25px; 
+    border-radius: 25px; 
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
+    text-align: center; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-around; 
+}
 .scroll-list { flex: 1; overflow-y: auto; padding-right: 10px; }
-#result-rank { font-size: 6rem; font-weight: bold; color: var(--accent); margin: 0; line-height: 1; }
+.miss-item { 
+    display: flex; 
+    justify-content: space-between; 
+    padding: 10px 15px; 
+    border-bottom: 1px solid #f1f1f1; 
+    font-family: 'Roboto Mono', monospace; 
+    font-size: 1.1rem; 
+}
+.miss-key { font-weight: bold; color: var(--error); } /* ミスキーを赤く強調 */
 
-/* TOPページ（LP） */
-.portal-page .hero-section { text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #1a365d 0%, #2980b9 100%); color: white; border-radius: 30px; margin-bottom: 80px; width: 100%; }
-.portal-page .category-grid { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 30px; width: 100%; }
+#result-rank { font-size: 6.5rem; font-weight: bold; color: var(--accent); margin: 0; line-height: 1; }
+.result-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 8px 35px; 
+    max-width: 450px; 
+    margin: 10px auto; 
+    text-align: left; 
+}
+.res-item { font-size: 1.1rem; border-bottom: 1px solid #f1f1f1; padding-bottom: 5px; white-space: nowrap; }
+
+/* TOPページ（LP）：完成されたグリッドを復元 */
+.portal-page .category-grid { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 30px !important; width: 100% !important; margin-top: 40px; }
 .portal-page .category-card { background: white; padding: 40px 25px; border-radius: 25px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-decoration: none; color: inherit; border: 1px solid #eee; display: flex !important; flex-direction: column !important; align-items: center !important; transition: all 0.3s ease; }
 .portal-page .category-card:hover { border-color: var(--accent); transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
 .portal-page .cat-icon { font-size: 4.5rem; margin-bottom: 15px; }
@@ -128,13 +161,14 @@ main { flex: 1; width: 100%; min-height: 0; }
 .static-page h1 { font-size: 1.7rem; border-bottom: 3px solid var(--accent); padding-bottom: 8px; margin-bottom: 25px; }
 .article-image { text-align: center; margin: 30px 0; }
 .article-image img { 
-    max-width: 600px; /* 画像サイズを以前のちょうど良いサイズへ固定 */
+    max-width: 600px; /* 適切な画像サイズへ固定 */
     width: 100%; 
     height: auto; 
     border-radius: 12px; 
     box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
 }
 
+/* フッター */
 footer { margin-top: auto; padding: 8px 0; border-top: 1px solid #eee; text-align: center; background: white; flex-shrink: 0; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 3px; width: 100%; }
 .footer-links a { color: var(--primary); text-decoration: none; font-size: 0.8rem; }
