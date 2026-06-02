@@ -1,6 +1,5 @@
 /**
- * ぱそトレ！ Logic v13.7
- * 修正：スケーリング計算の適正化、レンダリング順序の完全同期
+ * ぱそトレ！ Logic v13.8
  */
 
 const ROMAJI_TABLE = {
@@ -74,20 +73,20 @@ class TypingApp {
         const category = this.manifest.categories.find(c => c.id === categoryId);
         if (!category) return false;
         try {
-            let loadedData = [];
+            let loaded = [];
             if (category.file === "all") {
                 const fetchTasks = this.manifest.categories
                     .filter(c => c.file !== "all")
                     .map(c => fetch(`./data/typing/${c.file}`).then(r => r.json()));
                 const results = await Promise.all(fetchTasks);
-                loadedData = results.flatMap(d => d.questions);
+                loaded = results.flatMap(d => d.questions);
             } else {
                 const res = await fetch(`./data/typing/${category.file}`);
                 const data = await res.json();
-                loadedData = data.questions;
+                loaded = data.questions;
             }
-            this.currentQuestions = loadedData;
-            return loadedData && loadedData.length > 0;
+            this.currentQuestions = loaded;
+            return loaded && loaded.length > 0;
         } catch (e) { return false; }
     }
 
@@ -101,7 +100,6 @@ class TypingApp {
         }
         const width = window.innerWidth;
         const height = window.innerHeight;
-        // 1000pxを基準にスケール計算
         const scale = Math.min(width / 1000, height / 800, 1);
         app.style.position = "absolute";
         app.style.left = "50%"; app.style.top = "10px"; 
@@ -211,7 +209,7 @@ class TypingApp {
         this.missMap = {};
         this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         
-        // DOMが作成された直後に1問目を出題
+        // 文字列表示の確実な同期
         setTimeout(() => this.nextQuestion(), 10);
         this.updateLoop();
     }
@@ -281,6 +279,7 @@ class TypingApp {
         this.guideRemainRomaji = best.substring(this.currentRomajiStr.length) + future;
         const next = this.guideRemainRomaji[0] || "";
         el.innerHTML = `<span class="typed">${this.typedFullRomaji.toUpperCase()}</span><span class="current">${next.toUpperCase()}</span><span>${this.guideRemainRomaji.substring(1).toUpperCase()}</span>`;
+        
         const typedSpan = el.querySelector('.typed');
         const offset = typedSpan ? typedSpan.offsetWidth : 0;
         el.style.transform = `translateX(${40 - offset}px)`;
