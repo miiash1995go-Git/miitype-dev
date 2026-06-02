@@ -1,6 +1,6 @@
 /**
  * ぱそトレ！ Logic v13.7
- * 修正：レンダリングタイミングの完全同期、非同期データの受け渡し修正
+ * 修正：スケーリング計算の適正化、レンダリング順序の完全同期
  */
 
 const ROMAJI_TABLE = {
@@ -74,20 +74,20 @@ class TypingApp {
         const category = this.manifest.categories.find(c => c.id === categoryId);
         if (!category) return false;
         try {
-            let loaded = [];
+            let loadedData = [];
             if (category.file === "all") {
                 const fetchTasks = this.manifest.categories
                     .filter(c => c.file !== "all")
                     .map(c => fetch(`./data/typing/${c.file}`).then(r => r.json()));
-                const allData = await Promise.all(fetchTasks);
-                loaded = allData.flatMap(d => d.questions);
+                const results = await Promise.all(fetchTasks);
+                loadedData = results.flatMap(d => d.questions);
             } else {
                 const res = await fetch(`./data/typing/${category.file}`);
                 const data = await res.json();
-                loaded = data.questions;
+                loadedData = data.questions;
             }
-            this.currentQuestions = loaded;
-            return loaded && loaded.length > 0;
+            this.currentQuestions = loadedData;
+            return loadedData && loadedData.length > 0;
         } catch (e) { return false; }
     }
 
@@ -101,7 +101,8 @@ class TypingApp {
         }
         const width = window.innerWidth;
         const height = window.innerHeight;
-        const scale = Math.min(width / 1100, height / 820, 1);
+        // 1000pxを基準にスケール計算
+        const scale = Math.min(width / 1000, height / 800, 1);
         app.style.position = "absolute";
         app.style.left = "50%"; app.style.top = "10px"; 
         app.style.transform = `translateX(-50%) scale(${scale})`;
@@ -210,8 +211,8 @@ class TypingApp {
         this.missMap = {};
         this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         
-        // 最初の問題を確実にセット
-        this.nextQuestion();
+        // DOMが作成された直後に1問目を出題
+        setTimeout(() => this.nextQuestion(), 10);
         this.updateLoop();
     }
 
@@ -363,7 +364,7 @@ class TypingApp {
             const score = Math.floor(cpm * ((accNum < 0 ? 0 : accNum)/100)**3);
             const rank = this.getRank(score);
             if (resScore) resScore.innerText = score; 
-            if (resRank) { resRank.innerText = rank; resRank.style.color = "var(--accent)"; resRank.style.fontSize = "6rem"; }
+            if (resRank) { resRank.innerText = rank; resRank.style.color = "var(--accent)"; resRank.style.fontSize = "5.5rem"; }
             document.getElementById('res-time').innerText = this.formatTime(performance.now() - this.startTime);
             document.getElementById('res-wpm').innerText = cpm;
             document.getElementById('res-acc').innerText = (accNum < 0 ? 0 : accNum);
