@@ -1,5 +1,6 @@
 /**
- * ぱそトレ！ Logic v13.8
+ * ぱそトレ！ Logic v13.9
+ * 修正：レンダリング同期の完全化 (requestAnimationFrame), 10カテゴリ動的ロード
  */
 
 const ROMAJI_TABLE = {
@@ -209,15 +210,16 @@ class TypingApp {
         this.missMap = {};
         this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         
-        // 文字列表示の確実な同期
-        setTimeout(() => this.nextQuestion(), 10);
-        this.updateLoop();
+        // 完璧な同期：DOMが構築されるのを待ってから1問目を出題
+        requestAnimationFrame(() => {
+            this.nextQuestion();
+            this.updateLoop();
+        });
     }
 
     nextQuestion() {
         if (this.totalTypedCount >= this.targetLimit) { this.endGame(); return; }
         if (!this.currentQuestions || this.currentQuestions.length === 0) return;
-        
         const nextQ = this.currentQuestions[Math.floor(Math.random() * this.currentQuestions.length)];
         this.lastQuestion = nextQ;
         this.kanaList = this.splitKana(nextQ.kana);
@@ -279,7 +281,6 @@ class TypingApp {
         this.guideRemainRomaji = best.substring(this.currentRomajiStr.length) + future;
         const next = this.guideRemainRomaji[0] || "";
         el.innerHTML = `<span class="typed">${this.typedFullRomaji.toUpperCase()}</span><span class="current">${next.toUpperCase()}</span><span>${this.guideRemainRomaji.substring(1).toUpperCase()}</span>`;
-        
         const typedSpan = el.querySelector('.typed');
         const offset = typedSpan ? typedSpan.offsetWidth : 0;
         el.style.transform = `translateX(${40 - offset}px)`;
@@ -345,11 +346,8 @@ class TypingApp {
 
     endGame(reason = "") {
         this.state = "RESULT";
-        const gameScreen = document.getElementById('game-screen');
-        const resultScreen = document.getElementById('result-screen');
-        if (gameScreen) gameScreen.classList.add('hidden');
-        if (resultScreen) resultScreen.classList.remove('hidden');
-
+        document.getElementById('game-screen').classList.add('hidden');
+        document.getElementById('result-screen').classList.remove('hidden');
         const resScore = document.getElementById('res-score');
         const resRank = document.getElementById('result-rank');
         if(reason === "abort") {
