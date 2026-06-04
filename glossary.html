@@ -404,7 +404,10 @@
             </article>
         </main>
 
-        <footer>
+	<!-- ★ここに追加：トップへ戻るボタン -->
+        <a href="#" id="backToTop" class="back-to-top">↑</a>
+        
+	<footer>
             <div class="footer-links">
                 <a href="privacy.html">プライバシーポリシー</a>
                 <a href="contact.html">お問い合わせ</a>
@@ -413,5 +416,21 @@
             <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
         </footer>
     </div>
+
+	<!-- ★ここに追加：ボタンを動かすスクリプト -->
+	<script>
+        	const backToTopBtn = document.getElementById('backToTop');
+        	window.addEventListener('scroll', () => {
+           	 if (window.scrollY > 500) {
+                	backToTopBtn.classList.add('visible');
+           	 } else {
+               	 backToTopBtn.classList.remove('visible');
+            	}
+	});
+	backToTopBtn.addEventListener('click', (e) => {
+		e.preventDefault();
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	});
+	</script>
 </body>
 </html>
