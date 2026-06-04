@@ -64,25 +64,25 @@ main { flex: 1; width: 100%; min-height: 0; }
 .typed { color: #d1d5db !important; }
 .current { color: var(--accent) !important; border-bottom: 5px solid var(--accent); }
 
-/* --- キーボード：物理配置修正 (v16.0 決定版) --- */
+/* --- キーボード：物理配置修正 (v16.1 最終バランス調整) --- */
 #keyboard-container { 
     width: 860px; padding: 25px; background: #f1f2f6; border-radius: 20px; 
     flex-shrink: 0; display: flex; flex-direction: column; align-items: center; 
 }
 
-/* 各行の基準幅を統一して左端を揃える */
+/* 各行を左詰め基準にし、一貫したピッチでパディングを適用 */
 .keyboard-row { 
     display: flex; justify-content: flex-start; gap: 6px; 
-    width: 660px; /* 全ての行の基準幅を固定し、ここからパディングでズラす */
+    width: 720px; /* 全行のコンテナ幅を固定 */
     margin-bottom: 6px; 
 }
 
-/* JIS物理ピッチに基づいた精密なズレ */
-.row-0 { padding-left: 0px; }    /* 数字列 */
-.row-1 { padding-left: 22px; }   /* QWERTY列：Qが1と2の間に来るように約半キー分ズラす */
-.row-2 { padding-left: 45px; }   /* ASDF列：AがQとWの間に来るようにさらにズラす（画像通りの位置） */
-.row-3 { padding-left: 5px; }    /* ZXCV列：Shiftキー(88px)の存在により文字の位置が調整される */
-.row-4 { justify-content: center; width: 100%; padding-left: 0; } /* スペースキー行は全体中央 */
+/* 段ごとの精密なスタッガード配置（JIS規格） */
+.row-0 { padding-left: 10px; }   /* 数字：基準 */
+.row-1 { padding-left: 35px; }   /* QWERTY：数字に対し25px右へ */
+.row-2 { padding-left: 60px; }   /* ASDF：Qに対しさらに25px右へ */
+.row-3 { padding-left: 85px; }   /* ZXCV：Aに対しさらに25px右へ（Z開始位置の修正） */
+.row-4 { padding-left: 295px; }  /* Space：左端をVキーの真下に配置 */
 
 .key { 
     width: 44px; height: 44px; background: white; border-radius: 8px; 
@@ -90,8 +90,16 @@ main { flex: 1; width: 100%; min-height: 0; }
     display: flex; align-items: center; justify-content: center; 
     font-size: 0.95rem; font-weight: bold; color: #57606f; flex-shrink: 0; 
 }
-.key.wide-shift { width: 88px; } /* Shiftキーの正しい幅を設定 */
-.key.space { width: 320px; background: #3498db; border-color: #2980b9; color: white; }
+
+/* Shiftキー：3段目とのバランスをとるため適正化 */
+.key.wide-shift { width: 70px; }
+
+/* スペースキー：長すぎたため200px（キー約4個分）へ短縮 */
+.key.space { 
+    width: 200px; 
+    background: #3498db; border-color: #2980b9; color: white; 
+}
+
 .key.highlight { background: var(--accent); color: white; border-color: #2980b9; transform: translateY(2px); border-bottom-width: 1px; }
 
 /* カテゴリ選択タイルUI (既存デザイン維持) */
@@ -119,17 +127,12 @@ main { flex: 1; width: 100%; min-height: 0; }
 .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 30px; max-width: 450px; margin: 15px auto; text-align: left; }
 .res-item { font-size: 1.15rem; border-bottom: 1px solid #f1f1f1; padding-bottom: 5px; white-space: nowrap; }
 
-/* TOPページ（LP）：完成されたデザインの復元 */
+/* TOPページ（LP）デザイン復元 */
 .portal-page .hero-section { text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #1a365d 0%, #2980b9 100%); color: white; border-radius: 30px; margin-bottom: 80px; width: 100%; }
 .portal-page .category-grid { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 30px !important; width: 100% !important; margin-top: 40px; }
 .portal-page .category-card { background: white; padding: 40px 25px; border-radius: 25px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-decoration: none; color: inherit; border: 1px solid #eee; display: flex !important; flex-direction: column !important; align-items: center !important; transition: all 0.3s ease; }
 .portal-page .category-card:hover { border-color: var(--accent); transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
 .portal-page .cat-icon { font-size: 4.5rem; margin-bottom: 15px; }
-
-/* 読み物ページ */
-.static-page { text-align: left; max-width: 800px; width: 100%; margin: 15px auto 40px auto; background: white; padding: 40px 60px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); line-height: 1.8; }
-.article-image { text-align: center; margin: 30px 0; }
-.article-image img { max-width: 600px; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
 /* フッター：極小スリム化 */
 footer { margin-top: auto; padding: 8px 0; border-top: 1px solid #eee; text-align: center; background: white; flex-shrink: 0; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
