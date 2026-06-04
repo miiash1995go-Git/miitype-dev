@@ -123,7 +123,7 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
 
 .countdown-overlay { position: absolute; font-size: 7rem; color: var(--accent); font-weight: 900; z-index: 100; top: 50%; left: 50%; transform: translate(-50%, -50%); text-shadow: 0 10px 30px rgba(0,0,0,0.1); }
 
-/* --- 用語集専用：ジャンプ位置精密修正 (v16.7) --- */
+/* --- 用語集専用：ジャンプ位置・多重行チップ対応 (v16.8) --- */
 .glossary-nav { 
     display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; 
     justify-content: center; background: rgba(255, 255, 255, 0.98); 
@@ -136,12 +136,13 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
 .nav-chip:hover { background: var(--accent); color: white; transform: translateY(-2px); }
 
 /* 
-   ジャンプ後の停止位置を強制調整
-   ヘッダーとナビチップ両方を回避するために 240px を指定
+   ジャンプ停止位置をさらに拡大。
+   ヘッダー ＋ 厚みのあるナビチップメニュー ＋ 余裕の余白 
+   合計 320px を確保して潜り込みを完全に防ぎます。
 */
-.glossary-section { 
-    margin-bottom: 60px; 
-    scroll-margin-top: 240px !important; 
+.glossary-section,
+.glossary-category-title { 
+    scroll-margin-top: 320px !important; 
 }
 
 .glossary-category-title { font-size: 1.6rem; border-left: 8px solid var(--accent); padding-left: 15px; margin-bottom: 25px; color: var(--primary); font-weight: bold; }
