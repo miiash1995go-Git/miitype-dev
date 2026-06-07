@@ -7,12 +7,20 @@
   <!-- タイピング・実技 -->
   <url><loc>https://miitype.com/play.html</loc><priority>0.9</priority></url>
   
-  <!-- 教育コンテンツ -->
+  <!-- ぱそトレ！コラム（新規追加） -->
+  <url><loc>https://miitype.com/column.html</loc><priority>0.8</priority></url>
+  <url><loc>https://miitype.com/column-pc-skills.html</loc><priority>0.7</priority></url>
+  <url><loc>https://miitype.com/column-interview.html</loc><priority>0.7</priority></url>
+
+  <!-- 教育コンテンツ・用語集 -->
+  <url><loc>https://miitype.com/glossary.html</loc><priority>0.8</priority></url>
   <url><loc>https://miitype.com/ai-tools.html</loc><priority>0.7</priority></url>
   <url><loc>https://miitype.com/career.html</loc><priority>0.7</priority></url>
-  <url><loc>https://miitype.com/glossary.html</loc><priority>0.8</priority></url>
+
+  <!-- 学習ガイド（新規記事追加） -->
   <url><loc>https://miitype.com/guide.html</loc><priority>0.8</priority></url>
-  <url><loc>https://miitype.com/guide-typing.html</loc><priority>0.8</priority></url>
+  <url><loc>https://miitype.com/guide-basics.html</loc><priority>0.7</priority></url>
+  <url><loc>https://miitype.com/guide-typing.html</loc><priority>0.7</priority></url>
   
   <!-- 運営・サポート -->
   <url><loc>https://miitype.com/about.html</loc><priority>0.6</priority></url>
