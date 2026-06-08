@@ -1,6 +1,10 @@
 /**
- * ぱそトレ！ Logic v18.5
+ * ぱそトレ！ Logic v18.7
+ * - モバイル対応：1024px以下でのスケーリング停止機能を搭載
+ * - JIS物理配置：row-0～row-4 クラス付与
+ * - 判定エンジン：n/nn判定、多パターン許容
  */
+
 const ROMAJI_TABLE = {
     'あ':['a'], 'い':['i'], 'う':['u'], 'え':['e'], 'お':['o'],
     'か':['ka'], 'き':['ki'], 'く':['ku'], 'け':['ke'], 'こ':['ko'],
@@ -89,11 +93,12 @@ class TypingApp {
         } catch (e) { return false; }
     }
 
+    // ★重要：スマホ・タブレット対応のレスポンシブ制御
     handleResize() {
         const app = document.getElementById('app');
         if (!app) return;
         
-        // 1024px以下（モバイル・タブレット）またはポータルページの場合はスケーリングを完全無効化
+        // 1024px以下、またはポータルページの場合は、無理な拡大縮小をせず標準のレイアウトを維持
         if (document.body.classList.contains('portal-page') || window.innerWidth <= 1024) {
             app.style.position = "relative";
             app.style.left = "auto";
@@ -103,7 +108,7 @@ class TypingApp {
             return;
         }
 
-        // PC用スケーリング
+        // デスクトップ用：画面サイズに合わせて中央にスケーリング
         const width = window.innerWidth;
         const height = window.innerHeight;
         const scale = Math.min(width / 1000, height / 800, 1);
