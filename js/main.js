@@ -1,5 +1,5 @@
 /**
- * ぱそトレ！ Logic v14.3
+ * ぱそトレ！ Logic v18.5
  */
 const ROMAJI_TABLE = {
     'あ':['a'], 'い':['i'], 'う':['u'], 'え':['e'], 'お':['o'],
@@ -92,16 +92,24 @@ class TypingApp {
     handleResize() {
         const app = document.getElementById('app');
         if (!app) return;
-        if (document.body.classList.contains('portal-page')) {
-            app.style.transform = "none"; app.style.position = "relative";
-            app.style.left = "auto"; app.style.top = "auto"; app.style.margin = "0 auto";
+        
+        // 1024px以下（モバイル・タブレット）またはポータルページの場合はスケーリングを完全無効化
+        if (document.body.classList.contains('portal-page') || window.innerWidth <= 1024) {
+            app.style.position = "relative";
+            app.style.left = "auto";
+            app.style.top = "auto";
+            app.style.transform = "none";
+            app.style.margin = "0 auto";
             return;
         }
+
+        // PC用スケーリング
         const width = window.innerWidth;
         const height = window.innerHeight;
         const scale = Math.min(width / 1000, height / 800, 1);
         app.style.position = "absolute";
-        app.style.left = "50%"; app.style.top = "10px"; 
+        app.style.left = "50%"; 
+        app.style.top = "10px"; 
         app.style.transform = `translateX(-50%) scale(${scale})`;
         app.style.transformOrigin = "top center";
     }
@@ -354,7 +362,7 @@ class TypingApp {
             const score = Math.floor(cpm * ((accNum < 0 ? 0 : accNum)/100)**3);
             const rank = this.getRank(score);
             if (resScore) resScore.innerText = score; 
-            if (resRank) { resRank.innerText = rank; resRank.style.color = "var(--accent)"; resRank.style.fontSize = "6.5rem"; }
+            if (resRank) { resRank.innerText = rank; resRank.style.color = "var(--accent)"; resRank.style.fontSize = "4.5rem"; }
             document.getElementById('res-time').innerText = this.formatTime(performance.now() - this.startTime);
             document.getElementById('res-wpm').innerText = cpm;
             document.getElementById('res-acc').innerText = (accNum < 0 ? 0 : accNum);

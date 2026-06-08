@@ -3,16 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>タイピング練習 | ぱそトレ！</title>
-	<meta name="description" content="事務職の即戦力を目指すタイピング練習が無料でできます。Word、Excelの基礎からMOS試験頻出用語、ビジネスメール定型句まで、実務で使う言葉だけを厳選収録。初心者でも迷わずブラインドタッチを習得できる設計です。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="タイピング練習画面｜実務用語を指で覚える｜ぱそトレ！">
-<meta property="og:image" content="https://miitype.com/img/typing-home-position.jpg">
-<link rel="icon" href="/favicon.ico">
+    <title>タイピング練習画面｜実務用語を指で覚える｜ぱそトレ！</title>
+    <meta name="description" content="事務職の即戦力を目指すタイピング練習が無料でできます。Word、Excelの基礎からMOS試験頻出用語、ビジネスメール定型句まで、実務で使う言葉だけを厳選収録。初心者でも迷わずブラインドタッチを習得できる設計です。">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="タイピング練習画面｜実務用語を指で覚える｜ぱそトレ！">
+    <meta property="og:image" content="https://miitype.com/img/typing-home-position.jpg">
+    <link rel="icon" href="/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="game-body">
+    <!-- スマホ・タブレット用制限画面：z-index 10000で確実に最前面へ -->
+    <div class="mobile-restriction-overlay">
+        <div class="restriction-card">
+            <h2>PC環境での学習を推奨</h2>
+            <p>
+                本サイトのタイピング練習は、パソコンでの学習を前提としています。<br><br>
+                スマートフォンではキーボード仕様の都合により、正確なタイピング計測ができないためご利用いただけません。<br><br>
+                業務スキル向上のため、パソコン環境での学習を推奨しています。<br>
+                推奨ブラウザ：Edge / Chrome / Firefox / Safari
+            </p>
+            <a href="index.html" class="btn-main" style="padding: 10px 30px; font-size: 1rem; box-shadow: none;">ホームへ戻る</a>
+        </div>
+    </div>
+
     <div id="app">
         <header>
             <nav class="nav-menu">
@@ -22,7 +36,7 @@
                 <a href="career.html">就職・転職</a>
                 <a href="glossary.html">用語集</a>
                 <a href="guide.html">学習ガイド</a>
-		<a href="column.html">ぱそトレ！コラム</a>
+                <a href="column.html">ぱそトレ！コラム</a>
                 <a href="contact.html">お問い合わせ</a>
             </nav>
             <div class="logo">ぱそトレ！ <span>実務スキル訓練</span></div>
