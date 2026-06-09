@@ -227,3 +227,28 @@ footer { margin-top: auto; padding: 15px 0; border-top: 1px solid #eee; text-ali
 .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 3px; width: 100%; }
 .footer-links a { color: var(--primary); text-decoration: none; font-size: 0.8rem; }
 footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
+
+/* --- v18.9 追加：パンくずリスト --- */
+.breadcrumb {
+    margin-bottom: 25px;
+    font-size: 0.85rem;
+    color: #666;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.breadcrumb a {
+    color: var(--accent); /* サイトのメインカラー */
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb-separator {
+    color: #ccc;
+    font-size: 0.7rem;
+}
