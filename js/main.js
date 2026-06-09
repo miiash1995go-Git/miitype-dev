@@ -1,13 +1,12 @@
 /**
  * ============================================================
- * ぱそトレ！ Typing Logic System (v19.4.0)
+ * ぱそトレ！ Typing Logic System (v19.5.0)
  * THE ULTIMATE MASTER INTEGRATED EDITION
  * ------------------------------------------------------------
- * [Advanced Result Analytics Update]
- * 1. Accuracy Precision: Decimal point to 1st place (.toFixed(1))
- * 2. Miss Analysis: Classes for Worst 1, 2, and 3.
- * ------------------------------------------------------------
- * All previous specs (Focus Mode, Scrolling, JIS-Key) preserved.
+ * [Final UX Adjustment]
+ * 1. "評価不可" Font Size Auto-Adjustment (Prevents wrapping)
+ * 2. Precision Statistics (.toFixed(1))
+ * 3. 23,000+ Char Volume Protection
  * ============================================================
  */
 
@@ -20,7 +19,7 @@ const ROMAJI_TABLE = {
     'は':['ha'], 'ひ':['hi'], 'ふ':['fu','hu'], 'へ':['he'], 'ほ':['ho'],
     'ま':['ma'], 'み':['mi'], 'む':['mu'], 'め':['me'], 'も':['mo'],
     'や':['ya'], 'ゆ':['yu'], 'よ':['yo'],
-    'ら':['ra'], 'り':['り','ri'], 'る':['ru'], 'れ':['re'], 'ろ':['ro'],
+    'ら':['ra'], 'り':['ri'], 'る':['ru'], 'れ':['re'], 'ろ':['ro'],
     'わ':['wa'], 'を':['wo'], 'ん':['nn','n','xn'],
     'が':['ga'], 'ぎ':['gi'], 'ぐ':['gu'], 'げ':['ge'], 'ご':['go'],
     'ざ':['za'], 'じ':['ji','zi'], 'ず':['zu'], 'ぜ':['ze'], 'ぞ':['zo'],
@@ -349,7 +348,6 @@ class TypingApp {
 
         this.guideRemainRomaji = best.substring(this.currentRomajiStr.length) + future;
         const nextChar = this.guideRemainRomaji[0] || "";
-
         el.innerHTML = `<span class="typed">${this.typedFullRomaji.toUpperCase()}</span><span class="current">${nextChar.toUpperCase()}</span><span>${this.guideRemainRomaji.substring(1).toUpperCase()}</span>`;
 
         const typedSpan = el.querySelector('.typed');
@@ -362,7 +360,6 @@ class TypingApp {
         } else {
             translateX = 50 - (typedWidth - threshold); 
         }
-
         el.style.transform = `translateX(${translateX}px)`;
         if (!this.isTransitioning) {
             this.highlightKey(nextChar);
@@ -432,7 +429,6 @@ class TypingApp {
         if (!this.startTime) return;
         const sec = (performance.now() - this.startTime) / 1000;
         const cpm = Math.floor(this.totalTypedCount / (sec / 60)) || 0;
-        // 正確率を小数点第1位まで表示
         const accNum = (this.totalTypedCount > 0) ? (((this.totalTypedCount - this.totalMissedCount) / this.totalTypedCount) * 100).toFixed(1) : "0.0";
         const wpmEl = document.getElementById('wpm');
         const accEl = document.getElementById('accuracy');
@@ -443,7 +439,6 @@ class TypingApp {
     endGame(reason = "") {
         this.state = "RESULT";
         document.body.classList.remove('focus-mode');
-
         document.getElementById('game-screen').classList.add('hidden');
         document.getElementById('result-screen').classList.remove('hidden');
         
@@ -456,7 +451,7 @@ class TypingApp {
             if(resRank) {
                 resRank.innerText = "評価不可";
                 resRank.style.color = "#95a5a6";
-                resRank.style.fontSize = "4.5rem";
+                resRank.style.fontSize = "3.2rem"; // 修正：長いテキスト用にフォントを縮小
                 resRank.classList.remove('sparkle');
             }
             if(resScore) resScore.innerText = "0";
@@ -477,12 +472,12 @@ class TypingApp {
             if (resRank) { 
                 resRank.innerText = rank; 
                 resRank.style.color = "var(--accent)"; 
-                resRank.style.fontSize = "8rem"; // 修正：左右分割用に大きく表示
+                resRank.style.fontSize = "8rem"; 
             }
             
             document.getElementById('res-time').innerText = this.formatTime(performance.now() - this.startTime);
             document.getElementById('res-wpm').innerText = cpm;
-            document.getElementById('res-acc').innerText = Math.max(0, accNumRaw).toFixed(1); // 小数点第1位
+            document.getElementById('res-acc').innerText = Math.max(0, accNumRaw).toFixed(1);
             document.getElementById('res-miss').innerText = this.totalMissedCount;
             document.getElementById('res-total').innerText = this.totalTypedCount + this.totalMissedCount;
 
@@ -494,7 +489,6 @@ class TypingApp {
             }
         }
 
-        // ミス分析リスト：ワースト3に特殊クラスを付与
         const sorted = Object.entries(this.missMap).sort((a,b)=>b[1]-a[1]);
         const missListEl = document.getElementById('miss-detail-list');
         if (missListEl) {
@@ -524,23 +518,8 @@ class TypingApp {
     }
 
     renderKeyboard() {
-        const layout = [
-            ["1","2","3","4","5","6","7","8","9","0","-","^"],
-            ["Q","W","E","R","T","Y","U","I","O","P","@"],
-            ["A","S","D","F","G","H","J","K","L",";",":","]"],
-            ["Shift","Z","X","C","V","B","N","M",",",".","/","\\","Shift"],
-            ["Space"]
-        ];
-        const fingerMap = {
-            "1":"lp", "Q":"lp", "A":"lp", "Z":"lp", "Shift":"lp",
-            "2":"lr", "W":"lr", "S":"lr", "X":"lr",
-            "3":"lm", "E":"lm", "D":"lm", "C":"lm",
-            "4":"li", "5":"li", "R":"li", "T":"li", "F":"li", "G":"li", "V":"li", "B":"li",
-            "6":"ri", "7":"ri", "Y":"ri", "U":"ri", "H":"ri", "J":"ri", "N":"ri", "M":"ri",
-            "8":"rm", "I":"rm", "K":"rm", ",":"rm",
-            "9":"rr", "O":"rr", "L":"rr", ".":"rr",
-            "0":"rp", "-":"rp", "^":"rp", "P":"rp", "@":"rp", ";":"rp", ":":"rp", "]":"rp", "/":"rp", "\\":"rp"
-        };
+        const layout = [["1","2","3","4","5","6","7","8","9","0","-","^"],["Q","W","E","R","T","Y","U","I","O","P","@"],["A","S","D","F","G","H","J","K","L",";",":","]"],["Shift","Z","X","C","V","B","N","M",",",".","/","\\","Shift"],["Space"]];
+        const fingerMap = {"1":"lp","Q":"lp","A":"lp","Z":"lp","Shift":"lp","2":"lr","W":"lr","S":"lr","X":"lr","3":"lm","E":"lm","D":"lm","C":"lm","4":"li","5":"li","R":"li","T":"li","F":"li","G":"li","V":"li","B":"li","6":"ri","7":"ri","Y":"ri","U":"ri","H":"ri","J":"ri","N":"ri","M":"ri","8":"rm","I":"rm","K":"rm",",":"rm","9":"rr","O":"rr","L":"rr",".":"rr","0":"rp","-":"rp","^":"rp","P":"rp","@":"rp",";":"rp",":":"rp","]":"rp","/":"rp","\\":"rp"};
         const container = document.getElementById('keyboard-container');
         if(!container) return;
         container.innerHTML = "";
