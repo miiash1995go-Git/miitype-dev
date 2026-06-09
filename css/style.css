@@ -333,3 +333,39 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
 
 /* ダークモード等での文字視認性確保 */
 .key[class*="f-"] { color: #57606f; }
+
+/* --- v19.2.0：集中モード & 結果画面広告枠 --- */
+
+/* 背景色の変化をスムーズにする */
+body.game-body {
+    transition: background-color 0.6s ease;
+}
+
+/* 【集中モード】タイピング中のみ適用 */
+body.focus-mode {
+    background-color: #1e272e !important; /* 深いダークグレー */
+}
+
+/* 集中モード中、ヘッダーとフッターを薄くして存在感を消す */
+body.focus-mode header, 
+body.focus-mode footer {
+    opacity: 0.15;
+    pointer-events: none; /* 練習中の誤クリック防止 */
+    transition: opacity 0.6s ease;
+}
+
+/* カードを浮かび上がらせる */
+body.focus-mode .typing-display,
+body.focus-mode #keyboard-container {
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+/* 結果画面の広告枠：自然な余白として90px確保 */
+.ad-container-bottom {
+    display: block !important;
+    width: 100%;
+    max-width: 728px;
+    height: 90px;
+    margin: 25px auto 0 auto; /* 結果ボタンの下に配置 */
+    background: transparent;
+}
