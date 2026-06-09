@@ -366,7 +366,7 @@ body.game-body {
 
 /* 【集中モード】タイピング中のみ適用 */
 body.focus-mode {
-    background-color: #5b6d7e !important; /* 深いダークグレー */
+    background-color: #767d87 !important; /* 深いダークグレー */
 }
 
 /* 集中モード中、ヘッダーとフッターを薄くして存在感を消す */
