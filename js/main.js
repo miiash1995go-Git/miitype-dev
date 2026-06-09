@@ -1,11 +1,8 @@
 /**
- * ぱそトレ！ Logic v19.0.0 (Pro Rhythm Edition)
- * - ウェイト機能：一文終了ごとに0.5秒の「間」を設け、リズムを調整
- * - 重複回避：同じ問題が2回連続で出ないロジック
- * - ハーフ・センター・スクロール：50pxパディング考慮の精密計算
- * - 特殊ローマ字：ti(ち), thi(てぃ), tye(ちぇ) 完備
- * - JIS黄金比：/ と Shift の間に \ キーを完全実装
- * - 20,800文字規模の品質と仕様を完全継承・統合
+ * ぱそトレ！ Logic v19.1.0 (UX & Visual Upgrade)
+ * - キーボード指別色分け（パステル調）の実装
+ * - 設定ボタン（音・色）のUI改善
+ * - 重複回避、ハーフスクロール、精密判定、JIS黄金比を完備
  */
 
 const ROMAJI_TABLE = {
@@ -49,7 +46,10 @@ class TypingApp {
         this.currentQuestions = [];
         this.currentCategoryId = 'it_terms';
         this.state = "START"; 
+        
+        // 設定値の読み込み
         this.soundEnabled = localStorage.getItem('pasotore_sound') === 'true';
+        this.keyboardColorEnabled = localStorage.getItem('pasotore_kb_color') !== 'false'; // デフォルトはON
         this.bestScores = JSON.parse(localStorage.getItem('pasotore_best')) || {};
         
         this.targetLimit = 320;
@@ -63,7 +63,7 @@ class TypingApp {
         this.missMap = {};
         
         this.lastQuestionIndex = -1;
-        this.isTransitioning = false; // 【新規】文と文の間の待機フラグ
+        this.isTransitioning = false;
 
         this.LEFT_PADDING = 50;
         this.CENTER_X = 430; 
@@ -74,7 +74,7 @@ class TypingApp {
     async init() {
         try {
             this.renderKeyboard();
-            this.updateSoundBtnDisplay();
+            this.updateSettingsBtnDisplay();
             this.setupEventListeners();
             const res = await fetch('./data/category_manifest.json');
             this.manifest = await res.json();
@@ -135,7 +135,17 @@ class TypingApp {
             soundBtn.addEventListener('click', () => {
                 this.soundEnabled = !this.soundEnabled;
                 localStorage.setItem('pasotore_sound', this.soundEnabled);
-                this.updateSoundBtnDisplay();
+                this.updateSettingsBtnDisplay();
+            });
+        }
+
+        const colorBtn = document.getElementById('color-toggle');
+        if (colorBtn) {
+            colorBtn.addEventListener('click', () => {
+                this.keyboardColorEnabled = !this.keyboardColorEnabled;
+                localStorage.setItem('pasotore_kb_color', this.keyboardColorEnabled);
+                this.updateSettingsBtnDisplay();
+                this.renderKeyboard(); // 色設定を反映して再描画
             });
         }
 
@@ -158,15 +168,25 @@ class TypingApp {
         });
     }
 
-    updateSoundBtnDisplay() {
-        const btn = document.getElementById('sound-toggle');
-        if(btn) btn.innerText = `タイプ音: ${this.soundEnabled ? 'ON' : 'OFF'}`;
+    updateSettingsBtnDisplay() {
+        const sBtn = document.getElementById('sound-toggle');
+        if(sBtn) {
+            sBtn.innerText = `タイプ音: ${this.soundEnabled ? 'ON' : 'OFF'}`;
+            sBtn.classList.toggle('active', this.soundEnabled);
+        }
+        const cBtn = document.getElementById('color-toggle');
+        if(cBtn) {
+            cBtn.innerText = `ガイド色: ${this.keyboardColorEnabled ? 'ON' : 'OFF'}`;
+            cBtn.classList.toggle('active', this.keyboardColorEnabled);
+        }
     }
 
     updateBestScoreDisplay() {
         const best = this.bestScores[this.currentCategoryId] || 0;
         const el = document.getElementById('best-score-display');
-        if(el) el.innerText = `自己ベストスコア: ${best}`;
+        if(el) {
+            el.innerHTML = `<span class="best-label">自己ベスト</span><span class="best-value">${best}</span>`;
+        }
     }
 
     prepareReady() {
@@ -182,7 +202,6 @@ class TypingApp {
                 </div>`;
         }
         this.highlightKey(' ');
-        this.updateGuidePosition(this.LEFT_PADDING); 
     }
 
     startCountdown() {
@@ -233,7 +252,6 @@ class TypingApp {
             this.endGame(); 
             return; 
         }
-
         if (!this.currentQuestions || this.currentQuestions.length === 0) return;
 
         let nextIdx;
@@ -244,11 +262,8 @@ class TypingApp {
 
         this.lastQuestionIndex = nextIdx;
         const nextQ = this.currentQuestions[nextIdx];
-        
         this.kanaList = this.splitKana(nextQ.kana);
-        this.typedFullRomaji = ""; 
-        this.currentRomajiStr = "";
-        
+        this.typedFullRomaji = ""; this.currentRomajiStr = "";
         const kanjiEl = document.getElementById('display-kanji');
         const kanaEl = document.getElementById('display-kana');
         if (kanjiEl) kanjiEl.innerText = nextQ.kanji;
@@ -269,9 +284,8 @@ class TypingApp {
     prepareNextChar() {
         if (this.kanaList.length === 0) {
             this.refreshDisplay();
-            // 【重要】一文終了時のウェイト処理 (0.5秒)
             this.isTransitioning = true;
-            this.highlightKey(null); // 文が終わったらハイライトを一旦消す
+            this.highlightKey(null);
             setTimeout(() => {
                 this.isTransitioning = false;
                 this.nextQuestion();
@@ -289,8 +303,7 @@ class TypingApp {
         } else {
             this.pendingRomajiOptions = [...(ROMAJI_TABLE[char] || [char])];
         }
-        this.currentRomajiStr = ""; 
-        this.refreshDisplay();
+        this.currentRomajiStr = ""; this.refreshDisplay();
     }
 
     refreshDisplay() {
@@ -312,7 +325,6 @@ class TypingApp {
 
         this.guideRemainRomaji = best.substring(this.currentRomajiStr.length) + future;
         const nextChar = this.guideRemainRomaji[0] || "";
-
         el.innerHTML = `<span class="typed">${this.typedFullRomaji.toUpperCase()}</span><span class="current">${nextChar.toUpperCase()}</span><span>${this.guideRemainRomaji.substring(1).toUpperCase()}</span>`;
 
         const typedSpan = el.querySelector('.typed');
@@ -325,7 +337,6 @@ class TypingApp {
         } else {
             translateX = 50 - (typedWidth - threshold); 
         }
-
         el.style.transform = `translateX(${translateX}px)`;
         if (!this.isTransitioning) {
             this.highlightKey(nextChar);
@@ -340,14 +351,13 @@ class TypingApp {
     }
 
     handleKeyDown(e) {
-        if (this.state !== "PLAYING" || this.isTransitioning) return; // 待機中は入力を無視
+        if (this.state !== "PLAYING" || this.isTransitioning) return;
         this.lastInputTime = performance.now();
         const key = e.key.toLowerCase();
         let matches = this.pendingRomajiOptions.filter(o => o.startsWith(this.currentRomajiStr + key));
         
         if (matches.length > 0) {
-            this.currentRomajiStr += key; 
-            this.typedFullRomaji += key;
+            this.currentRomajiStr += key; this.typedFullRomaji += key;
             this.totalTypedCount++;
             this.pendingRomajiOptions = matches;
             if(this.soundEnabled) this.playSound(600, 0.05);
@@ -398,42 +408,25 @@ class TypingApp {
         this.state = "RESULT";
         document.getElementById('game-screen').classList.add('hidden');
         document.getElementById('result-screen').classList.remove('hidden');
-        
-        const resScore = document.getElementById('res-score');
-        const resRank = document.getElementById('result-rank');
-
-        if(reason === "abort") {
-            document.getElementById('result-title').innerText = "練習中止";
-            if (resRank) { resRank.innerText = "評価不可"; resRank.style.color = "#95a5a6"; }
-        } else {
-            document.getElementById('result-title').innerText = "練習結果";
+        if(reason !== "abort") {
             const sec = (performance.now() - this.startTime) / 1000;
             const cpm = Math.floor(this.totalTypedCount / (sec / 60)) || 0;
             const accNum = Math.floor(((this.totalTypedCount - this.totalMissedCount) / this.totalTypedCount) * 100);
             const score = Math.floor(cpm * (Math.max(0, accNum)/100)**3);
             const rank = this.getRank(score);
-            
-            if (resScore) resScore.innerText = score; 
-            if (resRank) { 
-                resRank.innerText = rank; 
-                resRank.style.color = "var(--accent)"; 
-                resRank.style.fontSize = "4.5rem"; 
-            }
-            
+            document.getElementById('res-score').innerText = score; 
+            document.getElementById('result-rank').innerText = rank;
             document.getElementById('res-time').innerText = this.formatTime(performance.now() - this.startTime);
             document.getElementById('res-wpm').innerText = cpm;
             document.getElementById('res-acc').innerText = Math.max(0, accNum);
             document.getElementById('res-miss').innerText = this.totalMissedCount;
             document.getElementById('res-total').innerText = this.totalTypedCount + this.totalMissedCount;
-
-            if (["SSS", "SS", "S", "A+", "A", "A-"].includes(rank)) resRank.classList.add('sparkle');
-
+            if (["SSS", "SS", "S", "A+", "A", "A-"].includes(rank)) document.getElementById('result-rank').classList.add('sparkle');
             if (!this.bestScores[this.currentCategoryId] || score > this.bestScores[this.currentCategoryId]) {
                 this.bestScores[this.currentCategoryId] = score;
                 localStorage.setItem('pasotore_best', JSON.stringify(this.bestScores));
             }
         }
-
         const sorted = Object.entries(this.missMap).sort((a,b)=>b[1]-a[1]);
         const missListEl = document.getElementById('miss-detail-list');
         if (missListEl) missListEl.innerHTML = sorted.length ? sorted.map(([k,v])=>`<div class="miss-item"><span class="miss-key">${k}</span><span class="miss-count">${v}回</span></div>`).join('') : "ミスなし！";
@@ -463,17 +456,34 @@ class TypingApp {
             ["Shift","Z","X","C","V","B","N","M",",",".","/","\\","Shift"],
             ["Space"]
         ];
+
+        // 指ごとのクラス定義（パステルカラー）
+        const fingerMap = {
+            "1":"lp", "Q":"lp", "A":"lp", "Z":"lp", "Shift":"lp", // Left Pinky
+            "2":"lr", "W":"lr", "S":"lr", "X":"lr",                // Left Ring
+            "3":"lm", "E":"lm", "D":"lm", "C":"lm",                // Left Middle
+            "4":"li", "5":"li", "R":"li", "T":"li", "F":"li", "G":"li", "V":"li", "B":"li", // Left Index
+            "6":"ri", "7":"ri", "Y":"ri", "U":"ri", "H":"ri", "J":"ri", "N":"ri", "M":"ri", // Right Index
+            "8":"rm", "I":"rm", "K":"rm", ",":"rm",                // Right Middle
+            "9":"rr", "O":"rr", "L":"rr", ".":"rr",                // Right Ring
+            "0":"rp", "-":"rp", "^":"rp", "P":"rp", "@":"rp", ";":"rp", ":":"rp", "]":"rp", "/":"rp", "\\":"rp" // Right Pinky
+        };
+
         const container = document.getElementById('keyboard-container');
         if(!container) return;
         container.innerHTML = "";
         layout.forEach((row, i) => {
-            const rowEl = document.createElement('div'); 
-            rowEl.className = `keyboard-row row-${i}`;
+            const rowEl = document.createElement('div'); rowEl.className = `keyboard-row row-${i}`;
             row.forEach((key, j) => {
-                const kEl = document.createElement('div'); 
-                kEl.className = 'key';
+                const kEl = document.createElement('div'); kEl.className = 'key';
                 if(key === "Space") kEl.classList.add('space');
                 if(key === "Shift") kEl.classList.add('wide-shift');
+                
+                // 色分け設定がONの場合のみ指クラスを付与
+                if (this.keyboardColorEnabled && fingerMap[key]) {
+                    kEl.classList.add(`f-${fingerMap[key]}`);
+                }
+
                 kEl.innerText = key;
                 let id = key.toLowerCase();
                 if (key === "Space") id = "space";
@@ -488,11 +498,9 @@ class TypingApp {
 
     playSound(f, d) {
         if (!this.audioCtx) return;
-        const osc = this.audioCtx.createOscillator(); 
-        const gain = this.audioCtx.createGain();
+        const osc = this.audioCtx.createOscillator(); const gain = this.audioCtx.createGain();
         osc.connect(gain); gain.connect(this.audioCtx.destination);
-        osc.frequency.value = f; 
-        gain.gain.setValueAtTime(0.05, this.audioCtx.currentTime);
+        osc.frequency.value = f; gain.gain.setValueAtTime(0.05, this.audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + d);
         osc.start(); osc.stop(this.audioCtx.currentTime + d);
     }

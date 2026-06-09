@@ -252,3 +252,72 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     font-size: 0.7rem;
 }
 
+/* --- v19.1.0 準備画面・色分けキーボード追加 --- */
+
+/* 設定エリアの整理 */
+.settings-area {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.btn-toggle {
+    background: white;
+    border: 2px solid var(--key-border);
+    padding: 8px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--primary);
+    transition: all 0.2s;
+    min-width: 120px;
+}
+
+.btn-toggle.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+}
+
+.btn-toggle:hover {
+    transform: translateY(-1px);
+    border-color: var(--accent);
+}
+
+/* 自己ベストスコアの配置（タイトルの下など、目立つ位置へ） */
+#best-score-display {
+    margin: 10px auto 20px auto;
+    padding: 5px 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8f9fa;
+    border-radius: 30px;
+    border: 1px solid #eee;
+}
+
+.best-label { font-size: 0.8rem; color: #7f8c8d; font-weight: 800; }
+.best-value { font-size: 1.2rem; color: var(--accent); font-weight: 900; }
+
+/* 指別パステルカラー分け (!importantでhighlightを優先させる) */
+.key.f-lp { background-color: #ffdce0; } /* 小指: ピンク */
+.key.f-lr { background-color: #fff3d6; } /* 薬指: オレンジ */
+.key.f-lm { background-color: #e2f9e1; } /* 中指: グリーン */
+.key.f-li, .key.f-ri { background-color: #e2e9ff; } /* 人差し指: ブルー */
+.key.f-rm { background-color: #e2f9e1; } /* 右中指: グリーン */
+.key.f-rr { background-color: #fff3d6; } /* 右薬指: オレンジ */
+.key.f-rp { background-color: #ffdce0; } /* 右小指: ピンク */
+
+/* ハイライト時は指の色を上書きする */
+.key.highlight {
+    background-color: var(--accent) !important;
+    color: white !important;
+    border-bottom-width: 1px !important;
+    transform: translateY(2px) !important;
+}
+
+/* ダークモード等での文字視認性確保 */
+.key[class*="f-"] { color: #57606f; }
