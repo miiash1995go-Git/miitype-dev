@@ -30,7 +30,7 @@ body.portal-page { overflow-y: auto; height: auto; background-color: var(--bg); 
 body.portal-page main { display: block; padding: 20px 0; }
 
 body.game-body { overflow: hidden; height: 100vh; background-color: #d1d5db; position: relative; }
-body.game-body main { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 10px; }
+body.game-body main { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 0px; }
 
 .hidden { display: none !important; }
 
@@ -59,7 +59,15 @@ header { flex-shrink: 0; text-align: center; margin-bottom: 25px; width: 100%; }
 .nav-menu a:hover { color: var(--accent); border-bottom: 2px solid var(--accent); }
 
 /* アドセンス対策 */
-.ad-container-top, .result-ad-box { display: none !important; }
+.ad-container-top {
+     display: block !important;
+    width: 100%;
+    max-width: 1000px;
+    height: 90px;
+    margin: 10px auto 30px auto;
+    background: transparent;
+}
+.result-ad-box { display: none !important; } /* 結果画面の下側はまだ隠しておく */
 main { flex: 1; width: 100%; min-height: 0; }
 
 /* --- 2. PC推奨アラート画面 (絶対最前面) --- */
