@@ -1,9 +1,9 @@
 /**
- * ぱそトレ！ Logic v18.9.1 (JISキーボード完全版)
- * - 4分経過（240秒）で強制終了判定を搭載
- * - ち(ti), ちゃ(tya), ちゅ(tyu), ちょ(tyo) を優先出力に変更
- * - JIS黄金比レイアウト：/ と Shift の間に \ キーを追加
- * - 1024px以下のスケーリング停止を維持
+ * ぱそトレ！ Logic v18.9.4 (Corrected Romaji Edition)
+ * - ローマ字修正：ti を「ち」に固定し、「てぃ」のリストから削除 (thiのみ)
+ * - ローマ字修正：di を「だ行」に固定し、「でぃ」のリストから削除 (dhiのみ)
+ * - ハーフ・センター・スクロール：半分までは線が移動、半分以降は中央固定
+ * - JIS黄金比レイアウト：/ と Shift の間に \ キーを完備
  */
 
 const ROMAJI_TABLE = {
@@ -31,12 +31,14 @@ const ROMAJI_TABLE = {
     'りゃ':['rya'], 'りゅ':['ryu'], 'りょ':['ryo'],
     'ぎゃ':['gya'], 'ぎゅ':['gyu'], 'ぎょ':['gyo'],
     'じゃ':['ja','zya'], 'じゅ':['ju','zyu'], 'じょ':['jo','zyo'], 'じぇ':['je','zye'],
-    'しぇ':['she','sye'], 'ちぇ':['tye','che'],
+    'しぇ':['she','sye'], 
+    'ちぇ':['tye','che'], 
     'びゃ':['bya'], 'びゅ':['byu'], 'びょ':['byo'],
     'ぴゃ':['pya'], 'ぴゅ':['pyu'], 'ぴょ':['pyo'],
     'ふぁ':['fa'], 'ふぃ':['fi'], 'ふぇ':['fe'], 'ふぉ':['fo'],
     'うぃ':['wi'], 'うぇ':['we'], 'うぉ':['wo'],
-    'てぃ':['ti'], 'でぃ':['di'],
+    'てぃ':['thi'], // tiを削除し、thiのみに修正
+    'でぃ':['dhi'], // diを削除し、dhiのみに修正
     'っ':['xtu','ltu'], 'ー':['-'], '-':['-'], ' ':[' '],
     'ぁ':['xa','la'], 'ぃ':['xi','li'], 'ぅ':['xu','lu'], 'ぇ':['xe','le'], 'ぉ':['xo','lo']
 };
@@ -50,7 +52,7 @@ class TypingApp {
         this.soundEnabled = localStorage.getItem('pasotore_sound') === 'true';
         this.bestScores = JSON.parse(localStorage.getItem('pasotore_best')) || {};
         this.targetLimit = 320;
-        this.timeLimitMs = 240000; // 4分
+        this.timeLimitMs = 240000;
         this.inactivityLimit = 120000;
         this.startTime = null;
         this.totalTypedCount = 0; 
@@ -100,19 +102,14 @@ class TypingApp {
         if (!app) return;
         if (document.body.classList.contains('portal-page') || window.innerWidth <= 1024) {
             app.style.position = "relative";
-            app.style.left = "auto";
-            app.style.top = "auto";
-            app.style.transform = "none";
-            app.style.margin = "0 auto";
+            app.style.left = "auto"; app.style.top = "auto"; app.style.transform = "none"; app.style.margin = "0 auto";
             return;
         }
         const width = window.innerWidth;
         const height = window.innerHeight;
         const scale = Math.min(width / 1000, height / 800, 1);
         app.style.position = "absolute";
-        app.style.left = "50%"; 
-        app.style.top = "10px"; 
-        app.style.transform = `translateX(-50%) scale(${scale})`;
+        app.style.left = "50%"; app.style.top = "10px"; app.style.transform = `translateX(-50%) scale(${scale})`;
         app.style.transformOrigin = "top center";
     }
 
@@ -177,6 +174,7 @@ class TypingApp {
                 </div>`;
         }
         this.highlightKey(' ');
+        this.updateGuidePosition(40);
     }
 
     startCountdown() {
@@ -275,6 +273,7 @@ class TypingApp {
         if (this.state !== "PLAYING") return;
         const el = document.getElementById('display-romaji');
         if (!el) return;
+
         let best = this.pendingRomajiOptions.find(o => o.startsWith(this.currentRomajiStr)) || this.pendingRomajiOptions[0];
         let future = "";
         let tempKana = [...this.kanaList];
@@ -286,13 +285,39 @@ class TypingApp {
                 future += nr[0];
             } else { future += (ROMAJI_TABLE[k] ? ROMAJI_TABLE[k][0] : k); }
         }
+
         this.guideRemainRomaji = best.substring(this.currentRomajiStr.length) + future;
-        const next = this.guideRemainRomaji[0] || "";
-        el.innerHTML = `<span class="typed">${this.typedFullRomaji.toUpperCase()}</span><span class="current">${next.toUpperCase()}</span><span>${this.guideRemainRomaji.substring(1).toUpperCase()}</span>`;
+        const nextChar = this.guideRemainRomaji[0] || "";
+
+        el.innerHTML = `<span class="typed">${this.typedFullRomaji.toUpperCase()}</span><span class="current">${nextChar.toUpperCase()}</span><span>${this.guideRemainRomaji.substring(1).toUpperCase()}</span>`;
+
         const typedSpan = el.querySelector('.typed');
-        const offset = typedSpan ? typedSpan.offsetWidth : 0;
-        el.style.transform = `translateX(${40 - offset}px)`;
-        this.highlightKey(next);
+        const typedWidth = typedSpan ? typedSpan.offsetWidth : 0;
+        const containerWidth = 860; 
+        const centerX = containerWidth / 2;
+        const startMargin = 40;
+
+        let translateX;
+        let guideX;
+
+        if (typedWidth < (centerX - startMargin)) {
+            translateX = startMargin;
+            guideX = startMargin + typedWidth;
+        } else {
+            translateX = centerX - typedWidth;
+            guideX = centerX;
+        }
+
+        el.style.transform = `translateX(${translateX}px)`;
+        this.updateGuidePosition(guideX);
+        this.highlightKey(nextChar);
+    }
+
+    updateGuidePosition(x) {
+        const container = document.getElementById('typing-container');
+        if (container) {
+            container.style.setProperty('--guide-x', `${x}px`);
+        }
     }
 
     handleKeyDown(e) {
@@ -324,11 +349,9 @@ class TypingApp {
     highlightKey(char) {
         document.querySelectorAll('.key').forEach(k => k.classList.remove('highlight'));
         if (!char) return;
-        // 特殊文字のID解決
         let keyId = char.toLowerCase();
         if (keyId === ' ') keyId = 'space';
         if (keyId === '\\') keyId = 'backslash';
-        
         const el = document.getElementById(`k-${keyId}`);
         if (el) el.classList.add('highlight');
     }
@@ -411,7 +434,7 @@ class TypingApp {
             ["1","2","3","4","5","6","7","8","9","0","-","^"],
             ["Q","W","E","R","T","Y","U","I","O","P","@"],
             ["A","S","D","F","G","H","J","K","L",";",":","]"],
-            ["Shift","Z","X","C","V","B","N","M",",",".","/","\\","Shift"], // \を追加
+            ["Shift","Z","X","C","V","B","N","M",",",".","/","\\","Shift"],
             ["Space"]
         ];
         const container = document.getElementById('keyboard-container');
@@ -424,14 +447,10 @@ class TypingApp {
                 if(key === "Space") kEl.classList.add('space');
                 if(key === "Shift") kEl.classList.add('wide-shift');
                 kEl.innerText = key;
-                
-                // ID割り当てロジック
                 let keyId = key.toLowerCase();
                 if (key === "Space") keyId = "space";
                 if (key === "\\") keyId = "backslash";
-                // 左右Shiftの重複回避が必要な場合はここでインデックスを使う
                 if (key === "Shift") keyId = (j === 0) ? "shift-l" : "shift-r";
-
                 kEl.id = `k-${keyId}`;
                 rowEl.appendChild(kEl);
             });

@@ -252,3 +252,19 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     color: #ccc;
     font-size: 0.7rem;
 }
+
+/* style.css の該当箇所を修正 */
+.typing-display::before {
+    content: ""; 
+    position: absolute; 
+    /* 固定の left: 40px; を削除し、JSから制御する変数を使う */
+    left: var(--guide-x, 40px); 
+    top: 50%; 
+    transform: translateY(-50%);
+    width: 2px; 
+    height: 95px; 
+    background-color: rgba(52, 152, 219, 0.4); 
+    z-index: 10; 
+    pointer-events: none;
+    transition: left 0.1s ease-out; /* スムーズに動かす */
+}
