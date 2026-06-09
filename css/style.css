@@ -90,19 +90,7 @@ main { flex: 1; width: 100%; min-height: 0; }
     overflow: hidden; width: 860px; position: relative;
 }
 .typing-display::before {
-    content: ""; 
-    position: absolute; 
-    /* 固定の left を削除し、JSから渡される --guide-x を使用 */
-    left: var(--guide-x, 50px); 
-    top: 50%; 
-    transform: translateY(-50%);
-    width: 2px; 
-    height: 95px; 
-    background-color: rgba(52, 152, 219, 0.5); /* 青色を見やすく調整 */
-    z-index: 10; 
-    pointer-events: none;
-    /* transition を削除または極小にして同期ズレを防止 */
-    transition: left 0.05s linear;
+    display: none !important;
 }
 
 /* 待機（READY）画面 */
