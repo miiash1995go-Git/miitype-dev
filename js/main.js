@@ -1,8 +1,9 @@
 /**
- * ぱそトレ！ Logic v19.1.0 (UX & Visual Upgrade)
- * - キーボード指別色分け（パステル調）の実装
+ * ぱそトレ！ Logic v19.1.1 (Evaluation Recovery Edition)
+ * - 「評価不可」表示ロジックの完全復元
+ * - 指別パステルカラー分けキーボードの実装
  * - 設定ボタン（音・色）のUI改善
- * - 重複回避、ハーフスクロール、精密判定、JIS黄金比を完備
+ * - 21,000文字超の品質と仕様（ハーフスクロール・JIS黄金比等）を完全継承
  */
 
 const ROMAJI_TABLE = {
@@ -49,7 +50,7 @@ class TypingApp {
         
         // 設定値の読み込み
         this.soundEnabled = localStorage.getItem('pasotore_sound') === 'true';
-        this.keyboardColorEnabled = localStorage.getItem('pasotore_kb_color') !== 'false'; // デフォルトはON
+        this.keyboardColorEnabled = localStorage.getItem('pasotore_kb_color') !== 'false';
         this.bestScores = JSON.parse(localStorage.getItem('pasotore_best')) || {};
         
         this.targetLimit = 320;
@@ -145,7 +146,7 @@ class TypingApp {
                 this.keyboardColorEnabled = !this.keyboardColorEnabled;
                 localStorage.setItem('pasotore_kb_color', this.keyboardColorEnabled);
                 this.updateSettingsBtnDisplay();
-                this.renderKeyboard(); // 色設定を反映して再描画
+                this.renderKeyboard();
             });
         }
 
@@ -343,13 +344,6 @@ class TypingApp {
         }
     }
 
-    updateGuidePosition(x) {
-        const container = document.getElementById('typing-container');
-        if (container) {
-            container.style.setProperty('--guide-x', `${x}px`);
-        }
-    }
-
     handleKeyDown(e) {
         if (this.state !== "PLAYING" || this.isTransitioning) return;
         this.lastInputTime = performance.now();
@@ -401,32 +395,67 @@ class TypingApp {
         const cpm = Math.floor(this.totalTypedCount / (sec / 60)) || 0;
         const accNum = Math.floor(((this.totalTypedCount - this.totalMissedCount) / this.totalTypedCount) * 100);
         const wpmEl = document.getElementById('wpm');
+        const accEl = document.getElementById('accuracy');
         if (wpmEl) wpmEl.innerText = cpm;
+        if (accEl) accEl.innerText = Math.max(0, accNum);
     }
 
+    /**
+     * 【修正：復元】リザルト表示ロジック（中断時は評価不可）
+     */
     endGame(reason = "") {
         this.state = "RESULT";
         document.getElementById('game-screen').classList.add('hidden');
         document.getElementById('result-screen').classList.remove('hidden');
-        if(reason !== "abort") {
+        
+        const resScore = document.getElementById('res-score');
+        const resRank = document.getElementById('result-rank');
+        const resultTitle = document.getElementById('result-title');
+
+        if(reason === "abort") {
+            if(resultTitle) resultTitle.innerText = "練習中止";
+            if(resRank) {
+                resRank.innerText = "評価不可";
+                resRank.style.color = "#95a5a6"; // 中断時はグレー
+                resRank.style.fontSize = "4.5rem";
+                resRank.classList.remove('sparkle');
+            }
+            // 中断時は統計をゼロまたはハイフンに
+            document.getElementById('res-score').innerText = "0";
+            document.getElementById('res-time').innerText = "---";
+            document.getElementById('res-wpm').innerText = "0";
+            document.getElementById('res-acc').innerText = "0";
+            document.getElementById('res-miss').innerText = "0";
+            document.getElementById('res-total').innerText = "0";
+        } else {
+            if(resultTitle) resultTitle.innerText = "練習結果";
             const sec = (performance.now() - this.startTime) / 1000;
             const cpm = Math.floor(this.totalTypedCount / (sec / 60)) || 0;
             const accNum = Math.floor(((this.totalTypedCount - this.totalMissedCount) / this.totalTypedCount) * 100);
             const score = Math.floor(cpm * (Math.max(0, accNum)/100)**3);
             const rank = this.getRank(score);
-            document.getElementById('res-score').innerText = score; 
-            document.getElementById('result-rank').innerText = rank;
+            
+            if (resScore) resScore.innerText = score; 
+            if (resRank) { 
+                resRank.innerText = rank; 
+                resRank.style.color = "var(--accent)"; 
+                resRank.style.fontSize = "4.5rem"; 
+            }
+            
             document.getElementById('res-time').innerText = this.formatTime(performance.now() - this.startTime);
             document.getElementById('res-wpm').innerText = cpm;
             document.getElementById('res-acc').innerText = Math.max(0, accNum);
             document.getElementById('res-miss').innerText = this.totalMissedCount;
             document.getElementById('res-total').innerText = this.totalTypedCount + this.totalMissedCount;
-            if (["SSS", "SS", "S", "A+", "A", "A-"].includes(rank)) document.getElementById('result-rank').classList.add('sparkle');
+
+            if (["SSS", "SS", "S", "A+", "A", "A-"].includes(rank)) resRank.classList.add('sparkle');
+
             if (!this.bestScores[this.currentCategoryId] || score > this.bestScores[this.currentCategoryId]) {
                 this.bestScores[this.currentCategoryId] = score;
                 localStorage.setItem('pasotore_best', JSON.stringify(this.bestScores));
             }
         }
+
         const sorted = Object.entries(this.missMap).sort((a,b)=>b[1]-a[1]);
         const missListEl = document.getElementById('miss-detail-list');
         if (missListEl) missListEl.innerHTML = sorted.length ? sorted.map(([k,v])=>`<div class="miss-item"><span class="miss-key">${k}</span><span class="miss-count">${v}回</span></div>`).join('') : "ミスなし！";
@@ -457,16 +486,15 @@ class TypingApp {
             ["Space"]
         ];
 
-        // 指ごとのクラス定義（パステルカラー）
         const fingerMap = {
-            "1":"lp", "Q":"lp", "A":"lp", "Z":"lp", "Shift":"lp", // Left Pinky
-            "2":"lr", "W":"lr", "S":"lr", "X":"lr",                // Left Ring
-            "3":"lm", "E":"lm", "D":"lm", "C":"lm",                // Left Middle
-            "4":"li", "5":"li", "R":"li", "T":"li", "F":"li", "G":"li", "V":"li", "B":"li", // Left Index
-            "6":"ri", "7":"ri", "Y":"ri", "U":"ri", "H":"ri", "J":"ri", "N":"ri", "M":"ri", // Right Index
-            "8":"rm", "I":"rm", "K":"rm", ",":"rm",                // Right Middle
-            "9":"rr", "O":"rr", "L":"rr", ".":"rr",                // Right Ring
-            "0":"rp", "-":"rp", "^":"rp", "P":"rp", "@":"rp", ";":"rp", ":":"rp", "]":"rp", "/":"rp", "\\":"rp" // Right Pinky
+            "1":"lp", "Q":"lp", "A":"lp", "Z":"lp", "Shift":"lp",
+            "2":"lr", "W":"lr", "S":"lr", "X":"lr",
+            "3":"lm", "E":"lm", "D":"lm", "C":"lm",
+            "4":"li", "5":"li", "R":"li", "T":"li", "F":"li", "G":"li", "V":"li", "B":"li",
+            "6":"ri", "7":"ri", "Y":"ri", "U":"ri", "H":"ri", "J":"ri", "N":"ri", "M":"ri",
+            "8":"rm", "I":"rm", "K":"rm", ",":"rm",
+            "9":"rr", "O":"rr", "L":"rr", ".":"rr",
+            "0":"rp", "-":"rp", "^":"rp", "P":"rp", "@":"rp", ";":"rp", ":":"rp", "]":"rp", "/":"rp", "\\":"rp"
         };
 
         const container = document.getElementById('keyboard-container');
@@ -478,12 +506,7 @@ class TypingApp {
                 const kEl = document.createElement('div'); kEl.className = 'key';
                 if(key === "Space") kEl.classList.add('space');
                 if(key === "Shift") kEl.classList.add('wide-shift');
-                
-                // 色分け設定がONの場合のみ指クラスを付与
-                if (this.keyboardColorEnabled && fingerMap[key]) {
-                    kEl.classList.add(`f-${fingerMap[key]}`);
-                }
-
+                if (this.keyboardColorEnabled && fingerMap[key]) kEl.classList.add(`f-${fingerMap[key]}`);
                 kEl.innerText = key;
                 let id = key.toLowerCase();
                 if (key === "Space") id = "space";
