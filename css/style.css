@@ -40,7 +40,7 @@ body.game-body main {
     align-items: center; 
     justify-content: flex-start; 
     padding-top: 0; 
-    padding-bottom: 40px; /* 数値を60から40へ最適化 */
+    padding-bottom: 40px; 
  }
 
 .hidden { display: none !important; }
@@ -201,7 +201,7 @@ main { flex: 1; width: 100%; min-height: 0; }
     text-align: left; 
     max-width: 800px !important; 
     width: 95%; 
-    margin: 15px auto 40px auto; /* 下側を常識的な40pxに維持 */
+    margin: 15px auto 80px auto !important; /* !importantを追加して密着を強制回避 */
     background: white; 
     padding: 40px 60px; 
     border-radius: 25px; 
@@ -246,7 +246,7 @@ main { flex: 1; width: 100%; min-height: 0; }
     .nav-menu a { font-size: 0.75rem; padding: 3px 5px; }
 }
 
-/* フッター：極小スリム化（巨大化を修正） */
+/* フッター：極小スリム化（修正済） */
 footer {    margin-top: auto; 
     padding: 15px 0 25px 0; /* バカでかいパディングを最小限に修正 */
     border-top: 1px solid #eee; 
