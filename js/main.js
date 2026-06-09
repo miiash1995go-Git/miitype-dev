@@ -1,7 +1,8 @@
 /**
- * ぱそトレ！ Logic v18.9
+ * ぱそトレ！ Logic v18.9.1 (JISキーボード完全版)
  * - 4分経過（240秒）で強制終了判定を搭載
  * - ち(ti), ちゃ(tya), ちゅ(tyu), ちょ(tyo) を優先出力に変更
+ * - JIS黄金比レイアウト：/ と Shift の間に \ キーを追加
  * - 1024px以下のスケーリング停止を維持
  */
 
@@ -323,8 +324,12 @@ class TypingApp {
     highlightKey(char) {
         document.querySelectorAll('.key').forEach(k => k.classList.remove('highlight'));
         if (!char) return;
-        let id = char === ' ' ? 'k-space' : `k-${char.toLowerCase()}`;
-        const el = document.getElementById(id);
+        // 特殊文字のID解決
+        let keyId = char.toLowerCase();
+        if (keyId === ' ') keyId = 'space';
+        if (keyId === '\\') keyId = 'backslash';
+        
+        const el = document.getElementById(`k-${keyId}`);
         if (el) el.classList.add('highlight');
     }
 
@@ -402,17 +407,32 @@ class TypingApp {
     }
 
     renderKeyboard() {
-        const layout = [["1","2","3","4","5","6","7","8","9","0","-","^"],["Q","W","E","R","T","Y","U","I","O","P","@"],["A","S","D","F","G","H","J","K","L",";",":","]"],["Shift","Z","X","C","V","B","N","M",",",".","/","Shift"],["Space"]];
+        const layout = [
+            ["1","2","3","4","5","6","7","8","9","0","-","^"],
+            ["Q","W","E","R","T","Y","U","I","O","P","@"],
+            ["A","S","D","F","G","H","J","K","L",";",":","]"],
+            ["Shift","Z","X","C","V","B","N","M",",",".","/","\\","Shift"], // \を追加
+            ["Space"]
+        ];
         const container = document.getElementById('keyboard-container');
         if(!container) return;
         container.innerHTML = "";
         layout.forEach((row, i) => {
             const rowEl = document.createElement('div'); rowEl.className = `keyboard-row row-${i}`;
-            row.forEach(key => {
+            row.forEach((key, j) => {
                 const kEl = document.createElement('div'); kEl.className = 'key';
                 if(key === "Space") kEl.classList.add('space');
                 if(key === "Shift") kEl.classList.add('wide-shift');
-                kEl.innerText = key; kEl.id = `k-${key === "Space" ? "space" : key.toLowerCase()}`;
+                kEl.innerText = key;
+                
+                // ID割り当てロジック
+                let keyId = key.toLowerCase();
+                if (key === "Space") keyId = "space";
+                if (key === "\\") keyId = "backslash";
+                // 左右Shiftの重複回避が必要な場合はここでインデックスを使う
+                if (key === "Shift") keyId = (j === 0) ? "shift-l" : "shift-r";
+
+                kEl.id = `k-${keyId}`;
                 rowEl.appendChild(kEl);
             });
             container.appendChild(rowEl);
