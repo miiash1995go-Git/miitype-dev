@@ -1,26 +1,16 @@
 /**
  * ============================================================
- * ぱそトレ！ Typing Logic System (v19.2.1)
+ * ぱそトレ！ Typing Logic System (v19.4.0)
  * THE ULTIMATE MASTER INTEGRATED EDITION
  * ------------------------------------------------------------
- * [Core Specifications]
- * 1. JIS Standard Staggered Layout (with \ and Shift IDs)
- * 2. Finger-based Pastel Color Coding (Toggleable)
- * 3. Half-Center Scrolling (Precision Calculation)
- * 4. TYA/THI/TYE Romaji Priority Logic
- * 5. Pro-Focus Mode (Background Dimming)
- * 6. 4-Minute Time Limit & 2-Minute Inactivity Guard
- * 7. Comprehensive Rank System (SSS to E-)
+ * [Advanced Result Analytics Update]
+ * 1. Accuracy Precision: Decimal point to 1st place (.toFixed(1))
+ * 2. Miss Analysis: Classes for Worst 1, 2, and 3.
  * ------------------------------------------------------------
- * Update: 2026/06/09 - Added Focus Mode & Ad-Sync
+ * All previous specs (Focus Mode, Scrolling, JIS-Key) preserved.
  * ============================================================
  */
 
-/**
- * ROMAJI_TABLE: 
- * 標準的な入力に加え、実務で頻出する特殊な外来語（ティ、チェ、ディ）に対応。
- * 「ちゃ・ちゅ・ちょ」は「tya・tyu・tyo」を第一候補とし、打ちやすさを追求。
- */
 const ROMAJI_TABLE = {
     'あ':['a'], 'い':['i'], 'う':['u'], 'え':['e'], 'お':['o'],
     'か':['ka'], 'き':['ki'], 'く':['ku'], 'け':['ke'], 'こ':['ko'],
@@ -30,7 +20,7 @@ const ROMAJI_TABLE = {
     'は':['ha'], 'ひ':['hi'], 'ふ':['fu','hu'], 'へ':['he'], 'ほ':['ho'],
     'ま':['ma'], 'み':['mi'], 'む':['mu'], 'め':['me'], 'も':['mo'],
     'や':['ya'], 'ゆ':['yu'], 'よ':['yo'],
-    'ら':['ra'], 'り':['ri'], 'る':['ru'], 'れ':['re'], 'ろ':['ro'],
+    'ら':['ra'], 'り':['り','ri'], 'る':['ru'], 'れ':['re'], 'ろ':['ro'],
     'わ':['wa'], 'を':['wo'], 'ん':['nn','n','xn'],
     'が':['ga'], 'ぎ':['gi'], 'ぐ':['gu'], 'げ':['ge'], 'ご':['go'],
     'ざ':['za'], 'じ':['ji','zi'], 'ず':['zu'], 'ぜ':['ze'], 'ぞ':['zo'],
@@ -57,27 +47,20 @@ const ROMAJI_TABLE = {
 };
 
 class TypingApp {
-    /**
-     * constructor: プロジェクトの初期パラメータを定義。
-     * 1文字の欠落も許さない堅牢な状態管理を行う。
-     */
     constructor() {
         this.manifest = null;
         this.currentQuestions = [];
         this.currentCategoryId = 'it_terms';
         this.state = "START"; 
         
-        // ユーザー設定の永続化
         this.soundEnabled = localStorage.getItem('pasotore_sound') === 'true';
         this.keyboardColorEnabled = localStorage.getItem('pasotore_kb_color') !== 'false';
         this.bestScores = JSON.parse(localStorage.getItem('pasotore_best')) || {};
         
-        // 制限値の設定（240秒＝4分、120秒＝2分放置）
         this.targetLimit = 320;
         this.timeLimitMs = 240000;
         this.inactivityLimit = 120000;
         
-        // 統計データ用
         this.startTime = null;
         this.lastInputTime = null;
         this.totalTypedCount = 0; 
@@ -86,18 +69,12 @@ class TypingApp {
         
         this.lastQuestionIndex = -1;
         this.isTransitioning = false;
-
-        // レイアウト計算用定数
         this.LEFT_PADDING = 50;
         this.CENTER_X = 430; 
 
         this.init();
     }
 
-    /**
-     * init: アプリケーションの起動。
-     * キーボードの描画、イベント登録、マニフェストの取得を一括で行う。
-     */
     async init() {
         try {
             this.renderKeyboard();
@@ -113,10 +90,6 @@ class TypingApp {
         window.addEventListener('resize', () => this.handleResize());
     }
 
-    /**
-     * loadQuestions: カテゴリに応じたJSONデータの取得。
-     * 「総合判定」の場合は全データをマージして読み込む。
-     */
     async loadQuestions(categoryId) {
         if (!this.manifest) return false;
         const category = this.manifest.categories.find(c => c.id === categoryId);
@@ -143,10 +116,6 @@ class TypingApp {
         }
     }
 
-    /**
-     * handleResize: レスポンシブスケーリング制御。
-     * 1024px以下の場合はスケーリングを停止し、ポータルレイアウトを維持。
-     */
     handleResize() {
         const app = document.getElementById('app');
         if (!app) return;
@@ -168,10 +137,6 @@ class TypingApp {
         app.style.transformOrigin = "top center";
     }
 
-    /**
-     * setupEventListeners: キー入力、マウスイベントの監視。
-     * 状態に応じた挙動の切り分け（READY/PLAYING等）を行う。
-     */
     setupEventListeners() {
         document.querySelectorAll('.btn-category').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -221,10 +186,6 @@ class TypingApp {
         });
     }
 
-    /**
-     * updateSettingsBtnDisplay: 設定ボタンの見た目を更新。
-     * アクティブ状態に応じたクラスの着脱を行う。
-     */
     updateSettingsBtnDisplay() {
         const sBtn = document.getElementById('sound-toggle');
         if(sBtn) {
@@ -238,10 +199,6 @@ class TypingApp {
         }
     }
 
-    /**
-     * updateBestScoreDisplay: 各カテゴリごとの自己ベストを画面表示。
-     * ローカルストレージと連動。
-     */
     updateBestScoreDisplay() {
         const best = this.bestScores[this.currentCategoryId] || 0;
         const el = document.getElementById('best-score-display');
@@ -250,17 +207,11 @@ class TypingApp {
         }
     }
 
-    /**
-     * prepareReady: カウントダウン前の待機状態。
-     * 【集中モード】を発動し、背景を落とす。
-     */
     prepareReady() {
         this.state = "READY";
         document.body.classList.add('focus-mode');
-        
         document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('game-screen').classList.remove('hidden');
-        
         const container = document.getElementById('typing-container');
         if (container) {
             container.innerHTML = `
@@ -273,15 +224,11 @@ class TypingApp {
         this.updateGuidePosition(this.LEFT_PADDING); 
     }
 
-    /**
-     * startCountdown: 3.2.1の開始演出。
-     */
     startCountdown() {
         this.state = "COUNTDOWN";
         let count = 3;
         const area = document.getElementById('typing-container');
         if (area) area.innerHTML = `<div class="countdown-overlay">${count}</div>`;
-        
         const timer = setInterval(() => {
             count--;
             if (count > 0) {
@@ -294,10 +241,6 @@ class TypingApp {
         }, 1000);
     }
 
-    /**
-     * startGame: タイピングのメインループ開始。
-     * 統計データとオーディオコンテキストを初期化。
-     */
     startGame() {
         const container = document.getElementById('typing-container');
         if (container) {
@@ -318,30 +261,18 @@ class TypingApp {
         this.missMap = {};
         this.lastQuestionIndex = -1;
         this.isTransitioning = false;
-        
-        // モダンブラウザ対応のAudioCtx
         this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        
-        requestAnimationFrame(() => {
-            this.nextQuestion();
-            this.updateLoop();
-        });
+        this.nextQuestion();
+        this.updateLoop();
     }
 
-    /**
-     * nextQuestion: 次の問題を抽出。
-     * 同じ問題が2回連続で選ばれない排他ロジックを搭載。
-     * 4分制限、320打鍵制限の判定もここで行う。
-     */
     nextQuestion() {
         const elapsed = performance.now() - this.startTime;
         if (this.totalTypedCount >= this.targetLimit || (this.startTime && elapsed > this.timeLimitMs)) { 
             this.endGame(); 
             return; 
         }
-
         if (!this.currentQuestions || this.currentQuestions.length === 0) return;
-
         let nextIdx;
         const totalQ = this.currentQuestions.length;
         if (totalQ > 1) {
@@ -351,25 +282,18 @@ class TypingApp {
         } else {
             nextIdx = 0;
         }
-
         this.lastQuestionIndex = nextIdx;
         const nextQ = this.currentQuestions[nextIdx];
-        
         this.kanaList = this.splitKana(nextQ.kana);
         this.typedFullRomaji = ""; 
         this.currentRomajiStr = "";
-        
         const kanjiEl = document.getElementById('display-kanji');
         const kanaEl = document.getElementById('display-kana');
         if (kanjiEl) kanjiEl.innerText = nextQ.kanji;
         if (kanaEl) kanaEl.innerText = nextQ.kana;
-        
         this.prepareNextChar();
     }
 
-    /**
-     * splitKana: かな文字列を1文字または2文字（きゃ、等）に分解。
-     */
     splitKana(kana) {
         let list = [];
         for (let i = 0; i < kana.length; i++) {
@@ -380,16 +304,11 @@ class TypingApp {
         return list;
     }
 
-    /**
-     * prepareNextChar: 次に入力すべき文字のローマ字候補をセット。
-     * ん(n/nn)やっ(xtu/ltu/重複)の特殊処理を含む。
-     */
     prepareNextChar() {
         if (this.kanaList.length === 0) {
             this.refreshDisplay();
             this.isTransitioning = true;
             this.highlightKey(null);
-            // 0.5秒のウェイトを設けてリズムを整える
             setTimeout(() => {
                 this.isTransitioning = false;
                 this.nextQuestion();
@@ -411,10 +330,6 @@ class TypingApp {
         this.refreshDisplay();
     }
 
-    /**
-     * refreshDisplay: 画面表示の更新。
-     * ハーフ・センター・スクロール：打鍵が進むと左にスライドし、視点を中央に固定。
-     */
     refreshDisplay() {
         if (this.state !== "PLAYING") return;
         const el = document.getElementById('display-romaji');
@@ -437,10 +352,9 @@ class TypingApp {
 
         el.innerHTML = `<span class="typed">${this.typedFullRomaji.toUpperCase()}</span><span class="current">${nextChar.toUpperCase()}</span><span>${this.guideRemainRomaji.substring(1).toUpperCase()}</span>`;
 
-        // Precision Scroll Calculation
         const typedSpan = el.querySelector('.typed');
         const typedWidth = typedSpan ? typedSpan.offsetWidth : 0;
-        const threshold = this.CENTER_X - this.LEFT_PADDING; // 430 - 50 = 380px
+        const threshold = this.CENTER_X - this.LEFT_PADDING; 
 
         let translateX;
         if (typedWidth < threshold) {
@@ -455,9 +369,6 @@ class TypingApp {
         }
     }
 
-    /**
-     * updateGuidePosition: ガイドライン座標の更新。
-     */
     updateGuidePosition(x) {
         const container = document.getElementById('typing-container');
         if (container) {
@@ -465,10 +376,6 @@ class TypingApp {
         }
     }
 
-    /**
-     * handleKeyDown: キー押下時の主処理。
-     * 正誤判定、統計更新、ダメージ演出を実行。
-     */
     handleKeyDown(e) {
         if (this.state !== "PLAYING" || this.isTransitioning) return;
         this.lastInputTime = performance.now();
@@ -496,10 +403,6 @@ class TypingApp {
         this.updateStats();
     }
 
-    /**
-     * highlightKey: キーボード上の特定キーを点灯。
-     * \, Shift, Space 等の特殊ID解決を行う。
-     */
     highlightKey(char) {
         document.querySelectorAll('.key').forEach(k => k.classList.remove('highlight'));
         if (!char) return;
@@ -510,19 +413,12 @@ class TypingApp {
         if (el) el.classList.add('highlight');
     }
 
-    /**
-     * logMiss: ミスしたキーを記録し、リザルトの分析用マップへ保存。
-     */
     logMiss(char) {
         if (!char) return;
         let c = char === '-' ? 'ー' : char.toUpperCase();
         this.missMap[c] = (this.missMap[c] || 0) + 1;
     }
 
-    /**
-     * updateLoop: 状態監視ループ。
-     * 放置中止の判定をリアルタイムで行う。
-     */
     updateLoop() {
         if (this.state !== "PLAYING") return;
         if (performance.now() - this.lastInputTime > this.inactivityLimit) { 
@@ -532,24 +428,18 @@ class TypingApp {
         requestAnimationFrame(() => this.updateLoop());
     }
 
-    /**
-     * updateStats: リアルタイムスコア更新。
-     */
     updateStats() {
         if (!this.startTime) return;
         const sec = (performance.now() - this.startTime) / 1000;
         const cpm = Math.floor(this.totalTypedCount / (sec / 60)) || 0;
-        const accNum = Math.floor(((this.totalTypedCount - this.totalMissedCount) / this.totalTypedCount) * 100);
+        // 正確率を小数点第1位まで表示
+        const accNum = (this.totalTypedCount > 0) ? (((this.totalTypedCount - this.totalMissedCount) / this.totalTypedCount) * 100).toFixed(1) : "0.0";
         const wpmEl = document.getElementById('wpm');
         const accEl = document.getElementById('accuracy');
         if (wpmEl) wpmEl.innerText = cpm;
         if (accEl) accEl.innerText = Math.max(0, accNum);
     }
 
-    /**
-     * endGame: リザルト画面への移行。
-     * 中断時は「評価不可」を、完遂時は詳細ランクを算出・表示。
-     */
     endGame(reason = "") {
         this.state = "RESULT";
         document.body.classList.remove('focus-mode');
@@ -569,31 +459,30 @@ class TypingApp {
                 resRank.style.fontSize = "4.5rem";
                 resRank.classList.remove('sparkle');
             }
-            // 中断時はスタッツをクリア
             if(resScore) resScore.innerText = "0";
             document.getElementById('res-time').innerText = "---";
             document.getElementById('res-wpm').innerText = "0";
-            document.getElementById('res-acc').innerText = "0";
+            document.getElementById('res-acc').innerText = "0.0";
             document.getElementById('res-miss').innerText = "0";
             document.getElementById('res-total').innerText = "0";
         } else {
             if(resultTitle) resultTitle.innerText = "練習結果";
             const sec = (performance.now() - this.startTime) / 1000;
             const cpm = Math.floor(this.totalTypedCount / (sec / 60)) || 0;
-            const accNum = Math.floor(((this.totalTypedCount - this.totalMissedCount) / this.totalTypedCount) * 100);
-            const score = Math.floor(cpm * (Math.max(0, accNum)/100)**3);
+            const accNumRaw = (this.totalTypedCount > 0) ? ((this.totalTypedCount - this.totalMissedCount) / this.totalTypedCount) * 100 : 0;
+            const score = Math.floor(cpm * (Math.max(0, accNumRaw)/100)**3);
             const rank = this.getRank(score);
             
             if (resScore) resScore.innerText = score; 
             if (resRank) { 
                 resRank.innerText = rank; 
                 resRank.style.color = "var(--accent)"; 
-                resRank.style.fontSize = "4.5rem"; 
+                resRank.style.fontSize = "8rem"; // 修正：左右分割用に大きく表示
             }
             
             document.getElementById('res-time').innerText = this.formatTime(performance.now() - this.startTime);
             document.getElementById('res-wpm').innerText = cpm;
-            document.getElementById('res-acc').innerText = Math.max(0, accNum);
+            document.getElementById('res-acc').innerText = Math.max(0, accNumRaw).toFixed(1); // 小数点第1位
             document.getElementById('res-miss').innerText = this.totalMissedCount;
             document.getElementById('res-total').innerText = this.totalTypedCount + this.totalMissedCount;
 
@@ -605,23 +494,25 @@ class TypingApp {
             }
         }
 
+        // ミス分析リスト：ワースト3に特殊クラスを付与
         const sorted = Object.entries(this.missMap).sort((a,b)=>b[1]-a[1]);
         const missListEl = document.getElementById('miss-detail-list');
-        if (missListEl) missListEl.innerHTML = sorted.length ? sorted.map(([k,v])=>`<div class="miss-item"><span class="miss-key">${k}</span><span class="miss-count">${v}回</span></div>`).join('') : "ミスなし！";
+        if (missListEl) {
+            missListEl.innerHTML = sorted.length 
+                ? sorted.map(([k,v], i) => {
+                    let topClass = i === 0 ? 'worst1' : i === 1 ? 'worst2' : i === 2 ? 'worst3' : '';
+                    return `<div class="miss-item ${topClass}"><span class="miss-key">${k}</span><span class="miss-count">${v}回</span></div>`;
+                }).join('') 
+                : "ミスなし！";
+        }
     }
 
-    /**
-     * formatTime: ミリ秒を 分:秒.ミリ秒 形式に変換。
-     */
     formatTime(ms) {
         if (isNaN(ms) || ms < 0) return "---";
         const m = Math.floor(ms/60000); const s = Math.floor((ms%60000)/1000); const p = Math.floor((ms%1000)/10);
         return `${m}分${s}秒${p}`;
     }
 
-    /**
-     * getRank: スコアに基づく詳細なランク評価（22,965文字版の完全復刻）。
-     */
     getRank(s) {
         if(s >= 350) return "SSS"; if(s >= 325) return "SS"; if(s >= 300) return "S";
         if(s >= 275) return "A+"; if(s >= 250) return "A"; if(s >= 225) return "A-";
@@ -632,10 +523,6 @@ class TypingApp {
         return "E-";
     }
 
-    /**
-     * renderKeyboard: JIS黄金比配列のレンダリング。
-     * 指の色分け（パステルカラー）とIDの正規化。
-     */
     renderKeyboard() {
         const layout = [
             ["1","2","3","4","5","6","7","8","9","0","-","^"],
@@ -644,7 +531,6 @@ class TypingApp {
             ["Shift","Z","X","C","V","B","N","M",",",".","/","\\","Shift"],
             ["Space"]
         ];
-
         const fingerMap = {
             "1":"lp", "Q":"lp", "A":"lp", "Z":"lp", "Shift":"lp",
             "2":"lr", "W":"lr", "S":"lr", "X":"lr",
@@ -655,11 +541,9 @@ class TypingApp {
             "9":"rr", "O":"rr", "L":"rr", ".":"rr",
             "0":"rp", "-":"rp", "^":"rp", "P":"rp", "@":"rp", ";":"rp", ":":"rp", "]":"rp", "/":"rp", "\\":"rp"
         };
-
         const container = document.getElementById('keyboard-container');
         if(!container) return;
         container.innerHTML = "";
-        
         layout.forEach((row, i) => {
             const rowEl = document.createElement('div'); 
             rowEl.className = `keyboard-row row-${i}`;
@@ -668,18 +552,12 @@ class TypingApp {
                 kEl.className = 'key';
                 if(key === "Space") kEl.classList.add('space');
                 if(key === "Shift") kEl.classList.add('wide-shift');
-                
-                // ガイド色ONの場合のみ指クラスを付与
-                if (this.keyboardColorEnabled && fingerMap[key]) {
-                    kEl.classList.add(`f-${fingerMap[key]}`);
-                }
-
+                if (this.keyboardColorEnabled && fingerMap[key]) kEl.classList.add(`f-${fingerMap[key]}`);
                 kEl.innerText = key;
                 let id = key.toLowerCase();
                 if (key === "Space") id = "space";
                 if (key === "\\") id = "backslash";
                 if (key === "Shift") id = (j === 0) ? "shift-l" : "shift-r";
-                
                 kEl.id = `k-${id}`;
                 rowEl.appendChild(kEl);
             });
@@ -687,15 +565,11 @@ class TypingApp {
         });
     }
 
-    /**
-     * playSound: WebAudioによる動的タイプ音生成。
-     */
     playSound(f, d) {
         if (!this.audioCtx) return;
         const osc = this.audioCtx.createOscillator(); 
         const gain = this.audioCtx.createGain();
-        osc.connect(gain); 
-        gain.connect(this.audioCtx.destination);
+        osc.connect(gain); gain.connect(this.audioCtx.destination);
         osc.frequency.value = f; 
         gain.gain.setValueAtTime(0.05, this.audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + d);
@@ -703,8 +577,4 @@ class TypingApp {
         osc.stop(this.audioCtx.currentTime + d);
     }
 }
-
-/**
- * ぱそトレ！システム起動
- */
 const app = new TypingApp();

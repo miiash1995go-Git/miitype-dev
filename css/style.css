@@ -392,3 +392,115 @@ body.focus-mode #keyboard-container {
     margin: 25px auto 0 auto; /* 結果ボタンの下に配置 */
     background: transparent;
 }
+
+/* (既存の定義 18,080文字分をそのまま保持した上で、以下を追加) */
+
+/* --- 5. 結果画面：究極アナリティクスレイアウト --- */
+.result-container { 
+    display: flex !important; 
+    flex-direction: row !important; 
+    gap: 30px; 
+    width: 1000px; 
+    margin: 0 auto; 
+    height: 520px; 
+    align-items: stretch; 
+    justify-content: center; 
+}
+
+.result-side { 
+    flex: 1; 
+    background: white; 
+    padding: 30px; 
+    border-radius: 25px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+    display: flex; 
+    flex-direction: column; 
+}
+
+.result-main { 
+    flex: 1.8; 
+    background: white; 
+    padding: 30px; 
+    border-radius: 25px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+}
+
+/* ミス内訳のワースト強調 */
+.miss-item { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 12px 20px; 
+    border-bottom: 1px solid #f8f9fa; 
+    font-family: 'Roboto Mono', monospace; 
+}
+
+.miss-key { font-size: 1.4rem; font-weight: bold; color: #bdc3c7; }
+.miss-count { font-size: 1.1rem; color: #7f8c8d; }
+
+.miss-item.worst1 { background: #fff5f5; border-radius: 12px; border-bottom: none; margin-bottom: 5px; }
+.miss-item.worst1 .miss-key { color: #ff4757; font-size: 2.2rem; }
+.miss-item.worst1 .miss-count { color: #ff4757; font-weight: bold; font-size: 1.4rem; }
+
+.miss-item.worst2 { background: #fffaf0; border-radius: 10px; border-bottom: none; margin-bottom: 5px; }
+.miss-item.worst2 .miss-key { color: #f39c12; font-size: 1.8rem; }
+
+.miss-item.worst3 { background: #f0f9ff; border-radius: 10px; border-bottom: none; margin-bottom: 5px; }
+.miss-item.worst3 .miss-key { color: #3498db; font-size: 1.6rem; }
+
+/* 右側：ランクとスタッツの左右分割 */
+.result-content-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.rank-display-area {
+    flex: 1;
+    text-align: center;
+}
+
+#result-rank { 
+    font-size: 8rem; 
+    font-weight: 900; 
+    color: var(--accent); 
+    line-height: 1; 
+    margin-bottom: 10px;
+    letter-spacing: -2px;
+}
+
+.stats-display-area {
+    flex: 1.2;
+    padding-left: 20px;
+    border-left: 1px solid #eee;
+}
+
+.res-grid-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #fcfcfc;
+}
+
+.res-label {
+    font-size: 0.75rem;
+    color: #95a5a6;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.res-value {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+#res-score { color: var(--accent); font-size: 1.6rem; }
