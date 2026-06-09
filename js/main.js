@@ -1,9 +1,8 @@
 /**
- * ぱそトレ！ Logic v18.9.4 (Corrected Romaji Edition)
- * - ローマ字修正：ti を「ち」に固定し、「てぃ」のリストから削除 (thiのみ)
- * - ローマ字修正：di を「だ行」に固定し、「でぃ」のリストから削除 (dhiのみ)
- * - ハーフ・センター・スクロール：半分までは線が移動、半分以降は中央固定
- * - JIS黄金比レイアウト：/ と Shift の間に \ キーを完備
+ * ぱそトレ！ Logic v18.9.5 (Ultimate Precision Scroll)
+ * - ハーフ・センター・スクロール：50pxパディングを考慮した精密計算
+ * - 特殊ローマ字：ti(ち), thi(てぃ), tye(ちぇ) 完璧対応
+ * - JIS黄金比：/ と Shift の間に \ キーを実装
  */
 
 const ROMAJI_TABLE = {
@@ -31,14 +30,12 @@ const ROMAJI_TABLE = {
     'りゃ':['rya'], 'りゅ':['ryu'], 'りょ':['ryo'],
     'ぎゃ':['gya'], 'ぎゅ':['gyu'], 'ぎょ':['gyo'],
     'じゃ':['ja','zya'], 'じゅ':['ju','zyu'], 'じょ':['jo','zyo'], 'じぇ':['je','zye'],
-    'しぇ':['she','sye'], 
-    'ちぇ':['tye','che'], 
+    'しぇ':['she','sye'], 'ちぇ':['tye','che'],
     'びゃ':['bya'], 'びゅ':['byu'], 'びょ':['byo'],
     'ぴゃ':['pya'], 'ぴゅ':['pyu'], 'ぴょ':['pyo'],
     'ふぁ':['fa'], 'ふぃ':['fi'], 'ふぇ':['fe'], 'ふぉ':['fo'],
     'うぃ':['wi'], 'うぇ':['we'], 'うぉ':['wo'],
-    'てぃ':['thi'], // tiを削除し、thiのみに修正
-    'でぃ':['dhi'], // diを削除し、dhiのみに修正
+    'てぃ':['thi'], 'でぃ':['dhi'],
     'っ':['xtu','ltu'], 'ー':['-'], '-':['-'], ' ':[' '],
     'ぁ':['xa','la'], 'ぃ':['xi','li'], 'ぅ':['xu','lu'], 'ぇ':['xe','le'], 'ぉ':['xo','lo']
 };
@@ -59,6 +56,10 @@ class TypingApp {
         this.totalMissedCount = 0; 
         this.missMap = {};
         this.lastQuestion = null;
+        // 定数定義 (style.cssの860px / padding 50pxに準拠)
+        this.DISPLAY_WIDTH = 860;
+        this.LEFT_PADDING = 50;
+        this.CENTER_X = 430; 
         this.init();
     }
 
@@ -174,7 +175,7 @@ class TypingApp {
                 </div>`;
         }
         this.highlightKey(' ');
-        this.updateGuidePosition(40);
+        this.updateGuidePosition(this.LEFT_PADDING); // 左端50pxにリセット
     }
 
     startCountdown() {
@@ -269,6 +270,9 @@ class TypingApp {
         this.currentRomajiStr = ""; this.refreshDisplay();
     }
 
+    /**
+     * ハーフ・センター・スクロール (精密補正版)
+     */
     refreshDisplay() {
         if (this.state !== "PLAYING") return;
         const el = document.getElementById('display-romaji');
@@ -293,19 +297,19 @@ class TypingApp {
 
         const typedSpan = el.querySelector('.typed');
         const typedWidth = typedSpan ? typedSpan.offsetWidth : 0;
-        const containerWidth = 860; 
-        const centerX = containerWidth / 2;
-        const startMargin = 40;
-
+        
         let translateX;
         let guideX;
 
-        if (typedWidth < (centerX - startMargin)) {
-            translateX = startMargin;
-            guideX = startMargin + typedWidth;
+        // 【重要】50pxパディングからの相対位置で判定
+        if (typedWidth < (this.CENTER_X - this.LEFT_PADDING)) {
+            // 前半：テキストは左端(50px)固定、ガイドラインが右に動く
+            translateX = 0; 
+            guideX = this.LEFT_PADDING + typedWidth;
         } else {
-            translateX = centerX - typedWidth;
-            guideX = centerX;
+            // 後半：ガイドラインは中央(430px)に固定、テキストが左へ流れる
+            translateX = (this.CENTER_X - this.LEFT_PADDING) - typedWidth;
+            guideX = this.CENTER_X;
         }
 
         el.style.transform = `translateX(${translateX}px)`;
