@@ -115,9 +115,10 @@ class TypingApp {
         }
     }
 
-    handleResize() {
+handleResize() {
         const app = document.getElementById('app');
         if (!app) return;
+
         if (document.body.classList.contains('portal-page') || window.innerWidth <= 1024) {
             app.style.position = "relative";
             app.style.left = "auto";
@@ -126,16 +127,20 @@ class TypingApp {
             app.style.margin = "0 auto";
             return;
         }
+
         const width = window.innerWidth;
         const height = window.innerHeight;
-        const scale = Math.min(width / 1000, height / 800, 1);
+        
+        // 【修正】基準高さを 800 -> 720 に引き下げ、
+        // かつ縮小されすぎないよう Math.max(..., 0.9) で下限を設ける
+        const scale = Math.min(width / 1020, Math.max(height / 720, 0.9), 1);
+        
         app.style.position = "absolute";
         app.style.left = "50%"; 
-        app.style.top = "10px"; 
+        app.style.top = "0"; // 上の余白を詰める
         app.style.transform = `translateX(-50%) scale(${scale})`;
         app.style.transformOrigin = "top center";
     }
-
     setupEventListeners() {
         document.querySelectorAll('.btn-category').forEach(btn => {
             btn.addEventListener('click', () => {

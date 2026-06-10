@@ -488,8 +488,9 @@ body.focus-mode #keyboard-container {
     border-bottom: 1px solid #fcfcfc;
 }
 
+/* --- style.css の差分修正 --- */
 .res-label {
-    font-size: 0.75rem;
+    font-size: 0.85rem; /* 0.75 -> 0.85 へ拡大 */
     color: #95a5a6;
     font-weight: bold;
     text-transform: uppercase;
@@ -499,8 +500,7 @@ body.focus-mode #keyboard-container {
 .res-value {
     font-family: 'Roboto Mono', monospace;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.4rem; /* 1.2 -> 1.4 へ拡大 */
     color: var(--primary);
 }
-
 #res-score { color: var(--accent); font-size: 1.6rem; }
