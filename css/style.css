@@ -345,3 +345,38 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
 .result-side h3 {
     text-transform: none; /* 英字強制を解除 */
 }
+
+/* --- v19.9.0：結果画面デザインの深化 --- */
+
+/* 項目ラベル：より洗練された実務デザインへ */
+.res-label {
+    font-size: 0.8rem !important;
+    color: #a0a0a0 !important;
+    letter-spacing: 0.05em;
+    font-weight: 500 !important;
+}
+
+/* 数値：存在感を高め、色はメインカラーに同期 */
+.res-value {
+    color: var(--primary) !important;
+    font-size: 1.2rem !important;
+    font-family: 'Roboto Mono', monospace !important;
+    font-weight: 700 !important;
+}
+
+/* スコアだけは特別に強調 */
+#res-score {
+    color: var(--accent) !important;
+    font-size: 1.6rem !important;
+}
+
+/* 正確率の % 記号を少し小さくしてプロっぽく */
+.res-value span { font-size: 1.2rem; }
+
+/* ランク表示エリアのラベル */
+.rank-display-area p {
+    margin-top: -10px;
+    font-size: 0.7rem !important;
+    color: #ccc !important;
+    text-transform: uppercase;
+}
