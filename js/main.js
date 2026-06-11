@@ -115,10 +115,11 @@ class TypingApp {
         }
     }
 
-handleResize() {
+    handleResize() {
         const app = document.getElementById('app');
         if (!app) return;
 
+        // ポータルページまたは幅1024px以下は標準の相対配置
         if (document.body.classList.contains('portal-page') || window.innerWidth <= 1024) {
             app.style.position = "relative";
             app.style.left = "auto";
@@ -128,19 +129,15 @@ handleResize() {
             return;
         }
 
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        
-        // 【修正】基準高さを 800 -> 720 に引き下げ、
-        // かつ縮小されすぎないよう Math.max(..., 0.9) で下限を設ける
-        const scale = Math.min(width / 1020, Math.max(height / 720, 0.9), 1);
-        
+        // 【究極修正】変な縮小(scale)を完全にやめ、常に実寸(1.0倍)で表示。
+        // これによりノートPCでの文字の読みづらさを根本から解決します。
         app.style.position = "absolute";
         app.style.left = "50%"; 
-        app.style.top = "0"; // 上の余白を詰める
-        app.style.transform = `translateX(-50%) scale(${scale})`;
+        app.style.top = "0"; 
+        app.style.transform = "translateX(-50%)"; // scaleを削除
         app.style.transformOrigin = "top center";
     }
+
     setupEventListeners() {
         document.querySelectorAll('.btn-category').forEach(btn => {
             btn.addEventListener('click', () => {

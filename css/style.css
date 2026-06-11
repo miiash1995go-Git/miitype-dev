@@ -504,3 +504,44 @@ body.focus-mode #keyboard-container {
     color: var(--primary);
 }
 #res-score { color: var(--accent); font-size: 1.6rem; }
+
+/* 設定エリア：自己ベストとボタンを美しく横並びに統合 */
+.controls-row-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    margin: 10px 0 25px 0;
+    flex-wrap: wrap;
+}
+
+/* 自己ベストの個別スタイル微調整（横並び用） */
+#best-score-display {
+    margin: 0 !important; /* 横並びのためマージンをリセット */
+    padding: 8px 25px;
+}
+
+/* 結果画面：上端のゆとりを確保 */
+.result-main {
+    padding: 45px 35px 30px 35px !important; /* 上側を45pxに広げる */
+}
+
+/* 結果項目の日本語ラベル：サイズ拡大 */
+.res-label {
+    font-size: 0.95rem !important; /* 0.75 -> 0.95 */
+    color: #7f8c8d;
+    font-weight: 800;
+}
+
+/* 結果の数値：大きく見やすく */
+.res-value {
+    font-size: 1.5rem !important; /* 1.2 -> 1.5 */
+    letter-spacing: 0.05em;
+}
+
+/* 各項目の行間を詰める */
+.res-grid-row {
+    padding: 4px 0 !important; /* 上下8px -> 4px */
+    border-bottom: 1px solid #f9f9f9;
+}
+/* -------------------------------------------------------- */
