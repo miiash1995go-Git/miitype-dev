@@ -436,7 +436,8 @@ class TypingApp {
             if(resRank) {
                 resRank.innerText = "評価不可";
                 resRank.style.color = "#95a5a6";
-                resRank.style.fontSize = "2rem";
+                // ★ここを修正：直接サイズを指定せずクラスを付与
+                resRank.classList.add('is-aborted'); 
                 resRank.classList.remove('sparkle');
             }
             if(resScore) resScore.innerText = "0";
@@ -447,6 +448,7 @@ class TypingApp {
             document.getElementById('res-total').innerText = "0";
         } else {
             if(resultTitle) resultTitle.innerText = "練習結果";
+            if(resRank) resRank.classList.remove('is-aborted'); // ★追加：中止クラスを消す
             const sec = (performance.now() - this.startTime) / 1000;
             const cpm = Math.floor(this.totalTypedCount / (sec / 60)) || 0;
             const accNumRaw = (this.totalTypedCount > 0) ? ((this.totalTypedCount - this.totalMissedCount) / this.totalTypedCount) * 100 : 0;

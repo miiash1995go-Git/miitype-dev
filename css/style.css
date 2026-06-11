@@ -388,3 +388,19 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     justify-content: center;
     align-items: center;
 }
+
+/* --- v19.9.2：評価不可レイアウトの強制補正 --- */
+
+/* 評価不可の時だけフォントサイズを強制的に小さくする */
+#result-rank.is-aborted {
+    font-size: 2.8rem !important; /* 8remや5.5remを上書き */
+    letter-spacing: 0.1em !important;
+    white-space: nowrap !important; /* 2行になるのを絶対に防ぐ */
+    margin-top: 15px !important;
+}
+
+/* 項目名を日本語として美しく見せるための調整 */
+.res-label {
+    font-family: 'Noto Sans JP', sans-serif !important;
+    text-transform: none !important; /* 大文字化を解除 */
+}
