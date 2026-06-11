@@ -83,26 +83,26 @@
 
             <section id="result-screen" class="screen hidden">
                 <div class="result-container">
-                    <!-- 左：タイプミスキー -->
                     <div class="result-side">
                         <h3 style="margin:0 0 10px 0; font-size:1.1rem; color:var(--primary); font-weight: bold; border-bottom: 2px solid #eee; padding-bottom: 5px;">タイプミスキー</h3>
                         <div id="miss-detail-list" class="scroll-list"></div>
                     </div>
                     
-                    <!-- 右：結果メイン（内部をさらに左右に分割） -->
                     <div class="result-main">
                         <div class="result-content-wrapper">
-                            <!-- 左部エリア：タイトル、ランク、ボタンを一括集約 -->
+                            <!-- 左部：上・中・下に分離して配置 -->
                             <div class="rank-display-area">
                                 <h2 id="result-title">練習結果</h2>
                                 <div class="rank-main-box">
                                     <div id="result-rank">-</div>
                                     <p>判定ランク</p>
                                 </div>
-                                <button onclick="location.reload()" class="btn-main">もう一度挑戦</button>
+                                <div class="result-action-area">
+                                    <button onclick="location.reload()" class="btn-main">もう一度挑戦</button>
+                                </div>
                             </div>
                             
-                            <!-- 右部エリア：統計スタッツ（日本語版） -->
+                            <!-- 右部：統計スタッツ -->
                             <div class="stats-display-area">
                                 <div class="res-grid-row"><span class="res-label">スコア</span><span id="res-score" class="res-value">0</span></div>
                                 <div class="res-grid-row"><span class="res-label">タイム</span><span id="res-time" class="res-value">0</span></div>
