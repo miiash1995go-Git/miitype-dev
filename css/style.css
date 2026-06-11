@@ -404,3 +404,40 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     font-family: 'Noto Sans JP', sans-serif !important;
     text-transform: none !important; /* 大文字化を解除 */
 }
+
+/* --- v19.9.3：結果画面の視認性・品格向上 --- */
+
+/* 「評価不可」の文字間隔を詰め、1行でビシッと見せる */
+#result-rank.is-aborted {
+    font-size: 3rem !important;
+    letter-spacing: -0.05em !important; /* 間隔が広すぎるのを修正 */
+    margin-bottom: 5px !important;
+    white-space: nowrap !important;
+}
+
+/* 「判定ランク」のラベルを大きくし、位置を調整 */
+.rank-display-area p {
+    font-size: 0.95rem !important; /* 0.7 -> 0.95 */
+    margin-top: 10px !important; /* 上の大きな文字と少し離す */
+    color: #7f8c8d !important;
+    font-weight: 800 !important;
+    opacity: 1 !important;
+}
+
+/* スコア・正確率などの「項目名」を大きく読みやすく */
+.res-label {
+    font-size: 1.05rem !important; /* 0.8 -> 1.05 */
+    color: #555 !important; /* グレーを濃くして視認性アップ */
+    font-weight: 700 !important;
+}
+
+/* 数値部分も少しだけ大きくしてバランス調整 */
+.res-value {
+    font-size: 1.4rem !important;
+}
+
+/* 各行の境界を少しだけはっきりさせる */
+.res-grid-row {
+    border-bottom: 1px solid #f0f0f0 !important;
+    padding: 6px 0 !important;
+}
