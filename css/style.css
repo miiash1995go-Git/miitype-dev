@@ -80,13 +80,15 @@ header { flex-shrink: 0; text-align: center; margin-bottom: 10px !important; wid
     max-width: 1000px;
     height: 90px;
     margin: 5px auto 10px auto !important;
-    background: white !important;
-    border-radius: 12px;
+    background: transparent !important; /* 白背景を撤廃 */
     opacity: 1 !important;
     z-index: 10001;
     position: relative;
-    overflow: hidden;
+    border-radius: 12px;
 }
+
+
+
 .result-ad-box { display: none !important; } 
 main { flex: 1; width: 100%; min-height: 0; }
 /* --- 2. PC推奨アラート画面 (絶対最前面) --- */
@@ -316,3 +318,30 @@ footer { margin-top: auto; padding: 15px 0 25px 0; border-top: 1px solid #eee; t
 .footer-links a:hover { color: var(--accent); }
 footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
 
+/* 2. カテゴリ選択後の操作エリアを1行に統合 */
+.controls-master-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 左・中・右に均等配置 */
+    gap: 15px;
+    margin-top: 12px;
+    padding: 0 15px;
+}
+
+/* 各パーツの横幅固定と微調整 */
+.compact-best { margin: 0 !important; min-width: 160px; text-align: left; }
+.compact-settings { margin: 0 !important; display: flex; gap: 8px; min-width: 220px; justify-content: flex-end; }
+
+/* 3. 練習開始ボタンを中央に配置し、サイズを適正化 */
+.btn-main.compact-start {
+    padding: 10px 45px !important;
+    font-size: 1.15rem !important;
+    margin: 0 !important;
+    box-shadow: 0 4px 0 #1a252f !important;
+    flex-shrink: 0;
+}
+
+/* 4. 結果画面：文言変更に伴う微調整 */
+.result-side h3 {
+    text-transform: none; /* 英字強制を解除 */
+}
