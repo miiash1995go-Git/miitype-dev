@@ -495,26 +495,31 @@ class TypingApp {
         return `${m}分${s}秒${p}`;
     }
 
+/* --- main.js：getRankメソッドを以下に差し替え（ユーザー指定基準） --- */
+
+    /**
+     * getRank: ユーザー指定の「200=A- / 160=B- / 100=C- / 51=D-」を厳守した基準
+     */
     getRank(s) {
-        if(s >= 550) return "Legend"; // 超人
-        if(s >= 450) return "Master"; // 達人
-        if(s >= 400) return "SSS"; 
-        if(s >= 370) return "SS"; 
-        if(s >= 340) return "S";
-        if(s >= 310) return "A+"; 
-        if(s >= 280) return "A"; 
-        if(s >= 250) return "A-";
-        if(s >= 225) return "B+"; 
-        if(s >= 200) return "B"; 
-        if(s >= 175) return "B-";
-        if(s >= 150) return "C+"; 
-        if(s >= 125) return "C"; 
-        if(s >= 100) return "C-";
-        if(s >= 80)  return "D+"; 
-        if(s >= 60)  return "D"; 
-        if(s >= 40)  return "D-";
-        if(s >= 20)  return "E+"; 
-        if(s >= 5)   return "E";
+        if(s >= 500) return "Legend"; // 天井（ほぼ到達不能な名誉職）
+        if(s >= 400) return "Master"; // 超人（タイピング特化の人）
+        if(s >= 350) return "SSS"; 
+        if(s >= 325) return "SS"; 
+        if(s >= 300) return "S";      // 300 CPM & 高正確率の壁
+        if(s >= 260) return "A+";     // ★今回の276点はこの「A+」になります
+        if(s >= 230) return "A"; 
+        if(s >= 200) return "A-";     // 【指定】200以上
+        if(s >= 185) return "B+"; 
+        if(s >= 170) return "B"; 
+        if(s >= 160) return "B-";     // 【指定】160以上
+        if(s >= 140) return "C+"; 
+        if(s >= 120) return "C"; 
+        if(s >= 100) return "C-";     // 【指定】100以上
+        if(s >= 85)  return "D+"; 
+        if(s >= 65)  return "D"; 
+        if(s >= 51)  return "D-";     // 【指定】51以上
+        if(s >= 30)  return "E+"; 
+        if(s >= 10)  return "E"; 
         return "E-";
     }
     renderKeyboard() {
