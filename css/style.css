@@ -380,3 +380,11 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     color: #ccc !important;
     text-transform: uppercase;
 }
+/* 評価不可の文字がランクエリアに収まるように微調整 */
+.rank-display-area {
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

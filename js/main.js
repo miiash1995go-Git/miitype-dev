@@ -436,7 +436,7 @@ class TypingApp {
             if(resRank) {
                 resRank.innerText = "評価不可";
                 resRank.style.color = "#95a5a6";
-                resRank.style.fontSize = "3.2rem";
+                resRank.style.fontSize = "2rem";
                 resRank.classList.remove('sparkle');
             }
             if(resScore) resScore.innerText = "0";
