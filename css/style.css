@@ -747,3 +747,67 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     align-items: center;
     justify-content: center;
 }
+/* --- index.html 改善：静的カードと動的カードの差別化 --- */
+
+/* 選ばれる理由（押せないカード）の調整 */
+.feature-card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02); /* 影を極限まで薄く */
+    border: 1px solid #f0f0f0;
+    cursor: default; /* 指マークにしない */
+    transition: none; /* 動かさない */
+}
+
+/* おすすめコンテンツ（押せるエリア）全体の青い囲い */
+.recommended-box {
+    background: #f4f8fb; /* うっすら青い背景 */
+    padding: 50px 30px;
+    border-radius: 30px;
+    border: 1px solid #eef2f6;
+    margin-top: 20px;
+}
+
+/* おすすめカード（リンク付き） */
+.rec-card {
+    background: white !important;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/* リンク付きカードだけホバーで浮き上がらせる */
+.rec-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+    border-color: var(--accent);
+}
+
+/* カード右下の「→」ヒント */
+.rec-btn-hint {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--accent);
+    text-align: right;
+    opacity: 0.7;
+}
+
+.rec-card:hover .rec-btn-hint {
+    opacity: 1;
+}
+
+.rec-btn-hint span {
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.rec-card:hover .rec-btn-hint span {
+    transform: translateX(5px); /* 矢印が右にピョコっと動く */
+}
