@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>お問い合わせ | ぱそトレ！</title>
-    <meta name="description" content="ぱそトレ！へのご意見、ご要望、不具合報告などはこちらから。現役パソコン講師が直接お返事いたします。">
+    <meta name="description" content="ぱそトレ！へのご意見、ご要望、不具合報告などはこちらから。現役パソコン講師の運営者が、ひとつずつ大切に読ませていただきます。">
     <link rel="icon" href="favicon.ico">    
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -27,22 +27,43 @@
 
         <main class="portal-main">
             <section class="section-container">
+                <!-- お問い合わせフォーム専用カード -->
                 <div class="static-page contact-form-card">
                     <h1>お問い合わせ</h1>
-                    <p class="contact-intro">「ぱそトレ！」に関するご意見、ご要望、不具合報告などは、以下のフォームよりお願いいたします。現役パソコン講師の運営者が、ひとつずつ大切に読ませていただきます。</p>
+                    <p class="contact-intro">「ぱそトレ！」に関するご意見、ご要望、不具合報告などは、以下のフォームよりお願いいたします。現役パソコン講師の運営者が、内容を確認のうえ、大切に読ませていただきます。</p>
 
-                     <!-- Googleフォームの埋め込みエリア（ここを差し替え） -->
-                    <div class="google-form-wrapper">
-                        <!-- 
-                          1. Googleフォームを作成
-                          2. 「送信」ボタン ＞ 「＜ ＞」マークをクリック
-                          3. 表示された <iframe> コードを以下に貼り付けるだけ 
-                        -->
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdO7i5jS7l-vF9WjYnS_fI8Y4T-your-id/viewform?embedded=true" 
-                                width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">
-                            読み込み中…
-                        </iframe>
-                    </div>
+                    <!-- 【確定版】あなた専用ID xrevrleq 設定済み -->
+                    <form action="https://formspree.io/f/xrevrleq" method="POST" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">お名前 <span class="required">必須</span></label>
+                            <input type="text" id="name" name="name" placeholder="例：ぱそトレ 太郎" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">メールアドレス <span class="required">必須</span></label>
+                            <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">お問い合わせの種類</label>
+                            <select id="subject" name="subject">
+                                <option value="ご意見・ご要望">ご意見・ご要望</option>
+                                <option value="不具合報告">不具合報告（タイピング等）</option>
+                                <option value="お仕事の依頼">お仕事の依頼・取材</option>
+                                <option value="その他">その他</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">お問い合わせ内容 <span class="required">必須</span></label>
+                            <textarea id="message" name="message" rows="6" placeholder="こちらに内容をご記入ください" required></textarea>
+                        </div>
+
+                        <div class="form-submit">
+                            <button type="submit" class="btn-main">この内容で送信する</button>
+                        </div>
+                        <p class="form-notice">※送信後、自動的に受付完了画面へ移動します。</p>
+                    </form>
                 </div>
             </section>
         </main>
