@@ -2,12 +2,12 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>お問い合わせ | ぱそトレ！</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ぱそトレ！へのご意見、ご要望、不具合報告など、お問い合わせはこちらから。現役講師の運営者（みい先生）が、ユーザーの皆様からの貴重なフィードバックをお待ちしております。">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-<link rel="icon" href="favicon.ico">    
-<link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="ぱそトレ！へのご意見、ご要望、不具合報告などはこちらから。現役パソコン講師が直接お返事いたします。">
+    <link rel="icon" href="favicon.ico">    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="portal-page">
     <div id="app">
@@ -19,28 +19,62 @@
                 <a href="career.html">就職・転職</a>
                 <a href="glossary.html">用語集</a>
                 <a href="guide.html">学習ガイド</a>
-		<a href="column.html">ぱそトレ！コラム</a>
+                <a href="column.html">ぱそトレ！コラム</a>
                 <a href="contact.html">お問い合わせ</a>
             </nav>
             <div class="logo">ぱそトレ！ <span>お問い合わせ</span></div>
         </header>
 
-        <main class="static-page" style="max-width:800px; margin:0 auto; padding:20px; background:white; border-radius:20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-            <h1>お問い合わせ</h1>
-            <p>「ぱそトレ！」に関するご意見、ご要望、不具合報告などは、以下の連絡先までお願いいたします。</p>
-            <div style="margin: 40px 0; text-align: center;">
-                <p style="font-weight: bold; color: #7f8c8d;">メールアドレス</p>
-                <p><a href="mailto:miiash1995go@gmail.com" style="font-size: 1.2rem; color: var(--accent); font-weight: bold;">miiash1995go@gmail.com</a></p>
-            </div>
+        <main class="portal-main">
+            <section class="section-container">
+                <div class="static-page contact-form-card">
+                    <h1>お問い合わせ</h1>
+                    <p class="contact-intro">「ぱそトレ！」に関するご意見、ご要望、不具合報告などは、以下のフォームよりお願いいたします。現役パソコン講師の運営者が、ひとつずつ大切に読ませていただきます。</p>
+
+                    <!-- お問い合わせフォーム本体 -->
+                    <!-- actionの箇所をご自身のメールアドレスに紐づいたFormspreeのURLに置き換えるだけです -->
+                    <form action="https://formspree.io/f/mqakvjge" method="POST" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">お名前 <span class="required">必須</span></label>
+                            <input type="text" id="name" name="name" placeholder="例：ぱそトレ 太郎" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">メールアドレス <span class="required">必須</span></label>
+                            <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">お問い合わせの種類</label>
+                            <select id="subject" name="subject">
+                                <option value="ご意見・ご要望">ご意見・ご要望</option>
+                                <option value="不具合報告">不具合報告（タイピング等）</option>
+                                <option value="お仕事の依頼">お仕事の依頼・取材</option>
+                                <option value="その他">その他</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">お問い合わせ内容 <span class="required">必須</span></label>
+                            <textarea id="message" name="message" rows="6" placeholder="こちらに内容をご記入ください" required></textarea>
+                        </div>
+
+                        <div class="form-submit">
+                            <button type="submit" class="btn-main">この内容で送信する</button>
+                        </div>
+                        <p class="form-notice">※送信後、自動的に受付完了画面へ移動します。</p>
+                    </form>
+                </div>
+            </section>
         </main>
 
         <footer>
             <div class="footer-links">
                 <a href="privacy.html">プライバシーポリシー</a>
                 <a href="contact.html">お問い合わせ</a>
-		<a href="about.html">運営者情報</a>
+                <a href="about.html">運営者情報</a>
             </div>
-            <p>&copy; 2026 ぱそトレ！by miitype - All Rights Reserved.</p>
+            <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
         </footer>
     </div>
 </body>
