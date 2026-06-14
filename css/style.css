@@ -811,3 +811,96 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
 .rec-card:hover .rec-btn-hint span {
     transform: translateX(5px); /* 矢印が右にピョコっと動く */
 }
+
+/* --- AI活用ページ専用スタイル (v19.9.13) --- */
+
+.static-card {
+    cursor: default !important;
+    transform: none !important;
+    border: 1px solid #eee !important;
+    box-shadow: none !important;
+}
+
+.example-box {
+    background: #2c3e50;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    position: relative;
+    font-family: 'Roboto Mono', monospace;
+    line-height: 1.8;
+}
+
+.example-label {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--accent);
+    color: white;
+    padding: 2px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.basics-priority-section {
+    margin-top: 40px;
+}
+
+.priority-box {
+    background: #fff9f0;
+    padding: 40px;
+    border-radius: 30px;
+    border: 2px dashed #f39c12;
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 25px;
+}
+
+.comparison-item {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid #ffe8cc;
+}
+
+.comparison-item h4 {
+    color: #e67e22;
+    margin-bottom: 10px;
+}
+
+.faq-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 25px 0 !important;
+}
+
+.faq-q {
+    font-weight: bold;
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.faq-a {
+    color: #555;
+    line-height: 1.7;
+    padding-left: 10px;
+    border-left: 3px solid #f1f2f6;
+}
+
+.instructor-advice {
+    background: #eef9ff;
+    padding: 15px 25px;
+    border-radius: 10px;
+    color: #2980b9;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .comparison-grid { grid-template-columns: 1fr; }
+}
