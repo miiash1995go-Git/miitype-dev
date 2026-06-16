@@ -158,3 +158,48 @@ body.game-body main {
     color: var(--accent);
     font-weight: bold;
 }
+
+/* --- タイピング画面：キーボードエリア --- */
+
+#keyboard-container {
+    width: 800px;
+    margin: 30px auto;
+}
+
+/* キーボードの行 */
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+/* キー */
+.key {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    margin: 3px;
+    border-radius: 6px;
+    background: #f0f0f0;
+    font-weight: bold;
+    user-select: none;
+    transition: background 0.1s;
+}
+
+/* スペースキー */
+.key.space {
+    width: 300px;
+}
+
+/* シフトキー */
+.key.wide-shift {
+    width: 80px;
+}
+
+/* 光るキー（JSが付与） */
+.key.highlight {
+    background: var(--accent);
+    color: #fff;
+}
