@@ -408,3 +408,53 @@ body.game-body main {
     margin-left: 0;
 }
 
+/* --- タイピング画面：キーボードエリア --- */
+
+#keyboard-container {
+    width: 800px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f1f2f6;
+    border-radius: 18px;
+    padding: 12px;
+}
+
+/* 各行を中央揃え */
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 6px;
+}
+
+/* 行ごとの段差（QWERTY配列） */
+.keyboard-row.row-0 { margin-left: 0; }
+.keyboard-row.row-1 { margin-left: 20px; }
+.keyboard-row.row-2 { margin-left: 35px; }
+.keyboard-row.row-3 { margin-left: 10px; }
+.keyboard-row.row-4 { margin-left: 0; }
+
+/* キーサイズ（48px版） */
+.key {
+    width: 48px;
+    height: 48px;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid var(--key-border);
+    border-bottom-width: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #57606f;
+    flex-shrink: 0;
+}
+
+.key.wide-shift { width: 80px; }
+.key.space { width: 300px; background: #3498db; color: white; }
+.key.highlight { background: var(--accent); color: white; }
