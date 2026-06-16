@@ -1,0 +1,31 @@
+<svg width="800" height="300" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景（ミッドナイトグレー） -->
+  <rect width="800" height="300" rx="15" fill="#34495e"/>
+  
+  <!-- キー配置 (ホームポジション中段) -->
+  <g transform="translate(50, 100)">
+    <!-- 左手側 -->
+    <rect x="0" y="0" width="60" height="60" rx="8" fill="#ffdce0"/><text x="30" y="40" font-family="Arial" font-weight="bold" font-size="20" fill="#57606f" text-anchor="middle">A</text>
+    <rect x="70" y="0" width="60" height="60" rx="8" fill="#fff3d6"/><text x="100" y="40" font-family="Arial" font-weight="bold" font-size="20" fill="#57606f" text-anchor="middle">S</text>
+    <rect x="140" y="0" width="60" height="60" rx="8" fill="#e2f9e1"/><text x="170" y="40" font-family="Arial" font-weight="bold" font-size="20" fill="#57606f" text-anchor="middle">D</text>
+    
+    <!-- Fキー（左人差し指：青 ＋ 突起） -->
+    <rect x="210" y="0" width="60" height="60" rx="8" fill="#e2e9ff" stroke="#3498db" stroke-width="2"/>
+    <text x="240" y="40" font-family="Arial" font-weight="bold" font-size="20" fill="#2c3e50" text-anchor="middle">F</text>
+    <rect x="225" y="48" width="30" height="4" rx="2" fill="#34495e"/> <!-- 突起 -->
+
+    <!-- Jキー（右人差し指：紫 ＋ 突起） -->
+    <rect x="430" y="0" width="60" height="60" rx="8" fill="#f0e1ff" stroke="#9b59b6" stroke-width="2"/>
+    <text x="460" y="40" font-family="Arial" font-weight="bold" font-size="20" fill="#2c3e50" text-anchor="middle">J</text>
+    <rect x="445" y="48" width="30" height="4" rx="2" fill="#34495e"/> <!-- 突起 -->
+
+    <!-- 右手側 -->
+    <rect x="500" y="0" width="60" height="60" rx="8" fill="#e2f9e1"/><text x="530" y="40" font-family="Arial" font-weight="bold" font-size="20" fill="#57606f" text-anchor="middle">K</text>
+    <rect x="570" y="0" width="60" height="60" rx="8" fill="#fff3d6"/><text x="600" y="40" font-family="Arial" font-weight="bold" font-size="20" fill="#57606f" text-anchor="middle">L</text>
+    <rect x="640" y="0" width="60" height="60" rx="8" fill="#ffdce0"/><text x="670" y="40" font-family="Arial" font-weight="bold" font-size="20" fill="#57606f" text-anchor="middle">;</text>
+  </g>
+
+  <!-- スペースキー -->
+  <rect x="250" y="200" width="300" height="50" rx="10" fill="#3498db"/>
+  <text x="400" y="232" font-family="Arial" font-weight="bold" font-size="16" fill="white" text-anchor="middle">Space</text>
+</svg>
