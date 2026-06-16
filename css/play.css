@@ -96,4 +96,65 @@ body.game-body {
     100% { text-shadow: 0 0 5px var(--accent); }
 }
 
+/* --- タイピング画面専用レイアウト（play.html） --- */
 
+body.game-body {
+    overflow-y: auto;
+    min-height: 100vh;
+    background-color: #d1d5db;
+    position: relative;
+    transition: background-color 0.6s ease;
+}
+
+body.game-body main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 0;
+    padding-bottom: 25px !important;
+}
+
+/* --- タイピング画面：問題文表示エリア --- */
+
+.typing-display {
+    width: 800px;
+    margin: 0 auto;
+    padding-top: 40px;
+    text-align: left;
+}
+
+#display-kanji {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#display-kana {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* ローマ字スクロールエリア */
+.romaji-scroll-window {
+    overflow: hidden;
+    height: 40px;
+    margin-top: 10px;
+}
+
+#display-romaji {
+    font-family: "Roboto Mono", monospace;
+    font-size: 2rem;
+    white-space: nowrap;
+    transition: transform 0.1s linear;
+}
+
+#display-romaji .typed {
+    color: #bbb;
+}
+
+#display-romaji .current {
+    color: var(--accent);
+    font-weight: bold;
+}
