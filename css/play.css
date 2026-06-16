@@ -212,3 +212,86 @@ body.game-body main {
     0% { background-color: rgba(255, 0, 0, 0.25); }
     100% { background-color: transparent; }
 }
+/* --- タイピング画面：結果画面エリア --- */
+
+#result-screen {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.result-container {
+    display: flex;
+    gap: 20px;
+    width: 900px;
+}
+
+/* 左側：ミス一覧 */
+.result-side {
+    width: 260px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.scroll-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* 右側：メイン結果 */
+.result-main {
+    flex: 1;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.rank-display-area {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#result-rank {
+    font-size: 8rem;
+    font-weight: bold;
+    color: var(--accent);
+    line-height: 1;
+}
+
+/* 中止時 */
+#result-rank.is-aborted {
+    color: #95a5a6;
+    font-size: 5rem;
+}
+
+/* キラキラ */
+.sparkle {
+    animation: sparkleAnim 1.2s infinite;
+}
+
+@keyframes sparkleAnim {
+    0% { text-shadow: 0 0 5px var(--accent); }
+    50% { text-shadow: 0 0 15px var(--accent); }
+    100% { text-shadow: 0 0 5px var(--accent); }
+}
+
+/* スタッツ（スコア・時間など） */
+.res-grid-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.res-label {
+    color: #555;
+}
+
+.res-value {
+    font-weight: bold;
+    color: #333;
+}
