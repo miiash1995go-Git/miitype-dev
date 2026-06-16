@@ -352,3 +352,59 @@ body.game-body main {
 .f-rm { background: #f3e8ff; } /* 右中指 */
 .f-rr { background: #ffe8e8; } /* 右薬指 */
 .f-rp { background: #f8d7da; } /* 右小指 */
+
+/* --- キーボード行の位置補正 --- */
+
+/* 数字行（最上段） */
+.keyboard-row.row-1 {
+    margin-left: 40px; /* ← 少し右に寄せる */
+}
+
+/* Q行 */
+.keyboard-row.row-2 {
+    margin-left: 20px;
+}
+
+/* A行 */
+.keyboard-row.row-3 {
+    margin-left: 40px;
+}
+
+/* Z行 */
+.keyboard-row.row-4 {
+    margin-left: 60px;
+}
+
+/* スペースキー行（中央揃え） */
+.keyboard-row.row-5 {
+    justify-content: center;
+    margin-left: 0;
+}
+
+/* --- キーボード行の位置補正（正しいQWERTY配列） --- */
+
+/* row-0: 数字行（基準） */
+.keyboard-row.row-0 {
+    margin-left: 0;
+}
+
+/* row-1: Q行（数字行よりキーが1つ少ない → 少し右へ） */
+.keyboard-row.row-1 {
+    margin-left: 24px;
+}
+
+/* row-2: A行（数字行と同じキー数 → ほぼ中央） */
+.keyboard-row.row-2 {
+    margin-left: 12px;
+}
+
+/* row-3: Z行（キーが多い → 少し左へ） */
+.keyboard-row.row-3 {
+    margin-left: -12px;
+}
+
+/* row-4: スペース行（完全中央） */
+.keyboard-row.row-4 {
+    margin-left: 0;
+}
+
