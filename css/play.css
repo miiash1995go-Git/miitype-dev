@@ -295,3 +295,60 @@ body.game-body main {
     font-weight: bold;
     color: #333;
 }
+
+/* --- キーボード全体の配置調整 --- */
+#keyboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ← 全体を中央揃え */
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 30px auto;
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px 0;
+}
+
+/* --- 各行の配置 --- */
+.keyboard-row {
+    display: flex;
+    justify-content: center; /* ← 行ごとに中央揃え */
+    gap: 6px; /* ← キー間の均等な隙間 */
+    margin-bottom: 8px;
+}
+
+/* --- キーの基本形 --- */
+.key {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    background: #f0f0f0;
+    font-weight: bold;
+    user-select: none;
+    transition: background 0.1s;
+}
+
+/* --- 特殊キー --- */
+.key.space {
+    width: 300px;
+    background: #3498db;
+    color: #fff;
+}
+
+.key.wide-shift {
+    width: 80px;
+}
+
+/* --- 指ごとの色分け（例） --- */
+.f-lp { background: #f8d7da; } /* 左小指 */
+.f-lr { background: #fff3cd; } /* 左薬指 */
+.f-lm { background: #d4edda; } /* 左中指 */
+.f-li { background: #dbeafe; } /* 左人差し指 */
+.f-ri { background: #e0cffc; } /* 右人差し指 */
+.f-rm { background: #f3e8ff; } /* 右中指 */
+.f-rr { background: #ffe8e8; } /* 右薬指 */
+.f-rp { background: #f8d7da; } /* 右小指 */
