@@ -1,3 +1,3 @@
 # typing-site
 
-a1
+a

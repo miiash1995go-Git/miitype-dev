@@ -3,11 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>タイピング練習 | ぱそトレ！</title>
+    <title>タイピング練習画面｜実務用語を指で覚える｜ぱそトレ！</title>
+    <meta name="description" content="事務職の即戦力を目指すタイピング練習が無料でできます。Word、Excelの基礎からMOS試験頻出用語、ビジネスメール定型句まで。">
+    <link rel="icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/play.css">
+
 </head>
 <body class="game-body">
+    <div class="mobile-restriction-overlay">
+        <div class="restriction-card">
+            <h2>PC環境での学習を推奨</h2>
+            <p>本サイトのタイピング練習は、パソコンでの学習を前提としています。<br><br>スマートフォンでは正確な計測ができないため、PC環境での学習を推奨しています。</p>
+            <a href="index.html" class="btn-main" style="padding: 10px 30px; font-size: 1rem; box-shadow: none;">ホームへ戻る</a>
+        </div>
+    </div>
+
     <div id="app">
         <header>
             <nav class="nav-menu">
@@ -17,23 +30,23 @@
                 <a href="career.html">就職・転職</a>
                 <a href="glossary.html">用語集</a>
                 <a href="guide.html">学習ガイド</a>
+                <a href="column.html">ぱそトレ！コラム</a>
                 <a href="contact.html">お問い合わせ</a>
             </nav>
             <div class="logo">ぱそトレ！ <span>実務スキル訓練</span></div>
+            <div class="ad-container-top"></div>
         </header>
 
         <main>
             <section id="start-screen" class="screen">
                 <div class="card">
-                    <h1>練習カテゴリを選択</h1>
-                    
+                    <h1 style="font-size: 1.4rem; margin-bottom: 8px;">練習カテゴリを選択</h1>
                     <div id="category-selector" class="btn-group-container">
                         <div class="category-group">
                             <span class="group-label">基礎</span>
                             <button class="btn-category" data-cat="windows">Windows操作</button>
                             <button class="btn-category" data-cat="daily">日常会話</button>
                         </div>
-                        
                         <div class="category-group">
                             <span class="group-label">Office</span>
                             <button class="btn-category" data-cat="word_basic">Word基礎</button>
@@ -41,7 +54,6 @@
                             <button class="btn-category" data-cat="excel_basic">Excel基礎</button>
                             <button class="btn-category" data-cat="excel_mos">Excel(MOS)</button>
                         </div>
-                        
                         <div class="category-group">
                             <span class="group-label">実務</span>
                             <button class="btn-category active" data-cat="it_terms">IT用語</button>
@@ -49,48 +61,61 @@
                             <button class="btn-category" data-cat="business">ビジネス</button>
                             <button class="btn-category" data-cat="career">就職・転職</button>
                         </div>
-
                         <div class="category-group special">
                             <button class="btn-category btn-total" data-cat="total_test">🔥 ぱそトレ！<br>総合判定</button>
                         </div>
                     </div>
-
-                    <div id="best-score-display">自己ベストスコア: 0</div>
-                    <div class="settings-area">
-                        <button id="sound-toggle" class="btn-toggle">タイプ音: OFF</button>
+                    <div class="controls-master-row">
+                        <div id="best-score-display" class="compact-best">
+                            <span class="best-label">自己ベスト</span>
+                            <span class="best-value">0</span>
+                        </div>
+                        <button id="start-btn" class="btn-main compact-start">練習開始</button>
+                        <div class="settings-area compact-settings">
+                            <button id="sound-toggle" class="btn-toggle">タイプ音: OFF</button>
+                            <button id="color-toggle" class="btn-toggle">ガイド色: ON</button>
+                        </div>
                     </div>
-                    <button id="start-btn" class="btn-main">練習開始</button>
                 </div>
             </section>
 
-            <!-- ゲーム画面 -->
             <section id="game-screen" class="screen hidden">
                 <div id="typing-container" class="typing-display"></div>
                 <div id="keyboard-container"></div>
             </section>
 
-            <!-- 結果画面 -->
             <section id="result-screen" class="screen hidden">
                 <div class="result-container">
                     <div class="result-side">
-                        <h3 style="margin:0 0 15px 0;">ミス内訳</h3>
+                        <h3 style="margin:0 0 10px 0; font-size:1.1rem; color:var(--primary); font-weight: bold; border-bottom: 2px solid #eee; padding-bottom: 5px;">タイプミスキー</h3>
                         <div id="miss-detail-list" class="scroll-list"></div>
                     </div>
+                    
                     <div class="result-main">
-                        <h2 id="result-title" style="margin:0;">練習結果</h2>
-                        <div class="rank-area">
-                            <span class="rank-label">RANK</span><br>
-                            <div id="result-rank">-</div>
+                        <div class="result-content-wrapper">
+                            <!-- 左部：上・中・下に分離して配置 -->
+                            <div class="rank-display-area">
+                                <h2 id="result-title">練習結果</h2>
+                                <div class="rank-main-box">
+                                    <div id="result-rank">-</div>
+                                    <p>判定ランク</p>
+                                </div>
+                                <div class="result-action-area">
+                                    <button onclick="location.reload()" class="btn-main">もう一度挑戦</button>
+                                </div>
+                            </div>
+                            
+                            <!-- 右部：統計スタッツ -->
+                            <div class="stats-display-area">
+                                <div class="res-grid-row"><span class="res-label">スコア</span><span id="res-score" class="res-value">0</span></div>
+                                <div class="res-grid-row"><span class="res-label">タイム</span><span id="res-time" class="res-value">0</span></div>
+                                <div class="res-grid-row"><span class="res-label">入力速度(CPM)</span><span id="res-wpm" class="res-value">0</span></div>
+                                <div class="res-grid-row"><span class="res-label">正確率</span><span class="res-value"><span id="res-acc">0.0</span>%</span></div>
+                                <div class="res-grid-row"><span class="res-label">ミス数</span><span id="res-miss" class="res-value">0</span></div>
+                                <div class="res-grid-row" style="border-bottom: none;"><span class="res-label">総タイプ数</span><span id="res-total" class="res-value">0</span></div>
+                            </div>
                         </div>
-                        <div class="result-grid">
-                            <div class="res-item">スコア: <span id="res-score">0</span></div>
-                            <div class="res-item">タイム: <span id="res-time">0</span></div>
-                            <div class="res-item">WPM: <span id="res-wpm">0</span></div>
-                            <div class="res-item">正確率: <span id="res-acc">0</span>%</div>
-                            <div class="res-item">ミス数: <span id="res-miss">0</span></div>
-                            <div class="res-item">総タイプ数: <span id="res-total">0</span></div>
-                        </div>
-                        <button onclick="location.reload()" class="btn-main">もう一度挑戦</button>
+                        <div class="ad-container-bottom"></div>
                     </div>
                 </div>
             </section>

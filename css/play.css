@@ -1,0 +1,99 @@
+/* タイピング画面の基本レイアウト */
+body.game-body {
+    background: #fafafa;
+    min-height: 100vh;
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+/* 問題文表示エリア */
+.typing-display {
+    width: 800px;
+    margin: 0 auto;
+    padding-top: 40px;
+    text-align: left;
+}
+
+/* ローマ字スクロール */
+.romaji-scroll-window {
+    overflow: hidden;
+    height: 40px;
+    margin-top: 10px;
+}
+
+#display-romaji {
+    font-family: "Roboto Mono", monospace;
+    font-size: 2rem;
+    white-space: nowrap;
+    transition: transform 0.1s linear;
+}
+
+#display-romaji .typed {
+    color: #bbb;
+}
+
+#display-romaji .current {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+/* ミス時の赤点滅 */
+.damage-effect {
+    animation: damageFlash 0.15s;
+}
+
+@keyframes damageFlash {
+    0% { background-color: rgba(255, 0, 0, 0.2); }
+    100% { background-color: transparent; }
+}
+
+/* キーボード全体 */
+#keyboard-container {
+    width: 800px;
+    margin: 30px auto;
+}
+
+/* キー */
+.key {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    margin: 3px;
+    border-radius: 6px;
+    background: #f0f0f0;
+    font-weight: bold;
+    user-select: none;
+}
+
+/* 光るキー */
+.key.highlight {
+    background: var(--accent);
+    color: #fff;
+}
+
+/* ランク表示 */
+#result-rank {
+    font-size: 8rem;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+/* 中止時 */
+#result-rank.is-aborted {
+    color: #95a5a6;
+    font-size: 5rem;
+}
+
+/* キラキラ */
+.sparkle {
+    animation: sparkleAnim 1.2s infinite;
+}
+
+@keyframes sparkleAnim {
+    0% { text-shadow: 0 0 5px var(--accent); }
+    50% { text-shadow: 0 0 15px var(--accent); }
+    100% { text-shadow: 0 0 5px var(--accent); }
+}
+
+
