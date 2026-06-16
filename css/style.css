@@ -1429,3 +1429,63 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
         grid-template-columns: 1fr !important; /* スマホでは縦1列 */
     }
 }
+/* --- 「選ばれる理由」のデザイン刷新 (v19.9.30) --- */
+
+.value-proposition-section {
+    background: transparent; /* 背景を透明にして下の青いエリアと差別化 */
+    padding: 20px 0;
+}
+
+.benefit-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2x2に並べることで「箱感」を消す */
+    gap: 30px 40px;
+    max-width: 900px;
+    margin: 40px auto 0 auto;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.benefit-icon {
+    font-size: 2.2rem;
+    background: white;
+    width: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* アイコンを丸で囲む */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    flex-shrink: 0;
+}
+
+.benefit-text h4 {
+    margin: 0 0 8px 0 !important;
+    font-size: 1.15rem !important;
+    color: var(--primary);
+    text-align: left !important;
+}
+
+.benefit-text p {
+    margin: 0;
+    font-size: 0.88rem !important;
+    color: #666;
+    line-height: 1.6 !important;
+    text-align: left !important;
+}
+
+/* スマホ対応：縦1列に */
+@media (max-width: 768px) {
+    .benefit-list {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+    .benefit-item {
+        align-items: center;
+        text-align: left;
+    }
+}
