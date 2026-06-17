@@ -1,108 +1,21 @@
-/* タイピング画面の基本レイアウト */
-body.game-body {
-    background: #fafafa;
-    min-height: 100vh;
-    font-family: "Noto Sans JP", sans-serif;
+/* ============================================================
+   ぱそトレ！ タイピング画面専用スタイル (v19.9.32)
+   - 120px圧縮レイアウト & before擬似要素リセット完備
+   - 物理キーボードJIS黄金比 (36px版) 完全復元
+   - 結果画面 垂直分散レイアウト 同期
+   ============================================================ */
+
+:root {
+    --primary: #2c3e50;
+    --accent: #3498db;
+    --key-border: #dcdde1;
 }
 
-/* 問題文表示エリア */
-.typing-display {
-    width: 800px;
-    margin: 0 auto;
-    padding-top: 40px;
-    text-align: left;
-}
-
-/* ローマ字スクロール */
-.romaji-scroll-window {
-    overflow: hidden;
-    height: 40px;
-    margin-top: 10px;
-}
-
-#display-romaji {
-    font-family: "Roboto Mono", monospace;
-    font-size: 2rem;
-    white-space: nowrap;
-    transition: transform 0.1s linear;
-}
-
-#display-romaji .typed {
-    color: #bbb;
-}
-
-#display-romaji .current {
-    color: var(--accent);
-    font-weight: bold;
-}
-
-/* ミス時の赤点滅 */
-.damage-effect {
-    animation: damageFlash 0.15s;
-}
-
-@keyframes damageFlash {
-    0% { background-color: rgba(255, 0, 0, 0.2); }
-    100% { background-color: transparent; }
-}
-
-/* キーボード全体 */
-#keyboard-container {
-    width: 800px;
-    margin: 30px auto;
-}
-
-/* キー */
-.key {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 48px;
-    height: 48px;
-    margin: 3px;
-    border-radius: 6px;
-    background: #f0f0f0;
-    font-weight: bold;
-    user-select: none;
-}
-
-/* 光るキー */
-.key.highlight {
-    background: var(--accent);
-    color: #fff;
-}
-
-/* ランク表示 */
-#result-rank {
-    font-size: 8rem;
-    font-weight: bold;
-    color: var(--accent);
-}
-
-/* 中止時 */
-#result-rank.is-aborted {
-    color: #95a5a6;
-    font-size: 5rem;
-}
-
-/* キラキラ */
-.sparkle {
-    animation: sparkleAnim 1.2s infinite;
-}
-
-@keyframes sparkleAnim {
-    0% { text-shadow: 0 0 5px var(--accent); }
-    50% { text-shadow: 0 0 15px var(--accent); }
-    100% { text-shadow: 0 0 5px var(--accent); }
-}
-
-/* --- タイピング画面専用レイアウト（play.html） --- */
-
+/* --- 1. 基本レイアウト --- */
 body.game-body {
     overflow-y: auto;
     min-height: 100vh;
     background-color: #d1d5db;
-    position: relative;
     transition: background-color 0.6s ease;
 }
 
@@ -110,351 +23,159 @@ body.game-body main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    padding-top: 0;
     padding-bottom: 25px !important;
 }
 
-/* --- タイピング画面：問題文表示エリア --- */
+/* 集中モード：背景色をミッドナイトグレーへ */
+body.focus-mode { background-color: #34495e !important; }
 
+/* --- 2. タイピング表示エリア (画像の内容を完全移植) --- */
 .typing-display {
-    width: 800px;
-    margin: 0 auto;
-    padding-top: 40px;
-    text-align: left;
-}
-
-#display-kanji {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-#display-kana {
-    font-size: 1.2rem;
-    color: #555;
-    margin-bottom: 10px;
-}
-
-/* ローマ字スクロールエリア */
-.romaji-scroll-window {
+    background: white;
+    padding: 15px 40px !important;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-bottom: 10px !important;
+    height: 120px !important; /* 縦幅を120pxへ圧縮 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     overflow: hidden;
-    height: 40px;
-    margin-top: 10px;
+    width: 800px !important; /* 絶対に800pxを死守 */
+    position: relative;
 }
 
-#display-romaji {
-    font-family: "Roboto Mono", monospace;
-    font-size: 2rem;
+/* 画像にあった before の非表示設定（ここを落としていました） */
+.typing-display::before {
+    display: none !important;
+}
+
+#display-kanji { font-size: 1.6rem !important; font-weight: bold; color: var(--primary); margin-bottom: 2px; }
+#display-kana { font-size: 0.9rem !important; color: #888; margin-bottom: 3px; }
+
+.romaji-scroll-window {
+    width: 100%;
+    overflow: hidden;
+    height: 3.2rem !important;
+    display: flex;
+    align-items: center;
+    background: #fafafa;
+    border-radius: 10px;
+}
+
+.romaji-content {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.8rem !important;
+    font-weight: 700;
     white-space: nowrap;
-    transition: transform 0.1s linear;
+    text-transform: uppercase;
+    transition: transform 0.1s ease-out;
 }
 
-#display-romaji .typed {
-    color: #bbb;
-}
+.typed { color: #d1d5db !important; }
+.current { color: var(--accent) !important; border-bottom: 4px solid var(--accent) !important; }
 
-#display-romaji .current {
-    color: var(--accent);
-    font-weight: bold;
-}
-
-/* --- タイピング画面：キーボードエリア --- */
-
+/* --- 3. JIS黄金比物理キーボード (36px) --- */
 #keyboard-container {
-    width: 800px;
-    margin: 30px auto;
-}
-
-/* キーボードの行 */
-.keyboard-row {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 5px;
-}
-
-/* キー */
-.key {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 48px;
-    height: 48px;
-    margin: 3px;
-    border-radius: 6px;
-    background: #f0f0f0;
-    font-weight: bold;
-    user-select: none;
-    transition: background 0.1s;
-}
-
-/* スペースキー */
-.key.space {
-    width: 300px;
-}
-
-/* シフトキー */
-.key.wide-shift {
-    width: 80px;
-}
-
-/* 光るキー（JSが付与） */
-.key.highlight {
-    background: var(--accent);
-    color: #fff;
-}
-/* --- タイピング画面：ミス時の赤点滅エフェクト --- */
-.damage-effect {
-    animation: damageFlash 0.15s;
-}
-
-@keyframes damageFlash {
-    0% { background-color: rgba(255, 0, 0, 0.25); }
-    100% { background-color: transparent; }
-}
-/* --- タイピング画面：結果画面エリア --- */
-
-#result-screen {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-}
-
-.result-container {
-    display: flex;
-    gap: 20px;
-    width: 900px;
-}
-
-/* 左側：ミス一覧 */
-.result-side {
-    width: 260px;
-    background: #fff;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1);
-}
-
-.scroll-list {
-    max-height: 400px;
-    overflow-y: auto;
-}
-
-/* 右側：メイン結果 */
-.result-main {
-    flex: 1;
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1);
-}
-
-.rank-display-area {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-#result-rank {
-    font-size: 8rem;
-    font-weight: bold;
-    color: var(--accent);
-    line-height: 1;
-}
-
-/* 中止時 */
-#result-rank.is-aborted {
-    color: #95a5a6;
-    font-size: 5rem;
-}
-
-/* キラキラ */
-.sparkle {
-    animation: sparkleAnim 1.2s infinite;
-}
-
-@keyframes sparkleAnim {
-    0% { text-shadow: 0 0 5px var(--accent); }
-    50% { text-shadow: 0 0 15px var(--accent); }
-    100% { text-shadow: 0 0 5px var(--accent); }
-}
-
-/* スタッツ（スコア・時間など） */
-.res-grid-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.res-label {
-    color: #555;
-}
-
-.res-value {
-    font-weight: bold;
-    color: #333;
-}
-
-/* --- キーボード全体の配置調整 --- */
-#keyboard-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* ← 全体を中央揃え */
-    justify-content: center;
-    width: 100%;
-    max-width: 900px;
-    margin: 30px auto;
-    background: #f8f9fa;
-    border-radius: 12px;
-    padding: 20px 0;
-}
-
-/* --- 各行の配置 --- */
-.keyboard-row {
-    display: flex;
-    justify-content: center; /* ← 行ごとに中央揃え */
-    gap: 6px; /* ← キー間の均等な隙間 */
-    margin-bottom: 8px;
-}
-
-/* --- キーの基本形 --- */
-.key {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 6px;
-    background: #f0f0f0;
-    font-weight: bold;
-    user-select: none;
-    transition: background 0.1s;
-}
-
-/* --- 特殊キー --- */
-.key.space {
-    width: 300px;
-    background: #3498db;
-    color: #fff;
-}
-
-.key.wide-shift {
-    width: 80px;
-}
-
-/* --- 指ごとの色分け（例） --- */
-.f-lp { background: #f8d7da; } /* 左小指 */
-.f-lr { background: #fff3cd; } /* 左薬指 */
-.f-lm { background: #d4edda; } /* 左中指 */
-.f-li { background: #dbeafe; } /* 左人差し指 */
-.f-ri { background: #e0cffc; } /* 右人差し指 */
-.f-rm { background: #f3e8ff; } /* 右中指 */
-.f-rr { background: #ffe8e8; } /* 右薬指 */
-.f-rp { background: #f8d7da; } /* 右小指 */
-
-/* --- キーボード行の位置補正 --- */
-
-/* 数字行（最上段） */
-.keyboard-row.row-1 {
-    margin-left: 40px; /* ← 少し右に寄せる */
-}
-
-/* Q行 */
-.keyboard-row.row-2 {
-    margin-left: 20px;
-}
-
-/* A行 */
-.keyboard-row.row-3 {
-    margin-left: 40px;
-}
-
-/* Z行 */
-.keyboard-row.row-4 {
-    margin-left: 60px;
-}
-
-/* スペースキー行（中央揃え） */
-.keyboard-row.row-5 {
-    justify-content: center;
-    margin-left: 0;
-}
-
-/* --- キーボード行の位置補正（正しいQWERTY配列） --- */
-
-/* row-0: 数字行（基準） */
-.keyboard-row.row-0 {
-    margin-left: 0;
-}
-
-/* row-1: Q行（数字行よりキーが1つ少ない → 少し右へ） */
-.keyboard-row.row-1 {
-    margin-left: 24px;
-}
-
-/* row-2: A行（数字行と同じキー数 → ほぼ中央） */
-.keyboard-row.row-2 {
-    margin-left: 12px;
-}
-
-/* row-3: Z行（キーが多い → 少し左へ） */
-.keyboard-row.row-3 {
-    margin-left: -12px;
-}
-
-/* row-4: スペース行（完全中央） */
-.keyboard-row.row-4 {
-    margin-left: 0;
-}
-
-/* --- タイピング画面：キーボードエリア --- */
-
-#keyboard-container {
-    width: 800px;
-    margin: 30px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 800px !important;
+    padding: 12px !important;
     background: #f1f2f6;
     border-radius: 18px;
-    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* 各行を中央揃え */
 .keyboard-row {
     display: flex;
-    justify-content: center;
-    gap: 6px;
-    width: 100%;
-    max-width: 800px;
-    margin-bottom: 6px;
+    justify-content: flex-start;
+    gap: 4px !important;
+    width: 680px !important;
+    margin-bottom: 4px !important;
 }
 
-/* 行ごとの段差（QWERTY配列） */
-.keyboard-row.row-0 { margin-left: 0; }
-.keyboard-row.row-1 { margin-left: 20px; }
-.keyboard-row.row-2 { margin-left: 35px; }
-.keyboard-row.row-3 { margin-left: 10px; }
-.keyboard-row.row-4 { margin-left: 0; }
+/* 黄金比オフセット (36pxキー用) */
+.row-0 { padding-left: 8px !important; } 
+.row-1 { padding-left: 28px !important; } 
+.row-2 { padding-left: 45px !important; } 
+.row-3 { padding-left: 8px !important; } 
+.row-4 { padding-left: 180px !important; }
 
-/* キーサイズ（48px版） */
 .key {
-    width: 48px;
-    height: 48px;
+    width: 36px !important;
+    height: 36px !important;
     background: white;
-    border-radius: 6px;
+    border-radius: 6px !important;
     border: 1px solid var(--key-border);
-    border-bottom-width: 2px;
+    border-bottom-width: 2px !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
+    font-size: 0.85rem !important;
     font-weight: bold;
     color: #57606f;
     flex-shrink: 0;
 }
 
-.key.wide-shift { width: 80px; }
-.key.space { width: 300px; background: #3498db; color: white; }
-.key.highlight { background: var(--accent); color: white; }
+.key.wide-shift { width: 54px !important; }
+.key.space { width: 160px !important; background: #3498db; color: white; border-color: #2980b9; }
+.key.highlight { background: var(--accent) !important; color: white !important; transform: translateY(2px); border-bottom-width: 1px !important; }
+
+/* 指別パステルカラー */
+.key.f-lp { background-color: #ffdce0; }
+.key.f-lr { background-color: #fff3d6; }
+.key.f-lm { background-color: #e2f9e1; }
+.key.f-li { background-color: #e2e9ff; }
+.key.f-ri { background-color: #f0e1ff; }
+.key.f-rm { background-color: #e2f9e1; }
+.key.f-rr { background-color: #fff3d6; }
+.key.f-rp { background-color: #ffdce0; }
+
+/* --- 4. 結果画面：380px垂直分散レイアウト --- */
+.result-container {
+    display: flex;
+    gap: 15px;
+    width: 940px;
+    height: 380px;
+    margin: 0 auto;
+}
+
+.result-main {
+    flex: 1.6;
+    background: white;
+    padding: 20px !important;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.result-content-wrapper {
+    display: flex;
+    height: 300px;
+    align-items: stretch;
+}
+
+.rank-display-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#result-rank {
+    font-size: 6rem !important;
+    font-weight: 900;
+    color: var(--accent);
+}
+
+#result-rank.is-aborted {
+    font-size: 3.2rem !important;
+    color: #95a5a6;
+}
+
+/* ミス時のダメージエフェクト */
+.damage-effect { animation: damageFlash 0.15s; }
+@keyframes damageFlash {
+    0% { background-color: rgba(255, 0, 0, 0.2); }
+    100% { background-color: transparent; }
+}
