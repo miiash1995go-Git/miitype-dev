@@ -1,0 +1,122 @@
+/* ============================================================
+   ぱそトレ！ 実務用語集専用スタイル (v19.9.33)
+   - 400項目超のグリッドレイアウト
+   - スマホ版：一行強制横スワイプナビ完備
+   ============================================================ */
+
+/* --- 1. 用語集ナビゲーション (PC) --- */
+.glossary-nav { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 10px; 
+    margin-bottom: 30px; 
+    justify-content: center; 
+    background: rgba(255, 255, 255, 0.98); 
+    padding: 15px; 
+    border-radius: 15px; 
+    position: sticky; 
+    top: 10px; 
+    z-index: 1000; 
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12); 
+    backdrop-filter: blur(8px); 
+}
+
+.nav-chip { 
+    padding: 8px 18px; 
+    background: #f1f2f6; 
+    border-radius: 25px; 
+    text-decoration: none; 
+    color: #2c3e50; 
+    font-size: 0.85rem; 
+    font-weight: bold; 
+    transition: 0.2s; 
+    border: 1px solid transparent; 
+}
+
+.nav-chip:hover { 
+    background: #3498db; 
+    color: white; 
+    transform: translateY(-2px); 
+}
+
+/* --- 2. 見出し・セクション --- */
+.glossary-section, .glossary-category-title { 
+    scroll-margin-top: 320px !important; 
+}
+
+.glossary-category-title { 
+    font-size: 1.6rem; 
+    border-left: 8px solid #3498db; 
+    padding-left: 15px; 
+    margin: 40px 0 25px 0; 
+    color: #2c3e50; 
+    font-weight: bold; 
+}
+
+/* --- 3. 用語カードグリッド --- */
+.glossary-grid { 
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 15px; 
+}
+
+.term-card { 
+    background: #fafafa; 
+    padding: 22px; 
+    border-radius: 18px; 
+    border: 1px solid #eee; 
+    transition: 0.3s; 
+}
+
+.term-card:hover { 
+    border-color: #3498db; 
+    transform: translateX(5px); 
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.03); 
+}
+
+.term-word { 
+    font-size: 1.25rem; 
+    font-weight: bold; 
+    color: #3498db; 
+    margin-bottom: 8px; 
+    display: block; 
+    border-bottom: 1px solid #eee; 
+    padding-bottom: 5px; 
+}
+
+.term-comment { 
+    font-size: 0.95rem; 
+    color: #555; 
+    line-height: 1.8; 
+    margin: 0; 
+}
+
+/* --- 4. スマホ版：強制横スワイプナビ (v19.9.11 継承) --- */
+@media (max-width: 768px) {
+    .glossary-nav {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        justify-content: flex-start !important;
+        padding: 12px 15px !important;
+        gap: 10px !important;
+        background: #fff !important;
+        position: sticky !important;
+        top: 0 !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .glossary-nav::-webkit-scrollbar { display: none; }
+    
+    .nav-chip {
+        flex: 0 0 auto !important;
+        padding: 8px 16px !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .glossary-section, .glossary-category-title {
+        scroll-margin-top: 100px !important;
+    }
+}
