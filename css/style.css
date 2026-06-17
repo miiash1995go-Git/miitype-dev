@@ -918,94 +918,7 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     margin: 0;
     line-height: 1.2;
 }
-/* --- お問い合わせフォーム専用デザイン (v19.9.17) --- */
 
-.contact-form-card {
-    max-width: 700px !important; /* フォームを読みやすく中央に寄せる */
-    margin: 20px auto 80px auto !important;
-}
-
-.contact-intro {
-    font-size: 0.95rem;
-    color: #666;
-    margin-bottom: 35px;
-    line-height: 1.8;
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    text-align: left;
-}
-
-.form-group label {
-    font-weight: 800;
-    font-size: 0.9rem;
-    color: var(--primary);
-}
-
-.required {
-    background: #ff4757;
-    color: white;
-    font-size: 0.7rem;
-    padding: 2px 6px;
-    border-radius: 4px;
-    margin-left: 5px;
-    vertical-align: middle;
-}
-
-.form-group input, 
-.form-group select, 
-.form-group textarea {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #eee;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-family: inherit;
-    transition: all 0.2s;
-    background: #fafafa;
-}
-
-.form-group input:focus, 
-.form-group select:focus, 
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    background: white;
-    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
-}
-
-.form-submit {
-    margin-top: 10px;
-    text-align: center;
-}
-
-.form-submit .btn-main {
-    width: 100%;
-    max-width: 300px;
-    padding: 15px 0 !important;
-    font-size: 1.1rem !important;
-}
-
-.form-notice {
-    font-size: 0.8rem;
-    color: #999;
-    text-align: center;
-    margin-top: 10px;
-}
-
-@media (max-width: 768px) {
-    .contact-form-card { padding: 30px 20px !important; }
-    .form-submit .btn-main { max-width: 100%; }
-}
 /* --- Googleフォーム埋め込みの最適化 (v19.9.18) --- */
 .google-form-wrapper {
     width: 100%;
@@ -1022,81 +935,6 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     min-height: 800px; /* フォームの長さに合わせて調整してください */
 }
 
-/* --- お問い合わせフォーム最終デザイン (v19.9.18) --- */
-.contact-form-card {
-    max-width: 700px !important;
-    margin: 20px auto 80px auto !important;
-}
-.contact-intro {
-    font-size: 0.95rem;
-    color: #666;
-    margin-bottom: 35px;
-    line-height: 1.8;
-}
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    text-align: left;
-}
-.form-group label {
-    font-weight: 800;
-    font-size: 0.9rem;
-    color: var(--primary);
-}
-.required {
-    background: #ff4757;
-    color: white;
-    font-size: 0.7rem;
-    padding: 2px 6px;
-    border-radius: 4px;
-    margin-left: 5px;
-    vertical-align: middle;
-}
-.form-group input, 
-.form-group select, 
-.form-group textarea {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #eee;
-    border-radius: 10px;
-    font-size: 1rem;
-    background: #fafafa;
-    transition: all 0.2s;
-}
-.form-group input:focus, 
-.form-group select:focus, 
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    background: white;
-    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
-}
-.form-submit {
-    margin-top: 10px;
-    text-align: center;
-}
-.form-submit .btn-main {
-    width: 100%;
-    max-width: 300px;
-    padding: 15px 0 !important;
-    font-size: 1.1rem !important;
-}
-.form-notice {
-    font-size: 0.8rem;
-    color: #999;
-    text-align: center;
-    margin-top: 10px;
-}
-@media (max-width: 768px) {
-    .contact-form-card { padding: 30px 20px !important; }
-    .form-submit .btn-main { max-width: 100%; }
-}
 /* ============================================================
    ぱそトレ！ ポータル・AI・コンタクト 拡張スタイル (v19.9.22)
    ============================================================ */
@@ -1137,13 +975,6 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
 .tools-comparison-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 30px; }
 .tool-card { background: white; border-radius: 20px; padding: 25px 20px; border: 1px solid #eee; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
 
-/* --- 5. お問い合わせフォーム (Formspree対応) --- */
-.contact-form-card { max-width: 700px !important; margin: 20px auto 80px auto !important; }
-.contact-form { display: flex; flex-direction: column; gap: 25px; }
-.form-group { display: flex; flex-direction: column; gap: 8px; text-align: left; }
-.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 15px; border: 2px solid #eee; border-radius: 10px; font-size: 1rem; background: #fafafa; }
-.form-group input:focus, .form-group textarea:focus { border-color: var(--accent); background: white; outline: none; box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1); }
-.required { background: #ff4757; color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; margin-left: 5px; }
 
 /* --- 6. レイアウト修正：ボタンの垂直中央配置 --- */
 .summary-nav { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; align-items: stretch; margin-top: 30px; }
