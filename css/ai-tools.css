@@ -1,0 +1,78 @@
+/* ============================================================
+   ぱそトレ！ AI活用ガイド専用スタイル (v19.9.37 最終統合版)
+   ============================================================ */
+
+/* 1. 全体レイアウト・静的カード */
+.static-card {
+    cursor: default !important;
+    transform: none !important;
+    border: 1px solid #eee !important;
+    box-shadow: none !important;
+}
+
+/* 2. お悩みリスト (💬) */
+.user-voices-container {
+    max-width: 720px; margin: 0 auto 40px auto; background: white; padding: 30px;
+    border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border-left: 6px solid #d1d5db;
+}
+.voice-list { list-style: none; padding: 0; }
+.voice-list li { position: relative; padding-left: 35px; margin-bottom: 15px; font-size: 0.95rem; line-height: 1.7; }
+.voice-list li::before { content: "💬"; position: absolute; left: 0; }
+
+/* 3. プロンプト例文セクション */
+.example-unit { margin-bottom: 40px; }
+.example-box {
+    background: #2c3e50; color: white; padding: 30px; border-radius: 15px;
+    position: relative; font-family: 'Roboto Mono', monospace; line-height: 1.8;
+}
+.example-label {
+    position: absolute; top: -12px; left: 20px; background: var(--accent);
+    color: white; padding: 2px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;
+}
+.instructor-advice {
+    background: #eef9ff; padding: 15px 25px; border-radius: 10px; color: #2980b9; font-size: 0.95rem; margin-top: 15px;
+}
+
+/* 4. 基礎の重要性 (オレンジ枠) */
+.basics-priority-section { margin-top: 40px; }
+.priority-box { background: #fff9f0; padding: 40px; border-radius: 30px; border: 2px dashed #f39c12; }
+.comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 25px; }
+.comparison-item { background: white; padding: 20px; border-radius: 15px; border: 1px solid #ffe8cc; }
+.comparison-item h4 { color: #e67e22; margin-bottom: 10px; }
+
+/* 5. 4大ツール比較グリッド */
+.tools-comparison-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 30px; }
+.tool-card {
+    background: white; border-radius: 20px; padding: 25px 20px; border: 1px solid #eee;
+    display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s;
+}
+.tool-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-color: var(--accent); }
+.tool-header { text-align: center; margin-bottom: 15px; }
+.tool-icon { font-size: 2.5rem; display: block; margin-bottom: 10px; }
+.tool-body { flex-grow: 1; margin-bottom: 20px; }
+.tool-summary { font-weight: bold; color: var(--primary); font-size: 0.9rem; margin-bottom: 10px; line-height: 1.4; }
+.tool-usage { font-size: 0.85rem; color: #7f8c8d; line-height: 1.6; margin-bottom: 15px; }
+.tool-badge { background: #eef9ff; color: var(--accent); font-size: 0.75rem; font-weight: bold; padding: 4px 10px; border-radius: 5px; }
+.tool-footer { text-align: center; }
+.tool-footer .btn-main { width: 100%; padding: 12px 0 !important; font-size: 0.9rem !important; margin: 0; }
+
+/* 6. FAQ */
+.faq-item { flex-direction: column !important; align-items: flex-start !important; padding: 25px 0 !important; }
+.faq-q { font-weight: bold; color: var(--accent); margin-bottom: 10px; font-size: 1.1rem; }
+.faq-a { color: #555; line-height: 1.7; padding-left: 10px; border-left: 3px solid #f1f2f6; }
+
+/* 7. 下部ボタン (summary-nav) */
+.summary-nav { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; align-items: stretch; margin-top: 30px; }
+.summary-nav .btn-main, .summary-btn {
+    display: flex; align-items: center; justify-content: center;
+    min-width: 160px; height: 50px; margin: 0; line-height: 1.2; text-align: center; text-decoration: none; box-sizing: border-box;
+}
+.summary-btn { background: white; border: 2px solid var(--accent); color: var(--accent); border-radius: 40px; font-weight: bold; }
+
+/* --- レスポンシブ --- */
+@media (max-width: 1024px) { .tools-comparison-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) { .comparison-grid, .tools-comparison-grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) {
+    .summary-nav { flex-direction: column; }
+    .summary-nav .btn-main, .summary-nav .summary-btn { width: 100% !important; min-width: unset; margin-bottom: 10px; }
+}
