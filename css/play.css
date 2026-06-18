@@ -166,18 +166,18 @@ body.focus-mode #app {
 
 
 /* ============================================================
-   目の疲れ軽減：視覚的ストレス・コントロール (v19.9.61)
+   目の疲れ軽減：視覚的ストレス・コントロール (v19.9.62)
    ============================================================ */
 
-body.game-body .typing-display, 
-body.game-body #keyboard-container {
+/* 1. タイピングボックス：ミス時に色が戻る動きを持たせる */
+body.game-body .typing-display {
     background-color: #fcfcfc !important;
     border: 1px solid #e0e6ed !important;
-    
-    /* ミス時の色から、0.6秒かけて「ゆっくり・じわ〜っ」と白に戻るようにします */
+    /* ミス時のピンクから、0.6秒かけて「じわ〜っ」と白に戻る */
     transition: background-color 0.6s ease-out, border-color 0.6s ease-out;
 }
 
+/* 2. キーボード：常に目に優しい白で固定（ミス時も変化させない） */
 body.game-body #keyboard-container {
     background-color: #fcfcfc !important;
     border: 1px solid #e0e6ed !important;
@@ -541,21 +541,14 @@ body.game-body #keyboard-container {
     font-size: 1.6rem !important;
 }
 
-/* --- 5. ダメージエフェクト（ミス時）：マイルド ＆ 全体連動版 --- */
+/* --- 5. ダメージエフェクト（ミス時）：タイピングボックス限定版 --- */
 
-/* 
-   [魔法の解説]
-   #typing-container.damage-effect + #keyboard-container 
-   という書き方をすることで、JSが上の箱にクラスをつけた瞬間、
-   「そのすぐ下にあるキーボード」も自動で道連れにして色を変えます。
-*/
-
-#typing-container.damage-effect,
-#typing-container.damage-effect + #keyboard-container {
-    background-color: #ffdce0 !important; /* 目に優しいパステル系の赤（ピンク寄り） */
+/* JSでクラスがついた瞬間（50ms）、この箱の中（漢字・ローマ字エリア全て）が光ります */
+#typing-container.damage-effect {
+    background-color: #ffdce0 !important; /* 目に優しいパステルピンク */
     border-color: #ffadb5 !important;
     
-    /* 変化の瞬間（JSがクラスを付けた50ms間）は一瞬でパッと色を出す */
+    /* 変化の瞬間は即座に（0秒で）色を出す */
     transition: none !important;
 }
 
