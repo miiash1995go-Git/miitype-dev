@@ -30,7 +30,7 @@ body.game-body main {
 
 /* 練習開始時の背景沈み込み・スライド演出 */
 body.focus-mode {
-    background-color: #34495e !important;
+    background-color: #4e5d6c !important;
 }
 
 body.focus-mode header,
