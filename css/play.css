@@ -223,12 +223,20 @@ body.focus-mode #app {
     color: #a0a0a0 !important; font-weight: 500 !important; letter-spacing: 0.05em; text-transform: none !important;
 }
 
-/* 数値部分：存在感を高めつつ色を同期 */
-.res-value { font-family: 'Roboto Mono', monospace !important; font-weight: 700; font-size: 1.4rem !important; color: var(--primary) !important; }
-#res-score { color: var(--accent) !important; font-size: 1.6rem !important; }
+.res-value { 
+    font-family: 'Roboto Mono', monospace !important; 
+    font-weight: 700; 
+    font-size: 1.4rem !important; /* 全体の基準サイズ */
+    color: var(--primary) !important;
+    display: inline-flex;
+    align-items: baseline; /* 数字と記号の下のラインを揃える */
+}
 
-/* ★重要：正確率の ％ 記号を少し小さくしてプロっぽく演出 */
-.res-value span { font-size: 1rem !important; font-weight: 500; }
+/* 正確率の「数字」部分：しっかり大きく表示 */
+.res-value span { 
+    font-size: 1.4rem !important; /* 1.0remから1.4remへ修正 */
+    font-weight: 700 !important;
+}
 
 /* ミス時のダメージエフェクト */
 .damage-effect { animation: damageFlash 0.15s; }
