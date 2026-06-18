@@ -169,10 +169,10 @@ body.focus-mode #app {
    目の疲れ軽減：視覚的ストレス・コントロール
    ============================================================ */
 
-/* セレクタを詳しく書く（body.game-bodyを頭に付ける）ことで、!importantなしで優先させます */
+/* セレクタの頭に「body.game-body」を付けて優先度を上げ、ミス時の演出に道を譲ります */
 body.game-body .typing-display, 
 body.game-body #keyboard-container {
-    background-color: #fcfcfc; /* !importantを削除 */
+    background-color: #fcfcfc !important; /* ここは !important 有りでOK */
     border: 1px solid #e0e6ed !important;
 }
 
@@ -534,23 +534,25 @@ body.game-body #keyboard-container {
     font-size: 1.6rem !important;
 }
 
-/* --- ダメージエフェクト（ミス時）修正版 --- */
+/* --- 5. ダメージエフェクト（ミス時）：絶対発動版 --- */
+
+/* 背景色(background)ではなく、内側の影(box-shadow)を赤く光らせることで、
+   他の !important な背景設定を無視して「赤フラッシュ」を強制表示させます */
 .damage-effect { 
-    animation: damageFlash 0.2s ease-out !important; /* アニメーション自体を最優先に */
+    animation: damageFlashForce 0.15s ease-out !important;
 }
 
-@keyframes damageFlash {
+@keyframes damageFlashForce {
     0% { 
-        background-color: #ffe5e5 !important; /* 瞬間的に薄い赤にする */
-        border-color: #ff4757 !important;     /* 枠線も赤くする */
-        box-shadow: 0 0 20px rgba(255, 71, 87, 0.4) !important; /* 外側も赤く光らせる */
+        /* 内側に強い赤の光を放つ。これで背景色を上書きせずに赤く見せます */
+        box-shadow: inset 0 0 100px rgba(255, 71, 87, 0.8) !important;
+        border-color: #ff4757 !important;
+        background-color: #ffe5e5 !important;
     }
     100% { 
-        background-color: #fcfcfc; 
-        border-color: #e0e6ed;
+        box-shadow: inset 0 0 0 rgba(255, 71, 87, 0) !important;
     }
 }
-
 
 /* --- 6. 設定トグルボタン ＆ PC制限アラート --- */
 
