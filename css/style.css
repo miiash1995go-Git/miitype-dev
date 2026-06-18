@@ -60,36 +60,37 @@ header {
     align-items: center;
 }
 
+/* --- ロゴ・ヘッダーエリア：横並びデザイン (v19.9.65) --- */
 header .logo {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* 横並びに変更 */
     align-items: center;
-    gap: 8px;
-    margin: 10px 0;
+    justify-content: center;
+    gap: 15px;
     text-decoration: none;
+    margin: 10px 0;
 }
 
-/* 巨大化を強制的に抑え込む設定 */
 .header-logo-img {
-    height: 75px !important; /* あなたのロゴに合わせた最適な高さ */
+    height: 60px !important; /* ポータルとして最適なサイズ */
     width: auto !important;
-    max-width: 100%;
     display: block;
 }
 
 .logo-subtext {
     color: var(--accent); /* #3498db */
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-weight: 800;
-    letter-spacing: 0.15em;
-    margin-top: 0;
+    border-left: 2px solid #ddd; /* ロゴと文字の間の区切り線 */
+    padding-left: 15px;
+    line-height: 1.2;
+    letter-spacing: 0.05em;
 }
 
-/* スマホ表示でのロゴサイズ最適化 */
+/* スマホ表示：画面幅が狭い場合は少しコンパクトに */
 @media (max-width: 768px) {
-    .header-logo-img {
-        height: 45px;
-    }
+    .header-logo-img { height: 45px !important; }
+    .logo-subtext { font-size: 0.9rem; padding-left: 10px; gap: 10px; }
 }
 
 .nav-menu { margin-bottom: 5px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
