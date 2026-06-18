@@ -26,8 +26,25 @@ body.game-body main {
     padding-bottom: 25px !important;
 }
 
-/* 集中モード：背景色をミッドナイトグレーへ */
-body.focus-mode { background-color: #34495e !important; }
+/* --- 集中モード：眼精疲労対策 & カードスライド (完全版) --- */
+/* 1. 背景をミッドナイトグレーへ沈める */
+body.focus-mode { 
+    background-color: #34495e !important; 
+}
+
+/* 2. ヘッダーとフッターを薄くして、クリックできないようにする */
+body.focus-mode header, 
+body.focus-mode footer { 
+    opacity: 0.15; 
+    pointer-events: none; 
+    transition: 0.6s ease; 
+}
+
+/* 3. 画面全体を少し上にずらして、ノートPCでも見やすくする */
+body.focus-mode #app { 
+    margin-top: -60px !important; 
+    transition: margin-top 0.4s ease; 
+}
 
 /* --- 2. タイピング表示エリア (画像の内容を完全移植) --- */
 .typing-display {
@@ -45,10 +62,33 @@ body.focus-mode { background-color: #34495e !important; }
     position: relative;
 }
 
-/* 画像にあった before の非表示設定（ここを落としていました） */
 .typing-display::before {
     display: none !important;
 }
+
+/* カウントダウン（開始前に出るもの）*/
+.countdown-overlay { 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    font-size: 6rem !important; 
+    font-weight: 900; 
+    color: var(--accent); 
+    z-index: 1000; 
+    animation: count-pop 0.5s ease-out; 
+}
+
+@keyframes count-pop { 
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; } 
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; } 
+}
+
+.text-wrapper-left { 
+    text-align: left; 
+    width: 100%; 
+}
+
 
 #display-kanji { font-size: 1.6rem !important; font-weight: bold; color: var(--primary); margin-bottom: 2px; }
 #display-kana { font-size: 0.9rem !important; color: #888; margin-bottom: 3px; }
@@ -121,6 +161,9 @@ body.focus-mode { background-color: #34495e !important; }
 .key.space { width: 160px !important; background: #3498db; color: white; border-color: #2980b9; }
 .key.highlight { background: var(--accent) !important; color: white !important; transform: translateY(2px); border-bottom-width: 1px !important; }
 
+/* （色分けキー全体の文字色を規定） */
+.key[class*="f-"] { color: #57606f; }
+
 /* 指別パステルカラー */
 .key.f-lp { background-color: #ffdce0; }
 .key.f-lr { background-color: #fff3d6; }
@@ -131,47 +174,61 @@ body.focus-mode { background-color: #34495e !important; }
 .key.f-rr { background-color: #fff3d6; }
 .key.f-rp { background-color: #ffdce0; }
 
-/* --- 4. 結果画面：380px垂直分散レイアウト --- */
-.result-container {
-    display: flex;
-    gap: 15px;
-    width: 940px;
-    height: 380px;
-    margin: 0 auto;
+/* --- 4. 結果画面：380px垂直分散 ＆ プロ仕様デザイン統合版 (v19.9.48) --- */
+
+/* 外枠コンテナ */
+.result-container { 
+    display: flex !important; flex-direction: row !important; gap: 15px !important; 
+    width: 940px !important; margin: 0 auto; height: 380px !important; 
+    align-items: stretch; justify-content: center; 
 }
 
-.result-main {
-    flex: 1.6;
-    background: white;
-    padding: 20px !important;
-    border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
+/* 左側：ミス一覧エリア（見出しの大文字強制を解除） */
+.result-side { flex: 0.9 !important; background: white; padding: 15px !important; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; }
+.result-side h3 { text-transform: none !important; margin: 0 0 10px 0; font-size: 1.1rem; border-bottom: 2px solid #eee; padding-bottom: 5px; }
 
-.result-content-wrapper {
-    display: flex;
-    height: 300px;
-    align-items: stretch;
-}
+/* 右側：メイン結果カード */
+.result-main { flex: 1.6 !important; background: white; padding: 20px !important; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
+/* 内部の垂直分散ラッパー */
+.result-content-wrapper { display: flex !important; width: 100%; height: 300px !important; align-items: stretch !important; justify-content: space-around; margin-top: 0 !important; }
+
+/* --- 【左側】ランク表示エリア (タイトル・ランク・ボタンを垂直分散) --- */
 .rank-display-area {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    flex: 1; display: flex !important; flex-direction: column !important; 
+    justify-content: space-between !important; align-items: center !important; padding: 5px 0 !important; height: 100% !important;
+}
+#result-title { font-size: 1.3rem !important; margin: 0 !important; color: var(--primary); }
+.rank-main-box { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+#result-rank { font-size: 5.5rem !important; font-weight: 900; color: var(--accent); line-height: 1; letter-spacing: -2px; margin: 0 !important; }
+#result-rank.is-aborted { font-size: 3rem !important; letter-spacing: -0.05em !important; color: #95a5a6; white-space: nowrap !important; }
+
+/* 判定ランクのラベル */
+.rank-display-area p { font-size: 0.95rem !important; margin-top: 10px !important; color: #7f8c8d !important; font-weight: 800; }
+
+/* 下部：再挑戦ボタン */
+.result-action-area { width: 100%; text-align: center; }
+.result-action-area .btn-main { margin: 0 !important; padding: 10px 35px !important; font-size: 1rem !important; }
+
+/* --- 【右側】統計スタッツエリア (洗練された実務デザイン) --- */
+.stats-display-area { 
+    flex: 1.2; padding-left: 20px !important; border-left: 1px solid #eee; 
+    display: flex; flex-direction: column; justify-content: center !important; 
+}
+.res-grid-row { display: flex; justify-content: space-between; padding: 6px 0 !important; border-bottom: 1px solid #f0f0f0 !important; }
+
+/* 項目ラベル：実務的なデザインへ深化 */
+.res-label { 
+    font-family: 'Noto Sans JP', sans-serif !important; font-size: 1rem !important; 
+    color: #a0a0a0 !important; font-weight: 500 !important; letter-spacing: 0.05em; text-transform: none !important;
 }
 
-#result-rank {
-    font-size: 6rem !important;
-    font-weight: 900;
-    color: var(--accent);
-}
+/* 数値部分：存在感を高めつつ色を同期 */
+.res-value { font-family: 'Roboto Mono', monospace !important; font-weight: 700; font-size: 1.4rem !important; color: var(--primary) !important; }
+#res-score { color: var(--accent) !important; font-size: 1.6rem !important; }
 
-#result-rank.is-aborted {
-    font-size: 3.2rem !important;
-    color: #95a5a6;
-}
+/* ★重要：正確率の ％ 記号を少し小さくしてプロっぽく演出 */
+.res-value span { font-size: 1rem !important; font-weight: 500; }
 
 /* ミス時のダメージエフェクト */
 .damage-effect { animation: damageFlash 0.15s; }
@@ -179,3 +236,23 @@ body.focus-mode { background-color: #34495e !important; }
     0% { background-color: rgba(255, 0, 0, 0.2); }
     100% { background-color: transparent; }
 }
+
+/* --- 2. PC推奨アラート画面 (絶対最前面) --- */
+.mobile-restriction-overlay {
+    display: none;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #f8f9fa; z-index: 10000; 
+    padding: 20px; flex-direction: column; align-items: center; justify-content: center;
+}
+
+@media (max-width: 1024px) {
+    body.game-body .mobile-restriction-overlay { display: flex; }
+    body.game-body #app { display: none !important; }
+}
+
+.restriction-card {
+    background: white; padding: 40px 25px; border-radius: 25px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1); max-width: 450px; width: 90%; text-align: center;
+}
+.restriction-card h2 { color: var(--accent); font-size: 1.3rem; margin-bottom: 20px; font-weight: 800; }
+.restriction-card p { font-size: 0.95rem; text-align: left; margin-bottom: 25px; line-height: 1.8; color: #444; }

@@ -91,25 +91,6 @@ header { flex-shrink: 0; text-align: center; margin-bottom: 10px !important; wid
 
 .result-ad-box { display: none !important; } 
 main { flex: 1; width: 100%; min-height: 0; }
-/* --- 2. PC推奨アラート画面 (絶対最前面) --- */
-.mobile-restriction-overlay {
-    display: none;
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #f8f9fa; z-index: 10000; 
-    padding: 20px; flex-direction: column; align-items: center; justify-content: center;
-}
-
-@media (max-width: 1024px) {
-    body.game-body .mobile-restriction-overlay { display: flex; }
-    body.game-body #app { display: none !important; }
-}
-
-.restriction-card {
-    background: white; padding: 40px 25px; border-radius: 25px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1); max-width: 450px; width: 90%; text-align: center;
-}
-.restriction-card h2 { color: var(--accent); font-size: 1.3rem; margin-bottom: 20px; font-weight: 800; }
-.restriction-card p { font-size: 0.95rem; text-align: left; margin-bottom: 25px; line-height: 1.8; color: #444; }
 
 
 /* 待機（READY）画面 */
@@ -127,17 +108,6 @@ main { flex: 1; width: 100%; min-height: 0; }
     50% { opacity: 0.6; transform: scale(0.98); }
 }
 
-/* 打鍵文字の強調 */
-.text-wrapper-left { text-align: left; width: 100%; }
-#display-kanji { font-size: 1.6rem !important; margin-bottom: 2px; font-weight: bold; color: var(--primary); }
-#display-kana { font-size: 0.9rem !important; color: #888; margin-bottom: 3px; }
-.romaji-scroll-window { width: 100%; overflow: hidden; position: relative; height: 3.2rem !important; display: flex; justify-content: flex-start; align-items: center; background: #fafafa; border-radius: 10px; padding: 0; }
-.romaji-content { font-family: 'Roboto Mono', monospace; font-size: 1.8rem !important; font-weight: 700; letter-spacing: 0.05em; color: #333; white-space: nowrap; text-transform: uppercase; transition: transform 0.1s ease-out; margin: 0; }
-.typed { color: #d1d5db !important; }
-.current { color: var(--accent) !important; border-bottom: 4px solid var(--accent) !important; }
-
-.countdown-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 6rem !important; font-weight: 900; color: var(--accent); z-index: 1000; animation: count-pop 0.5s ease-out; }
-@keyframes count-pop { 0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; } 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; } }
 
 /* カテゴリ選択タイルUI */
 .card { background: white; padding: 15px 30px !important; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; width: 920px; }
@@ -155,22 +125,6 @@ main { flex: 1; width: 100%; min-height: 0; }
 .btn-main { background: var(--primary); color: white; border: none; padding: 12px 50px !important; font-size: 1.1rem !important; border-radius: 40px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 0 #1a252f !important; transition: all 0.1s; text-decoration: none; display: inline-block; }
 .btn-main:hover:not(:disabled) { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 0 #1a252f; }
 .btn-main:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 2px 0 #1a252f; }
-/* --- 5. 結果画面：ノートPC向け究極圧縮 (v19.8.3) --- */
-.result-container { 
-    display: flex !important; flex-direction: row !important; gap: 15px !important; 
-    width: 940px !important; margin: 0 auto; height: 380px !important; 
-    align-items: stretch; justify-content: center; 
-}
-.result-side { 
-    flex: 0.9 !important; background: white; padding: 15px !important; 
-    border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
-    display: flex; flex-direction: column; overflow: hidden; 
-}
-.result-main { 
-    flex: 1.6 !important; background: white; padding: 20px 25px !important; 
-    border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-}
 
 .scroll-list { flex: 1; overflow-y: auto; padding-right: 10px; }
 .miss-item { display: flex; justify-content: space-between; align-items: center; padding: 6px 12px !important; border-bottom: 1px solid #f8f9fa; font-family: 'Roboto Mono', monospace; font-size: 1.1rem; }
@@ -184,16 +138,6 @@ main { flex: 1; width: 100%; min-height: 0; }
 .miss-item.worst2 { background: #fffaf0; border-radius: 8px; margin-bottom: 3px; }
 .miss-item.worst3 { background: #f0f9ff; border-radius: 8px; margin-bottom: 3px; }
 
-/* 右側スタッツエリア：左右分割 */
-.result-content-wrapper { display: flex; width: 100%; align-items: center; justify-content: space-around; margin-top: 0 !important; }
-.rank-display-area { flex: 1; text-align: center; }
-#result-rank { font-size: 5.5rem !important; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 5px; letter-spacing: -2px; }
-
-.stats-display-area { flex: 1.2; padding-left: 15px !important; border-left: 1px solid #eee; }
-.res-grid-row { display: flex; justify-content: space-between; padding: 3px 0 !important; border-bottom: 1px solid #f9f9f9; }
-.res-label { font-size: 0.8rem !important; color: #95a5a6; font-weight: 800; text-transform: uppercase; }
-.res-value { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 1.1rem !important; color: var(--primary); }
-#res-score { color: var(--accent); font-size: 1.3rem !important; }
 
 /* --- 6. ポータル & 読み物ページ：全盛期デザイン復元 --- */
 .portal-page .hero-section { text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #1a365d 0%, #2980b9 100%); color: white; border-radius: 30px; margin-bottom: 80px; width: 100%; }
@@ -250,18 +194,6 @@ main { flex: 1; width: 100%; min-height: 0; }
 .btn-toggle { background: white; border: 2px solid var(--key-border); padding: 6px 15px; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 0.85rem; color: var(--primary); transition: all 0.2s; }
 .btn-toggle.active { background: var(--accent); color: white; border-color: var(--accent); }
 
-/* 指別パステルカラー */
-.key.f-lp { background-color: #ffdce0; } .key.f-lr { background-color: #fff3d6; } .key.f-lm { background-color: #e2f9e1; } /* 左手人差し指：パステルブルー */
-.key.f-li { background-color: #e2e9ff; } 
-/* 右手人差し指：パステルパープル（新規追加） */
-.key.f-ri { background-color: #f0e1ff; }
-.key.f-rm { background-color: #e2f9e1; } .key.f-rr { background-color: #fff3d6; } .key.f-rp { background-color: #ffdce0; }
-.key[class*="f-"] { color: #57606f; }
-
-/* 集中モード：眼精疲労対策 & カードスライド */
-body.focus-mode { background-color: #34495e !important; }
-body.focus-mode header, body.focus-mode footer { opacity: 0.15; pointer-events: none; transition: 0.6s ease; }
-body.focus-mode #app { margin-top: -60px !important; transition: margin-top 0.4s ease; }
 
 /* 結果画面下の広告枠（保護） */
 .ad-container-bottom { display: block !important; width: 100%; max-width: 728px; height: 60px !important; margin: 10px auto 0 auto !important; background: white !important; border-radius: 10px; opacity: 1 !important; }
@@ -294,215 +226,6 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     margin: 0 !important;
     box-shadow: 0 4px 0 #1a252f !important;
     flex-shrink: 0;
-}
-
-/* 4. 結果画面：文言変更に伴う微調整 */
-.result-side h3 {
-    text-transform: none; /* 英字強制を解除 */
-}
-
-/* --- v19.9.0：結果画面デザインの深化 --- */
-
-/* 項目ラベル：より洗練された実務デザインへ */
-.res-label {
-    font-size: 0.8rem !important;
-    color: #a0a0a0 !important;
-    letter-spacing: 0.05em;
-    font-weight: 500 !important;
-}
-
-/* 数値：存在感を高め、色はメインカラーに同期 */
-.res-value {
-    color: var(--primary) !important;
-    font-size: 1.2rem !important;
-    font-family: 'Roboto Mono', monospace !important;
-    font-weight: 700 !important;
-}
-
-/* スコアだけは特別に強調 */
-#res-score {
-    color: var(--accent) !important;
-    font-size: 1.6rem !important;
-}
-
-/* 正確率の % 記号を少し小さくしてプロっぽく */
-.res-value span { font-size: 1.2rem; }
-
-/* ランク表示エリアのラベル */
-.rank-display-area p {
-    margin-top: -10px;
-    font-size: 0.7rem !important;
-    color: #ccc !important;
-    text-transform: uppercase;
-}
-/* 評価不可の文字がランクエリアに収まるように微調整 */
-.rank-display-area {
-    min-height: 120px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* --- v19.9.2：評価不可レイアウトの強制補正 --- */
-
-/* 評価不可の時だけフォントサイズを強制的に小さくする */
-#result-rank.is-aborted {
-    font-size: 2.8rem !important; /* 8remや5.5remを上書き */
-    letter-spacing: 0.1em !important;
-    white-space: nowrap !important; /* 2行になるのを絶対に防ぐ */
-    margin-top: 15px !important;
-}
-
-/* 項目名を日本語として美しく見せるための調整 */
-.res-label {
-    font-family: 'Noto Sans JP', sans-serif !important;
-    text-transform: none !important; /* 大文字化を解除 */
-}
-
-/* --- v19.9.3：結果画面の視認性・品格向上 --- */
-
-/* 「評価不可」の文字間隔を詰め、1行でビシッと見せる */
-#result-rank.is-aborted {
-    font-size: 3rem !important;
-    letter-spacing: -0.05em !important; /* 間隔が広すぎるのを修正 */
-    margin-bottom: 5px !important;
-    white-space: nowrap !important;
-}
-
-/* 「判定ランク」のラベルを大きくし、位置を調整 */
-.rank-display-area p {
-    font-size: 0.95rem !important; /* 0.7 -> 0.95 */
-    margin-top: 10px !important; /* 上の大きな文字と少し離す */
-    color: #7f8c8d !important;
-    font-weight: 800 !important;
-    opacity: 1 !important;
-}
-
-/* スコア・正確率などの「項目名」を大きく読みやすく */
-.res-label {
-    font-size: 1.05rem !important; /* 0.8 -> 1.05 */
-    color: #555 !important; /* グレーを濃くして視認性アップ */
-    font-weight: 700 !important;
-}
-
-/* 数値部分も少しだけ大きくしてバランス調整 */
-.res-value {
-    font-size: 1.4rem !important;
-}
-
-/* 各行の境界を少しだけはっきりさせる */
-.res-grid-row {
-    border-bottom: 1px solid #f0f0f0 !important;
-    padding: 6px 0 !important;
-}
-
-/* --- v19.9.4：結果画面・垂直統合レイアウト (ノートPC対応) --- */
-
-/* 右側カードのパディングを適正化 */
-.result-main {
-    padding: 20px !important;
-}
-
-/* ランクエリアを縦のスタック構造に変更 */
-.rank-display-area {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* 上・中・下に分散配置 */
-    align-items: center;
-    height: 100%;
-    flex: 1;
-    padding: 5px 0;
-}
-
-/* ランクエリア内のタイトル：カード上端から離して配置 */
-#result-title {
-    font-size: 1.3rem !important;
-    margin: 0 0 10px 0 !important;
-    color: var(--primary);
-}
-
-/* ランク文字：左右分割に合わせてサイズを最適化 */
-#result-rank {
-    font-size: 6rem !important;
-    margin: 0 !important;
-    line-height: 1;
-}
-
-/* もう一度挑戦ボタン：ランクエリアの下部に固定 */
-.rank-display-area .btn-main {
-    margin-top: 15px !important;
-    padding: 10px 30px !important;
-    font-size: 1rem !important;
-    width: auto;
-    white-space: nowrap;
-}
-
-/* スタッツエリアの余白調整 */
-.stats-display-area {
-    flex: 1.2;
-    padding-left: 20px !important;
-    border-left: 1px solid #eee;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-/* 評価不可の場合の特別調整 */
-#result-rank.is-aborted {
-    font-size: 2.8rem !important;
-    margin: 20px 0 !important;
-}
-
-/* --- v19.9.5：結果画面・垂直分散レイアウトの極致 --- */
-
-/* 左右分割エリア自体の高さを固定し、内部の広がりを確保 */
-.result-content-wrapper {
-    height: 300px !important; /* ノートPCで見切れない限界の高さ */
-    align-items: stretch !important;
-}
-
-/* 左側ランクエリア：上下に要素を押し出す */
-.rank-display-area {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important; /* これでタイトルを上、ボタンを下へ */
-    align-items: center !important;
-    padding: 0 !important;
-}
-
-/* 中央のランク（評価不可）ボックスのみ、中央に浮かせる */
-.rank-main-box {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 0;
-}
-
-/* 評価不可：不自然な文字間隔をさらに修正 */
-#result-rank.is-aborted {
-    font-size: 3.2rem !important;
-    letter-spacing: -0.02em !important;
-    margin: 0 !important;
-}
-
-/* もう一度挑戦ボタン：エリアの最下部にマージンなしで配置 */
-.result-action-area {
-    width: 100%;
-    text-align: center;
-    padding-bottom: 5px;
-}
-
-.result-action-area .btn-main {
-    margin: 0 !important;
-    padding: 10px 35px !important;
-}
-
-/* 右側スタッツエリア：垂直方向の中央揃えを維持 */
-.stats-display-area {
-    justify-content: center !important;
 }
 
 
