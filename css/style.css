@@ -49,9 +49,49 @@ body.portal-page #app {
     max-width: 1000px; 
 }
 
-header { flex-shrink: 0; text-align: center; margin-bottom: 10px !important; width: 100%; }
-.logo { font-size: 1.8rem; font-weight: bold; margin-bottom: 5px; }
-.logo span { color: var(--accent); font-size: 1.1rem; }
+/* --- ロゴ・ヘッダーエリアの修正 --- */
+header { 
+    flex-shrink: 0; 
+    text-align: center; 
+    margin-bottom: 20px !important; 
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0;
+    text-decoration: none;
+}
+
+/* 巨大化を強制的に抑え込む設定 */
+.header-logo-img {
+    height: 75px !important; /* あなたのロゴに合わせた最適な高さ */
+    width: auto !important;
+    max-width: 100%;
+    display: block;
+}
+
+.logo-subtext {
+    color: var(--accent); /* #3498db */
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    margin-top: 0;
+}
+
+/* スマホ表示でのロゴサイズ最適化 */
+@media (max-width: 768px) {
+    .header-logo-img {
+        height: 45px;
+    }
+}
+
 .nav-menu { margin-bottom: 5px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
 .nav-menu a { color: var(--primary); text-decoration: none; font-size: 0.85rem; font-weight: bold; padding: 5px 8px; border-bottom: 2px solid transparent; transition: all 0.2s; }
 .nav-menu a:hover { color: var(--accent); border-bottom: 2px solid var(--accent); }
