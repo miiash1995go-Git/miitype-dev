@@ -60,37 +60,59 @@ header {
     align-items: center;
 }
 
-/* --- ロゴ・ヘッダーエリア：横並びデザイン (v19.9.65) --- */
+/* --- ロゴ・ヘッダーエリア：絶対センター保持デザイン (v19.9.67) --- */
 header .logo {
     display: flex;
-    flex-direction: row; /* 横並びに変更 */
     align-items: center;
+    width: 100%;
+    max-width: 1000px; /* #appの幅に合わせる */
+    margin: 15px auto;
+}
+
+/* 左側の見えないスペーサー */
+.logo-spacer {
+    flex: 1;
+}
+
+/* 中央のロゴ本体：ここが常に画面真ん中に来ます */
+.logo-center {
+    flex: 0 0 auto;
+    display: flex;
     justify-content: center;
-    gap: 15px;
-    text-decoration: none;
-    margin: 10px 0;
 }
 
 .header-logo-img {
-    height: 60px !important; /* ポータルとして最適なサイズ */
+    height: 60px !important;
     width: auto !important;
     display: block;
 }
 
-.logo-subtext {
-    color: var(--accent); /* #3498db */
-    font-size: 1.1rem;
-    font-weight: 800;
-    border-left: 2px solid #ddd; /* ロゴと文字の間の区切り線 */
-    padding-left: 15px;
-    line-height: 1.2;
-    letter-spacing: 0.05em;
+/* 右側のテキストエリア */
+.logo-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* 左寄せにしてロゴに添える */
 }
 
-/* スマホ表示：画面幅が狭い場合は少しコンパクトに */
+.logo-subtext {
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: 800;
+    border-left: 2px solid #ddd;
+    margin-left: 20px; /* ロゴとの距離 */
+    padding-left: 20px;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+/* スマホ表示：画面が狭い場合は中央寄せに戻す（ロゴを優先） */
 @media (max-width: 768px) {
+    header .logo { justify-content: center; }
+    .logo-spacer { display: none; }
+    .logo-right { flex: 0 0 auto; }
     .header-logo-img { height: 45px !important; }
-    .logo-subtext { font-size: 0.9rem; padding-left: 10px; gap: 10px; }
+    .logo-subtext { font-size: 0.9rem; margin-left: 10px; padding-left: 10px; }
 }
 
 .nav-menu { margin-bottom: 5px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
