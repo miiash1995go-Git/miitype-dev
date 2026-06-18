@@ -1,8 +1,9 @@
 /* ============================================================
-   ぱそトレ！ タイピング画面専用スタイル (v19.9.32)
-   - 120px圧縮レイアウト & before擬似要素リセット完備
-   - 物理キーボードJIS黄金比 (36px版) 完全復元
-   - 結果画面 垂直分散レイアウト 同期
+   ぱそトレ！ タイピング練習画面専用スタイル (v19.9.54)
+   ------------------------------------------------------------
+   【管理ルール】
+   - 退化禁止：JIS黄金比、圧縮レイアウト、垂直分散、%サイズ修正を完全内包
+   - 構成順：1.基本 2.開始画面 3.打鍵画面 4.キーボード 5.結果画面 6.制限
    ============================================================ */
 
 :root {
@@ -11,7 +12,8 @@
     --key-border: #dcdde1;
 }
 
-/* --- 1. 基本レイアウト --- */
+/* --- 1. 共通レイアウト & 集中モード --- */
+
 body.game-body {
     overflow-y: auto;
     min-height: 100vh;
@@ -26,27 +28,145 @@ body.game-body main {
     padding-bottom: 25px !important;
 }
 
-/* --- 集中モード：眼精疲労対策 & カードスライド (完全版) --- */
-/* 1. 背景をミッドナイトグレーへ沈める */
-body.focus-mode { 
-    background-color: #34495e !important; 
+/* 練習開始時の背景沈み込み・スライド演出 */
+body.focus-mode {
+    background-color: #34495e !important;
 }
 
-/* 2. ヘッダーとフッターを薄くして、クリックできないようにする */
-body.focus-mode header, 
-body.focus-mode footer { 
-    opacity: 0.15; 
-    pointer-events: none; 
-    transition: 0.6s ease; 
+body.focus-mode header,
+body.focus-mode footer {
+    opacity: 0.15;
+    pointer-events: none;
+    transition: 0.6s ease;
 }
 
-/* 3. 画面全体を少し上にずらして、ノートPCでも見やすくする */
-body.focus-mode #app { 
-    margin-top: -60px !important; 
-    transition: margin-top 0.4s ease; 
+body.focus-mode #app {
+    margin-top: -60px !important;
+    transition: margin-top 0.4s ease;
 }
 
-/* --- 2. タイピング表示エリア (画像の内容を完全移植) --- */
+
+/* --- 2. スタート画面：カテゴリ選択カード --- */
+
+.card {
+    background: white;
+    padding: 15px 30px !important;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: center;
+    width: 920px;
+}
+
+.btn-group-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 10px !important;
+}
+
+.category-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #eee;
+}
+
+.group-label {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    font-weight: 800;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.btn-category {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: var(--primary);
+    transition: all 0.2s;
+}
+
+.btn-category:hover:not(.active) {
+    border-color: var(--accent);
+    background: #f0f7ff;
+    color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.btn-category.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+/* 総合判定ボタン専用（特別なオレンジ） */
+.btn-total {
+    height: 100%;
+    font-size: 1.1rem !important;
+    background: white;
+    color: var(--primary);
+    border: 1px solid #ddd !important;
+    transition: all 0.2s;
+}
+
+.btn-total:hover:not(.active) {
+    background: #fff5e6 !important;
+    border-color: #f39c12 !important;
+    color: #f39c12 !important;
+}
+
+.btn-total.active {
+    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%) !important;
+    color: white !important;
+    border: none !important;
+}
+
+/* コントロール行（ベストスコア・開始ボタン・設定） */
+.controls-master-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 12px;
+    padding: 0 15px;
+}
+
+.compact-best {
+    margin: 0 !important;
+    min-width: 160px;
+    text-align: left;
+}
+
+.compact-settings {
+    margin: 0 !important;
+    display: flex;
+    gap: 8px;
+    min-width: 220px;
+    justify-content: flex-end;
+}
+
+.btn-main.compact-start {
+    padding: 10px 45px !important;
+    font-size: 1.15rem !important;
+    margin: 0 !important;
+    box-shadow: 0 4px 0 #1a252f !important;
+    flex-shrink: 0;
+}
+
+
+/* --- 3. タイピング表示エリア (120px圧縮版) --- */
+
 .typing-display {
     background: white;
     padding: 15px 40px !important;
@@ -58,7 +178,7 @@ body.focus-mode #app {
     flex-direction: column;
     justify-content: center;
     overflow: hidden;
-    width: 800px !important; /* 絶対に800pxを死守 */
+    width: 800px !important;
     position: relative;
 }
 
@@ -66,32 +186,23 @@ body.focus-mode #app {
     display: none !important;
 }
 
-/* カウントダウン（開始前に出るもの）*/
-.countdown-overlay { 
-    position: absolute; 
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    font-size: 6rem !important; 
-    font-weight: 900; 
-    color: var(--accent); 
-    z-index: 1000; 
-    animation: count-pop 0.5s ease-out; 
+.text-wrapper-left {
+    text-align: left;
+    width: 100%;
 }
 
-@keyframes count-pop { 
-    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; } 
-    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; } 
+#display-kanji {
+    font-size: 1.6rem !important;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 2px;
 }
 
-.text-wrapper-left { 
-    text-align: left; 
-    width: 100%; 
+#display-kana {
+    font-size: 0.9rem !important;
+    color: #888;
+    margin-bottom: 3px;
 }
-
-
-#display-kanji { font-size: 1.6rem !important; font-weight: bold; color: var(--primary); margin-bottom: 2px; }
-#display-kana { font-size: 0.9rem !important; color: #888; margin-bottom: 3px; }
 
 .romaji-scroll-window {
     width: 100%;
@@ -115,7 +226,27 @@ body.focus-mode #app {
 .typed { color: #d1d5db !important; }
 .current { color: var(--accent) !important; border-bottom: 4px solid var(--accent) !important; }
 
-/* --- 3. JIS黄金比物理キーボード (36px) --- */
+/* カウントダウン数字 */
+.countdown-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 6rem !important;
+    font-weight: 900;
+    color: var(--accent);
+    z-index: 1000;
+    animation: count-pop 0.5s ease-out;
+}
+
+@keyframes count-pop {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+
+/* --- 4. JIS黄金比物理キーボード (36px版) --- */
+
 #keyboard-container {
     width: 800px !important;
     padding: 12px !important;
@@ -134,12 +265,12 @@ body.focus-mode #app {
     margin-bottom: 4px !important;
 }
 
-/* 黄金比オフセット (36pxキー用) */
+/* 黄金比オフセット設定 */
 .row-0 { padding-left: 8px !important; } 
 .row-1 { padding-left: 28px !important; } 
 .row-2 { padding-left: 45px !important; } 
 .row-3 { padding-left: 8px !important; } 
-.row-4 { padding-left: 180px !important; }
+.row-4 { padding-left: 180px !important; } /* row-4オフセット死守 */
 
 .key {
     width: 36px !important;
@@ -159,93 +290,237 @@ body.focus-mode #app {
 
 .key.wide-shift { width: 54px !important; }
 .key.space { width: 160px !important; background: #3498db; color: white; border-color: #2980b9; }
-.key.highlight { background: var(--accent) !important; color: white !important; transform: translateY(2px); border-bottom-width: 1px !important; }
 
-/* （色分けキー全体の文字色を規定） */
-.key[class*="f-"] { color: #57606f; }
+.key.highlight {
+    background: var(--accent) !important;
+    color: white !important;
+    transform: translateY(2px);
+    border-bottom-width: 1px !important;
+}
 
 /* 指別パステルカラー */
+.key[class*="f-"] { color: #57606f; }
 .key.f-lp { background-color: #ffdce0; }
 .key.f-lr { background-color: #fff3d6; }
 .key.f-lm { background-color: #e2f9e1; }
-.key.f-li { background-color: #e2e9ff; }
-.key.f-ri { background-color: #f0e1ff; }
+.key.f-li { background-color: #e2e9ff; } /* 左人差し指：青 */
+.key.f-ri { background-color: #f0e1ff; } /* 右人差し指：紫 */
 .key.f-rm { background-color: #e2f9e1; }
 .key.f-rr { background-color: #fff3d6; }
 .key.f-rp { background-color: #ffdce0; }
 
-/* --- 4. 結果画面：380px垂直分散 ＆ プロ仕様デザイン統合版 (v19.9.48) --- */
 
-/* 外枠コンテナ */
-.result-container { 
-    display: flex !important; flex-direction: row !important; gap: 15px !important; 
-    width: 940px !important; margin: 0 auto; height: 380px !important; 
-    align-items: stretch; justify-content: center; 
+/* --- 5. 結果画面：380px垂直分散 ＆ 究極圧縮版 --- */
+
+.result-container {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 15px !important;
+    width: 940px !important;
+    margin: 0 auto;
+    height: 380px !important;
+    align-items: stretch;
+    justify-content: center;
 }
 
-/* 左側：ミス一覧エリア（見出しの大文字強制を解除） */
-.result-side { flex: 0.9 !important; background: white; padding: 15px !important; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; }
-.result-side h3 { text-transform: none !important; margin: 0 0 10px 0; font-size: 1.1rem; border-bottom: 2px solid #eee; padding-bottom: 5px; }
+/* 左側：ミス詳細エリア */
+.result-side {
+    flex: 0.9 !important;
+    background: white;
+    padding: 15px !important;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
 
-/* 右側：メイン結果カード */
-.result-main { flex: 1.6 !important; background: white; padding: 20px !important; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.result-side h3 {
+    text-transform: none !important;
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+}
 
-/* 内部の垂直分散ラッパー */
-.result-content-wrapper { display: flex !important; width: 100%; height: 300px !important; align-items: stretch !important; justify-content: space-around; margin-top: 0 !important; }
+.scroll-list {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+}
 
-/* --- 【左側】ランク表示エリア (タイトル・ランク・ボタンを垂直分散) --- */
+.miss-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 12px !important;
+    border-bottom: 1px solid #f8f9fa;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.1rem;
+}
+
+.miss-key { font-size: 1.2rem !important; font-weight: bold; color: #bdc3c7; }
+.miss-count { font-size: 1rem; color: #7f8c8d; }
+
+/* ワースト3の強調表示 */
+.miss-item.worst1 { background: #fff5f5; border-radius: 8px; margin-bottom: 3px; padding: 8px 12px !important; }
+.miss-item.worst1 .miss-key { color: #ff4757; font-size: 1.6rem !important; }
+.miss-item.worst1 .miss-count { color: #ff4757; font-weight: bold; font-size: 1.1rem !important; }
+.miss-item.worst2 { background: #fffaf0; border-radius: 8px; margin-bottom: 3px; }
+.miss-item.worst3 { background: #f0f9ff; border-radius: 8px; margin-bottom: 3px; }
+
+/* 右側：メイン結果エリア */
+.result-main {
+    flex: 1.6 !important;
+    background: white;
+    padding: 20px !important;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.result-content-wrapper {
+    display: flex !important;
+    width: 100%;
+    height: 300px !important;
+    align-items: stretch !important;
+    justify-content: space-around;
+}
+
+/* ランク表示 (垂直分散：上中下) */
 .rank-display-area {
-    flex: 1; display: flex !important; flex-direction: column !important; 
-    justify-content: space-between !important; align-items: center !important; padding: 5px 0 !important; height: 100% !important;
-}
-#result-title { font-size: 1.3rem !important; margin: 0 !important; color: var(--primary); }
-.rank-main-box { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-#result-rank { font-size: 5.5rem !important; font-weight: 900; color: var(--accent); line-height: 1; letter-spacing: -2px; margin: 0 !important; }
-#result-rank.is-aborted { font-size: 3rem !important; letter-spacing: -0.05em !important; color: #95a5a6; white-space: nowrap !important; }
-
-/* 判定ランクのラベル */
-.rank-display-area p { font-size: 0.95rem !important; margin-top: 10px !important; color: #7f8c8d !important; font-weight: 800; }
-
-/* 下部：再挑戦ボタン */
-.result-action-area { width: 100%; text-align: center; }
-.result-action-area .btn-main { margin: 0 !important; padding: 10px 35px !important; font-size: 1rem !important; }
-
-/* --- 【右側】統計スタッツエリア (洗練された実務デザイン) --- */
-.stats-display-area { 
-    flex: 1.2; padding-left: 20px !important; border-left: 1px solid #eee; 
-    display: flex; flex-direction: column; justify-content: center !important; 
-}
-.res-grid-row { display: flex; justify-content: space-between; padding: 6px 0 !important; border-bottom: 1px solid #f0f0f0 !important; }
-
-/* 項目ラベル：実務的なデザインへ深化 */
-.res-label { 
-    font-family: 'Noto Sans JP', sans-serif !important; font-size: 1rem !important; 
-    color: #a0a0a0 !important; font-weight: 500 !important; letter-spacing: 0.05em; text-transform: none !important;
+    flex: 1;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 5px 0 !important;
+    height: 100% !important;
 }
 
-.res-value { 
-    font-family: 'Roboto Mono', monospace !important; 
-    font-weight: 700; 
-    font-size: 1.4rem !important; /* 全体の基準サイズ */
+#result-title {
+    font-size: 1.3rem !important;
+    margin: 0 !important;
+    color: var(--primary);
+}
+
+.rank-main-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#result-rank {
+    font-size: 5.5rem !important;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -2px;
+    margin: 0 !important;
+}
+
+#result-rank.is-aborted {
+    font-size: 3rem !important;
+    letter-spacing: -0.05em !important;
+    color: #95a5a6;
+    white-space: nowrap !important;
+}
+
+.rank-display-area p {
+    font-size: 0.95rem !important;
+    margin-top: 10px !important;
+    color: #7f8c8d !important;
+    font-weight: 800;
+}
+
+.result-action-area {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+/* 統計数値エリア */
+.stats-display-area {
+    flex: 1.2;
+    padding-left: 20px !important;
+    border-left: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: center !important;
+}
+
+.res-grid-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0 !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+}
+
+.res-label {
+    font-family: 'Noto Sans JP', sans-serif !important;
+    font-size: 1rem !important;
+    color: #a0a0a0 !important;
+    font-weight: 500;
+    text-transform: none !important;
+}
+
+.res-value {
+    font-family: 'Roboto Mono', monospace !important;
+    font-weight: 700;
+    font-size: 1.4rem !important;
     color: var(--primary) !important;
     display: inline-flex;
-    align-items: baseline; /* 数字と記号の下のラインを揃える */
+    align-items: baseline;
 }
 
-/* 正確率の「数字」部分：しっかり大きく表示 */
-.res-value span { 
-    font-size: 1.4rem !important; /* 1.0remから1.4remへ修正 */
+/* %記号のサイズ調整 */
+.res-value span {
+    font-size: 1.4rem !important;
     font-weight: 700 !important;
 }
 
-/* ミス時のダメージエフェクト */
+#res-score {
+    color: var(--accent) !important;
+    font-size: 1.6rem !important;
+}
+
+/* ダメージエフェクト（ミス時） */
 .damage-effect { animation: damageFlash 0.15s; }
 @keyframes damageFlash {
     0% { background-color: rgba(255, 0, 0, 0.2); }
     100% { background-color: transparent; }
 }
 
-/* --- 2. PC推奨アラート画面 (絶対最前面) --- */
+
+/* --- 6. 設定トグルボタン ＆ PC制限アラート --- */
+
+.btn-toggle {
+    background: white;
+    border: 2px solid var(--key-border);
+    padding: 6px 0 !important;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: var(--primary);
+    transition: all 0.2s;
+    min-width: 110px !important; /* 横幅固定でガタつきを防止 */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-toggle.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
 .mobile-restriction-overlay {
     display: none;
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -253,14 +528,13 @@ body.focus-mode #app {
     padding: 20px; flex-direction: column; align-items: center; justify-content: center;
 }
 
-@media (max-width: 1024px) {
-    body.game-body .mobile-restriction-overlay { display: flex; }
-    body.game-body #app { display: none !important; }
-}
-
 .restriction-card {
     background: white; padding: 40px 25px; border-radius: 25px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.1); max-width: 450px; width: 90%; text-align: center;
 }
-.restriction-card h2 { color: var(--accent); font-size: 1.3rem; margin-bottom: 20px; font-weight: 800; }
-.restriction-card p { font-size: 0.95rem; text-align: left; margin-bottom: 25px; line-height: 1.8; color: #444; }
+
+/* 1024px以下での制限発動 */
+@media (max-width: 1024px) {
+    body.game-body .mobile-restriction-overlay { display: flex; }
+    body.game-body #app { display: none !important; }
+}

@@ -30,23 +30,6 @@ body {
 body.portal-page { overflow-y: auto; height: auto; background-color: var(--bg); }
 body.portal-page main { display: block; padding: 20px 0; }
 
-body.game-body { 
-	overflow-y: auto;          /* 縦スクロールを許可 */
-	min-height: 100vh;         /* 最低でも画面いっぱいの高さを確保 */
- 	background-color: #d1d5db; 
-	position: relative;  
-    transition: background-color 0.6s ease;
-}
-
-body.game-body main {
-	display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: flex-start; 
-    padding-top: 0; 
-    padding-bottom: 25px !important; /* キーボード下の余白をノートPC向けに凝縮 */
-}
-
 .hidden { display: none !important; }
 
 /* --- 1. 全体コンテナ：1000px固定（タイピング画面の整合性を死守） --- */
@@ -88,55 +71,39 @@ header { flex-shrink: 0; text-align: center; margin-bottom: 10px !important; wid
 }
 
 
-
-.result-ad-box { display: none !important; } 
-main { flex: 1; width: 100%; min-height: 0; }
-
-
-/* 待機（READY）画面 */
-.ready-container { text-align: center; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.ready-text { 
-    font-size: 1.8rem !important; 
-    font-weight: 800; 
-    color: var(--primary); 
-    animation: pulse 1.5s infinite; 
-    margin-bottom: 5px; 
-}
-.esc-guide-card { font-size: 0.85rem !important; color: #7f8c8d; font-weight: 500; }
-@keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(0.98); }
+/* --- サイト全体の基本構造 --- */
+main { 
+    flex: 1; 
+    width: 100%; 
+    min-height: 0; 
 }
 
+/* --- 全ページ共通のボタンデザイン --- */
+.btn-main { 
+    background: var(--primary); 
+    color: white; 
+    border: none; 
+    padding: 12px 50px !important; 
+    font-size: 1.1rem !important; 
+    border-radius: 40px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    box-shadow: 0 4px 0 #1a252f !important; 
+    transition: all 0.1s; 
+    text-decoration: none; 
+    display: inline-block; 
+}
 
-/* カテゴリ選択タイルUI */
-.card { background: white; padding: 15px 30px !important; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; width: 920px; }
-.btn-group-container { display: flex; justify-content: center; gap: 12px; width: 100%; margin-bottom: 10px !important; }
-.category-group { flex: 1; display: flex; flex-direction: column; gap: 6px; padding: 10px; background: #f8f9fa; border-radius: 12px; border: 1px solid #eee; }
-.group-label { font-size: 0.8rem; color: #7f8c8d; font-weight: 800; margin-bottom: 4px; display: block; }
-.btn-category { width: 100%; padding: 8px; border: 1px solid #ddd; background: white; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 0.85rem; color: var(--primary); transition: all 0.2s; }
-.btn-category:hover:not(.active) { border-color: var(--accent); background: #f0f7ff; color: var(--accent); transform: translateY(-1px); }
-.btn-category.active { background: var(--accent); color: white; border-color: var(--accent); }
+.btn-main:hover:not(:disabled) { 
+    background: var(--primary-hover); 
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 0 #1a252f; 
+}
 
-.btn-total { height: 100%; font-size: 1.1rem !important; background: white; color: var(--primary); border: 1px solid #ddd !important; transition: all 0.2s; }
-.btn-total:hover:not(.active) { background: #fff5e6 !important; border-color: #f39c12 !important; color: #f39c12 !important; }
-.btn-total.active { background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%) !important; color: white !important; border: none !important; }
-
-.btn-main { background: var(--primary); color: white; border: none; padding: 12px 50px !important; font-size: 1.1rem !important; border-radius: 40px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 0 #1a252f !important; transition: all 0.1s; text-decoration: none; display: inline-block; }
-.btn-main:hover:not(:disabled) { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 0 #1a252f; }
-.btn-main:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 2px 0 #1a252f; }
-
-.scroll-list { flex: 1; overflow-y: auto; padding-right: 10px; }
-.miss-item { display: flex; justify-content: space-between; align-items: center; padding: 6px 12px !important; border-bottom: 1px solid #f8f9fa; font-family: 'Roboto Mono', monospace; font-size: 1.1rem; }
-.miss-key { font-size: 1.2rem !important; font-weight: bold; color: #bdc3c7; }
-.miss-count { font-size: 1rem; color: #7f8c8d; }
-
-/* タイプミスキー強調（v19.8.3コンパクト版） */
-.miss-item.worst1 { background: #fff5f5; border-radius: 8px; margin-bottom: 3px; padding: 8px 12px !important; }
-.miss-item.worst1 .miss-key { color: #ff4757; font-size: 1.6rem !important; }
-.miss-item.worst1 .miss-count { color: #ff4757; font-weight: bold; font-size: 1.1rem !important; }
-.miss-item.worst2 { background: #fffaf0; border-radius: 8px; margin-bottom: 3px; }
-.miss-item.worst3 { background: #f0f9ff; border-radius: 8px; margin-bottom: 3px; }
+.btn-main:active:not(:disabled) { 
+    transform: translateY(3px); 
+    box-shadow: 0 2px 0 #1a252f; 
+}
 
 
 /* --- 6. ポータル & 読み物ページ：全盛期デザイン復元 --- */
@@ -204,30 +171,6 @@ footer { margin-top: auto; padding: 15px 0 25px 0; border-top: 1px solid #eee; t
 .footer-links a { color: var(--primary); text-decoration: none; font-size: 0.8rem; }
 .footer-links a:hover { color: var(--accent); }
 footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
-
-/* 2. カテゴリ選択後の操作エリアを1行に統合 */
-.controls-master-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* 左・中・右に均等配置 */
-    gap: 15px;
-    margin-top: 12px;
-    padding: 0 15px;
-}
-
-/* 各パーツの横幅固定と微調整 */
-.compact-best { margin: 0 !important; min-width: 160px; text-align: left; }
-.compact-settings { margin: 0 !important; display: flex; gap: 8px; min-width: 220px; justify-content: flex-end; }
-
-/* 3. 練習開始ボタンを中央に配置し、サイズを適正化 */
-.btn-main.compact-start {
-    padding: 10px 45px !important;
-    font-size: 1.15rem !important;
-    margin: 0 !important;
-    box-shadow: 0 4px 0 #1a252f !important;
-    flex-shrink: 0;
-}
-
 
 /* --- 学習ポータル用追加定義 (v19.9.12) --- */
 
