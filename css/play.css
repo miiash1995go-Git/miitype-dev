@@ -165,6 +165,17 @@ body.focus-mode #app {
 }
 
 
+/* ============================================================
+   目の疲れ軽減：視覚的ストレス・コントロール
+   ============================================================ */
+
+/* 背景色（Section 1で設定済みのbody.focus-mode）との明暗差をマイルドにする */
+.typing-display, 
+#keyboard-container {
+    background-color: #fcfcfc !important; /* 真っ白(#fff)をやめ、目に優しいオフホワイトへ */
+    border: 1px solid #e0e6ed !important; /* 境界線も少し柔らかい色に */
+}
+
 /* --- 3. タイピング表示エリア (120px圧縮版) --- */
 
 .typing-display {
