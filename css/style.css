@@ -115,9 +115,51 @@ header .logo {
     .logo-subtext { font-size: 0.9rem; margin-left: 10px; padding-left: 10px; }
 }
 
-.nav-menu { margin-bottom: 5px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-.nav-menu a { color: var(--primary); text-decoration: none; font-size: 0.85rem; font-weight: bold; padding: 5px 8px; border-bottom: 2px solid transparent; transition: all 0.2s; }
-.nav-menu a:hover { color: var(--accent); border-bottom: 2px solid var(--accent); }
+/* --- グローバルナビゲーション：チップ型デザイン (v19.9.68) --- */
+.nav-menu {
+    margin: 15px 0 25px 0; /* 下の要素（ロゴ等）との呼吸を確保 */
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.nav-menu a {
+    color: #57606f; 
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 8px 16px; 
+    background: #f1f2f6; /* 押しやすさをアピールする薄い地色 */
+    border: 1px solid #dfe4ea;
+    border-radius: 20px; 
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: inline-block;
+}
+
+.nav-menu a:hover {
+    color: white;
+    background: var(--accent); 
+    border-color: var(--accent);
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+}
+
+/* 現在地を際立たせる（もしHTML側にactiveを付けるなら） */
+.nav-menu a.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* スマホ対応：さらに押しやすく */
+@media (max-width: 768px) {
+    .nav-menu { gap: 6px; }
+    .nav-menu a {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
 
 /* アドセンス対策：上部バナー枠（ノートPCでも広告が見えるよう隙間を最小化） */
 .ad-container-top {
