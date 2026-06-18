@@ -169,11 +169,11 @@ body.focus-mode #app {
    目の疲れ軽減：視覚的ストレス・コントロール
    ============================================================ */
 
-/* 背景色（Section 1で設定済みのbody.focus-mode）との明暗差をマイルドにする */
-.typing-display, 
-#keyboard-container {
-    background-color: #fcfcfc !important; /* 真っ白(#fff)をやめ、目に優しいオフホワイトへ */
-    border: 1px solid #e0e6ed !important; /* 境界線も少し柔らかい色に */
+/* セレクタを詳しく書く（body.game-bodyを頭に付ける）ことで、!importantなしで優先させます */
+body.game-body .typing-display, 
+body.game-body #keyboard-container {
+    background-color: #fcfcfc; /* !importantを削除 */
+    border: 1px solid #e0e6ed !important;
 }
 
 /* --- 3. タイピング表示エリア (120px圧縮版) --- */
@@ -534,11 +534,21 @@ body.focus-mode #app {
     font-size: 1.6rem !important;
 }
 
-/* ダメージエフェクト（ミス時） */
-.damage-effect { animation: damageFlash 0.15s; }
+/* --- ダメージエフェクト（ミス時）修正版 --- */
+.damage-effect { 
+    animation: damageFlash 0.2s ease-out !important; /* アニメーション自体を最優先に */
+}
+
 @keyframes damageFlash {
-    0% { background-color: rgba(255, 0, 0, 0.2); }
-    100% { background-color: transparent; }
+    0% { 
+        background-color: #ffe5e5 !important; /* 瞬間的に薄い赤にする */
+        border-color: #ff4757 !important;     /* 枠線も赤くする */
+        box-shadow: 0 0 20px rgba(255, 71, 87, 0.4) !important; /* 外側も赤く光らせる */
+    }
+    100% { 
+        background-color: #fcfcfc; 
+        border-color: #e0e6ed;
+    }
 }
 
 
