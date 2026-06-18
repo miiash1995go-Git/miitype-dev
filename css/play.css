@@ -182,6 +182,40 @@ body.focus-mode #app {
     position: relative;
 }
 
+/* --- 3. タイピング表示エリア (演出復活版) --- */
+
+/* 待機（READY）画面：全体を中央に寄せる */
+.ready-container { 
+    text-align: center; 
+    width: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+/* 「スペースキーを押して開始」：大きく、太く、アニメーションさせる */
+.ready-text { 
+    font-size: 1.8rem !important; 
+    font-weight: 800; 
+    color: var(--primary); 
+    animation: pulse 1.5s infinite; /* 1.5秒ごとにふわふわさせる */
+    margin-bottom: 5px; 
+}
+
+/* 下の「Escキー」の説明書き */
+.esc-guide-card { 
+    font-size: 0.85rem !important; 
+    color: #7f8c8d; 
+    font-weight: 500; 
+}
+
+/* ふわふわ動くアニメーションの中身 */
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.98); }
+}
+
 .typing-display::before {
     display: none !important;
 }
