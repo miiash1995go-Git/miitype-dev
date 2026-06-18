@@ -60,64 +60,9 @@ header {
     align-items: center;
 }
 
-/* --- ロゴ・ヘッダーエリア：絶対センター保持デザイン (v19.9.67) --- */
-header .logo {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 1000px; /* #appの幅に合わせる */
-    margin: 15px auto;
-}
-
-/* 左側の見えないスペーサー */
-.logo-spacer {
-    flex: 1;
-}
-
-/* 中央のロゴ本体：ここが常に画面真ん中に来ます */
-.logo-center {
-    flex: 0 0 auto;
-    display: flex;
-    justify-content: center;
-}
-
-.header-logo-img {
-    height: 60px !important;
-    width: auto !important;
-    display: block;
-}
-
-/* 右側のテキストエリア */
-.logo-right {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* 左寄せにしてロゴに添える */
-}
-
-.logo-subtext {
-    color: var(--accent);
-    font-size: 1.1rem;
-    font-weight: 800;
-    border-left: 2px solid #ddd;
-    margin-left: 20px; /* ロゴとの距離 */
-    padding-left: 20px;
-    line-height: 1.2;
-    white-space: nowrap;
-}
-
-/* スマホ表示：画面が狭い場合は中央寄せに戻す（ロゴを優先） */
-@media (max-width: 768px) {
-    header .logo { justify-content: center; }
-    .logo-spacer { display: none; }
-    .logo-right { flex: 0 0 auto; }
-    .header-logo-img { height: 45px !important; }
-    .logo-subtext { font-size: 0.9rem; margin-left: 10px; padding-left: 10px; }
-}
-
-/* --- グローバルナビゲーション：チップ型デザイン (v19.9.68) --- */
+/* --- 1. グローバルナビゲーション：チップ型デザイン --- */
 .nav-menu {
-    margin: 15px 0 25px 0; /* 下の要素（ロゴ等）との呼吸を確保 */
+    margin: 10px 0 10px 0; /* 垂直方向を圧縮 */
     display: flex;
     gap: 8px;
     justify-content: center;
@@ -130,7 +75,7 @@ header .logo {
     font-size: 0.85rem;
     font-weight: bold;
     padding: 8px 16px; 
-    background: #f1f2f6; /* 押しやすさをアピールする薄い地色 */
+    background: #f1f2f6;
     border: 1px solid #dfe4ea;
     border-radius: 20px; 
     transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -145,36 +90,63 @@ header .logo {
     box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
 }
 
-/* 現在地を際立たせる（もしHTML側にactiveを付けるなら） */
-.nav-menu a.active {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
+/* --- 2. ロゴ・ヘッダーエリア：絶対センター保持デザイン --- */
+header .logo {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: 5px auto; /* 垂直方向を圧縮 */
 }
 
-/* スマホ対応：さらに押しやすく */
-@media (max-width: 768px) {
-    .nav-menu { gap: 6px; }
-    .nav-menu a {
-        padding: 6px 12px;
-        font-size: 0.8rem;
-    }
+.logo-spacer { flex: 1; } /* 左側の空き */
+.logo-center { flex: 0 0 auto; display: flex; justify-content: center; } /* ロゴ本体 */
+.logo-right { flex: 1; display: flex; align-items: center; justify-content: flex-start; } /* 右側テキスト */
+
+.header-logo-img {
+    height: 60px !important; /* ノートPCに最適な高さ */
+    width: auto !important;
+    display: block;
 }
 
-/* アドセンス対策：上部バナー枠（ノートPCでも広告が見えるよう隙間を最小化） */
+.logo-subtext {
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: 800;
+    border-left: 2px solid #ddd;
+    margin-left: 20px;
+    padding-left: 20px;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+/* --- 3. 広告枠（上部）：基本設定 --- */
 .ad-container-top {
     display: block !important;
     width: 100%;
     max-width: 1000px;
     height: 90px;
-    margin: 5px auto 10px auto !important;
-    background: transparent !important; /* 白背景を撤廃 */
-    opacity: 1 !important;
-    z-index: 10001;
+    margin: 5px auto 5px auto !important; /* 下の余白を10pxから5pxへ圧縮 */
+    background: transparent !important;
     position: relative;
-    border-radius: 12px;
+    z-index: 10001;
 }
 
+/* --- 4. タイピング画面（game-body）専用：1画面に収めるための強制圧縮 --- */
+body.game-body #app { padding-top: 5px !important; }
+body.game-body .nav-menu { margin: 5px 0 5px 0 !important; }
+body.game-body header .logo { margin: 0 auto !important; }
+body.game-body .ad-container-top { margin: 2px auto !important; } /* 練習画面のみさらに圧縮 */
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+    .nav-menu a { padding: 6px 12px; font-size: 0.8rem; }
+    header .logo { justify-content: center; }
+    .logo-spacer { display: none; }
+    .logo-right { flex: 0 0 auto; }
+    .header-logo-img { height: 45px !important; }
+    .logo-subtext { font-size: 0.9rem; margin-left: 10px; padding-left: 10px; }
+}
 
 /* --- サイト全体の基本構造 --- */
 main { 

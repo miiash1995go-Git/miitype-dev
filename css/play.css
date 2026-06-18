@@ -363,17 +363,26 @@ body.game-body #keyboard-container {
 .key.f-rp { background-color: #ffdce0; }
 
 
-/* --- 5. 結果画面：380px垂直分散 ＆ 究極圧縮版 --- */
-
+/* 結果画面コンテナ：360pxへ圧縮し、少し上に引き上げる */
 .result-container {
     display: flex !important;
     flex-direction: row !important;
     gap: 15px !important;
     width: 940px !important;
-    margin: 0 auto;
-    height: 380px !important;
+    margin: -10px auto 0 auto !important; 
+    height: 360px !important; 
     align-items: stretch;
     justify-content: center;
+}
+
+/* 下部広告枠：余白を詰める */
+.ad-container-bottom {
+    display: block !important;
+    width: 100%;
+    max-width: 728px;
+    height: 60px !important;
+    margin: 5px auto 0 auto !important; 
+    background: transparent !important;
 }
 
 /* 左側：ミス詳細エリア */
