@@ -262,7 +262,8 @@ body.game-body #keyboard-container {
     height: 3.2rem !important;
     display: flex;
     align-items: center;
-    background: #fafafa;
+    /* 修正点：背景色を透明にすることで、ボックス全体のピンク色が見えるようにします */
+    background: transparent !important; 
     border-radius: 10px;
 }
 
