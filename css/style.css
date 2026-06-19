@@ -737,3 +737,38 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     color: #f39c12 !important;
     font-weight: 800;
 }
+/* ============================================================
+   STEP 0 パソコン選びページ専用 レスポンシブ調整
+   ============================================================ */
+
+@media (max-width: 768px) {
+    /* 1. ノートPC vs デスクトップの2列を1列にする */
+    .pc-type-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+
+    /* 2. 表の文字サイズを調整し、横スクロールを許可する */
+    .comparison-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .comparison-table th, .comparison-table td {
+        font-size: 0.8rem !important;
+        padding: 8px !important;
+    }
+
+    /* 3. 講師のおすすめ囲み枠の余白をスマホ用に調整 */
+    .section-content div[style*="padding: 35px"] {
+        padding: 25px 15px !important;
+        border-radius: 20px !important;
+    }
+
+    /* 4. まとめ表のラベル幅を広げる */
+    .section-content table[style*="line-height: 2.2"] td:first-child {
+        width: 40% !important;
+    }
+}
