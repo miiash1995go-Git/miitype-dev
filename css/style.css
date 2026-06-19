@@ -702,3 +702,38 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
         text-align: left;
     }
 }
+
+/* ============================================================
+   学習ガイド（STEP 0 / カード強化）専用スタイル (v19.9.69)
+   ============================================================ */
+
+/* STEP 0：最優先カードのコンテナ */
+.featured-step-card {
+    margin-bottom: 40px;
+}
+
+/* オレンジ色の強調枠 */
+.featured-border {
+    border: 2px solid #ffe8cc !important; /* 暖色系の強調 */
+    background-color: #fffcf9 !important;
+    transition: all 0.3s ease !important;
+}
+
+/* ホバー時の挙動 */
+.featured-border:hover {
+    border-color: #f39c12 !important; /* 鮮やかなオレンジ */
+    background-color: #ffffff !important;
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(243, 156, 18, 0.15) !important;
+}
+
+/* 強調カード内の見出し色 */
+.featured-border h3 {
+    color: #e67e22 !important;
+}
+
+/* 強調カード内のヒントテキスト */
+.featured-border .rec-btn-hint {
+    color: #f39c12 !important;
+    font-weight: 800;
+}
