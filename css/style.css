@@ -777,39 +777,43 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
    新世代・学習ロードマップUI (v19.9.80)
    ============================================================ */
 
-/* ロードマップ全体のコンテナ */
+/* ============================================================
+   【緊急反映】新世代・学習ロードマップUI (v19.9.80)
+   ============================================================ */
+
+/* 1. 全体の流れを整える */
 .roadmap-flow {
     max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-    padding: 10px 0;
+    margin: 30px auto;
+    padding: 0;
 }
 
-/* ロードマップの各ステップ（カード） */
+/* 2. 各ステップを「カード形式」にする */
 .roadmap-step-item {
     display: flex;
     align-items: center;
-    background: white;
-    border: 1px solid #eef2f6;
-    border-radius: 15px;
-    padding: 15px 25px;
-    margin-bottom: 15px;
-    text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    background: white !important;
+    border: 1px solid #eef2f6 !important;
+    border-radius: 15px !important;
+    padding: 20px 25px !important;
+    margin-bottom: 20px !important;
+    text-decoration: none !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important;
 }
 
+/* マウスを乗せた時の動き */
 .roadmap-step-item:hover {
-    transform: translateX(8px);
-    border-color: var(--accent);
-    box-shadow: 0 10px 25px rgba(52, 152, 219, 0.1);
+    transform: translateX(10px);
+    border-color: var(--accent) !important;
+    box-shadow: 0 10px 30px rgba(52, 152, 219, 0.1) !important;
 }
 
-/* STEPバッジ */
+/* 3. STEPバッジ（丸い部分） */
 .step-number-badge {
     flex-shrink: 0;
-    width: 70px;
-    height: 70px;
+    width: 65px;
+    height: 65px;
     background: #f1f2f6;
     color: #57606f;
     border-radius: 50%;
@@ -822,53 +826,43 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     line-height: 1.1;
 }
 
-.step-number-badge .label { font-size: 0.7rem; }
-.step-number-badge .num { font-size: 1.4rem; }
+.step-number-badge .label { font-size: 0.7rem; display: block; }
+.step-number-badge .num { font-size: 1.5rem; display: block; }
 
-/* STEP 0 専用のカラー（準備段階） */
-.roadmap-step-item.step-zero {
-    border-left: 6px solid #f39c12;
-}
-.roadmap-step-item.step-zero .step-number-badge {
-    background: #fff9f0;
-    color: #e67e22;
-}
+/* 各STEPのアクセントカラー */
+.roadmap-step-item.step-zero { border-left: 6px solid #f39c12 !important; }
+.roadmap-step-item.step-zero .step-number-badge { background: #fff9f0; color: #e67e22; }
 
-/* 進行中のSTEPカラー */
-.roadmap-step-item.active-step {
-    border-left: 6px solid var(--accent);
-}
-.roadmap-step-item.active-step .step-number-badge {
-    background: #eef9ff;
-    color: var(--accent);
-}
+.roadmap-step-item.active-step { border-left: 6px solid var(--accent) !important; }
+.roadmap-step-item.active-step .step-number-badge { background: #eef9ff; color: var(--accent); }
 
-/* 情報エリア */
+/* 4. テキスト情報エリア */
 .step-content {
     flex-grow: 1;
     text-align: left;
 }
 
 .step-content h3 {
-    margin: 0 0 4px 0 !important;
-    font-size: 1.15rem !important;
-    color: var(--primary);
+    margin: 0 0 6px 0 !important;
+    font-size: 1.25rem !important;
+    color: var(--primary) !important;
+    text-decoration: none !important;
 }
 
 .step-content p {
     margin: 0 !important;
-    font-size: 0.88rem !important;
-    color: #666;
-    line-height: 1.5 !important;
+    font-size: 0.9rem !important;
+    color: #666 !important;
+    line-height: 1.6 !important;
 }
 
-/* アクションボタン */
+/* 5. アクションボタン */
 .step-action-btn {
     flex-shrink: 0;
     background: #f1f2f6;
     color: #57606f;
-    padding: 8px 18px;
-    border-radius: 20px;
+    padding: 10px 20px;
+    border-radius: 25px;
     font-size: 0.85rem;
     font-weight: bold;
     margin-left: 20px;
@@ -880,24 +874,10 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     color: white;
 }
 
-/* --- スマホ対応 --- */
+/* スマホ対応の微調整 */
 @media (max-width: 768px) {
-    .roadmap-step-item {
-        padding: 15px;
-        flex-wrap: wrap;
-    }
-    .step-number-badge {
-        width: 50px;
-        height: 50px;
-        margin-right: 15px;
-    }
-    .step-number-badge .label { font-size: 0.6rem; }
-    .step-number-badge .num { font-size: 1.1rem; }
-    .step-content { width: calc(100% - 70px); }
-    .step-action-btn {
-        width: 100%;
-        margin-left: 0;
-        margin-top: 12px;
-        text-align: center;
-    }
+    .roadmap-step-item { padding: 15px !important; flex-wrap: wrap; }
+    .step-number-badge { width: 55px; height: 55px; margin-right: 15px; }
+    .step-content { width: calc(100% - 80px); }
+    .step-action-btn { width: 100%; margin-left: 0; margin-top: 15px; text-align: center; }
 }
