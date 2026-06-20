@@ -1,0 +1,106 @@
+/* ============================================================
+   ぱそトレ！ 共通コンポーネント (v19.9.81)
+   対象：学習ガイド、コラム、記事詳細ページ共通
+   ============================================================ */
+
+/* 1. 記事・リスト全体のコンテナ（800px制限） */
+.static-page {
+    max-width: 800px !important;
+    margin: 15px auto 80px auto !important;
+    background: white;
+    padding: 40px 60px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* 2. ロードマップ・記事リスト構造 */
+.roadmap-flow { margin: 30px auto; padding: 0; }
+
+.roadmap-step-item {
+    display: flex !important;
+    align-items: center !important;
+    background-color: #ffffff !important;
+    border: 1px solid #eef2f6 !important;
+    border-radius: 18px !important;
+    padding: 15px 25px !important;
+    margin-bottom: 15px !important;
+    text-decoration: none !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03) !important;
+    color: inherit !important;
+}
+
+.roadmap-step-item:hover {
+    transform: translateX(8px) !important;
+    border-color: #3498db !important;
+    box-shadow: 0 10px 25px rgba(52, 152, 219, 0.1) !important;
+}
+
+/* 丸いアイコン・STEPバッジ */
+.step-number-badge {
+    flex-shrink: 0 !important;
+    width: 65px !important;
+    height: 65px !important;
+    background: #f1f2f6 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-right: 25px !important;
+}
+.step-number-badge .label { font-size: 0.65rem !important; font-weight: bold; color: #7f8c8d; }
+.step-number-badge .num { font-size: 1.4rem !important; font-weight: 800; color: #2c3e50; }
+
+/* 状態別カラー */
+.step-zero { border-left: 6px solid #f39c12 !important; }
+.step-zero .num { color: #e67e22 !important; }
+.active-step { border-left: 6px solid #3498db !important; }
+.active-step .num { color: #3498db !important; }
+
+/* テキストエリア */
+.step-content { flex: 1 !important; text-align: left !important; }
+.step-content h3 { margin: 0 0 4px 0 !important; font-size: 1.15rem !important; font-weight: 800; color: #2c3e50 !important; border: none !important; padding: 0 !important; }
+.step-content p { margin: 0 !important; font-size: 0.88rem !important; color: #666 !important; line-height: 1.5 !important; }
+
+.step-action-btn {
+    background: #f1f2f6 !important;
+    padding: 8px 18px !important;
+    border-radius: 20px !important;
+    font-size: 0.85rem !important;
+    font-weight: bold !important;
+    color: #57606f !important;
+    margin-left: 20px !important;
+    white-space: nowrap !important;
+}
+.roadmap-step-item:hover .step-action-btn { background: #3498db !important; color: #ffffff !important; }
+
+/* 3. 💡 講師のアドバイス・共通ボックス */
+.instructor-advice {
+    background: #fff9e6 !important; /* 画像に近い暖色系イエロー */
+    border: 1px solid #f9eeba !important;
+    border-left: 5px solid #f39c12 !important; /* オレンジのアクセント線 */
+    padding: 20px 25px !important;
+    border-radius: 12px !important;
+    margin: 25px 0 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.7 !important;
+    color: #444 !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+}
+
+.instructor-advice::before {
+    content: "💡";
+    font-size: 1.2rem;
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+    .static-page { padding: 30px 20px !important; }
+    .roadmap-step-item { padding: 15px !important; flex-wrap: wrap !important; }
+    .step-number-badge { width: 50px !important; height: 50px !important; margin-right: 15px !important; }
+    .step-content { width: calc(100% - 70px) !important; }
+    .step-action-btn { width: 100% !important; margin: 15px 0 0 0 !important; text-align: center !important; }
+}
