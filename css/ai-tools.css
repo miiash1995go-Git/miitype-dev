@@ -29,9 +29,6 @@
     position: absolute; top: -12px; left: 20px; background: var(--accent);
     color: white; padding: 2px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;
 }
-.instructor-advice {
-    background: #eef9ff; padding: 15px 25px; border-radius: 10px; color: #2980b9; font-size: 0.95rem; margin-top: 15px;
-}
 
 /* 4. 基礎の重要性 (オレンジ枠) */
 .basics-priority-section { margin-top: 40px; }
