@@ -1,24 +1,42 @@
 /* ============================================================
-   ぱそトレ！ 共通コンポーネント・マスター資産 (v19.9.85)
-   【管理対象】
-   1. 記事・リスト全体の枠組み (.static-page)
-   2. ロードマップ・記事カード (訪問済み色化け防止・垂直線統一)
-   3. 💡 講師のアドバイス (イエローボックス)
-   4. 記事本文専用・独自見出し (カードへの干渉防止設計)
+   ぱそトレ！ 共通コンポーネント・アルティメット資産 (v19.9.88)
+   ------------------------------------------------------------
+   【管理・保護対象】
+   1. 記事ページ全体の基本構造 (.static-page)
+   2. 学習ロードマップ・リストUI (a.roadmap-step-item)
+   3. リンク色化け防止 (visited/hover/active 徹底固定)
+   4. 💡 講師のアドバイス・イエローボックス (.instructor-advice)
+   5. 記事本文専用・教材風見出し (.content-body h2 / h3)
+   6. 【追加】比較表・データテーブル (教科書スタイル)
+   7. 【追加】記事内画像・キャプション (影・枠線・自動調整)
+   8. 【追加】パンくずリスト (ピル型モダンデザイン)
    ============================================================ */
 
-/* --- 1. 共通コンテナ --- */
+/* --- 1. 記事共通：基本コンテナ（呼吸と余白の死守） --- */
 .static-page {
     max-width: 800px !important;
-    margin: 15px auto 80px auto !important;
-    background: white;
-    padding: 40px 60px;
-    border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-top: 15px !important;
+    margin-right: auto !important;
+    margin-bottom: 80px !important;
+    margin-left: auto !important;
+    background-color: #ffffff !important;
+    padding-top: 45px !important;
+    padding-right: 60px !important;
+    padding-bottom: 45px !important;
+    padding-left: 60px !important;
+    border-radius: 25px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
+    box-sizing: border-box !important;
+    line-height: 1.8 !important;
 }
 
-/* --- 2. ロードマップ・記事カード --- */
-.roadmap-flow { margin: 30px auto; padding: 0; }
+/* --- 2. 学習ロードマップ・記事カード構造 --- */
+.roadmap-flow {
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+    padding: 0 !important;
+    display: block !important;
+}
 
 .roadmap-step-item {
     display: flex !important;
@@ -26,16 +44,19 @@
     background-color: #ffffff !important;
     border: 1px solid #eef2f6 !important;
     border-radius: 18px !important;
-    padding: 15px 25px !important;
+    padding-top: 15px !important;
+    padding-right: 25px !important;
+    padding-bottom: 15px !important;
+    padding-left: 25px !important;
     margin-bottom: 18px !important;
     text-decoration: none !important;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
     box-shadow: 0 4px 10px rgba(0,0,0,0.03) !important;
-    position: relative;
-    overflow: hidden;
 }
 
-/* リンクの色化け（紫色）を完全に防ぐ */
+/* 訪問済みリンクの色化け（紫色化）を全方位で禁止 */
 .roadmap-step-item, 
 .roadmap-step-item:link, 
 .roadmap-step-item:visited, 
@@ -46,91 +67,121 @@
 
 .roadmap-step-item:hover {
     transform: translateX(8px) !important;
+    border-color: #3498db !important;
     box-shadow: 0 10px 25px rgba(52, 152, 219, 0.1) !important;
 }
 
-/* 左側のアクセント垂直線（太さを完璧に統一） */
+/* カード左側のアクセント垂直線：::beforeで管理 */
 .roadmap-step-item::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 6px;
-    background: #f1f2f6;
+    content: "" !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 6px !important;
+    background-color: #f1f2f6 !important;
 }
-.step-zero::before { background: #f39c12 !important; }
-.active-step::before { background: #3498db !important; }
 
-/* STEPバッジ（丸アイコン） */
+/* ステップ別の垂直線カラー */
+.step-zero::before { background-color: #f39c12 !important; }
+.active-step::before { background-color: #3498db !important; }
+
+/* STEPバッジ（丸アイコン部分） */
 .step-number-badge {
     flex-shrink: 0 !important;
     width: 65px !important;
     height: 65px !important;
-    background: #f1f2f6 !important;
+    background-color: #f1f2f6 !important;
     border-radius: 50% !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
     margin-right: 25px !important;
-    z-index: 2;
+    z-index: 2 !important;
 }
-.step-number-badge .label { font-size: 0.65rem !important; font-weight: bold; color: #7f8c8d; }
-.step-number-badge .num { font-size: 1.4rem !important; font-weight: 800; color: #2c3e50; }
+.step-number-badge .label { font-size: 0.65rem !important; font-weight: bold !important; color: #7f8c8d !important; }
+.step-number-badge .num { font-size: 1.4rem !important; font-weight: 800 !important; color: #2c3e50 !important; }
 .step-zero .num { color: #e67e22 !important; }
 .active-step .num { color: #3498db !important; }
 
-/* カード内テキスト（見出し装飾の干渉をリセット） */
+/* カード内：コンテンツエリア */
 .step-content { flex: 1 !important; text-align: left !important; }
 .step-content h3 { 
-    margin: 0 0 4px 0 !important; 
+    margin-top: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: 4px !important;
+    margin-left: 0 !important;
     font-size: 1.15rem !important; 
     font-weight: 800 !important; 
     color: #2c3e50 !important;
     border: none !important; 
     padding: 0 !important; 
 }
-.step-content h3::before, .step-content h3::after { display: none !important; } /* 独自見出しのドットや線を消す */
-
+/* 見出し装飾の干渉を徹底リセット */
+.step-content h3::before, .step-content h3::after { display: none !important; }
 .step-content p { margin: 0 !important; font-size: 0.88rem !important; color: #666 !important; line-height: 1.5 !important; }
 
+/* カード内：ボタン */
 .step-action-btn {
-    background: #f1f2f6 !important;
-    padding: 8px 18px !important;
+    background-color: #f1f2f6 !important;
+    padding-top: 8px !important;
+    padding-right: 18px !important;
+    padding-bottom: 8px !important;
+    padding-left: 18px !important;
     border-radius: 20px !important;
     font-size: 0.85rem !important;
     font-weight: bold !important;
     color: #57606f !important;
     margin-left: 20px !important;
     white-space: nowrap !important;
+    transition: background-color 0.2s, color 0.2s !important;
 }
-.roadmap-step-item:hover .step-action-btn { background: #3498db !important; color: #ffffff !important; }
+.roadmap-step-item:hover .step-action-btn {
+    background-color: #3498db !important;
+    color: #ffffff !important;
+}
 
-/* --- 3. 💡 講師のアドバイス --- */
+/* --- 3. 💡 講師のアドバイス（教材風ヘッダー強化） --- */
 .instructor-advice {
-    background: #fff9e6 !important;
+    background-color: #fff9e6 !important;
     border-left: 5px solid #f39c12 !important;
-    padding: 18px 25px !important;
+    padding-top: 20px !important;
+    padding-right: 25px !important;
+    padding-bottom: 20px !important;
+    padding-left: 25px !important;
     border-radius: 8px !important;
-    margin: 25px 0 !important;
+    margin-top: 25px !important;
+    margin-bottom: 25px !important;
     font-size: 0.95rem !important;
-    line-height: 1.7 !important;
-    color: #444 !important;
+    line-height: 1.8 !important;
+    color: #444444 !important;
+}
+.instructor-advice b, .instructor-advice strong {
+    display: inline-block !important;
+    color: #e67e22 !important;
+    font-weight: 800 !important;
+    margin-bottom: 8px !important;
+    padding-bottom: 2px !important;
+    border-bottom: 1px solid rgba(230, 126, 34, 0.3) !important;
 }
 
-/* --- 4. 記事本文エリア (.content-body) 専用・教材風見出し (v19.9.86) --- */
+/* --- 4. 記事本文エリア (.content-body) 専用・教材風見出し --- */
 
-
-/* H2：┃ 📘 大見出し の形式 */
 .content-body h2 {
     display: block !important;
-    padding: 8px 0 12px 18px !important;
-    background: transparent !important; /* 背景は白のまま */
-    color: var(--primary) !important;
+    padding-top: 8px !important;
+    padding-right: 0 !important;
+    padding-bottom: 12px !important;
+    padding-left: 18px !important;
+    background: transparent !important;
+    color: #2c3e50 !important;
     font-size: 1.55rem !important;
     font-weight: 800 !important;
-    margin: 70px 0 30px 0 !important;
-    border-left: 7px solid var(--accent) !important; /* 青い太い線 */
-    border-bottom: 1px solid #ddd !important; /* 下の細い線 */
+    margin-top: 70px !important;
+    margin-bottom: 30px !important;
+    border-left: 7px solid #3498db !important;
+    border-bottom: 1px solid #dddddd !important;
     border-top: none !important;
     border-right: none !important;
 }
@@ -139,55 +190,104 @@
     margin-right: 12px !important;
 }
 
-/* H3：ドットを消し、シンプルな下線にする */
 .content-body h3 {
     display: block !important;
-    margin: 45px 0 15px 0 !important;
-    padding: 0 0 10px 0 !important;
-    color: var(--primary) !important;
+    margin-top: 45px !important;
+    margin-bottom: 20px !important;
+    padding-top: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 10px !important;
+    padding-left: 0 !important;
+    color: #2c3e50 !important;
     font-size: 1.25rem !important;
     font-weight: 700 !important;
-    border-bottom: 1px solid #eee !important;
+    border-bottom: 1px solid #eeeeee !important;
     border-left: none !important;
     border-top: none !important;
     border-right: none !important;
 }
+.content-body h3::before, .content-body h3::after { display: none !important; }
 
-/* 以前のドット（●）が出てこないように念のためリセット */
-.content-body h3::before,
-.content-body h3::after {
-    display: none !important;
+/* --- 5. 本文内の詳細装飾：テーブル・画像・パンくず (NEW!) --- */
+
+/* 比較表 (Table) */
+.content-body table {
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    margin-top: 25px !important;
+    margin-bottom: 25px !important;
+    border: 1px solid #eeeeee !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    font-size: 0.92rem !important;
 }
-
-/* --- 3. 💡 講師のアドバイス（教材風ヘッダー強化） --- */
-.instructor-advice {
-    background: #fff9e6 !important;
-    border-left: 5px solid #f39c12 !important;
-    padding: 20px 25px !important;
-    border-radius: 8px !important;
-    margin: 30px 0 !important;
-    font-size: 0.95rem !important;
-    line-height: 1.8 !important;
-    color: #444 !important;
-}
-
-/* アドバイス内の見出し強調 */
-.instructor-advice b, 
-.instructor-advice strong {
-    display: inline-block !important;
-    color: #e67e22 !important; /* オレンジ系 */
+.content-body table th {
+    background-color: #f8f9fa !important;
+    color: #2c3e50 !important;
     font-weight: 800 !important;
-    margin-bottom: 5px !important;
-    border-bottom: 1px solid rgba(230, 126, 34, 0.3) !important; /* 見出しの後ろに薄いライン */
+    padding: 15px !important;
+    border-bottom: 2px solid #eeeeee !important;
+    text-align: left !important;
+}
+.content-body table td {
+    padding: 15px !important;
+    border-bottom: 1px solid #f1f2f6 !important;
+    background-color: #ffffff !important;
+}
+.content-body table tr:last-child td { border-bottom: none !important; }
+
+/* 記事内画像 (Article Image) */
+.article-image {
+    margin-top: 35px !important;
+    margin-bottom: 35px !important;
+    text-align: center !important;
+    display: block !important;
+}
+.article-image img {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08) !important;
+    border: 1px solid #eeeeee !important;
+}
+.image-caption {
+    display: block !important;
+    font-size: 0.85rem !important;
+    color: #888888 !important;
+    margin-top: 12px !important;
+    font-weight: bold !important;
 }
 
-/* --- 5. レスポンシブ --- */
+/* ピル型パンくずリスト (Breadcrumb) */
+.breadcrumb {
+    margin-bottom: 30px !important;
+    font-size: 0.82rem !important;
+    color: #7f8c8d !important;
+    background-color: #f8f9fa !important;
+    padding: 10px 22px !important;
+    border-radius: 35px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    border: 1px solid #f1f2f6 !important;
+}
+.breadcrumb a {
+    color: #3498db !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+}
+.breadcrumb-separator { color: #cccccc !important; font-size: 0.7rem !important; }
+
+/* --- 6. レスポンシブ最適化 --- */
 @media (max-width: 768px) {
-    .static-page { padding: 30px 20px !important; }
+    .static-page { padding-top: 30px !important; padding-right: 20px !important; padding-bottom: 30px !important; padding-left: 20px !important; }
     .roadmap-step-item { padding: 15px !important; flex-wrap: wrap !important; }
     .step-number-badge { width: 50px !important; height: 50px !important; margin-right: 15px !important; }
     .step-content { width: calc(100% - 70px) !important; }
-    .step-action-btn { width: 100% !important; margin: 15px 0 0 0 !important; text-align: center !important; }
-    .content-body h2 { font-size: 1.35rem !important; padding: 10px 15px !important; }
-    .content-body h3 { font-size: 1.15rem !important; }
+    .step-action-btn { width: 100% !important; margin-left: 0 !important; margin-top: 15px !important; text-align: center !important; }
+    .content-body h2 { font-size: 1.35rem !important; padding-left: 15px !important; }
+    
+    /* スマホでのテーブル：横スクロールを許可 */
+    .content-body table { display: block !important; overflow-x: auto !important; white-space: nowrap !important; -webkit-overflow-scrolling: touch !important; }
 }
