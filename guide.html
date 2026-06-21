@@ -8,18 +8,21 @@
     <link rel="canonical" href="https://miitype.com/guide.html">
     <link rel="icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- Google tag (gtag.js) - GA4 完全同期 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
     <!-- AdSense審査用コード -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-KWS4RPPBVV');
-</script>
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/portal-shared.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
 </head>
 <body class="portal-page">
     <div id="app">
@@ -35,7 +38,7 @@
                 <a href="contact.html">お問い合わせ</a>
             </nav>
 
-            <!-- あなたと作り上げた 3カラム・絶対センター保持ロゴ構造 -->
+            <!-- 3カラム・絶対センター保持ロゴ構造 -->
             <div class="logo">
                 <div class="logo-spacer"></div>
                 <div class="logo-center">
@@ -47,12 +50,10 @@
                     <span class="logo-subtext">学習ガイド</span>
                 </div>
             </div>
-            <!-- 広告エリア：上部 -->
             <div class="ad-container-top"></div>
         </header>
 
         <main>
-            <!-- static-page クラスで800pxに制限と呼吸（余白）を確保 -->
             <section class="static-page">
                 <h1>パソコンスキル習得ガイド</h1>
                 <p>上から順番に進めるだけで、実務に必要なスキルが身につく「最短ルート」です。</p>
@@ -101,7 +102,20 @@
                         <div class="step-action-btn">上達法を見る</div>
                     </a>
 
-                    <!-- 資料：用語集 -->
+                    <!-- ★新規追加：STEP 2：Windowsの基礎 -->
+                    <a href="guide-windows-basics.html" class="roadmap-step-item active-step">
+                        <div class="step-number-badge">
+                            <span class="label">STEP</span>
+                            <span class="num">2</span>
+                        </div>
+                        <div class="step-content">
+                            <h3>Windowsの基礎｜初心者が最初に覚えたい基本操作</h3>
+                            <p>WordやExcelを学ぶ前の土台作り。ファイル管理やショートカット、フリーズ対処法を教えます。</p>
+                        </div>
+                        <div class="step-action-btn">操作を学ぶ</div>
+                    </a>
+
+                    <!-- 資料：用語集（ロードマップ外の補足資料） -->
                     <a href="glossary.html" class="roadmap-step-item">
                         <div class="step-number-badge">
                             <span class="label">辞書</span>

@@ -572,3 +572,17 @@ if (success) {
     }
 }
 const app = new TypingApp();
+
+/* ============================================================
+   共通機能：ページトップへ戻るボタンの制御
+   ============================================================ */
+window.addEventListener('scroll', () => {
+    const btn = document.getElementById('backToTop');
+    if (btn) {
+        if (window.scrollY > 300) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
+    }
+});
