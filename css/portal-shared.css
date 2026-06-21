@@ -1,7 +1,13 @@
 /* ============================================================
-   ぱそトレ！ 共通コンポーネント (v19.9.83 最終統一版)
+   ぱそトレ！ 共通コンポーネント・マスター資産 (v19.9.85)
+   【管理対象】
+   1. 記事・リスト全体の枠組み (.static-page)
+   2. ロードマップ・記事カード (訪問済み色化け防止・垂直線統一)
+   3. 💡 講師のアドバイス (イエローボックス)
+   4. 記事本文専用・独自見出し (カードへの干渉防止設計)
    ============================================================ */
 
+/* --- 1. 共通コンテナ --- */
 .static-page {
     max-width: 800px !important;
     margin: 15px auto 80px auto !important;
@@ -11,7 +17,7 @@
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-/* 1. ロードマップ・カード構造：徹底統一 */
+/* --- 2. ロードマップ・記事カード --- */
 .roadmap-flow { margin: 30px auto; padding: 0; }
 
 .roadmap-step-item {
@@ -26,10 +32,10 @@
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
     box-shadow: 0 4px 10px rgba(0,0,0,0.03) !important;
     position: relative;
-    overflow: hidden; /* 左側の線を綺麗に収める */
+    overflow: hidden;
 }
 
-/* 【解決】訪問済みリンクの色変更を完全に禁止する */
+/* リンクの色化け（紫色）を完全に防ぐ */
 .roadmap-step-item, 
 .roadmap-step-item:link, 
 .roadmap-step-item:visited, 
@@ -38,28 +44,23 @@
     color: inherit !important;
 }
 
-/* ホバー時の挙動を統一（影と位置移動のみ） */
 .roadmap-step-item:hover {
     transform: translateX(8px) !important;
     box-shadow: 0 10px 25px rgba(52, 152, 219, 0.1) !important;
 }
 
-/* 2. 【解決】左側のアクセントラインを「絶対統一」する */
+/* 左側のアクセント垂直線（太さを完璧に統一） */
 .roadmap-step-item::before {
     content: "";
     position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 6px; /* 線の太さを固定 */
-    background: #f1f2f6; /* デフォルトは薄いグレー */
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: #f1f2f6;
 }
+.step-zero::before { background: #f39c12 !important; }
+.active-step::before { background: #3498db !important; }
 
-/* 状態別の色分け（線の色だけを変える） */
-.step-zero::before { background: #f39c12 !important; }   /* オレンジ */
-.active-step::before { background: #3498db !important; } /* ブルー */
-
-/* 3. STEPバッジ（丸いアイコン部分） */
+/* STEPバッジ（丸アイコン） */
 .step-number-badge {
     flex-shrink: 0 !important;
     width: 65px !important;
@@ -75,28 +76,23 @@
 }
 .step-number-badge .label { font-size: 0.65rem !important; font-weight: bold; color: #7f8c8d; }
 .step-number-badge .num { font-size: 1.4rem !important; font-weight: 800; color: #2c3e50; }
-
 .step-zero .num { color: #e67e22 !important; }
 .active-step .num { color: #3498db !important; }
 
-/* 4. テキスト色を固定（色化け防止） */
+/* カード内テキスト（見出し装飾の干渉をリセット） */
 .step-content { flex: 1 !important; text-align: left !important; }
 .step-content h3 { 
     margin: 0 0 4px 0 !important; 
     font-size: 1.15rem !important; 
     font-weight: 800 !important; 
-    color: #2c3e50 !important; /* 常にこの色 */
+    color: #2c3e50 !important;
     border: none !important; 
     padding: 0 !important; 
 }
-.step-content p { 
-    margin: 0 !important; 
-    font-size: 0.88rem !important; 
-    color: #666 !important; /* 常にこの色 */
-    line-height: 1.5 !important; 
-}
+.step-content h3::before, .step-content h3::after { display: none !important; } /* 独自見出しのドットや線を消す */
 
-/* 5. ボタンデザインの安定化 */
+.step-content p { margin: 0 !important; font-size: 0.88rem !important; color: #666 !important; line-height: 1.5 !important; }
+
 .step-action-btn {
     background: #f1f2f6 !important;
     padding: 8px 18px !important;
@@ -109,7 +105,7 @@
 }
 .roadmap-step-item:hover .step-action-btn { background: #3498db !important; color: #ffffff !important; }
 
-/* 6. 💡 講師のアドバイス（共通） */
+/* --- 3. 💡 講師のアドバイス --- */
 .instructor-advice {
     background: #fff9e6 !important;
     border-left: 5px solid #f39c12 !important;
@@ -121,47 +117,34 @@
     color: #444 !important;
 }
 
-@media (max-width: 768px) {
-    .static-page { padding: 30px 20px !important; }
-    .roadmap-step-item { padding: 15px !important; flex-wrap: wrap !important; }
-    .step-action-btn { width: 100% !important; margin: 15px 0 0 0 !important; text-align: center !important; }
-}
+/* --- 4. 記事本文エリア (.content-body) 専用・独自見出し --- */
 
-/* ============================================================
-   記事ページ専用：独自性のある見出しデザイン (v19.9.84)
-   ============================================================ */
-
-/* --- H2：大見出し（章の区切り） --- */
-.static-page h2 {
-    position: relative;
+/* H2：二重左線と薄いグラデーション */
+.content-body h2 {
+    position: relative !important;
     padding: 12px 25px !important;
     background: linear-gradient(to right, #fcfcfc, #ffffff) !important;
-    color: var(--primary) !important; /* #2c3e50 */
+    color: var(--primary) !important;
     font-size: 1.6rem !important;
     font-weight: 800 !important;
     margin: 60px 0 30px 0 !important;
     line-height: 1.4 !important;
-    display: flex !important;
-    align-items: center !important;
-    /* 独自性：二重の左線で「教材」としての厚みを表現 */
     border-left: 8px solid var(--primary) !important;
     border-bottom: 1px solid #eee !important;
 }
-
-/* H2の左線にアクセントの青を少しだけ重ねる */
-.static-page h2::before {
-    content: "";
-    position: absolute;
-    left: -8px;
-    top: 0;
-    width: 8px;
-    height: 30%; /* 上部だけ別の色にする */
-    background: var(--accent); /* #3498db */
+.content-body h2::before {
+    content: "" !important;
+    position: absolute !important;
+    left: -8px !important;
+    top: 0 !important;
+    width: 8px !important;
+    height: 30% !important;
+    background: var(--accent) !important;
 }
 
-/* --- H3：中見出し（項目の区切り） --- */
-.static-page h3 {
-    position: relative;
+/* H3：ドットと下線の組み合わせ */
+.content-body h3 {
+    position: relative !important;
     color: var(--primary) !important;
     font-size: 1.3rem !important;
     font-weight: 800 !important;
@@ -169,43 +152,34 @@
     padding-left: 15px !important;
     display: flex !important;
     align-items: center !important;
+    border: none !important;
+}
+.content-body h3::before {
+    content: "" !important;
+    width: 8px !important;
+    height: 8px !important;
+    background: var(--accent) !important;
+    border-radius: 50% !important;
+    margin-right: 12px !important;
+    display: inline-block !important;
+}
+.content-body h3::after {
+    content: "" !important;
+    position: absolute !important;
+    left: 0 !important;
+    bottom: -8px !important;
+    width: 100% !important;
+    height: 2px !important;
+    background: #eee !important;
 }
 
-/* 独自性：ドットと下線の組み合わせ */
-.static-page h3::before {
-    content: "";
-    width: 8px;
-    height: 8px;
-    background: var(--accent);
-    border-radius: 50%;
-    margin-right: 12px;
-}
-
-.static-page h3::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -8px;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(to right, #eee 0%, #eee 100%);
-}
-
-/* 読みやすさの調整：段落の余白 */
-.static-page p {
-    margin-bottom: 1.8rem !important;
-    color: #444 !important;
-}
-
-/* スマホ表示での調整 */
+/* --- 5. レスポンシブ --- */
 @media (max-width: 768px) {
-    .static-page h2 {
-        font-size: 1.35rem !important;
-        padding: 10px 15px !important;
-        margin: 45px 0 20px 0 !important;
-    }
-    .static-page h3 {
-        font-size: 1.15rem !important;
-        margin: 35px 0 12px 0 !important;
-    }
+    .static-page { padding: 30px 20px !important; }
+    .roadmap-step-item { padding: 15px !important; flex-wrap: wrap !important; }
+    .step-number-badge { width: 50px !important; height: 50px !important; margin-right: 15px !important; }
+    .step-content { width: calc(100% - 70px) !important; }
+    .step-action-btn { width: 100% !important; margin: 15px 0 0 0 !important; text-align: center !important; }
+    .content-body h2 { font-size: 1.35rem !important; padding: 10px 15px !important; }
+    .content-body h3 { font-size: 1.15rem !important; }
 }
