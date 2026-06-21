@@ -126,3 +126,86 @@
     .roadmap-step-item { padding: 15px !important; flex-wrap: wrap !important; }
     .step-action-btn { width: 100% !important; margin: 15px 0 0 0 !important; text-align: center !important; }
 }
+
+/* ============================================================
+   記事ページ専用：独自性のある見出しデザイン (v19.9.84)
+   ============================================================ */
+
+/* --- H2：大見出し（章の区切り） --- */
+.static-page h2 {
+    position: relative;
+    padding: 12px 25px !important;
+    background: linear-gradient(to right, #fcfcfc, #ffffff) !important;
+    color: var(--primary) !important; /* #2c3e50 */
+    font-size: 1.6rem !important;
+    font-weight: 800 !important;
+    margin: 60px 0 30px 0 !important;
+    line-height: 1.4 !important;
+    display: flex !important;
+    align-items: center !important;
+    /* 独自性：二重の左線で「教材」としての厚みを表現 */
+    border-left: 8px solid var(--primary) !important;
+    border-bottom: 1px solid #eee !important;
+}
+
+/* H2の左線にアクセントの青を少しだけ重ねる */
+.static-page h2::before {
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 0;
+    width: 8px;
+    height: 30%; /* 上部だけ別の色にする */
+    background: var(--accent); /* #3498db */
+}
+
+/* --- H3：中見出し（項目の区切り） --- */
+.static-page h3 {
+    position: relative;
+    color: var(--primary) !important;
+    font-size: 1.3rem !important;
+    font-weight: 800 !important;
+    margin: 45px 0 15px 0 !important;
+    padding-left: 15px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* 独自性：ドットと下線の組み合わせ */
+.static-page h3::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.static-page h3::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, #eee 0%, #eee 100%);
+}
+
+/* 読みやすさの調整：段落の余白 */
+.static-page p {
+    margin-bottom: 1.8rem !important;
+    color: #444 !important;
+}
+
+/* スマホ表示での調整 */
+@media (max-width: 768px) {
+    .static-page h2 {
+        font-size: 1.35rem !important;
+        padding: 10px 15px !important;
+        margin: 45px 0 20px 0 !important;
+    }
+    .static-page h3 {
+        font-size: 1.15rem !important;
+        margin: 35px 0 12px 0 !important;
+    }
+}
