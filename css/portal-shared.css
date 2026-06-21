@@ -1,5 +1,5 @@
 /* ============================================================
-   ぱそトレ！ 共通コンポーネント (v19.9.82 安定版)
+   ぱそトレ！ 共通コンポーネント (v19.9.83 最終統一版)
    ============================================================ */
 
 .static-page {
@@ -11,21 +11,9 @@
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-/* 講師のアドバイス：最も安定するデザイン */
-.instructor-advice {
-    background: #fff9e6 !important; /* イエロー背景 */
-    border-left: 5px solid #f39c12 !important; /* オレンジの左線 */
-    padding: 18px 25px !important;
-    border-radius: 8px !important;
-    margin: 25px 0 !important;
-    font-size: 0.95rem !important;
-    line-height: 1.7 !important;
-    color: #444 !important;
-    /* display: flex を削除して文字割れを防止 */
-}
-
-/* ロードマップUI（以前のものを維持） */
+/* 1. ロードマップ・カード構造：徹底統一 */
 .roadmap-flow { margin: 30px auto; padding: 0; }
+
 .roadmap-step-item {
     display: flex !important;
     align-items: center !important;
@@ -33,25 +21,105 @@
     border: 1px solid #eef2f6 !important;
     border-radius: 18px !important;
     padding: 15px 25px !important;
-    margin-bottom: 15px !important;
+    margin-bottom: 18px !important;
     text-decoration: none !important;
-    transition: all 0.3s ease !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
     box-shadow: 0 4px 10px rgba(0,0,0,0.03) !important;
+    position: relative;
+    overflow: hidden; /* 左側の線を綺麗に収める */
+}
+
+/* 【解決】訪問済みリンクの色変更を完全に禁止する */
+.roadmap-step-item, 
+.roadmap-step-item:link, 
+.roadmap-step-item:visited, 
+.roadmap-step-item:hover, 
+.roadmap-step-item:active {
     color: inherit !important;
 }
-.roadmap-step-item:hover { transform: translateX(8px) !important; border-color: #3498db !important; box-shadow: 0 10px 25px rgba(52, 152, 219, 0.1) !important; }
-.step-number-badge { flex-shrink: 0 !important; width: 65px !important; height: 65px !important; background: #f1f2f6 !important; border-radius: 50% !important; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; margin-right: 25px !important; }
+
+/* ホバー時の挙動を統一（影と位置移動のみ） */
+.roadmap-step-item:hover {
+    transform: translateX(8px) !important;
+    box-shadow: 0 10px 25px rgba(52, 152, 219, 0.1) !important;
+}
+
+/* 2. 【解決】左側のアクセントラインを「絶対統一」する */
+.roadmap-step-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px; /* 線の太さを固定 */
+    background: #f1f2f6; /* デフォルトは薄いグレー */
+}
+
+/* 状態別の色分け（線の色だけを変える） */
+.step-zero::before { background: #f39c12 !important; }   /* オレンジ */
+.active-step::before { background: #3498db !important; } /* ブルー */
+
+/* 3. STEPバッジ（丸いアイコン部分） */
+.step-number-badge {
+    flex-shrink: 0 !important;
+    width: 65px !important;
+    height: 65px !important;
+    background: #f1f2f6 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-right: 25px !important;
+    z-index: 2;
+}
 .step-number-badge .label { font-size: 0.65rem !important; font-weight: bold; color: #7f8c8d; }
 .step-number-badge .num { font-size: 1.4rem !important; font-weight: 800; color: #2c3e50; }
-.step-zero { border-left: 6px solid #f39c12 !important; }
+
 .step-zero .num { color: #e67e22 !important; }
-.active-step { border-left: 6px solid #3498db !important; }
 .active-step .num { color: #3498db !important; }
+
+/* 4. テキスト色を固定（色化け防止） */
 .step-content { flex: 1 !important; text-align: left !important; }
-.step-content h3 { margin: 0 0 4px 0 !important; font-size: 1.15rem !important; font-weight: 800; color: #2c3e50 !important; border: none !important; padding: 0 !important; }
-.step-content p { margin: 0 !important; font-size: 0.88rem !important; color: #666 !important; line-height: 1.5 !important; }
-.step-action-btn { background: #f1f2f6 !important; padding: 8px 18px !important; border-radius: 20px !important; font-size: 0.85rem !important; font-weight: bold !important; color: #57606f !important; margin-left: 20px !important; white-space: nowrap !important; }
+.step-content h3 { 
+    margin: 0 0 4px 0 !important; 
+    font-size: 1.15rem !important; 
+    font-weight: 800 !important; 
+    color: #2c3e50 !important; /* 常にこの色 */
+    border: none !important; 
+    padding: 0 !important; 
+}
+.step-content p { 
+    margin: 0 !important; 
+    font-size: 0.88rem !important; 
+    color: #666 !important; /* 常にこの色 */
+    line-height: 1.5 !important; 
+}
+
+/* 5. ボタンデザインの安定化 */
+.step-action-btn {
+    background: #f1f2f6 !important;
+    padding: 8px 18px !important;
+    border-radius: 20px !important;
+    font-size: 0.85rem !important;
+    font-weight: bold !important;
+    color: #57606f !important;
+    margin-left: 20px !important;
+    white-space: nowrap !important;
+}
 .roadmap-step-item:hover .step-action-btn { background: #3498db !important; color: #ffffff !important; }
+
+/* 6. 💡 講師のアドバイス（共通） */
+.instructor-advice {
+    background: #fff9e6 !important;
+    border-left: 5px solid #f39c12 !important;
+    padding: 18px 25px !important;
+    border-radius: 8px !important;
+    margin: 25px 0 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.7 !important;
+    color: #444 !important;
+}
 
 @media (max-width: 768px) {
     .static-page { padding: 30px 20px !important; }

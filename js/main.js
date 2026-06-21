@@ -174,7 +174,13 @@ class TypingApp {
             startBtn.addEventListener('click', async () => {
                 startBtn.disabled = true;
                 const success = await this.loadQuestions(this.currentCategoryId);
-                if (success) { this.prepareReady(); }
+if (success) { 
+                    // [追加] Googleに開始を報告
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'typing_start', { 'category_id': this.currentCategoryId });
+                    }
+                    this.prepareReady(); 
+                }
                 startBtn.disabled = false;
             });
         }
@@ -458,6 +464,15 @@ class TypingApp {
             const rank = this.getRank(score);
             
             if (resScore) resScore.innerText = score; 
+
+            if (typeof gtag === 'function') {
+                gtag('event', 'typing_complete', {
+                    'score': score,
+                    'rank': rank,
+                    'category_id': this.currentCategoryId
+                });
+            }
+
             if (resRank) { 
                 resRank.innerText = rank; 
                 resRank.style.color = "var(--accent)"; 
