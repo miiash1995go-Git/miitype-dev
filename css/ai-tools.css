@@ -119,53 +119,38 @@ body.portal-page .tool-card {
 
 /* --- 2. スマホサイズ調整 (768px以下) --- */
 @media (max-width: 768px) {
-    /* すべてのグリッドを 1列 に強制変更 */
+    /* [最重要] PC版の4列・3列設定を、詳細度を合わせて1列に強制リセット */
     body.portal-page article.static-page--wide .category-grid,
     body.portal-page article.static-page--wide .tools-comparison-grid,
-    body.portal-page .comparison-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
+    body.portal-page article.static-page .comparison-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important; /* 縦1列を確定 */
+        gap: 20px !important;
+        width: 100% !important;
     }
 
-    /* お悩みリスト：左右余白を最小化して文字幅を確保 */
+    /* 各カードの横幅を100%に広げる */
+    .tool-card, .category-card {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* お悩みリスト：左右余白を最小化 */
     .user-voices-container {
-        padding-top: 20px;
-        padding-right: 15px;
-        padding-bottom: 20px;
-        padding-left: 15px;
-        margin-bottom: 25px;
+        padding-top: 20px !important;
+        padding-right: 15px !important;
+        padding-bottom: 20px !important;
+        padding-left: 15px !important;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+        max-width: 100% !important;
     }
 
-    /* リスト項目：アイコンと文字の距離を詰める */
-    .voice-list li {
-        padding-left: 28px;
-        font-size: 0.92rem;
-        margin-bottom: 12px;
-        line-height: 1.6;
-    }
-
-    /* プロンプト例文：黒い箱の余白を最適化 */
+    /* 例文ボックスも横幅いっぱい */
     .example-box {
-        padding-top: 22px;
-        padding-right: 18px;
-        padding-bottom: 22px;
-        padding-left: 18px;
-        font-size: 0.88rem;
-    }
-
-    /* AIツールカード：スマホでの高さを抑える */
-    .tool-card {
-        padding-top: 20px;
-        padding-right: 15px;
-        padding-bottom: 20px;
-        padding-left: 15px;
-    }
-    
-    .tool-body {
-        margin-bottom: 15px;
+        padding: 20px 15px !important;
     }
 }
-
 /* --- 3. 超小型デバイス調整 (600px以下) --- */
 @media (max-width: 600px) {
     /* 下部ボタン群を縦並びにして、指で押しやすくする */
