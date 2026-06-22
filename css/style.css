@@ -60,52 +60,74 @@ header {
     align-items: center;
 }
 
-/* --- 1. グローバルナビゲーション：チップ型デザイン --- */
-.nav-menu {
-    margin: 10px 0 10px 0; /* 垂直方向を圧縮 */
+/* --- 1. グローバルナビゲーション：チップ型（カプセル）デザイン --- */
+/* セレクタを詳細に記述し、!important なしで優先順位を確保 */
+body.portal-page .nav-menu {
+    margin-top: 10px;
+    margin-right: 0;
+    margin-bottom: 15px;
+    margin-left: 0;
     display: flex;
     gap: 8px;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.nav-menu a {
+body.portal-page .nav-menu a {
     color: #57606f; 
     text-decoration: none;
     font-size: 0.85rem;
-    font-weight: bold;
-    padding: 8px 16px; 
-    background: #f1f2f6;
-    border: 1px solid #dfe4ea;
-    border-radius: 20px; 
+    font-weight: 700;
+    padding-top: 8px;
+    padding-right: 18px;
+    padding-bottom: 8px;
+    padding-left: 18px;
+    background-color: #f1f2f6;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-style: solid;
+    border-color: #dfe4ea;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
     transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
     display: inline-block;
 }
 
-.nav-menu a:hover {
-    color: white;
-    background: var(--accent); 
-    border-color: var(--accent);
+body.portal-page .nav-menu a:hover {
+    color: #ffffff;
+    background-color: var(--accent); 
+    border-top-color: var(--accent);
+    border-right-color: var(--accent);
+    border-bottom-color: var(--accent);
+    border-left-color: var(--accent);
     transform: translateY(-2px); 
-    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+    box-shadow: 0px 4px 12px rgba(52, 152, 219, 0.2);
 }
 
 /* --- 2. ロゴ・ヘッダーエリア：絶対センター保持デザイン --- */
-header .logo {
+body.portal-page header .logo {
     display: flex;
     align-items: center;
     width: 100%;
     max-width: 1000px;
-    margin: 5px auto; /* 垂直方向を圧縮 */
+    margin-top: 5px;
+    margin-right: auto;
+    margin-bottom: 10px;
+    margin-left: auto;
+    text-decoration: none;
 }
 
-.logo-spacer { flex: 1; } /* 左側の空き */
-.logo-center { flex: 0 0 auto; display: flex; justify-content: center; } /* ロゴ本体 */
-.logo-right { flex: 1; display: flex; align-items: center; justify-content: flex-start; } /* 右側テキスト */
+.logo-spacer { flex: 1; }
+.logo-center { flex: 0 0 auto; display: flex; justify-content: center; }
+.logo-right { flex: 1; display: flex; align-items: center; justify-content: flex-start; }
 
 .header-logo-img {
-    height: 60px !important; /* ノートPCに最適な高さ */
-    width: auto !important;
+    height: 60px;
+    width: auto;
     display: block;
 }
 
@@ -113,7 +135,9 @@ header .logo {
     color: var(--accent);
     font-size: 1.1rem;
     font-weight: 800;
-    border-left: 2px solid #ddd;
+    border-left-width: 2px;
+    border-left-style: solid;
+    border-left-color: #dddddd;
     margin-left: 20px;
     padding-left: 20px;
     line-height: 1.2;
@@ -138,14 +162,39 @@ body.game-body .nav-menu { margin: 5px 0 5px 0 !important; }
 body.game-body header .logo { margin: 0 auto !important; }
 body.game-body .ad-container-top { margin: 2px auto !important; } /* 練習画面のみさらに圧縮 */
 
-/* スマホ対応 */
+/* --- 3. スマホ表示：構造の最適化（詳細度による上書き） --- */
 @media (max-width: 768px) {
-    .nav-menu a { padding: 6px 12px; font-size: 0.8rem; }
-    header .logo { justify-content: center; }
-    .logo-spacer { display: none; }
-    .logo-right { flex: 0 0 auto; }
-    .header-logo-img { height: 45px !important; }
-    .logo-subtext { font-size: 0.9rem; margin-left: 10px; padding-left: 10px; }
+    /* ナビゲーションのスマホ向け圧縮 */
+    body.portal-page .nav-menu { margin-top: 5px; margin-bottom: 10px; gap: 6px; }
+    body.portal-page .nav-menu a { 
+        padding-top: 6px; padding-right: 12px; padding-bottom: 6px; padding-left: 12px; 
+        font-size: 0.8rem; 
+    }
+
+    /* 3カラムロゴのスマホ向けリセット：縦並びで中央へ */
+    body.portal-page header .logo {
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+    
+    body.portal-page .logo-spacer { display: none; }
+    body.portal-page .logo-right { flex: 0 0 auto; margin-left: 0; }
+    
+    body.portal-page .logo-subtext {
+        font-size: 0.95rem;
+        border-left-style: none;
+        margin-left: 0;
+        padding-left: 0;
+        text-align: center;
+    }
+    
+    body.portal-page .header-logo-img { height: 45px; }
+
+    /* 横揺れを物理的に禁止 */
+    body { overflow-x: hidden; }
 }
 
 /* --- サイト全体の基本構造 --- */

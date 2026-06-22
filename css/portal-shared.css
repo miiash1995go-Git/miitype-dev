@@ -1,331 +1,272 @@
 /* ============================================================
-   ぱそトレ！ 共通コンポーネント・アルティメット資産 (v19.9.88)
+   ぱそトレ！ 共通コンポーネント・アルティメット資産 (v19.9.92)
    ------------------------------------------------------------
-   【管理・保護対象】
-   1. 記事ページ全体の基本構造 (.static-page)
-   2. 学習ロードマップ・リストUI (a.roadmap-step-item)
-   3. リンク色化け防止 (visited/hover/active 徹底固定)
-   4. 💡 講師のアドバイス・イエローボックス (.instructor-advice)
-   5. 記事本文専用・教材風見出し (.content-body h2 / h3)
-   6. 【追加】比較表・データテーブル (教科書スタイル)
-   7. 【追加】記事内画像・キャプション (影・枠線・自動調整)
-   8. 【追加】パンくずリスト (ピル型モダンデザイン)
+   【管理・保護ルール】
+   1. セレクタに body.portal-page を冠し、!important 依存を脱却。
+   2. 記事構造、ロードマップ、見出し、装飾、スマホ最適化を完全同期。
+   3. AIによる要約・プロパティ結合を禁止し、高密度記述を維持。
    ============================================================ */
 
-/* --- 1. 記事共通：基本コンテナ（通常800px / ワイド1000px対応版） --- */
-.static-page {
-    max-width: 800px !important; /* 基本は読みやすい800px */
-    margin-top: 15px !important;
-    margin-right: auto !important;
-    margin-bottom: 80px !important;
-    margin-left: auto !important;
-    background-color: #ffffff !important;
-    padding-top: 45px !important;
-    padding-right: 60px !important;
-    padding-bottom: 45px !important;
-    padding-left: 60px !important;
-    border-radius: 25px !important;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05) !important;
-    box-sizing: border-box !important;
-    line-height: 1.8 !important;
+/* --- 1. 記事共通：基本コンテナ（詳細度による管理） --- */
+body.portal-page article.static-page {
+    max-width: 800px;
+    margin-top: 15px;
+    margin-right: auto;
+    margin-bottom: 80px;
+    margin-left: auto;
+    background-color: #ffffff;
+    padding-top: 45px;
+    padding-right: 60px;
+    padding-bottom: 45px;
+    padding-left: 60px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    box-shadow: 0px 10px 35px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    line-height: 1.8;
+    position: relative;
+    display: block;
 }
 
-/* ★ワイドレイアウト用の追加クラス：AI活用ページなどで使用★ */
-.static-page.wide-layout {
-    max-width: 1000px !important; /* TOPページと同じ黄金幅 */
+/* ワイドレイアウト：AI活用ページ等（1000pxへの拡張） */
+body.portal-page article.static-page.wide-layout {
+    max-width: 1000px;
 }
 
-/* ワイド版の時だけ、カード同士の間隔を少し広げる調整 */
-.wide-layout .category-grid,
-.wide-layout .tools-comparison-grid {
-    gap: 25px !important;
+/* ワイド版専用の内部グリッド間隔 */
+body.portal-page article.static-page.wide-layout .category-grid,
+body.portal-page article.static-page.wide-layout .tools-comparison-grid {
+    gap: 25px;
 }
 
-/* --- 2. 学習ロードマップ・記事カード構造 --- */
-.roadmap-flow {
-    margin-top: 30px !important;
-    margin-bottom: 30px !important;
-    padding: 0 !important;
-    display: block !important;
+
+/* --- 2. 学習ロードマップ・リスト構造（資産保護：訪問済みリンク対策） --- */
+body.portal-page .roadmap-flow {
+    margin-top: 35px;
+    margin-right: auto;
+    margin-bottom: 35px;
+    margin-left: auto;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    display: block;
 }
 
-.roadmap-step-item {
-    display: flex !important;
-    align-items: center !important;
-    background-color: #ffffff !important;
-    border: 1px solid #eef2f6 !important;
-    border-radius: 18px !important;
-    padding-top: 15px !important;
-    padding-right: 25px !important;
-    padding-bottom: 15px !important;
-    padding-left: 25px !important;
-    margin-bottom: 18px !important;
-    text-decoration: none !important;
-    position: relative !important;
-    overflow: hidden !important;
-    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.03) !important;
+body.portal-page .roadmap-step-item {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-style: solid;
+    border-color: #eef2f6;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    padding-top: 18px;
+    padding-right: 28px;
+    padding-bottom: 18px;
+    padding-left: 28px;
+    margin-bottom: 18px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.03);
 }
 
-/* 訪問済みリンクの色化け（紫色化）を全方位で禁止 */
-.roadmap-step-item, 
-.roadmap-step-item:link, 
-.roadmap-step-item:visited, 
-.roadmap-step-item:hover, 
-.roadmap-step-item:active {
-    color: inherit !important;
+/* 訪問済みリンクの色化け防止：ここはブラウザの仕様上 !important を残す */
+body.portal-page .roadmap-step-item, 
+body.portal-page .roadmap-step-item:link, 
+body.portal-page .roadmap-step-item:visited, 
+body.portal-page .roadmap-step-item:hover, 
+body.portal-page .roadmap-step-item:active {
+    color: #2c3e50 !important;
 }
 
-.roadmap-step-item:hover {
-    transform: translateX(8px) !important;
-    border-color: #3498db !important;
-    box-shadow: 0 10px 25px rgba(52, 152, 219, 0.1) !important;
+body.portal-page .roadmap-step-item:hover {
+    transform: translateX(10px);
+    border-top-color: #3498db;
+    border-right-color: #3498db;
+    border-bottom-color: #3498db;
+    border-left-color: #3498db;
+    box-shadow: 0px 12px 25px rgba(52, 152, 219, 0.12);
 }
 
-/* カード左側のアクセント垂直線：::beforeで管理 */
-.roadmap-step-item::before {
-    content: "" !important;
-    position: absolute !important;
-    left: 0 !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    width: 6px !important;
-    background-color: #f1f2f6 !important;
+/* カード左側のアクセント垂直線（疑似要素 ::before） */
+body.portal-page .roadmap-step-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background-color: #f1f2f6;
+    z-index: 1;
 }
 
-/* ステップ別の垂直線カラー */
-.step-zero::before { background-color: #f39c12 !important; }
-.active-step::before { background-color: #3498db !important; }
+/* ステップ別カラー：詳細度を確保 */
+body.portal-page .roadmap-step-item.step-zero::before { background-color: #f39c12 !important; }
+body.portal-page .roadmap-step-item.active-step::before { background-color: #3498db !important; }
 
 /* STEPバッジ（丸アイコン部分） */
-.step-number-badge {
-    flex-shrink: 0 !important;
-    width: 65px !important;
-    height: 65px !important;
-    background-color: #f1f2f6 !important;
-    border-radius: 50% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    margin-right: 25px !important;
-    z-index: 2 !important;
+body.portal-page .step-number-badge {
+    flex-shrink: 0;
+    width: 68px;
+    height: 68px;
+    background-color: #f1f2f6;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 25px;
+    z-index: 2;
 }
-.step-number-badge .label { font-size: 0.65rem !important; font-weight: bold !important; color: #7f8c8d !important; }
-.step-number-badge .num { font-size: 1.4rem !important; font-weight: 800 !important; color: #2c3e50 !important; }
-.step-zero .num { color: #e67e22 !important; }
-.active-step .num { color: #3498db !important; }
+body.portal-page .step-number-badge .label { font-size: 0.65rem; font-weight: 800; color: #7f8c8d; letter-spacing: 0.05em; }
+body.portal-page .step-number-badge .num { font-size: 1.5rem; font-weight: 900; color: #2c3e50; }
+body.portal-page .step-zero .num { color: #e67e22; }
+body.portal-page .active-step .num { color: #3498db; }
 
-/* カード内：コンテンツエリア */
-.step-content { flex: 1 !important; text-align: left !important; }
-.step-content h3 { 
-    margin-top: 0 !important;
-    margin-right: 0 !important;
-    margin-bottom: 4px !important;
-    margin-left: 0 !important;
-    font-size: 1.15rem !important; 
-    font-weight: 800 !important; 
-    color: #2c3e50 !important;
-    border: none !important; 
-    padding: 0 !important; 
+/* カード内テキスト */
+body.portal-page .step-content { flex: 1; text-align: left; }
+body.portal-page .step-content h3 { 
+    margin-top: 0; margin-bottom: 5px; font-size: 1.18rem; font-weight: 800; color: #2c3e50; border: none; padding: 0;
 }
-/* 見出し装飾の干渉を徹底リセット */
-.step-content h3::before, .step-content h3::after { display: none !important; }
-.step-content p { margin: 0 !important; font-size: 0.88rem !important; color: #666 !important; line-height: 1.5 !important; }
+/* 記事本文用スタイルの干渉をリセット */
+body.portal-page .step-content h3::before, 
+body.portal-page .step-content h3::after { display: none; }
 
-/* カード内：ボタン */
-.step-action-btn {
-    background-color: #f1f2f6 !important;
-    padding-top: 8px !important;
-    padding-right: 18px !important;
-    padding-bottom: 8px !important;
-    padding-left: 18px !important;
-    border-radius: 20px !important;
-    font-size: 0.85rem !important;
-    font-weight: bold !important;
-    color: #57606f !important;
-    margin-left: 20px !important;
-    white-space: nowrap !important;
-    transition: background-color 0.2s, color 0.2s !important;
+body.portal-page .step-content p { margin: 0; font-size: 0.9rem; color: #666666; line-height: 1.6; }
+
+/* カード内ボタン */
+body.portal-page .step-action-btn {
+    background-color: #f1f2f6;
+    padding-top: 10px; padding-right: 22px; padding-bottom: 10px; padding-left: 22px;
+    border-radius: 25px; font-size: 0.85rem; font-weight: 800; color: #57606f; margin-left: 20px; white-space: nowrap;
+    transition: background-color 0.2s, color 0.2s;
 }
-.roadmap-step-item:hover .step-action-btn {
-    background-color: #3498db !important;
-    color: #ffffff !important;
+body.portal-page .roadmap-step-item:hover .step-action-btn {
+    background-color: #3498db;
+    color: #ffffff;
 }
 
-/* --- 3. 💡 講師のアドバイス（教材風ヘッダー強化） --- */
-.instructor-advice {
-    background-color: #fff9e6 !important;
-    border-left: 5px solid #f39c12 !important;
-    padding-top: 20px !important;
-    padding-right: 25px !important;
-    padding-bottom: 20px !important;
-    padding-left: 25px !important;
-    border-radius: 8px !important;
-    margin-top: 25px !important;
-    margin-bottom: 25px !important;
-    font-size: 0.95rem !important;
-    line-height: 1.8 !important;
-    color: #444444 !important;
+
+/* --- 3. 💡 講師のアドバイス・イエローボックス（安定構造） --- */
+body.portal-page .instructor-advice {
+    background-color: #fff9e6;
+    border-left: 5px solid #f39c12;
+    padding-top: 22px; padding-right: 30px; padding-bottom: 22px; padding-left: 30px;
+    border-radius: 12px; margin-top: 30px; margin-bottom: 30px;
+    font-size: 0.98rem; line-height: 1.8; color: #333333; box-sizing: border-box;
 }
-.instructor-advice b, .instructor-advice strong {
-    display: inline-block !important;
-    color: #e67e22 !important;
-    font-weight: 800 !important;
-    margin-bottom: 8px !important;
-    padding-bottom: 2px !important;
-    border-bottom: 1px solid rgba(230, 126, 34, 0.3) !important;
+body.portal-page .instructor-advice b, 
+body.portal-page .instructor-advice strong {
+    display: inline-block;
+    color: #e67e22;
+    font-weight: 900;
+    margin-bottom: 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(230, 126, 34, 0.25);
 }
+
 
 /* --- 4. 記事本文エリア (.content-body) 専用・教材風見出し --- */
-
-.content-body h2 {
-    display: block !important;
-    padding-top: 8px !important;
-    padding-right: 0 !important;
-    padding-bottom: 12px !important;
-    padding-left: 18px !important;
-    background: transparent !important;
-    color: #2c3e50 !important;
-    font-size: 1.55rem !important;
-    font-weight: 800 !important;
-    margin-top: 70px !important;
-    margin-bottom: 30px !important;
-    border-left: 7px solid #3498db !important;
-    border-bottom: 1px solid #dddddd !important;
-    border-top: none !important;
-    border-right: none !important;
+body.portal-page .content-body h2 {
+    display: block; position: relative;
+    padding-top: 10px; padding-right: 0; padding-bottom: 15px; padding-left: 22px;
+    color: #2c3e50; font-size: 1.6rem; font-weight: 900;
+    margin-top: 75px; margin-bottom: 35px;
+    border-left: 8px solid #3498db; border-bottom: 1px solid #eeeeee;
 }
-.content-body h2::before {
-    content: "📘" !important;
-    margin-right: 12px !important;
-}
+body.portal-page .content-body h2::before { content: "📘"; margin-right: 12px; font-weight: normal; }
 
-.content-body h3 {
-    display: block !important;
-    margin-top: 45px !important;
-    margin-bottom: 20px !important;
-    padding-top: 0 !important;
-    padding-right: 0 !important;
-    padding-bottom: 10px !important;
-    padding-left: 0 !important;
-    color: #2c3e50 !important;
-    font-size: 1.25rem !important;
-    font-weight: 700 !important;
-    border-bottom: 1px solid #eeeeee !important;
-    border-left: none !important;
-    border-top: none !important;
-    border-right: none !important;
+body.portal-page .content-body h3 {
+    display: block; position: relative;
+    padding-top: 0; padding-right: 0; padding-bottom: 12px; padding-left: 0;
+    margin-top: 50px; margin-bottom: 22px;
+    color: #2c3e50; font-size: 1.3rem; font-weight: 800;
+    border-bottom: 2px solid #f1f2f6;
 }
-.content-body h3::before, .content-body h3::after { display: none !important; }
+/* 過去のドット設定を確実に消去 */
+body.portal-page .content-body h3::before, 
+body.portal-page .content-body h3::after { display: none; }
 
-/* --- 5. 本文内の詳細装飾：テーブル・画像・パンくず (NEW!) --- */
+
+/* --- 5. 本文詳細装飾：テーブル・画像・パンくず --- */
 
 /* 比較表 (Table) */
-.content-body table {
-    width: 100% !important;
-    border-collapse: separate !important;
-    border-spacing: 0 !important;
-    margin-top: 25px !important;
-    margin-bottom: 25px !important;
-    border: 1px solid #eeeeee !important;
-    border-radius: 12px !important;
-    overflow: hidden !important;
-    font-size: 0.92rem !important;
+body.portal-page .content-body table {
+    width: 100%; border-collapse: separate; border-spacing: 0;
+    margin-top: 30px; margin-bottom: 30px;
+    border: 1px solid #eeeeee; border-radius: 15px; overflow: hidden;
+    font-size: 0.95rem; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.02);
 }
-.content-body table th {
-    background-color: #f8f9fa !important;
-    color: #2c3e50 !important;
-    font-weight: 800 !important;
-    padding: 15px !important;
-    border-bottom: 2px solid #eeeeee !important;
-    text-align: left !important;
+body.portal-page .content-body table th { 
+    background-color: #f9fafb; color: #2c3e50; font-weight: 900;
+    padding-top: 16px; padding-right: 20px; padding-bottom: 16px; padding-left: 20px;
+    border-bottom: 2px solid #eeeeee; text-align: left; 
 }
-.content-body table td {
-    padding: 15px !important;
-    border-bottom: 1px solid #f1f2f6 !important;
-    background-color: #ffffff !important;
+body.portal-page .content-body table td { 
+    padding-top: 16px; padding-right: 20px; padding-bottom: 16px; padding-left: 20px;
+    border-bottom: 1px solid #f1f2f6; background-color: #ffffff; color: #4b5563;
 }
-.content-body table tr:last-child td { border-bottom: none !important; }
+body.portal-page .content-body table tr:last-child td { border-bottom: none; }
 
-/* 記事内画像 (Article Image) */
-.article-image {
-    margin-top: 35px !important;
-    margin-bottom: 35px !important;
-    text-align: center !important;
-    display: block !important;
+/* 記事内画像 */
+body.portal-page .article-image { margin-top: 45px; margin-bottom: 45px; text-align: center; display: block; }
+body.portal-page .article-image img {
+    max-width: 100%; height: auto; border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08); border: 1px solid #eeeeee;
 }
-.article-image img {
-    max-width: 100% !important;
-    height: auto !important;
-    border-radius: 12px !important;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08) !important;
-    border: 1px solid #eeeeee !important;
-}
-.image-caption {
-    display: block !important;
-    font-size: 0.85rem !important;
-    color: #888888 !important;
-    margin-top: 12px !important;
-    font-weight: bold !important;
-}
+body.portal-page .image-caption { display: block; margin-top: 15px; font-size: 0.88rem; color: #94a3b8; font-weight: 800; }
 
-/* ピル型パンくずリスト (Breadcrumb) */
-.breadcrumb {
-    margin-bottom: 30px !important;
-    font-size: 0.82rem !important;
-    color: #7f8c8d !important;
-    background-color: #f8f9fa !important;
-    padding: 10px 22px !important;
-    border-radius: 35px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    border: 1px solid #f1f2f6 !important;
+/* モダン・パンくずリスト */
+body.portal-page .breadcrumb {
+    margin-bottom: 35px; font-size: 0.82rem; color: #64748b; background-color: #f8f9fa;
+    padding-top: 10px; padding-right: 24px; padding-bottom: 10px; padding-left: 24px;
+    border-radius: 40px; display: inline-flex; align-items: center; gap: 12px; border: 1px solid #f1f2f6;
 }
-.breadcrumb a {
-    color: #3498db !important;
-    text-decoration: none !important;
-    font-weight: bold !important;
-}
-.breadcrumb-separator { color: #cccccc !important; font-size: 0.7rem !important; }
+body.portal-page .breadcrumb a { color: #3498db; text-decoration: none; font-weight: 900; transition: color 0.2s; }
+body.portal-page .breadcrumb a:hover { color: #2c3e50; text-decoration: underline; }
 
-/* --- スマホ表示での「無駄な余白」を徹底削除 --- */
+
+/* --- 6. スマホ表示：余白の完全最適化（詳細度による管理） --- */
 @media (max-width: 768px) {
-    /* 外枠の余白を最小限（15px/12px）に */
-    .static-page {
-        padding-top: 20px !important;
-        padding-right: 12px !important;
-        padding-bottom: 30px !important;
-        padding-left: 12px !important;
-        margin-top: 10px !important; /* 上の隙間を消す */
-        border-radius: 15px !important; /* 角丸も少し控えめに */
+    body.portal-page { overflow-x: hidden; }
+
+    /* JSがリセットをかける前提でのマージン最適化 */
+    body.portal-page #app {
+        width: 100%; margin-top: 0; margin-right: auto; margin-bottom: 0; margin-left: auto; padding: 0;
     }
 
-    /* 大見出しの上のバカ高い余白をカット（70px → 35px） */
-    .content-body h2 {
-        font-size: 1.35rem !important;
-        padding-top: 5px !important;
-        padding-bottom: 8px !important;
-        padding-left: 15px !important;
-        margin-top: 35px !important; 
-        margin-bottom: 20px !important;
+    /* 外枠：スマホで左右の「無駄な余白」を殺して文字を主役にする */
+    body.portal-page article.static-page {
+        padding-top: 25px; padding-right: 15px; padding-bottom: 45px; padding-left: 15px;
+        margin-top: 0; margin-bottom: 30px; border-radius: 0; box-shadow: none; width: 100%;
     }
 
-    /* 中見出しの余白もカット */
-    .content-body h3 {
-        font-size: 1.15rem !important;
-        margin-top: 30px !important;
-        margin-bottom: 12px !important;
+    /* 文字表示領域の最大化 */
+    body.portal-page .content-body { width: 100%; margin: 0; padding: 0; }
+
+    /* 見出し：スマホでの圧迫感の解消 */
+    body.portal-page .content-body h2 { font-size: 1.4rem; margin-top: 45px; margin-bottom: 20px; padding-left: 15px; border-left-width: 6px; }
+    body.portal-page .content-body h3 { font-size: 1.2rem; margin-top: 35px; padding-bottom: 8px; }
+
+    /* 比較表：横スクロールを強制的に有効化 */
+    body.portal-page .content-body table {
+        display: block; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch;
     }
 
-    /* 講師のアドバイス枠の左右パディングを削る */
-    .instructor-advice {
-        padding: 15px !important;
-        margin: 20px 0 !important;
+    /* 講師のアドバイス：スマホ用パディング */
+    body.portal-page .instructor-advice {
+        padding-top: 18px; padding-right: 20px; padding-bottom: 18px; padding-left: 20px;
+        margin-top: 20px; margin-bottom: 20px;
     }
-}
-    
-    /* スマホでのテーブル：横スクロールを許可 */
-    .content-body table { display: block !important; overflow-x: auto !important; white-space: nowrap !important; -webkit-overflow-scrolling: touch !important; }
 }

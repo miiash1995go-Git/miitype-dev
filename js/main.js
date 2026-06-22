@@ -124,15 +124,18 @@ class TypingApp {
     handleResize() {
         const app = document.getElementById('app');
         if (!app) return;
-        if (document.body.classList.contains('portal-page') || window.innerWidth <= 1024) {
-            app.style.position = "relative";
-            app.style.left = "auto";
-            app.style.top = "auto";
-            app.style.transform = "none";
+
+        // 【修正】スマホ（1024px以下）のときは、JSによる位置指定を完全にクリアする
+        if (window.innerWidth <= 1024) {
+            app.style.position = "";
+            app.style.left = "";
+            app.style.top = "";
+            app.style.transform = "";
             app.style.margin = "0 auto";
             return;
         }
-        // 常に実寸で表示し、上の余白を0にすることで、広告が見えるようにする
+
+        // PC・タブレット（1025px以上）の時だけJSで位置を固定する
         app.style.position = "absolute";
         app.style.left = "50%"; 
         app.style.top = "0"; 
