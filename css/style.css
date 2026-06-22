@@ -62,7 +62,7 @@ header {
 
 /* --- 1. グローバルナビゲーション：チップ型（カプセル）デザイン --- */
 /* セレクタを詳細に記述し、!important なしで優先順位を確保 */
-body.portal-page .nav-menu {
+.nav-menu {
     margin-top: 10px;
     margin-right: 0;
     margin-bottom: 15px;
@@ -73,7 +73,7 @@ body.portal-page .nav-menu {
     flex-wrap: wrap;
 }
 
-body.portal-page .nav-menu a {
+.nav-menu a {
     color: #57606f; 
     text-decoration: none;
     font-size: 0.85rem;
@@ -109,7 +109,7 @@ body.portal-page .nav-menu a:hover {
 }
 
 /* --- 2. ロゴ・ヘッダーエリア：絶対センター保持デザイン --- */
-body.portal-page header .logo {
+header .logo {
     display: flex;
     align-items: center;
     width: 100%;
