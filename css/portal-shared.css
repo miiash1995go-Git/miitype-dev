@@ -7,15 +7,16 @@
    3. AIによる要約・プロパティ結合を禁止し、高密度記述を維持。
    ============================================================ */
 
-/* --- 1. 記事共通：基本コンテナ（詳細度による管理） --- */
+/* --- 1. 記事共通：基本コンテナ（BEM構造・詳細度による多重管理） --- */
+/* Block: .c-article-container (static-pageからBEM移行準備) */
 body.portal-page article.static-page {
     max-width: 800px;
-    margin-top: 15px;
+    margin-top: 0px; /* 上余白の累積をリセット */
     margin-right: auto;
     margin-bottom: 80px;
     margin-left: auto;
     background-color: #ffffff;
-    padding-top: 45px;
+    padding-top: 35px; /* 45pxから35pxへ微調整（謎の余白対策） */
     padding-right: 60px;
     padding-bottom: 45px;
     padding-left: 60px;
@@ -30,17 +31,23 @@ body.portal-page article.static-page {
     display: block;
 }
 
-/* ワイドレイアウト：AI活用ページ等（1000pxへの拡張） */
-body.portal-page article.static-page.wide-layout {
+/* Modifier: .static-page--wide (1000px版) */
+/* 詳細度を body.portal-page と重ねることで !important なしで 800px を上書き */
+body.portal-page article.static-page.static-page--wide {
     max-width: 1000px;
 }
 
-/* ワイド版専用の内部グリッド間隔 */
-body.portal-page article.static-page.wide-layout .category-grid,
-body.portal-page article.static-page.wide-layout .tools-comparison-grid {
-    gap: 25px;
+/* 内部タイトルのマージン最適化（上余白の最終解決） */
+body.portal-page .static-page h1.page-title {
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
+/* ワイド版専用の内部グリッド（詳細度を維持） */
+body.portal-page article.static-page--wide .category-grid,
+body.portal-page article.static-page--wide .tools-comparison-grid {
+    gap: 25px;
+}
 
 /* --- 2. 学習ロードマップ・リスト構造（資産保護：訪問済みリンク対策） --- */
 body.portal-page .roadmap-flow {
