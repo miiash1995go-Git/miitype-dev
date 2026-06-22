@@ -156,14 +156,18 @@ header .logo {
     white-space: nowrap;
 }
 
-/* --- 3. 広告枠（上部）：基本設定 --- */
+/* --- 3. 広告枠（上部）：垂直余白の最小化 --- */
 .ad-container-top {
-    display: block !important;
+    display: block;
     width: 100%;
     max-width: 1000px;
     height: 90px;
-    margin: 5px auto 5px auto !important; /* 下の余白を10pxから5pxへ圧縮 */
-    background: transparent !important;
+    margin-top: 5px;
+    margin-right: auto;
+    /* 下の余白を 5px から 0px へ */
+    margin-bottom: 0px; 
+    margin-left: auto;
+    background-color: transparent;
     position: relative;
     z-index: 10001;
 }

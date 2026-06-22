@@ -9,14 +9,16 @@
 
 /* --- 1. 記事共通：基本コンテナ（BEM構造・詳細度による多重管理） --- */
 /* Block: .c-article-container (static-pageからBEM移行準備) */
+
 body.portal-page article.static-page {
     max-width: 800px;
-    margin-top: 0px; /* 上余白の累積をリセット */
+    margin-top: 0px; 
     margin-right: auto;
     margin-bottom: 80px;
     margin-left: auto;
     background-color: #ffffff;
-    padding-top: 35px; /* 45pxから35pxへ微調整（謎の余白対策） */
+    /* 垂直パディングを 45px から 20px へ圧縮 */
+    padding-top: 20px; 
     padding-right: 60px;
     padding-bottom: 45px;
     padding-left: 60px;
@@ -37,10 +39,13 @@ body.portal-page article.static-page.static-page--wide {
     max-width: 1000px;
 }
 
-/* 内部タイトルのマージン最適化（上余白の最終解決） */
-body.portal-page .static-page h1.page-title {
-    margin-top: 10px;
-    margin-bottom: 20px;
+/* ページタイトル（H1）の余白リセット：詳細度を高めて制御 */
+body.portal-page article.static-page h1.page-title {
+    margin-top: 0px; 
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    line-height: 1.2;
 }
 
 /* ワイド版専用の内部グリッド（詳細度を維持） */
@@ -234,12 +239,35 @@ body.portal-page .article-image img {
 }
 body.portal-page .image-caption { display: block; margin-top: 15px; font-size: 0.88rem; color: #94a3b8; font-weight: 800; }
 
-/* モダン・パンくずリスト */
-body.portal-page .breadcrumb {
-    margin-bottom: 35px; font-size: 0.82rem; color: #64748b; background-color: #f8f9fa;
-    padding-top: 10px; padding-right: 24px; padding-bottom: 10px; padding-left: 24px;
-    border-radius: 40px; display: inline-flex; align-items: center; gap: 12px; border: 1px solid #f1f2f6;
+/* モダン・パンくずリスト（垂直余白の削減） */
+body.portal-page article.static-page .breadcrumb {
+    /* 下余白を 35px から 15px へ圧縮 */
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 15px; 
+    margin-left: 0px;
+    font-size: 0.82rem;
+    color: #64748b;
+    background-color: #f8f9fa;
+    padding-top: 8px;
+    padding-right: 20px;
+    padding-bottom: 8px;
+    padding-left: 20px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-style: solid;
+    border-color: #f1f2f6;
 }
+
 body.portal-page .breadcrumb a { color: #3498db; text-decoration: none; font-weight: 900; transition: color 0.2s; }
 body.portal-page .breadcrumb a:hover { color: #2c3e50; text-decoration: underline; }
 
