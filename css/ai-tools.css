@@ -37,8 +37,22 @@
 .comparison-item { background: white; padding: 20px; border-radius: 15px; border: 1px solid #ffe8cc; }
 .comparison-item h4 { color: #e67e22; margin-bottom: 10px; }
 
-/* 5. 4大ツール比較グリッド */
-.tools-comparison-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 30px; }
+
+/* 5. 4大ツール比較グリッド：ワイド幅に合わせて最適化 */
+.tools-comparison-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important; /* 4枚を横に並べる */
+    gap: 20px !important;
+    margin-top: 30px !important;
+}
+
+/* お悩み解決の3枚カードも横並びを強化 */
+.wide-layout .category-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px !important;
+}
+
 .tool-card {
     background: white; border-radius: 20px; padding: 25px 20px; border: 1px solid #eee;
     display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s;
@@ -72,4 +86,31 @@
 @media (max-width: 600px) {
     .summary-nav { flex-direction: column; }
     .summary-nav .btn-main, .summary-nav .summary-btn { width: 100% !important; min-width: unset; margin-bottom: 10px; }
+}
+
+/* --- AIツールページ専用：スマホ最適化 --- */
+@media (max-width: 768px) {
+    /* お悩みリストの箱：左右の30pxパディングを半分に */
+    .user-voices-container {
+        padding: 15px 12px !important;
+        margin-bottom: 25px !important;
+    }
+
+    /* リストのインデントを詰めて横幅を稼ぐ */
+    .voice-list li {
+        padding-left: 25px !important;
+        font-size: 0.9rem !important;
+        margin-bottom: 12px !important;
+    }
+
+    /* プロンプト例文の黒い箱：文字が詰まらないように余白を最適化 */
+    .example-box {
+        padding: 20px 15px !important;
+        font-size: 0.88rem !important;
+    }
+
+    /* 4大ツールの比較カード：高さを抑える */
+    .tool-card {
+        padding: 20px 15px !important;
+    }
 }

@@ -12,9 +12,9 @@
    8. 【追加】パンくずリスト (ピル型モダンデザイン)
    ============================================================ */
 
-/* --- 1. 記事共通：基本コンテナ（呼吸と余白の死守） --- */
+/* --- 1. 記事共通：基本コンテナ（通常800px / ワイド1000px対応版） --- */
 .static-page {
-    max-width: 800px !important;
+    max-width: 800px !important; /* 基本は読みやすい800px */
     margin-top: 15px !important;
     margin-right: auto !important;
     margin-bottom: 80px !important;
@@ -25,9 +25,20 @@
     padding-bottom: 45px !important;
     padding-left: 60px !important;
     border-radius: 25px !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05) !important;
     box-sizing: border-box !important;
     line-height: 1.8 !important;
+}
+
+/* ★ワイドレイアウト用の追加クラス：AI活用ページなどで使用★ */
+.static-page.wide-layout {
+    max-width: 1000px !important; /* TOPページと同じ黄金幅 */
+}
+
+/* ワイド版の時だけ、カード同士の間隔を少し広げる調整 */
+.wide-layout .category-grid,
+.wide-layout .tools-comparison-grid {
+    gap: 25px !important;
 }
 
 /* --- 2. 学習ロードマップ・記事カード構造 --- */
@@ -279,14 +290,41 @@
 }
 .breadcrumb-separator { color: #cccccc !important; font-size: 0.7rem !important; }
 
-/* --- 6. レスポンシブ最適化 --- */
+/* --- スマホ表示での「無駄な余白」を徹底削除 --- */
 @media (max-width: 768px) {
-    .static-page { padding-top: 30px !important; padding-right: 20px !important; padding-bottom: 30px !important; padding-left: 20px !important; }
-    .roadmap-step-item { padding: 15px !important; flex-wrap: wrap !important; }
-    .step-number-badge { width: 50px !important; height: 50px !important; margin-right: 15px !important; }
-    .step-content { width: calc(100% - 70px) !important; }
-    .step-action-btn { width: 100% !important; margin-left: 0 !important; margin-top: 15px !important; text-align: center !important; }
-    .content-body h2 { font-size: 1.35rem !important; padding-left: 15px !important; }
+    /* 外枠の余白を最小限（15px/12px）に */
+    .static-page {
+        padding-top: 20px !important;
+        padding-right: 12px !important;
+        padding-bottom: 30px !important;
+        padding-left: 12px !important;
+        margin-top: 10px !important; /* 上の隙間を消す */
+        border-radius: 15px !important; /* 角丸も少し控えめに */
+    }
+
+    /* 大見出しの上のバカ高い余白をカット（70px → 35px） */
+    .content-body h2 {
+        font-size: 1.35rem !important;
+        padding-top: 5px !important;
+        padding-bottom: 8px !important;
+        padding-left: 15px !important;
+        margin-top: 35px !important; 
+        margin-bottom: 20px !important;
+    }
+
+    /* 中見出しの余白もカット */
+    .content-body h3 {
+        font-size: 1.15rem !important;
+        margin-top: 30px !important;
+        margin-bottom: 12px !important;
+    }
+
+    /* 講師のアドバイス枠の左右パディングを削る */
+    .instructor-advice {
+        padding: 15px !important;
+        margin: 20px 0 !important;
+    }
+}
     
     /* スマホでのテーブル：横スクロールを許可 */
     .content-body table { display: block !important; overflow-x: auto !important; white-space: nowrap !important; -webkit-overflow-scrolling: touch !important; }
