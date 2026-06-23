@@ -277,6 +277,24 @@ body.portal-page .content-body h2 {
 }
 body.portal-page .content-body h2::before { content: "📘"; margin-right: 12px; font-weight: normal; }
 
+/* === [追加] 枠内H2の自動余白制御およびModifier (v19.9.100) === */
+/* 装飾枠（recommended-box / priority-box）の先頭にあるH2の上余白を10pxへ自動リセット */
+body.portal-page article.static-page .content-body .recommended-box > h2.section-title:first-child,
+body.portal-page article.static-page .content-body .priority-box > h2.section-title:first-child {
+    margin-top: 10px;
+    margin-right: 0px;
+    margin-bottom: 25px;
+    margin-left: 0px;
+}
+
+/* 明示的にクラスで指定する場合の上書き定義 */
+body.portal-page article.static-page .content-body h2.section-title--compact {
+    margin-top: 10px;
+    margin-right: 0px;
+    margin-bottom: 25px;
+    margin-left: 0px;
+}
+
 body.portal-page .content-body h3 {
     display: block; position: relative;
     padding-top: 0; padding-right: 0; padding-bottom: 12px; padding-left: 0;
