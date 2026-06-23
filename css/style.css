@@ -331,10 +331,11 @@ main {
 
 footer { 
     margin-top: auto; 
-    padding: 15px 0 25px 0; 
-    border-top: none !important; /* ← 画像に映っていた線を物理的に削除 */
+    padding: 30px 0 40px 0; 
+    /* 修正：フッターを白いエリアとして復活させる（ただし線は出さない） */
+    background-color: #ffffff !important; 
+    border-top: none !important; 
     text-align: center; 
-    background-color: transparent !important; /* ← これも透明にします */
     flex-shrink: 0; 
     width: 100%; 
     display: flex; 
