@@ -21,11 +21,15 @@ html { scroll-behavior: smooth; }
 
 body { 
     margin: 0; padding: 0; font-family: 'Noto Sans JP', sans-serif; 
-    /* 背景色を #f8f9fa から #ffffff (白) に変更 */
-    background-color: #ffffff; 
+    background-color: #ffffff; /* サイト全体の底を白に固定 */
     color: var(--primary); 
     line-height: 1.6; min-height: 100vh; width: 100vw; 
     display: flex; flex-direction: column; overflow-x: hidden; 
+}
+
+/* ポータルページ（読みもの）の背景は必ず白に */
+body.portal-page {
+    background-color: #ffffff !important;
 }
 
 /* 画面タイプ別レイアウト */
@@ -159,19 +163,17 @@ header .logo {
 }
 
 .ad-container-top {
-    display: flex;           /* 内容を中央に寄せるための設定 */
-    justify-content: center; /* 左右中央寄せ */
-    align-items: center;     /* 上下中央寄せ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     max-width: 1000px;
-    /* 修正：高さを auto にし、広告がない時は 0px にしてバーを消滅させる */
-    height: auto;
-    min-height: 0px; 
+    height: 90px;             /* 高さを90pxに固定して復活させる */
     margin-top: 0px;
     margin-right: auto;
-    margin-bottom: 20px;     /* 記事との距離を適正に保つ */
+    margin-bottom: 20px;      /* 下の要素との距離 */
     margin-left: auto;
-    background-color: transparent;
+    background-color: #ffffff; /* 背景を白にして「グレーのバー」を上書きして消す */
     position: relative;
     z-index: 10001;
 }
