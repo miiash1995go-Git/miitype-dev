@@ -25,10 +25,14 @@ body.portal-page article.static-page {
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     border-bottom-left-radius: 25px;
-    /* 修正：枠線(border)をすべて削除し、線を消去 */
-    border: none;
-    /* 修正：上にはみ出さない、下方向に自然に落ちる影に調整 */
-    box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.05);
+    border: none; /* 枠線を完全に排除 */
+    
+    /* 
+       【解決策】Spread（4つ目の数値）を「-15px」という大幅なマイナスに設定。
+       これにより影のサイズが本体より小さくなり、上方向への漏れ（線）が100%消失します。
+    */
+    box-shadow: 0px 25px 50px -15px rgba(0, 0, 0, 0.1);
+    
     box-sizing: border-box;
     line-height: 1.8;
     position: relative;
@@ -694,14 +698,15 @@ body.portal-page .breadcrumb a:hover { color: #2c3e50; text-decoration: underlin
     }
 }
 
-/* === 読みものページ専用：不気味なバーを消し、箱を際立たせる設定 === */
+/* === 読みものページ専用：不気味なバーを消し、中央を白く繋げる === */
 body.portal-page {
-    background-color: #f8f9fa; /* ここも目に優しい色に合わせる */
+    background-color: #f1f3f5;
 }
 
-/* 広告枠の背景を白にし、ロゴから記事までを「白の道」で繋いでバーを消滅させます */
+/* 広告枠の背景を「白」にすることで、隙間からグレーの背景が見えるのを防ぎます */
 body.portal-page .ad-container-top {
     background-color: #ffffff;
     height: 90px;
     margin-bottom: 0px;
+    border: none;
 }
