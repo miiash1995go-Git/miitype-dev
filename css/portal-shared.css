@@ -720,18 +720,34 @@ body.portal-page article.static-page {
     display: block;
 }
 
-/* === 読みものページ最終整合：背景とフッターの適正化 === */
+/* === 読みものページ最終整合：全ノイズの根絶設定 (v19.9.116) === */
+
+/* 1. サイトの背景：本番準拠の落ち着いたグレー */
 body.portal-page {
-    background-color: #f1f3f5; /* 左右の余白は落ち着いたグレー */
+    background-color: #f1f3f5 !important;
 }
 
-body.portal-page #app {
-    background-color: transparent !important;
+/* 2. 記事（白い箱）の影を「上」に絶対に漏らさない設定 */
+body.portal-page article.static-page {
+    border: none !important;
+    margin-top: 30px !important;
+    margin-bottom: 0px !important; /* 下の余白は記事側では持たない */
+    /* 影を下方向だけに限定。Spreadを「-20px」にすることで、上側の線を物理的に消去 */
+    box-shadow: 0px 30px 60px -20px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* 読みものページのフッター：線なし、独立した白いエリア */
+/* 3. 読みものページのフッター：記事から完全に独立させ、一番下へ */
 body.portal-page footer {
     background-color: #ffffff !important;
-    border-top: none !important;
-    margin-top: 0;
+    margin-top: 80px !important;  /* 記事とフッターの間にグレーの隙間を強制的に作る */
+    border: none !important;
+    box-shadow: 0px -5px 20px rgba(0, 0, 0, 0.02); /* 上側にうっすら影を出し、背景との境を作る */
+}
+
+/* 4. ヘッダー周りの不純物除去 */
+body.portal-page header, 
+body.portal-page .ad-container-top {
+    background-color: transparent !important;
+    border: none !important;
+    margin-bottom: 0px !important;
 }
