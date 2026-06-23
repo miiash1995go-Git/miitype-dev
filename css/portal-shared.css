@@ -720,40 +720,21 @@ body.portal-page article.static-page {
     display: block;
 }
 
-/* === 読みものページ最終整合：フッター下降とノイズ根絶 (v19.9.118) === */
-
-/* 1. サイトの背景：本番準拠の落ち着いたグレー */
+/* === 読みものページ最終整合：自然な重力による完璧なレイアウト (v19.9.120) === */
 body.portal-page {
-    background-color: #f1f3f5 !important;
+    background-color: #f1f3f5;
 }
 
-/* 2. 絶対配置下で死んでいた「整列機能」を強制再起動 */
-body.portal-page #app {
-    display: flex !important;
-    flex-direction: column !important;
-    min-height: 100vh; /* 画面全体の高さを確保 */
-}
-
-/* 3. メインエリアに「余ったスペースをすべて埋めろ」と命令し、フッターを一番下へ押しやる */
-body.portal-page main {
-    flex: 1 0 auto !important;
-    display: block;
-}
-
-/* 4. 記事（白い箱）の影を「上」に絶対に漏らさない（線の根絶） */
+/* 記事（白い箱）の影を美しく調整 */
 body.portal-page article.static-page {
-    border: none !important;
-    margin-top: 30px !important;
-    margin-bottom: 30px !important;
-    /* 影のハミ出しを物理的に封殺する Spread:-20px 設定 */
-    box-shadow: 0px 25px 50px -20px rgba(0, 0, 0, 0.15) !important;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 80px; /* 記事とフッターの間にグレーの空間を作る */
+    box-shadow: 0px 20px 40px -20px rgba(0, 0, 0, 0.1);
 }
 
-/* 5. 読みものページのフッター：一番下に「白い帯」として独立 */
+/* 読みものページのフッター：線を出さず、記事から独立した白エリアにする */
 body.portal-page footer {
-    background-color: #ffffff !important;
-    margin-top: 80px !important; /* 記事との間にグレーの隙間を作る */
-    border: none !important;
-    padding: 50px 0 !important;
-    box-shadow: 0px -5px 20px rgba(0, 0, 0, 0.02); /* 上側にうっすら影 */
+    margin-top: 0;
+    border-top: none;
 }

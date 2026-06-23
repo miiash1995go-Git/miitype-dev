@@ -117,15 +117,26 @@ class TypingApp {
         }
     }
 
-    /**
-     * handleResize: ノートPCに完全対応させるため、
-     * 「全体縮小(scale)」をやめ、「中央配置のみ」に特化。
+ /**
+     * handleResize: 
+     * 練習画面（game-body）のみ絶対配置で中央固定し、
+     * 読みものページ（portal-page）ではブラウザ標準のレイアウトを維持する。
      */
     handleResize() {
         const app = document.getElementById('app');
         if (!app) return;
 
-        // 【修正】スマホ（1024px以下）のときは、JSによる位置指定を完全にクリアする
+        // 【修正】読みものページ（portal-page）の場合は、JSによる位置指定を一切行わない
+        if (document.body.classList.contains('portal-page')) {
+            app.style.position = "";
+            app.style.left = "";
+            app.style.top = "";
+            app.style.transform = "";
+            app.style.margin = "0 auto";
+            return;
+        }
+
+        // 以下、タイピング練習画面（game-body）専用の処理
         if (window.innerWidth <= 1024) {
             app.style.position = "";
             app.style.left = "";
@@ -135,7 +146,6 @@ class TypingApp {
             return;
         }
 
-        // PC・タブレット（1025px以上）の時だけJSで位置を固定する
         app.style.position = "absolute";
         app.style.left = "50%"; 
         app.style.top = "0"; 
