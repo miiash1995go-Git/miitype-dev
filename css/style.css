@@ -21,7 +21,9 @@ html { scroll-behavior: smooth; }
 
 body { 
     margin: 0; padding: 0; font-family: 'Noto Sans JP', sans-serif; 
-    background-color: var(--bg); color: var(--primary); 
+    /* 背景色を #f8f9fa から #ffffff (白) に変更 */
+    background-color: #ffffff; 
+    color: var(--primary); 
     line-height: 1.6; min-height: 100vh; width: 100vw; 
     display: flex; flex-direction: column; overflow-x: hidden; 
 }
@@ -156,16 +158,18 @@ header .logo {
     white-space: nowrap;
 }
 
-/* --- 3. 広告枠（上部）：垂直余白の最小化 --- */
 .ad-container-top {
-    display: block;
+    display: flex;           /* 内容を中央に寄せるための設定 */
+    justify-content: center; /* 左右中央寄せ */
+    align-items: center;     /* 上下中央寄せ */
     width: 100%;
     max-width: 1000px;
-    height: 90px;
-    margin-top: 5px;
+    /* 修正：高さを auto にし、広告がない時は 0px にしてバーを消滅させる */
+    height: auto;
+    min-height: 0px; 
+    margin-top: 0px;
     margin-right: auto;
-    /* 下の余白を 5px から 0px へ */
-    margin-bottom: 0px; 
+    margin-bottom: 20px;     /* 記事との距離を適正に保つ */
     margin-left: auto;
     background-color: transparent;
     position: relative;

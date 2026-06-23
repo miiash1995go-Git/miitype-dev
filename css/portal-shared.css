@@ -354,6 +354,16 @@ body.portal-page article.static-page .content-body .summary-box h2.section-title
     margin-right: 12px;
 }
 
+/* まとめボックス外の「次へ進む」誘導テキスト */
+body.portal-page .next-step-guide {
+    text-align: center;
+    margin-top: 50px;       /* まとめボックスとの間隔 */
+    margin-bottom: 20px;
+    color: #666;
+    font-weight: 800;
+    font-size: 1rem;
+}
+
 /* 3. まとめ用ナビゲーション：ボタンの共通デザイン */
 body.portal-page .summary-nav {
     display: flex;
