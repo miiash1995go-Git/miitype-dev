@@ -183,6 +183,70 @@ body.portal-page .roadmap-step-item:hover .step-action-btn {
     color: #ffffff;
 }
 
+/* --- 3. プロフィールカード（記事冒頭のアドバイス枠）：移植と垂直余白の極限圧縮 (v19.9.98) --- */
+/* 詳細度を body.portal-page に重ねることで !important なしで位置を確定 */
+body.portal-page .profile-card-horizontal {
+    /* 外側の余白：上を 10px まで圧縮してパンくずに近づける */
+    margin-top: 10px;
+    margin-right: 0px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+    /* 内側の余白：上下を 15px に圧縮（以前の40pxから劇的に削減） */
+    padding-top: 15px;
+    padding-right: 30px;
+    padding-bottom: 15px;
+    padding-left: 30px;
+    background-color: #ffffff;
+    border-left-width: 5px;
+    border-left-style: solid;
+    border-left-color: #3498db; /* var(--accent) */
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-style: solid;
+    border-color: #eeeeee;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    display: block; /* 以前の flex を解除して、見出しと本文を縦に正しく並べる */
+}
+
+/* ボックス内の見出し（h3）の標準余白をリセットして隙間を消す */
+body.portal-page .profile-card-horizontal h3 {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 5px;
+    padding-left: 0px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #2c3e50; /* var(--primary) */
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #f1f2f6;
+    line-height: 1.3;
+}
+
+/* ボックス内のプロフィール本文（p.profile-bio）の余白調整 */
+body.portal-page .profile-card-horizontal .profile-bio {
+    margin-top: 10px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #4b5563;
+}
 
 /* --- 3. 💡 講師のアドバイス・イエローボックス（安定構造） --- */
 body.portal-page .instructor-advice {
