@@ -691,3 +691,16 @@ body.portal-page .breadcrumb a:hover { color: #2c3e50; text-decoration: underlin
         box-sizing: border-box;
     }
 }
+
+/* === 読みものページ専用：不気味なバーを消し、箱を美しく見せる魔法の設定 === */
+/* bodyを白にすることで、透明な広告枠の向こう側に「グレーのバー」が見える現象を根本から解決します */
+body.portal-page {
+    background-color: #ffffff;
+}
+
+/* 広告枠と記事（白い箱）の間の変な隙間・線を物理的に殺す設定 */
+body.portal-page .ad-container-top {
+    margin-bottom: 0px;
+    border: none;
+    box-shadow: none;
+}

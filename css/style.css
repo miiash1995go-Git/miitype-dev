@@ -21,7 +21,8 @@ html { scroll-behavior: smooth; }
 
 body { 
     margin: 0; padding: 0; font-family: 'Noto Sans JP', sans-serif; 
-    background-color: #ffffff; /* サイト全体の底を白に固定 */
+    /* サイト本来の薄いグレー (#f8f9fa) に戻します */
+    background-color: var(--bg); 
     color: var(--primary); 
     line-height: 1.6; min-height: 100vh; width: 100vw; 
     display: flex; flex-direction: column; overflow-x: hidden; 
@@ -168,12 +169,13 @@ header .logo {
     align-items: center;
     width: 100%;
     max-width: 1000px;
-    height: 90px;             /* 高さを90pxに固定して復活させる */
+    height: 90px;           /* 高さを90px確保（位置を固定） */
     margin-top: 0px;
     margin-right: auto;
-    margin-bottom: 20px;      /* 下の要素との距離 */
+    margin-bottom: 0px;     /* 下の要素との隙間をゼロにする */
     margin-left: auto;
-    background-color: #ffffff; /* 背景を白にして「グレーのバー」を上書きして消す */
+    background-color: transparent; /* 透明に戻します */
+    border: none;           /* 細い線が出るのを防止 */
     position: relative;
     z-index: 10001;
 }
