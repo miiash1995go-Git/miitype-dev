@@ -17,7 +17,6 @@ body.portal-page article.static-page {
     margin-bottom: 80px;
     margin-left: auto;
     background-color: #ffffff;
-    /* 垂直パディングを 45px から 20px へ圧縮 */
     padding-top: 20px; 
     padding-right: 60px;
     padding-bottom: 45px;
@@ -26,7 +25,10 @@ body.portal-page article.static-page {
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     border-bottom-left-radius: 25px;
-    box-shadow: 0px 20px 40px -10px rgba(0, 0, 0, 0.05);
+    /* 修正：枠線(border)をすべて削除し、線を消去 */
+    border: none;
+    /* 修正：上にはみ出さない、下方向に自然に落ちる影に調整 */
+    box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.05);
     box-sizing: border-box;
     line-height: 1.8;
     position: relative;
@@ -692,15 +694,14 @@ body.portal-page .breadcrumb a:hover { color: #2c3e50; text-decoration: underlin
     }
 }
 
-/* === 読みものページ専用：境界線の完全密着化設定 === */
+/* === 読みものページ専用：不気味なバーを消し、箱を際立たせる設定 === */
 body.portal-page {
-    background-color: #ffffff;
+    background-color: #f8f9fa; /* ここも目に優しい色に合わせる */
 }
 
-/* 広告枠の高さを固定し、記事との隙間を「マイナス」で食い込ませて線を完全に殺す */
+/* 広告枠の背景を白にし、ロゴから記事までを「白の道」で繋いでバーを消滅させます */
 body.portal-page .ad-container-top {
-    height: 90px;
-    margin-bottom: -1px; /* 1pxだけ記事に重ねて、隙間（線）を消滅させる */
-    border: none;
     background-color: #ffffff;
+    height: 90px;
+    margin-bottom: 0px;
 }
