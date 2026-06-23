@@ -720,21 +720,35 @@ body.portal-page article.static-page {
     display: block;
 }
 
-/* === 読みものページ最終整合：自然な重力による完璧なレイアウト (v19.9.120) === */
+/* === 読みものページ最終整合：絶対配置解除とフッター下降 (v19.9.121) === */
+
+/* 1. サイトの背景：落ち着いたグレー */
 body.portal-page {
-    background-color: #f1f3f5;
+    background-color: #f1f3f5 !important;
 }
 
-/* 記事（白い箱）の影を美しく調整 */
+/* 2. 【超重要】JSの影響を完全に殺し、#appを普通の箱に戻す */
+body.portal-page #app {
+    position: static !important;  /* 宙に浮かせない（絶対配置解除） */
+    transform: none !important;
+    margin: 0 auto !important;
+    width: 100%;
+    max-width: 1000px;
+    display: block !important;    /* 縦に順番に並べる */
+    min-height: 100vh;
+}
+
+/* 3. 記事（白い箱）の影と位置 */
 body.portal-page article.static-page {
+    margin-top: 30px;
+    margin-bottom: 80px;
     border: none;
-    margin-top: 10px;
-    margin-bottom: 80px; /* 記事とフッターの間にグレーの空間を作る */
-    box-shadow: 0px 20px 40px -20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 25px 50px -20px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* 読みものページのフッター：線を出さず、記事から独立した白エリアにする */
-body.portal-page footer {
-    margin-top: 0;
-    border-top: none;
+/* 4. まとめボタンエリア（ここだけのサイズ調整） */
+body.portal-page .summary-nav .btn-main,
+body.portal-page .summary-nav .summary-btn {
+    padding: 12px 24px !important; /* ヘッダーボタンに影響を与えない */
+    min-width: 160px;
 }
