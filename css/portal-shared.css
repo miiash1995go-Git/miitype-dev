@@ -349,6 +349,21 @@ body.portal-page article.static-page .content-body .summary-box h2.section-title
     margin-right: 12px;
 }
 
+/* === [追加] 蛍光ペン（マーカー）スタイル (v19.9.103) === */
+body.portal-page .marker-yellow {
+    /* 下半分に黄色を引く、リアルな蛍光ペンの表現 */
+    background-image: linear-gradient(transparent 60%, #ffff7f 60%);
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-size: auto;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    padding-top: 0px;
+    padding-right: 2px;
+    padding-bottom: 0px;
+    padding-left: 2px;
+}
+
 body.portal-page .content-body h3 {
     display: block; position: relative;
     padding-top: 0; padding-right: 0; padding-bottom: 12px; padding-left: 0;
