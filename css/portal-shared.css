@@ -703,17 +703,35 @@ body.portal-page {
     background-color: #f1f3f5;
 }
 
-/* 記事（白い箱）の影が上に漏れるのを防ぎつつ、フッターとの境界を綺麗にする */
 body.portal-page article.static-page {
-    border: none !important;
+    max-width: 800px;
     margin-top: 30px; 
-    margin-bottom: 60px; /* 記事とフッターの間にグレーの空間を確保 */
-    /* 影を下方向だけに限定。上側には1ピクセルも漏らさない設定 */
-    box-shadow: 0px 20px 40px -20px rgba(0, 0, 0, 0.15) !important;
+    margin-right: auto;
+    margin-bottom: 80px !important; /* ←【重要】これで記事とフッターを離します */
+    margin-left: auto;
+    background-color: #ffffff;
+    border-radius: 25px;
+    border: none !important;
+    /* 影を下にずらし、上側への漏れを Spread -20px で完全に封殺 */
+    box-shadow: 0px 25px 50px -20px rgba(0, 0, 0, 0.15) !important;
+    box-sizing: border-box;
+    line-height: 1.8;
+    position: relative;
+    display: block;
 }
 
-/* 読みものページのフッターも、記事と同じ白にして清潔感を出す */
+/* === 読みものページ最終整合：背景とフッターの適正化 === */
+body.portal-page {
+    background-color: #f1f3f5; /* 左右の余白は落ち着いたグレー */
+}
+
+body.portal-page #app {
+    background-color: transparent !important;
+}
+
+/* 読みものページのフッター：線なし、独立した白いエリア */
 body.portal-page footer {
     background-color: #ffffff !important;
-    box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.02); /* 上方向にうっすら影を出し、背景との境を作る */
+    border-top: none !important;
+    margin-top: 0;
 }

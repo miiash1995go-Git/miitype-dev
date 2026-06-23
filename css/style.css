@@ -57,15 +57,12 @@ body.portal-page #app {
 }
 
 header { 
-    flex-shrink: 0; 
-    text-align: center; 
     margin-bottom: 0px !important; 
     width: 100%; 
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* 修正：完全に透明にし、背後のグレーに馴染ませる */
-    background-color: transparent !important; 
+    background-color: transparent !important; /* 透明にする */
     border: none !important;
 }
 
@@ -182,8 +179,7 @@ header .logo {
     max-width: 1000px;
     height: 90px;
     margin: 0 auto !important;
-    /* 修正：白い背景を完全に廃止し、透明にします */
-    background-color: transparent !important;
+    background-color: transparent !important; /* 透明にする */
     border: none !important;
 }
 
@@ -331,12 +327,10 @@ main {
 
 footer { 
     margin-top: auto; 
-    padding: 30px 0 40px 0; 
-    /* 修正：フッターを白いエリアとして復活させる（ただし線は出さない） */
-    background-color: #ffffff !important; 
-    border-top: none !important; 
+    padding: 40px 0; 
+    background-color: #ffffff !important; /* 白くする */
+    border-top: none !important;           /* あの線を物理的に削除 */
     text-align: center; 
-    flex-shrink: 0; 
     width: 100%; 
     display: flex; 
     flex-direction: column; 
