@@ -64,13 +64,14 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: transparent !important; /* 透明にする */
+    /* 修正：完全に透明にし、背後のグレーに馴染ませる */
+    background-color: transparent !important; 
     border: none !important;
 }
 
-/* ロゴのエリアだけを「白」にし、ここがヘッダーであると認識させます */
 header .logo {
-    background-color: #ffffff;
+    /* 修正：ここも透明に。これでタイピング画面の白い帯が消えます */
+    background-color: transparent !important;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -181,7 +182,8 @@ header .logo {
     max-width: 1000px;
     height: 90px;
     margin: 0 auto !important;
-    background-color: transparent !important; /* 白を廃止、透明に戻す */
+    /* 修正：白い背景を完全に廃止し、透明にします */
+    background-color: transparent !important;
     border: none !important;
 }
 
@@ -317,21 +319,22 @@ main {
 .btn-toggle.active { background: var(--accent); color: white; border-color: var(--accent); }
 
 
-/* 結果画面下の広告枠（保護） */
-.ad-container-bottom { display: block !important; width: 100%; max-width: 728px; height: 60px !important; margin: 10px auto 0 auto !important; background: white !important; border-radius: 10px; opacity: 1 !important; }
+.ad-container-bottom { 
+    display: block !important; 
+    width: 100%; 
+    max-width: 728px; 
+    height: 60px !important; 
+    margin: 10px auto 0 auto !important; 
+    background-color: transparent !important; /* 謎の「白いバー」の犯人。透明にします */
+    border: none !important;
+}
 
-/* --- フッター：境界線を消去し、背景をサイト全体と同期させる (v19.9.112) --- */
 footer { 
     margin-top: auto; 
-    padding-top: 15px;
-    padding-right: 0px;
-    padding-bottom: 25px;
-    padding-left: 0px;
-    /* 修正：不気味な線の原因である border-top を削除 */
-    border-top-style: none !important; 
+    padding: 15px 0 25px 0; 
+    border-top: none !important; /* ← 画像に映っていた線を物理的に削除 */
     text-align: center; 
-    /* 修正：白いバーの原因である background を透明(transparent)に。bodyのグレーに馴染ませます */
-    background-color: transparent !important; 
+    background-color: transparent !important; /* ← これも透明にします */
     flex-shrink: 0; 
     width: 100%; 
     display: flex; 

@@ -698,20 +698,22 @@ body.portal-page .breadcrumb a:hover { color: #2c3e50; text-decoration: underlin
     }
 }
 
-/* === 読みものページ専用：不純な線とバーを完全に抹殺する設定 (v19.9.113) === */
+/* === 読みものページ専用：デザインの最終整合性設定 (v19.9.114) === */
 body.portal-page {
-    background-color: #f1f3f5; /* 本番サイト準拠の落ち着いたグレー */
+    background-color: #f1f3f5;
 }
 
-/* 全体を包む器を透明にし、背景色（グレー）が綺麗に透けるようにする */
-body.portal-page #app {
-    background-color: transparent !important;
-}
-
-/* 記事（白い箱）の影が「上（ロゴ側）」に漏れて線に見えるのを物理的にカット */
+/* 記事（白い箱）の影が上に漏れるのを防ぎつつ、フッターとの境界を綺麗にする */
 body.portal-page article.static-page {
     border: none !important;
     margin-top: 30px; 
-    /* 4つ目の数値（spread）を「-20px」に。影を本体より小さくし、上側への漏れをゼロにします */
+    margin-bottom: 60px; /* 記事とフッターの間にグレーの空間を確保 */
+    /* 影を下方向だけに限定。上側には1ピクセルも漏らさない設定 */
     box-shadow: 0px 20px 40px -20px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 読みものページのフッターも、記事と同じ白にして清潔感を出す */
+body.portal-page footer {
+    background-color: #ffffff !important;
+    box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.02); /* 上方向にうっすら影を出し、背景との境を作る */
 }
