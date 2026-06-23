@@ -170,3 +170,29 @@ body.portal-page .tool-card {
         box-sizing: border-box;
     }
 }
+
+/* ============================================================
+   AI活用ページ専用：垂直余白の最終調整 (新規追加)
+   ============================================================ */
+
+/* 1. お悩み解決ボックス内の上部パディングを 15px まで削る */
+body.portal-page .static-page--wide .recommended-box {
+    margin-top: 20px;
+    margin-right: 0px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+    padding-top: 15px; /* ここで中の上余白を劇的に詰める */
+    padding-right: 30px;
+    padding-bottom: 40px;
+    padding-left: 30px;
+}
+
+/* 2. ボックス内の見出し（H2）の巨大な上余白 (75px) を 10px にリセット */
+body.portal-page .static-page--wide .recommended-box h2.section-title {
+    margin-top: 10px;
+    margin-right: 0px;
+    margin-bottom: 25px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
