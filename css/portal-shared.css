@@ -397,6 +397,27 @@ body.portal-page .summary-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0px 4px 12px rgba(52, 152, 219, 0.2);
 }
+
+/* まとめエリア内のボタン限定：横並びを実現するために余白を最適化 */
+body.portal-page .summary-nav .btn-main,
+body.portal-page .summary-nav .summary-btn {
+    padding-top: 12px;
+    padding-right: 20px;    /* 50pxから20pxへ絞り、横並びのスペースを確保 */
+    padding-bottom: 12px;
+    padding-left: 20px;
+    margin: 0;              /* 余計なマージンを排除 */
+    flex: 0 1 auto;         /* 内容に合わせて伸縮を許可 */
+    min-width: 160px;       /* ボタンの最低幅を揃えてガタつきを防止 */
+    font-size: 0.95rem;     /* わずかにフォントを調整 */
+    white-space: nowrap;    /* ボタン内での改行を絶対禁止 */
+}
+
+/* メインボタンの !important 設定を詳細度で上書き */
+body.portal-page article.static-page .content-body .summary-nav .btn-main {
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+}
+
 /* === [追加] 蛍光ペン（マーカー）スタイル (v19.9.103) === */
 body.portal-page .marker-yellow {
     /* 下半分に黄色を引く、リアルな蛍光ペンの表現 */
