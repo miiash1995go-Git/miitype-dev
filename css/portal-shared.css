@@ -720,3 +720,22 @@ body.portal-page article.static-page {
     box-shadow: none !important; /* 一時的に影を消して真っ白にします */
     border: none !important;
 }
+
+/* === [検証用] 要素の境界線を色で炙り出す設定 === */
+
+/* 1. ヘッダーエリアを「ピンク」にする */
+body.portal-page header {
+    background-color: #ffcccc !important;
+}
+
+/* 2. 広告枠（繋ぎ目）を「黄緑」にする */
+body.portal-page .ad-container-top {
+    background-color: #ccffcc !important;
+    border: 2px solid red !important; /* 広告枠自体に赤い線を引く */
+}
+
+/* 3. 記事（白い箱）を「水色」にする */
+body.portal-page article.static-page {
+    background-color: #ccccff !important;
+    box-shadow: none !important; /* 影を消して純粋な境界を見る */
+}
