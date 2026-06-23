@@ -56,15 +56,28 @@ body.portal-page #app {
     max-width: 1000px; 
 }
 
-/* --- ロゴ・ヘッダーエリアの修正 --- */
 header { 
     flex-shrink: 0; 
     text-align: center; 
-    margin-bottom: 20px !important; 
+    /* 下の余白を 0 にし、記事との「隙間」を消去 */
+    margin-bottom: 0px !important; 
     width: 100%; 
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* 【最重要】袋の底に引かれた線を消し、袋を「透明」にします */
+    border-bottom: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+/* ロゴのエリアだけを「白」にし、ここがヘッダーであると認識させます */
+header .logo {
+    background-color: #ffffff;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
 }
 
 /* --- 1. グローバルナビゲーション：チップ型デザイン (v19.9.96) --- */

@@ -698,44 +698,26 @@ body.portal-page .breadcrumb a:hover { color: #2c3e50; text-decoration: underlin
     }
 }
 
-/* === 読みものページ専用：不気味なバーを消し、中央を白く繋げる === */
+/* === 読みものページ専用：ヘッダーの長大化による線を根絶する (v19.9.111) === */
+
+/* 1. サイトの背景を本番準拠の落ち着いたグレーに */
 body.portal-page {
     background-color: #f1f3f5;
 }
 
-/* 広告枠の背景を「白」にすることで、隙間からグレーの背景が見えるのを防ぎます */
+/* 2. 記事（白い箱）の影が「上（ロゴ側）」に漏れて線に見えるのを物理的にカット */
+body.portal-page article.static-page {
+    border: none !important;
+    /* 4つ目の数値（spread）を「-20px」に。影を本体より小さくし、上側への漏れをゼロにします */
+    box-shadow: 0px 20px 40px -20px rgba(0, 0, 0, 0.15) !important;
+    /* ロゴから少し離して配置し、不自然な接触を避ける */
+    margin-top: 30px; 
+}
+
+/* 3. ヘッダー内の広告枠は、背景に溶け込ませて「境界線」をなくす */
 body.portal-page .ad-container-top {
-    background-color: #ffffff;
+    background-color: transparent;
+    border: none !important;
     height: 90px;
     margin-bottom: 0px;
-    border: none;
-}
-/* === [検証] 隙間をすべてゼロにする設定 === */
-body.portal-page header {
-    margin-bottom: 0px !important;
-}
-
-body.portal-page article.static-page {
-    margin-top: 0px !important;
-    box-shadow: none !important; /* 一時的に影を消して真っ白にします */
-    border: none !important;
-}
-
-/* === [検証用] 要素の境界線を色で炙り出す設定 === */
-
-/* 1. ヘッダーエリアを「ピンク」にする */
-body.portal-page header {
-    background-color: #ffcccc !important;
-}
-
-/* 2. 広告枠（繋ぎ目）を「黄緑」にする */
-body.portal-page .ad-container-top {
-    background-color: #ccffcc !important;
-    border: 2px solid red !important; /* 広告枠自体に赤い線を引く */
-}
-
-/* 3. 記事（白い箱）を「水色」にする */
-body.portal-page article.static-page {
-    background-color: #ccccff !important;
-    box-shadow: none !important; /* 影を消して純粋な境界を見る */
 }
