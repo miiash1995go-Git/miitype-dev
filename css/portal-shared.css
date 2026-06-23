@@ -340,8 +340,8 @@ body.portal-page article.static-page .content-body .summary-box h2.section-title
 body.portal-page article.static-page .content-body .summary-box h2.section-title--summary::before {
     content: "";
     display: inline-block;
-    width: 42px;  /* アイコンの横幅（画像サイズに合わせて微調整してください） */
-    height: 42px; /* アイコンの縦幅 */
+    width: 48px;  /* アイコンの横幅（画像サイズに合わせて微調整してください） */
+    height: 48px; /* アイコンの縦幅 */
     background-image: url('../img/summary-icon.png'); /* セットした画像パス */
     background-size: contain;
     background-repeat: no-repeat;
