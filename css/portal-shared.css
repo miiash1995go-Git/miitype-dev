@@ -301,9 +301,9 @@ body.portal-page article.static-page .content-body h2.section-title--compact {
     margin-left: 0px;
 }
 
-/* === [追加] まとめセクション専用コンポーネント (v19.9.102) === */
+/* === [更新] まとめセクション専用コンポーネント：枠線強化＆ボタン共通化 (v19.9.107) === */
 
-/* 1. まとめボックス外枠：画像に基づいた薄青の境界線と角丸 */
+/* 1. まとめボックス外枠：枠線を 2px から 3px へ強化 */
 body.portal-page article.static-page .content-body .summary-box {
     margin-top: 60px;
     margin-right: 0px;
@@ -313,20 +313,20 @@ body.portal-page article.static-page .content-body .summary-box {
     padding-right: 40px;
     padding-bottom: 35px;
     padding-left: 40px;
-    background-color: #f8fbfe; /* 極めて薄い青の背景 */
-    border-top-width: 2px;
-    border-right-width: 2px;
-    border-bottom-width: 2px;
-    border-left-width: 2px;
+    background-color: #f8fbfe;
+    border-top-width: 3px;     /* 3pxに強化 */
+    border-right-width: 3px;   /* 3pxに強化 */
+    border-bottom-width: 3px;  /* 3pxに強化 */
+    border-left-width: 3px;    /* 3pxに強化 */
     border-style: solid;
-    border-color: #d6e9f8;    /* 画像に合わせた水色の線 */
+    border-color: #d6e9f8;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
     border-bottom-left-radius: 30px;
 }
 
-/* 2. まとめ用見出し：アイコン画像を表示し、センター配置を確定 */
+/* 2. まとめ用見出し：アイコン画像を表示し、センター配置 */
 body.portal-page article.static-page .content-body .summary-box h2.section-title--summary {
     text-align: center;
     display: flex;
@@ -337,24 +337,66 @@ body.portal-page article.static-page .content-body .summary-box h2.section-title
     margin-bottom: 25px;
     margin-left: 0px;
     padding-left: 0px;
-    border-left-style: none; /* 青い左線を完全に消去 */
-    border-bottom-style: none; /* 下線を消去してスッキリさせる */
+    border-left-style: none;
+    border-bottom-style: none;
     font-size: 1.5rem;
 }
 
-/* 📘の代わりに画像アイコンをセット */
 body.portal-page article.static-page .content-body .summary-box h2.section-title--summary::before {
     content: "";
     display: inline-block;
-    width: 48px;  /* アイコンの横幅（画像サイズに合わせて微調整してください） */
-    height: 48px; /* アイコンの縦幅 */
-    background-image: url('../img/summary-icon.png'); /* セットした画像パス */
+    width: 42px;
+    height: 42px;
+    background-image: url('../img/summary-icon.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     margin-right: 12px;
 }
 
+/* 3. まとめ用ナビゲーション：ボタンの共通デザイン */
+body.portal-page .summary-nav {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 30px;
+}
+
+/* サブボタン（白背景に青枠）の定義：どのページでもボタンとして表示されるようにする */
+body.portal-page .summary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    padding-right: 24px;
+    padding-bottom: 10px;
+    padding-left: 24px;
+    background-color: #ffffff;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-style: solid;
+    border-color: #3498db; /* var(--accent) */
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+body.portal-page .summary-btn:hover {
+    background-color: #3498db;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 12px rgba(52, 152, 219, 0.2);
+}
 /* === [追加] 蛍光ペン（マーカー）スタイル (v19.9.103) === */
 body.portal-page .marker-yellow {
     /* 下半分に黄色を引く、リアルな蛍光ペンの表現 */
