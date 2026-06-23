@@ -698,26 +698,20 @@ body.portal-page .breadcrumb a:hover { color: #2c3e50; text-decoration: underlin
     }
 }
 
-/* === 読みものページ専用：ヘッダーの長大化による線を根絶する (v19.9.111) === */
-
-/* 1. サイトの背景を本番準拠の落ち着いたグレーに */
+/* === 読みものページ専用：不純な線とバーを完全に抹殺する設定 (v19.9.113) === */
 body.portal-page {
-    background-color: #f1f3f5;
+    background-color: #f1f3f5; /* 本番サイト準拠の落ち着いたグレー */
 }
 
-/* 2. 記事（白い箱）の影が「上（ロゴ側）」に漏れて線に見えるのを物理的にカット */
+/* 全体を包む器を透明にし、背景色（グレー）が綺麗に透けるようにする */
+body.portal-page #app {
+    background-color: transparent !important;
+}
+
+/* 記事（白い箱）の影が「上（ロゴ側）」に漏れて線に見えるのを物理的にカット */
 body.portal-page article.static-page {
     border: none !important;
+    margin-top: 30px; 
     /* 4つ目の数値（spread）を「-20px」に。影を本体より小さくし、上側への漏れをゼロにします */
     box-shadow: 0px 20px 40px -20px rgba(0, 0, 0, 0.15) !important;
-    /* ロゴから少し離して配置し、不自然な接触を避ける */
-    margin-top: 30px; 
-}
-
-/* 3. ヘッダー内の広告枠は、背景に溶け込ませて「境界線」をなくす */
-body.portal-page .ad-container-top {
-    background-color: transparent;
-    border: none !important;
-    height: 90px;
-    margin-bottom: 0px;
 }

@@ -59,16 +59,13 @@ body.portal-page #app {
 header { 
     flex-shrink: 0; 
     text-align: center; 
-    /* 下の余白を 0 にし、記事との「隙間」を消去 */
     margin-bottom: 0px !important; 
     width: 100%; 
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* 【最重要】袋の底に引かれた線を消し、袋を「透明」にします */
-    border-bottom: none !important;
-    box-shadow: none !important;
-    background-color: transparent !important;
+    background-color: transparent !important; /* 透明にする */
+    border: none !important;
 }
 
 /* ロゴのエリアだけを「白」にし、ここがヘッダーであると認識させます */
@@ -182,15 +179,10 @@ header .logo {
     align-items: center;
     width: 100%;
     max-width: 1000px;
-    height: 90px;           /* 高さを90px確保（位置を固定） */
-    margin-top: 0px;
-    margin-right: auto;
-    margin-bottom: 0px;     /* 下の要素との隙間をゼロにする */
-    margin-left: auto;
-    background-color: transparent; /* 透明に戻します */
-    border: none;           /* 細い線が出るのを防止 */
-    position: relative;
-    z-index: 10001;
+    height: 90px;
+    margin: 0 auto !important;
+    background-color: transparent !important; /* 白を廃止、透明に戻す */
+    border: none !important;
 }
 
 /* --- 4. タイピング画面（game-body）専用：1画面に収めるための強制圧縮 --- */
@@ -328,8 +320,26 @@ main {
 /* 結果画面下の広告枠（保護） */
 .ad-container-bottom { display: block !important; width: 100%; max-width: 728px; height: 60px !important; margin: 10px auto 0 auto !important; background: white !important; border-radius: 10px; opacity: 1 !important; }
 
-/* フッター：コンパクトで清潔感のあるデザイン */
-footer { margin-top: auto; padding: 15px 0 25px 0; border-top: 1px solid #eee; text-align: center; background: white; flex-shrink: 0; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+/* --- フッター：境界線を消去し、背景をサイト全体と同期させる (v19.9.112) --- */
+footer { 
+    margin-top: auto; 
+    padding-top: 15px;
+    padding-right: 0px;
+    padding-bottom: 25px;
+    padding-left: 0px;
+    /* 修正：不気味な線の原因である border-top を削除 */
+    border-top-style: none !important; 
+    text-align: center; 
+    /* 修正：白いバーの原因である background を透明(transparent)に。bodyのグレーに馴染ませます */
+    background-color: transparent !important; 
+    flex-shrink: 0; 
+    width: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+}
+
 .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 3px; width: 100%; }
 .footer-links a { color: var(--primary); text-decoration: none; font-size: 0.8rem; }
 .footer-links a:hover { color: var(--accent); }
