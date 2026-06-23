@@ -45,13 +45,27 @@ body.portal-page article.static-page h1.page-title {
     margin-right: 0px;
     margin-bottom: 10px;
     margin-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     line-height: 1.2;
+    font-weight: 900;
 }
 
 /* ワイド版専用の内部グリッド（詳細度を維持） */
 body.portal-page article.static-page--wide .category-grid,
 body.portal-page article.static-page--wide .tools-comparison-grid {
     gap: 25px;
+}
+
+/* ページタイトル（H1）の上余白をゼロにしてパンくずへ近づける */
+body.portal-page h1.page-title {
+    margin-top: 0px; 
+    margin-right: 0px;
+    margin-bottom: 15px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    line-height: 1.2;
 }
 
 /* --- 2. 学習ロードマップ・リスト構造（資産保護：訪問済みリンク対策） --- */
@@ -267,7 +281,35 @@ body.portal-page article.static-page .breadcrumb {
     border-style: solid;
     border-color: #f1f2f6;
 }
+/* --- パンくずリスト本体：垂直余白を10pxに極限圧縮 --- */
+body.portal-page .breadcrumb {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px; /* ここで下の隙間を10pxに固定 */
+    margin-left: 0px;
+    font-size: 0.82rem;
+    color: #64748b;
+    background-color: #f8f9fa;
+    padding-top: 10px;
+    padding-right: 24px;
+    padding-bottom: 10px;
+    padding-left: 24px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-style: solid;
+    border-color: #f1f2f6;
+}
 
+/* ここから下に、あなたが今持っている「body.portal-page .breadcrumb a」が続く形にします */
 body.portal-page .breadcrumb a { color: #3498db; text-decoration: none; font-weight: 900; transition: color 0.2s; }
 body.portal-page .breadcrumb a:hover { color: #2c3e50; text-decoration: underline; }
 
