@@ -320,23 +320,33 @@ body.portal-page article.static-page .content-body .summary-box {
     border-bottom-left-radius: 30px;
 }
 
-/* 2. まとめ用見出し：センター配置で余白を最適化 */
+/* 2. まとめ用見出し：アイコン画像を表示し、センター配置を確定 */
 body.portal-page article.static-page .content-body .summary-box h2.section-title--summary {
     text-align: center;
-    margin-top: 0px;        /* 枠内先頭なのでゼロ */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 25px;
     margin-left: 0px;
-    padding-left: 0px;      /* センター寄せのため左パディング解除 */
-    border-left-style: none; /* 左の青線を解除（画像ではアイコンのみを想定） */
+    padding-left: 0px;
+    border-left-style: none; /* 青い左線を完全に消去 */
+    border-bottom-style: none; /* 下線を消去してスッキリさせる */
     font-size: 1.5rem;
 }
 
-/* まとめ見出しのアイコン調整（中央揃えの際、アイコンを文字の前に置く） */
+/* 📘の代わりに画像アイコンをセット */
 body.portal-page article.static-page .content-body .summary-box h2.section-title--summary::before {
+    content: "";
     display: inline-block;
+    width: 42px;  /* アイコンの横幅（画像サイズに合わせて微調整してください） */
+    height: 42px; /* アイコンの縦幅 */
+    background-image: url('../img/summary-icon.png'); /* セットした画像パス */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     margin-right: 12px;
-    content: "📘";
 }
 
 body.portal-page .content-body h3 {
