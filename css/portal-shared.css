@@ -26,7 +26,7 @@ body.portal-page article.static-page {
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     border-bottom-left-radius: 25px;
-    box-shadow: 0px 10px 35px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 20px 40px -10px rgba(0, 0, 0, 0.05);
     box-sizing: border-box;
     line-height: 1.8;
     position: relative;
@@ -692,15 +692,15 @@ body.portal-page .breadcrumb a:hover { color: #2c3e50; text-decoration: underlin
     }
 }
 
-/* === 読みものページ専用：不気味なバーを消し、箱を美しく見せる魔法の設定 === */
-/* bodyを白にすることで、透明な広告枠の向こう側に「グレーのバー」が見える現象を根本から解決します */
+/* === 読みものページ専用：境界線の完全密着化設定 === */
 body.portal-page {
     background-color: #ffffff;
 }
 
-/* 広告枠と記事（白い箱）の間の変な隙間・線を物理的に殺す設定 */
+/* 広告枠の高さを固定し、記事との隙間を「マイナス」で食い込ませて線を完全に殺す */
 body.portal-page .ad-container-top {
-    margin-bottom: 0px;
+    height: 90px;
+    margin-bottom: -1px; /* 1pxだけ記事に重ねて、隙間（線）を消滅させる */
     border: none;
-    box-shadow: none;
+    background-color: #ffffff;
 }
