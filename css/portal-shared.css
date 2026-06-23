@@ -285,8 +285,14 @@ body.portal-page article.static-page .content-body .priority-box > h2.section-ti
     margin-right: 0px;
     margin-bottom: 25px;
     margin-left: 0px;
+    padding-left: 0px;      /* 左パディングを解除 */
+    border-left-style: none; /* 左の青線を解除 */
 }
-
+/* [追加] 枠内の見出しからは📘マークを完全に非表示にする */
+body.portal-page article.static-page .content-body .recommended-box > h2.section-title::before,
+body.portal-page article.static-page .content-body .priority-box > h2.section-title::before {
+    display: none;
+}
 /* 明示的にクラスで指定する場合の上書き定義 */
 body.portal-page article.static-page .content-body h2.section-title--compact {
     margin-top: 10px;
