@@ -584,4 +584,37 @@ body.portal-page .breadcrumb a:hover { color: #2c3e50; text-decoration: underlin
         padding-top: 18px; padding-right: 20px; padding-bottom: 18px; padding-left: 20px;
         margin-top: 20px; margin-bottom: 20px;
     }
+/* --- ロードマップ（roadmap-step-item）のスマホ最適化：縦並び化 --- */
+    body.portal-page .roadmap-step-item {
+        flex-direction: column;    /* 横並びを解除して縦並びへ */
+        align-items: flex-start;   /* 左寄せに整列 */
+        padding-top: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        padding-left: 25px;        /* ::beforeの線の分を確保 */
+    }
+
+    /* STEPバッジ（丸アイコン）の調整 */
+    body.portal-page .step-number-badge {
+        margin-right: 0px;
+        margin-bottom: 15px;       /* 下に余白を作って本文と離す */
+        width: 50px;               /* 少しコンパクトに */
+        height: 50px;
+    }
+    body.portal-page .step-number-badge .num { font-size: 1.2rem; }
+
+    /* 本文エリアの調整 */
+    body.portal-page .step-content h3 {
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
+
+    /* ボタンの調整：スマホでは横幅いっぱいに広げて押しやすくする */
+    body.portal-page .step-action-btn {
+        margin-left: 0px;
+        margin-top: 15px;
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
 }
