@@ -19,6 +19,29 @@
 .voice-list li { position: relative; padding-left: 35px; margin-bottom: 15px; font-size: 0.95rem; line-height: 1.7; }
 .voice-list li::before { content: "💬"; position: absolute; left: 0; }
 
+body.portal-page .static-page--wide .category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 30px;
+    margin-right: 0px;
+    margin-bottom: 40px;
+    margin-left: 0px;
+}
+
+body.portal-page .static-page--wide .category-card.static-card {
+    padding-top: 25px;
+    padding-right: 20px;
+    padding-bottom: 25px;
+    padding-left: 20px;
+    min-height: 280px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
 /* 3. プロンプト例文セクション */
 .example-unit { margin-bottom: 40px; }
 .example-box {
@@ -39,15 +62,14 @@
 
 
 /* 5. 4大ツール比較グリッド：ワイド幅（1000px）での4枚並列を確定 */
-/* 詳細度を body.portal-page article まで高めて !important を排除 */
-body.portal-page article.static-page--wide .tools-comparison-grid {
+body.portal-page .static-page--wide .tools-comparison-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 15px;
     margin-top: 35px;
-    margin-right: 0;
+    margin-right: 0px;
     margin-bottom: 35px;
-    margin-left: 0;
+    margin-left: 0px;
 }
 
 /* 2. お悩み解決の3枚カード：ワイド幅での3枚並列を確定 */
