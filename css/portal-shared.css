@@ -720,33 +720,40 @@ body.portal-page article.static-page {
     display: block;
 }
 
-/* === 読みものページ最終整合：絶対配置下での整列とノイズ根絶 (v19.9.117) === */
+/* === 読みものページ最終整合：フッター下降とノイズ根絶 (v19.9.118) === */
 
-/* 1. サイトの背景：落ち着いたグレー */
+/* 1. サイトの背景：本番準拠の落ち着いたグレー */
 body.portal-page {
     background-color: #f1f3f5 !important;
 }
 
-/* 2. 宙に浮いているコンテナ(#app)を、強制的に「縦並びの箱」として再定義 */
+/* 2. 絶対配置下で死んでいた「整列機能」を強制再起動 */
 body.portal-page #app {
     display: flex !important;
     flex-direction: column !important;
-    background-color: transparent !important;
+    min-height: 100vh; /* 画面全体の高さを確保 */
 }
 
-/* 3. 記事（白い箱）の影と位置の最終固定 */
+/* 3. メインエリアに「余ったスペースをすべて埋めろ」と命令し、フッターを一番下へ押しやる */
+body.portal-page main {
+    flex: 1 0 auto !important;
+    display: block;
+}
+
+/* 4. 記事（白い箱）の影を「上」に絶対に漏らさない（線の根絶） */
 body.portal-page article.static-page {
     border: none !important;
     margin-top: 30px !important;
-    /* 影のハミ出し（線）を物理的に消去する Spread:-20px 設定 */
-    box-shadow: 0px 30px 60px -20px rgba(0, 0, 0, 0.15) !important;
-    margin-bottom: 0px !important;
+    margin-bottom: 30px !important;
+    /* 影のハミ出しを物理的に封殺する Spread:-20px 設定 */
+    box-shadow: 0px 25px 50px -20px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* 4. 読みものページのフッター：一番下に「白い帯」として固定 */
+/* 5. 読みものページのフッター：一番下に「白い帯」として独立 */
 body.portal-page footer {
     background-color: #ffffff !important;
+    margin-top: 80px !important; /* 記事との間にグレーの隙間を作る */
     border: none !important;
-    margin-top: 80px !important; /* 記事との間にグレーの隙間を確実に作る */
-    box-shadow: 0px -10px 30px rgba(0, 0, 0, 0.02);
+    padding: 50px 0 !important;
+    box-shadow: 0px -5px 20px rgba(0, 0, 0, 0.02); /* 上側にうっすら影 */
 }
