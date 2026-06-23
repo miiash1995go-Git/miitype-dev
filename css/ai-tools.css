@@ -61,15 +61,45 @@ body.portal-page .static-page--wide .category-card.static-card {
 .comparison-item h4 { color: #e67e22; margin-bottom: 10px; }
 
 
-/* 5. 4大ツール比較グリッド：ワイド幅（1000px）での4枚並列を確定 */
-body.portal-page .static-page--wide .tools-comparison-grid {
+/* 5. 4大ツール比較グリッド：800px幅で最も美しい「2×2」レイアウトへ (v19.9.107) */
+body.portal-page article.static-page .tools-comparison-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(2, 1fr); /* 2行2列へ変更 */
+    gap: 25px; /* 余白を広げて情報の混線を防ぐ */
     margin-top: 35px;
     margin-right: 0px;
     margin-bottom: 35px;
     margin-left: 0px;
+}
+
+/* カード内のテキスト中央揃えを維持しつつ、密度を最適化 */
+body.portal-page .tool-card {
+    background-color: #ffffff;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    padding-top: 35px;
+    padding-right: 25px;
+    padding-bottom: 30px;
+    padding-left: 25px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-style: solid;
+    border-color: #eef2f6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 12px 30px rgba(52, 152, 219, 0.1);
+    border-color: var(--accent);
 }
 
 /* 2. お悩み解決の3枚カード：ワイド幅での3枚並列を確定 */
