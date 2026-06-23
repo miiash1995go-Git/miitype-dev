@@ -370,6 +370,87 @@ body.portal-page .marker-yellow {
     padding-left: 2px;
 }
 
+/* 2026年最新情報注釈：白背景に馴染むクリーンなデザイン */
+body.portal-page .info-note-box {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding-top: 20px;
+    padding-right: 25px;
+    padding-bottom: 20px;
+    padding-left: 25px;
+    background-color: #fcfcfc;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-style: solid;
+    border-color: #eee;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #666;
+}
+
+/* === [追加] 縦並びの機能紹介リスト (v19.9.105) === */
+/* 800px幅での可読性を最大化するための、横長リスト形式です */
+body.portal-page .feature-list-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.feature-item-vertical {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding-top: 20px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    background-color: #ffffff;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-style: solid;
+    border-color: #eef2f6;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+.feature-item-vertical .item-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0; /* アイコンが潰れないように固定 */
+}
+
+.feature-item-vertical .item-text h4 {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 4px;
+    margin-left: 0px;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.feature-item-vertical .item-text p {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #4b5563;
+}
+
 body.portal-page .content-body h3 {
     display: block; position: relative;
     padding-top: 0; padding-right: 0; padding-bottom: 12px; padding-left: 0;
