@@ -710,3 +710,13 @@ body.portal-page .ad-container-top {
     margin-bottom: 0px;
     border: none;
 }
+/* === [検証] 隙間をすべてゼロにする設定 === */
+body.portal-page header {
+    margin-bottom: 0px !important;
+}
+
+body.portal-page article.static-page {
+    margin-top: 0px !important;
+    box-shadow: none !important; /* 一時的に影を消して真っ白にします */
+    border: none !important;
+}
