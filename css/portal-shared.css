@@ -295,6 +295,50 @@ body.portal-page article.static-page .content-body h2.section-title--compact {
     margin-left: 0px;
 }
 
+/* === [追加] まとめセクション専用コンポーネント (v19.9.102) === */
+
+/* 1. まとめボックス外枠：画像に基づいた薄青の境界線と角丸 */
+body.portal-page article.static-page .content-body .summary-box {
+    margin-top: 60px;
+    margin-right: 0px;
+    margin-bottom: 40px;
+    margin-left: 0px;
+    padding-top: 35px;
+    padding-right: 40px;
+    padding-bottom: 35px;
+    padding-left: 40px;
+    background-color: #f8fbfe; /* 極めて薄い青の背景 */
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-style: solid;
+    border-color: #d6e9f8;    /* 画像に合わせた水色の線 */
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+/* 2. まとめ用見出し：センター配置で余白を最適化 */
+body.portal-page article.static-page .content-body .summary-box h2.section-title--summary {
+    text-align: center;
+    margin-top: 0px;        /* 枠内先頭なのでゼロ */
+    margin-right: 0px;
+    margin-bottom: 25px;
+    margin-left: 0px;
+    padding-left: 0px;      /* センター寄せのため左パディング解除 */
+    border-left-style: none; /* 左の青線を解除（画像ではアイコンのみを想定） */
+    font-size: 1.5rem;
+}
+
+/* まとめ見出しのアイコン調整（中央揃えの際、アイコンを文字の前に置く） */
+body.portal-page article.static-page .content-body .summary-box h2.section-title--summary::before {
+    display: inline-block;
+    margin-right: 12px;
+    content: "📘";
+}
+
 body.portal-page .content-body h3 {
     display: block; position: relative;
     padding-top: 0; padding-right: 0; padding-bottom: 12px; padding-left: 0;
