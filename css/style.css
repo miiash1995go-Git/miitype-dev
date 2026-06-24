@@ -5,13 +5,15 @@
    Fix: Total Restoration & Laptop Density Optimization
    ============================================================ */
 
+/* --- 11行目付近：色の基準値を更新 --- */
 :root {
     --primary: #2c3e50;
     --primary-hover: #34495e;
     --accent: #3498db;
     --accent-hover: #2980b9;
     --error: #ff4757;
-    --bg: #f8f9fa;
+    /* 背景色を「目に優しい落ち着いたグレー」に統一 */
+    --bg: #f1f3f5; 
     --key-border: #dcdde1;
     --gold: #f1c40f;
 }
@@ -19,10 +21,11 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
+/* --- 19行目付近：bodyの背景色を適用 --- */
 body { 
     margin: 0; padding: 0; font-family: 'Noto Sans JP', sans-serif; 
-    /* 本番サイト準拠：白すぎない落ち着いたトーン（#f1f3f5） */
-    background-color: #f1f3f5; 
+    /* 変数(--bg)を使用し、全ページを落ち着いたトーンへ */
+    background-color: var(--bg); 
     color: var(--primary); 
     line-height: 1.6; min-height: 100vh; width: 100vw; 
     display: flex; flex-direction: column; overflow-x: hidden; 
