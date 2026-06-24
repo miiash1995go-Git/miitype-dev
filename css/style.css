@@ -446,15 +446,16 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     .news-item { flex-direction: column; align-items: flex-start; gap: 5px; }
 }
 
-/* AdSenseプレースホルダー（呼吸の確保） */
 .ad-container-mid {
     width: 100%;
-    min-height: 90px;
-    background: transparent;
+    /* 広告配信前は高さを20px程度に抑え、配信されると自動で広がります */
+    min-height: 20px; 
+    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 /* --- index.html 改善：静的カードと動的カードの差別化 --- */
 
 /* 選ばれる理由（押せないカード）の調整 */
