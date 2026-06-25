@@ -471,11 +471,21 @@ if (success) {
             
             if (resScore) resScore.innerText = score; 
 
-            if (typeof gtag === 'function') {
+// [最新版：GA4詳細分析ロジック] 
+            // カテゴリIDから日本語のカテゴリ名を取得（例：windows -> Windows操作）
+            const categoryName = this.manifest ? this.manifest.categories.find(c => c.id === this.currentCategoryId)?.name : this.currentCategoryId;
+
+if (typeof gtag === 'function') {
+                // [最終完全版] 全スタッツをGA4へ送信
                 gtag('event', 'typing_complete', {
-                    'score': score,
-                    'rank': rank,
-                    'category_id': this.currentCategoryId
+                    'score': score,                   /* スコア */
+                    'rank': rank,                     /* 判定ランク (A, S, Legend等) */
+                    'category_name': categoryName,    /* カテゴリ名 */
+                    'cpm': cpm,                       /* 打鍵速度 */
+                    'accuracy': parseFloat(accNumRaw.toFixed(1)), /* 正確率 */
+                    'miss_count': this.totalMissedCount, /* ミス数 */
+                    'time_spent_sec': Math.floor(sec), /* かかった時間（秒） */
+                    'total_keys': this.totalTypedCount + this.totalMissedCount
                 });
             }
 
