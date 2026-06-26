@@ -632,36 +632,33 @@ body.portal-page .article-image img {
     margin-left: auto;
 }
 
-/* 画像キャプション：図表の説明を補足する青グレーの文字 */
-body.portal-page .image-caption {
-    display: block;
-    margin-top: 15px;
-    font-size: 0.88rem;
-    color: #94a3b8;
-    font-weight: 800;
-}
+/* --- サイズ別Modifier：用途に応じたスケーリング・ルール (v19.9.131) --- */
 
-/* --- サイズ別Modifier：PCでは指定の幅で表示し、余白を活かす --- */
-
-/* 標準（100%）：デスクトップ全体の解説用 */
+/* 1. UIパーツ・横長（100%）：文字が含まれるパーツ、タスクバー、AI入力欄など */
 body.portal-page .article-image--full img {
     width: 100%;
 }
 
-/* 中（60%）：少し大きめのメニューやウィンドウ用 */
-body.portal-page .article-image--w60 img {
-    width: 60%;
+/* 2. ウィンドウ全体（85%）：エクスプローラー、Word、Excelなどの画面全体 */
+body.portal-page .article-image--window img {
+    width: 85%;
 }
 
-/* 小（40%）：右クリックメニューや特定のボタン拡大用 */
-body.portal-page .article-image--w40 img {
-    width: 40%;
+/* 3. 縦長メニュー（45%）：右クリックメニュー、縦長の設定画面など */
+body.portal-page .article-image--menu img {
+    width: 45%;
 }
 
-/* --- レスポンシブ：スマホ(768px以下)では視認性確保のため全て100%へ --- */
+/* 4. アイコン・小パーツ（25%）：特定のボタン単体、小さなアイコンなど */
+body.portal-page .article-image--icon img {
+    width: 25%;
+}
+
+/* --- レスポンシブ：スマホ(768px以下)では全ての縮小を解除して100%へ --- */
 @media (max-width: 768px) {
-    body.portal-page .article-image--w60 img,
-    body.portal-page .article-image--w40 img {
+    body.portal-page .article-image--window img,
+    body.portal-page .article-image--menu img,
+    body.portal-page .article-image--icon img {
         width: 100% !important;
         max-width: 100% !important;
     }
