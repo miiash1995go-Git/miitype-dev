@@ -597,10 +597,10 @@ body.portal-page .content-body kbd {
     box-shadow: 0px 1px 0px #ffffff inset; /* 内側にハイライトを入れて立体感を出す */
 }
 
-/* --- 5. 本文詳細装飾：画像スケーリング・システム (v19.9.128) --- */
+/* --- 5. 本文詳細装飾：画像スケーリング・システム (v19.9.134 最終正典) --- */
 
-/* 画像コンテナ：上下に45pxの「呼吸」を持たせ、常に中央に配置 */
-body.portal-page .article-image {
+/* [基底] 画像コンテナの共通設定 */
+body.portal-page article.static-page .content-body .article-image {
     margin-top: 45px;
     margin-right: auto;
     margin-bottom: 45px;
@@ -610,15 +610,15 @@ body.portal-page .article-image {
     width: 100%;
 }
 
-/* 画像本体：角丸・影・極細の線を全ての画像に共通適用 */
-body.portal-page .article-image img {
+/* [基底] 画像自体の共通デザイン：詳細度を高く設定し、すべてのModifierの土台にします */
+body.portal-page article.static-page .content-body .article-image img {
     max-width: 100%;
     height: auto;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 25px 50px -20px rgba(0, 0, 0, 0.1);
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
@@ -630,37 +630,44 @@ body.portal-page .article-image img {
     margin-right: auto;
     margin-bottom: 0px;
     margin-left: auto;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: zoom-in;
 }
 
-/* --- サイズ別Modifier：用途に応じたスケーリング・ルール (v19.9.131) --- */
+/* ホバー時の挙動 */
+body.portal-page article.static-page .content-body .article-image img:hover {
+    transform: scale(1.03);
+}
 
-/* 1. UIパーツ・横長（100%）：文字が含まれるパーツ、タスクバー、AI入力欄など */
-body.portal-page .article-image--full img {
+/* --- [サイズ調整] !importantを排除し、詳細度を基底と一致させることで上書きを実現 --- */
+
+/* 100%: UIパーツ・横長帯 */
+body.portal-page article.static-page .content-body .article-image--full img {
     width: 100%;
 }
 
-/* 2. ウィンドウ全体（85%）：エクスプローラー、Word、Excelなどの画面全体 */
-body.portal-page .article-image--window img {
+/* 85%: ウィンドウ全体（エクスプローラー、Word等）/ w80指定も共通化 */
+body.portal-page article.static-page .content-body .article-image--window img,
+body.portal-page article.static-page .content-body .article-image--w80 img {
     width: 85%;
 }
 
-/* 3. 縦長メニュー（45%）：右クリックメニュー、縦長の設定画面など */
-body.portal-page .article-image--menu img {
+/* 65%: 小さめのウィンドウ、設定画面等 / w60指定 */
+body.portal-page article.static-page .content-body .article-image--w60 img {
+    width: 65%;
+}
+
+/* 45%: 縦長メニュー（右クリック、ごみ箱等）/ w40指定 */
+body.portal-page article.static-page .content-body .article-image--menu img,
+body.portal-page article.static-page .content-body .article-image--w40 img {
     width: 45%;
 }
 
-/* 4. アイコン・小パーツ（25%）：特定のボタン単体、小さなアイコンなど */
-body.portal-page .article-image--icon img {
-    width: 25%;
-}
-
-/* --- レスポンシブ：スマホ(768px以下)では全ての縮小を解除して100%へ --- */
+/* --- レスポンシブ：スマホ(768px以下)では詳細度を維持したまま100%へ強制リセット --- */
 @media (max-width: 768px) {
-    body.portal-page .article-image--window img,
-    body.portal-page .article-image--menu img,
-    body.portal-page .article-image--icon img {
-        width: 100% !important;
-        max-width: 100% !important;
+    body.portal-page article.static-page .content-body .article-image img {
+        width: 100%;
+        max-width: 100%;
     }
 }
 
