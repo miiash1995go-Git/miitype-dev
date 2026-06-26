@@ -571,6 +571,27 @@ body.portal-page .article-image img {
     max-width: 100%; height: auto; border-radius: 15px;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08); border: 1px solid #eeeeee;
 }
+
+/* === [追加] 画像サイズ微調整用Modifier：特定の画像を縮小表示する (v19.9.127) === */
+/* 800px幅の記事内で、縦長の画像を40%のサイズで中央配置するための設定です */
+body.portal-page article.static-page .content-body .article-image--w40 img {
+    width: 40%;
+    max-width: 40%;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    display: block;
+}
+
+/* スマホでは40%だと小さすぎるため、横幅いっぱいに自動拡大させて視認性を守ります */
+@media (max-width: 768px) {
+    body.portal-page article.static-page .content-body .article-image--w40 img {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
 body.portal-page .image-caption { display: block; margin-top: 15px; font-size: 0.88rem; color: #94a3b8; font-weight: 800; }
 
 /* モダン・パンくずリスト（垂直余白の削減） */
