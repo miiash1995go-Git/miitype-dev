@@ -1,92 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- 1. トップページ（最優先） -->
+  <!-- 1. トップページ（最優先：1.0） -->
   <url>
     <loc>https://miitype.com/</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <priority>1.0</priority>
   </url>
   
-  <!-- 2. 基幹コンテンツ（ハブページ） -->
+  <!-- 2. 基幹コンテンツ・ハブページ（0.9） -->
   <url>
     <loc>https://miitype.com/play.html</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://miitype.com/guide.html</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://miitype.com/column.html</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://miitype.com/ai-tools.html</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <priority>0.9</priority>
   </url>
 
-  <!-- 3. 高価値記事・用語集（重要） -->
+  <!-- 3. 高価値記事・大型ガイド（重要：0.8） -->
+  <url>
+    <loc>https://miitype.com/guide-windows-basics.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://miitype.com/guide-pc-selection.html</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://miitype.com/column-chatgpt-basics.html</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://miitype.com/glossary.html</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <priority>0.8</priority>
   </url>
 
-  <!-- 4. 個別ガイド・コラム -->
+  <!-- 4. 個別ガイド・コラム（0.7） -->
+  <url>
+    <loc>https://miitype.com/guide-basic.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://miitype.com/guide-basics.html</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://miitype.com/guide-typing.html</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://miitype.com/column-pc-skills.html</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://miitype.com/column-interview.html</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://miitype.com/career.html</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <priority>0.7</priority>
   </url>
 
-  <!-- 5. 運営・信頼性情報 -->
+  <!-- 5. 運営・信頼性情報（0.6 - 0.5） -->
   <url>
     <loc>https://miitype.com/about.html</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://miitype.com/contact.html</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://miitype.com/privacy.html</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <priority>0.5</priority>
   </url>
 </urlset>
