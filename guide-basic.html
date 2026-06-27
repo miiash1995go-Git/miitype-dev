@@ -2,9 +2,36 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>タイピング（文字入力）の基本 | ぱそトレ！</title>
+    <meta name="description" content="現役パソコン講師が教えるタイピングの基本。ホームポジションの正しい置き方、指の担当、上達のコツを詳しく解説。初心者でも挫折しない文字入力の第一歩をサポートします。">
+    <link rel="icon" href="favicon.ico">
+
+    <!-- 1. アドセンス（審査用・自動広告） -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
+
+    <!-- 2. 管理者除外スクリプト（最優先で実行） -->
+    <script>
+        if (localStorage.getItem('pasotore_admin') === 'true') {
+            window['ga-disable-G-KWS4RPPBVV'] = true;
+            console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
+        }
+    </script>
+
+    <!-- 3. Googleアナリティクス（GA4） -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
+    <!-- 4. CSS資産の同期 -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
 </head>
+
 <body class="portal-page">
     <div id="app">
         <header>
@@ -14,44 +41,94 @@
                 <a href="ai-tools.html">AI活用</a>
                 <a href="career.html">就職・転職</a>
                 <a href="glossary.html">用語集</a>
-                <a href="guide.html">学習ガイド</a>
+                <a href="guide.html" class="active">学習ガイド</a>
                 <a href="contact.html">お問い合わせ</a>
             </nav>
-            <div class="logo">ぱそトレ！</div>
+            <div class="logo">
+                <div class="logo-spacer"></div>
+                <div class="logo-center">
+                    <a href="index.html">
+                        <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
+                    </a>
+                </div>
+                <div class="logo-right">
+                    <span class="logo-subtext">文字入力の基本</span>
+                </div>
+            </div>
         </header>
 
-        <main>
-            <section class="static-page">
-                <h1>タイピング（文字入力）の基本</h1>
+        <main class="portal-main">
+            <article class="static-page">
+                <!-- パンくずリスト：垂直余白10px（極限圧縮版） -->
+                <nav class="breadcrumb">
+                    <a href="index.html">ホーム</a>
+                    <span class="breadcrumb-separator">></span>
+                    <a href="guide.html">学習ガイド</a>
+                    <span class="breadcrumb-separator">></span>
+                    <span>タイピングの基本</span>
+                </nav>
 
-                <p>パソコンを使いこなす第一歩は、「タイピング」です。<br>
-                メールを書いたり、文章を作ったり、検索したり——パソコンでできることのほとんどは、キーボード入力からはじまります。まずはタイピングの基本をしっかり身につけましょう！</p>
+                <h1 class="page-title">タイピング（文字入力）の基本</h1>
 
-                <div class="point-box" style="background: #ebf8ff; padding: 20px; border-radius: 15px; border-left: 5px solid var(--accent); margin: 30px 0;">
-                    <span class="point-title" style="font-weight: bold; color: var(--accent); font-size: 1.1rem;">💡 「タッチタイピング」って何？</span>
-                    <p style="margin-top: 10px;">キーボードを見ずに文字を入力することを「タッチタイピング」といいます。<br>
-                    最初は難しく感じるかもしれませんが、コツをつかめば誰でも必ずできるようになります。キーボードをじっと見ながら1文字ずつ探して打つより、ずっと速く・楽に入力できるようになりますよ。</p>
+                <div class="content-body">
+                    <p>パソコンを使いこなす第一歩は、「タイピング」です。<br>
+                    メール、資料作成、ChatGPTなどのAI活用——パソコンで行うすべての作業は、キーボード入力からはじまります。まずは土台となる基本をしっかり身につけましょう。</p>
+
+                    <!-- 講師のアドバイス：デザイン整合 -->
+                    <div class="instructor-advice">
+                        <b>💡 「タッチタイピング」を目指す理由</b><br>
+                        キーボードを見ずに打つことを「タッチタイピング」といいます。手元を見ながら1文字ずつ探すのと、画面だけを見て打つのとでは、作業速度が3倍以上変わります。最初はもどかしいかもしれませんが、ここで正しい型を覚えることが最大の近道です。
+                    </div>
+
+                    <h2>1. すべての基準「ホームポジション」</h2>
+                    <p>タッチタイピングの出発点は、指を置く基本位置「ホームポジション」を覚えることです。</p>
+                    
+                    <!-- 同期済みの画像資産を活用：w80スケーリング適用 -->
+                    <div class="article-image article-image--window">
+                        <img src="img/typing-home-position.jpg" alt="タイピングのホームポジション（基本の指の位置）">
+                    </div>
+
+                    <p>キーボードの中段にある <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> <kbd>F</kbd> に左手の4本指を、<kbd>J</kbd> <kbd>K</kbd> <kbd>L</kbd> <kbd>;</kbd> に右手の4本指を軽く置きます。</p>
+                    <p>特に重要なのが、左右の人差し指です。<kbd>F</kbd> と <kbd>J</kbd> のキーには小さな突起（または凹み）がついています。これがあるおかげで、手元を一切見なくても「指が正しい位置にいるか」を確認できるのです。</p>
+
+                    <h2>2. 指には「担当キー」がある</h2>
+                    <p>タイピングでは、「どの指でどのキーを押すか」が厳密に決まっています。基本的には、ホームポジションから上下に指を動かしてキーを叩きます。</p>
+                    <ul>
+                        <li><strong>左手：</strong> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> <kbd>F</kbd> を基準に左半分を担当</li>
+                        <li><strong>右手：</strong> <kbd>J</kbd> <kbd>K</kbd> <kbd>L</kbd> <kbd>;</kbd> を基準に右半分を担当</li>
+                        <li><strong>親指：</strong> 左右どちらかで <kbd>Space</kbd> キーを担当</li>
+                    </ul>
+                    <p>最初は「薬指でこのキーを打つのが難しい！」と感じるかもしれません。しかし、<strong>自己流の指使いは上達を妨げる最大の原因</strong>になります。ゆっくりでもいいので、決まった指以外では絶対に打たないようにしましょう。</p>
+
+                    <h2>3. 上達の鉄則は「正確さ ＞ 速さ」</h2>
+                    <p>初心者が最も陥りやすい罠は「速く打とうとすること」です。速さを求めると指がバタつき、結果としてミスが増え、修正のためにさらに時間がかかります。</p>
+                    
+                    <div class="info-note-box">
+                        <strong>上達のためのマインドセット：</strong><br>
+                        「速く打とう」ではなく「リズムよく、ミスなく打とう」と意識してください。正確率が95%を超えてくれば、速さは後から勝手についてきます。
+                    </div>
+
+                    <!-- まとめセクション：v19.9.107 刷新版 -->
+                    <div class="summary-box">
+                        <h2 class="section-title--summary">今回のまとめ</h2>
+                        <ul>
+                            <li>常に <kbd>F</kbd> と <kbd>J</kbd> の突起を確認するクセをつけよう</li>
+                            <li>「指の担当」は絶対に守る（自己流はNG）</li>
+                            <li>「速さ」より「正確さ」を最優先に練習する</li>
+                        </ul>
+                    </div>
+
+                    <div class="next-step-guide">
+                        基本がわかったら、次のステップへ進みましょう
+                    </div>
+
+                    <!-- まとめナビゲーション：ボタン共通化デザイン -->
+                    <div class="summary-nav">
+                        <a href="guide-typing.html" class="btn-main">ぱそトレ式！上達法を読む</a>
+                        <a href="play.html" class="summary-btn">さっそく練習を始める</a>
+                    </div>
                 </div>
-
-                <h2>1. ホームポジションを知ろう</h2>
-                <p>タッチタイピングの出発点は「ホームポジション」です。<br>
-                キーボードの中段にある「A・S・D・F」に左手の指を、「J・K・L・；」に右手の指を置いた状態のことをいいます。人差し指が「F」と「J」に来るのが目印です。この2つのキーには小さな突起がついているので、手元を見なくても確認できます。</p>
-
-                <h2>2. 指には「担当キー」がある</h2>
-                <p>タッチタイピングでは、どの指でどのキーを押すかがあらかじめ決まっています。<br>
-                自分の決めた指以外でキーを押さないようにすることで、体が自然にキーの位置を覚えていきます。最初はゆっくりでも構いません。「正しい指で打つ」ことだけを意識して練習しましょう。</p>
-
-                <h2>3. 練習のコツは「ゆっくり・正確に」</h2>
-                <p>タイピング練習でやりがちなのが、「速く打とうとしすぎる」ことです。<br>
-                速さより正確さを優先することが、上達の近道です。ミスが多いまま速く打つ練習をしても、悪い癖がついてしまうだけ。まずはホームポジションを崩さず、正しい指で、ゆっくり打てるようになることを目標にしましょう。<br>
-                速さは、正確さが身についた後で自然についてきます。</p>
-
-                <div style="text-align: center; margin-top: 50px; border-top: 1px solid #eee; padding-top: 30px;">
-                    <p style="margin-bottom: 20px; font-weight: bold; color: #666;">基本がわかったら、次のステップへ</p>
-                    <a href="guide-typing.html" class="btn-main" style="margin-bottom: 10px;">ぱそトレ式！上達法を読む</a><br>
-                    <a href="play.html" style="color: var(--accent); text-decoration: none; font-weight: bold; font-size: 0.9rem;">→ さっそく練習を始める</a>
-                </div>
-            </section>
+            </article>
         </main>
 
         <footer>
@@ -63,5 +140,10 @@
             <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
         </footer>
     </div>
+
+    <!-- ページトップへ戻るボタン：同期済み資産 -->
+    <a href="#" id="backToTop" class="back-to-top">▲</a>
+
+    <script src="js/main.js"></script>
 </body>
 </html>

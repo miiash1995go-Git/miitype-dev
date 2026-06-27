@@ -9,6 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700"
      crossorigin="anonymous"></script>
+     
+<!-- 管理者除外スクリプト：ここから追加 -->
+<script>
+    if (localStorage.getItem('pasotore_admin') === 'true') {
+        // あなたのGA4測定ID「G-KWS4RPPBVV」を指定して無効化
+        window['ga-disable-G-KWS4RPPBVV'] = true;
+        console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
+    }
+</script>
+<!-- 管理者除外スクリプト：ここまで -->
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
 <script>
