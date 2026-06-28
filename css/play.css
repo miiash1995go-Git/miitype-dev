@@ -605,19 +605,21 @@ body.game-body #keyboard-container {
 }
 
 /* ============================================================
-   play.html 追加解説エリア専用スタイル (v19.9.138 正典)
+   play.html 追加解説エリア専用スタイル (v19.9.139 正典)
    ------------------------------------------------------------
-   - 集中モード（focus-mode）対応：開始時に自動で薄暗く
-   - 枠線の視認性強化およびフッターとの余白確保
+   - 垂直配置の深度調整：解説ボックスをさらに深く沈める
+   - 入力ルール：薄い青色(#f0f7ff)の背景を適用
+   - カテゴリカード：太い枠線と背景色、強固なタイトル装飾
    - 冗長記述：プロパティ完全展開を維持
    ============================================================ */
 
 body.game-body .game-description-wrapper {
     background-color: transparent;
     width: 100%;
-    padding-top: 20px;
+    /* 1366x768環境で、冒頭の挨拶がちょうど隠れるよう上余白を120pxへ拡大 */
+    padding-top: 120px;
     padding-right: 0px;
-    padding-bottom: 120px; /* フッターとの合体を防ぐための巨大な余白 */
+    padding-bottom: 120px;
     padding-left: 0px;
     margin-top: 0px;
     margin-right: 0px;
@@ -628,7 +630,6 @@ body.game-body .game-description-wrapper {
     transition-timing-function: ease;
 }
 
-/* 集中モード（focus-mode）発動時に、説明エリアを薄くする */
 body.focus-mode .game-description-wrapper {
     opacity: 0.15;
     pointer-events: none;
@@ -641,52 +642,54 @@ body.game-body .game-info-section {
     margin-right: auto !important;
     margin-bottom: 0px !important;
     margin-left: auto !important;
-    padding-top: 40px;
+    padding-top: 50px;
     padding-right: 60px;
-    padding-bottom: 50px;
+    padding-bottom: 60px;
     padding-left: 60px;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
-    box-shadow: 0px 25px 50px -20px rgba(0, 0, 0, 0.1) !important;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    box-shadow: 0px 25px 50px -20px rgba(0, 0, 0, 0.12) !important;
     border-top-style: none !important;
     border-right-style: none !important;
     border-bottom-style: none !important;
     border-left-style: none !important;
 }
 
+/* 入力ルールボックス：薄い青色の背景を適用 */
 body.game-body article.static-page .content-body .input-rule-box {
-    background-color: #f8f9fa;
-    margin-top: 30px;
+    background-color: #f0f7ff;
+    margin-top: 40px;
     margin-right: 0px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     margin-left: 0px;
     padding-top: 25px;
     padding-right: 30px;
     padding-bottom: 25px;
     padding-left: 30px;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
     border-top-style: solid;
     border-right-style: solid;
     border-bottom-style: solid;
     border-left-style: solid;
-    border-top-color: #cbd5e0; /* 枠線を濃くして視認性を向上 */
-    border-right-color: #cbd5e0;
-    border-bottom-color: #cbd5e0;
-    border-left-color: #cbd5e0;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-top-color: #d1e3f8;
+    border-right-color: #d1e3f8;
+    border-bottom-color: #d1e3f8;
+    border-left-color: #d1e3f8;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
 body.game-body article.static-page .content-body .input-rule-box h3 {
-    color: var(--primary);
-    font-size: 1.15rem;
+    color: #2c3e50;
+    font-size: 1.2rem;
+    font-weight: 900;
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 15px;
@@ -710,13 +713,13 @@ body.game-body .example-item {
     display: flex;
     align-items: center;
     padding-top: 10px;
-    padding-right: 15px;
+    padding-right: 18px;
     padding-bottom: 10px;
-    padding-left: 15px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    padding-left: 18px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
@@ -725,27 +728,25 @@ body.game-body .example-item {
     border-right-style: solid;
     border-bottom-style: solid;
     border-left-style: solid;
-    border-top-color: #cbd5e0; /* 例示アイテムの枠線も強化 */
-    border-right-color: #cbd5e0;
-    border-bottom-color: #cbd5e0;
-    border-left-color: #cbd5e0;
-    font-size: 0.88rem;
+    border-top-color: #d1e3f8;
+    border-right-color: #d1e3f8;
+    border-bottom-color: #d1e3f8;
+    border-left-color: #d1e3f8;
+    font-size: 0.9rem;
     font-weight: 800;
     color: #2c3e50;
 }
 
-body.game-body .ex-label { color: var(--accent); margin-right: 10px; font-size: 0.7rem; }
-body.game-body .ex-arrow { margin-left: 8px; margin-right: 8px; color: #adb5bd; }
-
+/* カテゴリ説明グリッドの強化 */
 body.game-body .category-info-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-top: 35px;
+    gap: 24px;
+    margin-top: 40px;
 }
 
 body.game-body .info-card {
-    background-color: #ffffff;
+    background-color: #f8fbfe; /* 薄い青白系の背景で清潔感を出す */
     display: flex;
     flex-direction: column;
     padding-top: 25px;
@@ -756,56 +757,56 @@ body.game-body .info-card {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
+    border-top-width: 2px; /* 枠線を太く */
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
     border-top-style: solid;
     border-right-style: solid;
     border-bottom-style: solid;
     border-left-style: solid;
-    border-top-color: #cbd5e0; /* 各カードの枠線をしっかりと見えるように変更 */
-    border-right-color: #cbd5e0;
-    border-bottom-color: #cbd5e0;
-    border-left-color: #cbd5e0;
+    border-top-color: #e2e8f0;
+    border-right-color: #e2e8f0;
+    border-bottom-color: #e2e8f0;
+    border-left-color: #e2e8f0;
+    transition: border-color 0.2s ease;
 }
 
 body.game-body .info-card h3 {
-    font-size: 1.1rem;
+    font-size: 1.2rem; /* タイトルを大きくハッキリと */
+    font-weight: 900;
+    color: var(--primary);
     display: block;
     margin-top: 0px;
     margin-right: 0px;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     margin-left: 0px;
     padding-top: 0px;
     padding-right: 0px;
-    padding-bottom: 8px;
+    padding-bottom: 10px;
     padding-left: 0px;
-    border-bottom-width: 2px;
+    border-bottom-width: 3px; /* 見出しの下線を太く */
     border-bottom-style: solid;
-    border-bottom-color: #f1f2f6;
+    border-bottom-color: #e2e8f0;
 }
 
-/* 特別扱い（featured-info）を廃止し、標準スタイルへ統合 */
-body.game-body .info-card.featured-info {
-    background-color: #ffffff;
-    border-left-width: 1px;
-    border-left-style: solid;
-    border-left-color: #cbd5e0;
+body.game-body .info-card p {
+    font-size: 0.95rem;
+    color: #4a5568;
+    line-height: 1.7;
+    margin-top: 0px;
 }
 
+/* スマホ対応 */
 @media (max-width: 768px) {
     body.game-body .category-info-grid {
         grid-template-columns: 1fr;
     }
     body.game-body .game-info-section {
         width: 95% !important;
-        padding-top: 30px !important;
-        padding-right: 20px !important;
-        padding-bottom: 30px !important;
-        padding-left: 20px !important;
-    }
-    body.game-body .example-flex {
-        flex-direction: column;
+        padding-top: 40px !important;
+        padding-right: 25px !important;
+        padding-bottom: 40px !important;
+        padding-left: 25px !important;
     }
 }
