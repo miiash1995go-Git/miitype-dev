@@ -907,3 +907,24 @@ body.portal-page article.static-page .page-subtitle {
     padding-left: 0px;
     line-height: 1.6;
 }
+/* ============================================================
+   v19.9.145 記事内見出し(H2) 1行死守設定
+   ------------------------------------------------------------
+   - 全角25文字規定を物理的に補完
+   - 改行によるデザイン崩れを根絶
+   - 冗長記述を維持
+   ============================================================ */
+
+body.portal-page .content-body h2 {
+    /* 1行に固定 */
+    white-space: nowrap;
+    /* はみ出しを物理的にカット */
+    overflow-x: hidden;
+    overflow-y: hidden;
+    /* はみ出た末尾を「...」で表現 */
+    text-overflow: ellipsis;
+    /* 既存の装飾を維持しつつ表示を安定化 */
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
