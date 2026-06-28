@@ -856,27 +856,27 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
 }
 
 /* ============================================================
-   index.html 理念セクション専用スタイル (v19.9.149 正典)
+   index.html 理念セクション：手紙風（便箋）デザイン (v19.9.150)
    ------------------------------------------------------------
-   - AdSense審査用の高品質テキストエリア
-   - 既存の浮遊感デザインを継承
+   - 背景色を白、文字色を濃紺(primary)に強化して視認性を向上
+   - linear-gradientによる「便箋の罫線」を各行に配置
    - 冗長記述：プロパティ完全展開を維持
    ============================================================ */
 
 .index-message-section {
     width: 100%;
-    margin-top: 60px;
+    margin-top: 80px;
     margin-right: 0px;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
     margin-left: 0px;
 }
 
-.message-card {
-    background-color: #f8fbfe; /* 他の推奨ボックスと調和する淡い青 */
-    padding-top: 50px;
-    padding-right: 50px;
-    padding-bottom: 50px;
-    padding-left: 50px;
+.message-card.letter-style {
+    background-color: #ffffff; /* 背景を白へ変更 */
+    padding-top: 60px;
+    padding-right: 60px;
+    padding-bottom: 60px;
+    padding-left: 60px;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
@@ -889,65 +889,80 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     border-right-style: solid;
     border-bottom-style: solid;
     border-left-style: solid;
-    border-top-color: #eef2f6;
-    border-right-color: #eef2f6;
-    border-bottom-color: #eef2f6;
-    border-left-color: #eef2f6;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.02);
+    border-top-color: #e2e8f0;
+    border-right-color: #e2e8f0;
+    border-bottom-color: #e2e8f0;
+    border-left-color: #e2e8f0;
+    /* 影の広がりを-20pxに設定し、ポータルと統一感のある浮遊感を演出 */
+    box-shadow: 0px 20px 40px -20px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 .message-title {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 900;
-    color: var(--primary);
+    color: var(--primary); /* 強い色に変更 */
     text-align: center;
     margin-top: 0px;
     margin-right: 0px;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     margin-left: 0px;
     line-height: 1.4;
 }
 
-.message-body {
+.message-body.letter-lines {
     max-width: 800px;
     margin-top: 0px;
     margin-right: auto;
     margin-bottom: 0px;
     margin-left: auto;
+    /* 
+       【便箋の罫線ロジック】
+       line-height(32px)に合わせて、背景に1pxの線を引く
+    */
+    background-image: linear-gradient(transparent 31px, #f1f3f5 31px);
+    background-size: 100% 32px;
+    line-height: 32px; /* 罫線と文字の高さを完全に同期 */
 }
 
-.message-body p {
-    font-size: 1rem;
-    line-height: 1.9; /* 行間を広げて圧迫感を排除 */
-    color: #4b5563;
+.message-body.letter-lines p {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--primary); /* 文字の表現力を強化 */
     margin-top: 0px;
     margin-right: 0px;
-    margin-bottom: 24px; /* 段落ごとの十分な余白 */
+    margin-bottom: 32px; /* 罫線のリズムを崩さないよう倍数で指定 */
     margin-left: 0px;
+    /* 文章の最後が罫線の上に乗るように調整 */
+    padding-bottom: 0px; 
 }
 
-.message-body p:last-child {
+.message-body.letter-lines p:last-child {
     margin-bottom: 0px;
 }
 
-/* スマホ対応：余白の最適化 */
+/* スマホ対応：罫線のリズムを維持しつつ余白を調整 */
 @media (max-width: 768px) {
-    .message-card {
-        padding-top: 35px;
+    .message-card.letter-style {
+        padding-top: 40px;
         padding-right: 20px;
-        padding-bottom: 35px;
+        padding-bottom: 40px;
         padding-left: 20px;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        border-bottom-right-radius: 20px;
-        border-bottom-left-radius: 20px;
     }
     .message-title {
         font-size: 1.3rem;
         margin-bottom: 30px;
+        text-align: left;
     }
-    .message-body p {
+    .message-body.letter-lines {
+        /* スマホでは文字が溢れやすいため、罫線を少し細くするか解除する選択肢もあるが、
+           デザイン性を優先し維持。ただしline-heightを微調整 */
+        line-height: 30px;
+        background-size: 100% 30px;
+        background-image: linear-gradient(transparent 29px, #f1f3f5 29px);
+    }
+    .message-body.letter-lines p {
         font-size: 0.95rem;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
 }
