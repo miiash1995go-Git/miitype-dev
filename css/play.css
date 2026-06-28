@@ -604,34 +604,31 @@ body.game-body #keyboard-container {
     body.game-body #app { display: none !important; }
 }
 
-   play.html 追加解説エリア専用スタイル (v19.9.136 正典)
 /* ============================================================
-   play.html 追加解説エリア専用スタイル (v19.9.137 正典)
+   play.html 追加解説エリア専用スタイル (v19.9.138 正典)
    ------------------------------------------------------------
    - 集中モード（focus-mode）対応：開始時に自動で薄暗く
-   - 灰色の背景帯を撤去し、クリーンなレイアウトへ変更
+   - 枠線の視認性強化およびフッターとの余白確保
    - 冗長記述：プロパティ完全展開を維持
    ============================================================ */
 
 body.game-body .game-description-wrapper {
-    /* 背景色を灰色(#f1f3f5)から透明に変更 */
     background-color: transparent;
     width: 100%;
     padding-top: 20px;
     padding-right: 0px;
-    padding-bottom: 80px;
+    padding-bottom: 120px; /* フッターとの合体を防ぐための巨大な余白 */
     padding-left: 0px;
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
-    /* 集中モード切替時のアニメーションをヘッダーと同期 */
     transition-property: opacity;
     transition-duration: 0.6s;
     transition-timing-function: ease;
 }
 
-/* 【重要】集中モード（focus-mode）発動時に、説明エリアを薄くして入力を邪魔しない */
+/* 集中モード（focus-mode）発動時に、説明エリアを薄くする */
 body.focus-mode .game-description-wrapper {
     opacity: 0.15;
     pointer-events: none;
@@ -652,7 +649,6 @@ body.game-body .game-info-section {
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     border-bottom-left-radius: 25px;
-    /* 影の広がりを-20pxに設定し、ポータル記事のデザインと完全同期 */
     box-shadow: 0px 25px 50px -20px rgba(0, 0, 0, 0.1) !important;
     border-top-style: none !important;
     border-right-style: none !important;
@@ -678,10 +674,10 @@ body.game-body article.static-page .content-body .input-rule-box {
     border-right-style: solid;
     border-bottom-style: solid;
     border-left-style: solid;
-    border-top-color: #dee2e6;
-    border-right-color: #dee2e6;
-    border-bottom-color: #dee2e6;
-    border-left-color: #dee2e6;
+    border-top-color: #cbd5e0; /* 枠線を濃くして視認性を向上 */
+    border-right-color: #cbd5e0;
+    border-bottom-color: #cbd5e0;
+    border-left-color: #cbd5e0;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -729,10 +725,10 @@ body.game-body .example-item {
     border-right-style: solid;
     border-bottom-style: solid;
     border-left-style: solid;
-    border-top-color: #e9ecef;
-    border-right-color: #e9ecef;
-    border-bottom-color: #e9ecef;
-    border-left-color: #e9ecef;
+    border-top-color: #cbd5e0; /* 例示アイテムの枠線も強化 */
+    border-right-color: #cbd5e0;
+    border-bottom-color: #cbd5e0;
+    border-left-color: #cbd5e0;
     font-size: 0.88rem;
     font-weight: 800;
     color: #2c3e50;
@@ -768,10 +764,10 @@ body.game-body .info-card {
     border-right-style: solid;
     border-bottom-style: solid;
     border-left-style: solid;
-    border-top-color: #eef2f6;
-    border-right-color: #eef2f6;
-    border-bottom-color: #eef2f6;
-    border-left-color: #eef2f6;
+    border-top-color: #cbd5e0; /* 各カードの枠線をしっかりと見えるように変更 */
+    border-right-color: #cbd5e0;
+    border-bottom-color: #cbd5e0;
+    border-left-color: #cbd5e0;
 }
 
 body.game-body .info-card h3 {
@@ -790,11 +786,12 @@ body.game-body .info-card h3 {
     border-bottom-color: #f1f2f6;
 }
 
+/* 特別扱い（featured-info）を廃止し、標準スタイルへ統合 */
 body.game-body .info-card.featured-info {
-    background-color: #f8fbfe;
-    border-left-width: 6px;
+    background-color: #ffffff;
+    border-left-width: 1px;
     border-left-style: solid;
-    border-left-color: var(--accent);
+    border-left-color: #cbd5e0;
 }
 
 @media (max-width: 768px) {
