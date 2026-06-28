@@ -872,3 +872,38 @@ body.portal-page .step-content h3 {
     /* 既存スタイルの継承 */
     display: block;
 }
+/* ============================================================
+   v19.9.143 記事見出し・サブタイトル構成
+   ------------------------------------------------------------
+   - H1をスッキリさせ、詳細情報をサブタイトルへ分離
+   - 冗長記述：プロパティ完全展開を維持
+   ============================================================ */
+
+body.portal-page article.static-page h1.page-title {
+    margin-top: 40px;
+    margin-right: 0px;
+    margin-bottom: 15px; /* サブタイトルを近づけるために縮小 */
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    font-size: 2rem; /* 少しだけ大きくして主役感を強調 */
+    line-height: 1.3;
+}
+
+body.portal-page article.static-page .page-subtitle {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #64748b; /* 落ち着いたグレーでメインを邪魔しない */
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 45px; /* 本文との間に十分なゆとりを確保 */
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    line-height: 1.6;
+}
