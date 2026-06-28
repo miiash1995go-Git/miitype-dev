@@ -810,3 +810,20 @@ body.game-body .info-card p {
         padding-left: 25px !important;
     }
 }
+/* --- portal-shared.css のパーツを練習画面（game-body）でも使えるように同期 --- */
+body.game-body .instructor-advice {
+    background-color: #fff9e6;
+    border-left: 5px solid #f39c12;
+    padding-top: 22px; padding-right: 30px; padding-bottom: 22px; padding-left: 30px;
+    border-radius: 12px; margin-top: 30px; margin-bottom: 30px;
+    font-size: 0.98rem; line-height: 1.8; color: #333333; box-sizing: border-box;
+    text-align: left;
+}
+body.game-body .instructor-advice b {
+    display: inline-block;
+    color: #e67e22;
+    font-weight: 900;
+    margin-bottom: 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(230, 126, 34, 0.25);
+}
