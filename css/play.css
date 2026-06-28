@@ -603,3 +603,156 @@ body.game-body #keyboard-container {
     body.game-body .mobile-restriction-overlay { display: flex; }
     body.game-body #app { display: none !important; }
 }
+
+/* ============================================================
+   v19.9.136 AdSense合格対策：解説エリア追加パッチ
+   ------------------------------------------------------------
+   - 既存のゲームUI（1〜607行目）を一切壊さない独立設計
+   - 冗長記述（プロパティ完全展開）を維持
+   ============================================================ */
+
+/* 1. 全体を包むグレー背景（ゲーム画面との区切り） */
+body.game-body .game-description-wrapper {
+    background-color: #f1f3f5;
+    padding-top: 60px;
+    padding-right: 0px;
+    padding-bottom: 80px;
+    padding-left: 0px;
+    margin-top: 0px;
+    width: 100%;
+}
+
+/* 2. 解説用の白い箱（920px幅でゲーム画面と整合） */
+body.game-body .game-info-section {
+    max-width: 920px !important;
+    margin-top: 0px !important;
+    margin-right: auto !important;
+    margin-bottom: 0px !important;
+    margin-left: auto !important;
+    background-color: #ffffff;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    padding-top: 40px;
+    padding-right: 60px;
+    padding-bottom: 50px;
+    padding-left: 60px;
+    box-shadow: 0px 25px 50px -20px rgba(0, 0, 0, 0.1) !important;
+    border-style: none !important;
+}
+
+/* 3. アルファベット入力ルールボックス */
+body.game-body article.static-page .content-body .input-rule-box {
+    background-color: #f8f9fa;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-style: solid;
+    border-color: #dee2e6;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding-top: 25px;
+    padding-right: 30px;
+    padding-bottom: 25px;
+    padding-left: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+body.game-body article.static-page .content-body .input-rule-box h3 {
+    font-size: 1.15rem;
+    color: var(--primary);
+    margin-top: 0px;
+    margin-bottom: 15px;
+    border-bottom-style: none;
+    padding-bottom: 0px;
+}
+
+/* 例示の並び */
+body.game-body .example-flex {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+body.game-body .example-item {
+    background-color: #ffffff;
+    padding-top: 10px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+}
+
+body.game-body .ex-label { color: var(--accent); margin-right: 10px; font-size: 0.7rem; }
+body.game-body .ex-arrow { margin-left: 8px; margin-right: 8px; color: #adb5bd; }
+
+/* 4. 各カテゴリ説明カード（2列グリッド） */
+body.game-body .category-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 35px;
+}
+
+body.game-body .info-card {
+    background-color: #ffffff;
+    padding-top: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+    padding-left: 25px;
+    border-radius: 20px;
+    border: 1px solid #eef2f6;
+    display: flex;
+    flex-direction: column;
+}
+
+body.game-body .info-card h3 {
+    font-size: 1.1rem;
+    margin-top: 0px;
+    margin-bottom: 12px;
+    border-bottom: 2px solid #f1f2f6;
+    padding-bottom: 8px;
+    display: block;
+}
+
+body.game-body .info-card p {
+    font-size: 0.9rem;
+    color: #555555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* MOS対策カード強調 */
+body.game-body .info-card.featured-info {
+    border-left: 6px solid var(--accent);
+    background-color: #f8fbfe;
+}
+
+/* 5. レスポンシブ：スマホでは縦1列に */
+@media (max-width: 768px) {
+    body.game-body .category-info-grid {
+        grid-template-columns: 1fr;
+    }
+    body.game-body .game-info-section {
+        width: 95% !important;
+        padding-top: 30px !important;
+        padding-right: 20px !important;
+        padding-bottom: 30px !important;
+        padding-left: 20px !important;
+    }
+    body.game-body .example-flex {
+        flex-direction: column;
+    }
+}
