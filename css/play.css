@@ -605,100 +605,127 @@ body.game-body #keyboard-container {
 }
 
 /* ============================================================
-   v19.9.136 AdSense合格対策：解説エリア追加パッチ
+   play.html 追加解説エリア専用スタイル (v19.9.136 正典)
    ------------------------------------------------------------
-   - 既存のゲームUI（1〜607行目）を一切壊さない独立設計
-   - 冗長記述（プロパティ完全展開）を維持
+   - 冗長記述：プロパティ完全展開を維持
    ============================================================ */
 
-/* 1. 全体を包むグレー背景（ゲーム画面との区切り） */
 body.game-body .game-description-wrapper {
     background-color: #f1f3f5;
+    width: 100%;
     padding-top: 60px;
     padding-right: 0px;
     padding-bottom: 80px;
     padding-left: 0px;
     margin-top: 0px;
-    width: 100%;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
 }
 
-/* 2. 解説用の白い箱（920px幅でゲーム画面と整合） */
 body.game-body .game-info-section {
     max-width: 920px !important;
+    background-color: #ffffff;
     margin-top: 0px !important;
     margin-right: auto !important;
     margin-bottom: 0px !important;
     margin-left: auto !important;
-    background-color: #ffffff;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
     padding-top: 40px;
     padding-right: 60px;
     padding-bottom: 50px;
     padding-left: 60px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
     box-shadow: 0px 25px 50px -20px rgba(0, 0, 0, 0.1) !important;
-    border-style: none !important;
+    border-top-style: none !important;
+    border-right-style: none !important;
+    border-bottom-style: none !important;
+    border-left-style: none !important;
 }
 
-/* 3. アルファベット入力ルールボックス */
 body.game-body article.static-page .content-body .input-rule-box {
     background-color: #f8f9fa;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-style: solid;
-    border-color: #dee2e6;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
+    margin-top: 30px;
+    margin-right: 0px;
+    margin-bottom: 30px;
+    margin-left: 0px;
     padding-top: 25px;
     padding-right: 30px;
     padding-bottom: 25px;
     padding-left: 30px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #dee2e6;
+    border-right-color: #dee2e6;
+    border-bottom-color: #dee2e6;
+    border-left-color: #dee2e6;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
 
 body.game-body article.static-page .content-body .input-rule-box h3 {
-    font-size: 1.15rem;
     color: var(--primary);
+    font-size: 1.15rem;
     margin-top: 0px;
+    margin-right: 0px;
     margin-bottom: 15px;
-    border-bottom-style: none;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
     padding-bottom: 0px;
+    padding-left: 0px;
+    border-bottom-style: none;
 }
 
-/* 例示の並び */
 body.game-body .example-flex {
     display: flex;
-    gap: 12px;
     flex-wrap: wrap;
+    gap: 12px;
     margin-top: 15px;
 }
 
 body.game-body .example-item {
     background-color: #ffffff;
+    display: flex;
+    align-items: center;
     padding-top: 10px;
     padding-right: 15px;
     padding-bottom: 10px;
     padding-left: 15px;
-    border-radius: 10px;
-    border: 1px solid #e9ecef;
-    font-size: 0.85rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #e9ecef;
+    border-right-color: #e9ecef;
+    border-bottom-color: #e9ecef;
+    border-left-color: #e9ecef;
+    font-size: 0.88rem;
     font-weight: 800;
     color: #2c3e50;
-    display: flex;
-    align-items: center;
 }
 
 body.game-body .ex-label { color: var(--accent); margin-right: 10px; font-size: 0.7rem; }
 body.game-body .ex-arrow { margin-left: 8px; margin-right: 8px; color: #adb5bd; }
 
-/* 4. 各カテゴリ説明カード（2列グリッド） */
 body.game-body .category-info-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -708,39 +735,53 @@ body.game-body .category-info-grid {
 
 body.game-body .info-card {
     background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
     padding-top: 25px;
     padding-right: 25px;
     padding-bottom: 25px;
     padding-left: 25px;
-    border-radius: 20px;
-    border: 1px solid #eef2f6;
-    display: flex;
-    flex-direction: column;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #eef2f6;
+    border-right-color: #eef2f6;
+    border-bottom-color: #eef2f6;
+    border-left-color: #eef2f6;
 }
 
 body.game-body .info-card h3 {
     font-size: 1.1rem;
-    margin-top: 0px;
-    margin-bottom: 12px;
-    border-bottom: 2px solid #f1f2f6;
-    padding-bottom: 8px;
     display: block;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 12px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 8px;
+    padding-left: 0px;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #f1f2f6;
 }
 
-body.game-body .info-card p {
-    font-size: 0.9rem;
-    color: #555555;
-    line-height: 1.6;
-    margin: 0;
-}
-
-/* MOS対策カード強調 */
 body.game-body .info-card.featured-info {
-    border-left: 6px solid var(--accent);
     background-color: #f8fbfe;
+    border-left-width: 6px;
+    border-left-style: solid;
+    border-left-color: var(--accent);
 }
 
-/* 5. レスポンシブ：スマホでは縦1列に */
 @media (max-width: 768px) {
     body.game-body .category-info-grid {
         grid-template-columns: 1fr;
