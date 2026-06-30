@@ -103,7 +103,7 @@ body.portal-page .roadmap-step-item {
     border-top-right-radius: 18px;
     border-bottom-right-radius: 18px;
     border-bottom-left-radius: 18px;
-    /* コラムと共通の 12px 25px 余白 */
+    /* ここを 12px に修正（デカすぎる原因を解消） */
     padding-top: 12px;
     padding-right: 25px;
     padding-bottom: 12px;
@@ -147,7 +147,7 @@ body.portal-page .roadmap-step-item::before {
 body.portal-page .roadmap-step-item.step-zero::before { background-color: #f39c12 !important; }
 body.portal-page .roadmap-step-item.active-step::before { background-color: #3498db !important; }
 
-/* バッジサイズ：54pxに統一 */
+/* STEPバッジの小型化 (68px → 54px) */
 body.portal-page .step-number-badge {
     flex-shrink: 0;
     width: 54px;
@@ -169,7 +169,7 @@ body.portal-page .step-number-badge .num { font-size: 1.2rem; font-weight: 900; 
 body.portal-page .step-zero .num { color: #e67e22; }
 body.portal-page .active-step .num { color: #3498db; }
 
-/* タイトルサイズ：1.05remに統一 */
+/* タイトル(H3)を 1.05rem に縮小（デカすぎる原因を解消） */
 body.portal-page .step-content { flex: 1; text-align: left; }
 body.portal-page .step-content h3 { 
     margin-top: 0px; margin-right: 0px; margin-bottom: 2px; margin-left: 0px;
@@ -180,7 +180,7 @@ body.portal-page .step-content h3::before,
 body.portal-page .step-content h3::after { display: none; }
 body.portal-page .step-content p { margin-top: 0px; margin-bottom: 0px; font-size: 0.85rem; color: #666666; line-height: 1.5; }
 
-/* ボタンサイズ：共通コンパクト仕様 */
+/* ボタンサイズをコラムと統一 */
 body.portal-page .step-action-btn {
     background-color: #f1f2f6;
     padding-top: 8px; padding-right: 18px; padding-bottom: 8px; padding-left: 18px;
