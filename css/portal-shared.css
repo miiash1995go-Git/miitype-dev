@@ -934,48 +934,62 @@ body.portal-page .content-body h2 {
 }
 
 /* ============================================================
-   v19.9.164 ロードマップ強制コンパクト化（最終上書き）
+   v19.9.165 ロードマップ・上余白根絶パッチ（最終決定版）
    ------------------------------------------------------------
-   - ファイル内のどこかに残っている古い「デカい設定」を強制無効化
-   - コラム一覧と1pxの狂いもなくサイズを統合
+   - 記事用見出しの margin-top: 50px をカード内だけ強制的に 0 に上書き
+   - コラム一覧と 1px の狂いもなくデザインを完全同期
+   - 冗長記述（プロパティ完全展開）を維持
    ============================================================ */
 
+/* 1. カード内の見出し(h3)の上余白を完全に殺す */
+body.portal-page .roadmap-step-item .step-content h3 {
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 2px !important;
+    margin-left: 0px !important;
+    padding-top: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 0px !important;
+    padding-left: 0px !important;
+    font-size: 1.05rem !important;
+    line-height: 1.4 !important;
+    border-bottom-style: none !important;
+}
+
+/* 2. カード自体の内側の余白をコラムと統一 */
 body.portal-page .roadmap-step-item {
     padding-top: 12px !important;
-    padding-bottom: 12px !important;
     padding-right: 25px !important;
+    padding-bottom: 12px !important;
     padding-left: 25px !important;
     margin-bottom: 12px !important;
     height: auto !important;
     min-height: 0 !important;
 }
 
-/* STEPバッジをコラムのアイコンサイズ(54px)に強制固定 */
-body.portal-page .step-number-badge {
+/* 3. バッジと説明文(p)の余白も念のためリセット */
+body.portal-page .roadmap-step-item .step-number-badge {
     width: 54px !important;
     height: 54px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
     margin-right: 20px !important;
 }
 
-body.portal-page .step-number-badge .num {
-    font-size: 1.2rem !important;
-}
-
-/* タイトルサイズをコラムと完全一致(1.05rem) */
-body.portal-page .step-content h3 { 
-    font-size: 1.05rem !important;
-    margin-bottom: 2px !important;
-    line-height: 1.4 !important;
-}
-
-body.portal-page .step-content p {
+body.portal-page .roadmap-step-item .step-content p {
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: 0px !important;
     font-size: 0.85rem !important;
     line-height: 1.5 !important;
 }
 
-/* ボタンをコンパクトに */
+/* 4. ボタンの小型化を維持 */
 body.portal-page .step-action-btn {
     padding-top: 8px !important;
+    padding-right: 18px !important;
     padding-bottom: 8px !important;
+    padding-left: 18px !important;
     font-size: 0.8rem !important;
 }
