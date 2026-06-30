@@ -932,3 +932,50 @@ body.portal-page .content-body h2 {
     width: 100%;
     box-sizing: border-box;
 }
+
+/* ============================================================
+   v19.9.164 ロードマップ強制コンパクト化（最終上書き）
+   ------------------------------------------------------------
+   - ファイル内のどこかに残っている古い「デカい設定」を強制無効化
+   - コラム一覧と1pxの狂いもなくサイズを統合
+   ============================================================ */
+
+body.portal-page .roadmap-step-item {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    padding-right: 25px !important;
+    padding-left: 25px !important;
+    margin-bottom: 12px !important;
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+/* STEPバッジをコラムのアイコンサイズ(54px)に強制固定 */
+body.portal-page .step-number-badge {
+    width: 54px !important;
+    height: 54px !important;
+    margin-right: 20px !important;
+}
+
+body.portal-page .step-number-badge .num {
+    font-size: 1.2rem !important;
+}
+
+/* タイトルサイズをコラムと完全一致(1.05rem) */
+body.portal-page .step-content h3 { 
+    font-size: 1.05rem !important;
+    margin-bottom: 2px !important;
+    line-height: 1.4 !important;
+}
+
+body.portal-page .step-content p {
+    font-size: 0.85rem !important;
+    line-height: 1.5 !important;
+}
+
+/* ボタンをコンパクトに */
+body.portal-page .step-action-btn {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    font-size: 0.8rem !important;
+}
