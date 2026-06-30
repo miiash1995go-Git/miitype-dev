@@ -45,16 +45,18 @@ body.portal-page article.static-page.static-page--wide {
     max-width: 1000px;
 }
 
-/* ページタイトル（H1）の余白リセット：詳細度を高めて制御 */
+/* ページタイトルの上下余白をスリム化して、カードを上に引き上げる */
 body.portal-page article.static-page h1.page-title {
-    margin-top: 0px; 
+    margin-top: 20px !important; 
     margin-right: 0px;
-    margin-bottom: 5px;
+    margin-bottom: 20px !important;
     margin-left: 0px;
     padding-top: 0px;
+    padding-right: 0px;
     padding-bottom: 0px;
+    padding-left: 0px;
+    font-size: 1.7rem; 
     line-height: 1.2;
-    font-weight: 900;
 }
 
 /* ワイド版専用の内部グリッド（詳細度を維持） */
@@ -87,6 +89,13 @@ body.portal-page .roadmap-flow {
     display: block;
 }
 
+/* ============================================================
+   v19.9.161 学習ロードマップ：コンパクト・高密度化パッチ
+   ------------------------------------------------------------
+   - 既存の「デカすぎる」設定をすべてスリム化
+   - プロパティ完全展開ルール（正典）を維持
+   ============================================================ */
+
 body.portal-page .roadmap-step-item {
     display: flex;
     align-items: center;
@@ -101,11 +110,13 @@ body.portal-page .roadmap-step-item {
     border-top-right-radius: 18px;
     border-bottom-right-radius: 18px;
     border-bottom-left-radius: 18px;
-    padding-top: 18px;
-    padding-right: 28px;
-    padding-bottom: 18px;
-    padding-left: 28px;
-    margin-bottom: 18px;
+    /* 上下を 18px → 12px に圧縮 */
+    padding-top: 12px;
+    padding-right: 25px;
+    padding-bottom: 12px;
+    padding-left: 25px;
+    /* カード間の隙間を 18px → 12px に圧縮 */
+    margin-bottom: 12px;
     text-decoration: none;
     position: relative;
     overflow: hidden;
@@ -113,7 +124,7 @@ body.portal-page .roadmap-step-item {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.03);
 }
 
-/* 訪問済みリンクの色化け防止：ここはブラウザの仕様上 !important を残す */
+/* 訪問済みリンク対策（色固定） */
 body.portal-page .roadmap-step-item, 
 body.portal-page .roadmap-step-item:link, 
 body.portal-page .roadmap-step-item:visited, 
@@ -131,7 +142,7 @@ body.portal-page .roadmap-step-item:hover {
     box-shadow: 0px 12px 25px rgba(52, 152, 219, 0.12);
 }
 
-/* カード左側のアクセント垂直線（疑似要素 ::before） */
+/* 左端のアクセント線 */
 body.portal-page .roadmap-step-item::before {
     content: "";
     position: absolute;
@@ -143,47 +154,97 @@ body.portal-page .roadmap-step-item::before {
     z-index: 1;
 }
 
-/* ステップ別カラー：詳細度を確保 */
 body.portal-page .roadmap-step-item.step-zero::before { background-color: #f39c12 !important; }
 body.portal-page .roadmap-step-item.active-step::before { background-color: #3498db !important; }
 
-/* STEPバッジ（丸アイコン部分） */
+/* STEPバッジの小型化 (68px → 54px) */
 body.portal-page .step-number-badge {
     flex-shrink: 0;
-    width: 68px;
-    height: 68px;
+    width: 54px;
+    height: 54px;
     background-color: #f1f2f6;
-    border-radius: 50%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-right: 25px;
+    margin-right: 20px;
     z-index: 2;
 }
-body.portal-page .step-number-badge .label { font-size: 0.65rem; font-weight: 800; color: #7f8c8d; letter-spacing: 0.05em; }
-body.portal-page .step-number-badge .num { font-size: 1.5rem; font-weight: 900; color: #2c3e50; }
+
+body.portal-page .step-number-badge .label {
+    font-size: 0.6rem;
+    font-weight: 800;
+    color: #7f8c8d;
+    letter-spacing: 0.02em;
+    line-height: 1;
+}
+
+body.portal-page .step-number-badge .num {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: #2c3e50;
+    line-height: 1.2;
+}
+
 body.portal-page .step-zero .num { color: #e67e22; }
 body.portal-page .active-step .num { color: #3498db; }
 
-/* カード内テキスト */
+/* 見出し(H3)のサイズ調整と余白排除 */
 body.portal-page .step-content { flex: 1; text-align: left; }
+
 body.portal-page .step-content h3 { 
-    margin-top: 0; margin-bottom: 5px; font-size: 1.18rem; font-weight: 800; color: #2c3e50; border: none; padding: 0;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 2px; /* 下の文章との距離を詰める */
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    font-size: 1.05rem; /* 1.18remから縮小 */
+    font-weight: 800;
+    color: #2c3e50;
+    border-bottom-style: none;
+    line-height: 1.4;
 }
-/* 記事本文用スタイルの干渉をリセット */
+
+/* 記事本文スタイルの干渉リセット（維持） */
 body.portal-page .step-content h3::before, 
 body.portal-page .step-content h3::after { display: none; }
 
-body.portal-page .step-content p { margin: 0; font-size: 0.9rem; color: #666666; line-height: 1.6; }
+body.portal-page .step-content p {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    font-size: 0.85rem;
+    color: #666666;
+    line-height: 1.5;
+}
 
-/* カード内ボタン */
+/* ボタンの小型化 */
 body.portal-page .step-action-btn {
     background-color: #f1f2f6;
-    padding-top: 10px; padding-right: 22px; padding-bottom: 10px; padding-left: 22px;
-    border-radius: 25px; font-size: 0.85rem; font-weight: 800; color: #57606f; margin-left: 20px; white-space: nowrap;
+    padding-top: 8px;
+    padding-right: 18px;
+    padding-bottom: 8px;
+    padding-left: 18px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #57606f;
+    margin-left: 15px;
+    white-space: nowrap;
     transition: background-color 0.2s, color 0.2s;
 }
+
 body.portal-page .roadmap-step-item:hover .step-action-btn {
     background-color: #3498db;
     color: #ffffff;
