@@ -342,17 +342,19 @@ body.portal-page .summary-nav {
 
 body.portal-page .summary-nav .btn-main,
 body.portal-page .summary-nav .summary-btn {
-    padding-top: 12px;
-    padding-right: 24px;
-    padding-bottom: 12px;
-    padding-left: 24px;
+    /* 1. 3つ並びを死守するため、左右を15pxに絞り、!importantでstyle.cssの50px設定を無効化 */
+    padding-top: 12px !important;
+    padding-right: 15px !important;
+    padding-bottom: 12px !important;
+    padding-left: 15px !important;
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
-    flex: 0 1 auto;
+    /* 2. ボタンの最低幅を160pxで揃え、ガタつきを防止 */
     min-width: 160px;
-    font-size: 0.95rem;
+    /* 3. 文字サイズを0.9remに微減し、改行（2行化）を物理的に封殺 */
+    font-size: 0.9rem !important;
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
@@ -363,6 +365,7 @@ body.portal-page .summary-nav .summary-btn {
     border-bottom-left-radius: 40px;
     text-decoration: none;
     font-weight: 800;
+    line-height: 1;
 }
 
 body.portal-page .summary-btn {
