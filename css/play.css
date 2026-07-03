@@ -827,3 +827,50 @@ body.game-body .instructor-advice b {
     padding-bottom: 4px;
     border-bottom: 1px solid rgba(230, 126, 34, 0.25);
 }
+
+/* --- portal-shared.css のナビボタンを game-body でも有効化 (v19.9.174) --- */
+
+/* 配置エリアの強制同期 */
+body.game-body .summary-nav {
+    display: flex !important;
+    gap: 15px !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    margin-top: 40px !important;
+    margin-bottom: 0px !important;
+    width: 100% !important;
+}
+
+/* ボタン共通サイズ・形状の強制同期 */
+body.game-body .summary-nav .btn-main,
+body.game-body .summary-nav .summary-btn {
+    padding-top: 12px !important;
+    padding-right: 20px !important;
+    padding-bottom: 12px !important;
+    padding-left: 20px !important;
+    min-width: 160px !important;
+    font-size: 0.95rem !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 40px !important;
+    text-decoration: none !important;
+    font-weight: 800 !important;
+    box-sizing: border-box !important;
+}
+
+/* サブボタン（白背景・青枠）の色定義 */
+body.game-body .summary-btn {
+    background-color: #ffffff !important;
+    border: 2px solid #3498db !important;
+    color: #3498db !important;
+    transition: all 0.2s ease !important;
+}
+
+body.game-body .summary-btn:hover {
+    background-color: #3498db !important;
+    color: #ffffff !important;
+    transform: translateY(-2px) !important;
+}
