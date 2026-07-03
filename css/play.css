@@ -619,7 +619,7 @@ body.game-body .game-description-wrapper {
     /* 1366x768環境で、冒頭の挨拶がちょうど隠れるよう上余白を120pxへ拡大 */
     padding-top: 120px;
     padding-right: 0px;
-    padding-bottom: 120px;
+    padding-bottom: 140px;
     padding-left: 0px;
     margin-top: 0px;
     margin-right: 0px;
