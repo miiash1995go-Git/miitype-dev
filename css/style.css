@@ -1021,3 +1021,129 @@ body.portal-page .content-body table.setup-table td {
         font-size: 0.85rem;
     }
 }
+/* ============================================================
+   index.html Newsセクション：メディアスタイル刷新 (v19.9.175)
+   ------------------------------------------------------------
+   - カテゴリタグの導入とホバーエフェクトの強化
+   - 行間・余白を「ぱそトレ！」標準の30px/12pxルールに最適化
+   - 冗長記述：プロパティ完全展開を維持
+   ============================================================ */
+
+.news-list {
+    background-color: #ffffff;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    padding-top: 15px;
+    padding-right: 30px;
+    padding-bottom: 15px;
+    padding-left: 30px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.04);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #f1f3f5;
+    border-right-color: #f1f3f5;
+    border-bottom-color: #f1f3f5;
+    border-left-color: #f1f3f5;
+}
+
+.news-item {
+    display: flex;
+    align-items: center;
+    padding-top: 18px;
+    padding-right: 0px;
+    padding-bottom: 18px;
+    padding-left: 0px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #f8f9fa;
+    transition: transform 0.2s ease;
+}
+
+.news-item:last-child {
+    border-bottom-style: none;
+}
+
+.news-item:hover {
+    transform: translateX(5px); /* 右に少し動くことで「押せる感」を演出 */
+}
+
+/* 最新のニュースにだけ付けるアクセント */
+.news-item.new-release {
+    position: relative;
+}
+
+/* 日付とタグのエリア */
+.news-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 240px;
+    flex-shrink: 0;
+}
+
+.news-date {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+/* カテゴリタグの装飾 */
+.news-tag {
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding-top: 3px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    white-space: nowrap;
+}
+
+.tag-update { background-color: #eef9ff; color: #3498db; }
+.tag-column { background-color: #f0fdf4; color: #27ae60; }
+
+/* ニュース本文 */
+.news-content {
+    flex-grow: 1;
+}
+
+.news-content a {
+    text-decoration: none;
+    color: #2c3e50;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.news-content a:hover {
+    color: #3498db;
+}
+
+/* スマホ対応：縦並びへの切り替え */
+@media (max-width: 768px) {
+    .news-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    .news-meta {
+        gap: 10px;
+        min-width: 0;
+    }
+    .news-list {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+}
