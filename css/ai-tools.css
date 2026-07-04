@@ -60,7 +60,7 @@ body.portal-page .static-page--wide .category-card.static-card {
 .comparison-item { background: white; padding: 20px; border-radius: 15px; border: 1px solid #ffe8cc; }
 .comparison-item h4 { color: #e67e22; margin-bottom: 10px; }
 
-/* 5. 4大ツール比較グリッド：2x2レイアウトを確定 (v19.9.177 修復版) */
+/* 5. 4大ツール比較グリッド：2x2レイアウト確定 (v19.9.178 正典) */
 body.portal-page article.static-page .content-body .tools-comparison-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -71,7 +71,7 @@ body.portal-page article.static-page .content-body .tools-comparison-grid {
     margin-left: 0px;
 }
 
-/* カード全体：aタグのデフォルトスタイルを完全に上書きしてカード化 */
+/* カード全体：aタグのデフォルト（青字・下線）を完全排除 */
 body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card {
     display: flex;
     flex-direction: column;
@@ -114,7 +114,7 @@ body.portal-page article.static-page .content-body .tools-comparison-grid a.tool
 .tool-usage { font-size: 0.85rem; color: #64748b; line-height: 1.6; margin-top: 0px; margin-bottom: 25px; flex-grow: 1; }
 .tool-badge { background-color: #eef9ff; color: var(--accent); font-size: 0.75rem; font-weight: 800; padding-top: 4px; padding-right: 12px; padding-bottom: 4px; padding-left: 12px; border-radius: 6px; }
 
-/* リンクボタン：ハッキリとした枠線と背景を付ける */
+/* 公式サイトへのボタン：視認性を最大化 */
 .tool-footer-link {
     margin-top: 10px;
     padding-top: 15px;
@@ -149,10 +149,16 @@ body.portal-page article.static-page .content-body .tools-comparison-grid a.tool
     border-color: var(--accent);
 }
 
-body.portal-page article.static-page .tools-comparison-grid {
-
-/* 6. FAQ */
-.faq-item { flex-direction: column !important; align-items: flex-start !important; padding: 25px 0 !important; }
+/* 6. FAQ：デグレードを修復 */
+.faq-item { 
+    display: flex;
+    flex-direction: column !important; 
+    align-items: flex-start !important; 
+    padding-top: 25px !important; 
+    padding-right: 0px !important; 
+    padding-bottom: 25px !important; 
+    padding-left: 0px !important; 
+}
 .faq-q { font-weight: bold; color: var(--accent); margin-bottom: 10px; font-size: 1.1rem; }
 .faq-a { color: #555; line-height: 1.7; padding-left: 10px; border-left: 3px solid #f1f2f6; }
 
@@ -165,24 +171,18 @@ body.portal-page article.static-page .tools-comparison-grid {
 .summary-btn { background: white; border: 2px solid var(--accent); color: var(--accent); border-radius: 40px; font-weight: bold; }
 
 /* ============================================================
-   AI活用ガイド：レスポンシブ・最終統合定義 (v19.9.95)
-   ------------------------------------------------------------
-   1024px / 768px / 600px の各段階で、
-   1000pxワイドレイアウトを完璧に制御します。
+   AI活用ガイド：レスポンシブ・最終統合定義 (v19.9.178)
    ============================================================ */
 
-/* --- 1. タブレットサイズ調整 (1024px以下) --- */
 @media (max-width: 1024px) {
-    /* 4枚並びのツールカードを 2枚×2段 に切り替え */
     body.portal-page article.static-page--wide .tools-comparison-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
     }
 }
 
-/* --- 2. スマホサイズ調整 (768px以下) --- */
 @media (max-width: 768px) {
-/* ツール比較：スマホでも2列(2x2)を強制 */
+    /* ツール比較：スマホでも2列(2x2)を維持 */
     body.portal-page article.static-page .content-body .tools-comparison-grid {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
@@ -195,6 +195,10 @@ body.portal-page article.static-page .tools-comparison-grid {
         padding-right: 10px;
         padding-bottom: 15px;
         padding-left: 10px;
+        border-top-width: 1.5px;
+        border-right-width: 1.5px;
+        border-bottom-width: 1.5px;
+        border-left-width: 1.5px;
     }
     
     .tool-icon { font-size: 2.2rem; }
@@ -202,7 +206,7 @@ body.portal-page article.static-page .tools-comparison-grid {
     .tool-summary { font-size: 0.85rem; }
     .tool-footer-link { font-size: 0.9rem; padding-top: 12px; padding-bottom: 12px; }
 
-    /* その他グリッドは1列 */
+    /* その他グリッド（お悩み解決・比較表）は1列 */
     body.portal-page article.static-page--wide .category-grid,
     body.portal-page article.static-page .comparison-grid {
         display: grid !important;
@@ -211,54 +215,21 @@ body.portal-page article.static-page .tools-comparison-grid {
         width: 100% !important;
     }
 
-    /* お悩みリスト・例文ボックスの修正維持 */
-    body.portal-page .user-voices-container { padding: 20px 15px !important; margin: 0 !important; max-width: 100% !important; }
+    /* お悩みリスト・例文ボックスの修正 */
+    body.portal-page .user-voices-container { padding: 20px 15px !important; margin-right: 0 !important; margin-left: 0 !important; max-width: 100% !important; }
     body.portal-page article.static-page .content-body .example-box { padding-top: 55px !important; }
     body.portal-page article.static-page .content-body .example-label { top: -15px !important; left: 10px !important; right: 10px !important; text-align: center !important; display: block !important; }
 }
 
-/* --- 3. 超小型デバイス調整 (600px以下) --- */
 @media (max-width: 600px) {
-    /* 下部ボタン群を縦並びにして、指で押しやすくする */
-    .summary-nav {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .summary-nav .btn-main, 
-    .summary-nav .summary-btn {
-        width: 100%;
-        min-width: 0;
-        margin-top: 0;
-        margin-right: 0;
-        margin-bottom: 5px;
-        margin-left: 0;
-        box-sizing: border-box;
-    }
+    .summary-nav { flex-direction: column; gap: 10px; }
+    .summary-nav .btn-main, .summary-nav .summary-btn { width: 100%; min-width: 0; margin-bottom: 5px; }
 }
 
-/* ============================================================
-   AI活用ページ専用：垂直余白の最終調整 (新規追加)
-   ============================================================ */
-
-/* 1. お悩み解決ボックス内の上部パディングを 15px まで削る */
+/* 垂直余白の最終調整 */
 body.portal-page .static-page--wide .recommended-box {
-    margin-top: 20px;
-    margin-right: 0px;
-    margin-bottom: 30px;
-    margin-left: 0px;
-    padding-top: 15px; /* ここで中の上余白を劇的に詰める */
-    padding-right: 30px;
-    padding-bottom: 40px;
-    padding-left: 30px;
+    margin-top: 20px; padding-top: 15px; padding-right: 30px; padding-bottom: 40px; padding-left: 30px;
 }
-
-/* 2. ボックス内の見出し（H2）の巨大な上余白 (75px) を 10px にリセット */
 body.portal-page .static-page--wide .recommended-box h2.section-title {
-    margin-top: 10px;
-    margin-right: 0px;
-    margin-bottom: 25px;
-    margin-left: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    margin-top: 10px; margin-bottom: 25px;
 }
