@@ -88,80 +88,84 @@ body.portal-page article.static-page .content-body .comparison-item h4 {
     font-weight: 900;
 }
 
-/* 5. 4大ツール比較グリッド：高さを圧縮した高密度2x2 (v19.9.181 正典) */
+/* 5. 4大ツール比較グリッド：文字サイズを強化した高密度2x2 (v19.9.182 正典) */
 body.portal-page article.static-page .content-body .tools-comparison-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px; /* 隙間を詰める */
+    gap: 20px;
     margin-top: 30px;
     margin-right: 0px;
     margin-bottom: 30px;
     margin-left: 0px;
 }
 
-/* カード自体を「巨大な押しやすいボタン」として定義 */
+/* カード全体：情報を中央に凝縮 */
 body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: #f8fbfe; /* 最初から薄い青を敷いて「押せる場所」と認識させる */
-    padding-top: 20px;
-    padding-right: 15px;
-    padding-bottom: 20px;
-    padding-left: 15px;
+    background-color: #f8fbfe;
+    padding-top: 25px;
+    padding-right: 20px;
+    padding-bottom: 25px;
+    padding-left: 20px;
     border-top-width: 2px;
     border-right-width: 2px;
     border-bottom-width: 2px;
     border-left-width: 2px;
     border-style: solid;
-    border-color: #d1e3f8; /* 枠線をクッキリさせる */
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-color: #d1e3f8;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
     text-decoration: none;
     color: #2c3e50;
     transition: all 0.2s ease;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
     box-sizing: border-box;
     position: relative;
-    min-height: 180px; /* 最小高さを揃える */
+    min-height: 200px; /* 文字拡大に合わせて最小高さをわずかに拡張 */
     justify-content: center;
 }
 
-/* ホバー・タップ時の反応：色を反転させて「押した！」という確信を与える */
 body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card:hover {
     background-color: var(--accent);
     border-top-color: var(--accent);
     border-right-color: var(--accent);
     border-bottom-color: var(--accent);
     border-left-color: var(--accent);
-    transform: translateY(-4px);
-    box-shadow: 0px 10px 25px rgba(52, 152, 219, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0px 12px 30px rgba(52, 152, 219, 0.2);
 }
 
-/* ホバー時に中の文字色を白く変える */
 body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card:hover .tool-name,
 body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card:hover .tool-summary,
 body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card:hover .tool-icon {
     color: #ffffff;
 }
 
-.tool-icon { font-size: 2.2rem; display: block; margin-bottom: 8px; transition: color 0.2s; }
-.tool-name { font-size: 1.1rem; font-weight: 900; margin-top: 0px; margin-bottom: 8px; transition: color 0.2s; }
-.tool-summary { font-size: 0.8rem; font-weight: 800; color: #64748b; margin-top: 0px; margin-bottom: 12px; line-height: 1.4; transition: color 0.2s; }
-.tool-badge { background-color: #ffffff; color: var(--accent); font-size: 0.7rem; font-weight: 800; padding-top: 3px; padding-right: 8px; padding-bottom: 3px; padding-left: 8px; border-radius: 4px; border: 1px solid #d1e3f8; }
+.tool-icon { font-size: 3rem; display: block; margin-bottom: 10px; transition: color 0.2s; }
+
+/* ツール名：1.1rem → 1.35remへ大幅拡大 */
+.tool-name { font-size: 1.35rem; font-weight: 900; margin-top: 0px; margin-bottom: 10px; transition: color 0.2s; }
+
+/* 説明文：0.8rem → 1.05remへ拡大し、太字に固定 */
+.tool-summary { font-size: 1.05rem; font-weight: 800; color: #2c3e50; margin-top: 0px; margin-bottom: 15px; line-height: 1.4; transition: color 0.2s; }
+
+/* バッジ：文字サイズを調整 */
+.tool-badge { background-color: #ffffff; color: var(--accent); font-size: 0.8rem; font-weight: 900; padding-top: 4px; padding-right: 12px; padding-bottom: 4px; padding-left: 12px; border-radius: 6px; border: 1px solid #d1e3f8; }
 
 /* 6. FAQ：高密度記述を維持 */
 .faq-item { 
     display: flex;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    padding-top: 25px !important;
-    padding-right: 0px !important;
-    padding-bottom: 25px !important;
-    padding-left: 0px !important;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 25px;
+    padding-right: 0px;
+    padding-bottom: 25px;
+    padding-left: 0px;
     border-bottom: 1px solid #f1f2f6;
 }
 .news-list .faq-item:last-child { border-bottom: none; }
@@ -185,26 +189,26 @@ body.portal-page article.static-page .content-body .tools-comparison-grid a.tool
 }
 
 @media (max-width: 768px) {
-    /* ツール比較：スマホでも2列(2x2)を厳守し、縦長を完全封殺 */
+    /* ツール比較：スマホでも2列(2x2)を厳守 */
     body.portal-page article.static-page .content-body .tools-comparison-grid {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px !important;
+        gap: 12px !important;
         width: 100% !important;
     }
 
     body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card {
-        padding-top: 15px;
-        padding-right: 8px;
-        padding-bottom: 15px;
-        padding-left: 8px;
-        min-height: 140px; /* スマホではさらに高さを抑える */
+        padding-top: 20px;
+        padding-right: 10px;
+        padding-bottom: 20px;
+        padding-left: 10px;
+        min-height: 160px;
     }
     
-    .tool-icon { font-size: 1.8rem; margin-bottom: 5px; }
-    .tool-name { font-size: 0.95rem; margin-bottom: 4px; }
-    .tool-summary { font-size: 0.7rem; margin-bottom: 8px; line-height: 1.2; }
-    .tool-badge { font-size: 0.6rem; padding: 2px 5px; }
+    .tool-icon { font-size: 2.2rem; margin-bottom: 8px; }
+    .tool-name { font-size: 1.15rem; margin-bottom: 5px; }
+    .tool-summary { font-size: 0.9rem; margin-bottom: 10px; line-height: 1.3; }
+    .tool-badge { font-size: 0.7rem; padding: 2px 8px; }
 
     /* その他グリッドは1列 */
     body.portal-page article.static-page--wide .category-grid,
