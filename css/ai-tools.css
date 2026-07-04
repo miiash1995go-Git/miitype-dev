@@ -60,6 +60,94 @@ body.portal-page .static-page--wide .category-card.static-card {
 .comparison-item { background: white; padding: 20px; border-radius: 15px; border: 1px solid #ffe8cc; }
 .comparison-item h4 { color: #e67e22; margin-bottom: 10px; }
 
+/* 5. 4大ツール比較グリッド：2x2レイアウトを確定 (v19.9.177 修復版) */
+body.portal-page article.static-page .content-body .tools-comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-top: 40px;
+    margin-right: 0px;
+    margin-bottom: 40px;
+    margin-left: 0px;
+}
+
+/* カード全体：aタグのデフォルトスタイルを完全に上書きしてカード化 */
+body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #ffffff;
+    padding-top: 35px;
+    padding-right: 20px;
+    padding-bottom: 30px;
+    padding-left: 20px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-style: solid;
+    border-color: #e2e8f0;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    text-decoration: none;
+    color: #2c3e50;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+}
+
+body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 15px 35px rgba(52, 152, 219, 0.15);
+    border-top-color: var(--accent);
+    border-right-color: var(--accent);
+    border-bottom-color: var(--accent);
+    border-left-color: var(--accent);
+}
+
+.tool-icon { font-size: 2.8rem; display: block; margin-bottom: 12px; }
+.tool-name { font-size: 1.3rem; font-weight: 900; color: #2c3e50; margin-top: 0px; margin-bottom: 15px; }
+.tool-summary { font-size: 0.95rem; font-weight: 800; color: #2c3e50; margin-top: 0px; margin-bottom: 10px; line-height: 1.5; }
+.tool-usage { font-size: 0.85rem; color: #64748b; line-height: 1.6; margin-top: 0px; margin-bottom: 25px; flex-grow: 1; }
+.tool-badge { background-color: #eef9ff; color: var(--accent); font-size: 0.75rem; font-weight: 800; padding-top: 4px; padding-right: 12px; padding-bottom: 4px; padding-left: 12px; border-radius: 6px; }
+
+/* リンクボタン：ハッキリとした枠線と背景を付ける */
+.tool-footer-link {
+    margin-top: 10px;
+    padding-top: 15px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    background-color: #f8fbfe;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-style: solid;
+    border-color: #d1e3f8;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    width: 100%;
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card:hover .tool-footer-link {
+    background-color: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+}
 
 body.portal-page article.static-page .tools-comparison-grid {
 
@@ -94,80 +182,39 @@ body.portal-page article.static-page .tools-comparison-grid {
 
 /* --- 2. スマホサイズ調整 (768px以下) --- */
 @media (max-width: 768px) {
-    /* ツール比較グリッド：!importantなしでスマホ2列（2x2）を実現 */
-    body.portal-page article.static-page--wide .tools-comparison-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        width: 100%;
+/* ツール比較：スマホでも2列(2x2)を強制 */
+    body.portal-page article.static-page .content-body .tools-comparison-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        width: 100% !important;
     }
 
-    /* お悩み解決などの他のグリッドは1列にする */
-    body.portal-page article.static-page--wide .category-grid,
-    body.portal-page article.static-page .comparison-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 20px;
-        width: 100%;
-    }
-
-    /* スマホ版カード：文字サイズと余白を詰めてコンパクトにする */
-    body.portal-page article.static-page .tools-comparison-grid a.tool-card {
-        padding-top: 15px;
+    body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card {
+        padding-top: 20px;
         padding-right: 10px;
         padding-bottom: 15px;
         padding-left: 10px;
     }
-    .tool-icon { font-size: 1.8rem; }
-    .tool-name { font-size: 0.95rem; margin-bottom: 8px; }
-    .tool-summary { font-size: 0.75rem; margin-bottom: 5px; }
-    .tool-usage { font-size: 0.65rem; margin-bottom: 8px; }
-    .tool-footer-link { margin-top: 8px; padding-top: 8px; font-size: 0.75rem; }
-}
-/* --- 3. 超小型デバイス調整 (600px以下) --- */
-@media (max-width: 600px) {
-    /* 下部ボタン群を縦並びにして、指で押しやすくする */
-    .summary-nav {
-        flex-direction: column;
-        gap: 10px;
-    }
     
-    .summary-nav .btn-main, 
-    .summary-nav .summary-btn {
-        width: 100%;
-        min-width: 0;
-        margin-top: 0;
-        margin-right: 0;
-        margin-bottom: 5px;
-        margin-left: 0;
-        box-sizing: border-box;
+    .tool-icon { font-size: 2.2rem; }
+    .tool-name { font-size: 1.1rem; }
+    .tool-summary { font-size: 0.85rem; }
+    .tool-footer-link { font-size: 0.9rem; padding-top: 12px; padding-bottom: 12px; }
+
+    /* その他グリッドは1列 */
+    body.portal-page article.static-page--wide .category-grid,
+    body.portal-page article.static-page .comparison-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        width: 100% !important;
     }
-}
 
-/* ============================================================
-   AI活用ページ専用：垂直余白の最終調整 (新規追加)
-   ============================================================ */
-
-/* 1. お悩み解決ボックス内の上部パディングを 15px まで削る */
-body.portal-page .static-page--wide .recommended-box {
-    margin-top: 20px;
-    margin-right: 0px;
-    margin-bottom: 30px;
-    margin-left: 0px;
-    padding-top: 15px; /* ここで中の上余白を劇的に詰める */
-    padding-right: 30px;
-    padding-bottom: 40px;
-    padding-left: 30px;
-}
-
-/* 2. ボックス内の見出し（H2）の巨大な上余白 (75px) を 10px にリセット */
-body.portal-page .static-page--wide .recommended-box h2.section-title {
-    margin-top: 10px;
-    margin-right: 0px;
-    margin-bottom: 25px;
-    margin-left: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    /* お悩みリスト・例文ボックスの修正維持 */
+    body.portal-page .user-voices-container { padding: 20px 15px !important; margin: 0 !important; max-width: 100% !important; }
+    body.portal-page article.static-page .content-body .example-box { padding-top: 55px !important; }
+    body.portal-page article.static-page .content-body .example-label { top: -15px !important; left: 10px !important; right: 10px !important; text-align: center !important; display: block !important; }
 }
 
 /* --- 3. 超小型デバイス調整 (600px以下) --- */
