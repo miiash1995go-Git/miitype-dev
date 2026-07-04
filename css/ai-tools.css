@@ -61,72 +61,7 @@ body.portal-page .static-page--wide .category-card.static-card {
 .comparison-item h4 { color: #e67e22; margin-bottom: 10px; }
 
 
-/* 5. 4大ツール比較グリッド：2x2レイアウトを確定 */
 body.portal-page article.static-page .tools-comparison-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-top: 40px;
-    margin-right: 0px;
-    margin-bottom: 40px;
-    margin-left: 0px;
-}
-
-/* カード（aタグ）の設定：縦長にならず、情報の高密度化を実現 */
-body.portal-page article.static-page .tools-comparison-grid a.tool-card {
-    background-color: #ffffff;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    padding-top: 25px;
-    padding-right: 15px;
-    padding-bottom: 20px;
-    padding-left: 15px;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-style: solid;
-    border-color: #eef2f6;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.02);
-    text-decoration: none;
-    color: inherit;
-    box-sizing: border-box;
-}
-
-body.portal-page article.static-page .tools-comparison-grid a.tool-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 12px 30px rgba(52, 152, 219, 0.1);
-    border-top-color: var(--accent);
-    border-right-color: var(--accent);
-    border-bottom-color: var(--accent);
-    border-left-color: var(--accent);
-}
-
-.tool-icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
-.tool-name { font-size: 1.1rem; font-weight: 800; color: var(--primary); margin-top: 0px; margin-bottom: 12px; }
-.tool-summary { font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-top: 0px; margin-bottom: 8px; line-height: 1.4; }
-.tool-usage { font-size: 0.75rem; color: #7f8c8d; line-height: 1.5; margin-top: 0px; margin-bottom: 12px; flex-grow: 1; }
-.tool-badge { background-color: #eef9ff; color: var(--accent); font-size: 0.7rem; font-weight: 800; padding-top: 3px; padding-right: 8px; padding-bottom: 3px; padding-left: 8px; border-radius: 4px; }
-
-/* 矢印リンク：カードの下部に固定 */
-.tool-footer-link {
-    margin-top: 15px;
-    padding-top: 12px;
-    border-top-width: 1px;
-    border-top-style: solid;
-    border-top-color: #f1f2f6;
-    width: 100%;
-    color: var(--accent);
-    font-size: 0.85rem;
-    font-weight: 800;
-}
 
 /* 6. FAQ */
 .faq-item { flex-direction: column !important; align-items: flex-start !important; padding: 25px 0 !important; }
@@ -189,6 +124,52 @@ body.portal-page article.static-page .tools-comparison-grid a.tool-card:hover {
     .tool-usage { font-size: 0.65rem; margin-bottom: 8px; }
     .tool-footer-link { margin-top: 8px; padding-top: 8px; font-size: 0.75rem; }
 }
+/* --- 3. 超小型デバイス調整 (600px以下) --- */
+@media (max-width: 600px) {
+    /* 下部ボタン群を縦並びにして、指で押しやすくする */
+    .summary-nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .summary-nav .btn-main, 
+    .summary-nav .summary-btn {
+        width: 100%;
+        min-width: 0;
+        margin-top: 0;
+        margin-right: 0;
+        margin-bottom: 5px;
+        margin-left: 0;
+        box-sizing: border-box;
+    }
+}
+
+/* ============================================================
+   AI活用ページ専用：垂直余白の最終調整 (新規追加)
+   ============================================================ */
+
+/* 1. お悩み解決ボックス内の上部パディングを 15px まで削る */
+body.portal-page .static-page--wide .recommended-box {
+    margin-top: 20px;
+    margin-right: 0px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+    padding-top: 15px; /* ここで中の上余白を劇的に詰める */
+    padding-right: 30px;
+    padding-bottom: 40px;
+    padding-left: 30px;
+}
+
+/* 2. ボックス内の見出し（H2）の巨大な上余白 (75px) を 10px にリセット */
+body.portal-page .static-page--wide .recommended-box h2.section-title {
+    margin-top: 10px;
+    margin-right: 0px;
+    margin-bottom: 25px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
 /* --- 3. 超小型デバイス調整 (600px以下) --- */
 @media (max-width: 600px) {
     /* 下部ボタン群を縦並びにして、指で押しやすくする */
