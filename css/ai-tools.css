@@ -61,7 +61,7 @@ body.portal-page .static-page--wide .category-card.static-card {
 .comparison-item h4 { color: #e67e22; margin-bottom: 10px; }
 
 
-/* 5. 4大ツール比較グリッド：洗練された4列レイアウト (v19.9.176) */
+/* 5. 4大ツール比較グリッド：2x2レイアウトを確定 */
 body.portal-page article.static-page .tools-comparison-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -72,17 +72,17 @@ body.portal-page article.static-page .tools-comparison-grid {
     margin-left: 0px;
 }
 
-/* カード全体を「押せるパネル」にする */
-body.portal-page .tool-card {
+/* カード（aタグ）の設定：縦長にならず、情報の高密度化を実現 */
+body.portal-page article.static-page .tools-comparison-grid a.tool-card {
     background-color: #ffffff;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    padding-top: 30px;
-    padding-right: 20px;
-    padding-bottom: 25px;
-    padding-left: 20px;
+    padding-top: 25px;
+    padding-right: 15px;
+    padding-bottom: 20px;
+    padding-left: 15px;
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
@@ -96,9 +96,11 @@ body.portal-page .tool-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.02);
     text-decoration: none;
+    color: inherit;
+    box-sizing: border-box;
 }
 
-body.portal-page .tool-card:hover {
+body.portal-page article.static-page .tools-comparison-grid a.tool-card:hover {
     transform: translateY(-5px);
     box-shadow: 0px 12px 30px rgba(52, 152, 219, 0.1);
     border-top-color: var(--accent);
@@ -107,12 +109,13 @@ body.portal-page .tool-card:hover {
     border-left-color: var(--accent);
 }
 
-.tool-icon { font-size: 2.2rem; display: block; margin-bottom: 12px; }
-.tool-summary { font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 8px; line-height: 1.4; }
-.tool-usage { font-size: 0.75rem; color: #7f8c8d; line-height: 1.5; margin-bottom: 15px; flex-grow: 1; }
+.tool-icon { font-size: 2.2rem; display: block; margin-bottom: 10px; }
+.tool-name { font-size: 1.1rem; font-weight: 800; color: var(--primary); margin-top: 0px; margin-bottom: 12px; }
+.tool-summary { font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-top: 0px; margin-bottom: 8px; line-height: 1.4; }
+.tool-usage { font-size: 0.75rem; color: #7f8c8d; line-height: 1.5; margin-top: 0px; margin-bottom: 12px; flex-grow: 1; }
 .tool-badge { background-color: #eef9ff; color: var(--accent); font-size: 0.7rem; font-weight: 800; padding-top: 3px; padding-right: 8px; padding-bottom: 3px; padding-left: 8px; border-radius: 4px; }
 
-/* ボタンを廃止し、洗練されたテキストリンクへ */
+/* 矢印リンク：カードの下部に固定 */
 .tool-footer-link {
     margin-top: 15px;
     padding-top: 12px;
@@ -156,7 +159,7 @@ body.portal-page .tool-card:hover {
 
 /* --- 2. スマホサイズ調整 (768px以下) --- */
 @media (max-width: 768px) {
-    /* [改善] ツール比較のみスマホでも2列（2×2）を維持して縦長を解消 */
+    /* ツール比較グリッド：!importantなしでスマホ2列（2x2）を実現 */
     body.portal-page article.static-page--wide .tools-comparison-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -173,44 +176,19 @@ body.portal-page .tool-card:hover {
         width: 100%;
     }
 
-    /* 各カードの横幅を100%に広げる */
-    .tool-card, .category-card {
-        width: 100% !important;
-        box-sizing: border-box !important;
+    /* スマホ版カード：文字サイズと余白を詰めてコンパクトにする */
+    body.portal-page article.static-page .tools-comparison-grid a.tool-card {
+        padding-top: 15px;
+        padding-right: 10px;
+        padding-bottom: 15px;
+        padding-left: 10px;
     }
-
-    /* お悩みリスト：左右余白を最小化 */
-    .user-voices-container {
-        padding-top: 20px !important;
-        padding-right: 15px !important;
-        padding-bottom: 20px !important;
-        padding-left: 15px !important;
-        margin-right: 0 !important;
-        margin-left: 0 !important;
-        max-width: 100% !important;
-    }
-
-    /* 例文ボックスも横幅いっぱい */
-    .example-box {
-        padding-top: 55px !important;
-        padding-right: 15px !important;
-        padding-bottom: 25px !important;
-        padding-left: 15px !important;
-    }
-    /* 例文ラベル：スマホでの2行化に対応し、中央揃えで配置 */
-    .example-label {
-        top: -15px !important;
-        left: 10px !important;
-        right: 10px !important;
-        padding-top: 6px !important;
-        padding-right: 12px !important;
-        padding-bottom: 6px !important;
-        padding-left: 12px !important;
-        line-height: 1.3 !important;
-        font-size: 0.75rem !important;
-        text-align: center !important;
-        display: block !important;
-    }
+    .tool-icon { font-size: 1.8rem; }
+    .tool-name { font-size: 0.95rem; margin-bottom: 8px; }
+    .tool-summary { font-size: 0.75rem; margin-bottom: 5px; }
+    .tool-usage { font-size: 0.65rem; margin-bottom: 8px; }
+    .tool-footer-link { margin-top: 8px; padding-top: 8px; font-size: 0.75rem; }
+}
 /* --- 3. 超小型デバイス調整 (600px以下) --- */
 @media (max-width: 600px) {
     /* 下部ボタン群を縦並びにして、指で押しやすくする */
