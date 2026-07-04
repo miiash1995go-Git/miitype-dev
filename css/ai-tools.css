@@ -53,7 +53,7 @@ body.portal-page .static-page--wide .category-card.static-card {
     color: white; padding: 2px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;
 }
 
-/* 4. 基礎の重要性 (オレンジ枠) (v19.9.179) */
+/* 4. 基礎の重要性 (オレンジ枠) (v19.9.183) */
 body.portal-page article.static-page .content-body .comparison-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -61,8 +61,9 @@ body.portal-page article.static-page .content-body .comparison-grid {
     margin-top: 25px;
 }
 
+/* 枠内を黄色(#fffde7)で塗りつぶし、視認性を強化 */
 body.portal-page article.static-page .content-body .comparison-item {
-    background-color: #ffffff;
+    background-color: #fffde7; /* 白から薄い黄色に変更 */
     padding-top: 25px;
     padding-right: 25px;
     padding-bottom: 25px;
