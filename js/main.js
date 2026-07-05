@@ -478,6 +478,7 @@ if (success) {
 if (typeof gtag === 'function') {
                 // [最終完全版] 全スタッツをGA4へ送信
                 gtag('event', 'typing_complete', {
+                    'timestamp': new Date().getTime(),
                     'score': score,                   /* スコア */
                     'rank': rank,                     /* 判定ランク (A, S, Legend等) */
                     'category_name': categoryName,    /* カテゴリ名 */
