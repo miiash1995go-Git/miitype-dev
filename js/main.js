@@ -591,15 +591,28 @@ if (typeof gtag === 'function') {
 const app = new TypingApp();
 
 /* ============================================================
-   共通機能：ページトップへ戻るボタンの制御
+   共通機能：ページトップへ戻るボタンの制御 (v19.9.203 統一規格)
    ============================================================ */
 window.addEventListener('scroll', () => {
-    const btn = document.getElementById('backToTop');
-    if (btn) {
+    const pageTopBtn = document.getElementById('back-to-top');
+    if (pageTopBtn) {
+        // 300px以上スクロールしたら表示
         if (window.scrollY > 300) {
-            btn.classList.add('visible');
+            pageTopBtn.classList.add('visible');
         } else {
-            btn.classList.remove('visible');
+            pageTopBtn.classList.remove('visible');
         }
+    }
+});
+
+// スムーズスクロールの実装（HTML側の a href="#" への対応）
+document.addEventListener('click', (e) => {
+    const target = e.target.closest('#back-to-top');
+    if (target) {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     }
 });
