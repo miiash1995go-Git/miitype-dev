@@ -10,37 +10,100 @@
     box-shadow: none !important;
 }
 
-/* 2. お悩みリスト (💬) */
-.user-voices-container {
-    max-width: 720px; margin: 0 auto 40px auto; background: white; padding: 30px;
-    border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border-left: 6px solid #d1d5db;
-}
-.voice-list { list-style: none; padding: 0; }
-.voice-list li { position: relative; padding-left: 35px; margin-bottom: 15px; font-size: 0.95rem; line-height: 1.7; }
-.voice-list li::before { content: "💬"; position: absolute; left: 0; }
+/* --- AI機能カード：視認性とアピール力を最大化 (v19.9.188) --- */
 
-body.portal-page .static-page--wide .category-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    margin-top: 30px;
+/* カード全体の厚みを増し、背景に安心感を付与 */
+body.portal-page article.static-page .content-body .ai-feature-card {
+    margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 40px;
     margin-left: 0px;
+    padding-top: 40px;
+    padding-right: 35px;
+    padding-bottom: 40px;
+    padding-left: 35px;
+    background-color: #fcfdfe; /* 清潔感のある白に近い青 */
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 8px; /* 左側に太いアクセント */
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #e2e8f0;
+    border-right-color: #e2e8f0;
+    border-bottom-color: #e2e8f0;
+    border-left-color: #3498db; /* ぱそトレ！ブルー */
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.04);
 }
 
-body.portal-page .static-page--wide .category-card.static-card {
-    padding-top: 25px;
-    padding-right: 20px;
-    padding-bottom: 25px;
-    padding-left: 20px;
-    min-height: 280px; 
+/* タイトルの巨大化 */
+body.portal-page article.static-page .content-body .ai-feature-card h3.feature-title {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--primary);
+    margin-top: 0px;
+    margin-bottom: 25px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    gap: 12px;
 }
 
+/* AI別解説エリア：各ツールを際立たせる */
+.ai-brand-item {
+    background-color: #ffffff;
+    padding-top: 15px;
+    padding-right: 20px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    border-radius: 12px;
+    border: 1px solid #eef2f6;
+    margin-bottom: 15px;
+    font-size: 1.1rem; /* 文字サイズ拡大 */
+    line-height: 1.7;
+}
+
+.ai-brand-item strong {
+    color: #2980b9;
+    font-size: 1.2rem;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/* 「実務での活用メリット」エリアの装飾 */
+.ai-benefit-box {
+    margin-top: 25px;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    background-color: #fff9f0; /* 薄いオレンジの警告色で目を引く */
+    border-radius: 12px;
+}
+
+.ai-benefit-box h4 {
+    font-size: 1rem;
+    color: #e67e22;
+    margin-top: 0px;
+    margin-bottom: 12px;
+    font-weight: 900;
+}
+
+.ai-benefit-box ul {
+    margin: 0;
+    padding-left: 20px;
+    font-weight: 800;
+    color: #333;
+}
+
+.ai-benefit-box ul li {
+    margin-bottom: 10px;
+}
 
 /* 3. プロンプト例文セクション */
 .example-unit { margin-bottom: 40px; }
