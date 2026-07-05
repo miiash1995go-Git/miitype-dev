@@ -455,7 +455,10 @@ body.portal-page .info-note-box ul {
 }
 
 body.portal-page .info-note-box ul li {
-    margin-bottom: 10px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 20px; /* 12pxから20pxへ拡張し、文章同士の間隔を確保 */
+    margin-left: 0px;
 }
 
 body.portal-page .info-note-box ul li:last-child {
