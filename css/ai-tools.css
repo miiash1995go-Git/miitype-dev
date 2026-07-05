@@ -1,135 +1,98 @@
 /* ============================================================
-   ぱそトレ！ AI活用ガイド専用スタイル (v19.9.37 最終統合版)
+   ぱそトレ！ AI活用ガイド専用スタイル (v19.9.190)
+   ------------------------------------------------------------
+   【管理ルール】
+   - 1文字も略さない「正典」記述
+   - 詳細度による統治（!importantを極力排除）
+   - PC 2x2 / スマホ 2x2 の完全統合
    ============================================================ */
 
 /* 1. 全体レイアウト・静的カード */
-.static-card {
-    cursor: default !important;
-    transform: none !important;
-    border: 1px solid #eee !important;
-    box-shadow: none !important;
+body.portal-page article.static-page .content-body .static-card {
+    cursor: default;
+    transform: none;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-style: solid;
+    border-color: #eeeeee;
+    box-shadow: none;
 }
 
-/* --- AI機能カード：視認性とアピール力を最大化 (v19.9.188) --- */
+/* 2. お悩みリスト (💬) */
+body.portal-page .user-voices-container {
+    max-width: 720px;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 40px;
+    margin-left: auto;
+    background-color: #ffffff;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.03);
+    border-left-width: 6px;
+    border-left-style: solid;
+    border-left-color: #d1d5db;
+}
 
-/* カード全体の厚みを増し、背景に安心感を付与 */
+.voice-list { list-style: none; padding: 0; margin: 0; }
+.voice-list li { position: relative; padding-left: 35px; margin-bottom: 15px; font-size: 0.95rem; line-height: 1.7; color: #4b5563; }
+.voice-list li::before { content: "💬"; position: absolute; left: 0; }
+
+/* 3. 【新設】AI機能解説カード：左に青線の厚いカード */
 body.portal-page article.static-page .content-body .ai-feature-card {
     margin-top: 0px;
     margin-right: 0px;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     margin-left: 0px;
     padding-top: 40px;
     padding-right: 35px;
     padding-bottom: 40px;
     padding-left: 35px;
-    background-color: #fcfdfe; /* 清潔感のある白に近い青 */
-    border-top-width: 2px;
-    border-right-width: 2px;
-    border-bottom-width: 2px;
-    border-left-width: 8px; /* 左側に太いアクセント */
+    background-color: #fcfdfe;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 10px; /* 視線を止める太い線 */
     border-top-style: solid;
     border-right-style: solid;
     border-bottom-style: solid;
     border-left-style: solid;
-    border-top-color: #e2e8f0;
-    border-right-color: #e2e8f0;
-    border-bottom-color: #e2e8f0;
-    border-left-color: #3498db; /* ぱそトレ！ブルー */
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.04);
+    border-top-color: #eef2f6;
+    border-right-color: #eef2f6;
+    border-bottom-color: #eef2f6;
+    border-left-color: #3498db;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.04);
 }
 
-/* タイトルの巨大化 */
 body.portal-page article.static-page .content-body .ai-feature-card h3.feature-title {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 900;
-    color: var(--primary);
+    color: #2c3e50;
     margin-top: 0px;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
 }
 
-/* AI別解説エリア：各ツールを際立たせる */
+/* 各AIブランド（Claude/ChatGPT等）の解説枠 */
 .ai-brand-item {
     background-color: #ffffff;
-    padding-top: 15px;
-    padding-right: 20px;
-    padding-bottom: 15px;
-    padding-left: 20px;
-    border-radius: 12px;
-    border: 1px solid #eef2f6;
-    margin-bottom: 15px;
-    font-size: 1.1rem; /* 文字サイズ拡大 */
-    line-height: 1.7;
-}
-
-.ai-brand-item strong {
-    color: #2980b9;
-    font-size: 1.2rem;
-    display: inline-block;
-    margin-right: 10px;
-}
-
-/* 「実務での活用メリット」エリアの装飾 */
-.ai-benefit-box {
-    margin-top: 25px;
     padding-top: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    background-color: #fff9f0; /* 薄いオレンジの警告色で目を引く */
-    border-radius: 12px;
-}
-
-.ai-benefit-box h4 {
-    font-size: 1rem;
-    color: #e67e22;
-    margin-top: 0px;
-    margin-bottom: 12px;
-    font-weight: 900;
-}
-
-.ai-benefit-box ul {
-    margin: 0;
-    padding-left: 20px;
-    font-weight: 800;
-    color: #333;
-}
-
-.ai-benefit-box ul li {
-    margin-bottom: 10px;
-}
-
-/* 3. プロンプト例文セクション */
-.example-unit { margin-bottom: 40px; }
-.example-box {
-    background: #2c3e50; color: white; padding: 30px; border-radius: 15px;
-    position: relative; font-family: 'Roboto Mono', monospace; line-height: 1.8;
-}
-.example-label {
-    position: absolute; top: -12px; left: 20px; background: var(--accent);
-    color: white; padding: 2px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;
-}
-
-/* 4. 基礎の重要性 (オレンジ枠) (v19.9.183) */
-body.portal-page article.static-page .content-body .comparison-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    margin-top: 25px;
-}
-
-/* 枠内を黄色(#fffde7)で塗りつぶし、視認性を強化 */
-body.portal-page article.static-page .content-body .comparison-item {
-    background-color: #fffde7; /* 白から薄い黄色に変更 */
-    padding-top: 25px;
     padding-right: 25px;
-    padding-bottom: 25px;
+    padding-bottom: 20px;
     padding-left: 25px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -140,112 +103,112 @@ body.portal-page article.static-page .content-body .comparison-item {
     border-bottom-width: 1px;
     border-left-width: 1px;
     border-style: solid;
-    border-color: #ffe8cc;
-    box-sizing: border-box;
+    border-color: #eef2f6;
+    margin-bottom: 20px;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #2c3e50;
 }
 
-body.portal-page article.static-page .content-body .comparison-item h4 {
-    color: #e67e22;
-    margin-top: 0px;
-    margin-bottom: 12px;
-    font-size: 1.1rem;
-    font-weight: 900;
+.ai-brand-item strong { color: #3498db; font-size: 1.3rem; font-weight: 900; margin-right: 5px; }
+
+/* メリットボックス（オレンジ枠） */
+.ai-benefit-box {
+    margin-top: 35px;
+    padding-top: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+    padding-left: 25px;
+    background-color: #fff9f0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-left: 5px solid #f39c12;
 }
 
-/* 5. 4大ツール比較グリッド：文字サイズを強化した高密度2x2 (v19.9.182 正典) */
+.ai-benefit-box h4 { font-size: 1.1rem; color: #e67e22; margin-top: 0px; margin-bottom: 15px; font-weight: 900; }
+.ai-benefit-box ul { margin: 0; padding-left: 20px; }
+.ai-benefit-box ul li { margin-bottom: 12px; font-size: 1rem; font-weight: 800; color: #444; }
+
+/* 4. プロンプト例文セクション */
+.example-unit { margin-bottom: 40px; }
+.example-box {
+    background: #2c3e50; color: white; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px;
+    border-radius: 15px; position: relative; font-family: 'Roboto Mono', monospace; line-height: 1.8;
+}
+.example-label {
+    position: absolute; top: -12px; left: 20px; background: var(--accent);
+    color: white; padding: 2px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;
+}
+
+/* 5. 基礎の重要性 (オレンジ枠) */
+body.portal-page article.static-page .content-body .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 25px;
+}
+
+body.portal-page article.static-page .content-body .comparison-item {
+    background-color: #fffde7; /* 塗りつぶし黄色 */
+    padding-top: 25px; padding-right: 25px; padding-bottom: 25px; padding-left: 25px;
+    border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px;
+    border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px;
+    border-style: solid; border-color: #ffe8cc; box-sizing: border-box;
+}
+
+body.portal-page article.static-page .content-body .comparison-item h4 { color: #e67e22; margin-top: 0px; margin-bottom: 12px; font-size: 1.1rem; font-weight: 900; }
+
+/* 6. 4大ツール比較グリッド (2x2) */
 body.portal-page article.static-page .content-body .tools-comparison-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-top: 30px;
-    margin-right: 0px;
-    margin-bottom: 30px;
-    margin-left: 0px;
+    gap: 25px;
+    margin-top: 40px; margin-bottom: 40px;
 }
 
-/* カード全体：情報を中央に凝縮 */
+/* カード自体が「巨大なボタン」 */
 body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
     background-color: #f8fbfe;
-    padding-top: 25px;
-    padding-right: 20px;
-    padding-bottom: 25px;
-    padding-left: 20px;
-    border-top-width: 2px;
-    border-right-width: 2px;
-    border-bottom-width: 2px;
-    border-left-width: 2px;
-    border-style: solid;
-    border-color: #d1e3f8;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
-    text-decoration: none;
-    color: #2c3e50;
-    transition: all 0.2s ease;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
-    box-sizing: border-box;
-    position: relative;
-    min-height: 200px; /* 文字拡大に合わせて最小高さをわずかに拡張 */
-    justify-content: center;
+    padding-top: 25px; padding-right: 20px; padding-bottom: 25px; padding-left: 20px;
+    border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px;
+    border-style: solid; border-color: #d1e3f8;
+    border-top-left-radius: 25px; border-top-right-radius: 25px; border-bottom-right-radius: 25px; border-bottom-left-radius: 25px;
+    text-decoration: none; color: #2c3e50; transition: all 0.2s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05); box-sizing: border-box; min-height: 200px; justify-content: center;
 }
 
 body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card:hover {
-    background-color: var(--accent);
-    border-top-color: var(--accent);
-    border-right-color: var(--accent);
-    border-bottom-color: var(--accent);
-    border-left-color: var(--accent);
-    transform: translateY(-5px);
-    box-shadow: 0px 12px 30px rgba(52, 152, 219, 0.2);
+    background-color: var(--accent); border-color: var(--accent); transform: translateY(-5px); box-shadow: 0px 12px 30px rgba(52, 152, 219, 0.2);
 }
 
-body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card:hover .tool-name,
-body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card:hover .tool-summary,
-body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card:hover .tool-icon {
-    color: #ffffff;
-}
+body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card:hover * { color: #ffffff !important; }
 
-.tool-icon { font-size: 3rem; display: block; margin-bottom: 10px; transition: color 0.2s; }
+.tool-icon { font-size: 3rem; display: block; margin-bottom: 10px; }
+.tool-name { font-size: 1.35rem; font-weight: 900; margin-bottom: 10px; }
+.tool-summary { font-size: 1.05rem; font-weight: 800; margin-bottom: 15px; line-height: 1.4; }
+.tool-badge { background-color: #ffffff; color: var(--accent); font-size: 0.8rem; font-weight: 900; padding: 4px 12px; border-radius: 6px; border: 1px solid #d1e3f8; }
 
-/* ツール名：1.1rem → 1.35remへ大幅拡大 */
-.tool-name { font-size: 1.35rem; font-weight: 900; margin-top: 0px; margin-bottom: 10px; transition: color 0.2s; }
-
-/* 説明文：0.8rem → 1.05remへ拡大し、太字に固定 */
-.tool-summary { font-size: 1.05rem; font-weight: 800; color: #2c3e50; margin-top: 0px; margin-bottom: 15px; line-height: 1.4; transition: color 0.2s; }
-
-/* バッジ：文字サイズを調整 */
-.tool-badge { background-color: #ffffff; color: var(--accent); font-size: 0.8rem; font-weight: 900; padding-top: 4px; padding-right: 12px; padding-bottom: 4px; padding-left: 12px; border-radius: 6px; border: 1px solid #d1e3f8; }
-
-/* 6. FAQ：高密度記述を維持 */
+/* 7. FAQ */
 .faq-item { 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-top: 25px;
-    padding-right: 0px;
-    padding-bottom: 25px;
-    padding-left: 0px;
-    border-bottom: 1px solid #f1f2f6;
+    display: flex; flex-direction: column !important; align-items: flex-start !important; 
+    padding-top: 25px !important; padding-bottom: 25px !important; border-bottom: 1px solid #f1f2f6; 
 }
-.news-list .faq-item:last-child { border-bottom: none; }
 .faq-q { font-weight: bold; color: var(--accent); margin-bottom: 10px; font-size: 1.1rem; }
 .faq-a { color: #555; line-height: 1.7; padding-left: 10px; border-left: 3px solid #f1f2f6; }
 
-/* 7. 下部ボタン (summary-nav) */
+/* 8. 下部ボタン (summary-nav) */
 .summary-nav { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; align-items: stretch; margin-top: 30px; }
 .summary-nav .btn-main, .summary-nav .summary-btn {
     display: flex; align-items: center; justify-content: center;
-    min-width: 160px; height: 50px; margin: 0; line-height: 1.2; text-align: center; text-decoration: none; box-sizing: border-box; font-weight: 900; border-radius: 40px;
+    min-width: 160px; height: 50px; margin: 0; line-height: 1.2; text-decoration: none; box-sizing: border-box; font-weight: 900; border-radius: 40px;
 }
 .summary-btn { background: white; border: 2px solid var(--accent); color: var(--accent); }
 
 /* ============================================================
-   AI活用ガイド：レスポンシブ・最終統合定義
+   レスポンシブ調整
    ============================================================ */
 
 @media (max-width: 1024px) {
@@ -253,38 +216,26 @@ body.portal-page article.static-page .content-body .tools-comparison-grid a.tool
 }
 
 @media (max-width: 768px) {
-    /* ツール比較：スマホでも2列(2x2)を厳守 */
+    /* ツール比較：スマホでも2列(2x2) */
     body.portal-page article.static-page .content-body .tools-comparison-grid {
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 12px !important;
-        width: 100% !important;
+        display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; width: 100% !important;
     }
 
     body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card {
-        padding-top: 20px;
-        padding-right: 10px;
-        padding-bottom: 20px;
-        padding-left: 10px;
-        min-height: 160px;
+        padding-top: 20px; padding-right: 10px; padding-bottom: 20px; padding-left: 10px; min-height: 160px;
     }
     
-    .tool-icon { font-size: 2.2rem; margin-bottom: 8px; }
-    .tool-name { font-size: 1.15rem; margin-bottom: 5px; }
-    .tool-summary { font-size: 0.9rem; margin-bottom: 10px; line-height: 1.3; }
-    .tool-badge { font-size: 0.7rem; padding: 2px 8px; }
+    .tool-icon { font-size: 2.2rem; }
+    .tool-name { font-size: 1.15rem; }
+    .tool-summary { font-size: 0.9rem; }
 
-    /* その他グリッドは1列 */
+    /* その他は1列 */
     body.portal-page article.static-page--wide .category-grid,
     body.portal-page article.static-page .content-body .comparison-grid {
-        display: grid !important;
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-        width: 100% !important;
+        display: grid !important; grid-template-columns: 1fr !important; gap: 20px !important; width: 100% !important;
     }
 
-    /* お悩み・例文修正維持 */
-    body.portal-page .user-voices-container { padding: 20px 15px !important; margin: 0 !important; max-width: 100% !important; }
+    /* 例文ボックスの重なり防止 */
     body.portal-page article.static-page .content-body .example-box { padding-top: 55px !important; }
     body.portal-page article.static-page .content-body .example-label { top: -15px !important; left: 10px !important; right: 10px !important; text-align: center !important; display: block !important; }
 }
@@ -294,6 +245,6 @@ body.portal-page article.static-page .content-body .tools-comparison-grid a.tool
     .summary-nav .btn-main, .summary-nav .summary-btn { width: 100%; min-width: 0; margin-bottom: 5px; }
 }
 
-/* 垂直余白の最終調整 */
+/* 垂直余白調整 */
 body.portal-page .static-page--wide .recommended-box { margin-top: 20px; padding-top: 15px; padding-right: 30px; padding-bottom: 40px; padding-left: 30px; }
 body.portal-page .static-page--wide .recommended-box h2.section-title { margin-top: 10px; margin-bottom: 25px; }
