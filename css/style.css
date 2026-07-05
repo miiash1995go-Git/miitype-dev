@@ -174,20 +174,43 @@ header .logo {
     white-space: nowrap;
 }
 
-/* --- 読みものページ専用：ヘッダー広告枠を同期 (v19.9.199 正典) --- */
-/* game-body（練習画面）には影響を与えず、他のページ間遷移を滑らかにします */
+/* --- 1. タイピング画面専用（game-body）：物理的に高さを死守しつつ極限まで圧縮 (v19.9.200 正典) --- */
+body.game-body #app header .ad-container-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+    height: 90px; /* 広告の高さを確保 */
+    margin-top: 2px !important; /* ノートPCでのボタン見切れを防止するため極限まで圧縮 */
+    margin-right: auto !important;
+    margin-bottom: 2px !important;
+    margin-left: auto !important;
+    background-color: transparent;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    box-sizing: border-box;
+}
+
+/* --- 2. 読みものページ専用（portal-page）：遷移時のガタつきを防止する90px固定空間 (v19.9.201) --- */
 body.portal-page #app header .ad-container-top {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     max-width: 1000px;
-    height: 90px; /* 高さを90pxで予約 */
-    margin-top: 15px; 
+    height: 90px; /* 広告枠の高さを90pxで予約 */
+    margin-top: 15px;
     margin-right: auto;
-    margin-bottom: 25px; /* 下部コンテンツとの間隔を確保 */
+    margin-bottom: 25px; /* 下部コンテンツとの呼吸を確保 */
     margin-left: auto;
     background-color: transparent;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
     box-sizing: border-box;
 }
 
@@ -197,7 +220,7 @@ body.portal-page #app header .ad-container-top {
 body.game-body #app { padding-top: 5px !important; }
 body.game-body .nav-menu { margin: 5px 0 5px 0 !important; }
 body.game-body header .logo { margin: 0 auto !important; }
-body.game-body .ad-container-top { margin: 2px auto !important; } /* 練習画面のみさらに圧縮 */
+body.game-body .ad-container-top { height: 90px !important; margin: 2px auto !important; } /* 練習画面は高さを保ちつつ極限圧縮 */
 
 /* --- 3. スマホ表示：構造の最適化（詳細度による上書き） --- */
 @media (max-width: 768px) {
