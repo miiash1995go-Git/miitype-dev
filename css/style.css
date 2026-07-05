@@ -699,6 +699,18 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     white-space: nowrap !important; /* 改行を禁止して1行でビシッと見せる */
 }
 
+/* アイコン画像のサイズ・配置調整 (v19.9.193 正典) */
+.cat-icon-img {
+    height: 60px; /* 以前の絵文字サイズに合わせた最適な高さ */
+    width: auto;
+    display: block;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    /* 透過PNGの品質を維持するためのレンダリング設定 */
+    image-rendering: -webkit-optimize-contrast;
+}
 .grid-4 p {
     font-size: 0.78rem !important; /* 説明文を小さくして情報密度を高める */
     line-height: 1.4 !important;
