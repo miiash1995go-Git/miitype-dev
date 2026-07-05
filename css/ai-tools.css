@@ -247,34 +247,72 @@ body.portal-page article.static-page .content-body .tools-comparison-grid a.tool
     min-width: 160px; height: 50px; margin: 0; line-height: 1.2; text-decoration: none; box-sizing: border-box; font-weight: 900; border-radius: 40px;
 }
 .summary-btn { background: white; border: 2px solid var(--accent); color: var(--accent); }
-
 /* ============================================================
-   レスポンシブ調整
+   レスポンシブ調整 (v19.9.191：スマホ幅広・正常化版)
    ============================================================ */
 
 @media (max-width: 1024px) {
-    body.portal-page article.static-page--wide .tools-comparison-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    body.portal-page article.static-page--wide .tools-comparison-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px; 
+    }
 }
 
 @media (max-width: 768px) {
-    /* ツール比較：スマホでも2列(2x2) */
+    /* 4大ツール：スマホでも2列(2x2)を維持 */
     body.portal-page article.static-page .content-body .tools-comparison-grid {
-        display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; width: 100% !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        width: 100% !important;
     }
 
     body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card {
-        padding-top: 20px; padding-right: 10px; padding-bottom: 20px; padding-left: 10px; min-height: 160px;
+        padding-top: 20px;
+        padding-right: 10px;
+        padding-bottom: 20px;
+        padding-left: 10px;
+        min-height: 160px;
     }
     
     .tool-icon { font-size: 2.2rem; }
     .tool-name { font-size: 1.15rem; }
     .tool-summary { font-size: 0.9rem; }
 
-    /* その他は1列 */
+    /* その他（お悩み解決・オレンジ枠）は1列 */
     body.portal-page article.static-page--wide .category-grid,
     body.portal-page article.static-page .content-body .comparison-grid {
-        display: grid !important; grid-template-columns: 1fr !important; gap: 20px !important; width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        width: 100% !important;
     }
+
+    /* 【最重要：修正】AI機能解説カード：左の余白を削り文字幅を奪還 */
+    body.portal-page article.static-page .content-body .ai-feature-card {
+        padding-top: 25px;
+        padding-right: 15px; /* 35pxから大幅削減 */
+        padding-bottom: 25px;
+        padding-left: 15px; /* 35pxから大幅削減 */
+        border-left-width: 5px; /* 10pxから5pxへ削減し幅を稼ぐ */
+        margin-bottom: 30px;
+    }
+
+    /* AI解説枠：内側の余白も最小化し、1行の文字数を最大化 */
+    .ai-brand-item {
+        padding-top: 15px;
+        padding-right: 12px;
+        padding-bottom: 15px;
+        padding-left: 12px;
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    /* メリットボックス：スマホ最適化 */
+    .ai-benefit-box { padding: 15px; margin-top: 20px; }
+
+    /* お悩みリストの余白 */
+    body.portal-page .user-voices-container { padding: 20px 15px !important; margin: 0 !important; max-width: 100% !important; }
 
     /* 例文ボックスの重なり防止 */
     body.portal-page article.static-page .content-body .example-box { padding-top: 55px !important; }
@@ -286,6 +324,15 @@ body.portal-page article.static-page .content-body .tools-comparison-grid a.tool
     .summary-nav .btn-main, .summary-nav .summary-btn { width: 100%; min-width: 0; margin-bottom: 5px; }
 }
 
-/* 垂直余白調整 */
-body.portal-page .static-page--wide .recommended-box { margin-top: 20px; padding-top: 15px; padding-right: 30px; padding-bottom: 40px; padding-left: 30px; }
-body.portal-page .static-page--wide .recommended-box h2.section-title { margin-top: 10px; margin-bottom: 25px; }
+/* 垂直余白の最終調整 */
+body.portal-page .static-page--wide .recommended-box { 
+    margin-top: 20px; 
+    padding-top: 15px; 
+    padding-right: 30px; 
+    padding-bottom: 40px; 
+    padding-left: 30px; 
+}
+body.portal-page .static-page--wide .recommended-box h2.section-title { 
+    margin-top: 10px; 
+    margin-bottom: 25px; 
+}
