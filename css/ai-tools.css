@@ -160,36 +160,77 @@ body.portal-page article.static-page .content-body .comparison-item {
 
 body.portal-page article.static-page .content-body .comparison-item h4 { color: #e67e22; margin-top: 0px; margin-bottom: 12px; font-size: 1.1rem; font-weight: 900; }
 
-/* 6. 4大ツール比較グリッド (2x2) */
+/* 6. 4大ツール比較グリッド (2x2) (v19.9.182 修復版) */
 body.portal-page article.static-page .content-body .tools-comparison-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
-    margin-top: 40px; margin-bottom: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
-/* カード自体が「巨大なボタン」 */
+/* カード全体：aタグのデフォルト（青字・下線）を完全排除 */
 body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card {
-    display: flex; flex-direction: column; align-items: center; text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     background-color: #f8fbfe;
-    padding-top: 25px; padding-right: 20px; padding-bottom: 25px; padding-left: 20px;
-    border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px;
-    border-style: solid; border-color: #d1e3f8;
-    border-top-left-radius: 25px; border-top-right-radius: 25px; border-bottom-right-radius: 25px; border-bottom-left-radius: 25px;
-    text-decoration: none; color: #2c3e50; transition: all 0.2s ease;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05); box-sizing: border-box; min-height: 200px; justify-content: center;
+    padding-top: 25px;
+    padding-right: 20px;
+    padding-bottom: 25px;
+    padding-left: 20px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-style: solid;
+    border-color: #d1e3f8;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    text-decoration: none;
+    color: #2c3e50;
+    transition: all 0.2s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    min-height: 200px;
+    justify-content: center;
 }
 
+/* ホバー・タップ時の反応：バッジの視認性を維持 */
 body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card:hover {
-    background-color: var(--accent); border-color: var(--accent); transform: translateY(-5px); box-shadow: 0px 12px 30px rgba(52, 152, 219, 0.2);
+    background-color: var(--accent);
+    border-top-color: var(--accent);
+    border-right-color: var(--accent);
+    border-bottom-color: var(--accent);
+    border-left-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0px 12px 30px rgba(52, 152, 219, 0.2);
 }
 
-body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card:hover * { color: #ffffff !important; }
+/* ホバー時に文字を白くする */
+body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card:hover .tool-name,
+body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card:hover .tool-summary,
+body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card:hover .tool-icon {
+    color: #ffffff !important;
+}
 
-.tool-icon { font-size: 3rem; display: block; margin-bottom: 10px; }
-.tool-name { font-size: 1.35rem; font-weight: 900; margin-bottom: 10px; }
-.tool-summary { font-size: 1.05rem; font-weight: 800; margin-bottom: 15px; line-height: 1.4; }
-.tool-badge { background-color: #ffffff; color: var(--accent); font-size: 0.8rem; font-weight: 900; padding: 4px 12px; border-radius: 6px; border: 1px solid #d1e3f8; }
+/* ホバー時：バッジは白背景を維持し、文字色を青に変えてクッキリさせる */
+body.portal-page article.static-page .content-body .tools-comparison-grid a.tool-card:hover .tool-badge {
+    background-color: #ffffff !important;
+    color: var(--accent) !important;
+    border-top-color: #ffffff !important;
+    border-right-color: #ffffff !important;
+    border-bottom-color: #ffffff !important;
+    border-left-color: #ffffff !important;
+}
+
+.tool-icon { font-size: 3rem; display: block; margin-bottom: 10px; transition: color 0.2s; }
+.tool-name { font-size: 1.35rem; font-weight: 900; margin-bottom: 10px; transition: color 0.2s; }
+.tool-summary { font-size: 1.05rem; font-weight: 800; margin-bottom: 15px; line-height: 1.4; transition: color 0.2s; }
+.tool-badge { background-color: #ffffff; color: var(--accent); font-size: 0.8rem; font-weight: 900; padding: 4px 12px; border-radius: 6px; border: 1px solid #d1e3f8; transition: all 0.2s; }
 
 /* 7. FAQ */
 .faq-item { 
