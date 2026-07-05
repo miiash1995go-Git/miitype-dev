@@ -174,17 +174,24 @@ header .logo {
     white-space: nowrap;
 }
 
-.ad-container-top {
+/* --- 読みものページ専用：ヘッダー広告枠を同期 (v19.9.199 正典) --- */
+/* game-body（練習画面）には影響を与えず、他のページ間遷移を滑らかにします */
+body.portal-page #app header .ad-container-top {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 100%;
     max-width: 1000px;
-    height: 90px;
-    margin: 0 auto !important;
-    background-color: transparent !important; /* 透明にする */
-    border: none !important;
+    height: 90px; /* 高さを90pxで予約 */
+    margin-top: 15px; 
+    margin-right: auto;
+    margin-bottom: 25px; /* 下部コンテンツとの間隔を確保 */
+    margin-left: auto;
+    background-color: transparent;
+    box-sizing: border-box;
 }
+
+/* タイピング練習画面のコンパクトさは既存の記述で別途保護 (style.css 147行目付近を維持) */
 
 /* --- 4. タイピング画面（game-body）専用：1画面に収めるための強制圧縮 --- */
 body.game-body #app { padding-top: 5px !important; }
