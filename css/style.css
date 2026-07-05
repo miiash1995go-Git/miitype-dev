@@ -699,16 +699,31 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     white-space: nowrap !important; /* 改行を禁止して1行でビシッと見せる */
 }
 
-/* アイコン画像のサイズ・配置調整 (v19.9.193 正典) */
+/* アイコン画像の強化設定 (v19.9.194 正典) */
+.cat-icon {
+    /* アイコン周囲に中央から広がる柔らかな光（後光）を付与 */
+    filter: drop-shadow(0px 0px 15px rgba(52, 152, 219, 0.25));
+    margin-top: 5px;
+    margin-right: 0px;
+    margin-bottom: 20px;
+    margin-left: 0px;
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover .cat-icon {
+    /* ホバー時に光を少し強くし、アイコンを少し大きくする演出 */
+    filter: drop-shadow(0px 0px 20px rgba(52, 152, 219, 0.4));
+    transform: scale(1.05);
+}
+
 .cat-icon-img {
-    height: 60px; /* 以前の絵文字サイズに合わせた最適な高さ */
+    height: 85px; /* 60pxから85pxへ拡大し、存在感を強調 */
     width: auto;
     display: block;
     margin-top: 0px;
     margin-right: auto;
     margin-bottom: 0px;
     margin-left: auto;
-    /* 透過PNGの品質を維持するためのレンダリング設定 */
     image-rendering: -webkit-optimize-contrast;
 }
 .grid-4 p {
@@ -722,7 +737,26 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     border: 2px dashed #ddd !important;
     opacity: 0.9;
 }
+/* 広告・プロモ枠内のリンクボタンを強調 (v19.9.194) */
+.ad-promo-card .cat-link {
+    font-size: 1rem !important;
+    font-weight: 800 !important;
+    color: var(--accent);
+    margin-top: 10px;
+    display: inline-block;
+    text-decoration: none;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 2px; /* 下線のみ設定 */
+    border-left-width: 0px;
+    border-style: solid;
+    border-color: transparent;
+    transition: border-color 0.2s ease;
+}
 
+.ad-promo-card .cat-link:hover {
+    border-bottom-color: var(--accent);
+}
 /* --- レスポンシブ：ノートPC以下でも崩さない --- */
 @media (max-width: 1024px) {
     .category-grid.grid-4 {
