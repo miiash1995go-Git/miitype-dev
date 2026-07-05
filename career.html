@@ -160,10 +160,7 @@
             </article>
         </main>
 
-<!-- ページトップへ戻るボタン (v19.9.203 統一規格) -->
-    <a href="#" id="back-to-top" class="back-to-top">↑</a>
-
-        <footer>
+<footer>
             <div class="footer-links">
                 <a href="privacy.html">プライバシーポリシー</a>
                 <a href="contact.html">お問い合わせ</a>
@@ -172,23 +169,11 @@
             <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
         </footer>
     </div>
-</div>
-    <script>
-        const backToTopBtn = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                backToTopBtn.classList.add('visible');
-            } else {
-                backToTopBtn.classList.remove('visible');
-            }
-        });
-        backToTopBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
+
+    <!-- ページトップへ戻るボタン (v19.9.203 統一規格) -->
+    <a href="#" id="back-to-top" class="back-to-top">↑</a>
+
+    <!-- 共通ロジックの読み込み -->
+    <script src="js/main.js"></script>
 </body>
 </html>
