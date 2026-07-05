@@ -398,19 +398,19 @@ body.portal-page .marker-yellow {
 }
 
 body.portal-page .info-note-box {
-    margin-top: 30px;
+    margin-top: 35px;
     margin-right: 0px;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
     margin-left: 0px;
     padding-top: 30px;
     padding-right: 30px;
     padding-bottom: 30px;
     padding-left: 30px;
-    background-color: #f9fafb; /* わずかに落ち着いた背景色へ */
+    background-color: #f9fafb;
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
-    border-left-width: 6px; /* 左側にアクセントを付けて重要度を提示 */
+    border-left-width: 6px;
     border-top-style: solid;
     border-right-style: solid;
     border-bottom-style: solid;
@@ -418,24 +418,50 @@ body.portal-page .info-note-box {
     border-top-color: #e2e8f0;
     border-right-color: #e2e8f0;
     border-bottom-color: #e2e8f0;
-    border-left-color: #3498db; /* ぱそトレ！ブルーで視線を止める */
+    border-left-color: #3498db;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
-    font-size: 1rem; /* 0.9remから1remへ拡大 */
-    line-height: 1.8; /* 窮屈な行間を本文と同等に拡張 */
-    color: #333333; /* 薄いグレー(#666)を廃止 */
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #333333;
+    box-sizing: border-box;
 }
 
-/* 枠内のタイトルを強調 */
+/* 枠内のタイトル：すべてこのデザインに統一 */
 body.portal-page .info-note-box strong.note-title {
     display: block;
+    margin-top: 0px;
+    margin-right: 0px;
     margin-bottom: 15px;
+    margin-left: 0px;
     color: var(--primary);
     font-size: 1.1rem;
     font-weight: 900;
+    line-height: 1.4;
 }
+
+/* 枠内のリスト：余白を統一 */
+body.portal-page .info-note-box ul {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+}
+
+body.portal-page .info-note-box ul li {
+    margin-bottom: 10px;
+}
+
+body.portal-page .info-note-box ul li:last-child {
+    margin-bottom: 0px;
+}
+
 
 body.portal-page .feature-list-vertical {
     display: flex;
