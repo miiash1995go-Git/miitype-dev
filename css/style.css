@@ -699,9 +699,8 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     white-space: nowrap !important; /* 改行を禁止して1行でビシッと見せる */
 }
 
-/* アイコン画像の強化設定 (v19.9.194 正典) */
+/* アイコン画像の強化設定 (v19.9.196 正典) */
 .cat-icon {
-    /* アイコン周囲に中央から広がる柔らかな光（後光）を付与 */
     filter: drop-shadow(0px 0px 15px rgba(52, 152, 219, 0.25));
     margin-top: 5px;
     margin-right: 0px;
@@ -711,13 +710,12 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
 }
 
 .category-card:hover .cat-icon {
-    /* ホバー時に光を少し強くし、アイコンを少し大きくする演出 */
     filter: drop-shadow(0px 0px 20px rgba(52, 152, 219, 0.4));
     transform: scale(1.05);
 }
 
 .cat-icon-img {
-    height: 85px; /* 60pxから85pxへ拡大し、存在感を強調 */
+    height: 85px;
     width: auto;
     display: block;
     margin-top: 0px;
@@ -726,9 +724,17 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
     margin-left: auto;
     image-rendering: -webkit-optimize-contrast;
 }
+
+/* 説明文：読みやすさを最優先にサイズアップ */
 .grid-4 p {
-    font-size: 0.78rem !important; /* 説明文を小さくして情報密度を高める */
-    line-height: 1.4 !important;
+    font-size: 0.95rem !important; /* 0.78から0.95へ拡大 */
+    line-height: 1.6 !important; /* 行間を広げて「目の滑り」を防止 */
+    color: #4b5563 !important;
+    font-weight: 500 !important;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
 }
 
 /* 4. 4枚目の「おすすめ/注目」枠を広告サイズ（300x250）に寄せる */
