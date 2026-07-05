@@ -398,23 +398,43 @@ body.portal-page .marker-yellow {
 }
 
 body.portal-page .info-note-box {
-    margin-top: 20px;
-    margin-bottom: 30px;
-    padding-top: 20px;
-    padding-right: 25px;
-    padding-bottom: 20px;
-    padding-left: 25px;
-    background-color: #fcfcfc;
+    margin-top: 30px;
+    margin-right: 0px;
+    margin-bottom: 40px;
+    margin-left: 0px;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    background-color: #f9fafb; /* わずかに落ち着いた背景色へ */
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-style: solid;
-    border-color: #eeeeee;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    line-height: 1.7;
-    color: #666;
+    border-left-width: 6px; /* 左側にアクセントを付けて重要度を提示 */
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #e2e8f0;
+    border-right-color: #e2e8f0;
+    border-bottom-color: #e2e8f0;
+    border-left-color: #3498db; /* ぱそトレ！ブルーで視線を止める */
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    font-size: 1rem; /* 0.9remから1remへ拡大 */
+    line-height: 1.8; /* 窮屈な行間を本文と同等に拡張 */
+    color: #333333; /* 薄いグレー(#666)を廃止 */
+}
+
+/* 枠内のタイトルを強調 */
+body.portal-page .info-note-box strong.note-title {
+    display: block;
+    margin-bottom: 15px;
+    color: var(--primary);
+    font-size: 1.1rem;
+    font-weight: 900;
 }
 
 body.portal-page .feature-list-vertical {
