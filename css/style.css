@@ -1205,12 +1205,21 @@ body.portal-page .content-body table.setup-table td {
     position: relative;
 }
 
-/* 日付とタグのエリア */
+/* --- style.css 修正：Newsセクションの余白調整 (v19.9.205) --- */
+
+/* 検索開始点： .news-meta { を検索 */
 .news-meta {
     display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: flex-start;
     gap: 15px;
-    min-width: 240px;
+    /* 【改善】タグの長文化に対応するため、240pxから280pxへ拡張 */
+    min-width: 280px;
+    margin-top: 0px;
+    margin-right: 20px; /* 本文との間に決定的な「呼吸」を確保 */
+    margin-bottom: 0px;
+    margin-left: 0px;
     flex-shrink: 0;
 }
 
