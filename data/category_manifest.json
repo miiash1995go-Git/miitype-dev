@@ -10,6 +10,7 @@
     {"id": "business", "name": "ビジネス", "file": "business.json"},
     {"id": "career", "name": "就職・転職", "file": "career.json"},
     {"id": "daily", "name": "日常会話", "file": "daily.json"},
+    {"id": "roman_basics", "name": "ローマ字基礎", "file": "roman_basics.json"}
     {"id": "total_test", "name": "ぱそトレ！総合判定", "file": "all"}
   ]
 }
