@@ -41,7 +41,7 @@ const ROMAJI_TABLE = {
     'ふぁ':['fa'], 'ふぃ':['fi'], 'ふぇ':['fe'], 'ふぉ':['fo'],
     'うぃ':['wi'], 'うぇ':['we'], 'うぉ':['wo'],
     'てぃ':['thi'], 'でぃ':['dhi'],
-    'っ':['xtu','ltu'], 'ー':['-'], '-':['-'], ' ':[' '],
+    'っ':['ttu'], 'ー':['-'], '-':['-'], ' ':[' '],
     'ぁ':['xa','la'], 'ぃ':['xi','li'], 'ぅ':['xu','lu'], 'ぇ':['xe','le'], 'ぉ':['xo','lo']
 };
 
@@ -49,7 +49,7 @@ class TypingApp {
     constructor() {
         this.manifest = null;
         this.currentQuestions = [];
-        this.currentCategoryId = 'it_terms';
+        this.currentCategoryId = 'roman_basics';
         this.state = "START"; 
         
         this.soundEnabled = localStorage.getItem('pasotore_sound') === 'true';
