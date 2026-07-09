@@ -49,7 +49,7 @@ class TypingApp {
     constructor() {
         this.manifest = null;
         this.currentQuestions = [];
-        this.currentCategoryId = 'roman_basics';
+        this.currentCategoryId = 'roman_pure';
         this.state = "START"; 
         
         this.soundEnabled = localStorage.getItem('pasotore_sound') === 'true';
