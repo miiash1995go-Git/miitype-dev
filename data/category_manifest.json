@@ -1,4 +1,3 @@
-/* --- category_manifest.json 修正ブロック --- */
 {
   "categories": [
     {"id": "roman_pure", "name": "ローマ字（基本）", "file": "roman_pure.json"},
