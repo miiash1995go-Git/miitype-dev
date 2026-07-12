@@ -277,19 +277,22 @@
     white-space: nowrap;
 }
 
-/* --- 5. 下部アクセントエリア（薄緑背景） --- */
+/* --- 5. 下部アクセントエリア（薄緑背景）：真四角終了版 --- */
 .hub-accent-area {
-    background-color: #f0fdf4; /* 薄い緑でゾーニング */
+    background-color: #f0fdf4;
     margin-top: 80px;
-    margin-right: -60px; /* 親要素のpadding(60px)を打ち消し */
-    margin-bottom: -45px;
+    margin-right: -60px; /* 親のpaddingを打ち消し */
+    margin-bottom: 0px;  /* 下方向のネガティブマージンを廃止 */
     margin-left: -60px;
     padding-top: 60px;
     padding-right: 60px;
-    padding-bottom: 60px;
+    padding-bottom: 60px; /* 記事一覧の下で色を止めるための余白 */
     padding-left: 60px;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
+    /* 下部の角丸を完全に廃止し、真四角に固定 */
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 
 .hub-popular-grid {
