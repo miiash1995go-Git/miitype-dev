@@ -705,9 +705,9 @@ body.portal-page .breadcrumb a {
         width: 100% !important;
     }
 
-    /* まとめボックス：左右の余白を削り文字幅を奪還 */
+/* まとめボックス：上下左右の余白をスマホ用に再統治 */
     body.portal-page article.static-page .content-body .summary-box {
-        padding-top: 25px !important;
+        padding-top: 20px !important;
         padding-right: 15px !important;
         padding-bottom: 25px !important;
         padding-left: 15px !important;
@@ -717,7 +717,16 @@ body.portal-page .breadcrumb a {
         margin-left: 0px !important;
     }
 
-    /* まとめ枠内の箇条書き：余白を最小化し窮屈さを解消 */
+    /* まとめタイトルの上マージンを物理的に「0」にして空間を詰める */
+    body.portal-page article.static-page .content-body .summary-box h2.section-title--summary {
+        margin-top: 0px !important;
+        margin-right: 0px !important;
+        margin-bottom: 20px !important;
+        margin-left: 0px !important;
+        font-size: 1.3rem !important;
+    }
+
+    /* まとめ枠内の箇条書き：余白を最小化し文字幅を奪還 */
     body.portal-page .content-body .summary-box ul {
         margin-top: 0px !important;
         margin-right: 0px !important;
