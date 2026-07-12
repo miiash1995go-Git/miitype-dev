@@ -658,16 +658,27 @@ body.portal-page .breadcrumb a {
         -webkit-overflow-scrolling: touch;
     }
 
-    body.portal-page .roadmap-step-item {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 20px 20px 20px 25px;
+body.portal-page .roadmap-step-item {
+        /* 修正：スマホでも横並び(row)を維持し、2行化を阻止 */
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding-top: 15px !important;
+        padding-right: 15px !important;
+        padding-bottom: 15px !important;
+        padding-left: 20px !important;
     }
 
     body.portal-page .step-number-badge {
-        margin-bottom: 15px;
-        width: 50px;
-        height: 50px;
+        /* 修正：横並び時に大きすぎないようサイズを調整 */
+        margin-top: 0px !important;
+        margin-right: 15px !important;
+        margin-bottom: 0px !important;
+        margin-left: 0px !important;
+        width: 40px !important;
+        height: 40px !important;
+        flex-shrink: 0 !important;
     }
 
     body.portal-page .step-action-btn {
