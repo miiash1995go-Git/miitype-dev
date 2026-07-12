@@ -628,38 +628,48 @@ body.portal-page .breadcrumb a {
 /* --- 11. スマホ表示：余白の完全最適化 --- */
 
 @media (max-width: 768px) {
-    body.portal-page #app { width: 100%; margin: 0 auto; padding: 0; }
+    body.portal-page #app {
+        width: 100% !important;
+        margin-top: 0px !important;
+        margin-right: auto !important;
+        margin-bottom: 0px !important;
+        margin-left: auto !important;
+        padding-top: 0px !important;
+        padding-right: 0px !important;
+        padding-bottom: 0px !important;
+        padding-left: 0px !important;
+    }
     
     body.portal-page article.static-page {
-        padding-top: 25px;
-        padding-right: 15px;
-        padding-bottom: 45px;
-        padding-left: 15px;
-        margin-top: 0px;
-        margin-bottom: 30px;
-        border-radius: 0px;
-        box-shadow: none;
-        width: 100%;
+        padding-top: 25px !important;
+        padding-right: 15px !important;
+        padding-bottom: 45px !important;
+        padding-left: 15px !important;
+        margin-top: 0px !important;
+        margin-bottom: 30px !important;
+        border-radius: 0px !important;
+        box-shadow: none !important;
+        width: 100% !important;
     }
 
     body.portal-page .content-body h2 {
-        font-size: 1.4rem;
-        margin-top: 45px;
-        margin-bottom: 20px;
-        padding-left: 15px;
-        border-left-width: 6px;
-        white-space: normal;
+        font-size: 1.4rem !important;
+        margin-top: 45px !important;
+        margin-bottom: 20px !important;
+        padding-left: 15px !important;
+        border-left-width: 6px !important;
+        white-space: normal !important;
     }
 
     body.portal-page .content-body table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
+        display: block !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+        -webkit-overflow-scrolling: touch !important;
     }
 
-body.portal-page .roadmap-step-item {
-        /* 修正：スマホでも横並び(row)を維持し、2行化を阻止 */
+    /* ロードマップ：スマホ横並び維持版 */
+    body.portal-page .roadmap-step-item {
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
@@ -671,7 +681,6 @@ body.portal-page .roadmap-step-item {
     }
 
     body.portal-page .step-number-badge {
-        /* 修正：横並び時に大きすぎないようサイズを調整 */
         margin-top: 0px !important;
         margin-right: 15px !important;
         margin-bottom: 0px !important;
@@ -682,18 +691,50 @@ body.portal-page .roadmap-step-item {
     }
 
     body.portal-page .step-action-btn {
-        margin-left: 0px;
-        margin-top: 15px;
-        width: 100%;
-        text-align: center;
+        margin-left: 0px !important;
+        margin-top: 15px !important;
+        width: 100% !important;
+        text-align: center !important;
     }
 
     body.portal-page .roadmap-step-item .step-content h3 {
-        white-space: normal;
+        white-space: normal !important;
     }
     
     body.portal-page article.static-page .content-body .article-image img {
         width: 100% !important;
+    }
+
+    /* まとめボックス：左右の余白を削り文字幅を奪還 */
+    body.portal-page article.static-page .content-body .summary-box {
+        padding-top: 25px !important;
+        padding-right: 15px !important;
+        padding-bottom: 25px !important;
+        padding-left: 15px !important;
+        margin-top: 40px !important;
+        margin-right: 0px !important;
+        margin-bottom: 30px !important;
+        margin-left: 0px !important;
+    }
+
+    /* まとめ枠内の箇条書き：余白を最小化し窮屈さを解消 */
+    body.portal-page .content-body .summary-box ul {
+        margin-top: 0px !important;
+        margin-right: 0px !important;
+        margin-bottom: 0px !important;
+        margin-left: 0px !important;
+        padding-top: 0px !important;
+        padding-right: 0px !important;
+        padding-bottom: 0px !important;
+        padding-left: 20px !important;
+    }
+
+    body.portal-page .content-body .summary-box ul li {
+        margin-top: 0px !important;
+        margin-right: 0px !important;
+        margin-bottom: 12px !important;
+        margin-left: 0px !important;
+        line-height: 1.6 !important;
     }
 }
 
