@@ -604,20 +604,21 @@
 /* --- 10. ロードマップ：Nextステップの強調 (v20.1.14：控えめな赤字アクセント) --- */
 /* 派手な背景を廃止し、標準の枠・白背景に戻す */
 .hub-roadmap__item--next {
-    background-color: #ffffff !important;
-    border-top-color: #f1f3f5 !important;
-    border-right-color: #f1f3f5 !important;
-    border-bottom-color: #f1f3f5 !important;
-    border-left-color: #e74c3c !important; /* 左線だけ赤系アクセント */
+    background-color: #f0f7ff !important;
+    background-image: linear-gradient(to right, #f0f7ff 0%, #ffffff 100%) !important;
+    border-top-color: #cedee7 !important;
+    border-right-color: #cedee7 !important;
+    border-bottom-color: #cedee7 !important;
+    border-left-color: #2b579a !important; /* Wordブルーのアクセント */
 }
 
-/* Nextという文字だけを赤字にする */
+/* Nextという文字色をWordブルーに統一 */
 .hub-roadmap__item--next .hub-roadmap__num {
-    color: #e74c3c !important;
+    color: #2b579a !important;
 }
 
-/* ボタン部分も赤字系で控えめにアピール */
+/* ボタン部分もWordブルーで清潔感を出す */
 .hub-roadmap__item--next .hub-roadmap__btn {
-    color: #e74c3c !important;
+    color: #2b579a !important;
     font-weight: 800 !important;
 }
