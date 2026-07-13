@@ -600,3 +600,39 @@
         padding-left: 20px;
     }
 }
+/* --- 10. ロードマップ：Nextステップの強調表示 (v20.1.12) --- */
+.hub-roadmap__item--next {
+    background-color: var(--primary) !important;
+    border-top-color: var(--primary) !important;
+    border-right-color: var(--primary) !important;
+    border-bottom-color: var(--primary) !important;
+    border-left-color: var(--accent) !important; /* アクセントの左線は維持 */
+    margin-top: 20px !important;
+    padding-top: 25px !important;
+    padding-right: 30px !important;
+    padding-bottom: 25px !important;
+    padding-left: 25px !important;
+}
+
+.hub-roadmap__item--next .hub-roadmap__num {
+    color: #ffffff !important;
+    font-size: 1.1rem !important;
+}
+
+.hub-roadmap__item--next .hub-roadmap__content h4 {
+    color: #ffffff !important;
+    font-size: 1.25rem !important;
+}
+
+.hub-roadmap__item--next .hub-roadmap__content p {
+    color: #cbd5e1 !important; /* 薄いグレーで可読性確保 */
+    font-size: 0.95rem !important;
+}
+
+.hub-roadmap__item--next .hub-roadmap__btn {
+    color: #ffffff !important;
+    font-weight: 900 !important;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #ffffff;
+}
