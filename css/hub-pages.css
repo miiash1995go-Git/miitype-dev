@@ -277,22 +277,22 @@
     white-space: nowrap;
 }
 
-/* --- 5. 下部アクセントエリア（薄緑背景）：真四角終了版 --- */
+/* --- 5. 下部アクセントエリア（薄緑背景）：真四角終了版 (v20.1.13) --- */
 .hub-accent-area {
     background-color: #f0fdf4;
     margin-top: 80px;
-    margin-right: -60px; /* 親のpaddingを打ち消し */
-    margin-bottom: 0px;  /* 下方向のネガティブマージンを廃止 */
+    margin-right: -60px;
+    margin-bottom: 0px;
     margin-left: -60px;
     padding-top: 60px;
     padding-right: 60px;
-    padding-bottom: 60px; /* 記事一覧の下で色を止めるための余白 */
+    padding-bottom: 60px;
     padding-left: 60px;
-    /* 下部の角丸を完全に廃止し、真四角に固定 */
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
+    /* 角丸を物理的に「0px」へ統治し、親の白枠との競合を封殺 */
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
 }
 
 .hub-popular-grid {
@@ -601,38 +601,23 @@
     }
 }
 /* --- 10. ロードマップ：Nextステップの強調表示 (v20.1.12) --- */
+/* --- 10. ロードマップ：Nextステップの強調 (v20.1.14：控えめな赤字アクセント) --- */
+/* 派手な背景を廃止し、標準の枠・白背景に戻す */
 .hub-roadmap__item--next {
-    background-color: var(--primary) !important;
-    border-top-color: var(--primary) !important;
-    border-right-color: var(--primary) !important;
-    border-bottom-color: var(--primary) !important;
-    border-left-color: var(--accent) !important; /* アクセントの左線は維持 */
-    margin-top: 20px !important;
-    padding-top: 25px !important;
-    padding-right: 30px !important;
-    padding-bottom: 25px !important;
-    padding-left: 25px !important;
+    background-color: #ffffff !important;
+    border-top-color: #f1f3f5 !important;
+    border-right-color: #f1f3f5 !important;
+    border-bottom-color: #f1f3f5 !important;
+    border-left-color: #e74c3c !important; /* 左線だけ赤系アクセント */
 }
 
+/* Nextという文字だけを赤字にする */
 .hub-roadmap__item--next .hub-roadmap__num {
-    color: #ffffff !important;
-    font-size: 1.1rem !important;
+    color: #e74c3c !important;
 }
 
-.hub-roadmap__item--next .hub-roadmap__content h4 {
-    color: #ffffff !important;
-    font-size: 1.25rem !important;
-}
-
-.hub-roadmap__item--next .hub-roadmap__content p {
-    color: #cbd5e1 !important; /* 薄いグレーで可読性確保 */
-    font-size: 0.95rem !important;
-}
-
+/* ボタン部分も赤字系で控えめにアピール */
 .hub-roadmap__item--next .hub-roadmap__btn {
-    color: #ffffff !important;
-    font-weight: 900 !important;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: #ffffff;
+    color: #e74c3c !important;
+    font-weight: 800 !important;
 }
