@@ -246,14 +246,61 @@ body.portal-page .instructor-advice strong {
 /* --- 4. 記事本文エリア装飾 --- */
 
 body.portal-page .content-body h2 {
-    display: block; position: relative;
-    padding-top: 10px; padding-right: 0; padding-bottom: 15px; padding-left: 22px;
-    color: #2c3e50; font-size: 1.6rem; font-weight: 900;
-    margin-top: 75px; margin-bottom: 35px;
-    border-left: 8px solid #3498db; border-bottom: 1px solid #eeeeee;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    display: block;
+    position: relative;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1.5;
+    color: #2c3e50;
+    margin-top: 75px;
+    margin-right: 0px;
+    margin-bottom: 35px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 15px;
+    padding-left: 22px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    background-color: transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-body.portal-page .content-body h2::before { content: "📘"; margin-right: 12px; font-weight: normal; }
+
+/* 左側の縦グラデーションライン：角丸4px対応版 */
+body.portal-page .content-body h2::before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0px;
+    left: 0px;
+    width: 8px;
+    height: 100%;
+    background-color: #2c6fd8;
+    background-image: linear-gradient(180deg, #2c6fd8 0%, #5cbcff 100%);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+/* 下側の水平グラデーションライン */
+body.portal-page .content-body h2::after {
+    content: "";
+    position: absolute;
+    display: block;
+    bottom: 0px;
+    left: 0px;
+    width: calc(100% + 14px);
+    height: 2px;
+    background-color: #3498db;
+    background-image: linear-gradient(90deg, #3498db 0%, #d9ecff 100%);
+    margin-top: 10px;
+}
 
 body.portal-page .content-body h3 {
     display: block; position: relative;
