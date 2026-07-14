@@ -251,7 +251,7 @@ body.portal-page .content-body h2 {
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 1.6rem;
     font-weight: 900;
-    line-height: 1.2; /* 行高を詰め、文字と線を近づける */
+    line-height: 1.2;
     color: #2c3e50;
     margin-top: 75px;
     margin-right: 0px;
@@ -259,8 +259,8 @@ body.portal-page .content-body h2 {
     margin-left: 0px;
     padding-top: 5px;
     padding-right: 0px;
-    padding-bottom: 10px; /* 15pxから10pxへ。文字を線に近づける */
-    padding-left: 30px; /* 縦線(8px) + 隙間を考慮した余白 */
+    padding-bottom: 8px; /* 10pxから8pxへ。さらに文字を下線へ近づける */
+    padding-left: 20px; /* 30pxから20pxへ。縦線に近づける */
     border-top-style: none;
     border-right-style: none;
     border-bottom-style: none;
@@ -271,7 +271,7 @@ body.portal-page .content-body h2 {
     text-overflow: ellipsis;
 }
 
-/* 左側の縦グラデーションライン：独立した配置で下線との衝突を回避 */
+/* 左側の縦グラデーションライン */
 body.portal-page .content-body h2::before {
     content: "";
     position: absolute;
@@ -288,15 +288,15 @@ body.portal-page .content-body h2::before {
     border-bottom-left-radius: 4px;
 }
 
-/* 下側の水平グラデーションライン：開始位置を右へオフセット */
+/* 下側の水平グラデーションライン：開始位置を左へ寄せて間隔を詰める */
 body.portal-page .content-body h2::after {
     content: "";
     position: absolute;
     display: block;
     bottom: 0px;
-    /* 下線の開始位置を30px右に。これで縦線との間に隙間が生まれる */
-    left: 30px; 
-    right: 0px; /* 右端まで伸ばす */
+    /* 30pxから14pxへ変更。縦線との隙間を最小限に統治 */
+    left: 14px; 
+    right: 0px;
     height: 2px;
     background-color: #3498db;
     background-image: linear-gradient(90deg, #3498db 0%, #d9ecff 100%);
