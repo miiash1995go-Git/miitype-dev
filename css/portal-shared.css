@@ -360,22 +360,41 @@ body.portal-page article.static-page .content-body .summary-box h2.section-title
     margin-right: 0px;
     margin-bottom: 25px;
     margin-left: 0px;
-    padding-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px; /* 新H2の20pxを0に戻す */
     border-left-style: none;
     border-bottom-style: none;
     font-size: 1.5rem;
+    line-height: 1.2;
 }
 
+/* まとめタイトルのアイコン設定（新H2の縦線を上書き・アイコンに変換） */
 body.portal-page article.static-page .content-body .summary-box h2.section-title--summary::before {
     content: "";
+    position: static; /* 絶対配置を解除 */
     display: inline-block;
     width: 42px;
     height: 42px;
+    background-color: transparent;
     background-image: url('../img/summary-icon.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    margin-top: 0px;
     margin-right: 12px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+/* 新H2の下線を、まとめ枠内では物理的に消去する */
+body.portal-page article.static-page .content-body .summary-box h2.section-title--summary::after {
+    display: none !important;
 }
 
 body.portal-page .summary-nav {
