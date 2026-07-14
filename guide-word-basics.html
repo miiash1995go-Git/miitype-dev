@@ -129,6 +129,10 @@
                 text-align: left !important;
                 color: var(--primary) !important;
             }
+            /* 項目名ラベル内の改行（brタグ）をスマホでは無効化して1行に戻す */
+            body.portal-page .content-body table.setup-table th.row-label br {
+                display: none !important;
+            }
 
             /* 5. 説明文エリアの余白と改行の保証 */
             body.portal-page .content-body table.setup-table td {
