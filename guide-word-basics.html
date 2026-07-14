@@ -80,9 +80,9 @@
             line-height: 1.8;
             text-align: left;
         }
-/* --- スマホ表示の最適化：表をブロック化して縦に並べる --- */
+/* --- スマホ表示の最適化：表を完全に分解し、文字を自動改行させる --- */
         @media (max-width: 768px) {
-            /* 1. 表の横並びを解除して1列にする */
+            /* 1. 表の構造を強制解体し、ただの「箱」にする */
             body.portal-page .content-body table.setup-table,
             body.portal-page .content-body table.setup-table thead,
             body.portal-page .content-body table.setup-table tbody,
@@ -91,39 +91,53 @@
             body.portal-page .content-body table.setup-table td {
                 display: block !important;
                 width: 100% !important;
+                max-width: 100% !important;
                 box-sizing: border-box !important;
+                /* 文字の突き抜けを防止する重要設定 */
+                white-space: normal !important; 
+                word-break: break-all !important;
+                overflow-wrap: break-word !important;
             }
 
-            /* 2. 表の見出し（項目／理由）は非表示にする */
+            /* 2. PC用の横幅固定設定（table-layout）を物理的に解除 */
+            body.portal-page .content-body table.setup-table {
+                table-layout: auto !important;
+                border-top-style: none !important;
+                border-right-style: none !important;
+                border-bottom-style: none !important;
+                border-left-style: none !important;
+            }
+
+            /* 3. ヘッダーを非表示 */
             body.portal-page .content-body table.setup-table thead {
                 display: none !important;
             }
 
-            /* 3. 左側の項目名（用紙サイズなど）をラベルとして装飾 */
+            /* 4. 項目名ラベルの装飾 */
             body.portal-page .content-body table.setup-table th.row-label {
                 background-color: #f1f5f9 !important;
-                border-right-style: none !important;
+                border-top-width: 1px !important;
+                border-top-style: solid !important;
+                border-top-color: #e2e8f0 !important;
                 border-bottom-width: 1px !important;
                 border-bottom-style: solid !important;
                 border-bottom-color: #e2e8f0 !important;
-                padding-top: 12px !important;
+                padding-top: 15px !important;
                 padding-right: 15px !important;
-                padding-bottom: 12px !important;
+                padding-bottom: 15px !important;
                 padding-left: 15px !important;
                 text-align: left !important;
-                font-size: 0.95rem !important;
+                color: var(--primary) !important;
             }
 
-            /* 4. 右側の説明文の余白を調整する */
+            /* 5. 説明文エリアの余白と改行の保証 */
             body.portal-page .content-body table.setup-table td {
                 padding-top: 15px !important;
                 padding-right: 15px !important;
-                padding-bottom: 30px !important;
+                padding-bottom: 35px !important;
                 padding-left: 15px !important;
-                border-bottom-width: 1px !important;
-                border-bottom-style: solid !important;
-                border-bottom-color: #eeeeee !important;
                 line-height: 1.7 !important;
+                background-color: #ffffff !important;
             }
         }
     </style>
