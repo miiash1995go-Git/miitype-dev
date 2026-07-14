@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel（エクセル）基礎・実務ガイド｜仕事で困らない情報の整理と管理｜ぱそトレ！</title>
+    <meta name="description" content="Excel未経験者・初心者のための学習ハブ。売上管理や見積書作成など、事務職で必須の「情報の整理・計算・管理」の基礎を現役講師が最短ルートで案内します。全部覚えなくても大丈夫。仕事で使う機能から始めましょう。">
+    <link rel="canonical" href="https://miitype.com/hub-excel.html">
+    <link rel="icon" href="favicon.ico">
+    <!-- Google Fonts 読み込み -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- 1. アドセンス（全ページ共通規格） -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
+
+    <!-- 2. 管理者除外スクリプト -->
+    <script>
+        if (localStorage.getItem('pasotore_admin') === 'true') {
+            window['ga-disable-G-KWS4RPPBVV'] = true;
+            console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
+        }
+    </script>
+     
+    <!-- 3. Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
+    <!-- 4. CSS資産（正典） -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
+    <link rel="stylesheet" href="css/hub-pages.css">
+</head>
+<body class="portal-page">
+    <div id="app">
+        <!-- 統合ヘッダー：固定8カテゴリ構成 -->
+        <header>
+            <nav class="nav-menu">
+                <a href="index.html">ホーム</a>
+                <a href="hub-typing.html">タイピング</a>
+                <a href="hub-windows.html">Windows</a>
+                <a href="hub-word.html">Word</a>
+                <a href="hub-excel.html" class="active">Excel</a>
+                <a href="hub-ai.html">生成AI</a>
+                <a href="hub-career.html">就職・転職</a>
+                <a href="hub-column.html">現場コラム</a>
+            </nav>
+            <div class="logo">
+                <div class="logo-spacer"></div>
+                <div class="logo-center">
+                    <a href="index.html">
+                        <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
+                    </a>
+                </div>
+                <div class="logo-right">
+                    <span class="logo-subtext">Excel基礎</span>
+                </div>
+            </div>
+            <div class="ad-container-top"></div>
+        </header>
+
+        <main class="portal-main">
+            <article class="static-page static-page--wide">
+                <!-- パンくずリスト -->
+                <nav class="breadcrumb">
+                    <a href="index.html">ホーム</a>
+                    <span class="breadcrumb-separator">＞</span>
+                    <span>Excel基礎・実務ガイド</span>
+                </nav>
+
+                <!-- ハブ・ヒーロー：自然なメッセージへの修正版 -->
+                <section class="hub-hero">
+                    <div class="hub-hero__icon">
+                        <img src="img/icon-excel.png" alt="Excel学習ハブのアイコン" class="cat-icon-img">
+                    </div>
+                    <div class="hub-hero__body">
+                        <h1 class="hub-hero__title">Excel基礎・実務ガイド</h1>
+                        <p class="hub-hero__description">
+                            Excelは、事務職で最もよく使われる仕事道具のひとつです。就職・転職を目指す方にとって、身につけておきたい基本スキルと言えるでしょう。数字を計算するだけでなく、情報を整理し、仕事を効率化するための基礎を現役講師がわかりやすく解説します。
+                        </p>
+                    </div>
+                </section>
+
+                <!-- セクション：Excelを覚えると作れるもの（実務イメージ） -->
+                <section class="hub-section">
+                    <h2 class="section-title">Excelを覚えると、こんな書類が作れます</h2>
+                    <div class="hub-priority-grid">
+                        <div class="hub-priority-card" style="padding-top: 25px; padding-right: 30px; padding-bottom: 25px; padding-left: 30px; background-color: #ffffff;">
+                            <p style="font-weight: 900; color: var(--primary); margin-top: 0px; margin-right: 0px; margin-bottom: 8px; margin-left: 0px;">売上管理・伝票</p>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">売上集計表・見積書・請求書</p>
+                            <!-- 【画像：Excelで作られた請求書の例】 -->
+                        </div>
+                        <div class="hub-priority-card" style="padding-top: 25px; padding-right: 30px; padding-bottom: 25px; padding-left: 30px; background-color: #ffffff;">
+                            <p style="font-weight: 900; color: var(--primary); margin-top: 0px; margin-right: 0px; margin-bottom: 8px; margin-left: 0px;">勤怠・スケジュール</p>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">勤務表・シフト表・工程表</p>
+                            <!-- 【画像：勤務表の例】 -->
+                        </div>
+                        <div class="hub-priority-card" style="padding-top: 25px; padding-right: 30px; padding-bottom: 25px; padding-left: 30px; background-color: #ffffff;">
+                            <p style="font-weight: 900; color: var(--primary); margin-top: 0px; margin-right: 0px; margin-bottom: 8px; margin-left: 0px;">リスト管理</p>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">顧客名簿・在庫管理表・備品管理</p>
+                            <!-- 【画像：顧客管理のイメージ】 -->
+                        </div>
+                        <div class="hub-priority-card" style="padding-top: 25px; padding-right: 30px; padding-bottom: 25px; padding-left: 30px; background-color: #ffffff;">
+                            <p style="font-weight: 900; color: var(--primary); margin-top: 0px; margin-right: 0px; margin-bottom: 8px; margin-left: 0px;">分析・集計</p>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">アンケート集計・グラフ付き資料</p>
+                            <!-- 【画像：グラフ作成画面】 -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- セクション①：学習を始める -->
+                <section class="hub-section">
+                    <h2 class="section-title">まずはここから！学習を始める</h2>
+                    <div class="hub-priority-grid">
+                        <!-- カード1：Excel基本講座（メイン） -->
+                        <a href="guide-excel-basics.html" class="hub-priority-card hub-priority-card--featured">
+                            <span class="hub-priority-card__badge">メイン講座</span>
+                            <h3>仕事で困らないExcel講座</h3>
+                            <p>「なぜその操作をするのか」の理由から解説。現場で本当に使う順序で、土台をしっかりと固めます。</p>
+                            <div class="rec-btn-hint">講座の入り口へ <span>→</span></div>
+                        </a>
+                        <!-- カード2：安心ガイド（心理的障壁の除去） -->
+                        <div class="hub-priority-card">
+                            <span class="hub-priority-card__badge">安心ガイド</span>
+                            <h3>全部覚えなくて大丈夫！</h3>
+                            <p>実務で使われる機能は意外と限られています。SUM関数、オートフィル、並べ替え、フィルターなど、頻繁に使う操作から覚えれば十分仕事で活躍できます。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- セクション：現役講師が教える「よくある失敗」 -->
+                <section class="hub-section">
+                    <h2 class="section-title">現場でよくある「もったいない失敗」</h2>
+                    <p style="margin-top: 0px; margin-right: 0px; margin-bottom: 25px; margin-left: 0px; font-size: 0.95rem; color: #4b5563;">独学だと気づきにくい、でも仕事で必ずつまずくポイントをまとめました。</p>
+                    <div class="hub-priority-grid">
+                        <a href="guide-excel-basics.html#pitfalls" class="hub-priority-card" style="padding-top: 20px; padding-right: 30px; padding-bottom: 20px; padding-left: 30px;">
+                            <h4 style="font-size: 1rem; font-weight: 800; margin-top: 0px; margin-right: 0px; margin-bottom: 5px; margin-left: 0px;">「001」が「1」になってしまう</h4>
+                            <p style="font-size: 0.8rem; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">社員番号などの入力で困った時の解決法 ＞</p>
+                        </a>
+                        <a href="guide-excel-basics.html#pitfalls" class="hub-priority-card" style="padding-top: 20px; padding-right: 30px; padding-bottom: 20px; padding-left: 30px;">
+                            <h4 style="font-size: 1rem; font-weight: 800; margin-top: 0px; margin-right: 0px; margin-bottom: 5px; margin-left: 0px;">計算式をコピーしたら結果が変に…</h4>
+                            <p style="font-size: 0.8rem; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">「絶対参照」を覚えると解決します ＞</p>
+                        </a>
+                        <a href="guide-excel-basics.html#pitfalls" class="hub-priority-card" style="padding-top: 20px; padding-right: 30px; padding-bottom: 20px; padding-left: 30px;">
+                            <h4 style="font-size: 1rem; font-weight: 800; margin-top: 0px; margin-right: 0px; margin-bottom: 5px; margin-left: 0px;">並べ替えをしたらデータが壊れた</h4>
+                            <p style="font-size: 0.8rem; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">表全体を正しく選ぶ「コツ」を伝授 ＞</p>
+                        </a>
+                        <a href="guide-excel-basics.html#pitfalls" class="hub-priority-card" style="padding-top: 20px; padding-right: 30px; padding-bottom: 20px; padding-left: 30px;">
+                            <h4 style="font-size: 1rem; font-weight: 800; margin-top: 0px; margin-right: 0px; margin-bottom: 5px; margin-left: 0px;">#####が表示されて壊れた？</h4>
+                            <p style="font-size: 0.8rem; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">実は故障ではありません。原因と対策 ＞</p>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- セクション②：ロードマップ（目次） -->
+                <section class="hub-section">
+                    <h2 class="section-title">Excel習得ロードマップ（目次）</h2>
+                    <div class="hub-roadmap">
+                        <a href="guide-excel-basics.html#step1" class="hub-roadmap__item">
+                            <div class="hub-roadmap__num">Step 1</div>
+                            <div class="hub-roadmap__content">
+                                <h4>セル・行・列の仕組みを知る</h4>
+                                <p>Excelの「住所」であるセル番地を理解し、画面の正しい見方を習得します。</p>
+                            </div>
+                            <div class="hub-roadmap__btn">解説へ ＞</div>
+                        </a>
+                        <a href="guide-excel-basics.html#step2" class="hub-roadmap__item">
+                            <div class="hub-roadmap__num">Step 2</div>
+                            <div class="hub-roadmap__content">
+                                <h4>データの入力と効率的な編集</h4>
+                                <p>文字と数値の違いや、素早くセルを書き換えるためのテクニックを学びます。</p>
+                            </div>
+                            <div class="hub-roadmap__btn">解説へ ＞</div>
+                        </a>
+                        <a href="guide-excel-basics.html#step3" class="hub-roadmap__item">
+                            <div class="hub-roadmap__num">Step 3</div>
+                            <div class="hub-roadmap__content">
+                                <h4>数式と「＝」の正しいルール</h4>
+                                <p>電卓いらず。Excelに計算を命令するための基本と、オートフィルの活用術です。</p>
+                            </div>
+                            <div class="hub-roadmap__btn">解説へ ＞</div>
+                        </a>
+                        <a href="guide-excel-basics.html#step4" class="hub-roadmap__item">
+                            <div class="hub-roadmap__num">Step 4</div>
+                            <div class="hub-roadmap__content">
+                                <h4>基本関数の習得（合計・平均等）</h4>
+                                <p>実務で最も使われるSUM関数などを中心に、計算を自動化する方法をマスターします。</p>
+                            </div>
+                            <div class="hub-roadmap__btn">解説へ ＞</div>
+                        </a>
+                        <a href="guide-excel-basics.html#step5" class="hub-roadmap__item">
+                            <div class="hub-roadmap__num">Step 5</div>
+                            <div class="hub-roadmap__content">
+                                <h4>書式設定と見やすい表示形式</h4>
+                                <p>桁区切りのコンマや単位の付け方。誰が見ても間違えない「綺麗な表」の作り方です。</p>
+                            </div>
+                            <div class="hub-roadmap__btn">解説へ ＞</div>
+                        </a>
+                        <a href="guide-excel-basics.html#step6" class="hub-roadmap__item">
+                            <div class="hub-roadmap__num">Step 6</div>
+                            <div class="hub-roadmap__content">
+                                <h4>並べ替えとフィルタでのデータ管理</h4>
+                                <p>大量のデータから目的の行を探し出す。実務スピードを劇的に上げる整理術です。</p>
+                            </div>
+                            <div class="hub-roadmap__btn">解説へ ＞</div>
+                        </a>
+                        <a href="guide-excel-basics.html#step7" class="hub-roadmap__item">
+                            <div class="hub-roadmap__num">Step 7</div>
+                            <div class="hub-roadmap__content">
+                                <h4>情報を視覚化するグラフの作成</h4>
+                                <p>数字の変化や割合を一瞬で伝える。プレゼン資料でも役立つグラフの基本操作です。</p>
+                            </div>
+                            <div class="hub-roadmap__btn">解説へ ＞</div>
+                        </a>
+                        <a href="guide-excel-basics.html#step8" class="hub-roadmap__item">
+                            <div class="hub-roadmap__num">Step 8</div>
+                            <div class="hub-roadmap__content">
+                                <h4>失敗しない印刷とPDF保存</h4>
+                                <p>「表が途中で切れる」を防ぐ設定と、完成した書類を配布するための最終工程です。</p>
+                            </div>
+                            <div class="hub-roadmap__btn">解説へ ＞</div>
+                        </a>
+
+                        <!-- Nextステップ：2つの進路 -->
+                        <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">
+                            <a href="hub-ai.html" class="hub-roadmap__item hub-roadmap__item--next" style="flex: 1; min-width: 280px;">
+                                <div class="hub-roadmap__num">Next</div>
+                                <div class="hub-roadmap__content">
+                                    <h4>生成AIでExcelをさらに便利に</h4>
+                                    <p>「この関数を作りたい」そんな悩みもAIを使えば数秒で解決。次世代の仕事術へ進みましょう。</p>
+                                </div>
+                            </a>
+                            <a href="hub-word.html" class="hub-roadmap__item hub-roadmap__item--next" style="flex: 1; min-width: 280px;">
+                                <div class="hub-roadmap__num">Next</div>
+                                <div class="hub-roadmap__content">
+                                    <h4>Word基礎を学び直す</h4>
+                                    <p>数値はExcel、文章はWord。二大ソフトを使い分けて、事務のプロを目指しましょう。</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 階層化エリア（薄緑背景） -->
+                <div class="hub-accent-area">
+                    <!-- セクション③：講師おすすめ記事（同期完了版） -->
+                    <section class="hub-section" style="margin-top: 0px; margin-right: 0px; margin-bottom: 60px; margin-left: 0px;">
+                        <h2 class="section-title">現役講師のおすすめ記事</h2>
+                        <div class="hub-popular-grid">
+                            <a href="guide-excel-basics.html" class="hub-popular-card" style="grid-column: span 2; border-left-width: 5px; border-left-style: solid; border-left-color: var(--accent);">
+                                <div class="hub-popular-card__tag">おすすめ</div>
+                                <h4 style="font-size: 1.1rem; font-weight: 800; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">実際に仕事で困らないためのExcel講座</h4>
+                                <p style="font-size: 0.85rem; color: #64748b; margin-top: 8px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">事務現場で即戦力となるための本質を網羅した、初心者のためのガイドです。</p>
+                            </a>
+                            <a href="play.html" class="hub-popular-card">
+                                <div class="hub-popular-card__tag">練習</div>
+                                <h4 style="font-size: 1rem; font-weight: 800; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">Excel用語タイピング</h4>
+                                <p style="font-size: 0.8rem; color: #64748b; margin-top: 5px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">Excelでよく使う実務用語を、タイピングしながら自然に覚えましょう。</p>
+                            </a>
+                        </div>
+                    </section>
+
+                    <!-- セクション④：すべての記事一覧 -->
+                    <section class="hub-section" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">
+                        <div class="hub-archive-header">
+                            <h2 class="section-title">すべての記事一覧</h2>
+                            <div class="hub-tag-nav">
+                                <button class="hub-tag active">すべて</button>
+                            </div>
+                        </div>
+                        <div class="hub-article-grid">
+                            <a href="guide-excel-basics.html" class="hub-article-item">
+                                <div class="hub-article-item__info">
+                                    <h4 style="margin-top: 8px; margin-right: 0px; margin-bottom: 8px; margin-left: 0px;">実際に仕事で困らないためのExcel講座</h4>
+                                    <p style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">操作の「理由」から丁寧に紹介する、初心者向けの実務特化型ガイド。</p>
+                                </div>
+                            </a>
+                        </div>
+                    </section>
+                </div> <!-- /hub-accent-area：ここで薄緑の背景色が真四角に終わります -->
+
+                <!-- 接続導線：白背景エリア -->
+                <div class="hub-footer-nav">
+                    <p style="margin-top: 0px; margin-right: 0px; margin-bottom: 25px; margin-left: 0px; font-size: 1rem; color: #4b5563; font-weight: 500; line-height: 1.6;">
+                        Excelは機能が多く見えますが、最初から全部覚える必要はありません。<br>
+                        実務で必要なことを一つずつ積み重ねるだけで、仕事で困らないレベルには必ず到達できます。
+                    </p>
+                    <p class="hub-footer-nav__text" style="margin-top: 0px; margin-right: 0px; margin-bottom: 25px; margin-left: 0px;">Excelの基本がわかったら、他の学習ガイドもみてみましょう</p>
+                    <div class="summary-nav">
+                        <a href="guide.html" class="summary-btn">学習ガイド一覧へ</a>
+                        <a href="play.html" class="summary-btn">タイピング練習へ</a>
+                        <a href="index.html" class="summary-btn">ホームへ戻る</a>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="about.html">運営者情報</a>
+            </div>
+            <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
+        </footer>
+    </div>
+    <!-- ページトップへ戻るボタン -->
+    <a href="#" id="back-to-top" class="back-to-top">↑</a>
+    <script src="js/main.js"></script>
+</body>
+</html>
