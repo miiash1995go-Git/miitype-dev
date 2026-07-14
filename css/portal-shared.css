@@ -745,6 +745,39 @@ body.portal-page .breadcrumb a {
         margin-left: 0px !important;
         line-height: 1.6 !important;
     }
+/* --- 全サイト共通：スマホ時の余白奪還統治 --- */
+    /* 1. 補足枠（info-note-box）の左右余白を30pxから15pxへ半減 */
+    body.portal-page .info-note-box {
+        padding-top: 25px !important;
+        padding-right: 15px !important;
+        padding-bottom: 25px !important;
+        padding-left: 15px !important;
+        margin-top: 30px !important;
+        margin-right: 0px !important;
+        margin-bottom: 30px !important;
+        margin-left: 0px !important;
+    }
+
+    /* 2. 記事内のすべての箇条書きの左余白（インデント）を最小化 */
+    body.portal-page .content-body ul {
+        padding-top: 0px !important;
+        padding-right: 0px !important;
+        padding-bottom: 0px !important;
+        padding-left: 20px !important; /* 標準の40pxから20pxへ削減 */
+        margin-top: 15px !important;
+        margin-right: 0px !important;
+        margin-bottom: 15px !important;
+        margin-left: 0px !important;
+    }
+
+    /* 3. リスト項目間の詰まりを解消しつつ、横幅を維持 */
+    body.portal-page .content-body ul li {
+        margin-top: 0px !important;
+        margin-right: 0px !important;
+        margin-bottom: 15px !important;
+        margin-left: 0px !important;
+        line-height: 1.7 !important;
+    }
 }
 
 /* --- 12. 読みものページ最終整合：絶対配置解除と背景同期 --- */
