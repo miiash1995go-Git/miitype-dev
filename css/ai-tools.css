@@ -196,14 +196,12 @@ body.portal-page article.static-page .content-body .ai-summary-container h3.summ
 
 .tool-desc { margin-top: 0px; margin-bottom: 0px; font-size: 1rem; line-height: 1.6; color: #334155; }
 
-/* 3.5. 比較表：ハイブリッド・列固定システム (v20.1.29) */
+/* 3.5. 比較表：究極列固定 ＆ センタリング統治 (v20.1.30) */
 
-/* 表の外枠コンテナ：PCでははみ出しを許さず、スマホではスクロールを許可 */
+/* スクロールコンテナ：ここが Sticky の基準となる */
 .table-scroll-container {
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin-top: 30px;
-    margin-bottom: 40px;
+    position: relative;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -212,67 +210,64 @@ body.portal-page article.static-page .content-body .ai-summary-container h3.summ
     border-right-width: 1px;
     border-bottom-width: 1px;
     border-left-width: 1px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-top-color: #eeeeee;
-    border-right-color: #eeeeee;
-    border-bottom-color: #eeeeee;
-    border-left-color: #eeeeee;
-    /* PCではみ出しを防ぐため、最大幅を記事内に制限 */
-    max-width: 100%;
+    border-style: solid;
+    border-color: #eeeeee;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    max-width: 100%; /* PCでの横はみ出しを物理的に封殺 */
 }
 
-/* 比較表本体のレイアウト固定解除 */
+/* テーブル本体：border-collapse: separate; を強制し Sticky を有効化 */
 .table-scroll-container table.setup-table {
     width: 100% !important;
-    min-width: 600px; /* スマホで縮みすぎないための下限 */
-    table-layout: auto !important; /* コンテンツに合わせて柔軟に調整 */
+    min-width: 650px; /* スマホでスクロールさせるための最低幅 */
+    border-collapse: separate !important; /* 重要：collapse だと Sticky が効かない */
+    border-spacing: 0 !important;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
+    border-style: none !important;
+    table-layout: fixed !important; /* 各列の幅を固定しガタつきを排除 */
 }
 
-/* 1列目（項目名）：PCでは固定せず、スマホ時のみStickyを発動 */
-body.portal-page article.static-page .content-body table.setup-table th.row-label,
-body.portal-page article.static-page .content-body table.setup-table thead th.col-item {
-    position: -webkit-sticky;
-    position: sticky;
-    left: 0;
-    z-index: 10;
-    background-color: #f8f9fa;
-    border-right-width: 2px;
-    border-right-style: solid;
-    border-right-color: #e2e8f0;
-    white-space: nowrap;
-    text-align: left !important; /* 項目名テキストは左揃えを死守 */
-    padding-left: 15px !important;
-    min-width: 160px;
+/* 【最重要】1列目（項目名）の Sticky 統治：PC/スマホ共通で固定 */
+.table-scroll-container table.setup-table th.row-label,
+.table-scroll-container table.setup-table thead th.col-item {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    left: 0 !important;
+    z-index: 20 !important; /* 記号（td）より上に配置 */
+    background-color: #f8f9fa !important; /* スクロール時に下が透けないよう不透明に */
+    border-right-width: 2px !important;
+    border-right-style: solid !important;
+    border-right-color: #e2e8f0 !important;
+    width: 180px !important; /* 項目名の幅を固定 */
+    min-width: 180px !important;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
 }
 
-/* AI名の列幅を適正化（縮める） */
-body.portal-page article.static-page .content-body table.setup-table thead th:not(.col-item) {
-    width: 110px; /* AI名の幅を限定 */
+/* AI名のヘッダー（2列目以降） */
+.table-scroll-container table.setup-table thead th:not(.col-item) {
+    width: 110px !important;
+    background-color: #f1f5f9;
     text-align: center !important;
 }
 
-/* 記号（◎○△）の中央揃え統治 */
-body.portal-page article.static-page .content-body table.setup-table td {
+/* 記号セルの共通統治（中央揃え） */
+.table-scroll-container table.setup-table td {
     text-align: center !important;
-    vertical-align: middle;
+    vertical-align: middle !important;
     padding-top: 15px !important;
     padding-bottom: 15px !important;
+    background-color: #ffffff; /* Sticky列の下を通過する際に透けないように白 */
 }
 
-/* ◎（最高評価）の強調：背景と文字色 */
+/* ◎（最高評価）の強調 */
 body.portal-page article.static-page .content-body table.setup-table td.rank-excellent {
     background-color: #f0f9ff !important;
     color: #3498db !important;
     font-weight: 900 !important;
     font-size: 1.3rem !important;
 }
-
-/* 4. プロンプト例文セクション */
 
 /* 4. プロンプト例文セクション */
 .example-unit { margin-bottom: 40px; }
