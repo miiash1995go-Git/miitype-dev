@@ -196,9 +196,9 @@ body.portal-page article.static-page .content-body .ai-summary-container h3.summ
 
 .tool-desc { margin-top: 0px; margin-bottom: 0px; font-size: 1rem; line-height: 1.6; color: #334155; }
 
-/* 3.5. 比較表：共通CSS完全無効化・列固定システム (v20.1.33) */
+/* 3.5. 比較表：共通CSS解体ルール完全封殺システム (v20.1.34) */
 
-/* スクロールコンテナ：PCではみ出しを封殺 */
+/* コンテナ：PCではみ出し防止、スマホでスクロール */
 .table-scroll-container {
     overflow-x: auto !important;
     max-width: 100% !important;
@@ -210,35 +210,38 @@ body.portal-page article.static-page .content-body .ai-summary-container h3.summ
     background-color: #ffffff;
 }
 
-/* 【最重要】共通CSSの display: block 等を全階層で強制解除 */
-.table-scroll-container table.setup-table,
-.table-scroll-container thead,
-.table-scroll-container tbody,
-.table-scroll-container tr {
-    display: table !important;
-    width: 100% !important;
-    border-collapse: separate !important; /* Stickyに必須 */
+/* 【最重要】共通CSSの「display: block !important」を全階層で殺し、表構造を復活させる */
+.table-scroll-container table.setup-table {
+    display: table !important; /* block化を阻止 */
+    table-layout: fixed !important; /* 列幅を固定値で守らせる */
+    width: 610px !important; /* 全体の幅を固定してガタつきを止める(150 + 115*4 + 余裕) */
+    border-collapse: separate !important;
     border-spacing: 0 !important;
     margin: 0 !important;
-    padding: 0 !important;
+    border-style: none !important;
 }
 
-/* 全てのセル（th, td）の構造をリセットし、上下の謎の枠を消す */
+.table-scroll-container table.setup-table thead { display: table-header-group !important; }
+.table-scroll-container table.setup-table tbody { display: table-row-group !important; }
+.table-scroll-container table.setup-table tr { display: table-row !important; }
+
+/* セルの基本統治：共通CSSの縦並び・巨大な余白を完全に消去 */
 .table-scroll-container table.setup-table th,
 .table-scroll-container table.setup-table td {
     display: table-cell !important; /* 縦並びを阻止 */
-    border: none !important; /* 共通CSSの全ての線を一度消去 */
-    border-bottom: 1px solid #eeeeee !important; /* 綺麗な下線だけを引く */
     padding-top: 15px !important;
+    padding-right: 5px !important;
     padding-bottom: 15px !important;
-    padding-right: 10px !important;
-    padding-left: 10px !important;
+    padding-left: 5px !important;
+    border: none !important;
+    border-bottom: 1px solid #eeeeee !important;
     white-space: nowrap !important;
     vertical-align: middle !important;
     box-sizing: border-box !important;
+    height: auto !important; /* 共通CSSの変な高さを解除 */
 }
 
-/* 1列目（項目名）：幅を固定し、Stickyを発動 */
+/* 1列目（項目名）の Sticky 固定 */
 .table-scroll-container table.setup-table th.row-label,
 .table-scroll-container table.setup-table thead th.col-item {
     position: -webkit-sticky !important;
@@ -246,27 +249,28 @@ body.portal-page article.static-page .content-body .ai-summary-container h3.summ
     left: 0 !important;
     z-index: 100 !important;
     background-color: #f8f9fa !important;
-    width: 150px !important;
+    width: 150px !important; /* 幅を確実にキープ */
     min-width: 150px !important;
     text-align: left !important;
+    padding-left: 12px !important;
     border-right: 2px solid #e2e8f0 !important;
     box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.05) !important;
 }
 
-/* 2列目以降（AI名と記号）：完全な均等幅（105px）に統治 */
+/* 2列目以降（AI名と記号）：全列均等 115px */
 .table-scroll-container table.setup-table th:not(.col-item),
 .table-scroll-container table.setup-table td:not(.row-label) {
-    width: 105px !important;
-    min-width: 105px !important;
+    width: 115px !important;
+    min-width: 115px !important;
+    max-width: 115px !important;
     text-align: center !important;
 }
 
-/* ◎（最高評価）の強調：共通CSSの干渉を避けて再定義 */
+/* ◎（最高評価）の強調 */
 .table-scroll-container table.setup-table td.rank-excellent {
     background-color: #f0f9ff !important;
     color: #3498db !important;
     font-weight: 900 !important;
-    font-size: 1.3rem !important;
 }
 
 /* 4. プロンプト例文セクション */
