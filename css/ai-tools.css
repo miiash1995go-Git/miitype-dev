@@ -196,50 +196,49 @@ body.portal-page article.static-page .content-body .ai-summary-container h3.summ
 
 .tool-desc { margin-top: 0px; margin-bottom: 0px; font-size: 1rem; line-height: 1.6; color: #334155; }
 
-/* 3.5. 比較表：共通CSS解体へのカウンター統治 (v20.1.32) */
+/* 3.5. 比較表：共通CSS完全無効化・列固定システム (v20.1.33) */
 
-/* スクロールコンテナ：PCでははみ出し禁止、スマホではスクロール */
+/* スクロールコンテナ：PCではみ出しを封殺 */
 .table-scroll-container {
     overflow-x: auto !important;
     max-width: 100% !important;
     margin-top: 30px;
     margin-bottom: 40px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-style: solid;
-    border-color: #eeeeee;
+    border: 1px solid #eeeeee !important;
+    border-radius: 15px !important;
     -webkit-overflow-scrolling: touch;
+    background-color: #ffffff;
 }
 
-/* 【最重要】共通CSSの「display: block」を全階層で強制解除し、表の構造を復元 */
+/* 【最重要】共通CSSの display: block 等を全階層で強制解除 */
 .table-scroll-container table.setup-table,
-.table-scroll-container table.setup-table thead,
-.table-scroll-container table.setup-table tbody,
-.table-scroll-container table.setup-table tr {
-    display: table !important; /* ブロック化を阻止 */
+.table-scroll-container thead,
+.table-scroll-container tbody,
+.table-scroll-container tr {
+    display: table !important;
     width: 100% !important;
-    border-collapse: separate !important;
+    border-collapse: separate !important; /* Stickyに必須 */
     border-spacing: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
+/* 全てのセル（th, td）の構造をリセットし、上下の謎の枠を消す */
 .table-scroll-container table.setup-table th,
 .table-scroll-container table.setup-table td {
-    display: table-cell !important; /* セルのブロック化を阻止（これで変な枠が消える） */
+    display: table-cell !important; /* 縦並びを阻止 */
+    border: none !important; /* 共通CSSの全ての線を一度消去 */
+    border-bottom: 1px solid #eeeeee !important; /* 綺麗な下線だけを引く */
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    padding-right: 10px !important;
+    padding-left: 10px !important;
     white-space: nowrap !important;
     vertical-align: middle !important;
-    border-top-style: none !important; /* 共通CSSの余計な線を消去 */
-    border-bottom-width: 1px !important;
-    border-bottom-style: solid !important;
-    border-bottom-color: #eeeeee !important;
+    box-sizing: border-box !important;
 }
 
-/* 1列目（項目名）の Sticky 固定：PC/スマホ共通 */
+/* 1列目（項目名）：幅を固定し、Stickyを発動 */
 .table-scroll-container table.setup-table th.row-label,
 .table-scroll-container table.setup-table thead th.col-item {
     position: -webkit-sticky !important;
@@ -247,27 +246,23 @@ body.portal-page article.static-page .content-body .ai-summary-container h3.summ
     left: 0 !important;
     z-index: 100 !important;
     background-color: #f8f9fa !important;
-    width: 140px !important; /* 項目名の幅をPCでも適切に圧縮 */
-    min-width: 140px !important;
+    width: 150px !important;
+    min-width: 150px !important;
     text-align: left !important;
-    padding-left: 12px !important;
-    border-right-width: 2px !important;
-    border-right-style: solid !important;
-    border-right-color: #e2e8f0 !important;
+    border-right: 2px solid #e2e8f0 !important;
+    box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.05) !important;
 }
 
-/* 2列目以降（AI名と記号）の幅調整 ＆ 中央揃え */
+/* 2列目以降（AI名と記号）：完全な均等幅（105px）に統治 */
 .table-scroll-container table.setup-table th:not(.col-item),
 .table-scroll-container table.setup-table td:not(.row-label) {
-    width: 105px !important; /* 列幅を圧縮 */
+    width: 105px !important;
     min-width: 105px !important;
-    text-align: center !important; /* 記号を中央に */
-    padding-top: 15px !important;
-    padding-bottom: 15px !important;
+    text-align: center !important;
 }
 
-/* ◎（最高評価）の強調：背景と文字色 */
-body.portal-page article.static-page .content-body table.setup-table td.rank-excellent {
+/* ◎（最高評価）の強調：共通CSSの干渉を避けて再定義 */
+.table-scroll-container table.setup-table td.rank-excellent {
     background-color: #f0f9ff !important;
     color: #3498db !important;
     font-weight: 900 !important;
