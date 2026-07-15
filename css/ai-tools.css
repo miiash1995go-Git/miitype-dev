@@ -196,9 +196,9 @@ body.portal-page article.static-page .content-body .ai-summary-container h3.summ
 
 .tool-desc { margin-top: 0px; margin-bottom: 0px; font-size: 1rem; line-height: 1.6; color: #334155; }
 
-/* 3.5. 比較表：右の空白根絶・構造強制版 (v20.1.37) */
+/* 3.5. 比較表：極小コンパクト・高密度版 (v20.1.38) */
 
-/* スクロールコンテナ：余計な背景や枠を捨て、スクロール機能だけに絞る */
+/* スクロールコンテナ：不要な広がりを抑制 */
 .table-scroll-container {
     width: 100% !important;
     overflow-x: auto !important;
@@ -207,44 +207,73 @@ body.portal-page article.static-page .content-body .ai-summary-container h3.summ
     -webkit-overflow-scrolling: touch;
 }
 
-/* テーブル本体：全階層を!importantで強制固定 */
+/* テーブル本体：全体の横幅を 455px (115 + 85*4) に固定して引き締める */
 .table-scroll-container table.setup-table {
     display: table !important;
-    width: 100% !important;
-    min-width: 600px !important; /* スマホで縮みすぎて壊れるのを物理的に防ぐ */
-    table-layout: fixed !important; /* 列の幅をブラウザに勝手に変えさせない */
+    width: 455px !important; /* 合計幅を固定し、PCでの間延びを封殺 */
+    table-layout: fixed !important;
     border-collapse: collapse !important;
-    border: 1px solid #eeeeee !important;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-style: solid;
+    border-top-color: #eeeeee;
+    border-right-color: #eeeeee;
+    border-bottom-color: #eeeeee;
+    border-left-color: #eeeeee;
     background-color: #ffffff;
+    /* PCで左に寄せる（中央にしたい場合は auto） */
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: 0px;
 }
 
-/* 共通CSSの解体ルールを全階層で上書き */
-.table-scroll-container tr { display: table-row !important; }
+/* 共通CSSの破壊的ルールをスマホ時も完全に中和 */
+@media (max-width: 768px) {
+    .table-scroll-container table.setup-table,
+    .table-scroll-container tr { display: table-row !important; }
+    .table-scroll-container th, 
+    .table-scroll-container td { display: table-cell !important; }
+}
+
 .table-scroll-container th, 
 .table-scroll-container td { 
-    display: table-cell !important; 
     white-space: nowrap !important;
-    padding: 12px 5px !important;
+    padding-top: 12px !important;
+    padding-right: 5px !important;
+    padding-bottom: 12px !important;
+    padding-left: 5px !important;
+    border-top-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 1px !important;
+    border-style: solid !important;
+    border-top-color: #eeeeee !important;
+    border-right-color: #eeeeee !important;
+    border-bottom-color: #eeeeee !important;
+    border-left-color: #eeeeee !important;
     text-align: center !important;
-    border: 1px solid #eeeeee !important;
     height: auto !important;
+    box-sizing: border-box !important;
 }
 
-/* 1列目（項目名）：幅を絞り、左揃え */
+/* 1列目（項目名）：最小幅 115px */
 .table-scroll-container th.row-label,
 .table-scroll-container th.col-item {
-    width: 130px !important;
+    width: 115px !important;
     text-align: left !important;
     padding-left: 10px !important;
     background-color: #f8f9fa !important;
 }
 
-/* AI名の列幅を均等化 */
+/* 2列目以降（AI名の列）：最小幅 85px */
 .table-scroll-container thead th:not(.col-item) {
-    width: 110px !important;
+    width: 85px !important;
 }
 
-/* ◎（最高評価）の強調 */
+/* ◎（最高評価）の強調：背景と文字色 */
 .table-scroll-container td.rank-excellent {
     background-color: #f0f9ff !important;
     color: #3498db !important;
