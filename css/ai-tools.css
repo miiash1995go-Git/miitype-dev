@@ -196,45 +196,55 @@ body.portal-page article.static-page .content-body .ai-summary-container h3.summ
 
 .tool-desc { margin-top: 0px; margin-bottom: 0px; font-size: 1rem; line-height: 1.6; color: #334155; }
 
-/* 3.5. 比較表：シンプル復旧版 (v20.1.36) */
+/* 3.5. 比較表：右の空白根絶・構造強制版 (v20.1.37) */
 
-/* 横スクロールのみを保証し、PCでははみ出しを防ぐ */
+/* スクロールコンテナ：余計な背景や枠を捨て、スクロール機能だけに絞る */
 .table-scroll-container {
+    width: 100% !important;
     overflow-x: auto !important;
-    max-width: 100% !important;
     margin-top: 30px;
     margin-bottom: 40px;
+    -webkit-overflow-scrolling: touch;
 }
 
-/* スマホでの解体ルールを中和し、普通の表として表示 */
+/* テーブル本体：全階層を!importantで強制固定 */
 .table-scroll-container table.setup-table {
     display: table !important;
     width: 100% !important;
-    min-width: 500px; /* スクロールさせる最低幅 */
-    table-layout: auto !important;
+    min-width: 600px !important; /* スマホで縮みすぎて壊れるのを物理的に防ぐ */
+    table-layout: fixed !important; /* 列の幅をブラウザに勝手に変えさせない */
     border-collapse: collapse !important;
-    margin: 0 !important;
+    border: 1px solid #eeeeee !important;
+    background-color: #ffffff;
 }
 
+/* 共通CSSの解体ルールを全階層で上書き */
 .table-scroll-container tr { display: table-row !important; }
 .table-scroll-container th, 
 .table-scroll-container td { 
     display: table-cell !important; 
-    white-space: nowrap !important; /* 改行を物理的に禁止 */
-    padding: 12px 8px !important;
+    white-space: nowrap !important;
+    padding: 12px 5px !important;
     text-align: center !important;
     border: 1px solid #eeeeee !important;
+    height: auto !important;
 }
 
-/* 1列目（項目名）のみ左揃え */
+/* 1列目（項目名）：幅を絞り、左揃え */
 .table-scroll-container th.row-label,
 .table-scroll-container th.col-item {
+    width: 130px !important;
     text-align: left !important;
+    padding-left: 10px !important;
     background-color: #f8f9fa !important;
-    font-weight: 900 !important;
 }
 
-/* ◎（最高評価）の強調（これだけは残します） */
+/* AI名の列幅を均等化 */
+.table-scroll-container thead th:not(.col-item) {
+    width: 110px !important;
+}
+
+/* ◎（最高評価）の強調 */
 .table-scroll-container td.rank-excellent {
     background-color: #f0f9ff !important;
     color: #3498db !important;
