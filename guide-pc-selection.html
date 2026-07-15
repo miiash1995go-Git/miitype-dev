@@ -31,17 +31,17 @@ window.dataLayer = window.dataLayer || [];
 	<link rel="stylesheet" href="css/portal-shared.css">
 </head>
 <body class="portal-page">
-    <div id="app">
+<div id="app">
         <header>
             <nav class="nav-menu">
                 <a href="index.html">ホーム</a>
-                <a href="play.html">タイピング</a>
-                <a href="ai-tools.html">AI活用</a>
-                <a href="career.html">就職・転職</a>
-                <a href="glossary.html">用語集</a>
-                <a href="guide.html" class="active">学習ガイド</a>
-                <a href="column.html">ぱそトレ！コラム</a>
-                <a href="contact.html">お問い合わせ</a>
+                <a href="hub-typing.html">タイピング</a>
+                <a href="hub-windows.html" class="active">Windows</a>
+                <a href="hub-word.html">Word</a>
+                <a href="hub-excel.html">Excel</a>
+                <a href="hub-ai.html">生成AI</a>
+                <a href="hub-career.html">就職・転職</a>
+                <a href="hub-column.html">現場コラム</a>
             </nav>
             <div class="logo">
                 <div class="logo-spacer"></div>
@@ -51,18 +51,21 @@ window.dataLayer = window.dataLayer || [];
                     </a>
                 </div>
                 <div class="logo-right">
-                    <span class="logo-subtext">学習ガイド</span>
+                    <span class="logo-subtext">PC選びの基礎</span>
                 </div>
             </div>
             <div class="ad-container-top"></div>
         </header>
 
-        <main>
+        <main class="portal-main">
             <article class="static-page">
+                <!-- パンくずリスト：Windowsハブを親に設定 -->
                 <nav class="breadcrumb">
-                    <a href="index.html">ホーム</a> <span class="breadcrumb-separator">/</span>
-                    <a href="guide.html">学習ガイド</a> <span class="breadcrumb-separator">/</span>
-                    <span>STEP0 パソコン選び</span>
+                    <a href="index.html">ホーム</a>
+                    <span class="breadcrumb-separator">＞</span>
+                    <a href="hub-windows.html">Windows基本ガイド</a>
+                    <span class="breadcrumb-separator">＞</span>
+                    <span>PC選びの基礎</span>
                 </nav>
 
                 <div class="point-badge">STEP 0</div>
@@ -261,21 +264,24 @@ window.dataLayer = window.dataLayer || [];
                     </p>
                 </div>
                     
-<div class="next-step-guide">
-                    パソコンの準備が整ったら、タイピングという基礎スキルの習得へ進みましょう
+</div>
+
+                <!-- 記事末尾の共通ナビ資産 (v20.1.39) -->
+                <div class="article-footer-nav">
+                    <p class="article-footer-nav__text">PCの準備ができたら、まずは全ての基本「タイピング」から始めましょう</p>
+                    <div class="summary-nav">
+                        <!-- 1. メイン：タイピング（btn-main） -->
+                        <a href="hub-typing.html" class="btn-main">タイピング練習へ</a>
+                        <!-- 2. サブ：Windows基礎（summary-btn） -->
+                        <a href="guide-windows-basics.html" class="summary-btn">Windows基礎講座へ</a>
+                        <!-- 3. ホームに戻る（summary-btn） -->
+                        <a href="index.html" class="summary-btn">ホームに戻る</a>
+                    </div>
                 </div>
 
-            </div> <!-- [重要] ここで .content-body を閉じます -->
-
-            <!-- === ページ末尾ナビ：学習ガイド用標準セット (v19.9.187) === -->
-            <div class="summary-nav">
-                <a href="guide-basics.html" class="btn-main">次のステップへ</a>
-                <a href="guide.html" class="summary-btn">ガイド一覧へ</a>
-                <a href="index.html" class="summary-btn">ホームに戻る</a>
-            </div>
-
-        </article>
-        </main>
+            </div> <!-- content-body 終了 -->
+        </article> <!-- article 終了 -->
+    </main>
 
         <footer>
             <!-- 既存のフッター内容 -->
