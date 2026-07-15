@@ -507,20 +507,22 @@
     }
 }
 /* --- 9. タイピングHub専用：メリットリスト (v20.1.8) --- */
+/* --- 9. 全ハブ共通：メリット・特徴セクション (v20.1.40 視認性強化版) --- */
 .hub-benefit-section {
     margin-top: 20px;
     margin-right: 0px;
     margin-bottom: 50px;
     margin-left: 0px;
-    background-color: #ffffff;
-    padding-top: 30px;
+    /* 背景色を薄い青に、枠線を付けて「箱」としての存在感を確立 */
+    background-color: #f0f7ff;
+    padding-top: 35px;
     padding-right: 35px;
     padding-bottom: 35px;
     padding-left: 35px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
@@ -529,11 +531,11 @@
     border-right-style: solid;
     border-bottom-style: solid;
     border-left-style: solid;
-    border-top-color: #f1f3f5;
-    border-right-color: #f1f3f5;
-    border-bottom-color: #f1f3f5;
-    border-left-color: #f1f3f5;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.02);
+    border-top-color: #d1e3f8;
+    border-right-color: #d1e3f8;
+    border-bottom-color: #d1e3f8;
+    border-left-color: #d1e3f8;
+    box-shadow: 0px 10px 25px rgba(52, 152, 219, 0.04);
 }
 
 .hub-benefit-title {
