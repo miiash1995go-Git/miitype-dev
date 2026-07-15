@@ -37,42 +37,48 @@
         <header>
             <nav class="nav-menu">
                 <a href="index.html">ホーム</a>
-                <a href="play.html">タイピング</a>
-                <a href="ai-tools.html">AI活用</a>
-                <a href="career.html">就職・転職</a>
-                <a href="glossary.html" class="active">用語集</a>
-                <a href="guide.html">学習ガイド</a>
-		<a href="column.html">ぱそトレ！コラム</a>
-                <a href="contact.html">お問い合わせ</a>
+                <a href="hub-typing.html">タイピング</a>
+                <a href="hub-windows.html">Windows</a>
+                <a href="hub-word.html">Word</a>
+                <a href="hub-excel.html">Excel</a>
+                <a href="hub-ai.html">生成AI</a>
+                <a href="hub-career.html">就職・転職</a>
+                <a href="hub-column.html">現場コラム</a>
             </nav>
-<div class="logo">
-    <div class="logo-spacer"></div>
-    <div class="logo-center">
-        <a href="index.html">
-            <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
-        </a>
-    </div>
-    <div class="logo-right">
-        <span class="logo-subtext">用語集</span>
-    </div>
-</div>
-<div class="ad-container-top"></div>
-</header>
+            <div class="logo">
+                <div class="logo-spacer"></div>
+                <div class="logo-center">
+                    <a href="index.html">
+                        <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
+                    </a>
+                </div>
+                <div class="logo-right">
+                    <span class="logo-subtext">実務用語辞典</span>
+                </div>
+            </div>
+            <div class="ad-container-top"></div>
+        </header>
 
-        <main>
+        <main class="portal-main">
             <article class="static-page">
-                <h1>実務用語集（9カテゴリ・400項目超）</h1>
-                <p>タイピング練習で登場する全てのキーワードを網羅。各用語の意味を正しく理解し、現場で「言葉の壁」を感じない実戦的なスキルを身につけましょう。</p>
+                <!-- パンくずリスト：10px余白規格 -->
+                <nav class="breadcrumb">
+                    <a href="index.html">ホーム</a>
+                    <span class="breadcrumb-separator">＞</span>
+                    <span>実務用語辞典（辞書）</span>
+                </nav>
+                <h1 class="page-title">実務用語辞典（400項目超）</h1>
+                <p class="page-subtitle">タイピング練習で登場するキーワードの意味を正しく理解し、実際の仕事現場で困らないための基礎知識を身につけましょう。</p>
 
-                <!-- クイックナビ -->
+                <!-- クイックナビ：ボタン名を実務的に最適化 -->
                 <div class="glossary-nav">
-                    <a href="#cat-windows" class="nav-chip">Windows操作</a>
+                    <a href="#cat-windows" class="nav-chip">Windows</a>
                     <a href="#cat-word-b" class="nav-chip">Word基礎</a>
                     <a href="#cat-word-m" class="nav-chip">Word(MOS)</a>
                     <a href="#cat-excel-b" class="nav-chip">Excel基礎</a>
                     <a href="#cat-excel-m" class="nav-chip">Excel(MOS)</a>
-                    <a href="#cat-it" class="nav-chip">IT用語</a>
-                    <a href="#cat-ai" class="nav-chip">AI用語</a>
+                    <a href="#cat-it" class="nav-chip">IT実務</a>
+                    <a href="#cat-ai" class="nav-chip">生成AI</a>
                     <a href="#cat-biz" class="nav-chip">ビジネス</a>
                     <a href="#cat-career" class="nav-chip">就職・転職</a>
                 </div>
@@ -440,6 +446,19 @@
                         <div class="term-card"><span class="term-word">WEB面接</span><p class="term-comment">Zoom等を使うオンライン面接。照明や背景への配慮など、対面とは異なるデジタルならではのマナーと準備が重要になります。</p></div>
                     </div>
                 </section>
+                <!-- 記事末尾の共通ナビ資産 (v20.1.39) -->
+                <div class="article-footer-nav" style="margin-top: 60px;">
+                    <p class="article-footer-nav__text">わからない言葉が解決したら、次は実際の練習へ進みましょう</p>
+                    <div class="summary-nav">
+                        <!-- 1. メインアクション：タイピング（btn-main） -->
+                        <a href="hub-typing.html" class="btn-main">タイピング練習へ</a>
+                        <!-- 2. サブアクション：就職・転職（summary-btn） -->
+                        <a href="hub-career.html" class="summary-btn">就職・転職ガイドへ</a>
+                        <!-- 3. 戻るアクション：ホーム（summary-btn） -->
+                        <a href="index.html" class="summary-btn">ホームに戻る</a>
+                    </div>
+                </div>
+
             </article>
         </main>
 
