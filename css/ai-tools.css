@@ -196,12 +196,14 @@ body.portal-page article.static-page .content-body .ai-summary-container h3.summ
 
 .tool-desc { margin-top: 0px; margin-bottom: 0px; font-size: 1rem; line-height: 1.6; color: #334155; }
 
-/* 3.5. 比較表：究極列固定 ＆ センタリング統治 (v20.1.30) */
+/* 3.5. 比較表：ハイブリッド列固定・完全版 (v20.1.31) */
 
-/* スクロールコンテナ：ここが Sticky の基準となる */
+/* スクロールコンテナ：最大幅を制限し、横スクロールの親とする */
 .table-scroll-container {
-    overflow-x: auto;
-    position: relative;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    margin-top: 30px;
+    margin-bottom: 40px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -212,53 +214,50 @@ body.portal-page article.static-page .content-body .ai-summary-container h3.summ
     border-left-width: 1px;
     border-style: solid;
     border-color: #eeeeee;
-    margin-top: 30px;
-    margin-bottom: 40px;
-    max-width: 100%; /* PCでの横はみ出しを物理的に封殺 */
+    -webkit-overflow-scrolling: touch;
 }
 
-/* テーブル本体：border-collapse: separate; を強制し Sticky を有効化 */
+/* テーブル本体：共有CSSの display: block を打ち消し、表の構造を死守 */
 .table-scroll-container table.setup-table {
+    display: table !important; /* 構造解体を阻止 */
     width: 100% !important;
-    min-width: 650px; /* スマホでスクロールさせるための最低幅 */
-    border-collapse: separate !important; /* 重要：collapse だと Sticky が効かない */
+    min-width: 620px !important; /* スマホでスクロールさせるための必要幅 */
+    border-collapse: separate !important;
     border-spacing: 0 !important;
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
+    table-layout: fixed !important; /* 列幅を固定 */
     border-style: none !important;
-    table-layout: fixed !important; /* 各列の幅を固定しガタつきを排除 */
 }
 
-/* 【最重要】1列目（項目名）の Sticky 統治：PC/スマホ共通で固定 */
+/* ヘッダー・ボディの全セル：折り返し禁止 */
+.table-scroll-container table.setup-table th,
+.table-scroll-container table.setup-table td {
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+}
+
+/* 1列目固定（Sticky）：z-indexを極限まで高めて統治 */
 .table-scroll-container table.setup-table th.row-label,
 .table-scroll-container table.setup-table thead th.col-item {
     position: -webkit-sticky !important;
     position: sticky !important;
     left: 0 !important;
-    z-index: 20 !important; /* 記号（td）より上に配置 */
-    background-color: #f8f9fa !important; /* スクロール時に下が透けないよう不透明に */
+    z-index: 50 !important; /* 他のセルより前面へ */
+    background-color: #f8f9fa !important;
+    width: 160px !important; /* 1列目の幅 */
+    min-width: 160px !important;
     border-right-width: 2px !important;
     border-right-style: solid !important;
     border-right-color: #e2e8f0 !important;
-    width: 180px !important; /* 項目名の幅を固定 */
-    min-width: 180px !important;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    box-shadow: 4px 0px 8px rgba(0, 0, 0, 0.05) !important;
+    text-align: left !important;
+    padding-left: 15px !important;
 }
 
-/* AI名のヘッダー（2列目以降） */
-.table-scroll-container table.setup-table thead th:not(.col-item) {
+/* 2列目以降（AI名と記号）：Sticky列の下をくぐるよう設定 */
+.table-scroll-container table.setup-table th:not(.col-item),
+.table-scroll-container table.setup-table td:not(.row-label) {
     width: 110px !important;
-    background-color: #f1f5f9;
     text-align: center !important;
-}
-
-/* 記号セルの共通統治（中央揃え） */
-.table-scroll-container table.setup-table td {
-    text-align: center !important;
-    vertical-align: middle !important;
-    padding-top: 15px !important;
-    padding-bottom: 15px !important;
-    background-color: #ffffff; /* Sticky列の下を通過する際に透けないように白 */
 }
 
 /* ◎（最高評価）の強調 */
