@@ -196,6 +196,55 @@ body.portal-page article.static-page .content-body .ai-summary-container h3.summ
 
 .tool-desc { margin-top: 0px; margin-bottom: 0px; font-size: 1rem; line-height: 1.6; color: #334155; }
 
+/* 3.5. 比較表：スマホ列固定 ＆ ◎強調システム (v20.1.28) */
+
+/* 表の外枠コンテナ：横スクロールを許可 */
+.table-scroll-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #eeeeee;
+    border-right-color: #eeeeee;
+    border-bottom-color: #eeeeee;
+    border-left-color: #eeeeee;
+}
+
+/* 1列目（項目名）の固定統治 */
+body.portal-page article.static-page .content-body table.setup-table th.row-label,
+body.portal-page article.static-page .content-body table.setup-table thead th.col-item {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    z-index: 10;
+    background-color: #f8f9fa; /* 固定列の背景をわずかにグレーにして独立させる */
+    border-right-width: 2px;
+    border-right-style: solid;
+    border-right-color: #e2e8f0;
+    white-space: nowrap;
+    min-width: 140px;
+    box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.05); /* スクロール時に浮いているように見せる */
+}
+
+/* ◎（最高評価）の強調：文字色と背景で訴求 */
+body.portal-page article.static-page .content-body table.setup-table td.rank-excellent {
+    background-color: #f0f9ff !important; /* 極めて薄い青 */
+    color: #3498db !important; /* ぱそトレ！ブルー */
+    font-weight: 900 !important;
+    font-size: 1.3rem !important;
+}
 
 /* 4. プロンプト例文セクション */
 .example-unit { margin-bottom: 40px; }
