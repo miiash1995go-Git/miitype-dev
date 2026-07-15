@@ -196,84 +196,49 @@ body.portal-page article.static-page .content-body .ai-summary-container h3.summ
 
 .tool-desc { margin-top: 0px; margin-bottom: 0px; font-size: 1rem; line-height: 1.6; color: #334155; }
 
-/* 3.5. 比較表：ハイブリッド構造・列固定統治 (v20.1.35) */
+/* 3.5. 比較表：シンプル復旧版 (v20.1.36) */
 
-/* コンテナ：PCでは単なる箱、スマホでは横スクロールの親 */
+/* 横スクロールのみを保証し、PCでははみ出しを防ぐ */
 .table-scroll-container {
-    overflow-x: auto;
-    max-width: 100%;
+    overflow-x: auto !important;
+    max-width: 100% !important;
     margin-top: 30px;
     margin-bottom: 40px;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-style: solid;
-    border-color: #eeeeee;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-    background-color: #ffffff;
 }
 
-/* テーブル本体：PCでは記事幅100%に広げる */
+/* スマホでの解体ルールを中和し、普通の表として表示 */
 .table-scroll-container table.setup-table {
+    display: table !important;
     width: 100% !important;
-    min-width: 600px; /* スマホでこれ以上縮ませない */
-    border-collapse: separate !important;
-    border-spacing: 0 !important;
-    table-layout: auto !important; /* PCではコンテンツに合わせて自動、スマホではmin-widthが効く */
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    border-style: none !important;
+    min-width: 500px; /* スクロールさせる最低幅 */
+    table-layout: auto !important;
+    border-collapse: collapse !important;
+    margin: 0 !important;
 }
 
-/* 共通CSSの「display: block」をスマホ(768px以下)でも無効化し、表構造を死守 */
-@media (max-width: 768px) {
-    .table-scroll-container table.setup-table,
-    .table-scroll-container thead,
-    .table-scroll-container tbody,
-    .table-scroll-container tr {
-        display: table !important;
-    }
-    .table-scroll-container th,
-    .table-scroll-container td {
-        display: table-cell !important;
-        padding-bottom: 15px !important; /* 共通CSSの35px余白を中和 */
-    }
-}
-
-/* 1列目固定（Sticky）：PC/スマホ共通 */
-.table-scroll-container table.setup-table th.row-label,
-.table-scroll-container table.setup-table thead th.col-item {
-    position: -webkit-sticky !important;
-    position: sticky !important;
-    left: 0 !important;
-    z-index: 10 !important;
-    background-color: #f8f9fa !important;
-    min-width: 170px !important; /* 項目名が飛び出ないよう幅を確保 */
-    text-align: left !important;
-    padding-left: 15px !important;
-    border-right-width: 2px !important;
-    border-right-style: solid !important;
-    border-right-color: #e2e8f0 !important;
-    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.05) !important;
-}
-
-/* 2列目以降（AI名と記号）：中央揃えを徹底 */
-.table-scroll-container table.setup-table th:not(.col-item),
-.table-scroll-container table.setup-table td:not(.row-label) {
+.table-scroll-container tr { display: table-row !important; }
+.table-scroll-container th, 
+.table-scroll-container td { 
+    display: table-cell !important; 
+    white-space: nowrap !important; /* 改行を物理的に禁止 */
+    padding: 12px 8px !important;
     text-align: center !important;
-    vertical-align: middle !important;
+    border: 1px solid #eeeeee !important;
 }
 
-/* ◎（最高評価）の強調：背景と文字色 */
-.table-scroll-container table.setup-table td.rank-excellent {
+/* 1列目（項目名）のみ左揃え */
+.table-scroll-container th.row-label,
+.table-scroll-container th.col-item {
+    text-align: left !important;
+    background-color: #f8f9fa !important;
+    font-weight: 900 !important;
+}
+
+/* ◎（最高評価）の強調（これだけは残します） */
+.table-scroll-container td.rank-excellent {
     background-color: #f0f9ff !important;
     color: #3498db !important;
     font-weight: 900 !important;
-    font-size: 1.3rem !important;
 }
 
 /* 4. プロンプト例文セクション */
