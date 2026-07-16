@@ -909,7 +909,7 @@ body.portal-page #app {
     display: block;
 }
 
-/* --- [資産] TOP専用：学びの三段階・関係性マップ (v20.1.55) --- */
+/* --- [資産] TOP専用：学びの三段階・関係性マップ (v20.1.60) --- */
 .learning-flow-container {
     display: flex;
     flex-direction: column;
@@ -946,10 +946,10 @@ body.portal-page #app {
     text-align: left;
 }
 
-/* 各STEPのカラー統治 */
-.step-foundation { border-left-color: #94a3b8; } /* グレー：土台 */
-.step-career { border-left-color: #3498db; }     /* 青：就職 */
-.step-work { border-left-color: #2c3e50; }       /* 濃紺：仕事 */
+/* 流れに合わせたカラー統治 */
+.step-foundation { border-left-color: #94a3b8; } /* グレー：STEP1 土台 */
+.step-career { border-left-color: #3498db; }     /* 青：STEP2 就職 */
+.step-work { border-left-color: #2c3e50; }       /* 濃紺：STEP3 仕事 */
 
 .step-badge-label {
     display: inline-block;
@@ -988,6 +988,7 @@ body.portal-page #app {
     margin-bottom: 20px;
 }
 
+/* 下向きの矢印（スクロールと同期） */
 .step-connect-arrow {
     font-size: 2rem;
     color: #cbd5e1;
