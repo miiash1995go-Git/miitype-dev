@@ -1051,41 +1051,27 @@ body.portal-page #app {
     display: block;
     text-align: center;
 }
-/* --- [資産] TOP専用：News完全統治システム (v20.1.75) --- */
+/* --- [資産] TOP専用：News完全統治システム (v20.1.76) --- */
 .news-list {
     background-color: #ffffff;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    padding-top: 10px;
-    padding-right: 15px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-right: 20px;
+    padding-bottom: 5px;
     padding-left: 20px;
     box-shadow: 0px 15px 40px -20px rgba(0, 0, 0, 0.1);
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-top-color: #eeeeee;
-    border-right-color: #eeeeee;
-    border-bottom-color: #eeeeee;
-    border-left-color: #eeeeee;
+    border: 1px solid #eeeeee;
     width: 100%;
 }
 
-/* 1行目から全体をスクロールさせるための親 */
 .news-scroll-container {
-    max-height: 270px; /* 5行分に固定 */
+    max-height: 270px;
     overflow-y: auto;
-    padding-right: 10px;
 }
 
-/* スクロールバーのデザイン */
 .news-scroll-container::-webkit-scrollbar { width: 6px; }
 .news-scroll-container::-webkit-scrollbar-thumb { background-color: #d1d5db; border-radius: 10px; }
 .news-scroll-container::-webkit-scrollbar-track { background-color: #f8f9fa; }
@@ -1096,24 +1082,20 @@ body.portal-page #app {
     align-items: center;
     padding-top: 14px;
     padding-bottom: 14px;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: #f8f9fa;
+    border-bottom: 1px solid #f8f9fa;
     white-space: nowrap;
     overflow: hidden;
-    /* ホバー時の横移動を物理的に禁止 */
-    transition: none !important;
-    transform: none !important;
 }
 
-.news-item:last-child { border-bottom-style: none; }
+.news-item:last-child { border-bottom: none; }
 
+/* 日付とタグの横幅を最小限（155px）に絞り、スキマを排除 */
 .news-meta {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 15px;
-    width: 190px; /* 日付とタグの横幅を固定 */
+    gap: 12px;
+    width: 155px; 
     flex-shrink: 0;
 }
 
@@ -1127,24 +1109,16 @@ body.portal-page #app {
 .news-tag {
     font-size: 0.7rem;
     font-weight: 800;
-    padding-top: 2px;
-    padding-right: 8px;
-    padding-bottom: 2px;
-    padding-left: 8px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
+    padding: 2px 8px;
+    border-radius: 4px;
     text-align: center;
-    min-width: 65px;
-    display: block;
+    min-width: 60px;
 }
 
-/* タグ配色：赤（緊急）を廃止 */
 .tag-update { background-color: #eef9ff; color: #3498db; }
 .tag-column { background-color: #f0fdf4; color: #27ae60; }
 .tag-typing { background-color: #fff9e6; color: #f39c12; }
-.tag-add    { background-color: #f1f3f5; color: #64748b; } /* 追加：落ち着いた色 */
+.tag-add    { background-color: #f1f3f5; color: #64748b; }
 
 .news-content {
     display: flex;
@@ -1156,21 +1130,22 @@ body.portal-page #app {
     font-size: 0.95rem;
 }
 
-/* カテゴリ名を90pxで固定して「｜」を縦に揃える */
+/* カテゴリ名を全角5文字分（85px）で固定し「｜」の位置を同期 */
 .news-cat-label {
-    width: 90px;
+    width: 85px;
     flex-shrink: 0;
     font-weight: 800;
+    color: #2c3e50;
+    text-align: left;
 }
 
-/* 区切り線の余白を固定 */
+/* セパレーター「｜」の位置を固定 */
 .news-sep {
-    margin-right: 15px;
-    margin-left: 5px;
+    margin-right: 12px;
     color: #d1d5db;
+    font-weight: normal;
 }
 
-/* 文章のはみ出しを「...」にする */
 .news-text {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1181,7 +1156,7 @@ body.portal-page #app {
 .news-content a:hover { color: var(--accent); }
 
 @media (max-width: 768px) {
-    .news-meta { width: 155px; gap: 8px; }
-    .news-cat-label { width: 70px; }
-    .news-sep { margin-right: 8px; }
+    .news-meta { width: 145px; gap: 8px; }
+    .news-cat-label { width: 75px; font-size: 0.85rem; }
+    .news-text { font-size: 0.85rem; }
 }
