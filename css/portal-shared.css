@@ -886,10 +886,10 @@ body.portal-page #app {
     min-height: 100vh;
 }
 /* ============================================================
-   [究極統合資産] 共通ナビ ＆ Newsカテゴリカラー統治 (v20.1.85)
+   [究極統合資産] ポータル共通：ナビ・学習STEP・News統治 (v20.1.90)
    ============================================================ */
 
-/* --- 1. 記事末尾の共通ナビゲーション --- */
+/* --- 1. 記事末尾の共通ナビゲーション（リスキリング導線） --- */
 .article-footer-nav {
     margin-top: 80px;
     text-align: center;
@@ -905,26 +905,88 @@ body.portal-page #app {
     display: block;
 }
 
-/* --- 2. Newsセクション：カテゴリカラー ＆ 垂直整列統治 --- */
+/* --- 2. TOP専用：学びの三段階・関係性マップ（STEPカード） --- */
+.learning-flow-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    width: 100%;
+}
+.learning-step-card {
+    width: 100%;
+    max-width: 720px;
+    padding-top: 30px;
+    padding-right: 35px;
+    padding-bottom: 30px;
+    padding-left: 35px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    background-color: #ffffff;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 10px; /* 左線のアクセント */
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    margin-bottom: 0px;
+    position: relative;
+    text-align: left;
+}
+.step-foundation { border-left-color: #94a3b8; } /* STEP1:土台 */
+.step-career { border-left-color: #3498db; }     /* STEP2:就職 */
+.step-work { border-left-color: #2c3e50; }       /* STEP3:仕事 */
 
-/* 全体の箱 */
+.step-badge-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 900;
+    padding: 2px 12px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+.step-foundation .step-badge-label { background-color: #f1f5f9; color: #64748b; }
+.step-career .step-badge-label { background-color: #eef9ff; color: #3498db; }
+.step-work .step-badge-label { background-color: #f1f3f5; color: #2c3e50; }
+
+.learning-step-card h3 {
+    margin: 0 0 15px 0 !important;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--primary);
+    border-bottom: none !important;
+}
+.learning-step-card p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #4b5563;
+    margin-bottom: 20px;
+}
+.step-connect-arrow {
+    font-size: 2rem;
+    color: #cbd5e1;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- 3. Newsセクション：カテゴリカラー ＆ 垂直整列統治 --- */
 body.portal-page .news-list {
     background-color: #ffffff;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    padding-top: 10px;
-    padding-right: 20px;
-    padding-bottom: 10px;
-    padding-left: 20px;
+    border-radius: 20px;
+    padding: 10px 20px;
     box-shadow: 0px 15px 40px -20px rgba(0, 0, 0, 0.1);
     border: 1px solid #eeeeee;
     width: 100% !important;
-    box-sizing: border-box !important;
 }
-
-/* スクロール領域 */
 .news-scroll-container {
     max-height: 270px;
     overflow-y: auto;
@@ -933,39 +995,24 @@ body.portal-page .news-list {
 .news-scroll-container::-webkit-scrollbar-thumb { background-color: #d1d5db; border-radius: 10px; }
 .news-scroll-container::-webkit-scrollbar-track { background-color: #f8f9fa; }
 
-/* 各行：重なりを消し、ホバー時の動きを禁止 */
 body.portal-page .news-item {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    justify-content: flex-start !important;
     padding: 14px 0 !important;
     border-bottom: 1px solid #f8f9fa;
     white-space: nowrap !important;
     overflow: hidden !important;
-    transform: none !important;
-    transition: none !important;
 }
 body.portal-page .news-item:last-child { border-bottom: none; }
-
-/* 左側メタ（日付＋タグ）：幅を190pxに固定して右との衝突を封殺 */
 body.portal-page .news-meta {
     display: flex !important;
     flex: 0 0 190px !important;
     width: 190px !important;
     align-items: center !important;
     gap: 12px !important;
-    margin: 0 !important;
 }
-
-.news-date {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.85rem;
-    color: #94a3b8;
-    font-weight: 700;
-}
-
-/* カテゴリタグ：名称を入れ、色分けの土台にする */
+.news-date { font-family: 'Roboto Mono', monospace; font-size: 0.85rem; color: #94a3b8; font-weight: 700; }
 body.portal-page .news-tag {
     font-size: 0.75rem !important;
     font-weight: 900 !important;
@@ -975,42 +1022,23 @@ body.portal-page .news-tag {
     min-width: 80px !important;
     display: block !important;
 }
+.tag-windows { background-color: #eef9ff !important; color: #3498db !important; }
+.tag-word    { background-color: #f0f4f9 !important; color: #2b579a !important; }
+.tag-excel   { background-color: #f0f7f4 !important; color: #217346 !important; }
+.tag-ai      { background-color: #f5f0ff !important; color: #8e44ad !important; }
+.tag-career  { background-color: #fff1f2 !important; color: #e74c3c !important; }
+.tag-typing  { background-color: #fff9e6 !important; color: #f39c12 !important; }
+.tag-column  { background-color: #f0fdf4 !important; color: #27ae60 !important; }
+.tag-notice  { background-color: #f1f3f5 !important; color: #64748b !important; }
 
-/* 【色分け指定】ヘッダー色と同期 */
-.tag-windows { background-color: #eef9ff !important; color: #3498db !important; } /* Windows:水色 */
-.tag-word    { background-color: #f0f4f9 !important; color: #2b579a !important; } /* Word:濃紺 */
-.tag-excel   { background-color: #f0f7f4 !important; color: #217346 !important; } /* Excel:緑 */
-.tag-ai      { background-color: #f5f0ff !important; color: #8e44ad !important; } /* 生成AI:紫 */
-.tag-career  { background-color: #fff1f2 !important; color: #e74c3c !important; } /* 就職:赤 */
-.tag-typing  { background-color: #fff9e6 !important; color: #f39c12 !important; } /* 打鍵:橙 */
-.tag-column  { background-color: #f0fdf4 !important; color: #27ae60 !important; } /* 現場:翠 */
-.tag-notice  { background-color: #f1f3f5 !important; color: #64748b !important; } /* 告知:灰 */
-
-/* 内容エリア */
-body.portal-page .news-content {
-    display: flex !important;
-    flex: 1 !important;
-    align-items: center !important;
-}
-
-/* 区切り線「｜」：位置を完全に固定 */
-body.portal-page .news-sep {
-    margin-right: 15px !important;
-    margin-left: 0px !important;
-    color: #d1d5db !important;
-}
-
-.news-text {
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    white-space: nowrap !important;
-    text-decoration: none !important;
-    color: inherit !important;
-}
+body.portal-page .news-content { display: flex !important; flex: 1 !important; align-items: center !important; }
+body.portal-page .news-sep { margin-right: 15px !important; color: #d1d5db !important; }
+body.portal-page .news-text { overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; text-decoration: none !important; color: inherit !important; }
 body.portal-page .news-text:hover { color: var(--accent) !important; }
 
-/* スマホ対応 */
+/* スマホ対応共通 */
 @media (max-width: 768px) {
+    .learning-step-card { padding: 25px 15px !important; border-left-width: 6px; }
+    .learning-step-card h3 { font-size: 1.2rem; }
     body.portal-page .news-meta { flex: 0 0 165px !important; width: 165px !important; }
-    body.portal-page .news-tag { min-width: 70px !important; font-size: 0.7rem !important; }
 }
