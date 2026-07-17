@@ -1117,3 +1117,40 @@ body.portal-page #app {
     .news-meta { width: 145px; gap: 8px; }
     .news-cat-label { width: 75px; font-size: 0.85rem; }
 }
+/* ============================================================
+   [究極統治] Newsセクション：整列・静止・スキマ排除 (v20.1.77)
+   ============================================================ */
+
+/* 1. マウスを当てた時に右に動く動きを「物理的に禁止」する */
+body.portal-page .news-item:hover {
+    transform: none !important;
+    transition: none !important;
+}
+
+/* 2. 日付・タグの横幅を極限まで詰め、右の空白を消去 */
+body.portal-page .news-meta {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 10px !important;
+    width: 145px !important; /* 前回の155pxからさらに短縮し、スキマを排除 */
+    min-width: 145px !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+}
+
+/* 3. カテゴリ名（Excel等）の幅を80pxに固定して「｜」を一直線にする */
+body.portal-page .news-cat-label {
+    display: inline-block !important;
+    width: 80px !important; /* 全角5文字が余裕で収まる幅 */
+    flex-shrink: 0 !important;
+    font-weight: 800 !important;
+    text-align: left !important;
+}
+
+/* 4. 区切り線「｜」の余白を固定 */
+body.portal-page .news-sep {
+    margin-right: 10px !important;
+    margin-left: 0px !important;
+    color: #d1d5db !important;
+}
