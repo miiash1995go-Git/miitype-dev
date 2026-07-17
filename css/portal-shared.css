@@ -990,6 +990,8 @@ body.portal-page .news-list {
 .news-scroll-container {
     max-height: 270px;
     overflow-y: auto;
+    /* 縦スクロールは残し、横スクロールバーを物理的に消去する */
+    overflow-x: hidden !important; 
 }
 .news-scroll-container::-webkit-scrollbar { width: 6px; }
 .news-scroll-container::-webkit-scrollbar-thumb { background-color: #d1d5db; border-radius: 10px; }
