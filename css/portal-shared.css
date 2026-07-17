@@ -886,36 +886,28 @@ body.portal-page #app {
     min-height: 100vh;
 }
 /* ============================================================
-   [統合資産] ポータル共通：ナビゲーション ＆ News統治 (v20.1.80)
+   [究極統合資産] 共通ナビ ＆ Newsカテゴリカラー統治 (v20.1.85)
    ============================================================ */
 
-/* --- 1. 記事末尾の共通ナビゲーション（リスキリング導線） --- */
+/* --- 1. 記事末尾の共通ナビゲーション --- */
 .article-footer-nav {
     margin-top: 80px;
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
     text-align: center;
     display: block;
     width: 100%;
 }
-
 .article-footer-nav__text {
     font-size: 1.1rem;
     font-weight: 800;
     color: #64748b;
-    margin-top: 0px;
-    margin-right: 0px;
     margin-bottom: 25px;
-    margin-left: 0px;
     line-height: 1.6;
     display: block;
 }
 
-/* --- 2. Newsセクション：重なり解消 ＆ 垂直整列統治 --- */
+/* --- 2. Newsセクション：カテゴリカラー ＆ 垂直整列統治 --- */
 
-/* 全体の箱：横幅を100%に広げる */
+/* 全体の箱 */
 body.portal-page .news-list {
     background-color: #ffffff;
     border-top-left-radius: 20px;
@@ -927,66 +919,43 @@ body.portal-page .news-list {
     padding-bottom: 10px;
     padding-left: 20px;
     box-shadow: 0px 15px 40px -20px rgba(0, 0, 0, 0.1);
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-top-color: #eeeeee;
-    border-right-color: #eeeeee;
-    border-bottom-color: #eeeeee;
-    border-left-color: #eeeeee;
+    border: 1px solid #eeeeee;
     width: 100% !important;
     box-sizing: border-box !important;
 }
 
-/* スクロール領域（5件分） */
+/* スクロール領域 */
 .news-scroll-container {
     max-height: 270px;
     overflow-y: auto;
 }
-
-/* スクロールバーのデザイン */
 .news-scroll-container::-webkit-scrollbar { width: 6px; }
 .news-scroll-container::-webkit-scrollbar-thumb { background-color: #d1d5db; border-radius: 10px; }
 .news-scroll-container::-webkit-scrollbar-track { background-color: #f8f9fa; }
 
-/* 各行：重なりを物理的に防ぐため flex を強制 */
+/* 各行：重なりを消し、ホバー時の動きを禁止 */
 body.portal-page .news-item {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: flex-start !important;
-    padding-top: 14px !important;
-    padding-right: 0px !important;
-    padding-bottom: 14px !important;
-    padding-left: 0px !important;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: #f8f9fa;
+    padding: 14px 0 !important;
+    border-bottom: 1px solid #f8f9fa;
     white-space: nowrap !important;
     overflow: hidden !important;
-    transform: none !important; /* マウスで動く演出を殺す */
+    transform: none !important;
     transition: none !important;
 }
+body.portal-page .news-item:last-child { border-bottom: none; }
 
-body.portal-page .news-item:last-child { border-bottom-style: none; }
-
-/* 左側（日付・タグ）：幅を170pxに完全固定（これで右が被らない） */
+/* 左側メタ（日付＋タグ）：幅を190pxに固定して右との衝突を封殺 */
 body.portal-page .news-meta {
     display: flex !important;
-    flex: 0 0 170px !important; /* 縮ませない、広げない、170px固定 */
-    width: 170px !important;
-    flex-direction: row !important;
+    flex: 0 0 190px !important;
+    width: 190px !important;
     align-items: center !important;
-    gap: 10px !important;
-    margin-top: 0px !important;
-    margin-right: 0px !important;
-    margin-bottom: 0px !important;
-    margin-left: 0px !important;
+    gap: 12px !important;
+    margin: 0 !important;
 }
 
 .news-date {
@@ -996,79 +965,52 @@ body.portal-page .news-meta {
     font-weight: 700;
 }
 
-.news-tag {
-    font-size: 0.7rem;
-    font-weight: 800;
-    padding-top: 2px;
-    padding-right: 8px;
-    padding-bottom: 2px;
-    padding-left: 8px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
-    text-align: center;
-    min-width: 60px;
-    display: block;
+/* カテゴリタグ：名称を入れ、色分けの土台にする */
+body.portal-page .news-tag {
+    font-size: 0.75rem !important;
+    font-weight: 900 !important;
+    padding: 3px 10px !important;
+    border-radius: 4px !important;
+    text-align: center !important;
+    min-width: 80px !important;
+    display: block !important;
 }
 
-.tag-update { background-color: #eef9ff; color: #3498db; }
-.tag-column { background-color: #f0fdf4; color: #27ae60; }
-.tag-typing { background-color: #fff9e6; color: #f39c12; }
-.tag-add    { background-color: #f1f3f5; color: #64748b; }
+/* 【色分け指定】ヘッダー色と同期 */
+.tag-windows { background-color: #eef9ff !important; color: #3498db !important; } /* Windows:水色 */
+.tag-word    { background-color: #f0f4f9 !important; color: #2b579a !important; } /* Word:濃紺 */
+.tag-excel   { background-color: #f0f7f4 !important; color: #217346 !important; } /* Excel:緑 */
+.tag-ai      { background-color: #f5f0ff !important; color: #8e44ad !important; } /* 生成AI:紫 */
+.tag-career  { background-color: #fff1f2 !important; color: #e74c3c !important; } /* 就職:赤 */
+.tag-typing  { background-color: #fff9e6 !important; color: #f39c12 !important; } /* 打鍵:橙 */
+.tag-column  { background-color: #f0fdf4 !important; color: #27ae60 !important; } /* 現場:翠 */
+.tag-notice  { background-color: #f1f3f5 !important; color: #64748b !important; } /* 告知:灰 */
 
-/* 右側（内容）：残りの幅をすべて使う */
+/* 内容エリア */
 body.portal-page .news-content {
     display: flex !important;
     flex: 1 !important;
-    min-width: 0 !important;
-    flex-direction: row !important;
     align-items: center !important;
-    margin-top: 0px !important;
-    margin-right: 0px !important;
-    margin-bottom: 0px !important;
-    margin-left: 0px !important;
-    padding-top: 0px !important;
-    padding-right: 0px !important;
-    padding-bottom: 0px !important;
-    padding-left: 0px !important;
 }
 
-/* カテゴリラベル：幅を95pxで固定。これで「｜」が一直線になる */
-body.portal-page .news-cat-label {
-    display: inline-block !important;
-    width: 95px !important;
-    flex-shrink: 0 !important;
-    font-weight: 800 !important;
-    color: #2c3e50 !important;
-    text-align: left !important;
-}
-
-/* 「｜」の位置を固定 */
+/* 区切り線「｜」：位置を完全に固定 */
 body.portal-page .news-sep {
-    display: inline-block !important;
-    width: 20px !important;
-    color: #d1d5db !important;
-    text-align: center !important;
-    margin-top: 0px !important;
-    margin-right: 0px !important;
-    margin-bottom: 0px !important;
+    margin-right: 15px !important;
     margin-left: 0px !important;
+    color: #d1d5db !important;
 }
 
-/* テキストのはみ出しを「...」にする */
-body.portal-page .news-text {
+.news-text {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
     text-decoration: none !important;
     color: inherit !important;
 }
-
 body.portal-page .news-text:hover { color: var(--accent) !important; }
 
-/* スマホ対応：幅を微調整 */
+/* スマホ対応 */
 @media (max-width: 768px) {
-    body.portal-page .news-meta { flex: 0 0 150px !important; width: 150px !important; }
-    body.portal-page .news-cat-label { width: 75px !important; font-size: 0.85rem !important; }
+    body.portal-page .news-meta { flex: 0 0 165px !important; width: 165px !important; }
+    body.portal-page .news-tag { min-width: 70px !important; font-size: 0.7rem !important; }
 }
