@@ -978,52 +978,90 @@ body.portal-page #app {
     justify-content: center;
 }
 
-/* --- 3. Newsセクション：カテゴリカラー ＆ 垂直整列統治 --- */
+/* --- 2. Newsセクション：カテゴリカラー ＆ 垂直整列統治 (v20.1.86) --- */
+
+/* 全体の箱 */
 body.portal-page .news-list {
     background-color: #ffffff;
-    border-radius: 20px;
-    padding: 10px 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
     box-shadow: 0px 15px 40px -20px rgba(0, 0, 0, 0.1);
     border: 1px solid #eeeeee;
     width: 100% !important;
+    box-sizing: border-box !important;
 }
+
+/* スクロール領域：縦スクロールを維持しつつ、横方向の「溢れ」を管理 */
 .news-scroll-container {
     max-height: 270px;
     overflow-y: auto;
-    /* 縦スクロールは残し、横スクロールバーを物理的に消去する */
-    overflow-x: hidden !important; 
+    overflow-x: auto; /* スマホでの横スライドを許可 */
+    -webkit-overflow-scrolling: touch;
 }
-.news-scroll-container::-webkit-scrollbar { width: 6px; }
+
+/* 醜いスクロールバー（横）を隠しつつ、機能だけ残す魔法の記述 */
+.news-scroll-container::-webkit-scrollbar { width: 6px; height: 0px; } /* 横バーの高さを0にする */
 .news-scroll-container::-webkit-scrollbar-thumb { background-color: #d1d5db; border-radius: 10px; }
 .news-scroll-container::-webkit-scrollbar-track { background-color: #f8f9fa; }
 
+/* 各行：重なりを消し、ホバー時の動きを禁止 */
 body.portal-page .news-item {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    padding: 14px 0 !important;
+    justify-content: flex-start !important;
+    padding-top: 14px !important;
+    padding-right: 0px !important;
+    padding-bottom: 14px !important;
+    padding-left: 0px !important;
     border-bottom: 1px solid #f8f9fa;
     white-space: nowrap !important;
-    overflow: hidden !important;
+    transform: none !important;
+    transition: none !important;
+    /* スマホで横幅が足りない場合に、勝手に縮まないように固定 */
+    min-width: 600px; 
 }
+
 body.portal-page .news-item:last-child { border-bottom: none; }
+
+/* 左側メタ（日付＋タグ）：幅を170pxに詰めて「｜」との距離を最適化 */
 body.portal-page .news-meta {
     display: flex !important;
-    flex: 0 0 190px !important;
-    width: 190px !important;
+    flex: 0 0 170px !important;
+    width: 170px !important;
     align-items: center !important;
-    gap: 12px !important;
+    gap: 10px !important;
+    margin: 0 !important;
 }
-.news-date { font-family: 'Roboto Mono', monospace; font-size: 0.85rem; color: #94a3b8; font-weight: 700; }
+
+.news-date {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    font-weight: 700;
+}
+
+/* カテゴリタグ：名称を入れ、色分けの土台にする */
 body.portal-page .news-tag {
     font-size: 0.75rem !important;
     font-weight: 900 !important;
-    padding: 3px 10px !important;
+    padding-top: 3px !important;
+    padding-right: 10px !important;
+    padding-bottom: 3px !important;
+    padding-left: 10px !important;
     border-radius: 4px !important;
     text-align: center !important;
     min-width: 80px !important;
     display: block !important;
 }
+
+/* 【色分け指定】ヘッダー色と同期 */
 .tag-windows { background-color: #eef9ff !important; color: #3498db !important; }
 .tag-word    { background-color: #f0f4f9 !important; color: #2b579a !important; }
 .tag-excel   { background-color: #f0f7f4 !important; color: #217346 !important; }
@@ -1033,16 +1071,34 @@ body.portal-page .news-tag {
 .tag-column  { background-color: #f0fdf4 !important; color: #27ae60 !important; }
 .tag-notice  { background-color: #f1f3f5 !important; color: #64748b !important; }
 
-body.portal-page .news-content { display: flex !important; flex: 1 !important; align-items: center !important; }
-body.portal-page .news-sep { margin-right: 15px !important; color: #d1d5db !important; }
-body.portal-page .news-text { overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; text-decoration: none !important; color: inherit !important; }
+/* 内容エリア */
+body.portal-page .news-content {
+    display: flex !important;
+    flex: 1 !important;
+    align-items: center !important;
+}
+
+/* 区切り線「｜」：タグに近づける */
+body.portal-page .news-sep {
+    margin-right: 12px !important;
+    margin-left: 0px !important;
+    color: #d1d5db !important;
+}
+
+.news-text {
+    text-decoration: none !important;
+    color: inherit !important;
+    font-size: 0.95rem;
+}
 body.portal-page .news-text:hover { color: var(--accent) !important; }
 
-/* スマホ対応共通 */
+/* スマホ対応：170px固定を150pxにわずかに圧縮 */
 @media (max-width: 768px) {
-    .learning-step-card { padding: 25px 15px !important; border-left-width: 6px; }
-    .learning-step-card h3 { font-size: 1.2rem; }
-    body.portal-page .news-meta { flex: 0 0 165px !important; width: 165px !important; }
+    body.portal-page .news-meta { flex: 0 0 150px !important; width: 150px !important; }
+    body.portal-page .news-tag { min-width: 70px !important; font-size: 0.7rem !important; }
+    .news-sep { margin-right: 8px !important; }
+    /* スマホ時のみ、長いテキストが途切れるのを防ぐための最低幅設定 */
+    body.portal-page .news-item { min-width: 550px !important; }
 }
 
 /* --- [資産] TOP：学びの全体MAP（横並び＋AI二面性） (v20.1.95) --- */
