@@ -1010,7 +1010,7 @@ body.portal-page #app {
 .learning-step-card h3 { font-size: 1.2rem; }
 }
 
-/* --- [資産] TOP専用：News完全統治システム (v20.1.76) --- */
+/* --- [資産] TOP専用：News完全統治システム (v20.1.76 FINAL) --- */
 .news-list {
     background-color: #ffffff;
     border-top-left-radius: 20px;
@@ -1048,13 +1048,13 @@ body.portal-page #app {
 
 .news-item:last-child { border-bottom: none; }
 
-/* 日付とタグの横幅を最小限（155px）に絞り、スキマを排除 */
+/* 【改善】幅を155pxに絞り、右側の無駄なスキマを65px分カット */
 .news-meta {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 12px;
-    width: 155px; 
+    width: 155px !important; 
     flex-shrink: 0;
 }
 
@@ -1089,16 +1089,15 @@ body.portal-page #app {
     font-size: 0.95rem;
 }
 
-/* カテゴリ名を全角5文字分（85px）で固定し「｜」の位置を同期 */
+/* 【重要】カテゴリ名を85pxで固定。これで「｜」の縦ラインが揃う */
 .news-cat-label {
-    width: 85px;
+    width: 85px !important;
     flex-shrink: 0;
     font-weight: 800;
     color: #2c3e50;
     text-align: left;
 }
 
-/* セパレーター「｜」の位置を固定 */
 .news-sep {
     margin-right: 12px;
     color: #d1d5db;
@@ -1117,5 +1116,4 @@ body.portal-page #app {
 @media (max-width: 768px) {
     .news-meta { width: 145px; gap: 8px; }
     .news-cat-label { width: 75px; font-size: 0.85rem; }
-    .news-text { font-size: 0.85rem; }
 }
