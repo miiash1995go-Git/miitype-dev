@@ -951,14 +951,14 @@ body.portal-page #app {
     border-radius: 25px;
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 0px;
 }
 .ai-role-side { flex: 1; text-align: left; }
 .ai-role-side h4 { font-size: 1rem; font-weight: 900; margin-bottom: 10px; color: var(--primary); }
 .ai-role-side ul { list-style: none; padding: 0; font-size: 0.85rem; color: #64748b; line-height: 1.6; }
 .ai-role-center-icon {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     background-color: #f8fbfe;
     border-top-width: 1px;
     border-right-width: 1px;
