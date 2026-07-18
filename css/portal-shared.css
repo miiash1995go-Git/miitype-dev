@@ -1069,6 +1069,12 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
 @media (max-width: 768px) {
     .map-container, .ai-dual-role-box, .quick-access-grid { flex-direction: column; }
     .ai-role-center-icon { transform: rotate(90deg); margin: 10px 0; }
-    body.portal-page .news-meta { flex: 0 0 132px !important; width: 132px !important; gap: 4px !important; }
-    body.portal-page .news-tag { width: 68px !important; min-width: 68px !important; font-size: 0.65rem !important; }
+    body.portal-page .news-meta {
+     flex: 0 0 160px !important;
+      width: 160px !important;
+       gap: 5px !important; }
+    body.portal-page .news-tag {
+     width: 70px !important;
+      min-width: 70px !important;
+       font-size: 0.7rem !important; }
 }
