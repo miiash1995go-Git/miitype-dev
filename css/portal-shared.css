@@ -1035,10 +1035,10 @@ body.portal-page .news-item {
 body.portal-page .news-item:last-child { border-bottom: none; }
 body.portal-page .news-meta {
     display: flex !important;
-    flex: 0 0 160px !important;
-    width: 160px !important;
+    flex: 0 0 145px !important;
+    width: 145px !important;
     align-items: center !important;
-    gap: 10px !important;
+    gap: 6px !important;
 }
 .news-date { font-family: 'Roboto Mono', monospace; font-size: 0.85rem; color: #94a3b8; font-weight: 700; }
 body.portal-page .news-tag {
@@ -1047,7 +1047,7 @@ body.portal-page .news-tag {
     padding: 3px 0 !important;
     border-radius: 4px !important;
     text-align: center !important;
-    width: 85px !important;
+    width: 72px !important;
     min-width: 85px !important;
     display: block !important;
 }
@@ -1066,10 +1066,9 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
 .news-text { text-decoration: none !important; color: #4b5563 !important; font-size: 0.95rem; white-space: nowrap !important; }
 .news-text:hover { color: var(--accent) !important; }
 
-/* スマホ対応 */
 @media (max-width: 768px) {
     .map-container, .ai-dual-role-box, .quick-access-grid { flex-direction: column; }
     .ai-role-center-icon { transform: rotate(90deg); margin: 10px 0; }
-    body.portal-page .news-meta { flex: 0 0 150px !important; width: 150px !important; }
-    body.portal-page .news-tag { width: 75px !important; min-width: 75px !important; font-size: 0.7rem !important; }
+    body.portal-page .news-meta { flex: 0 0 132px !important; width: 132px !important; gap: 4px !important; }
+    body.portal-page .news-tag { width: 68px !important; min-width: 68px !important; font-size: 0.65rem !important; }
 }
