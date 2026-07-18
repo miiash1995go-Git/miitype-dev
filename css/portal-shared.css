@@ -976,24 +976,48 @@ body.portal-page #app {
 }
 
 .ai-role-side h4 {
-    font-size: 1rem;
-    font-weight: 900;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 10px;
-    margin-left: 0px;
-    color: var(--primary);
+    /* タイトルを大きく、中央に配置 */
+    font-size: 1.4rem !important;
+    font-weight: 900 !important;
+    text-align: center !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 10px !important;
+    margin-left: 0px !important;
+    /* 背景を少し白抜きにして目立たせる */
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    padding-top: 10px !important;
+    padding-right: 10px !important;
+    padding-bottom: 10px !important;
+    padding-left: 10px !important;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+    display: block !important;
+}
+
+.ai-role-side p {
+    text-align: center !important; /* 副題も中央に */
+    font-size: 0.85rem !important;
+    font-weight: 900 !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 15px !important;
+    margin-left: 0px !important;
+    line-height: 1.4 !important;
 }
 
 .ai-role-side ul {
-    list-style-type: none;
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
-    font-size: 0.85rem;
-    color: #64748b;
-    line-height: 1.6;
+    list-style-type: none !important;
+    padding-top: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 0px !important;
+    padding-left: 15px !important; /* リストは読みやすさのため左寄せを維持 */
+    font-size: 0.85rem !important;
+    color: #64748b !important;
+    line-height: 1.6 !important;
+    margin-bottom: 20px !important;
 }
 
 /* 中央アイコンと下部テキストをまとめる枠 */
