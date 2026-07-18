@@ -957,9 +957,23 @@ body.portal-page #app {
 .ai-role-side h4 { font-size: 1rem; font-weight: 900; margin-bottom: 10px; color: var(--primary); }
 .ai-role-side ul { list-style: none; padding: 0; font-size: 0.85rem; color: #64748b; line-height: 1.6; }
 .ai-role-center-icon {
-    width: 60px; height: 60px; background-color: #f8fbfe; border: 1px solid #d1e3f8;
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-weight: 900; color: var(--accent); font-size: 0.75rem; flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background-color: #f8fbfe;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-style: solid;
+    border-color: #d1e3f8;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 /* --- 3. 目的別クイックアクセス --- */
@@ -1068,7 +1082,8 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
 
 @media (max-width: 768px) {
     .map-container, .ai-dual-role-box, .quick-access-grid { flex-direction: column; }
-    .ai-role-center-icon { transform: rotate(90deg); margin: 10px 0; }
+    /* 画像アイコンになったため、90度回転を廃止。上下の間隔（マージン）のみ統治 */
+    .ai-role-center-icon { margin-top: 10px; margin-bottom: 10px; }
     body.portal-page .news-meta {
      flex: 0 0 160px !important;
       width: 160px !important;
