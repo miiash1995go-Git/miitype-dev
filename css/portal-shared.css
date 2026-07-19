@@ -1540,14 +1540,13 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     .q-title { font-size: 1.05rem; }
     .q-sub { font-size: 0.8rem; }
 }
-/* 「できる」ステップカード：完成予想図・完全再現モデル（v20.7.19.2） */
+/* 「できる」ステップカード：完成予想図・完全再現モデル（v20.7.19.3） */
 .map-step-card {
     position: relative;
     padding-top: 25px;
     padding-right: 20px;
     padding-bottom: 25px;
     padding-left: 20px;
-    background-color: #ffffff;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -1558,6 +1557,7 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+    text-align: left; /* ★カード内を「左揃え」に固定 */
 }
 
 /* ヘッダー：数字バッジとSTEPラベル */
@@ -1589,10 +1589,11 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     text-underline-offset: 4px;
 }
 
-/* タイトルエリア：画像とかぶらないよう幅を制限 */
+/* タイトルエリア：画像とかぶらないよう調整 */
 .step-title-area {
-    width: 65%;
+    width: 100%; /* ★サブタイトルを1行にするため100%に拡大 */
     margin-bottom: 20px;
+    text-align: left; /* ★確実に左揃えにする */
 }
 .step-title-area h3 {
     margin-top: 0px;
@@ -1600,12 +1601,18 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     font-size: 1.35rem;
     font-weight: 900;
     color: #2c3e50;
+    max-width: 60%; /* ★タイトル文字だけを画像と被らないように60%制限 */
+    line-height: 1.4;
     border-bottom-style: none !important;
+    text-align: left;
 }
 .step-main-desc {
     font-size: 0.85rem;
     color: #64748b;
     font-weight: 700;
+    display: block;
+    width: 100%; /* ★幅いっぱいに使う */
+    text-align: left; /* ★左揃え */
 }
 
 /* 右上のイラスト：物理配置 */
