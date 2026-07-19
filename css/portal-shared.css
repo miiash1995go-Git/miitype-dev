@@ -1299,7 +1299,7 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     white-space: nowrap;
 }
 
-/* スマホ対応：2カラムで整列 */
+/* スマホ対応：2カラムで整列  */
 @media (max-width: 768px) {
     .cat-nav-btn {
         width: calc(50% - 6px); /* 画面半分より少し小さくして2列に */
