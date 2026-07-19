@@ -1557,7 +1557,11 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    text-align: left; /* 左揃え強制 */
+    text-align: left;
+    /* 3つの幅を強制的に均等にする設定 */
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
 }
 
 /* ヘッダー：数字バッジ */
