@@ -1296,18 +1296,18 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
         justify-content: center;
     }
 }
-/* セクション区切り線（v20.7.19 視認性改善モデル） */
+/* セクション区切り線（v20.7.19 余白最適化版） */
 .section-divider {
     max-width: 768px;
     width: 100%;
     height: 1px;
-    margin-top: 80px; /* 前後の余白を大きく取り、窮屈さを解消 */
+    margin-top: 50px; /* 80pxから50pxへ圧縮 */
     margin-right: auto;
-    margin-bottom: 80px;
+    margin-bottom: 50px; /* 80pxから50pxへ圧縮 */
     margin-left: auto;
     border-top-width: 1px;
     border-top-style: solid;
-    border-top-color: #e2e8f0; /* 主張しすぎない薄いグレー */
+    border-top-color: #e2e8f0;
     border-right-style: none;
     border-bottom-style: none;
     border-left-style: none;
