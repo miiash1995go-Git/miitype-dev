@@ -1335,3 +1335,108 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
         max-width: 90%; /* 画面端に少し余裕を持たせる */
     }
 }
+/* 人気コンテンツ：2カラムランキング（v20.7.19 案内所強化モデル） */
+.ranking-container {
+    display: flex;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+/* 左側：No.1 メインカード */
+.ranking-featured {
+    flex: 1.2;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border: 1px solid #e2e8f0;
+    padding: 30px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+.ranking-featured:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.06);
+    border-color: #2563EB;
+}
+.rank-badge-big {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #e2e8f0; /* 背景に溶け込む巨大数字 */
+    line-height: 1;
+}
+.rank-featured-label {
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: #2563EB;
+    margin-bottom: 10px;
+    display: block;
+    z-index: 2;
+}
+.rank-featured-title {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #2c3e50;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    z-index: 2;
+}
+.rank-featured-tags {
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+}
+
+/* 右側：2-5位リスト */
+.ranking-side-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.rank-side-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    border: 1px solid #e2e8f0;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.rank-side-item:hover {
+    border-color: #38BDF8;
+    background-color: #F0F9FF;
+}
+.rank-num-small {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #94a3b8;
+    width: 25px;
+    flex-shrink: 0;
+}
+.rank-side-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #2c3e50;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* 1行死守 */
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+    .ranking-container { flex-direction: column; }
+    .ranking-featured { padding: 25px; }
+    .rank-featured-title { font-size: 1.2rem; }
+}
