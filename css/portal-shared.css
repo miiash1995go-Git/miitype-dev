@@ -1189,16 +1189,43 @@ body.portal-page .news-tag {
     min-width: 85px !important;
     display: block !important;
 }
-/* カテゴリ別カラー */
-.tag-windows { background-color: #eef9ff !important; color: #3498db !important; }
-.tag-word    { background-color: #f0f4f9 !important; color: #2b579a !important; }
-.tag-excel   { background-color: #f0f7f4 !important; color: #217346 !important; }
-.tag-ai      { background-color: #f5f0ff !important; color: #8e44ad !important; }
-.tag-career  { background-color: #fff1f2 !important; color: #e74c3c !important; }
-.tag-typing  { background-color: #fff9e6 !important; color: #f39c12 !important; }
-.tag-column  { background-color: #f0fdf4 !important; color: #27ae60 !important; }
+/* ============================================================
+   カテゴリ別カラー（v20.7.19 新配色パレット同期版）
+   ============================================================ */
+.tag-typing  { background-color: #EFF6FF !important; color: #2563EB !important; }
+.tag-windows { background-color: #F0F9FF !important; color: #38BDF8 !important; }
+.tag-word    { background-color: #EEF2FF !important; color: #1D4ED8 !important; }
+.tag-excel   { background-color: #ECFDF5 !important; color: #16A34A !important; }
+.tag-ai      { background-color: #ECFEFF !important; color: #14B8A6 !important; }
+.tag-career  { background-color: #FFF7ED !important; color: #F97316 !important; }
+.tag-column  { background-color: #F5F3FF !important; color: #8B5CF6 !important; }
 .tag-notice  { background-color: #f1f3f5 !important; color: #64748b !important; }
 
+/* AI二面性システム：新配色同期（左：Orange / 右：Green） */
+.ai-role-side.career-side { 
+    background-color: #FFF7ED !important; 
+    border-top-color: #F97316 !important;
+    border-right-color: #F97316 !important;
+    border-bottom-color: #F97316 !important;
+    border-left-color: #F97316 !important;
+}
+.ai-role-side.career-side h4 { color: #F97316 !important; }
+.ai-role-btn.career-btn { border-color: #F97316 !important; color: #F97316 !important; }
+
+.ai-role-side.work-side { 
+    background-color: #ECFDF5 !important; 
+    border-top-color: #16A34A !important;
+    border-right-color: #16A34A !important;
+    border-bottom-color: #16A34A !important;
+    border-left-color: #16A34A !important;
+}
+.ai-role-side.work-side h4 { color: #16A34A !important; }
+.ai-role-btn.work-btn { border-color: #16A34A !important; color: #16A34A !important; }
+
+/* 中央リングのグラデーション（左Orange ↔ 右Green） */
+.ai-role-center-icon {
+    background-image: linear-gradient(white, white), linear-gradient(to right, #F97316 50%, #16A34A 50%) !important;
+}
 body.portal-page .news-content { display: flex !important; flex: 1 !important; align-items: center !important; margin-left: 5px !important; }
 body.portal-page .news-sep { display: inline-block !important; margin-right: 12px !important; color: #d1d5db !important; }
 .news-text { text-decoration: none !important; color: #4b5563 !important; font-size: 0.95rem; white-space: nowrap !important; }
