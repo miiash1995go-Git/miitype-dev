@@ -1540,7 +1540,7 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     .q-title { font-size: 1.05rem; }
     .q-sub { font-size: 0.8rem; }
 }
-/* 「できる」ステップカード：完成予想図・完全再現モデル（v20.7.19.3） */
+/* 「できる」ステップカード：完成予想図・完全再現モデル（最終統治版） */
 .map-step-card {
     position: relative;
     padding-top: 25px;
@@ -1551,16 +1551,16 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    border-top-width: 8px; /* 上部の太いカラーライン */
+    border-top-width: 8px;
     border-top-style: solid;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    text-align: left; /* ★カード内を「左揃え」に固定 */
+    text-align: left; /* 左揃え強制 */
 }
 
-/* ヘッダー：数字バッジとSTEPラベル */
+/* ヘッダー：数字バッジ */
 .step-header {
     display: flex;
     align-items: center;
@@ -1570,10 +1570,7 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
 .step-num-badge {
     width: 38px;
     height: 38px;
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-    border-bottom-right-radius: 50%;
-    border-bottom-left-radius: 50%;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1589,107 +1586,84 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     text-underline-offset: 4px;
 }
 
-/* タイトルエリア：画像とかぶらないよう調整 */
+/* タイトルエリア：画像スペース(90px)を確保して1行を死守 */
 .step-title-area {
-    width: 100%; /* ★サブタイトルを1行にするため100%に拡大 */
+    width: 100%;
     margin-bottom: 20px;
-    text-align: left; /* ★確実に左揃えにする */
+    padding-right: 90px; /* 右上の画像と重ならないための盾 */
+    box-sizing: border-box;
 }
 .step-title-area h3 {
     margin-top: 0px;
     margin-bottom: 5px;
-    font-size: 1.35rem;
+    font-size: 1.2rem; /* 横幅に収まるようサイズ調整 */
     font-weight: 900;
     color: #2c3e50;
-    max-width: 60%; /* ★タイトル文字だけを画像と被らないように60%制限 */
-    line-height: 1.4;
     border-bottom-style: none !important;
-    text-align: left;
+    white-space: nowrap; /* 改行禁止 */
 }
 .step-main-desc {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #64748b;
     font-weight: 700;
     display: block;
-    width: 100%; /* ★幅いっぱいに使う */
-    text-align: left; /* ★左揃え */
+    white-space: nowrap; /* 改行禁止 */
 }
 
-/* 右上のイラスト：物理配置 */
+/* 右上のイラスト */
 .step-illust {
     position: absolute;
     top: 20px;
     right: 15px;
-    width: 100px;
+    width: 90px;
     height: auto;
 }
 
-/* リスト：左右振り分け統治 */
+/* リスト：左右振り分け ＆ 1行死守 */
 .step-benefit-list {
     margin-top: auto;
     margin-bottom: 25px;
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
-    list-style-type: none;
-    border-top-width: 1px;
-    border-top-style: solid;
-    border-top-color: #f1f5f9;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid #f1f5f9;
 }
 .step-benefit-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-bottom-width: 1px;
-    border-bottom-style: dashed;
-    border-bottom-color: #e2e8f0;
+    padding: 10px 0;
+    border-bottom: 1px dashed #e2e8f0;
 }
 .item-left {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 0.95rem;
+    gap: 8px;
+    font-size: 0.9rem;
     font-weight: 900;
     color: #2c3e50;
+    white-space: nowrap; /* 項目名の改行を禁止 */
 }
 .item-right {
     font-size: 0.75rem;
     font-weight: 700;
     color: #94a3b8;
+    white-space: nowrap;
 }
 
-/* ボタン：中央配置 ＆ 楕円形 */
-.step-cta-container {
-    text-align: center;
-    margin-top: auto;
-}
+/* 下部ボタン */
+.step-cta-container { text-align: center; margin-top: auto; }
 .step-cta-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 90%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-    border-bottom-left-radius: 50px;
-    border-top-width: 2px;
-    border-right-width: 2px;
-    border-bottom-width: 2px;
-    border-left-width: 2px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
+    padding: 10px 0;
+    border-radius: 50px;
+    border: 2px solid;
     background-color: #ffffff;
     text-decoration: none;
     font-weight: 900;
     font-size: 0.9rem;
-    transition: all 0.2s ease;
 }
 
 @media (max-width: 768px) {
