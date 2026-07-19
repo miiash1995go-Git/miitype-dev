@@ -1238,20 +1238,29 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     body.portal-page .news-meta { flex: 0 0 160px !important; width: 160px !important; gap: 5px !important; }
     body.portal-page .news-tag { width: 70px !important; min-width: 70px !important; font-size: 0.7rem !important; }
 }
-/* カテゴリーナビゲーション：画像案同期モデル */
+/* カテゴリーナビゲーション：4-3配置・等間隔統治モデル */
 .cat-nav-container {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 12px;
     justify-content: center;
+    align-items: center;
     margin-top: 30px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    width: 100%;
 }
+
 .cat-nav-btn {
     display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     padding-top: 12px;
-    padding-right: 20px;
+    padding-right: 15px;
     padding-bottom: 12px;
     padding-left: 15px;
     border-top-left-radius: 12px;
@@ -1267,8 +1276,12 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     border-bottom-style: solid;
     border-left-style: solid;
     text-decoration: none;
-    transition: all 0.2s ease;
-    min-width: 140px;
+    transition-property: transform, box-shadow;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+    /* 1000pxコンテナで4枚並べるための幅計算（隙間12px×3分を引いて4割） */
+    width: calc(25% - 10px); 
+    box-sizing: border-box;
     background-color: #ffffff;
 }
 .cat-nav-btn:hover {
