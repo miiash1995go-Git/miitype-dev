@@ -1540,3 +1540,156 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     .q-title { font-size: 1.05rem; }
     .q-sub { font-size: 0.8rem; }
 }
+/* 「できる」ステップカード：最終統合デザイン（v20.7.19） */
+.map-step-card {
+    position: relative;
+    padding-top: 30px;
+    padding-right: 25px;
+    padding-bottom: 30px;
+    padding-left: 25px;
+    background-color: #ffffff;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #eef2f6;
+    border-right-color: #eef2f6;
+    border-bottom-color: #eef2f6;
+    border-left-color: #eef2f6;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+/* 右上のメインイラスト */
+.step-illust {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 90px;
+    height: auto;
+    z-index: 1;
+}
+
+/* 左上の丸い番号バッジ */
+.step-num-badge {
+    position: absolute;
+    top: 20px;
+    left: 25px;
+    width: 44px;
+    height: 44px;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: #ffffff;
+    z-index: 2;
+}
+
+/* カード内タイトルエリア */
+.map-step-card h3 {
+    margin-top: 50px;
+    margin-bottom: 5px;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #2c3e50;
+    border-bottom-style: none !important;
+}
+.step-subtitle-label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 900;
+    margin-left: 55px; /* バッジの横に並べる用 */
+    margin-top: -45px;
+    margin-bottom: 25px;
+}
+
+/* リスト形式の学習項目 */
+.step-benefit-list {
+    margin-top: 25px;
+    margin-bottom: 30px;
+    padding-left: 0px;
+    list-style-type: none;
+    border-top-width: 1px;
+    border-top-style: dotted;
+    border-top-color: #e2e8f0;
+}
+.step-benefit-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
+    border-bottom-color: #f1f5f9;
+}
+.step-item-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    font-weight: 900;
+}
+.step-item-icon {
+    width: 22px;
+    height: auto;
+}
+.step-item-desc {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94a3b8;
+}
+
+/* カード間の矢印（デスクトップ用） */
+.step-arrow-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #cbd5e1;
+    font-size: 1.5rem;
+}
+
+/* 下部のボタン：全幅対応 */
+.step-cta-btn {
+    width: 100%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+@media (max-width: 768px) {
+    .step-arrow-connector { transform: rotate(90deg); margin: 15px 0; }
+}
