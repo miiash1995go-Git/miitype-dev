@@ -591,12 +591,47 @@ if (typeof gtag === 'function') {
 const app = new TypingApp();
 
 /* ============================================================
-   共通機能：ページトップへ戻るボタンの制御 (v19.9.203 統一規格)
+   共通機能：ナビゲーション自動統治 ＆ スクロール制御 (v20.7.21)
    ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    
+    document.querySelectorAll('.nav-item').forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href) return;
+
+        // 1. 基本判定：ファイル名が完全一致
+        let isActive = (href === currentPath);
+        
+        // 2. 階層判定：現在URLに各カテゴリのキーワードが含まれるか
+        if (!isActive) {
+            if (href.includes('windows') && currentPath.includes('windows')) isActive = true;
+            else if (href.includes('word') && currentPath.includes('word')) isActive = true;
+            else if (href.includes('excel') && currentPath.includes('excel')) isActive = true;
+            else if (href.includes('ai') && (currentPath.includes('ai') || currentPath.includes('chatgpt') || currentPath.includes('tools'))) isActive = true;
+            else if (href.includes('typing') && (currentPath.includes('typing') || currentPath.includes('play.html') || currentPath.includes('basics'))) isActive = true;
+            else if (href.includes('career') && (currentPath.includes('career') || currentPath.includes('interview'))) isActive = true;
+            else if (href.includes('column') && currentPath.includes('column')) isActive = true;
+        }
+
+        if (isActive) {
+            link.classList.add('active');
+        }
+    });
+
+    // スマホメニュー
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    if (menuBtn) {
+        menuBtn.addEventListener('click', () => {
+            alert('全画面メニューを準備中です。');
+        });
+    }
+});
+
+/* --- ページトップへ戻るボタンの制御 --- */
 window.addEventListener('scroll', () => {
     const pageTopBtn = document.getElementById('back-to-top');
     if (pageTopBtn) {
-        // 300px以上スクロールしたら表示
         if (window.scrollY > 300) {
             pageTopBtn.classList.add('visible');
         } else {
@@ -605,37 +640,10 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// スムーズスクロールの実装（HTML側の a href="#" への対応）
 document.addEventListener('click', (e) => {
     const target = e.target.closest('#back-to-top');
     if (target) {
         e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-});
-
-/* ============================================================
-   ナビゲーション自動統治（v20.7.20）
-   ============================================================ */
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. URL判定による active クラスの自動付与（コラム等の下層も含む）
-    const currentPath = window.location.pathname.split("/").pop() || "index.html";
-    document.querySelectorAll('.nav-item').forEach(link => {
-        const linkPath = link.getAttribute('href');
-        // index.html または URLが完全に一致する場合に active を付与
-        if (linkPath === currentPath) {
-            link.classList.add('active');
-        }
-    });
-
-    // 2. スマホメニュー開閉（※メニュー本体はステップ4で実装）
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    if (menuBtn) {
-        menuBtn.addEventListener('click', () => {
-            alert('全画面メニューを準備中です。');
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 });

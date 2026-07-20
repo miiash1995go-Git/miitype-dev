@@ -339,11 +339,6 @@ body .back-to-top:hover {
     .nav-menu a { font-size: 0.75rem; padding: 3px 5px; }
 }
 
-.breadcrumb { margin-bottom: 25px; font-size: 0.85rem; color: #666; display: flex; gap: 8px; align-items: center; }
-.breadcrumb a { color: var(--accent); text-decoration: none; transition: 0.2s; }
-.breadcrumb a:hover { text-decoration: underline; }
-.breadcrumb-separator { color: #ccc; font-size: 0.7rem; }
-
 .controls-row-wrapper { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 5px 0 15px 0 !important; flex-wrap: wrap; }
 #best-score-display { margin: 0 !important; padding: 6px 20px; background: #f8f9fa; border-radius: 30px; border: 1px solid #eee; }
 .best-label { font-size: 0.75rem; color: #7f8c8d; font-weight: 800; }

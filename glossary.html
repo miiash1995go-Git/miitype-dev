@@ -491,21 +491,6 @@
         </footer>
     </div>
 
-	<!-- ★ここに追加：ボタンを動かすスクリプト -->
-	<script>
-        	const backToTopBtn = document.getElementById('backToTop');
-        	window.addEventListener('scroll', () => {
-           	 if (window.scrollY > 500) {
-                	backToTopBtn.classList.add('visible');
-           	 } else {
-               	 backToTopBtn.classList.remove('visible');
-            	}
-	});
-	backToTopBtn.addEventListener('click', (e) => {
-		e.preventDefault();
-		window.scrollTo({ top: 0, behavior: 'smooth' });
-	});
-	</script>
     <!-- ページトップへ戻るボタン (v19.9.203 統一規格) -->
     <a href="#" id="back-to-top" class="back-to-top">↑</a>
     <!-- 共通ロジック：スクロール制御用 -->
