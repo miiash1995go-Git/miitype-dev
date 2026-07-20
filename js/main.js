@@ -596,51 +596,70 @@ const app = new TypingApp();
 document.addEventListener('DOMContentLoaded', () => {
     const currentPath = window.location.pathname.split("/").pop() || "index.html";
     
-    // 一旦すべての active クラスを消去（重複を物理的に不可能にする）
+    // --- 1. ナビゲーションの色付けロジック ---
     const navItems = document.querySelectorAll('.nav-item');
     navItems.forEach(item => item.classList.remove('active'));
 
-    // 1つだけ選んで active を付ける
+    let matchedCat = ""; // パンくず用に使用
     let matched = false;
+
     navItems.forEach(link => {
-        if (matched) return; // 既に1つ見つかってれば何もしない
+        if (matched) return;
         const href = link.getAttribute('href');
         if (!href) return;
-
-        // A. 完全一致判定（hub-ai.html 等）
         if (href === currentPath) {
             link.classList.add('active');
             matched = true;
+            matchedCat = href.replace('hub-', '').replace('.html', '');
         }
     });
 
-    // B. 下層ページ判定（ファイル名とカテゴリを正確に紐づけ）
     if (!matched && currentPath !== 'index.html') {
         const mapping = {
-            'windows': ['windows', 'pc-selection'], // PC選びもWindowsカテゴリ
+            'windows': ['windows', 'pc-selection'],
             'word':    ['word'],
             'excel':   ['excel'],
             'ai':      ['ai', 'chatgpt', 'tools'],
-            'typing':  ['typing', 'play', 'basics'],   // basics（タイピングの基本）もここ
+            'typing':  ['typing', 'play', 'basics'],
             'career':  ['career', 'interview'],
             'column':  ['column']
         };
-
         for (const [cat, keywords] of Object.entries(mapping)) {
-            // 現在のURLにキーワードのいずれかが含まれているかチェック
-            const isHit = keywords.some(key => currentPath.includes(key));
-            if (isHit) {
+            if (keywords.some(key => currentPath.includes(key))) {
                 const target = document.querySelector(`.nav-item[href*="${cat}"]`);
-                if (target) {
-                    target.classList.add('active');
-                    matched = true;
-                    break;
-                }
+                if (target) { target.classList.add('active'); matched = true; matchedCat = cat; break; }
             }
         }
     }
 
-    // スマホメニューボタン
+    // --- 2. 自動パンくず生成ロジック (v20.7.21 シンプル版) ---
+    const breadContainer = document.getElementById('dynamic-breadcrumb');
+    if (breadContainer && currentPath !== 'index.html') {
+        const categoryNames = {
+            'windows': 'Windows基礎',
+            'word':    'Word基礎',
+            'excel':   'Excel基礎',
+            'ai':      '生成AI活用',
+            'typing':  'タイピング練習',
+            'career':  '就職・転職',
+            'column':  '現場コラム'
+        };
+
+        let breadHTML = `<a href="index.html">ホーム</a><span class="breadcrumb-separator">＞</span>`;
+        
+        if (matchedCat && categoryNames[matchedCat]) {
+            // ハブページそのものにいる場合はリンクにせず、階層名だけ出す
+            if (currentPath.startsWith('hub-')) {
+                breadHTML += `<span>${categoryNames[matchedCat]}</span>`;
+            } else {
+                // 記事ページにいる場合は、ハブページへのリンクを出す
+                breadHTML += `<a href="hub-${matchedCat}.html">${categoryNames[matchedCat]}</a><span class="breadcrumb-separator">＞</span>`;
+            }
+        }
+        breadContainer.innerHTML = breadHTML;
+    }
+
+    // --- 3. スマホメニューボタン ---
     const menuBtn = document.getElementById('mobile-menu-btn');
     if (menuBtn) {
         menuBtn.addEventListener('click', () => { alert('全画面メニューを準備中です。'); });
