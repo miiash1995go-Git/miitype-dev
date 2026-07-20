@@ -600,18 +600,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const href = link.getAttribute('href');
         if (!href) return;
 
-        // 1. 基本判定：ファイル名が完全一致
         let isActive = (href === currentPath);
         
-        // 2. 階層判定：現在URLに各カテゴリのキーワードが含まれるか
-        if (!isActive) {
-            if (href.includes('windows') && currentPath.includes('windows')) isActive = true;
-            else if (href.includes('word') && currentPath.includes('word')) isActive = true;
-            else if (href.includes('excel') && currentPath.includes('excel')) isActive = true;
-            else if (href.includes('ai') && (currentPath.includes('ai') || currentPath.includes('chatgpt') || currentPath.includes('tools'))) isActive = true;
-            else if (href.includes('typing') && (currentPath.includes('typing') || currentPath.includes('play.html') || currentPath.includes('basics'))) isActive = true;
-            else if (href.includes('career') && (currentPath.includes('career') || currentPath.includes('interview'))) isActive = true;
-            else if (href.includes('column') && currentPath.includes('column')) isActive = true;
+        // 階層判定：カテゴリキーワードで正確にマッチング
+        if (!isActive && href !== 'index.html') {
+            const category = href.replace('hub-', '').replace('.html', '');
+            
+            // 現在のURLにカテゴリ名が含まれているかチェック
+            if (currentPath.includes(category)) {
+                isActive = true;
+            } 
+            // 特殊なファイル名の補完
+            else if (category === 'typing' && currentPath.includes('play.html')) {
+                isActive = true;
+            } else if (category === 'ai' && currentPath.includes('chatgpt')) {
+                isActive = true;
+            } else if (category === 'career' && currentPath.includes('interview')) {
+                isActive = true;
+            }
         }
 
         if (isActive) {
@@ -619,12 +625,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // スマホメニュー
     const menuBtn = document.getElementById('mobile-menu-btn');
     if (menuBtn) {
-        menuBtn.addEventListener('click', () => {
-            alert('全画面メニューを準備中です。');
-        });
+        menuBtn.addEventListener('click', () => { alert('メニュー機能を準備中です。'); });
     }
 });
 

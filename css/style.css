@@ -177,10 +177,6 @@ body.portal-page header {
     box-shadow: 0px 3px 0px #0f2544;
 }
 
-.nav-item.active .nav-icon {
-    filter: brightness(0) invert(1);
-}
-
 .nav-icon {
     width: 18px; /* 22pxから18pxへ */
     height: 18px;
