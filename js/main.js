@@ -614,14 +614,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // B. 下層ページ判定（完全一致で見つからなかった場合のみ実行）
+    // B. 下層ページ判定（ファイル名とカテゴリを正確に紐づけ）
     if (!matched && currentPath !== 'index.html') {
-        const categories = ['windows', 'word', 'excel', 'ai', 'typing', 'career', 'column'];
-        for (const cat of categories) {
-            if (currentPath.includes(cat) || (cat === 'ai' && currentPath.includes('chatgpt')) || (cat === 'career' && currentPath.includes('interview'))) {
+        const mapping = {
+            'windows': ['windows', 'pc-selection'], // PC選びもWindowsカテゴリ
+            'word':    ['word'],
+            'excel':   ['excel'],
+            'ai':      ['ai', 'chatgpt', 'tools'],
+            'typing':  ['typing', 'play', 'basics'],   // basics（タイピングの基本）もここ
+            'career':  ['career', 'interview'],
+            'column':  ['column']
+        };
+
+        for (const [cat, keywords] of Object.entries(mapping)) {
+            // 現在のURLにキーワードのいずれかが含まれているかチェック
+            const isHit = keywords.some(key => currentPath.includes(key));
+            if (isHit) {
                 const target = document.querySelector(`.nav-item[href*="${cat}"]`);
                 if (target) {
                     target.classList.add('active');
+                    matched = true;
                     break;
                 }
             }
