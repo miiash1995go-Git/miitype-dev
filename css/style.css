@@ -71,12 +71,22 @@ header {
     background-color: transparent;
     margin-top: 0px;
     margin-right: 0px;
-    margin-bottom: 20px; /* 25pxから20pxへ */
+    margin-bottom: 40px; /* 読みものページでは40pxの余裕を確保 */
     margin-left: 0px;
 }
 
+/* 練習画面（game-body）専用：圧迫感を消しつつ1画面に収める (v20.7.21.4) */
+body.game-body header {
+    margin-bottom: 30px !important; /* 5pxから30pxへ広げ、窮屈さを解消 */
+}
+
+body.game-body #app {
+    padding-top: 15px !important; /* 上端との隙間を少し作り、視線を安定させる */
+}
+
 body.portal-page header {
-    padding-top: 5px; /* 10pxから5pxへ */
+    padding-top: 5px;
+}
 }
 
 .header-inner {
