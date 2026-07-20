@@ -68,13 +68,15 @@ body.portal-page #app {
 
 header {
     width: 100%;
-    background-color: transparent; /* 背景を透明にしてサイトになじませる */
-    margin-bottom: 25px;
+    background-color: transparent;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 20px; /* 25pxから20pxへ */
+    margin-left: 0px;
 }
 
-/* 練習画面以外では、ヘッダーに少しだけ上部の余白を足して「浮遊感」を出す */
 body.portal-page header {
-    padding-top: 10px;
+    padding-top: 5px; /* 10pxから5pxへ */
 }
 
 .header-inner {
@@ -85,66 +87,105 @@ body.portal-page header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px; /* さらに圧縮 */
+    padding-right: 0px;
+    padding-bottom: 5px;
+    padding-left: 0px;
 }
 
-.header-logo-link { flex-shrink: 0; text-decoration: none; transition: opacity 0.2s; }
-.header-logo-link:hover { opacity: 0.8; }
-.header-logo-img { height: 85px; width: auto; display: block; }
+.header-logo-link {
+    flex-shrink: 0;
+    text-decoration-line: none;
+    transition-property: opacity;
+    transition-duration: 0.2s;
+}
 
-.header-nav { flex-grow: 1; display: flex; justify-content: flex-end; }
+.header-logo-img {
+    height: 60px; /* 85pxから60pxへ：これが決定打になります */
+    width: auto;
+    display: block;
+}
 
-/* ナビグリッド：2段のバランスを調整 */
+.header-nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
 .nav-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px 12px; /* 隙間を広げて「押しやすさ」を確保 */
+    gap: 6px 10px; /* 隙間も少しタイトに */
 }
 
-/* ナビボタン：質感を大幅強化 */
 .nav-item {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    gap: 10px;
+    justify-content: flex-start;
+    gap: 8px;
     background-color: #ffffff;
-    padding: 10px 18px 10px 12px;
-    border-radius: 50px;
-    /* 枠線を少し太くし、色をハッキリさせる */
-    border: 2px solid #e2e8f0;
-    text-decoration: none;
+    padding-top: 6px;    /* 10pxから6pxへ */
+    padding-right: 12px; /* 18pxから12pxへ */
+    padding-bottom: 6px;
+    padding-left: 8px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #e2e8f0;
+    border-right-color: #e2e8f0;
+    border-bottom-color: #e2e8f0;
+    border-left-color: #e2e8f0;
+    text-decoration-line: none;
     color: #2c3e50;
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* 0.9remから0.8remへ */
     font-weight: 900;
-    /* 影を深くして「ボタンの厚み」を出す */
-    box-shadow: 0 4px 0 #dfe4ea;
-    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-    min-width: 135px;
+    box-shadow: 0px 3px 0px #dfe4ea; /* 影を4pxから3pxへ */
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    min-width: 110px; /* 135pxから110pxへ */
     box-sizing: border-box;
 }
 
-/* ホバーエフェクト：沈み込むようなクリック感 */
 .nav-item:hover {
-    border-color: #3498db;
-    transform: translateY(2px); /* 下に沈めて「押した感」を出す */
-    box-shadow: 0 2px 0 #3498db; /* 影を薄くして沈み込みを表現 */
+    border-top-color: #3498db;
+    border-right-color: #3498db;
+    border-bottom-color: #3498db;
+    border-left-color: #3498db;
+    transform: translateY(1px); /* 沈み込みも1pxへ */
+    box-shadow: 0px 2px 0px #3498db;
     background-color: #f0f7ff;
 }
 
-/* 現在地（Active）：もっとも目立たせる */
 .nav-item.active {
     background-color: #1a365d;
     color: #ffffff !important;
-    border-color: #1a365d;
-    box-shadow: 0 4px 0 #0f2544;
+    border-top-color: #1a365d;
+    border-right-color: #1a365d;
+    border-bottom-color: #1a365d;
+    border-left-color: #1a365d;
+    box-shadow: 0px 3px 0px #0f2544;
 }
 
 .nav-item.active .nav-icon {
-    filter: brightness(0) invert(1); /* アイコンを白抜きにする */
+    filter: brightness(0) invert(1);
 }
 
-.nav-icon { width: 22px; height: 22px; flex-shrink: 0; transition: transform 0.2s; }
-.nav-item:hover .nav-icon { transform: scale(1.1); }
+.nav-icon {
+    width: 18px; /* 22pxから18pxへ */
+    height: 18px;
+    flex-shrink: 0;
+}
 
 /* スマホ用メニューボタン */
 .mobile-menu-trigger { display: none; }
