@@ -69,21 +69,24 @@ body.portal-page #app {
 /* ============================================================
    新ヘッダー・ナビゲーション：統合統治システム (v20.7.21.6)
    ============================================================ */
+/* ============================================================
+   新ヘッダー・ナビゲーション：統合統治システム (v20.7.21.8)
+   ============================================================ */
 header {
     width: 100%;
     background-color: transparent;
     margin-top: 0px;
     margin-right: 0px;
-    margin-bottom: 20px;
+    margin-bottom: 25px; /* ポータル標準 */
     margin-left: 0px;
 }
 
-/* 共通インナー：常に横並びを死守 */
+/* 共通インナー：常に横並びを絶対死守 */
 .header-inner {
     max-width: 1024px;
     margin-right: auto;
     margin-left: auto;
-    display: flex !important;      /* 常に横並び */
+    display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-between;
@@ -92,16 +95,21 @@ header {
     box-sizing: border-box;
 }
 
-/* --- 条件別オーバーライド（干渉防止） --- */
+/* --- 条件別オーバーライド：play画面（game-body）の余白確保 --- */
 
-/* A. 練習画面（game-body）専用の垂直圧縮 */
-body.game-body header { margin-bottom: 10px !important; }
-body.game-body .header-inner { padding-top: 2px !important; padding-bottom: 2px !important; }
-body.game-body .header-logo-img { height: 50px !important; } /* 練習画面のみさらにロゴを小さく */
-body.game-body #app { padding-top: 5px !important; }
-
-/* B. 読みものページ（portal-page）専用の余白 */
-body.portal-page header { padding-top: 5px; }
+body.game-body header { 
+    margin-bottom: 40px !important; /* 10pxから40pxへ拡大：ヘッダーとツールの間に空気を入れます */
+}
+body.game-body .header-inner { 
+    padding-top: 5px !important; 
+    padding-bottom: 5px !important; 
+}
+body.game-body .header-logo-img { 
+    height: 55px !important; 
+}
+body.game-body #app { 
+    padding-top: 10px !important; /* 画面最上部との接触を回避 */
+}
 
 /* ロゴエリア */
 .header-logo-link {
@@ -109,7 +117,7 @@ body.portal-page header { padding-top: 5px; }
     text-decoration-line: none;
 }
 .header-logo-img {
-    height: 60px; /* ポータルでの標準サイズ */
+    height: 60px; /* ポータル標準 */
     width: auto;
     display: block;
 }
@@ -175,7 +183,6 @@ body.portal-page header { padding-top: 5px; }
     background-color: #f0f7ff;
 }
 
-/* 現在地：影を黒の透明にして分離 (v20.7.21.7) */
 .nav-item.active {
     background-color: #1a365d !important;
     color: #ffffff !important;
