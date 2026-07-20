@@ -59,202 +59,130 @@ body.portal-page #app {
     max-width: 1000px; 
 }
 
-header { 
+/* ============================================================
+   新ヘッダーシステム：垂直圧縮 ＆ 1024px統治 (v20.7.20)
+   ------------------------------------------------------------
+   - 768px高のノートPC環境で「タイピングツール」を1画面に収める
+   - game-body ではマージンを極限まで排除（!important統治）
+   ============================================================ */
+
+header {
     width: 100%;
-    margin-bottom: 20px;
-    border: none;
+    background-color: #ffffff;
+    border-bottom: 1px solid #f1f3f5;
+    margin-bottom: 30px; /* 読みものページでの呼吸 */
 }
 
-header .logo {
-    /* 修正：ここも透明に。これでタイピング画面の白い帯が消えます */
+/* タイピング画面（game-body）での強制垂直圧縮 */
+body.game-body header {
+    margin-bottom: 5px !important;
     background-color: transparent !important;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 10px 0;
+    border-bottom: none !important;
 }
 
-/* --- 1. グローバルナビゲーション：チップ型デザイン (v19.9.123 密度死守モデル) --- */
-/* サイズを一切変えず、背景色と影のコントラストで"押せる質感"を強化しました */
+body.game-body #app {
+    padding-top: 5px !important;
+}
 
-.nav-menu {
+.header-inner {
+    max-width: 1024px;
+    margin-right: auto;
+    margin-left: auto;
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+/* 練習画面でのインナー余白圧縮 */
+body.game-body .header-inner {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
+
+.header-logo-link { flex-shrink: 0; text-decoration: none; }
+.header-logo-img { height: 80px; width: auto; display: block; }
+
+/* 練習画面でのロゴサイズ微縮小（高さ確保） */
+body.game-body .header-logo-img { height: 65px !important; }
+
+.header-nav { flex-grow: 1; display: flex; justify-content: flex-end; }
+
+/* PCナビ：2段グリッド (4x2) */
+.nav-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, auto);
     gap: 8px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 10px;
-    margin-right: 0px;
-    margin-bottom: 15px;
-    margin-left: 0px;
 }
 
-.nav-menu a {
-    color: #4b5563; 
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #ffffff;
+    padding: 8px 15px 8px 10px;
+    border-radius: 40px;
+    border: 1px solid #dfe4ea;
     text-decoration: none;
+    color: #2c3e50;
     font-size: 0.85rem;
-    font-weight: 700;
-    /* 【ファクトチェック済】1画面収容を壊さないよう、元のサイズ(8px 18px)を厳守 */
-    padding-top: 8px;
-    padding-right: 18px;
-    padding-bottom: 8px;
-    padding-left: 18px;
-    /* 【改善】背景を白にし、ごく薄い影を付けてグレー背景から浮かび上がらせる */
-    background-color: #ffffff; 
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-style: solid;
-    border-color: #dfe4ea;
-    border-top-left-radius: 40px; /* より洗練されたカプセル型へ */
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-    border-bottom-left-radius: 40px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04); 
-    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-    display: inline-block;
+    font-weight: 800;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s ease;
+    min-width: 120px;
+    box-sizing: border-box;
 }
 
-/* ホバー時の色変化：サイズに影響を与えず、座標と影だけでインパクトを出す */
-header .nav-menu a:hover {
-    color: #ffffff;
-    background-color: var(--accent);
-    border-top-color: var(--accent);
-    border-right-color: var(--accent);
-    border-bottom-color: var(--accent);
-    border-left-color: var(--accent);
-    transform: translateY(-2px); /* 上に跳ねる視覚効果 */
-    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.2);
-}
-
-/* 現在地（active）の表示設定 */
-header .nav-menu a.active {
-    background-color: var(--primary);
-    color: #ffffff;
-    border-top-color: var(--primary);
-    border-right-color: var(--primary);
-    border-bottom-color: var(--primary);
-    border-left-color: var(--primary);
+/* 練習画面ではナビの影や浮きを抑えて視覚ノイズを減らす */
+body.game-body .nav-item {
     box-shadow: none;
 }
 
-/* --- 2. ロゴ・ヘッダーエリア：絶対センター保持デザイン --- */
-header .logo {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 1000px;
-    margin-top: 5px;
-    margin-right: auto;
-    margin-bottom: 10px;
-    margin-left: auto;
-    text-decoration: none;
+.nav-item:hover {
+    border-color: #3498db;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.15);
 }
 
-.logo-spacer { flex: 1; }
-.logo-center { flex: 0 0 auto; display: flex; justify-content: center; }
-.logo-right { flex: 1; display: flex; align-items: center; justify-content: flex-start; }
-
-.header-logo-img {
-    height: 60px;
-    width: auto;
-    display: block;
+.nav-item.active {
+    background-color: #2563EB;
+    color: #ffffff;
+    border-color: #2563EB;
 }
 
-.logo-subtext {
-    color: var(--accent);
-    font-size: 1.1rem;
-    font-weight: 800;
-    border-left-width: 2px;
-    border-left-style: solid;
-    border-left-color: #dddddd;
-    margin-left: 20px;
-    padding-left: 20px;
-    line-height: 1.2;
-    white-space: nowrap;
-}
+.nav-icon { width: 20px; height: 20px; flex-shrink: 0; }
 
-/* --- 1. タイピング画面専用（game-body）：物理的に高さを死守しつつ極限まで圧縮 (v19.9.200 正典) --- */
-body.game-body #app header .ad-container-top {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 1000px;
-    height: 90px; /* 広告の高さを確保 */
-    margin-top: 2px !important; /* ノートPCでのボタン見切れを防止するため極限まで圧縮 */
-    margin-right: auto !important;
-    margin-bottom: 2px !important;
-    margin-left: auto !important;
-    background-color: transparent;
-    border-top-style: none;
-    border-right-style: none;
-    border-bottom-style: none;
-    border-left-style: none;
-    box-sizing: border-box;
-}
+/* スマホ用メニューボタン */
+.mobile-menu-trigger { display: none; }
 
-/* --- 2. 読みものページ専用（portal-page）：遷移時のガタつきを防止する90px固定空間 (v19.9.201) --- */
-body.portal-page #app header .ad-container-top {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 1000px;
-    height: 90px; /* 広告枠の高さを90pxで予約 */
-    margin-top: 15px;
-    margin-right: auto;
-    margin-bottom: 25px; /* 下部コンテンツとの呼吸を確保 */
-    margin-left: auto;
-    background-color: transparent;
-    border-top-style: none;
-    border-right-style: none;
-    border-bottom-style: none;
-    border-left-style: none;
-    box-sizing: border-box;
-}
-
-/* タイピング練習画面のコンパクトさは既存の記述で別途保護 (style.css 147行目付近を維持) */
-
-/* --- 4. タイピング画面（game-body）専用：1画面に収めるための強制圧縮 --- */
-body.game-body #app { padding-top: 5px !important; }
-body.game-body .nav-menu { margin: 5px 0 5px 0 !important; }
-body.game-body header .logo { margin: 0 auto !important; }
-body.game-body .ad-container-top { height: 90px !important; margin: 2px auto !important; } /* 練習画面は高さを保ちつつ極限圧縮 */
-
-/* --- 3. スマホ表示：構造の最適化（詳細度による上書き） --- */
+/* --- 3. スマホ表示：構造の最適化 --- */
 @media (max-width: 768px) {
-    /* ナビゲーションのスマホ向け圧縮 */
-    body.portal-page .nav-menu { margin-top: 5px; margin-bottom: 10px; gap: 6px; }
-    body.portal-page .nav-menu a { 
-        padding-top: 6px; padding-right: 12px; padding-bottom: 6px; padding-left: 12px; 
-        font-size: 0.8rem; 
-    }
-
-    /* 3カラムロゴのスマホ向けリセット：縦並びで中央へ */
-    body.portal-page header .logo {
+    body { overflow-x: hidden; } /* 横揺れ物理封殺 */
+    
+    .header-inner { padding: 10px 15px; }
+    .header-logo-img { height: 55px !important; }
+    
+    .nav-grid { display: none; }
+    
+    .mobile-menu-trigger {
+        display: flex;
         flex-direction: column;
+        align-items: center;
         justify-content: center;
-        gap: 8px;
-        margin-top: 10px;
-        margin-bottom: 15px;
+        gap: 4px;
+        background-color: #1a365d;
+        color: #ffffff;
+        border-radius: 12px;
+        width: 60px;
+        height: 60px;
+        border: none;
+        cursor: pointer;
     }
-    
-    body.portal-page .logo-spacer { display: none; }
-    body.portal-page .logo-right { flex: 0 0 auto; margin-left: 0; }
-    
-    body.portal-page .logo-subtext {
-        font-size: 0.95rem;
-        border-left-style: none;
-        margin-left: 0;
-        padding-left: 0;
-        text-align: center;
-    }
-    
-    body.portal-page .header-logo-img { height: 45px; }
-
-    /* 横揺れを物理的に禁止 */
-    body { overflow-x: hidden; }
+    .hamburger-bar { width: 25px; height: 3px; background-color: #ffffff; border-radius: 2px; }
+    .menu-label { font-size: 0.65rem; font-weight: 900; }
 }
 
 /* --- サイト全体の基本構造 --- */

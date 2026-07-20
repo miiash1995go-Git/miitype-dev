@@ -616,3 +616,26 @@ document.addEventListener('click', (e) => {
         });
     }
 });
+
+/* ============================================================
+   ナビゲーション自動統治（v20.7.20）
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. URL判定による active クラスの自動付与（コラム等の下層も含む）
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    document.querySelectorAll('.nav-item').forEach(link => {
+        const linkPath = link.getAttribute('href');
+        // index.html または URLが完全に一致する場合に active を付与
+        if (linkPath === currentPath) {
+            link.classList.add('active');
+        }
+    });
+
+    // 2. スマホメニュー開閉（※メニュー本体はステップ4で実装）
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    if (menuBtn) {
+        menuBtn.addEventListener('click', () => {
+            alert('全画面メニューを準備中です。');
+        });
+    }
+});
