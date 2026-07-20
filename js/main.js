@@ -596,38 +596,42 @@ const app = new TypingApp();
 document.addEventListener('DOMContentLoaded', () => {
     const currentPath = window.location.pathname.split("/").pop() || "index.html";
     
-    document.querySelectorAll('.nav-item').forEach(link => {
+    // 一旦すべての active クラスを消去（重複を物理的に不可能にする）
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => item.classList.remove('active'));
+
+    // 1つだけ選んで active を付ける
+    let matched = false;
+    navItems.forEach(link => {
+        if (matched) return; // 既に1つ見つかってれば何もしない
         const href = link.getAttribute('href');
         if (!href) return;
 
-        let isActive = (href === currentPath);
-        
-        // 階層判定：カテゴリキーワードで正確にマッチング
-        if (!isActive && href !== 'index.html') {
-            const category = href.replace('hub-', '').replace('.html', '');
-            
-            // 現在のURLにカテゴリ名が含まれているかチェック
-            if (currentPath.includes(category)) {
-                isActive = true;
-            } 
-            // 特殊なファイル名の補完
-            else if (category === 'typing' && currentPath.includes('play.html')) {
-                isActive = true;
-            } else if (category === 'ai' && currentPath.includes('chatgpt')) {
-                isActive = true;
-            } else if (category === 'career' && currentPath.includes('interview')) {
-                isActive = true;
-            }
-        }
-
-        if (isActive) {
+        // A. 完全一致判定（hub-ai.html 等）
+        if (href === currentPath) {
             link.classList.add('active');
+            matched = true;
         }
     });
 
+    // B. 下層ページ判定（完全一致で見つからなかった場合のみ実行）
+    if (!matched && currentPath !== 'index.html') {
+        const categories = ['windows', 'word', 'excel', 'ai', 'typing', 'career', 'column'];
+        for (const cat of categories) {
+            if (currentPath.includes(cat) || (cat === 'ai' && currentPath.includes('chatgpt')) || (cat === 'career' && currentPath.includes('interview'))) {
+                const target = document.querySelector(`.nav-item[href*="${cat}"]`);
+                if (target) {
+                    target.classList.add('active');
+                    break;
+                }
+            }
+        }
+    }
+
+    // スマホメニューボタン
     const menuBtn = document.getElementById('mobile-menu-btn');
     if (menuBtn) {
-        menuBtn.addEventListener('click', () => { alert('メニュー機能を準備中です。'); });
+        menuBtn.addEventListener('click', () => { alert('全画面メニューを準備中です。'); });
     }
 });
 
