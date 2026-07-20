@@ -68,20 +68,13 @@ body.portal-page #app {
 
 header {
     width: 100%;
-    background-color: #ffffff;
-    border-bottom: 1px solid #f1f3f5;
-    margin-bottom: 30px; /* 読みものページでの呼吸 */
+    background-color: transparent; /* 背景を透明にしてサイトになじませる */
+    margin-bottom: 25px;
 }
 
-/* タイピング画面（game-body）での強制垂直圧縮 */
-body.game-body header {
-    margin-bottom: 5px !important;
-    background-color: transparent !important;
-    border-bottom: none !important;
-}
-
-body.game-body #app {
-    padding-top: 5px !important;
+/* 練習画面以外では、ヘッダーに少しだけ上部の余白を足して「浮遊感」を出す */
+body.portal-page header {
+    padding-top: 10px;
 }
 
 .header-inner {
@@ -92,68 +85,66 @@ body.game-body #app {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-/* 練習画面でのインナー余白圧縮 */
-body.game-body .header-inner {
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
-}
-
-.header-logo-link { flex-shrink: 0; text-decoration: none; }
-.header-logo-img { height: 80px; width: auto; display: block; }
-
-/* 練習画面でのロゴサイズ微縮小（高さ確保） */
-body.game-body .header-logo-img { height: 65px !important; }
+.header-logo-link { flex-shrink: 0; text-decoration: none; transition: opacity 0.2s; }
+.header-logo-link:hover { opacity: 0.8; }
+.header-logo-img { height: 85px; width: auto; display: block; }
 
 .header-nav { flex-grow: 1; display: flex; justify-content: flex-end; }
 
-/* PCナビ：2段グリッド (4x2) */
+/* ナビグリッド：2段のバランスを調整 */
 .nav-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, auto);
-    gap: 8px;
+    gap: 10px 12px; /* 隙間を広げて「押しやすさ」を確保 */
 }
 
+/* ナビボタン：質感を大幅強化 */
 .nav-item {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     background-color: #ffffff;
-    padding: 8px 15px 8px 10px;
-    border-radius: 40px;
-    border: 1px solid #dfe4ea;
+    padding: 10px 18px 10px 12px;
+    border-radius: 50px;
+    /* 枠線を少し太くし、色をハッキリさせる */
+    border: 2px solid #e2e8f0;
     text-decoration: none;
     color: #2c3e50;
-    font-size: 0.85rem;
-    font-weight: 800;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-    transition: all 0.2s ease;
-    min-width: 120px;
+    font-size: 0.9rem;
+    font-weight: 900;
+    /* 影を深くして「ボタンの厚み」を出す */
+    box-shadow: 0 4px 0 #dfe4ea;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    min-width: 135px;
     box-sizing: border-box;
 }
 
-/* 練習画面ではナビの影や浮きを抑えて視覚ノイズを減らす */
-body.game-body .nav-item {
-    box-shadow: none;
-}
-
+/* ホバーエフェクト：沈み込むようなクリック感 */
 .nav-item:hover {
     border-color: #3498db;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.15);
+    transform: translateY(2px); /* 下に沈めて「押した感」を出す */
+    box-shadow: 0 2px 0 #3498db; /* 影を薄くして沈み込みを表現 */
+    background-color: #f0f7ff;
 }
 
+/* 現在地（Active）：もっとも目立たせる */
 .nav-item.active {
-    background-color: #2563EB;
-    color: #ffffff;
-    border-color: #2563EB;
+    background-color: #1a365d;
+    color: #ffffff !important;
+    border-color: #1a365d;
+    box-shadow: 0 4px 0 #0f2544;
 }
 
-.nav-icon { width: 20px; height: 20px; flex-shrink: 0; }
+.nav-item.active .nav-icon {
+    filter: brightness(0) invert(1); /* アイコンを白抜きにする */
+}
+
+.nav-icon { width: 22px; height: 22px; flex-shrink: 0; transition: transform 0.2s; }
+.nav-item:hover .nav-icon { transform: scale(1.1); }
 
 /* スマホ用メニューボタン */
 .mobile-menu-trigger { display: none; }
