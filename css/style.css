@@ -66,55 +66,55 @@ body.portal-page #app {
    - game-body ではマージンを極限まで排除（!important統治）
    ============================================================ */
 
+/* ============================================================
+   新ヘッダー・ナビゲーション：統合統治システム (v20.7.21.6)
+   ============================================================ */
 header {
     width: 100%;
     background-color: transparent;
     margin-top: 0px;
     margin-right: 0px;
-    margin-bottom: 40px; /* 読みものページでは40pxの余裕を確保 */
+    margin-bottom: 20px;
     margin-left: 0px;
 }
 
-/* 練習画面（game-body）専用：圧迫感を消しつつ1画面に収める (v20.7.21.4) */
-body.game-body header {
-    margin-bottom: 30px !important; /* 5pxから30pxへ広げ、窮屈さを解消 */
-}
-
-body.game-body #app {
-    padding-top: 15px !important; /* 上端との隙間を少し作り、視線を安定させる */
-}
-
-body.portal-page header {
-    padding-top: 5px;
-}
-}
-
+/* 共通インナー：常に横並びを死守 */
 .header-inner {
     max-width: 1024px;
     margin-right: auto;
     margin-left: auto;
-    display: flex !important;      /* ★強制的にFlex（横並び）にする */
-    flex-direction: row !important; /* ★強制的に横方向に並べる */
-    flex-wrap: nowrap !important;   /* ★絶対に折り返さない */
-    align-items: center;
+    display: flex !important;      /* 常に横並び */
+    flex-direction: row !important;
+    align-items: center !important;
     justify-content: space-between;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     box-sizing: border-box;
 }
 
-.header-logo-link {
-    flex-shrink: 0; /* ★ロゴが押し潰されるのを防ぐ */
-    margin-right: 20px;
-    text-decoration: none;
-}
+/* --- 条件別オーバーライド（干渉防止） --- */
 
+/* A. 練習画面（game-body）専用の垂直圧縮 */
+body.game-body header { margin-bottom: 10px !important; }
+body.game-body .header-inner { padding-top: 2px !important; padding-bottom: 2px !important; }
+body.game-body .header-logo-img { height: 50px !important; } /* 練習画面のみさらにロゴを小さく */
+body.game-body #app { padding-top: 5px !important; }
+
+/* B. 読みものページ（portal-page）専用の余白 */
+body.portal-page header { padding-top: 5px; }
+
+/* ロゴエリア */
+.header-logo-link {
+    flex-shrink: 0;
+    text-decoration-line: none;
+}
 .header-logo-img {
-    height: 60px; /* 85pxから60pxへ：これが決定打になります */
+    height: 60px; /* ポータルでの標準サイズ */
     width: auto;
     display: block;
 }
 
+/* ナビゲーションエリア */
 .header-nav {
     flex-grow: 1;
     display: flex;
@@ -124,7 +124,7 @@ body.portal-page header {
 .nav-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 6px 10px; /* 隙間も少しタイトに */
+    gap: 6px 10px;
 }
 
 .nav-item {
@@ -134,8 +134,8 @@ body.portal-page header {
     justify-content: flex-start;
     gap: 8px;
     background-color: #ffffff;
-    padding-top: 6px;    /* 10pxから6pxへ */
-    padding-right: 12px; /* 18pxから12pxへ */
+    padding-top: 6px;
+    padding-right: 12px;
     padding-bottom: 6px;
     padding-left: 8px;
     border-top-left-radius: 40px;
@@ -155,14 +155,13 @@ body.portal-page header {
     border-bottom-color: #e2e8f0;
     border-left-color: #e2e8f0;
     text-decoration-line: none;
-    color: #2c3e50;
-    font-size: 0.8rem; /* 0.9remから0.8remへ */
+    color: #2c3e50 !important;
+    font-size: 0.8rem;
     font-weight: 900;
-    box-shadow: 0px 3px 0px #dfe4ea; /* 影を4pxから3pxへ */
+    box-shadow: 0px 3px 0px #dfe4ea;
     transition-property: all;
     transition-duration: 0.2s;
-    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-    min-width: 110px; /* 135pxから110pxへ */
+    min-width: 110px;
     box-sizing: border-box;
 }
 
@@ -171,34 +170,21 @@ body.portal-page header {
     border-right-color: #3498db;
     border-bottom-color: #3498db;
     border-left-color: #3498db;
-    transform: translateY(1px); /* 沈み込みも1pxへ */
+    transform: translateY(1px);
     box-shadow: 0px 2px 0px #3498db;
     background-color: #f0f7ff;
 }
 
-/* 現在地（Active）：ホバー時（白背景）に負けないよう !important で統治 (v20.7.21) */
-/* 現在地（Active）：影の分離とスリム化 (v20.7.21.2) */
+/* 現在地：影を黒の透明にして分離 (v20.7.21.7) */
 .nav-item.active {
-    background-color: #1a365d !important; /* 濃紺本体 */
-    color: #ffffff !important;           /* 文字は白 */
+    background-color: #1a365d !important;
+    color: #ffffff !important;
     border-top-color: #1a365d !important;
     border-right-color: #1a365d !important;
     border-bottom-color: #1a365d !important;
     border-left-color: #1a365d !important;
-    /* 影を「黒の半透明」にして分離感を出す */
     box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.3) !important;
-    transform: translateY(1px); /* 少し押し込まれた質感にする */
-}
-
-/* 青ボタンの中のアイコン不具合（白い四角）を解消 */
-.nav-item.active .nav-icon {
-    filter: none !important;             /* 白飛びを解除 */
-    background-color: transparent !important;
-}
-
-/* リンク文字の不具合防止 */
-.nav-item:not(.active) {
-    color: #2c3e50 !important;
+    transform: translateY(1px);
 }
 
 .nav-icon {
