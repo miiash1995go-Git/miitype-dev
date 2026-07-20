@@ -168,23 +168,26 @@ body.portal-page header {
 }
 
 /* 現在地（Active）：ホバー時（白背景）に負けないよう !important で統治 (v20.7.21) */
+/* 現在地（Active）：影の分離とスリム化 (v20.7.21.2) */
 .nav-item.active {
-    background-color: #1a365d !important; /* 濃紺で固定 */
-    color: #ffffff !important;           /* 文字は絶対白 */
+    background-color: #1a365d !important; /* 濃紺本体 */
+    color: #ffffff !important;           /* 文字は白 */
     border-top-color: #1a365d !important;
     border-right-color: #1a365d !important;
     border-bottom-color: #1a365d !important;
     border-left-color: #1a365d !important;
-    box-shadow: 0px 3px 0px #08162b !important; /* 厚みを維持 */
+    /* 影を「黒の半透明」にして分離感を出す */
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.3) !important;
+    transform: translateY(1px); /* 少し押し込まれた質感にする */
 }
 
-/* 青ボタンの中のアイコンを白くクッキリさせる */
+/* 青ボタンの中のアイコン不具合（白い四角）を解消 */
 .nav-item.active .nav-icon {
-    filter: brightness(0) invert(1) !important;
-    background-color: transparent !important; /* 四角い背景を消す */
+    filter: none !important;             /* 白飛びを解除 */
+    background-color: transparent !important;
 }
 
-/* リンク文字の不具合（他が白文字化する現象）を防止 */
+/* リンク文字の不具合防止 */
 .nav-item:not(.active) {
     color: #2c3e50 !important;
 }
