@@ -93,21 +93,20 @@ body.portal-page header {
     max-width: 1024px;
     margin-right: auto;
     margin-left: auto;
-    display: flex;
-    flex-direction: row;
+    display: flex !important;      /* ★強制的にFlex（横並び）にする */
+    flex-direction: row !important; /* ★強制的に横方向に並べる */
+    flex-wrap: nowrap !important;   /* ★絶対に折り返さない */
     align-items: center;
     justify-content: space-between;
-    padding-top: 5px; /* さらに圧縮 */
-    padding-right: 0px;
+    padding-top: 5px;
     padding-bottom: 5px;
-    padding-left: 0px;
+    box-sizing: border-box;
 }
 
 .header-logo-link {
-    flex-shrink: 0;
-    text-decoration-line: none;
-    transition-property: opacity;
-    transition-duration: 0.2s;
+    flex-shrink: 0; /* ★ロゴが押し潰されるのを防ぐ */
+    margin-right: 20px;
+    text-decoration: none;
 }
 
 .header-logo-img {
