@@ -596,24 +596,24 @@ const app = new TypingApp();
 document.addEventListener('DOMContentLoaded', () => {
     const currentPath = window.location.pathname.split("/").pop() || "index.html";
     
-    // --- 1. ナビゲーションの色付けロジック ---
-    const navItems = document.querySelectorAll('.nav-item');
+    // PC(.nav-item) と スマホ(.mobile-nav-item) 両方のボタンを統治対象にする
+    const navItems = document.querySelectorAll('.nav-item, .mobile-nav-item');
     navItems.forEach(item => item.classList.remove('active'));
 
-    let matchedCat = ""; // パンくず用に使用
+    let matchedCat = ""; 
     let matched = false;
 
+    // 1. 完全一致判定
     navItems.forEach(link => {
         if (matched) return;
         const href = link.getAttribute('href');
-        if (!href) return;
         if (href === currentPath) {
-            link.classList.add('active');
             matched = true;
             matchedCat = href.replace('hub-', '').replace('.html', '');
         }
     });
 
+    // 2. 階層判定（記事ページ等のキーワードマッチ）
     if (!matched && currentPath !== 'index.html') {
         const mapping = {
             'windows': ['windows', 'pc-selection'],
@@ -626,43 +626,65 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         for (const [cat, keywords] of Object.entries(mapping)) {
             if (keywords.some(key => currentPath.includes(key))) {
-                const target = document.querySelector(`.nav-item[href*="${cat}"]`);
-                if (target) { target.classList.add('active'); matched = true; matchedCat = cat; break; }
+                matched = true;
+                matchedCat = cat;
+                break;
             }
         }
     }
 
-    // --- 2. 自動パンくず生成ロジック (v20.7.21 シンプル版) ---
+    // 見つかったカテゴリに基づいて、PCとスマホ両方のボタンを「青く（active）」する
+    if (matched && matchedCat !== 'index') {
+        document.querySelectorAll(`[href*="${matchedCat}"]`).forEach(el => {
+            el.classList.add('active');
+        });
+    } else if (currentPath === 'index.html') {
+        document.querySelectorAll('[href="index.html"]').forEach(el => el.classList.add('active'));
+    }
+
+    // --- 3. スマホメニューの開閉ロジック ---
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('menu-close-btn');
+    const menuOverlay = document.getElementById('mobile-menu-overlay');
+
+    if (menuBtn && menuOverlay) {
+        menuBtn.addEventListener('click', () => {
+            menuOverlay.classList.add('is-open');
+            document.body.style.overflow = 'hidden'; // 背景スクロール禁止
+        });
+    }
+
+    if (closeBtn && menuOverlay) {
+        closeBtn.addEventListener('click', () => {
+            menuOverlay.classList.remove('is-open');
+            document.body.style.overflow = ''; // スクロール解除
+        });
+    }
+
+    // メニュー内のリンクをクリックしたら自動で閉じる
+    document.querySelectorAll('.mobile-nav-item').forEach(link => {
+        link.addEventListener('click', () => {
+            menuOverlay.classList.remove('is-open');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // --- 4. 自動パンくず生成（既存機能の維持） ---
     const breadContainer = document.getElementById('dynamic-breadcrumb');
     if (breadContainer && currentPath !== 'index.html') {
         const categoryNames = {
-            'windows': 'Windows基礎',
-            'word':    'Word基礎',
-            'excel':   'Excel基礎',
-            'ai':      '生成AI活用',
-            'typing':  'タイピング練習',
-            'career':  '就職・転職',
-            'column':  '現場コラム'
+            'windows': 'Windows基礎', 'word': 'Word基礎', 'excel': 'Excel基礎',
+            'ai': '生成AI活用', 'typing': 'タイピング練習', 'career': '就職・転職', 'column': '現場コラム'
         };
-
         let breadHTML = `<a href="index.html">ホーム</a><span class="breadcrumb-separator">＞</span>`;
-        
         if (matchedCat && categoryNames[matchedCat]) {
-            // ハブページそのものにいる場合はリンクにせず、階層名だけ出す
             if (currentPath.startsWith('hub-')) {
                 breadHTML += `<span>${categoryNames[matchedCat]}</span>`;
             } else {
-                // 記事ページにいる場合は、ハブページへのリンクを出す
                 breadHTML += `<a href="hub-${matchedCat}.html">${categoryNames[matchedCat]}</a><span class="breadcrumb-separator">＞</span>`;
             }
         }
         breadContainer.innerHTML = breadHTML;
-    }
-
-    // --- 3. スマホメニューボタン ---
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    if (menuBtn) {
-        menuBtn.addEventListener('click', () => { alert('全画面メニューを準備中です。'); });
     }
 });
 

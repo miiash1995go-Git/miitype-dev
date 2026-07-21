@@ -43,17 +43,19 @@
                 <!-- 右：ナビ -->
                 <nav class="header-nav">
                     <div class="nav-grid">
+                        <!-- 上段 -->
                         <a href="index.html" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
                         <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
                         <a href="hub-windows.html" class="nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>Windows</span></a>
                         <a href="hub-word.html" class="nav-item"><img src="img/icon-word.png" class="nav-icon"><span>Word</span></a>
+                        <!-- 下段 -->
                         <a href="hub-excel.html" class="nav-item"><img src="img/icon-excel.png" class="nav-icon"><span>Excel</span></a>
                         <a href="hub-ai.html" class="nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
                         <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
                         <a href="hub-column.html" class="nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
                     </div>
 
-                    <!-- スマホ用メニューボタン -->
+                    <!-- スマホ用メニューボタン：ハンバーガー ＋ メニューラベル -->
                     <button class="mobile-menu-trigger" id="mobile-menu-btn">
                         <span class="hamburger-bar"></span>
                         <span class="hamburger-bar"></span>
@@ -61,6 +63,21 @@
                         <span class="menu-label">メニュー</span>
                     </button>
                 </nav>
+            </div>
+
+            <!-- スマホ全画面メニュー本体：初期状態はCSSで非表示 -->
+            <div class="mobile-nav-overlay" id="mobile-menu-overlay">
+                <button class="menu-close-btn" id="menu-close-btn">×</button>
+                <div class="mobile-nav-grid">
+                    <a href="index.html" class="mobile-nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                    <a href="hub-typing.html" class="mobile-nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                    <a href="hub-windows.html" class="mobile-nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>Windows</span></a>
+                    <a href="hub-word.html" class="mobile-nav-item"><img src="img/icon-word.png" class="nav-icon"><span>Word</span></a>
+                    <a href="hub-excel.html" class="mobile-nav-item"><img src="img/icon-excel.png" class="nav-icon"><span>Excel</span></a>
+                    <a href="hub-ai.html" class="mobile-nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                    <a href="hub-career.html" class="mobile-nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                    <a href="hub-column.html" class="mobile-nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                </div>
             </div>
         </header>
 
