@@ -1252,9 +1252,9 @@ body.portal-page .content-body table.setup-table td {
 /* ============================================================
    スマホ全画面メニュー：1画面収容・コンパクトモデル (v20.7.21.10)
    ============================================================ */
+/* スマホメニュー：サイトとの一体感を高めるオーバーレイ (v20.7.21.14) */
 .mobile-nav-overlay {
-    position: fixed;
-    /* ★ここが重要：上下左右を0に固定し、親要素（ヘッダー）の計算から強制的に切り離します */
+    position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
@@ -1262,8 +1262,14 @@ body.portal-page .content-body table.setup-table td {
     width: 100% !important;
     height: 100% !important;
     
-    background-color: #ffffff; /* 不透明な白 */
-    z-index: 99999;           /* 重ね順を最強にする */
+    /* 背景をサイトの背景色(#f1f3f5)に合わせ、少しだけ透かす */
+    background-color: rgba(241, 243, 245, 0.95) !important;
+    
+    /* 背景をボカして「上に載っている感」を出す（モダンな演出） */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    
+    z-index: 99999;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1271,7 +1277,7 @@ body.portal-page .content-body table.setup-table td {
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
-    margin: 0 !important;     /* 余計な隙間を排除 */
+    margin: 0 !important;
 }
 
 .mobile-nav-overlay.is-open {
