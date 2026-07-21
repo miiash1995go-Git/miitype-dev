@@ -1253,31 +1253,23 @@ body.portal-page .content-body table.setup-table td {
    スマホ全画面メニュー：1画面収容・コンパクトモデル (v20.7.21.10)
    ============================================================ */
 /* スマホメニュー：サイトとの一体感を高めるオーバーレイ (v20.7.21.14) */
+/* ============================================================
+   スマホメニュー：右スライド式・ドロワーモデル (v20.7.21.15)
+   ============================================================ */
 .mobile-nav-overlay {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    
-    /* 背景をサイトの背景色(#f1f3f5)に合わせ、少しだけ透かす */
-    background-color: rgba(241, 243, 245, 0.95) !important;
-    
-    /* 背景をボカして「上に載っている感」を出す（モダンな演出） */
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    
+    /* 左側（元の画面）をハッキリ見せるための暗幕（うっすら黒） */
+    background-color: rgba(0, 0, 0, 0.4) !important;
     z-index: 99999;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-end; /* 右側に引き出しを寄せる */
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
-    margin: 0 !important;
+    transition: opacity 0.3s ease;
 }
 
 .mobile-nav-overlay.is-open {
@@ -1285,44 +1277,56 @@ body.portal-page .content-body table.setup-table td {
     visibility: visible;
 }
 
-/* 閉じるボタン：右上に小さく配置 */
+/* メニュー本体（白い引き出し部分） */
+.mobile-nav-grid {
+    background-color: #f1f3f5; /* サイトの背景色と同期 */
+    width: 280px;            /* 引き出しの横幅：ここが重要 */
+    height: 100%;
+    padding: 70px 15px 30px; /* 上に×ボタン用の余白を確保 */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    box-shadow: -5px 0px 15px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    /* 最初は右側に隠しておき、開くときにスライドさせる */
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow-y: auto;
+}
+
+.mobile-nav-overlay.is-open .mobile-nav-grid {
+    transform: translateX(0); /* 画面内へスライドイン */
+}
+
+/* 閉じるボタン：引き出し内の右上に配置 */
 .menu-close-btn {
     position: absolute;
     top: 15px;
     right: 15px;
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: #2c3e50;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 10px;
+    z-index: 100001;
 }
 
-/* 8つのボタンを収めるグリッド：余白を最小化 */
-.mobile-nav-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px; /* 隙間を10pxに短縮 */
-    width: 92%;
-    max-width: 360px;
-}
-
-/* スマホボタン：高さを抑えたコンパクト設計 */
+/* メニュー内ボタンのサイズ微調整 */
 .mobile-nav-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5px;       /* アイコンと文字の距離を詰める */
-    padding: 10px 5px; /* 上下を10pxまで圧縮 */
+    gap: 5px;
+    padding: 12px 5px;
     background-color: #ffffff;
     border: 2px solid #e2e8f0;
     border-radius: 12px;
     text-decoration: none;
     color: #2c3e50 !important;
     font-weight: 900;
-    font-size: 0.8rem; /* 文字を小さく */
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.03);
+    font-size: 0.75rem;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.02);
 }
 
 .mobile-nav-item.active {
@@ -1331,7 +1335,4 @@ body.portal-page .content-body table.setup-table td {
     color: #2563EB !important;
 }
 
-.mobile-nav-item .nav-icon {
-    width: 24px;  /* アイコンを24pxに縮小 */
-    height: 24px;
-}
+.mobile-nav-item .nav-icon { width: 22px; height: 22px; }

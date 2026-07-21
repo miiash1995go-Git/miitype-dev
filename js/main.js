@@ -642,22 +642,33 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('[href="index.html"]').forEach(el => el.classList.add('active'));
     }
 
-    // --- 3. スマホメニューの開閉ロジック ---
+    // --- 3. スマホメニューの開閉ロジック（ドロワー対応版） ---
     const menuBtn = document.getElementById('mobile-menu-btn');
     const closeBtn = document.getElementById('menu-close-btn');
     const menuOverlay = document.getElementById('mobile-menu-overlay');
 
     if (menuBtn && menuOverlay) {
-        menuBtn.addEventListener('click', () => {
+        menuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             menuOverlay.classList.add('is-open');
-            document.body.style.overflow = 'hidden'; // 背景スクロール禁止
+            document.body.style.overflow = 'hidden';
         });
     }
 
     if (closeBtn && menuOverlay) {
         closeBtn.addEventListener('click', () => {
             menuOverlay.classList.remove('is-open');
-            document.body.style.overflow = ''; // スクロール解除
+            document.body.style.overflow = '';
+        });
+    }
+
+    // メニューの外側（暗幕部分）をクリックしても閉じるようにする
+    if (menuOverlay) {
+        menuOverlay.addEventListener('click', (e) => {
+            if (e.target === menuOverlay) {
+                menuOverlay.classList.remove('is-open');
+                document.body.style.overflow = '';
+            }
         });
     }
 
