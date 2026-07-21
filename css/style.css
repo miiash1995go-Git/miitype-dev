@@ -1278,27 +1278,29 @@ body.portal-page .content-body table.setup-table td {
 }
 
 /* メニュー本体（白い引き出し部分） */
+/* メニュー本体（白い引き出し部分）：縦伸びを防止し上端に整列 (v20.7.21.16) */
 .mobile-nav-grid {
-    background-color: #f1f3f5; /* サイトの背景色と同期 */
-    width: 280px;            /* 引き出しの横幅：ここが重要 */
+    background-color: #f1f3f5;
+    width: 280px;
     height: 100%;
-    padding: 70px 15px 30px; /* 上に×ボタン用の余白を確保 */
+    padding: 70px 15px 30px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 12px;
+    /* ★重要：ボタンが縦に伸びるのを防ぎ、上から順に並べる */
+    align-content: start; 
     box-shadow: -5px 0px 15px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
-    /* 最初は右側に隠しておき、開くときにスライドさせる */
     transform: translateX(100%);
     transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     overflow-y: auto;
 }
 
 .mobile-nav-overlay.is-open .mobile-nav-grid {
-    transform: translateX(0); /* 画面内へスライドイン */
+    transform: translateX(0);
 }
 
-/* 閉じるボタン：引き出し内の右上に配置 */
+/* 閉じるボタン */
 .menu-close-btn {
     position: absolute;
     top: 15px;
@@ -1309,30 +1311,52 @@ body.portal-page .content-body table.setup-table td {
     border: none;
     cursor: pointer;
     z-index: 100001;
+    padding: 5px;
 }
 
-/* メニュー内ボタンのサイズ微調整 */
+/* スマホメニュー専用ボタン：ちょうど良いタイル状に調整 */
 .mobile-nav-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    padding: 12px 5px;
+    gap: 8px;
+    /* 縦長感を抑えるためのパディング設定 */
+    padding-top: 18px;
+    padding-bottom: 18px;
     background-color: #ffffff;
-    border: 2px solid #e2e8f0;
-    border-radius: 12px;
-    text-decoration: none;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-style: solid;
+    border-top-color: #e2e8f0;
+    border-right-color: #e2e8f0;
+    border-bottom-color: #e2e8f0;
+    border-left-color: #e2e8f0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    text-decoration-line: none;
     color: #2c3e50 !important;
     font-weight: 900;
-    font-size: 0.75rem;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.02);
+    font-size: 0.8rem;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.03);
+    box-sizing: border-box;
 }
 
+/* 現在地表示 */
 .mobile-nav-item.active {
     background-color: #f0f7ff !important;
-    border-color: #2563EB !important;
+    border-top-color: #2563EB !important;
+    border-right-color: #2563EB !important;
+    border-bottom-color: #2563EB !important;
+    border-left-color: #2563EB !important;
     color: #2563EB !important;
 }
 
-.mobile-nav-item .nav-icon { width: 22px; height: 22px; }
+.mobile-nav-item .nav-icon {
+    width: 26px; /* 少しだけ大きくしてバランス調整 */
+    height: 26px;
+}
