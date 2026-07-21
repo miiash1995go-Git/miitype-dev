@@ -1194,24 +1194,26 @@ body.portal-page .news-list {
 
 body.portal-page .news-item {
     display: flex !important;
-    flex-direction: row !important;
+    flex-direction: row; /* !importantを削除：縦並び許可 */
     flex-wrap: nowrap !important;
     align-items: center !important;
     justify-content: flex-start !important;
     padding: 14px 0 !important;
     border-bottom: 1px solid #f8f9fa;
-    /* ニュース一覧では1行を維持（580px） */
-    min-width: 580px !important; 
+    min-width: 580px;    /* !importantを削除：はみ出し防止 */
+    max-width: 100%;
     transform: none !important;
     transition: none !important;
 }
 
-/* ★追加：FAQなど「縦に並べたい場所」では、上記の580px制限を強制解除する */
-.news-list[style*="column"] .news-item,
+/* FAQなどの「縦並び」を指定した場所専用の救済ルール (v20.7.21.13) */
 .news-item[style*="column"] {
-    min-width: 0 !important;
     flex-direction: column !important;
+    align-items: flex-start !important;
+    min-width: 0 !important;        /* 580pxの制限を物理的に破壊 */
+    white-space: normal !important; /* 改行を許可 */
 }
+
 body.portal-page .news-item:last-child { border-bottom: none; }
 body.portal-page .news-meta {
     display: flex !important;
