@@ -1200,9 +1200,17 @@ body.portal-page .news-item {
     justify-content: flex-start !important;
     padding: 14px 0 !important;
     border-bottom: 1px solid #f8f9fa;
-    min-width: 580px !important; /* スマホ重なり防止の盾 */
+    /* ニュース一覧では1行を維持（580px） */
+    min-width: 580px !important; 
     transform: none !important;
     transition: none !important;
+}
+
+/* ★追加：FAQなど「縦に並べたい場所」では、上記の580px制限を強制解除する */
+.news-list[style*="column"] .news-item,
+.news-item[style*="column"] {
+    min-width: 0 !important;
+    flex-direction: column !important;
 }
 body.portal-page .news-item:last-child { border-bottom: none; }
 body.portal-page .news-meta {
