@@ -90,32 +90,31 @@
 
         <main class="portal-main">
 
-            <!-- ① ヒーローセクション：1024px統治 ＆ 左側余白活用モデル (v20.7.22.20) -->
+            <!-- ① ヒーローセクション：物理比率維持 ＆ 空白地帯配置モデル (v20.7.22.25) -->
             <section class="index-hero">
-                <!-- 土台：背景画像（変更・加工・スケーリング一切禁止） -->
+                <!-- 土台：背景画像（1:1表示を維持し、拡大を物理的に禁止） -->
                 <img src="img/hero-base01.jpg" class="hero-base-img" alt="ぱそトレ！">
 
-                <!-- 文字・ボタンレイヤー（PowerPointのオーバーレイと同じ概念） -->
+                <!-- オーバーレイ：手帳とパソコンの隙間（谷間）を狙った配置 -->
                 <div class="index-hero__content">
-                    <!-- 上部：横長バッジ -->
+                    <!-- 上部バッジ：視線を左上に固定 -->
                     <div class="index-hero__badge">
                         <span class="index-hero__badge-icon">👤</span>
                         <span class="index-hero__badge-text">現役パソコン講師がつくる</span>
                     </div>
 
-                    <!-- メインタイトル -->
+                    <!-- メインタイトル：サイズを適正化 -->
                     <h1 class="index-hero__title">
                         「わからない」を、<br>
                         <span class="accent">「できる」</span>に。
                     </h1>
 
-                    <!-- リード文 -->
+                    <!-- サブタイトル：1行死守 ＆ オブジェクト回避配置 -->
                     <div class="index-hero__description">
-                        <p>パソコンの基本から、就職・転職、<br>そして仕事での活用まで。</p>
-                        <p>初心者の「できる」を、<br>一歩ずつ広げます。</p>
+                        <p>パソコンの基本から、就職・転職、そして仕事へ。</p>
                     </div>
 
-                    <!-- メインボタン（タイトル中央付近へ配置） -->
+                    <!-- メインボタン：手帳とパソコンの間に精密配置 -->
                     <div class="index-hero__action-area">
                         <a href="play.html" class="hero-cta-btn">
                             <span class="hero-cta-btn__icon">⌨</span>
@@ -123,11 +122,10 @@
                             <span class="hero-cta-btn__arrow">→</span>
                         </a>
                         
-                        <!-- ボタン下：テキストリンク -->
+                        <!-- ボタン下リンク -->
                         <div class="hero-sub-guide">
                             <a href="hub-typing.html" class="hero-sub-link">
                                 <span class="hero-sub-link__mark">🔰</span>
-                                <span class="hero-sub-link__label">初めての方はこちら</span><br>
                                 <span class="hero-sub-link__main">タイピングの基本から学ぶ →</span>
                             </a>
                         </div>
