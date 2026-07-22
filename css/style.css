@@ -60,32 +60,33 @@ body.portal-page #app {
 }
 
 /* ============================================================
-   新生ヒーロー：hero-base01.jpg 絶対座標統治モデル (v20.7.22.7)
+   新生ヒーロー：hero-base01.jpg 完全同期・文字小型化版 (v20.7.22.8)
    ============================================================ */
 .index-hero {
     max-width: 1024px;
+    width: 100%;
+    /* ノートPCの1画面収容比率（2:1）を維持 */
+    aspect-ratio: 2 / 1;
+    max-height: 500px;
     margin-right: auto;
     margin-bottom: 50px;
     margin-left: auto;
-    position: relative; /* 文字を重ねるための基準点 */
+    background-image: url('../img/hero-base01.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain; /* 画像の比率を絶対死守 */
+    background-color: #ffffff;
+    position: relative; /* 文字を重ねる基準 */
     overflow: hidden;
+    box-sizing: border-box;
 }
 
-/* ベース画像：100%表示で比率を死守（見切れを根絶） */
-.hero-base-img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* メッセージエリア：画像内の「空白地帯」へ絶対座標で配置 */
+/* メッセージエリア：メモ帳とコーヒーを避けて中央左の白地に配置 */
 .index-hero__content {
     position: absolute;
-    /* 画像左上の「講師バッジ」がヘッダーに被らないよう、上から40pxに固定 */
-    top: 40px; 
-    /* メモ帳を避けるため左から50pxに固定 */
-    left: 50px;
-    width: 45%; /* パソコンに被らない幅 */
+    top: 45px;   /* 講師バッジが上に飛び出さない高さ */
+    left: 70px;  /* メモ帳を避けるため左余白をさらに確保 */
+    width: 40%;  /* パソコンに被らない幅に絞る */
     text-align: left;
     z-index: 10;
 }
@@ -94,7 +95,7 @@ body.portal-page #app {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.9);
     padding-top: 5px;
     padding-right: 15px;
     padding-bottom: 5px;
@@ -103,43 +104,33 @@ body.portal-page #app {
     border-top-right-radius: 40px;
     border-bottom-right-radius: 40px;
     border-bottom-left-radius: 40px;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-top-color: #3498db;
-    border-right-color: #3498db;
-    border-bottom-color: #3498db;
-    border-left-color: #3498db;
+    border: 1px solid #3498db;
     margin-bottom: 15px;
 }
 .index-hero__badge-text { font-size: 0.8rem; font-weight: 800; color: #3498db; }
 
+/* タイトル：3行化を防ぐためにフォントサイズを縮小 */
 .index-hero__title {
-    font-size: 3rem;
+    font-size: 2.3rem; /* 3remから大幅に縮小し、2行に収める */
     font-weight: 900;
-    line-height: 1.2;
+    line-height: 1.3;
     color: #2c3e50;
     margin-top: 0px;
     margin-right: 0px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     margin-left: 0px;
     letter-spacing: -0.02em;
 }
 .index-hero__title span.accent { color: #2563EB; }
 
 .index-hero__description {
-    font-size: 1rem;
+    font-size: 0.95rem; /* 微調整 */
     line-height: 1.6;
     font-weight: 800;
     color: #4b5563;
     margin-top: 0px;
     margin-right: 0px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     margin-left: 0px;
 }
 
@@ -147,46 +138,35 @@ body.portal-page #app {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
     background-color: #1a365d;
     color: #ffffff;
-    padding-top: 12px;
-    padding-right: 28px;
-    padding-bottom: 12px;
-    padding-left: 25px;
+    padding-top: 10px;    /* ボタンもよりコンパクトに */
+    padding-right: 25px;
+    padding-bottom: 10px;
+    padding-left: 20px;
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
     border-bottom-left-radius: 50px;
     text-decoration-line: none;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 900;
-    box-shadow: 0px 8px 20px rgba(26, 54, 93, 0.2);
-    transition-property: transform, background-color;
-    transition-duration: 0.2s;
+    box-shadow: 0px 6px 15px rgba(26, 54, 93, 0.2);
+    transition: all 0.2s ease;
 }
 .hero-cta-btn:hover {
     transform: translateY(-2px);
     background-color: #2563EB;
 }
 
-.hero-sub-guide { margin-top: 20px; display: flex; flex-direction: column; gap: 4px; }
-.hero-sub-link { display: flex; align-items: center; gap: 8px; text-decoration-line: none; color: #38BDF8; font-weight: 900; font-size: 0.9rem; }
+.hero-sub-guide { margin-top: 18px; display: flex; flex-direction: column; gap: 4px; }
+.hero-sub-link { display: flex; align-items: center; gap: 8px; text-decoration-line: none; color: #38BDF8; font-weight: 900; font-size: 0.85rem; }
 
-/* スマホ対応：画像の上に白いパネルを敷いて文字を読ませる（SE対応） */
+/* スマホ対応 */
 @media (max-width: 768px) {
-    .index-hero__content {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 90%;
-        padding: 20px;
-        background-color: rgba(255, 255, 255, 0.9);
-        border-radius: 20px;
-        text-align: center;
-    }
-    .index-hero__title { font-size: 2rem; }
-    .hero-sub-link { justify-content: center; }
+    .index-hero { aspect-ratio: auto; min-height: 420px; background-size: cover; background-position: 75% center; }
+    .index-hero__content { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; padding: 20px; background-color: rgba(255, 255, 255, 0.9); border-radius: 20px; text-align: center; }
 }
 
 /* 共通インナー：常に横並びを絶対死守 */
