@@ -400,10 +400,10 @@ main {
 
 
 /* ============================================================
-   ヒーローエリア：120px左シフト・谷間完全収容モデル (v20.7.22.35)
+   ヒーローエリア：左方向120px精密シフト・谷間収容モデル (v20.7.22.40)
    ------------------------------------------------------------
-   ユーザー指定に基づき、ボタン・リンクの開始位置を左へ120px移動。
-   サブタイトルと垂直線を合わせ、右側のノートPCとの接触を完全に断つ。
+   【修正】前回のミスを修正し、要素を「左」へ120px移動。
+   手帳の Let's study! の右隣（白い谷間の左寄り）に垂直整列。
    ============================================================ */
 .index-hero {
     max-width: 1024px;
@@ -419,7 +419,7 @@ main {
     overflow: hidden;
 }
 
-/* 背景画像：1024px枠内での原寸（1:1）表示を厳守 */
+/* 背景画像：1024px環境で原寸表示 */
 .hero-base-img {
     width: 100%;
     max-width: 1024px;
@@ -431,7 +431,7 @@ main {
     margin-left: 0px;
 }
 
-/* オーバーレイ：絶対座標による要素配置 */
+/* オーバーレイコンテナ */
 .index-hero__content {
     position: absolute;
     top: 0px;
@@ -441,7 +441,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 5%;
+    padding-top: 5%; 
     padding-right: 0px;
     padding-bottom: 0px;
     padding-left: 0px;
@@ -449,7 +449,7 @@ main {
     z-index: 10;
 }
 
-/* バッジ：手帳の端に合わせる（左端の基準点） */
+/* バッジ：全ての開始位置をここに統一（左端の壁） */
 .index-hero__badge {
     display: inline-flex;
     align-items: center;
@@ -475,27 +475,27 @@ main {
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 12px;
-    margin-left: 7%; /* 手帳のリング付近を避ける最小マージン */
+    margin-left: 6%; /* 手帳ギリギリの左端 */
     align-self: flex-start;
 }
 
 /* メインタイトル */
 .index-hero__title {
-    font-size: 2.4rem !important; /* 2.5remから微調整してさらにスッキリ */
+    font-size: 2.3rem !important;
     font-weight: 900;
     line-height: 1.3;
     color: #2c3e50;
     margin-top: 0px;
     margin-right: 0px;
-    margin-bottom: 15px;
-    margin-left: 7%;
+    margin-bottom: 20px;
+    margin-left: 6%;
 }
 
 .index-hero__title span.accent {
     color: #2563EB;
 }
 
-/* サブタイトル：ボタンと開始位置を揃えるための左寄せ（120pxシフト相当） */
+/* サブタイトル：指示通り「左」へ。手帳の文字を避け、パソコンからも遠ざける */
 .index-hero__description {
     font-size: 1.1rem;
     line-height: 1;
@@ -504,7 +504,7 @@ main {
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 30px;
-    margin-left: 22%; /* 32%から10%引き、約120px左へ移動した谷間の中心点 */
+    margin-left: 10%; /* 22%からさらに左（120px相当）へシフト */
     white-space: nowrap;
 }
 
@@ -515,18 +515,18 @@ main {
     margin-left: 0px;
 }
 
-/* アクションエリア：サブタイトルの真下に完全同期 */
+/* アクションエリア：サブタイトルの開始位置と垂直同期。パソコンへの被りを解消 */
 .index-hero__action-area {
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
-    margin-left: 22%; /* サブタイトルと開始位置をピタリと一致させる */
+    margin-left: 10%; /* サブタイトルと完全に揃えて左移動 */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-/* メインボタン：清潔感のある濃紺 */
+/* メインボタン */
 .hero-cta-btn {
     display: inline-flex;
     align-items: center;
@@ -554,7 +554,7 @@ main {
     background-color: #2563EB;
 }
 
-/* ボタン下リンク：間隔を保ちつつ整列 */
+/* ボタン下リンク */
 .hero-sub-guide {
     margin-top: 24px;
     padding-left: 5px;
@@ -582,6 +582,8 @@ main {
     .index-hero__description { white-space: normal; font-size: 1rem; padding: 0 15px; }
     .index-hero__action-area { margin-left: 0px; align-items: center; width: 100%; }
 }
+
+
 
 .portal-page .category-grid { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 30px !important; width: 100% !important; margin-top: 40px; }
 .portal-page .category-card { 
