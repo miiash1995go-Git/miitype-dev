@@ -60,65 +60,74 @@ body.portal-page #app {
 }
 
 /* ============================================================
-   新生ヒーロー：hero-base01.jpg 比率維持 ＆ 精密配置モデル (v20.7.22.6)
+   新生ヒーロー：hero-base01.jpg 絶対座標統治モデル (v20.7.22.7)
    ============================================================ */
 .index-hero {
-    width: 100%;
-    /* 画像の比率を維持するための高さ。1000x500付近の画像を想定 */
-    aspect-ratio: 2 / 1; 
-    max-height: 500px; 
-    background-image: url('../img/hero-base01.jpg');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain; /* ★比率を変えず、全体を表示 */
-    display: flex;
-    align-items: center;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 50px;
-    margin-left: 0px;
-    background-color: #ffffff; /* 画像の外側は白で統一 */
-}
-
-.index-hero__inner {
     max-width: 1024px;
-    width: 100%;
-    height: 100%;
     margin-right: auto;
+    margin-bottom: 50px;
     margin-left: auto;
-    position: relative; /* 自由配置の基準 */
-    display: flex;
-    align-items: center;
+    position: relative; /* 文字を重ねるための基準点 */
+    overflow: hidden;
 }
 
-/* メッセージエリア：画像内の「空白地帯」へピンポイント配置 */
+/* ベース画像：100%表示で比率を死守（見切れを根絶） */
+.hero-base-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* メッセージエリア：画像内の「空白地帯」へ絶対座標で配置 */
 .index-hero__content {
-    flex-basis: 50%;
+    position: absolute;
+    /* 画像左上の「講師バッジ」がヘッダーに被らないよう、上から40pxに固定 */
+    top: 40px; 
+    /* メモ帳を避けるため左から50pxに固定 */
+    left: 50px;
+    width: 45%; /* パソコンに被らない幅 */
     text-align: left;
-    /* 左下のメモ帳を避け、かつコーヒーカップより下に配置 */
-    padding-top: 30px; 
-    padding-left: 60px; /* 左端から少し離して空白の中央へ */
-    box-sizing: border-box;
+    z-index: 10;
 }
 
 .index-hero__badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 5px 15px;
-    border-radius: 40px;
-    border: 1px solid #3498db;
-    margin-bottom: 20px;
+    background-color: #ffffff;
+    padding-top: 5px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #3498db;
+    border-right-color: #3498db;
+    border-bottom-color: #3498db;
+    border-left-color: #3498db;
+    margin-bottom: 15px;
 }
 .index-hero__badge-text { font-size: 0.8rem; font-weight: 800; color: #3498db; }
 
 .index-hero__title {
-    font-size: 2.8rem; /* 少しサイズダウンして空白に収める */
+    font-size: 3rem;
     font-weight: 900;
-    line-height: 1.25;
+    line-height: 1.2;
     color: #2c3e50;
-    margin: 0 0 20px 0;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 20px;
+    margin-left: 0px;
     letter-spacing: -0.02em;
 }
 .index-hero__title span.accent { color: #2563EB; }
@@ -128,7 +137,10 @@ body.portal-page #app {
     line-height: 1.6;
     font-weight: 800;
     color: #4b5563;
-    margin: 0 0 35px 0;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 30px;
+    margin-left: 0px;
 }
 
 .hero-cta-btn {
@@ -138,35 +150,38 @@ body.portal-page #app {
     gap: 12px;
     background-color: #1a365d;
     color: #ffffff;
-    padding: 12px 28px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-size: 1.05rem;
+    padding-top: 12px;
+    padding-right: 28px;
+    padding-bottom: 12px;
+    padding-left: 25px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    text-decoration-line: none;
+    font-size: 1rem;
     font-weight: 900;
     box-shadow: 0px 8px 20px rgba(26, 54, 93, 0.2);
-    transition: all 0.2s ease;
+    transition-property: transform, background-color;
+    transition-duration: 0.2s;
 }
 .hero-cta-btn:hover {
     transform: translateY(-2px);
     background-color: #2563EB;
 }
 
-.hero-sub-guide { margin-top: 20px; display: flex; flex-direction: column; gap: 5px; }
-.hero-sub-link { display: flex; align-items: center; gap: 8px; text-decoration: none; color: #38BDF8; font-weight: 900; font-size: 0.9rem; }
+.hero-sub-guide { margin-top: 20px; display: flex; flex-direction: column; gap: 4px; }
+.hero-sub-link { display: flex; align-items: center; gap: 8px; text-decoration-line: none; color: #38BDF8; font-weight: 900; font-size: 0.9rem; }
 
-/* スマホ対応：画像の上に文字を重ねる */
+/* スマホ対応：画像の上に白いパネルを敷いて文字を読ませる（SE対応） */
 @media (max-width: 768px) {
-    .index-hero {
-        aspect-ratio: auto;
-        min-height: 400px;
-        background-size: cover;
-        background-position: 75% center;
-    }
     .index-hero__content {
-        flex-basis: 90%;
-        margin: 0 auto;
-        padding: 30px 20px;
-        background-color: rgba(255, 255, 255, 0.85);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.9);
         border-radius: 20px;
         text-align: center;
     }
