@@ -400,11 +400,11 @@ main {
 
 
 /* ============================================================
-   ヒーローエリア：150pxさらに左へ・谷間完全収容モデル (v20.7.22.45)
+   ヒーローエリア：垂直インデント整列・「基本」同期モデル (v20.7.22.50)
    ------------------------------------------------------------
-   【修正】ボタン・リンクをさらに150px左（手帳側）へ移動。
-   全ての要素を「左端から4%〜6%」のラインに垂直整列させ、
-   右側のノートPCとの重なりを物理的にゼロにする。
+   サブタイトル内の「基本」の文字（6文字目）に垂直開始位置を同期。
+   ボタンとリンクを 15% のラインに配置することで、
+   手帳のテキストを完全に避けつつ、中央の谷間に美しく収容する。
    ============================================================ */
 .index-hero {
     max-width: 1024px;
@@ -420,7 +420,7 @@ main {
     overflow: hidden;
 }
 
-/* 背景画像：1024px幅を基準に原寸比率を維持 */
+/* 背景画像：1024px原寸比率維持 */
 .hero-base-img {
     width: 100%;
     max-width: 1024px;
@@ -432,7 +432,7 @@ main {
     margin-left: 0px;
 }
 
-/* オーバーレイコンテナ：左側の白い空間を使い切る配置 */
+/* オーバーレイコンテナ：ヘッダーの下から開始 */
 .index-hero__content {
     position: absolute;
     top: 0px;
@@ -450,7 +450,7 @@ main {
     z-index: 10;
 }
 
-/* バッジ：左端のベースライン（手帳を避ける最小値） */
+/* バッジ・タイトル：左側の余白の起点 (6%) */
 .index-hero__badge {
     display: inline-flex;
     align-items: center;
@@ -476,11 +476,10 @@ main {
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 12px;
-    margin-left: 5%; /* 左端へ寄せる */
+    margin-left: 6%;
     align-self: flex-start;
 }
 
-/* メインタイトル：左端に揃える */
 .index-hero__title {
     font-size: 2.3rem !important;
     font-weight: 900;
@@ -489,14 +488,14 @@ main {
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 20px;
-    margin-left: 5%;
+    margin-left: 6%;
 }
 
 .index-hero__title span.accent {
     color: #2563EB;
 }
 
-/* サブタイトル：手帳のLet's Studyのすぐ右から開始。ボタンと垂直同期 */
+/* サブタイトル：開始位置を 6% に固定。これにより「基本」が 15% 付近に来るよう計算 */
 .index-hero__description {
     font-size: 1.1rem;
     line-height: 1;
@@ -505,29 +504,22 @@ main {
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 30px;
-    margin-left: 6%; /* 150px移動に合わせ、一気に左（5%付近）へ引き戻す */
+    margin-left: 6%;
     white-space: nowrap;
 }
 
-.index-hero__description p {
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-}
-
-/* アクションエリア：サブタイトルと開始位置を完全に揃えて「垂直の壁」を作る */
+/* アクションエリア：指示通りサブタイトルの「基本」の開始位置（15%）に合わせる */
 .index-hero__action-area {
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
-    margin-left: 6%; /* サブタイトルと完全に一致させ、パソコンから遠ざける */
+    margin-left: 15%; /* 「パソコンの」の5文字分を飛ばした「基」の位置 */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-/* メインボタン：サイズを維持しつつ左配置 */
+/* メインボタン：谷間の中心に配置 */
 .hero-cta-btn {
     display: inline-flex;
     align-items: center;
@@ -555,7 +547,7 @@ main {
     background-color: #2563EB;
 }
 
-/* ボタン下リンク：ボタンの左端に揃える */
+/* 下部リンク：垂直ライン 15% を維持 */
 .hero-sub-guide {
     margin-top: 24px;
     padding-left: 5px;
