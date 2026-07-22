@@ -60,7 +60,7 @@ body.portal-page #app {
 }
 
 /* ============================================================
-   新生ヒーロー：hero-base01.jpg 比率完全死守・メッセージ復旧版 (v20.7.22.9)
+   新生ヒーロー：2重表示を物理的に封殺 ＆ 文字小型化モデル (v20.7.22.10)
    ============================================================ */
 .index-hero {
     max-width: 1024px;
@@ -68,24 +68,27 @@ body.portal-page #app {
     margin-right: auto;
     margin-bottom: 50px;
     margin-left: auto;
-    position: relative; /* 文字を重ねる基準 */
+    position: relative; /* 文字を載せる基準 */
     background-color: #ffffff;
+    /* ★重要：背景画像をここで「なし」に強制固定して2重表示を消します */
+    background-image: none !important; 
     overflow: hidden;
 }
 
-/* ベース画像：1pxも切らず、比率を維持して表示 */
+/* 前面に置く画像：これ1枚だけを表示して比率を守る */
 .hero-base-img {
     width: 100%;
     height: auto;
     display: block;
+    margin: 0;
 }
 
 /* メッセージエリア：画像内の空白へ絶対座標で配置 */
 .index-hero__content {
     position: absolute;
-    top: 12%;   /* 画像内のバランスを見て配置（飛び出し防止） */
-    left: 6%;   /* メモ帳を避ける位置 */
-    width: 45%; 
+    top: 15%;   /* 上に突き出さないよう少し下げる */
+    left: 8%;   /* メモ帳を完全に避けるため左余白を確保 */
+    width: 48%; /* パソコンに被らない幅 */
     text-align: left;
     z-index: 10;
 }
@@ -94,72 +97,57 @@ body.portal-page #app {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background-color: #ffffff;
-    padding-top: 5px;
-    padding-right: 18px;
-    padding-bottom: 5px;
-    padding-left: 15px;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-    border-bottom-left-radius: 40px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 4px 12px;
+    border-radius: 40px;
     border: 1px solid #3498db;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
-.index-hero__badge-text { font-size: 0.9rem; font-weight: 800; color: #3498db; }
+.index-hero__badge-text { font-size: 0.75rem; font-weight: 800; color: #3498db; }
 
-/* タイトル：指示通りフォントサイズを微調整して3行化を防止 */
+/* タイトル：3行にならないようフォントサイズを 2.1rem まで落とします */
 .index-hero__title {
-    font-size: 2.8rem; 
+    font-size: 2.1rem !important; 
     font-weight: 900;
-    line-height: 1.2;
+    line-height: 1.25;
     color: #2c3e50;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 25px;
-    margin-left: 0px;
+    margin: 0 0 15px 0;
     letter-spacing: -0.01em;
 }
 .index-hero__title span.accent { color: #2563EB; }
 
-/* サブタイトル：文字を一切削らず復旧 */
+/* 説明文（サブタイトル） */
 .index-hero__description {
-    font-size: 1.05rem;
-    line-height: 1.8;
+    font-size: 0.95rem;
+    line-height: 1.7;
     font-weight: 700;
     color: #4b5563;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 35px;
-    margin-left: 0px;
+    margin: 0 0 25px 0;
+    white-space: nowrap; /* 意図しない改行を禁止 */
 }
 
 .hero-cta-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
     background-color: #1a365d;
     color: #ffffff;
-    padding-top: 14px;
-    padding-right: 32px;
-    padding-bottom: 14px;
-    padding-left: 25px;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-    border-bottom-left-radius: 50px;
+    padding: 10px 25px;
+    border-radius: 50px;
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 900;
-    box-shadow: 0px 8px 20px rgba(26, 54, 93, 0.2);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
 }
 
-.hero-sub-guide { margin-top: 25px; display: flex; flex-direction: column; gap: 6px; }
-.hero-sub-link { display: flex; align-items: center; gap: 8px; text-decoration: none; color: #38BDF8; font-weight: 900; font-size: 1rem; }
+.hero-sub-guide { margin-top: 15px; display: flex; flex-direction: column; gap: 4px; }
+.hero-sub-link { display: flex; align-items: center; gap: 8px; text-decoration: none; color: #38BDF8; font-weight: 900; font-size: 0.85rem; }
 
+/* スマホ対応 */
 @media (max-width: 768px) {
-    .index-hero__content { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; padding: 20px; background-color: rgba(255, 255, 255, 0.9); border-radius: 20px; text-align: center; }
+    .index-hero__content { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; padding: 20px; background-color: rgba(255, 255, 255, 0.95); border-radius: 20px; text-align: center; }
+    .index-hero__description { white-space: normal; }
 }
 
 /* 共通インナー：常に横並びを絶対死守 */
