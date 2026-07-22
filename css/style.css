@@ -60,7 +60,7 @@ body.portal-page #app {
 }
 
 /* ============================================================
-   新生ヒーロー：隙間ゼロ ＆ 6文字インデント調整モデル (v20.7.22.11)
+   新生ヒーロー：2重表示を物理排除 ＆ メモ帳回避モデル (v20.7.22.12)
    ============================================================ */
 .index-hero {
     max-width: 1024px;
@@ -68,45 +68,52 @@ body.portal-page #app {
     margin-right: auto;
     margin-bottom: 50px;
     margin-left: auto;
-    position: relative;
-    background-color: transparent; /* 背景色による余白浮きを封殺 */
+    position: relative; /* 文字を重ねる基準 */
     overflow: hidden;
-    line-height: 0; /* 画像下の謎の隙間を物理的に消す */
+    /* ★重要：背景画像の設定を完全に削除。これで2重表示は100%消えます */
+    background-image: none !important;
+    background-color: transparent;
 }
 
+/* 土台の画像：この1枚だけが全ページで表示される比率の基準になります */
 .hero-base-img {
     width: 100%;
     height: auto;
     display: block;
 }
 
+/* メッセージエリア：メモ帳を完全に避けるため、大胆に右へ寄せます */
 .index-hero__content {
     position: absolute;
     top: 15%;
-    left: 0; /* 基準を左端へ */
-    width: 100%;
+    /* 左端から「32%」の位置に配置。これでメモ帳（左端〜25%付近）を確実に避けます */
+    left: 32%; 
+    width: 60%;
     text-align: left;
-    line-height: 1.6; /* 文字の行間を復活 */
     z-index: 10;
 }
 
-/* タイトル・バッジの基本位置 */
-.index-hero__badge, 
-.index-hero__title {
-    margin-left: 8%; /* バッジとタイトルは現状の位置を維持 */
-}
-
+/* 講師バッジ：左上の位置を固定 */
 .index-hero__badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     background-color: rgba(255, 255, 255, 0.9);
-    padding: 4px 12px;
-    border-radius: 40px;
+    padding-top: 5px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
     border: 1px solid #3498db;
     margin-bottom: 15px;
+    /* バッジだけは少し左に戻してバランスをとる */
+    margin-left: -20%;
 }
-.index-hero__badge-text { font-size: 0.75rem; font-weight: 800; color: #3498db; }
+
+.index-hero__badge-text { font-size: 0.8rem; font-weight: 800; color: #3498db; }
 
 .index-hero__title {
     font-size: 2.1rem !important;
@@ -114,23 +121,22 @@ body.portal-page #app {
     line-height: 1.25;
     color: #2c3e50;
     margin-top: 0px;
+    margin-right: 0px;
     margin-bottom: 15px;
+    margin-left: 0px;
     letter-spacing: -0.01em;
 }
 .index-hero__title span.accent { color: #2563EB; }
 
-/* ★重要：サブタイトルとボタンに6文字分のインデントを適用（メモ帳回避） */
-.index-hero__description,
-.hero-cta-btn,
-.hero-sub-guide {
-    margin-left: calc(8% + 5rem); /* 基準位置 + 約6文字分右へ */
-}
-
 .index-hero__description {
     font-size: 1rem;
+    line-height: 1.7;
     font-weight: 700;
     color: #4b5563;
+    margin-top: 0px;
+    margin-right: 0px;
     margin-bottom: 25px;
+    margin-left: 0px;
 }
 
 .hero-cta-btn {
@@ -140,33 +146,26 @@ body.portal-page #app {
     gap: 10px;
     background-color: #1a365d;
     color: #ffffff;
-    padding: 10px 25px;
-    border-radius: 50px;
+    padding-top: 10px;
+    padding-right: 25px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 900;
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 6px 15px rgba(26, 54, 93, 0.2);
 }
 
-/* 初心者リンク：1行に収めるためのスタイル */
-.hero-sub-guide {
-    margin-top: 15px;
-}
-
-.hero-sub-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    color: #38BDF8;
-    font-weight: 900;
-    font-size: 0.85rem;
-    white-space: nowrap;
-}
+.hero-sub-guide { margin-top: 15px; }
+.hero-sub-link { display: flex; align-items: center; gap: 8px; text-decoration: none; color: #38BDF8; font-weight: 900; font-size: 0.85rem; white-space: nowrap; }
 
 @media (max-width: 768px) {
     .index-hero__content { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; padding: 20px; background-color: rgba(255, 255, 255, 0.95); border-radius: 20px; text-align: center; }
-    .index-hero__badge, .index-hero__title, .index-hero__description, .hero-cta-btn, .hero-sub-guide { margin-left: 0 !important; }
+    .index-hero__badge { margin-left: 0; }
 }
 
 /* 共通インナー：常に横並びを絶対死守 */
