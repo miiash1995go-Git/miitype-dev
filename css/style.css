@@ -60,7 +60,7 @@ body.portal-page #app {
 }
 
 /* ============================================================
-   新生ヒーロー：2重表示を物理的に封殺 ＆ 文字小型化モデル (v20.7.22.10)
+   新生ヒーロー：隙間ゼロ ＆ 6文字インデント調整モデル (v20.7.22.11)
    ============================================================ */
 .index-hero {
     max-width: 1024px;
@@ -68,29 +68,32 @@ body.portal-page #app {
     margin-right: auto;
     margin-bottom: 50px;
     margin-left: auto;
-    position: relative; /* 文字を載せる基準 */
-    background-color: #ffffff;
-    /* ★重要：背景画像をここで「なし」に強制固定して2重表示を消します */
-    background-image: none !important; 
+    position: relative;
+    background-color: transparent; /* 背景色による余白浮きを封殺 */
     overflow: hidden;
+    line-height: 0; /* 画像下の謎の隙間を物理的に消す */
 }
 
-/* 前面に置く画像：これ1枚だけを表示して比率を守る */
 .hero-base-img {
     width: 100%;
     height: auto;
     display: block;
-    margin: 0;
 }
 
-/* メッセージエリア：画像内の空白へ絶対座標で配置 */
 .index-hero__content {
     position: absolute;
-    top: 15%;   /* 上に突き出さないよう少し下げる */
-    left: 8%;   /* メモ帳を完全に避けるため左余白を確保 */
-    width: 48%; /* パソコンに被らない幅 */
+    top: 15%;
+    left: 0; /* 基準を左端へ */
+    width: 100%;
     text-align: left;
+    line-height: 1.6; /* 文字の行間を復活 */
     z-index: 10;
+}
+
+/* タイトル・バッジの基本位置 */
+.index-hero__badge, 
+.index-hero__title {
+    margin-left: 8%; /* バッジとタイトルは現状の位置を維持 */
 }
 
 .index-hero__badge {
@@ -105,25 +108,29 @@ body.portal-page #app {
 }
 .index-hero__badge-text { font-size: 0.75rem; font-weight: 800; color: #3498db; }
 
-/* タイトル：3行にならないようフォントサイズを 2.1rem まで落とします */
 .index-hero__title {
-    font-size: 2.1rem !important; 
+    font-size: 2.1rem !important;
     font-weight: 900;
     line-height: 1.25;
     color: #2c3e50;
-    margin: 0 0 15px 0;
+    margin-top: 0px;
+    margin-bottom: 15px;
     letter-spacing: -0.01em;
 }
 .index-hero__title span.accent { color: #2563EB; }
 
-/* 説明文（サブタイトル） */
+/* ★重要：サブタイトルとボタンに6文字分のインデントを適用（メモ帳回避） */
+.index-hero__description,
+.hero-cta-btn,
+.hero-sub-guide {
+    margin-left: calc(8% + 5rem); /* 基準位置 + 約6文字分右へ */
+}
+
 .index-hero__description {
-    font-size: 0.95rem;
-    line-height: 1.7;
+    font-size: 1rem;
     font-weight: 700;
     color: #4b5563;
-    margin: 0 0 25px 0;
-    white-space: nowrap; /* 意図しない改行を禁止 */
+    margin-bottom: 25px;
 }
 
 .hero-cta-btn {
@@ -141,13 +148,25 @@ body.portal-page #app {
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
 }
 
-.hero-sub-guide { margin-top: 15px; display: flex; flex-direction: column; gap: 4px; }
-.hero-sub-link { display: flex; align-items: center; gap: 8px; text-decoration: none; color: #38BDF8; font-weight: 900; font-size: 0.85rem; }
+/* 初心者リンク：1行に収めるためのスタイル */
+.hero-sub-guide {
+    margin-top: 15px;
+}
 
-/* スマホ対応 */
+.hero-sub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #38BDF8;
+    font-weight: 900;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
 @media (max-width: 768px) {
     .index-hero__content { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; padding: 20px; background-color: rgba(255, 255, 255, 0.95); border-radius: 20px; text-align: center; }
-    .index-hero__description { white-space: normal; }
+    .index-hero__badge, .index-hero__title, .index-hero__description, .hero-cta-btn, .hero-sub-guide { margin-left: 0 !important; }
 }
 
 /* 共通インナー：常に横並びを絶対死守 */
