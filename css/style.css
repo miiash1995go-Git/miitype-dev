@@ -60,25 +60,118 @@ body.portal-page #app {
 }
 
 /* ============================================================
-   新ヘッダーシステム：垂直圧縮 ＆ 1024px統治 (v20.7.20)
-   ------------------------------------------------------------
-   - 768px高のノートPC環境で「タイピングツール」を1画面に収める
-   - game-body ではマージンを極限まで排除（!important統治）
+   新生ヒーロー：hero-base01.jpg 比率維持 ＆ 精密配置モデル (v20.7.22.6)
    ============================================================ */
-
-/* ============================================================
-   新ヘッダー・ナビゲーション：統合統治システム (v20.7.21.6)
-   ============================================================ */
-/* ============================================================
-   新ヘッダー・ナビゲーション：統合統治システム (v20.7.21.8)
-   ============================================================ */
-header {
+.index-hero {
     width: 100%;
-    background-color: transparent;
+    /* 画像の比率を維持するための高さ。1000x500付近の画像を想定 */
+    aspect-ratio: 2 / 1; 
+    max-height: 500px; 
+    background-image: url('../img/hero-base01.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain; /* ★比率を変えず、全体を表示 */
+    display: flex;
+    align-items: center;
     margin-top: 0px;
     margin-right: 0px;
-    margin-bottom: 25px; /* ポータル標準 */
+    margin-bottom: 50px;
     margin-left: 0px;
+    background-color: #ffffff; /* 画像の外側は白で統一 */
+}
+
+.index-hero__inner {
+    max-width: 1024px;
+    width: 100%;
+    height: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative; /* 自由配置の基準 */
+    display: flex;
+    align-items: center;
+}
+
+/* メッセージエリア：画像内の「空白地帯」へピンポイント配置 */
+.index-hero__content {
+    flex-basis: 50%;
+    text-align: left;
+    /* 左下のメモ帳を避け、かつコーヒーカップより下に配置 */
+    padding-top: 30px; 
+    padding-left: 60px; /* 左端から少し離して空白の中央へ */
+    box-sizing: border-box;
+}
+
+.index-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 5px 15px;
+    border-radius: 40px;
+    border: 1px solid #3498db;
+    margin-bottom: 20px;
+}
+.index-hero__badge-text { font-size: 0.8rem; font-weight: 800; color: #3498db; }
+
+.index-hero__title {
+    font-size: 2.8rem; /* 少しサイズダウンして空白に収める */
+    font-weight: 900;
+    line-height: 1.25;
+    color: #2c3e50;
+    margin: 0 0 20px 0;
+    letter-spacing: -0.02em;
+}
+.index-hero__title span.accent { color: #2563EB; }
+
+.index-hero__description {
+    font-size: 1rem;
+    line-height: 1.6;
+    font-weight: 800;
+    color: #4b5563;
+    margin: 0 0 35px 0;
+}
+
+.hero-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background-color: #1a365d;
+    color: #ffffff;
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 900;
+    box-shadow: 0px 8px 20px rgba(26, 54, 93, 0.2);
+    transition: all 0.2s ease;
+}
+.hero-cta-btn:hover {
+    transform: translateY(-2px);
+    background-color: #2563EB;
+}
+
+.hero-sub-guide { margin-top: 20px; display: flex; flex-direction: column; gap: 5px; }
+.hero-sub-link { display: flex; align-items: center; gap: 8px; text-decoration: none; color: #38BDF8; font-weight: 900; font-size: 0.9rem; }
+
+/* スマホ対応：画像の上に文字を重ねる */
+@media (max-width: 768px) {
+    .index-hero {
+        aspect-ratio: auto;
+        min-height: 400px;
+        background-size: cover;
+        background-position: 75% center;
+    }
+    .index-hero__content {
+        flex-basis: 90%;
+        margin: 0 auto;
+        padding: 30px 20px;
+        background-color: rgba(255, 255, 255, 0.85);
+        border-radius: 20px;
+        text-align: center;
+    }
+    .index-hero__title { font-size: 2rem; }
+    .hero-sub-link { justify-content: center; }
 }
 
 /* 共通インナー：常に横並びを絶対死守 */
