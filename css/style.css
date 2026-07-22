@@ -60,100 +60,137 @@ body.portal-page #app {
 }
 
 /* ============================================================
-   新生ヒーロー：精密座標 ＆ 1行死守完成版 (v20.7.22.13)
+   新生ヒーロー：上下余白を物理的に根絶 ＆ 6文字インデント版 (v20.7.22.14)
    ============================================================ */
 .index-hero {
     max-width: 1024px;
     width: 100%;
+    margin-top: 0px;
     margin-right: auto;
     margin-bottom: 50px;
     margin-left: auto;
-    position: relative; 
+    position: relative; /* 文字を重ねる基準点 */
+    background-color: transparent !important; /* 白い余白の発生源を断つ */
+    line-height: 0;    /* 画像下の数ピクセルの隙間を抹殺 */
     overflow: hidden;
-    background-image: none !important;
-    background-color: #ffffff;
 }
 
-/* 土台の画像（1枚のみ表示） */
+/* 土台の画像：これがエリアの「高さ」を決め、一切の見切れを許しません */
 .hero-base-img {
     width: 100%;
     height: auto;
-    display: block;
+    display: block; /* 画像をブロック化して余白を消去 */
+    margin: 0;
+    padding: 0;
 }
 
-/* メッセージエリア：メモ帳（左）とPC（右）の間の「谷間」へ配置 */
+/* メッセージエリア：画像の上に載る透明なレイヤー */
 .index-hero__content {
     position: absolute;
-    /* 位置を18%（上部）15%（左端）に設定。これでパソコンとの重なりを回避します */
-    top: 18%; 
-    left: 15%; 
-    width: 40%; /* 横幅を40%に絞り、パソコンへの侵入を物理的に阻止 */
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
     text-align: left;
+    line-height: 1.6; /* ここで文字用の行間を再設定 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 5%; /* 上端からの位置を画像比率で調整 */
+    box-sizing: border-box;
     z-index: 10;
+}
+
+/* バッジとタイトル：左側の基本位置（ノートブックを避ける左端） */
+.index-hero__badge,
+.index-hero__title {
+    margin-left: 5%;
 }
 
 .index-hero__badge {
     display: inline-flex;
+    align-self: flex-start; /* 横いっぱいに広がらないように固定 */
     align-items: center;
     gap: 8px;
     background-color: rgba(255, 255, 255, 0.9);
-    padding: 4px 12px;
+    padding: 5px 15px;
     border-radius: 40px;
     border: 1px solid #3498db;
     margin-bottom: 15px;
 }
-.index-hero__badge-text { font-size: 0.75rem; font-weight: 800; color: #3498db; }
+.index-hero__badge-text { font-size: 0.8rem; font-weight: 800; color: #3498db; }
 
-/* タイトル：2.2rem設定。この幅なら2行でピタリと収まります */
+/* タイトル：2行で絶対に収まるフォントサイズ */
 .index-hero__title {
-    font-size: 2.2rem !important; 
+    font-size: 2.1rem !important;
     font-weight: 900;
-    line-height: 1.25;
+    line-height: 1.3;
     color: #2c3e50;
-    margin: 0 0 15px 0;
-    letter-spacing: -0.01em;
+    margin-top: 0px;
+    margin-bottom: 20px;
 }
 .index-hero__title span.accent { color: #2563EB; }
 
+/* ★重要：サブタイトル・ボタン・リンクを「6文字分」右へオフセット */
+/* これによりメモ帳を完璧に回避し、白い谷間に配置します */
+.index-hero__description,
+.hero-cta-btn,
+.hero-sub-guide {
+    margin-left: 24%; /* 画像横幅の約24%地点＝メモ帳が終わる位置 */
+}
+
 .index-hero__description {
-    font-size: 0.95rem;
+    font-size: 1rem;
     line-height: 1.7;
-    font-weight: 800;
+    font-weight: 700;
     color: #4b5563;
-    margin: 0 0 25px 0;
+    margin-bottom: 30px;
 }
 
 .hero-cta-btn {
     display: inline-flex;
+    align-self: flex-start;
     align-items: center;
     justify-content: center;
     gap: 10px;
     background-color: #1a365d;
-    color: #ffffff;
-    padding: 10px 25px;
+    color: #ffffff !important;
+    padding: 12px 25px;
     border-radius: 50px;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 900;
-    box-shadow: 0px 6px 15px rgba(26, 54, 93, 0.2);
+    box-shadow: 0px 8px 20px rgba(26, 54, 93, 0.2);
 }
 
-.hero-sub-guide { 
-    margin-top: 20px; 
+/* 初心者リンク：1行死守 */
+.hero-sub-guide {
+    margin-top: 20px;
 }
-.hero-sub-link { 
-    display: inline-flex; 
-    align-items: center; 
-    gap: 8px; 
-    text-decoration: none; 
-    color: #38BDF8; 
-    font-weight: 900; 
-    font-size: 0.85rem; 
-    white-space: nowrap; /* 1行死守 */
+.hero-sub-link {
+    display: inline-block;
+    text-decoration: none;
+    color: #38BDF8;
+    font-weight: 900;
+    font-size: 0.9rem;
+    white-space: nowrap; /* 絶対に改行させない */
 }
 
+/* スマホ対応：画面中央に白パネルを配置（SEでも読める設定） */
 @media (max-width: 768px) {
-    .index-hero__content { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; padding: 20px; background-color: rgba(255, 255, 255, 0.95); border-radius: 20px; text-align: center; }
+    .index-hero__content {
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%; height: auto;
+        padding: 25px 15px;
+        background-color: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        text-align: center;
+    }
+    .index-hero__badge, .index-hero__title, .index-hero__description, .hero-cta-btn, .hero-sub-guide {
+        margin-left: 0 !important;
+        align-self: center;
+    }
 }
 
 /* 共通インナー：常に横並びを絶対死守 */
