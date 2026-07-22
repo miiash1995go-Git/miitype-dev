@@ -90,38 +90,47 @@
 
         <main class="portal-main">
 
-            <!-- ① ヒーローセクション：物理座標 ＆ 余白完全排除モデル -->
+            <!-- ① ヒーローセクション：1024px統治 ＆ 左側余白活用モデル (v20.7.22.20) -->
             <section class="index-hero">
-                <!-- この画像1枚が全ての比率と高さを決めます -->
+                <!-- 土台：背景画像（変更・加工・スケーリング一切禁止） -->
                 <img src="img/hero-base01.jpg" class="hero-base-img" alt="ぱそトレ！">
 
-                <!-- 文字・ボタンレイヤー -->
+                <!-- 文字・ボタンレイヤー（PowerPointのオーバーレイと同じ概念） -->
                 <div class="index-hero__content">
+                    <!-- 上部：横長バッジ -->
                     <div class="index-hero__badge">
-                        <span style="font-size: 1rem;">👤</span>
+                        <span class="index-hero__badge-icon">👤</span>
                         <span class="index-hero__badge-text">現役パソコン講師がつくる</span>
                     </div>
 
+                    <!-- メインタイトル -->
                     <h1 class="index-hero__title">
                         「わからない」を、<br>
                         <span class="accent">「できる」</span>に。
                     </h1>
 
-                    <p class="index-hero__description">
-                        パソコンの基本から、就職・転職、そして仕事での活用まで。<br>
-                        初心者の「できる」を、一歩ずつ広げます。
-                    </p>
+                    <!-- リード文 -->
+                    <div class="index-hero__description">
+                        <p>パソコンの基本から、就職・転職、<br>そして仕事での活用まで。</p>
+                        <p>初心者の「できる」を、<br>一歩ずつ広げます。</p>
+                    </div>
 
-                    <a href="play.html" class="hero-cta-btn">
-                        <img src="img/icon-typing.png" style="width: 20px; height: 20px; filter: brightness(0) invert(1); background: none;" alt="">
-                        <span>タイピング練習を始める</span>
-                        <span style="font-size: 1.1rem; margin-left: 8px;">→</span>
-                    </a>
-
-                    <div class="hero-sub-guide">
-                        <a href="hub-typing.html" class="hero-sub-link">
-                            🔰 初めての方はこちら：タイピングの基本から学ぶ ＞
+                    <!-- メインボタン（タイトル中央付近へ配置） -->
+                    <div class="index-hero__action-area">
+                        <a href="play.html" class="hero-cta-btn">
+                            <span class="hero-cta-btn__icon">⌨</span>
+                            <span class="hero-cta-btn__text">タイピング練習を始める</span>
+                            <span class="hero-cta-btn__arrow">→</span>
                         </a>
+                        
+                        <!-- ボタン下：テキストリンク -->
+                        <div class="hero-sub-guide">
+                            <a href="hub-typing.html" class="hero-sub-link">
+                                <span class="hero-sub-link__mark">🔰</span>
+                                <span class="hero-sub-link__label">初めての方はこちら</span><br>
+                                <span class="hero-sub-link__main">タイピングの基本から学ぶ →</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
