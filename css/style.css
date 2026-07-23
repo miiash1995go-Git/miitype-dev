@@ -474,7 +474,7 @@ main {
     margin-top: 25px;
     margin-right: 0px;
     margin-bottom: 0px;
-    margin-left: 80px; /* 以前の良好なオフセット値を復旧 */
+    margin-left: 120px; /* 以前の良好なオフセット値を復旧 */
     padding-left: 0px;
     text-align: left;
 }
