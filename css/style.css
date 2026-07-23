@@ -400,11 +400,10 @@ main {
 
 
 /* ============================================================
-   ヒーローエリア：最終精密配置 ＆ リンク挙動修正モデル (v20.7.22.95)
+   ヒーローエリア：垂直開始位置・完全同期モデル (v20.7.22.105)
    ------------------------------------------------------------
-   ・ボタンをさらに左（110px）へ。
-   ・リンク文字を右にオフセットし、下線を追加。
-   ・リンクのクリック範囲が右に伸びるバグを inline-block で修正。
+   ・ボタンと下部リンクの開始垂直ラインを完全に一致させる。
+   ・開始位置を 190px に設定し、手帳を避けつつ左寄せを最大化。
    ============================================================ */
 .index-hero {
     max-width: 1024px;
@@ -428,16 +427,16 @@ main {
     margin-left: 0px;
 }
 
-/* アクションエリア：さらに左（110px）へ寄せ、谷間の空間を最適化 */
+/* アクションエリア：ボタンとリンクの共通基準線を 190px に固定 */
 .index-hero__action-area {
     position: absolute;
     top: 335px;
-    left: 110px; /* 130pxからさらに左へ移動 */
+    left: 190px; /* 下部リンクの開始位置に合わせるための新基準線 */
     display: block; 
     z-index: 100;
 }
 
-/* メインボタン：大型モデルを維持 */
+/* メインボタン：開始位置をコンテナ左端（190pxライン）へ固定 */
 .hero-cta-btn {
     display: inline-flex;
     flex-direction: row;
@@ -469,55 +468,47 @@ main {
     transform: translateY(-3px);
 }
 
-/* 下部リンク：ボタンより右側へオフセット配置 */
+/* 下部リンク：ボタンとのズレ（margin-left）を完全に排除 */
 .hero-sub-guide {
     margin-top: 25px;
     margin-right: 0px;
     margin-bottom: 0px;
-    margin-left: 80px; /* 指定通り、リンク文字を右へ移動 */
+    margin-left: 0px; /* 80pxから0pxへ。ボタンと垂直に揃えます */
+    padding-left: 10px; /* アイコン分の微調整のみ残す */
 }
 
-/* リンク本体：クリック範囲が右に突き抜けるのを inline-block で修正 */
 .hero-sub-link {
-    display: inline-block; /* blockから変更：文字がある場所だけがリンクになります */
-    text-decoration: underline; /* わかりやすく下線を追加 */
+    display: inline-block;
+    text-decoration: underline;
     text-underline-offset: 4px;
 }
 
 .hero-sub-link__main {
-    font-size: 1.05rem; /* 少し大きくして視認性をアップ */
+    font-size: 1.05rem;
     color: #38BDF8;
     font-weight: 900;
     line-height: 1.5;
     text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.8);
 }
 
-/* PC以外のサイズ追従（比率計算） */
+/* 1024px以下のレスポンシブ（比率追従） */
 @media (max-width: 1024px) {
     .index-hero { width: 100%; }
     .hero-base-img { width: 100%; }
     .index-hero__action-area {
-        left: 10.7%; /* 110px / 1024px */
+        left: 18.5%; /* 190px / 1024px */
         top: 65%;
     }
 }
 
-/* スマホ表示：物理キーボードがない環境のためタイピング導線をカット (v20.7.22.100) */
+/* スマホ：前回の指示通り非表示を維持 */
 @media (max-width: 768px) {
-    /* ボタンエリア全体を物理的に抹消 */
     .index-hero__action-area {
         display: none !important;
     }
-
-    /* ボタンが消えた分の巨大な空白を詰め、次セクションへの接続を最適化 */
     .index-hero {
         width: 100%;
-        margin-bottom: 20px; /* 50pxから20pxへ短縮：画像直後に内容が続くように */
-    }
-
-    .hero-base-img {
-        width: 100%;
-        height: auto;
+        margin-bottom: 20px;
     }
 }
 
