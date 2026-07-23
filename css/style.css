@@ -400,26 +400,27 @@ main {
 
 
 /* ============================================================
-   ヒーローエリア：左端200px・物理固定オペレーション (v20.7.22.80)
+   ヒーローエリア：物理座標・130px左端固定オペレーション (v20.7.22.85)
    ------------------------------------------------------------
-   ユーザー指定の「左端から200px」の位置にボタンの開始線を固定。
-   1024pxの画像キャンバスに対し、物理的なピクセル数で配置を統治する。
+   中央寄せロジックを完全排除。
+   画像内のテキスト「わからない」の開始垂直ライン（130px）に
+   ボタンの左端を強制的に吸着させる。
    ============================================================ */
 .index-hero {
     max-width: 1024px;
-    width: 100%;
+    width: 1024px; /* 幅を1024pxに物理固定し、座標のズレを封殺 */
+    height: auto;
     margin-top: 0px;
     margin-right: auto;
     margin-bottom: 50px;
     margin-left: auto;
     position: relative;
     background-color: transparent;
-    overflow: hidden;
+    overflow: visible; /* 影などが切れないよう許可 */
 }
 
 .hero-base-img {
-    width: 100%; /* 親の1024pxに追従 */
-    max-width: 1024px;
+    width: 1024px;
     height: auto;
     display: block;
     margin-top: 0px;
@@ -428,21 +429,18 @@ main {
     margin-left: 0px;
 }
 
-/* アクションエリア：200pxの位置から強制開始 */
+/* アクションエリア：全ての推測ロジックを捨て、px座標で統治 */
 .index-hero__action-area {
     position: absolute;
-    /* 垂直位置：プリセットテキスト「仕事へ。」の真下 */
-    top: 310px;
-    /* 水平位置：指定通り左端から200pxに固定 */
-    left: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
+    /* 垂直位置：画像内の4行目の文字「仕事へ。」の真下 */
+    top: 335px;
+    /* 水平位置：テキスト開始線「130px」へ。手帳を避けつつ左へ最大接近 */
+    left: 130px;
+    display: block; /* flexを排除し、指定したleftを絶対優先にする */
     z-index: 100;
 }
 
-/* メインボタン：文字重なりを完全排除した高密度記述 */
+/* メインボタン：レンダリング崩れを完全防御 */
 .hero-cta-btn {
     display: flex;
     flex-direction: row;
@@ -462,25 +460,20 @@ main {
     text-decoration: none;
     font-size: 1.1rem !important;
     font-weight: 900 !important;
-    line-height: 1.2 !important;
-    letter-spacing: 0.05em !important;
+    line-height: 1 !important;
     white-space: nowrap !important;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.2s ease;
 }
 
 .hero-cta-btn:hover {
     background-color: #2563EB;
-    transform: translateY(-2px);
 }
 
-/* ボタン下リンク：200pxのラインで垂直整列 */
+/* ボタン下リンク：130pxのラインを死守 */
 .hero-sub-guide {
-    margin-top: 24px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-    padding-left: 10px;
+    margin-top: 25px;
+    margin-left: 10px; /* ボタンのアイコン位置を避けた微調整 */
 }
 
 .hero-sub-link {
@@ -495,27 +488,28 @@ main {
     line-height: 1.5;
 }
 
-/* レスポンシブ：画面縮小時も200px相当の比率を維持 */
+/* PC以外のサイズでも、画像の比率に合わせて要素を追従させる */
 @media (max-width: 1024px) {
+    .index-hero { width: 100%; }
+    .hero-base-img { width: 100%; }
     .index-hero__action-area {
-        left: 20%; /* 200px / 1024px = 約20% */
-        top: 60%;
+        left: 12.7%; /* 130px / 1024px */
+        top: 65%;
     }
 }
 
+/* スマホ：1列に整理 */
 @media (max-width: 768px) {
     .index-hero__action-area {
         position: static;
-        margin-top: -20px;
-        padding-top: 0px;
-        padding-right: 20px;
-        padding-bottom: 40px;
-        padding-left: 20px;
+        margin-top: -40px;
+        padding: 0 20px 40px;
         background-color: #ffffff;
-        align-items: center;
         width: 100%;
         box-sizing: border-box;
     }
+    .hero-cta-btn { width: 100%; max-width: 320px; margin: 0 auto; }
+    .hero-sub-guide { text-align: center; margin-left: 0; }
 }
 
 
