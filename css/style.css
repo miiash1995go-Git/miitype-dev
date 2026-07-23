@@ -502,19 +502,23 @@ main {
     }
 }
 
-/* スマホ：完全中央配置 */
+/* スマホ表示：物理キーボードがない環境のためタイピング導線をカット (v20.7.22.100) */
 @media (max-width: 768px) {
+    /* ボタンエリア全体を物理的に抹消 */
     .index-hero__action-area {
-        position: static;
-        margin-top: -30px;
-        padding: 0 20px 40px;
-        background-color: #ffffff;
-        width: 100%;
-        box-sizing: border-box;
-        text-align: center;
+        display: none !important;
     }
-    .hero-cta-btn { width: 100%; max-width: 360px; }
-    .hero-sub-guide { margin-left: 0; display: block; }
+
+    /* ボタンが消えた分の巨大な空白を詰め、次セクションへの接続を最適化 */
+    .index-hero {
+        width: 100%;
+        margin-bottom: 20px; /* 50pxから20pxへ短縮：画像直後に内容が続くように */
+    }
+
+    .hero-base-img {
+        width: 100%;
+        height: auto;
+    }
 }
 
 
