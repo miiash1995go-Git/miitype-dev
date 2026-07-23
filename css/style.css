@@ -400,15 +400,14 @@ main {
 
 
 /* ============================================================
-   ヒーローエリア：左端85px・物理強制吸着モデル (v20.7.22.110)
+   ヒーローエリア：ボタン位置固定 ＆ リンク位置復旧モデル (v20.7.22.115)
    ------------------------------------------------------------
-   ・指示に反して右へ寄ってしまったバグを完全に根絶。
-   ・「中央寄せ」の仕組みをすべて破壊し、左端から85pxに固定。
-   ・ボタンと下部リンクの開始位置を1ピクセルの狂いもなく垂直同期。
+   ・ボタン位置は【左端から85px】で完全固定（二度といじらない）。
+   ・リンク文字の開始位置のみ、以前の良好な位置（右へ80pxオフセット）へ復旧。
    ============================================================ */
 .index-hero {
     max-width: 1024px;
-    width: 1024px; /* 幅を1024pxに物理ロック */
+    width: 1024px; 
     height: auto;
     margin-top: 0px;
     margin-right: auto;
@@ -416,7 +415,7 @@ main {
     margin-left: auto;
     position: relative;
     background-color: transparent;
-    display: block; /* 予期せぬflexを排除 */
+    display: block;
 }
 
 .hero-base-img {
@@ -429,19 +428,17 @@ main {
     margin-left: 0px;
 }
 
-/* アクションエリア：1024pxの左端から85pxの地点に強制吸着 */
+/* アクションエリア：85px地点に絶対固定（ボタンの開始線） */
 .index-hero__action-area {
     position: absolute;
     top: 335px;
-    /* 「パ」の文字の真下、左端から85pxの位置へ強制移動 */
-    left: 85px !important; 
-    display: block !important; 
+    left: 85px; 
+    display: block; 
     width: auto;
     z-index: 100;
-    text-align: left; /* 内部要素を左に寄せる */
 }
 
-/* メインボタン */
+/* メインボタン：物理仕様を完全維持 */
 .hero-cta-btn {
     display: inline-flex;
     flex-direction: row;
@@ -472,13 +469,13 @@ main {
     background-color: #2563EB;
 }
 
-/* 下部リンク：ボタンの開始位置（左端）に完全に合わせる */
+/* 下部リンク：良好だった「右へ80px」の位置へ差し戻し */
 .hero-sub-guide {
     margin-top: 25px;
     margin-right: 0px;
     margin-bottom: 0px;
-    margin-left: 0px !important; /* ボタンとのズレを完全にゼロにする */
-    padding-left: 10px; /* アイコンの位置を考慮した微調整のみ */
+    margin-left: 80px; /* 以前の良好なオフセット値を復旧 */
+    padding-left: 0px;
     text-align: left;
 }
 
@@ -500,12 +497,12 @@ main {
     .index-hero { width: 100%; }
     .hero-base-img { width: 100%; }
     .index-hero__action-area {
-        left: 8.3% !important; /* 85px / 1024px = 約8.3% */
+        left: 8.3%;
         top: 65%;
     }
 }
 
-/* スマホ：非表示維持 */
+/* スマホ表示：物理キーボードがない環境のためタイピング導線をカット */
 @media (max-width: 768px) {
     .index-hero__action-area {
         display: none !important;
