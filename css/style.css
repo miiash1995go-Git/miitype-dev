@@ -400,14 +400,15 @@ main {
 
 
 /* ============================================================
-   ヒーローエリア：垂直開始位置・完全同期モデル (v20.7.22.105)
+   ヒーローエリア：左端85px・物理強制吸着モデル (v20.7.22.110)
    ------------------------------------------------------------
-   ・ボタンと下部リンクの開始垂直ラインを完全に一致させる。
-   ・開始位置を 190px に設定し、手帳を避けつつ左寄せを最大化。
+   ・指示に反して右へ寄ってしまったバグを完全に根絶。
+   ・「中央寄せ」の仕組みをすべて破壊し、左端から85pxに固定。
+   ・ボタンと下部リンクの開始位置を1ピクセルの狂いもなく垂直同期。
    ============================================================ */
 .index-hero {
     max-width: 1024px;
-    width: 1024px; 
+    width: 1024px; /* 幅を1024pxに物理ロック */
     height: auto;
     margin-top: 0px;
     margin-right: auto;
@@ -415,6 +416,7 @@ main {
     margin-left: auto;
     position: relative;
     background-color: transparent;
+    display: block; /* 予期せぬflexを排除 */
 }
 
 .hero-base-img {
@@ -427,16 +429,19 @@ main {
     margin-left: 0px;
 }
 
-/* アクションエリア：ボタンとリンクの共通基準線を 190px に固定 */
+/* アクションエリア：1024pxの左端から85pxの地点に強制吸着 */
 .index-hero__action-area {
     position: absolute;
     top: 335px;
-    left: 190px; /* 下部リンクの開始位置に合わせるための新基準線 */
-    display: block; 
+    /* 「パ」の文字の真下、左端から85pxの位置へ強制移動 */
+    left: 85px !important; 
+    display: block !important; 
+    width: auto;
     z-index: 100;
+    text-align: left; /* 内部要素を左に寄せる */
 }
 
-/* メインボタン：開始位置をコンテナ左端（190pxライン）へ固定 */
+/* メインボタン */
 .hero-cta-btn {
     display: inline-flex;
     flex-direction: row;
@@ -465,16 +470,16 @@ main {
 
 .hero-cta-btn:hover {
     background-color: #2563EB;
-    transform: translateY(-3px);
 }
 
-/* 下部リンク：ボタンとのズレ（margin-left）を完全に排除 */
+/* 下部リンク：ボタンの開始位置（左端）に完全に合わせる */
 .hero-sub-guide {
     margin-top: 25px;
     margin-right: 0px;
     margin-bottom: 0px;
-    margin-left: 0px; /* 80pxから0pxへ。ボタンと垂直に揃えます */
-    padding-left: 10px; /* アイコン分の微調整のみ残す */
+    margin-left: 0px !important; /* ボタンとのズレを完全にゼロにする */
+    padding-left: 10px; /* アイコンの位置を考慮した微調整のみ */
+    text-align: left;
 }
 
 .hero-sub-link {
@@ -488,20 +493,19 @@ main {
     color: #38BDF8;
     font-weight: 900;
     line-height: 1.5;
-    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.8);
 }
 
-/* 1024px以下のレスポンシブ（比率追従） */
+/* 1024px以下のレスポンシブ（左端からの比率を維持） */
 @media (max-width: 1024px) {
     .index-hero { width: 100%; }
     .hero-base-img { width: 100%; }
     .index-hero__action-area {
-        left: 18.5%; /* 190px / 1024px */
+        left: 8.3% !important; /* 85px / 1024px = 約8.3% */
         top: 65%;
     }
 }
 
-/* スマホ：前回の指示通り非表示を維持 */
+/* スマホ：非表示維持 */
 @media (max-width: 768px) {
     .index-hero__action-area {
         display: none !important;
