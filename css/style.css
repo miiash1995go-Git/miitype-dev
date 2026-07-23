@@ -400,10 +400,11 @@ main {
 
 
 /* ============================================================
-   ヒーローエリア：1024px絶対座標・大型ボタン復元モデル (v20.7.22.90)
+   ヒーローエリア：最終精密配置 ＆ リンク挙動修正モデル (v20.7.22.95)
    ------------------------------------------------------------
-   手帳やPCとの重なりを許容し、130pxラインに大型ボタンを配置。
-   ボタンのパディングを強化し、実務ツールの入り口としての存在感を出す。
+   ・ボタンをさらに左（110px）へ。
+   ・リンク文字を右にオフセットし、下線を追加。
+   ・リンクのクリック範囲が右に伸びるバグを inline-block で修正。
    ============================================================ */
 .index-hero {
     max-width: 1024px;
@@ -427,16 +428,16 @@ main {
     margin-left: 0px;
 }
 
-/* アクションエリア：130pxライン（「わ」の真下付近）に固定 */
+/* アクションエリア：さらに左（110px）へ寄せ、谷間の空間を最適化 */
 .index-hero__action-area {
     position: absolute;
     top: 335px;
-    left: 130px;
+    left: 110px; /* 130pxからさらに左へ移動 */
     display: block; 
     z-index: 100;
 }
 
-/* メインボタン：横幅をしっかり持たせた大型モデル */
+/* メインボタン：大型モデルを維持 */
 .hero-cta-btn {
     display: inline-flex;
     flex-direction: row;
@@ -445,7 +446,6 @@ main {
     gap: 15px;
     background-color: #1a365d;
     color: #ffffff !important;
-    /* 左右パディングを大幅に強化して横長にする */
     padding-top: 18px;
     padding-right: 50px;
     padding-bottom: 18px;
@@ -459,7 +459,6 @@ main {
     font-weight: 900 !important;
     line-height: 1 !important;
     white-space: nowrap !important;
-    /* 物理的な最小幅を確保 */
     min-width: 340px;
     box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.25);
     transition: background-color 0.2s ease, transform 0.2s ease;
@@ -470,59 +469,52 @@ main {
     transform: translateY(-3px);
 }
 
-/* 下部リンク：ボタンの左端に揃える */
+/* 下部リンク：ボタンより右側へオフセット配置 */
 .hero-sub-guide {
-    margin-top: 28px;
+    margin-top: 25px;
     margin-right: 0px;
     margin-bottom: 0px;
-    margin-left: 15px;
+    margin-left: 80px; /* 指定通り、リンク文字を右へ移動 */
 }
 
+/* リンク本体：クリック範囲が右に突き抜けるのを inline-block で修正 */
 .hero-sub-link {
-    display: block;
-    text-decoration: none;
+    display: inline-block; /* blockから変更：文字がある場所だけがリンクになります */
+    text-decoration: underline; /* わかりやすく下線を追加 */
+    text-underline-offset: 4px;
 }
 
 .hero-sub-link__main {
-    font-size: 1rem;
+    font-size: 1.05rem; /* 少し大きくして視認性をアップ */
     color: #38BDF8;
     font-weight: 900;
     line-height: 1.5;
-    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.6);
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.8);
 }
 
-/* 1024px以下のレスポンシブ（追従処理） */
+/* PC以外のサイズ追従（比率計算） */
 @media (max-width: 1024px) {
     .index-hero { width: 100%; }
     .hero-base-img { width: 100%; }
     .index-hero__action-area {
-        left: 12.7%;
+        left: 10.7%; /* 110px / 1024px */
         top: 65%;
     }
 }
 
-/* スマホ：中央配置に切り替え */
+/* スマホ：完全中央配置 */
 @media (max-width: 768px) {
     .index-hero__action-area {
         position: static;
         margin-top: -30px;
-        padding-top: 0px;
-        padding-right: 20px;
-        padding-bottom: 40px;
-        padding-left: 20px;
+        padding: 0 20px 40px;
         background-color: #ffffff;
-        align-items: center;
         width: 100%;
         box-sizing: border-box;
+        text-align: center;
     }
-    .hero-cta-btn { 
-        width: 100%; 
-        max-width: 360px; 
-        margin-top: 0px;
-        margin-right: auto;
-        margin-bottom: 0px;
-        margin-left: auto;
-    }
+    .hero-cta-btn { width: 100%; max-width: 360px; }
+    .hero-sub-guide { margin-left: 0; display: block; }
 }
 
 
