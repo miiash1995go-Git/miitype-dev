@@ -400,15 +400,14 @@ main {
 
 
 /* ============================================================
-   ヒーローエリア：物理座標・130px左端固定オペレーション (v20.7.22.85)
+   ヒーローエリア：1024px絶対座標・大型ボタン復元モデル (v20.7.22.90)
    ------------------------------------------------------------
-   中央寄せロジックを完全排除。
-   画像内のテキスト「わからない」の開始垂直ライン（130px）に
-   ボタンの左端を強制的に吸着させる。
+   手帳やPCとの重なりを許容し、130pxラインに大型ボタンを配置。
+   ボタンのパディングを強化し、実務ツールの入り口としての存在感を出す。
    ============================================================ */
 .index-hero {
     max-width: 1024px;
-    width: 1024px; /* 幅を1024pxに物理固定し、座標のズレを封殺 */
+    width: 1024px; 
     height: auto;
     margin-top: 0px;
     margin-right: auto;
@@ -416,7 +415,6 @@ main {
     margin-left: auto;
     position: relative;
     background-color: transparent;
-    overflow: visible; /* 影などが切れないよう許可 */
 }
 
 .hero-base-img {
@@ -429,51 +427,55 @@ main {
     margin-left: 0px;
 }
 
-/* アクションエリア：全ての推測ロジックを捨て、px座標で統治 */
+/* アクションエリア：130pxライン（「わ」の真下付近）に固定 */
 .index-hero__action-area {
     position: absolute;
-    /* 垂直位置：画像内の4行目の文字「仕事へ。」の真下 */
     top: 335px;
-    /* 水平位置：テキスト開始線「130px」へ。手帳を避けつつ左へ最大接近 */
     left: 130px;
-    display: block; /* flexを排除し、指定したleftを絶対優先にする */
+    display: block; 
     z-index: 100;
 }
 
-/* メインボタン：レンダリング崩れを完全防御 */
+/* メインボタン：横幅をしっかり持たせた大型モデル */
 .hero-cta-btn {
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 15px;
     background-color: #1a365d;
     color: #ffffff !important;
-    padding-top: 15px;
-    padding-right: 35px;
-    padding-bottom: 15px;
-    padding-left: 30px;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-    border-bottom-left-radius: 50px;
+    /* 左右パディングを大幅に強化して横長にする */
+    padding-top: 18px;
+    padding-right: 50px;
+    padding-bottom: 18px;
+    padding-left: 40px;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 60px;
+    border-bottom-left-radius: 60px;
     text-decoration: none;
-    font-size: 1.1rem !important;
+    font-size: 1.15rem !important;
     font-weight: 900 !important;
     line-height: 1 !important;
     white-space: nowrap !important;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.2s ease;
+    /* 物理的な最小幅を確保 */
+    min-width: 340px;
+    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .hero-cta-btn:hover {
     background-color: #2563EB;
+    transform: translateY(-3px);
 }
 
-/* ボタン下リンク：130pxのラインを死守 */
+/* 下部リンク：ボタンの左端に揃える */
 .hero-sub-guide {
-    margin-top: 25px;
-    margin-left: 10px; /* ボタンのアイコン位置を避けた微調整 */
+    margin-top: 28px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 15px;
 }
 
 .hero-sub-link {
@@ -486,30 +488,41 @@ main {
     color: #38BDF8;
     font-weight: 900;
     line-height: 1.5;
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.6);
 }
 
-/* PC以外のサイズでも、画像の比率に合わせて要素を追従させる */
+/* 1024px以下のレスポンシブ（追従処理） */
 @media (max-width: 1024px) {
     .index-hero { width: 100%; }
     .hero-base-img { width: 100%; }
     .index-hero__action-area {
-        left: 12.7%; /* 130px / 1024px */
+        left: 12.7%;
         top: 65%;
     }
 }
 
-/* スマホ：1列に整理 */
+/* スマホ：中央配置に切り替え */
 @media (max-width: 768px) {
     .index-hero__action-area {
         position: static;
-        margin-top: -40px;
-        padding: 0 20px 40px;
+        margin-top: -30px;
+        padding-top: 0px;
+        padding-right: 20px;
+        padding-bottom: 40px;
+        padding-left: 20px;
         background-color: #ffffff;
+        align-items: center;
         width: 100%;
         box-sizing: border-box;
     }
-    .hero-cta-btn { width: 100%; max-width: 320px; margin: 0 auto; }
-    .hero-sub-guide { text-align: center; margin-left: 0; }
+    .hero-cta-btn { 
+        width: 100%; 
+        max-width: 360px; 
+        margin-top: 0px;
+        margin-right: auto;
+        margin-bottom: 0px;
+        margin-left: auto;
+    }
 }
 
 
