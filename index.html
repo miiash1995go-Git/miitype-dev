@@ -89,45 +89,23 @@
 
         <main class="portal-main">
             
-        <!-- ① ヒーローセクション：垂直整列 ＆ 谷間配置モデル (v20.7.22.30) -->
+        <!-- ① ヒーローセクション：パーツ配置限定モデル (v20.7.22.60) -->
             <section class="index-hero">
-                <!-- 土台：背景画像（1024px枠内で原寸比率を維持） -->
-                <img src="img/hero-base01.jpg" class="hero-base-img" alt="ぱそトレ！">
+                <!-- 土台：テキストプリセット済み画像（拡張子変更：.png） -->
+                <img src="img/hero-base01.png" class="hero-base-img" alt="ぱそトレ！">
 
-                <!-- オーバーレイ：サブタイトルの下にボタンを整列させる配置 -->
-                <div class="index-hero__content">
-                    <!-- 上部バッジ -->
-                    <div class="index-hero__badge">
-                        <span class="index-hero__badge-icon">👤</span>
-                        <span class="index-hero__badge-text">現役パソコン講師がつくる</span>
-                    </div>
-
-                    <!-- メインタイトル -->
-                    <h1 class="index-hero__title">
-                        「わからない」を、<br>
-                        <span class="accent">「できる」</span>に。
-                    </h1>
-
-                    <!-- サブタイトル：左へ寄せ、ボタンのガイド役にする -->
-                    <div class="index-hero__description">
-                        <p>パソコンの基本から、就職・転職、そして仕事へ。</p>
-                    </div>
-
-                    <!-- アクションエリア：サブタイトルの真下に配置 -->
-                    <div class="index-hero__action-area">
-                        <a href="play.html" class="hero-cta-btn">
-                            <span class="hero-cta-btn__icon">⌨</span>
-                            <span class="hero-cta-btn__text">タイピング練習を始める</span>
-                            <span class="hero-cta-btn__arrow">→</span>
+                <!-- 設置要素：ボタン ＆ 下部リンクのみ -->
+                <div class="index-hero__action-area">
+                    <a href="play.html" class="hero-cta-btn">
+                        <span class="hero-cta-btn__icon">⌨</span>
+                        <span class="hero-cta-btn__text">タイピング練習を始める</span>
+                        <span class="hero-cta-btn__arrow">→</span>
+                    </a>
+                    
+                    <div class="hero-sub-guide">
+                        <a href="hub-typing.html" class="hero-sub-link">
+                            <span class="hero-sub-link__main">タイピングの基本から学ぶ →</span>
                         </a>
-                        
-                        <!-- ボタン下リンク -->
-                        <div class="hero-sub-guide">
-                            <a href="hub-typing.html" class="hero-sub-link">
-                                <span class="hero-sub-link__mark">🔰</span>
-                                <span class="hero-sub-link__main">タイピングの基本から学ぶ →</span>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </section>
