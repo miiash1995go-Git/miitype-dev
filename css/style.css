@@ -400,10 +400,10 @@ main {
 
 
 /* ============================================================
-   ヒーローエリア：1024px絶対座標・谷間着地オペレーション (v20.7.22.70)
+   ヒーローエリア：左端200px・物理固定オペレーション (v20.7.22.80)
    ------------------------------------------------------------
-   %指定を廃止し、1024pxの画像幅に基づいた px 指定へ移行。
-   ボタンの重なりバグを修正し、手帳の右側（谷間）へ強制配置する。
+   ユーザー指定の「左端から200px」の位置にボタンの開始線を固定。
+   1024pxの画像キャンバスに対し、物理的なピクセル数で配置を統治する。
    ============================================================ */
 .index-hero {
     max-width: 1024px;
@@ -414,12 +414,12 @@ main {
     margin-left: auto;
     position: relative;
     background-color: transparent;
-    /* 隙間排除用の設定は画像のみに適用し、テキストへの干渉を断つ */
     overflow: hidden;
 }
 
 .hero-base-img {
-    width: 1024px; /* 幅を1024pxに完全固定 */
+    width: 100%; /* 親の1024pxに追従 */
+    max-width: 1024px;
     height: auto;
     display: block;
     margin-top: 0px;
@@ -428,13 +428,13 @@ main {
     margin-left: 0px;
 }
 
-/* アクションエリア：手帳(260px)のすぐ右、パソコン(550px)の手前に固定 */
+/* アクションエリア：200pxの位置から強制開始 */
 .index-hero__action-area {
     position: absolute;
-    /* 垂直位置：画像内の4行目の文字の下 */
+    /* 垂直位置：プリセットテキスト「仕事へ。」の真下 */
     top: 310px;
-    /* 水平位置：280px付近（手帳に被らず、パソコンにも被らない谷間の左端） */
-    left: 280px;
+    /* 水平位置：指定通り左端から200pxに固定 */
+    left: 200px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -442,7 +442,7 @@ main {
     z-index: 100;
 }
 
-/* メインボタン：重なりバッジ修正・レンダリング正常化 */
+/* メインボタン：文字重なりを完全排除した高密度記述 */
 .hero-cta-btn {
     display: flex;
     flex-direction: row;
@@ -460,29 +460,23 @@ main {
     border-bottom-right-radius: 50px;
     border-bottom-left-radius: 50px;
     text-decoration: none;
-    /* 文字の重なりを解消するための基本設定 */
-    font-size: 1.05rem !important;
+    font-size: 1.1rem !important;
     font-weight: 900 !important;
     line-height: 1.2 !important;
     letter-spacing: 0.05em !important;
     white-space: nowrap !important;
-    box-shadow: 0px 8px 25px rgba(26, 54, 93, 0.3);
-    transition: background-color 0.2s ease;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .hero-cta-btn:hover {
     background-color: #2563EB;
+    transform: translateY(-2px);
 }
 
-/* ボタン内アイコンの正常化 */
-.hero-cta-btn__icon {
-    font-size: 1.2rem;
-    line-height: 1;
-}
-
-/* 下部リンク：ボタンの左端に揃えて配置 */
+/* ボタン下リンク：200pxのラインで垂直整列 */
 .hero-sub-guide {
-    margin-top: 25px;
+    margin-top: 24px;
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
@@ -495,17 +489,16 @@ main {
 }
 
 .hero-sub-link__main {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: #38BDF8;
     font-weight: 900;
     line-height: 1.5;
 }
 
-/* レスポンシブ：画面が狭い場合でも画像が縮小されるのに合わせて要素も追従 */
+/* レスポンシブ：画面縮小時も200px相当の比率を維持 */
 @media (max-width: 1024px) {
     .index-hero__action-area {
-        /* 指数計算により画像縮小時も谷間に残るよう調整 */
-        left: 27%;
+        left: 20%; /* 200px / 1024px = 約20% */
         top: 60%;
     }
 }
@@ -513,17 +506,16 @@ main {
 @media (max-width: 768px) {
     .index-hero__action-area {
         position: static;
-        margin-top: -30px;
+        margin-top: -20px;
         padding-top: 0px;
         padding-right: 20px;
-        padding-bottom: 30px;
+        padding-bottom: 40px;
         padding-left: 20px;
         background-color: #ffffff;
         align-items: center;
         width: 100%;
         box-sizing: border-box;
     }
-    .hero-cta-btn { width: 100%; max-width: 320px; }
 }
 
 
