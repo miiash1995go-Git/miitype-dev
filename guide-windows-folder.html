@@ -159,23 +159,32 @@
                     </div>
 
                     <h3>自分に合わせたフォルダ構成の例</h3>
-                    <p>まずは大きな分類から作り、その中に少しずつ細かい箱（子フォルダ）を作っていきましょう。</p>
-                    <div class="info-note-box">
-                        <strong class="note-title">STEP1：日常生活を含めた大分類</strong>
-                        <ul>
-                            <li>【01_仕事】</li>
-                            <li>【02_勉強】</li>
-                            <li>【03_写真】</li>
-                            <li>【04_家計簿】</li>
-                        </ul>
-                    </div>
-                    <div class="info-note-box">
-                        <strong class="note-title">STEP2：仕事フォルダの中身をさらに分ける</strong>
-                        <ul>
-                            <li>【A社様】</li>
-                            <li>【B社様】</li>
-                            <li>【研修資料】</li>
-                        </ul>
+                    <p>まずは大きな分類から作り、その中に少しずつ細かい箱（子フォルダ）を作っていきましょう。たとえば「01_仕事」フォルダをダブルクリックして開くと、その中に会社別のフォルダが入っている、という状態を目指します。</p>
+                    
+                    <div class="folder-map-container">
+                        <!-- 左側：大分類（親） -->
+                        <div class="folder-map-box">
+                            <span class="folder-map-title">STEP1：大きな分類から作る</span>
+                            <ul class="folder-map-list">
+                                <li class="folder-map-item folder-map-item--active">📁 【01_仕事】 (ここを開くと...)</li>
+                                <li class="folder-map-item">📁 【02_勉強】</li>
+                                <li class="folder-map-item">📁 【03_写真】</li>
+                                <li class="folder-map-item">📁 【04_家計簿】</li>
+                            </ul>
+                        </div>
+
+                        <!-- 中央：コネクタ -->
+                        <div class="folder-map-connector"></div>
+
+                        <!-- 右側：中身（子） -->
+                        <div class="folder-map-box" style="border-left-width: 6px; border-left-color: #3498db;">
+                            <span class="folder-map-title">STEP2：仕事フォルダの中身</span>
+                            <ul class="folder-map-list">
+                                <li class="folder-map-item">└ 📁 【A社様】</li>
+                                <li class="folder-map-item">└ 📁 【B社様】</li>
+                                <li class="folder-map-item">└ 📁 【研修資料】</li>
+                            </ul>
+                        </div>
                     </div>
 
                     <h2>ファイル名の付け方</h2>
