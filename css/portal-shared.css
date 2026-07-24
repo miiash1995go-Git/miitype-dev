@@ -655,6 +655,78 @@ body.portal-page article.static-page .content-body .article-image img {
 
 body.portal-page article.static-page .content-body .article-image img:hover {
     transform: scale(1.03);
+    /* ホバー時に青い枠線を出すことでクリック可能であることを示唆 */
+    border-top-color: #3498db;
+    border-right-color: #3498db;
+    border-bottom-color: #3498db;
+    border-left-color: #3498db;
+}
+
+/* ============================================================
+   画像拡大（モーダル）システム (v20.7.24.Zoom)
+   ------------------------------------------------------------
+   略記禁止・物理配置統治
+   ============================================================ */
+.image-zoom-overlay {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: none; /* JSで制御 */
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    cursor: zoom-out;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 0.3s;
+}
+
+.image-zoom-overlay.is-active {
+    display: flex;
+    opacity: 1;
+}
+
+.image-zoom-content {
+    max-width: 95%;
+    max-height: 90%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #ffffff;
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
+    border-left-color: #ffffff;
+    object-fit: contain;
+    background-color: #ffffff;
+}
+
+/* スマホ時は画面横幅を最大化 */
+@media (max-width: 768px) {
+    .image-zoom-content {
+        max-width: 100%;
+        max-height: 80%;
+        border-top-width: 2px;
+        border-right-width: 2px;
+        border-bottom-width: 2px;
+        border-left-width: 2px;
+    }
 }
 
 /* スケーリングModifier：詳細度を一致させ上書きを実現 */

@@ -697,6 +697,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         breadContainer.innerHTML = breadHTML;
     }
+
+    // --- 画像拡大（モーダル）統治ロジック ---
+    const overlay = document.createElement('div');
+    overlay.className = 'image-zoom-overlay';
+    overlay.innerHTML = '<img class="image-zoom-content" src="" alt="拡大画像">';
+    document.body.appendChild(overlay);
+
+    const zoomImg = overlay.querySelector('.image-zoom-content');
+
+    // 記事内の全図解画像をクリック対象に設定
+    document.querySelectorAll('.article-image img').forEach(img => {
+        img.addEventListener('click', (e) => {
+            zoomImg.src = e.target.src;
+            overlay.classList.add('is-active');
+            document.body.style.overflow = 'hidden'; // 背面のスクロールを一時停止
+        });
+    });
+
+    // どこをタップ・クリックしても閉じる
+    overlay.addEventListener('click', () => {
+        overlay.classList.remove('is-active');
+        document.body.style.overflow = ''; // スクロール再開
+    });
 });
 
 /* --- ページトップへ戻るボタンの制御 --- */
