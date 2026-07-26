@@ -94,7 +94,8 @@
         <main>
             <section id="start-screen" class="screen">
                 <div class="card">
-                    <h1 style="font-size: 1.4rem; margin-bottom: 8px;">練習カテゴリを選択</h1>
+                    <h1 style="font-size: 1.3rem; margin-top: 0px; margin-bottom: 15px;">練習カテゴリを選択</h1>
+                    
                     <div id="category-selector" class="btn-group-container">
                         <div class="category-group">
                             <span class="group-label">基礎</span>
@@ -118,14 +119,13 @@
                             <button class="btn-category" data-cat="career">就職・転職</button>
                         </div>
                         <div class="category-group special">
-                            <span class="group-label">実力</span>
-                            <!-- 5分間テスト：初期状態は白 -->
+                            <span class="group-label">実力試し</span>
                             <button class="btn-category btn-test" data-cat="test_5min">⏱ 5分間<br>タイピングテスト</button>
-                            <!-- 総合力：ボタン名を変更しサイズを同期 -->
                             <button class="btn-category btn-total" data-cat="total_test">🔥 ぱそトレ！<br>総合力</button>
                         </div>
                     </div>
-                </div>
+
+                    <!-- 重要：ここがカードの内側に含まれている必要があります -->
                     <div class="controls-master-row">
                         <div id="best-score-display" class="compact-best">
                             <span class="best-label">自己ベスト</span>
@@ -137,7 +137,7 @@
                             <button id="color-toggle" class="btn-toggle">ガイド色: ON</button>
                         </div>
                     </div>
-                </div>
+                </div> <!-- .card 終了 -->
             </section>
 
             <section id="game-screen" class="screen hidden">

@@ -47,15 +47,16 @@ body.focus-mode #app {
 
 
 /* ============================================================
-   カテゴリ選択カード：4カラム完全統治モデル (v20.7.26.Ultimate)
+   カテゴリ選択カード：絶対収容 ＆ 1画面対応モデル (v20.7.26.Final)
    ------------------------------------------------------------
-   消失したグリッド構造を再構築し、全てのボタン高さを同期。
+   すべての要素を白いカード内に閉じ込め、ノートPCでも収まるように
+   垂直方向の余白を極限まで最適化する。
    ============================================================ */
 .card {
-    background-color: #ffffff;
-    padding-top: 25px !important;
+    background-color: #ffffff !important;
+    padding-top: 20px !important;
     padding-right: 30px !important;
-    padding-bottom: 30px !important;
+    padding-bottom: 25px !important;
     padding-left: 30px !important;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
@@ -64,17 +65,18 @@ body.focus-mode #app {
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
     text-align: center;
     width: 920px;
+    /* 修正：高さをautoに強制し、overflowを隠さず包む */
     height: auto !important;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
+    min-height: min-content !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
     margin-top: 0px;
     margin-right: auto;
     margin-bottom: 0px;
     margin-left: auto;
 }
 
-/* 4つの列を横に並べるコンテナ */
 .btn-group-container {
     display: flex !important;
     flex-direction: row !important;
@@ -82,115 +84,77 @@ body.focus-mode #app {
     align-items: stretch !important;
     gap: 12px !important;
     width: 100% !important;
-    margin-top: 15px !important;
-    margin-bottom: 10px !important;
-    box-sizing: border-box !important;
+    margin-top: 5px !important;
+    margin-bottom: 0px !important;
 }
 
-/* 各列（基礎・Office・実務・実力試し）の共通設定 */
 .category-group {
-    flex-grow: 1 !important;
-    flex-shrink: 1 !important;
-    flex-basis: 0% !important;
+    flex: 1 !important;
     display: flex !important;
     flex-direction: column !important;
     gap: 6px !important;
-    padding-top: 12px !important;
+    padding-top: 10px !important;
     padding-right: 10px !important;
-    padding-bottom: 12px !important;
+    padding-bottom: 10px !important;
     padding-left: 10px !important;
     background-color: #f8f9fa !important;
-    border-top-left-radius: 15px !important;
-    border-top-right-radius: 15px !important;
-    border-bottom-right-radius: 15px !important;
-    border-bottom-left-radius: 15px !important;
-    border-top-width: 1px !important;
-    border-right-width: 1px !important;
-    border-bottom-width: 1px !important;
-    border-left-width: 1px !important;
-    border-top-style: solid !important;
-    border-right-style: solid !important;
-    border-bottom-style: solid !important;
-    border-left-style: solid !important;
-    border-top-color: #eeeeee !important;
-    border-right-color: #eeeeee !important;
-    border-bottom-color: #eeeeee !important;
-    border-left-color: #eeeeee !important;
-    box-sizing: border-box !important;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #eeeeee;
+    /* 他3面も同様に記述（省略せず） */
+    border-right-width: 1px; border-right-style: solid; border-right-color: #eeeeee;
+    border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #eeeeee;
+    border-left-width: 1px; border-left-style: solid; border-left-color: #eeeeee;
 }
 
-.group-label {
-    font-size: 0.8rem;
-    color: #7f8c8d;
-    font-weight: 800;
-    margin-bottom: 6px;
-    display: block;
-}
-
-/* 通常ボタン（高さ42px × 4枚 ＝ 隙間込み合計186px） */
+/* ボタン高さを数ピクセル詰め、全体をコンパクト化 */
 .btn-category {
     width: 100% !important;
-    height: 42px !important;
+    height: 40px !important; /* 42pxから40pxへ */
     background-color: #ffffff;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-style: solid;
-    border-color: #dddddd;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid #dddddd;
     font-weight: 800;
     font-size: 0.85rem;
-    color: var(--primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
+}
+
+.btn-category.btn-test,
+.btn-category.btn-total {
+    height: 86px !important; /* 精密計算：40*4 + 6*3 - 6 = 172. 172/2 = 86px */
+}
+
+/* 下部コントロール行：カード内に強制結合 */
+.controls-master-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    margin-top: 20px !important; /* 上との隙間を20pxに固定 */
+    padding-top: 0px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+    padding-left: 10px;
     box-sizing: border-box !important;
 }
 
-/* 特殊ボタン（高さ90px × 2枚 ＝ 隙間込み合計186px） */
-.btn-category.btn-test,
-.btn-category.btn-total {
-    height: 90px !important;
-    font-size: 0.95rem !important;
-    line-height: 1.4 !important;
-}
-
-/* ホバー反応 */
-.btn-category:hover:not(.active) {
-    border-color: var(--accent);
-    background-color: #f0f7ff;
-}
-
-/* アクティブ（ON）状態の各色統治 */
-.btn-category.active { background-color: var(--accent) !important; color: #ffffff !important; border-color: var(--accent) !important; }
-.btn-category.btn-test.active { background-image: linear-gradient(135deg, #1e3a8a 0%, #1a365d 100%) !important; color: #ffffff !important; border: none !important; }
-.btn-category.btn-total.active { background-image: linear-gradient(135deg, #f39c12 0%, #e67e22 100%) !important; color: #ffffff !important; border: none !important; }
-
-/* 下部のコントロール行（開始ボタン等） */
-.controls-master-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    margin-top: 25px !important;
-    padding-top: 0px;
-    padding-right: 15px;
-    padding-bottom: 0px;
-    padding-left: 15px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
+/* 各パーツのサイズ統治 */
 .compact-best { min-width: 160px; text-align: left; }
 .compact-settings { display: flex; gap: 8px; min-width: 220px; justify-content: flex-end; }
-.btn-main.compact-start { padding-top: 12px !important; padding-bottom: 12px !important; padding-right: 45px !important; padding-left: 45px !important; font-size: 1.15rem !important; margin: 0 !important; }
+.btn-main.compact-start { 
+    padding-top: 10px !important; 
+    padding-bottom: 10px !important; 
+    padding-right: 40px !important; 
+    padding-left: 40px !important; 
+    font-size: 1.1rem !important; 
+}
 
 /* --- プレイ中のテスト情報オーバーレイ --- */
 .test-info-overlay {
