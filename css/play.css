@@ -904,19 +904,20 @@ body.game-body .summary-btn:hover {
 }
 /* --- 5分間テスト・総合力ボタン 最終統治 (v20.7.26.Fixed) --- */
 
-/* 実力試しエリア：他のカテゴリグループと同じ背景・枠線を復元 */
+/* 実力試しエリア：他のカテゴリグループと物理高さを完全同期 (v20.7.26.PerfectFit) */
 .category-group.special {
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 0%;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    /* 他のグループと同じ 6px の隙間に統一 */
+    gap: 6px;
     padding-top: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
-    background-color: #f8f9fa; /* 薄いグレーの背景を復元 */
+    background-color: #f8f9fa;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
@@ -935,17 +936,17 @@ body.game-body .summary-btn:hover {
     border-left-color: #eeeeee;
 }
 
-/* 5分間テスト & 総合力ボタン 共通サイズ定義 */
+/* 5分間テスト & 総合力ボタン：標準ボタン4つ分の高さ(186px)を2枚で埋める計算 */
 .btn-category.btn-test,
 .btn-category.btn-total {
-    height: 72px !important; /* 両方のボタンを特大サイズで統一 */
-    background-color: #ffffff; /* 初期状態は白 */
+    height: 90px !important; /* 精密計算：(42*4 + 6*3 - 6) / 2 = 90px */
+    background-color: #ffffff;
     border-top-color: #dddddd;
     border-right-color: #dddddd;
     border-bottom-color: #dddddd;
     border-left-color: #dddddd;
     color: var(--primary);
-    font-size: 0.95rem !important;
+    font-size: 1rem !important; /* 少し大きくして視認性を向上 */
 }
 
 /* ホバー時の反応 */
