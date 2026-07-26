@@ -65,7 +65,6 @@ body.focus-mode #app {
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
     text-align: center;
     width: 920px;
-    /* 修正：高さをautoに強制し、overflowを隠さず包む */
     height: auto !important;
     min-height: min-content !important;
     display: flex !important;
@@ -75,6 +74,10 @@ body.focus-mode #app {
     margin-right: auto;
     margin-bottom: 0px;
     margin-left: auto;
+    /* 修正：クリックを確実に通すための設定 */
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
 }
 
 .btn-group-container {
@@ -86,6 +89,7 @@ body.focus-mode #app {
     width: 100% !important;
     margin-top: 5px !important;
     margin-bottom: 0px !important;
+    position: relative !important;
 }
 
 .category-group {
@@ -105,16 +109,18 @@ body.focus-mode #app {
     border-top-width: 1px;
     border-top-style: solid;
     border-top-color: #eeeeee;
-    /* 他3面も同様に記述（省略せず） */
     border-right-width: 1px; border-right-style: solid; border-right-color: #eeeeee;
     border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #eeeeee;
     border-left-width: 1px; border-left-style: solid; border-left-color: #eeeeee;
+    /* 修正：子要素（ボタン）のクリックを邪魔しない */
+    position: relative !important;
+    z-index: 5 !important;
 }
 
-/* ボタン高さを数ピクセル詰め、全体をコンパクト化 */
+/* ボタン：最前面へ引き出す */
 .btn-category {
     width: 100% !important;
-    height: 40px !important; /* 42pxから40pxへ */
+    height: 40px !important;
     background-color: #ffffff;
     border-radius: 8px;
     border: 1px solid #dddddd;
@@ -123,26 +129,42 @@ body.focus-mode #app {
     display: flex;
     align-items: center;
     justify-content: center;
+    /* 修正：クリックを強制的に有効化 */
+    position: relative !important;
+    z-index: 20 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    transition: all 0.2s ease;
 }
 
 .btn-category.btn-test,
 .btn-category.btn-total {
-    height: 86px !important; /* 精密計算：40*4 + 6*3 - 6 = 172. 172/2 = 86px */
+    height: 86px !important;
 }
 
-/* 下部コントロール行：カード内に強制結合 */
+/* 下部コントロール行 */
 .controls-master-row {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-between !important;
     width: 100% !important;
-    margin-top: 20px !important; /* 上との隙間を20pxに固定 */
+    margin-top: 20px !important;
     padding-top: 0px;
     padding-right: 10px;
     padding-bottom: 0px;
     padding-left: 10px;
     box-sizing: border-box !important;
+    position: relative !important;
+    z-index: 30 !important; /* 練習開始ボタンをさらに前面へ */
+}
+
+/* 練習開始ボタンの強化 */
+#start-btn {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    position: relative !important;
+    z-index: 50 !important;
 }
 
 /* 各パーツのサイズ統治 */
