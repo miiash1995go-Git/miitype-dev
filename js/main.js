@@ -734,13 +734,13 @@ if (typeof gtag === 'function') {
 const app = new TypingApp();
 
 /* ============================================================
-   共通機能：ナビゲーション統治システム（究極復旧版 v20.7.26.Safe）
+   共通機能：ナビゲーション統治システム (v20.7.26.Final_Sync)
    ============================================================ */
 document.addEventListener('DOMContentLoaded', function() {
-    // --- 1. 現在のURLからファイル名を取得 ---
-    var path = window.location.pathname;
-    var page = path.split("/").pop() || "index.html";
-    var lowerPage = page.toLowerCase();
+    // --- 1. 現在のURLからファイル名を取得（より堅牢な取得方式） ---
+    var currentPath = window.location.pathname.split("/").pop();
+    if (!currentPath || currentPath === "") { currentPath = "index.html"; }
+    var lowerPage = currentPath.toLowerCase();
 
     // --- 2. カテゴリ判定用マッピング ---
     var mapping = {
@@ -773,7 +773,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 break;
             }
         }
-        if (currentCat) break;
+        if (currentCat) { break; }
     }
 
     // --- 4. ヘッダーボタンの点灯（Active化） ---
@@ -797,10 +797,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentCat && names[currentCat]) {
             html += '<span class="breadcrumb-separator">＞</span>';
             if (lowerPage.indexOf('hub-') === 0) {
-                // ハブページの場合
+                // ハブページの場合：リンクなしテキスト
                 html += '<span>' + names[currentCat] + '</span>';
             } else {
-                // 記事ページの場合
+                // 記事ページの場合：ハブへのリンク
                 html += '<a href="hub-' + currentCat + '.html">' + names[currentCat] + '</a>';
                 html += '<span class="breadcrumb-separator">＞</span>';
             }
@@ -827,12 +827,10 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 
-    // --- 7. コラムフィルタ ---
+    // --- 7. コラムフィルタ（クラッシュ原因のループを削除・正常化） ---
     var tags = document.querySelectorAll('.hub-tag');
     var arts = document.querySelectorAll('.hub-article-item[data-category]');
-    if (tags.length > 0) {
-        for (var t = 0; k < tags.length; t = t + 1) { /* 修正：ループ用変数をtに */ }
-        // 互換性重視のため、ここは実績のあるforEachを使用
+    if (tags.length > 0 && arts.length > 0) {
         tags.forEach(function(btn) {
             btn.onclick = function() {
                 tags.forEach(function(b) { b.classList.remove('active'); });
@@ -848,7 +846,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- 8. 画像拡大 ---
     var zOver = document.createElement('div');
     zOver.className = 'image-zoom-overlay';
-    zOver.innerHTML = '<img class="image-zoom-content" src="" alt="">';
+    zOver.innerHTML = '<img class="image-zoom-content" src="" alt="拡大画像">';
     document.body.appendChild(zOver);
     var zImg = zOver.querySelector('.image-zoom-content');
     document.querySelectorAll('.article-image img').forEach(function(img) {
