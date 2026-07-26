@@ -11,7 +11,8 @@
 .hub-hero {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    /* 改良：文章量に左右されないよう「上端揃え」に統一 (v20.7.26.Align) */
+    align-items: flex-start;
     justify-content: flex-start;
     gap: 40px;
     padding-top: 10px;
@@ -25,6 +26,13 @@
     margin-right: 0px;
     margin-bottom: 50px;
     margin-left: 0px;
+}
+
+/* ハブアイコンの物理サイズを全ページ強制統一 */
+.hub-hero__icon .cat-icon-img {
+    height: 85px !important;
+    width: auto !important;
+    margin-top: 5px; /* タイトルの文字位置と視覚的に高さを合わせる微調整 */
 }
 
 .hub-hero__icon {
