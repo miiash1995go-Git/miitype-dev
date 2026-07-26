@@ -823,21 +823,62 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 4. 自動パンくず生成（既存機能の維持） ---
+    // --- 4. 強化型・動的パンくず生成システム (v20.7.26.Breadcrumb) ---
     const breadContainer = document.getElementById('dynamic-breadcrumb');
-    if (breadContainer && currentPath !== 'index.html') {
+    
+    if (breadContainer && currentPath !== 'index.html' && currentPath !== '') {
+        // カテゴリ名と表示文字列のマスターマッピング
         const categoryNames = {
-            'windows': 'Windows基礎', 'word': 'Word基礎', 'excel': 'Excel基礎',
-            'ai': '生成AI活用', 'typing': 'タイピング練習', 'career': '就職・転職', 'column': '現場コラム'
+            'windows': 'Windows基礎',
+            'word':    'Word基礎',
+            'excel':   'Excel基礎',
+            'ai':      '生成AI活用',
+            'typing':  'タイピング練習',
+            'career':  '就職・転職',
+            'column':  '現場コラム'
         };
-        let breadHTML = `<a href="index.html">ホーム</a><span class="breadcrumb-separator">＞</span>`;
-        if (matchedCat && categoryNames[matchedCat]) {
-            if (currentPath.startsWith('hub-')) {
-                breadHTML += `<span>${categoryNames[matchedCat]}</span>`;
-            } else {
-                breadHTML += `<a href="hub-${matchedCat}.html">${categoryNames[matchedCat]}</a><span class="breadcrumb-separator">＞</span>`;
+
+        // URL（ファイル名）からキーワードを抽出する判定マッピング
+        const folderMapping = {
+            'windows': ['windows', 'pc-selection', 'folder'],
+            'word':    ['word'],
+            'excel':   ['excel'],
+            'ai':      ['ai', 'chatgpt', 'tools'],
+            'typing':  ['typing', 'play', 'basics'],
+            'career':  ['career', 'interview', 'cv'],
+            'column':  ['column']
+        };
+
+        let currentCatKey = '';
+        
+        // 現在のファイル名からカテゴリキーを特定
+        for (const [key, keywords] of Object.entries(folderMapping)) {
+            if (keywords.some(keyword => currentPath.includes(keyword))) {
+                currentCatKey = key;
+                break;
             }
         }
+
+        // HTMLの組み立て
+        let breadHTML = '<a href="index.html">ホーム</a>';
+        
+        if (currentCatKey && categoryNames[currentCatKey]) {
+            breadHTML += '<span class="breadcrumb-separator">＞</span>';
+            
+            // 現在のページがハブページ自体かどうかを判定
+            const isHubPage = currentPath.startsWith('hub-');
+            
+            if (isHubPage) {
+                // ハブページならテキストのみ
+                breadHTML += '<span>' + categoryNames[currentCatKey] + '</span>';
+            } else {
+                // 下層記事ならハブへのリンクを生成
+                breadHTML += '<a href="hub-' + currentCatKey + '.html">' + categoryNames[currentCatKey] + '</a>';
+                // 記事タイトルはUX設計（v20.7.22仕様）に基づき非表示、セパレータのみ置く
+                breadHTML += '<span class="breadcrumb-separator">＞</span>';
+            }
+        }
+
         breadContainer.innerHTML = breadHTML;
     }
 
