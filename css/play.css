@@ -258,6 +258,14 @@ body.focus-mode #app {
     cursor: pointer !important;
     z-index: 50 !important;
     white-space: nowrap !important;
+    transition-property: transform, box-shadow !important;
+    transition-duration: 0.1s !important;
+}
+
+/* 練習開始ボタン：クリック時の物理沈み込み演出 */
+#start-btn:active {
+    transform: translate(-50%, calc(-50% + 2px)) !important;
+    box-shadow: 0px 2px 0px #1a252f !important;
 }
 
 .compact-settings { flex: 0 0 240px !important; display: flex; gap: 8px; justify-content: flex-end; }
