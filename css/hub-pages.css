@@ -506,7 +506,7 @@
         gap: 10px;
     }
 }
-/* --- 9. タイピングHub専用：メリットリスト (v20.1.8) --- */
+
 /* --- 9. 全ハブ共通：メリット・特徴セクション (v20.1.40 視認性強化版) --- */
 .hub-benefit-section {
     margin-top: 20px;
@@ -634,4 +634,36 @@
 .hub-roadmap__item--reskill .hub-roadmap__btn {
     color: #16A34A !important;
     font-weight: 900 !important;
+}
+/* --- 12. カテゴリ別 Nextステップ・グラデーション (v20.7.26.NextColor) --- */
+
+/* 生成AI用：左からAI色(#14B8A6)の淡色 → 右へ白く抜ける */
+.hub-roadmap__item--next-ai {
+    background-image: linear-gradient(90deg, #ECFEFF 0%, #FFFFFF 100%) !important;
+    border-left-width: 8px !important;
+    border-left-style: solid !important;
+    border-left-color: #14B8A6 !important;
+    border-top-color: #d1f7f4 !important;
+    border-right-color: #f1f3f5 !important;
+    border-bottom-color: #d1f7f4 !important;
+}
+.hub-roadmap__item--next-ai .hub-roadmap__num { color: #14B8A6 !important; font-weight: 900 !important; }
+
+/* Word用：左からWord色(#1D4ED8)の淡色 → 右へ白く抜ける */
+.hub-roadmap__item--next-word {
+    background-image: linear-gradient(90deg, #EEF2FF 0%, #FFFFFF 100%) !important;
+    border-left-width: 8px !important;
+    border-left-style: solid !important;
+    border-left-color: #1D4ED8 !important;
+    border-top-color: #d1e3f8 !important;
+    border-right-color: #f1f3f5 !important;
+    border-bottom-color: #d1e3f8 !important;
+}
+.hub-roadmap__item--next-word .hub-roadmap__num { color: #1D4ED8 !important; font-weight: 900 !important; }
+
+/* ホバー時の共通挙動：浮遊感の演出 */
+.hub-roadmap__item--next-ai:hover,
+.hub-roadmap__item--next-word:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.05) !important;
 }
