@@ -50,124 +50,39 @@ body.focus-mode #app {
 
 .card {
     background: white;
-    padding: 15px 30px !important;
-    border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    /* 上下 25px、左右 30px の余白に広げ、下部の溢れを防止 (v20.7.26.Fix) */
+    padding-top: 25px !important;
+    padding-right: 30px !important;
+    padding-bottom: 30px !important;
+    padding-left: 30px !important;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
     text-align: center;
     width: 920px;
-}
-
-.btn-group-container {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    width: 100%;
-    margin-bottom: 10px !important;
-}
-
-.category-group {
-    flex: 1;
+    /* 高さを固定せず、内容に合わせて自動で広がるように統治 */
+    height: auto !important;
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding: 10px;
-    background: #f8f9fa;
-    border-radius: 12px;
-    border: 1px solid #eee;
-}
-
-.group-label {
-    font-size: 0.8rem;
-    color: #7f8c8d;
-    font-weight: 800;
-    margin-bottom: 4px;
-    display: block;
-}
-
-.btn-category {
-    width: 100%;
-    /* 改良：全ての列のボタン高さを完全に統一するためパディングを固定 (v20.7.26.Size) */
-    padding-top: 10px;
-    padding-right: 5px;
-    padding-bottom: 10px;
-    padding-left: 5px;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-top-color: #dddddd;
-    border-right-color: #dddddd;
-    border-bottom-color: #dddddd;
-    border-left-color: #dddddd;
-    background-color: #ffffff;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    cursor: pointer;
-    font-weight: 800;
-    font-size: 0.85rem;
-    color: var(--primary);
-    /* 行の高さを固定して文字によるブレを排除 */
-    line-height: 1.2;
-    transition-property: all;
-    transition-duration: 0.2s;
-    transition-timing-function: ease;
-    /* ボタンの最小高さを明示的に確保 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 42px;
     box-sizing: border-box;
 }
 
-.btn-category:hover:not(.active) {
-    border-color: var(--accent);
-    background: #f0f7ff;
-    color: var(--accent);
-    transform: translateY(-1px);
-}
-
-.btn-category.active {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
-}
-
-/* 総合判定ボタン専用（特別なオレンジ） */
-.btn-total {
-    height: 100%;
-    font-size: 1.1rem !important;
-    background: white;
-    color: var(--primary);
-    border: 1px solid #ddd !important;
-    transition: all 0.2s;
-}
-
-.btn-total:hover:not(.active) {
-    background: #fff5e6 !important;
-    border-color: #f39c12 !important;
-    color: #f39c12 !important;
-}
-
-.btn-total.active {
-    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%) !important;
-    color: white !important;
-    border: none !important;
-}
-
-/* コントロール行（ベストスコア・開始ボタン・設定） */
+/* コントロール行：カード内での位置を安定させる */
 .controls-master-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 15px;
-    margin-top: 12px;
-    padding: 0 15px;
+    /* カテゴリ選択エリアとの間に十分な距離（25px）を確保 */
+    margin-top: 25px !important;
+    padding-top: 0px;
+    padding-right: 15px;
+    padding-bottom: 0px;
+    padding-left: 15px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .compact-best {
