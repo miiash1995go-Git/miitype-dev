@@ -734,80 +734,100 @@ if (typeof gtag === 'function') {
 const app = new TypingApp();
 
 /* ============================================================
-   共通機能：ナビゲーション自動統治 ＆ スクロール制御 (v20.7.21)
+   共通機能：ナビゲーション自動統治 ＆ スクロール制御 (v20.7.26.Complete)
    ============================================================ */
-document.addEventListener('DOMContentLoaded', () => {
-    const currentPath = window.location.pathname.split("/").pop() || "index.html";
-    
-    // PC(.nav-item) と スマホ(.mobile-nav-item) 両方のボタンを統治対象にする
-    const navItems = document.querySelectorAll('.nav-item, .mobile-nav-item');
-    navItems.forEach(item => item.classList.remove('active'));
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. 現在のファイル名を取得
+    var currentPath = window.location.pathname.split("/").pop() || "index.html";
+    var lowerPath = currentPath.toLowerCase();
 
-    let matchedCat = ""; 
-    let matched = false;
+    // 2. カテゴリ判定マッピング（キーワード設定）
+    var folderMapping = {
+        'windows': ['windows', 'pc-selection', 'folder'],
+        'word':    ['word'],
+        'excel':   ['excel'],
+        'ai':      ['ai', 'chatgpt', 'tools'],
+        'typing':  ['typing', 'play', 'basics'],
+        'career':  ['career', 'interview', 'cv'],
+        'column':  ['column']
+    };
 
-    // 1. 完全一致判定
-    navItems.forEach(link => {
-        if (matched) return;
-        const href = link.getAttribute('href');
-        if (href === currentPath) {
-            matched = true;
-            matchedCat = href.replace('hub-', '').replace('.html', '');
-        }
-    });
+    var categoryNames = {
+        'windows': 'Windows基礎',
+        'word':    'Word基礎',
+        'excel':   'Excel基礎',
+        'ai':      '生成AI活用',
+        'typing':  'タイピング練習',
+        'career':  '就職・転職',
+        'column':  '現場コラム'
+    };
 
-    // 2. 階層判定（記事ページ等のキーワードマッチ）
-    if (!matched && currentPath !== 'index.html') {
-        const mapping = {
-            'windows': ['windows', 'pc-selection'],
-            'word':    ['word'],
-            'excel':   ['excel'],
-            'ai':      ['ai', 'chatgpt', 'tools'],
-            'typing':  ['typing', 'play', 'basics'],
-            'career':  ['career', 'interview'],
-            'column':  ['column']
-        };
-        for (const [cat, keywords] of Object.entries(mapping)) {
-            if (keywords.some(key => currentPath.includes(key))) {
-                matched = true;
-                matchedCat = cat;
+    // 3. 現在のカテゴリキーを特定（エラーの出ない安全な数値ループ）
+    var currentCatKey = '';
+    var mappingKeys = Object.keys(folderMapping);
+    for (var i = 0; i < mappingKeys.length; i = i + 1) {
+        var key = mappingKeys[i];
+        var keywords = folderMapping[key];
+        for (var j = 0; j < keywords.length; j = j + 1) {
+            if (lowerPath.indexOf(keywords[j]) !== -1) {
+                currentCatKey = key;
                 break;
             }
         }
+        if (currentCatKey) { break; }
     }
 
-    // 見つかったカテゴリに基づいて、PCとスマホ両方のボタンを「青く（active）」する
-    if (matched && matchedCat !== 'index') {
-        document.querySelectorAll(`[href*="${matchedCat}"]`).forEach(el => {
-            el.classList.add('active');
-        });
-    } else if (currentPath === 'index.html') {
-        document.querySelectorAll('[href="index.html"]').forEach(el => el.classList.add('active'));
+    // 4. ヘッダーナビの現在地を点灯（色を変える）
+    var allNavItems = document.querySelectorAll('.nav-item, .mobile-nav-item');
+    for (var k = 0; k < allNavItems.length; k = k + 1) {
+        var item = allNavItems[k];
+        var href = item.getAttribute('href') || '';
+        item.classList.remove('active');
+        
+        if (currentCatKey && href.indexOf(currentCatKey) !== -1) {
+            item.classList.add('active');
+        } else if (lowerPath === 'index.html' && href === 'index.html') {
+            item.classList.add('active');
+        }
     }
 
-    // --- 3. スマホメニューの開閉ロジック（ドロワー対応版） ---
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const closeBtn = document.getElementById('menu-close-btn');
-    const menuOverlay = document.getElementById('mobile-menu-overlay');
+    // 5. 動的パンくず生成
+    var breadContainer = document.getElementById('dynamic-breadcrumb');
+    if (breadContainer && lowerPath !== 'index.html') {
+        var breadHTML = '<a href="index.html">ホーム</a>';
+        if (currentCatKey && categoryNames[currentCatKey]) {
+            breadHTML += '<span class="breadcrumb-separator">＞</span>';
+            var isHubPage = lowerPath.indexOf('hub-') === 0;
+            if (isHubPage) {
+                breadHTML += '<span>' + categoryNames[currentCatKey] + '</span>';
+            } else {
+                breadHTML += '<a href="hub-' + currentCatKey + '.html">' + categoryNames[currentCatKey] + '</a>';
+                breadHTML += '<span class="breadcrumb-separator">＞</span>';
+            }
+        }
+        breadContainer.innerHTML = breadHTML;
+    }
+
+    // 6. スマホメニュー開閉
+    var menuBtn = document.getElementById('mobile-menu-btn');
+    var closeBtn = document.getElementById('menu-close-btn');
+    var menuOverlay = document.getElementById('mobile-menu-overlay');
 
     if (menuBtn && menuOverlay) {
-        menuBtn.addEventListener('click', (e) => {
+        menuBtn.addEventListener('click', function(e) {
             e.preventDefault();
             menuOverlay.classList.add('is-open');
             document.body.style.overflow = 'hidden';
         });
     }
-
     if (closeBtn && menuOverlay) {
-        closeBtn.addEventListener('click', () => {
+        closeBtn.addEventListener('click', function() {
             menuOverlay.classList.remove('is-open');
             document.body.style.overflow = '';
         });
     }
-
-    // メニューの外側（暗幕部分）をクリックしても閉じるようにする
     if (menuOverlay) {
-        menuOverlay.addEventListener('click', (e) => {
+        menuOverlay.addEventListener('click', function(e) {
             if (e.target === menuOverlay) {
                 menuOverlay.classList.remove('is-open');
                 document.body.style.overflow = '';
@@ -815,134 +835,57 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // メニュー内のリンクをクリックしたら自動で閉じる
-    document.querySelectorAll('.mobile-nav-item').forEach(link => {
-        link.addEventListener('click', () => {
-            menuOverlay.classList.remove('is-open');
-            document.body.style.overflow = '';
-        });
-    });
-
-    // --- 4. 動的パンくず生成システム（1024px絶対統治・完全同期版） ---
-    const breadContainer = document.getElementById('dynamic-breadcrumb');
-    
-    // index.html または ルートパス以外で実行
-    if (breadContainer && currentPath !== 'index.html' && currentPath !== '') {
-        const categoryNames = {
-            'windows': 'Windows基礎',
-            'word':    'Word基礎',
-            'excel':   'Excel基礎',
-            'ai':      '生成AI活用',
-            'typing':  'タイピング練習',
-            'career':  '就職・転職',
-            'column':  '現場コラム'
-        };
-
-        const folderMapping = {
-            'windows': ['windows', 'pc-selection', 'folder'],
-            'word':    ['word'],
-            'excel':   ['excel'],
-            'ai':      ['ai', 'chatgpt', 'tools'],
-            'typing':  ['typing', 'play', 'basics'],
-            'career':  ['career', 'interview', 'cv'], // careerを確実に拾う
-            'column':  ['column']
-        };
-
-        let currentCatKey = '';
-        // 現在のファイル名（小文字化）からキーワードを照合
-        const lowerPath = currentPath.toLowerCase();
-
-        // 全てのエディタ・リンターでエラーにならない、最も原始的で安全な数値ループ
-        const mappingKeys = Object.keys(folderMapping);
-        for (let i = 0; i < mappingKeys.length; i = i + 1) {
-            const key = mappingKeys[i];
-            const keywords = folderMapping[key];
-            if (keywords.some(keyword => lowerPath.includes(keyword))) {
-                currentCatKey = key;
-                break;
-            }
-        }
-
-        // パンくずのHTMLを構築
-        let breadHTML = '<a href="index.html">ホーム</a>';
-        
-        if (currentCatKey && categoryNames[currentCatKey]) {
-            breadHTML += '<span class="breadcrumb-separator">＞</span>';
-            
-            // hub-ページかどうかの判定
-            const isHubPage = lowerPath.startsWith('hub-');
-            
-            if (isHubPage) {
-                // ハブページの場合：リンクなしのテキストのみ
-                breadHTML += '<span>' + categoryNames[currentCatKey] + '</span>';
-            } else {
-                // 記事ページの場合：ハブへのリンクを表示
-                breadHTML += '<a href="hub-' + currentCatKey + '.html">' + categoryNames[currentCatKey] + '</a>';
-                // 記事タイトルは非表示、セパレータで締める（v20.7.22仕様）
-                breadHTML += '<span class="breadcrumb-separator">＞</span>';
-            }
-        }
-
-        breadContainer.innerHTML = breadHTML;
-    }
-
-    // --- 5. 現場コラム：記事フィルタリングロジック（独立統治） ---
-    const tagButtons = document.querySelectorAll('.hub-tag');
-    const articles = document.querySelectorAll('.hub-article-item[data-category]');
-
+    // 7. 現場コラムフィルタリング
+    var tagButtons = document.querySelectorAll('.hub-tag');
+    var articles = document.querySelectorAll('.hub-article-item[data-category]');
     if (tagButtons.length > 0 && articles.length > 0) {
-        tagButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                tagButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-
-                const filterValue = button.getAttribute('data-filter');
-                articles.forEach(article => {
-                    if (filterValue === 'all') {
-                        article.style.display = 'block';
-                    } else if (article.getAttribute('data-category') === filterValue) {
-                        article.style.display = 'block';
+        tagButtons.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                tagButtons.forEach(function(b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+                var filter = btn.getAttribute('data-filter');
+                articles.forEach(function(art) {
+                    if (filter === 'all' || art.getAttribute('data-category') === filter) {
+                        art.style.display = 'block';
                     } else {
-                        article.style.display = 'none';
+                        art.style.display = 'none';
                     }
                 });
             });
         });
     }
 
-    // --- 6. 画像拡大（モーダル）統治ロジック ---
-    const zoomOverlay = document.createElement('div');
+    // 8. 画像拡大モーダル
+    var zoomOverlay = document.createElement('div');
     zoomOverlay.className = 'image-zoom-overlay';
     zoomOverlay.innerHTML = '<img class="image-zoom-content" src="" alt="拡大画像">';
     document.body.appendChild(zoomOverlay);
+    var zoomImg = zoomOverlay.querySelector('.image-zoom-content');
 
-    const zoomImg = zoomOverlay.querySelector('.image-zoom-content');
-
-    document.querySelectorAll('.article-image img').forEach(img => {
-        img.addEventListener('click', (e) => {
+    document.querySelectorAll('.article-image img').forEach(function(img) {
+        img.addEventListener('click', function(e) {
             zoomImg.src = e.target.src;
             zoomOverlay.classList.add('is-active');
             document.body.style.overflow = 'hidden';
         });
     });
-
-    zoomOverlay.addEventListener('click', () => {
+    zoomOverlay.addEventListener('click', function() {
         zoomOverlay.classList.remove('is-active');
         document.body.style.overflow = '';
     });
 });
 
-/* --- ページトップへ戻るボタンの制御（ファイルの最末尾まで） --- */
-window.addEventListener('scroll', () => {
-    const pageTopBtn = document.getElementById('back-to-top');
+/* --- ページトップへ戻る制御 --- */
+window.addEventListener('scroll', function() {
+    var pageTopBtn = document.getElementById('back-to-top');
     if (pageTopBtn) {
         if (window.scrollY > 300) { pageTopBtn.classList.add('visible'); }
         else { pageTopBtn.classList.remove('visible'); }
     }
 });
 
-document.addEventListener('click', (e) => {
-    const target = e.target.closest('#back-to-top');
+document.addEventListener('click', function(e) {
+    var target = e.target.closest('#back-to-top');
     if (target) {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
