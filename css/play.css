@@ -86,15 +86,43 @@ body.focus-mode #app {
 
 .btn-category {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    background: white;
-    border-radius: 10px;
+    /* 改良：全ての列のボタン高さを完全に統一するためパディングを固定 (v20.7.26.Size) */
+    padding-top: 10px;
+    padding-right: 5px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #dddddd;
+    border-right-color: #dddddd;
+    border-bottom-color: #dddddd;
+    border-left-color: #dddddd;
+    background-color: #ffffff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 800;
     font-size: 0.85rem;
     color: var(--primary);
-    transition: all 0.2s;
+    /* 行の高さを固定して文字によるブレを排除 */
+    line-height: 1.2;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+    /* ボタンの最小高さを明示的に確保 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    box-sizing: border-box;
 }
 
 .btn-category:hover:not(.active) {
