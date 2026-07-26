@@ -68,6 +68,9 @@ class TypingApp {
         
         this.lastQuestionIndex = -1;
         this.isTransitioning = false;
+        this.isTestMode = false;      // 5分間テストモード判定フラグ
+        this.testTimerId = null;      // タイマー管理用
+        this.testCharactersTyped = 0; // 確定した日本語文字数
 
         // 【修正】コンパクト化に伴い、基準数値を微調整
         this.LEFT_PADDING = 40; // 50から40へ
@@ -179,6 +182,8 @@ handleResize() {
         if (startBtn) {
             startBtn.addEventListener('click', async () => {
                 startBtn.disabled = true;
+                // テストモードかどうかをIDで判定
+                this.isTestMode = (this.currentCategoryId === 'test_5min');
                 const success = await this.loadQuestions(this.currentCategoryId);
 if (success) { 
                     // [追加] Googleに開始を報告
@@ -279,13 +284,26 @@ if (success) {
         this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         this.nextQuestion();
         this.updateLoop();
+
+        // プレイ画面右上の情報表示（オーバーレイ）の制御
+        const overlay = document.getElementById('test-info-overlay');
+        if (this.isTestMode) {
+            if (overlay) overlay.classList.remove('hidden');
+            this.testCharactersTyped = 0;
+            this.startTestTimer();
+        } else {
+            if (overlay) overlay.classList.add('hidden');
+        }
     }
 
     nextQuestion() {
-        const elapsed = performance.now() - this.startTime;
-        if (this.totalTypedCount >= this.targetLimit || (this.startTime && elapsed > this.timeLimitMs)) { 
-            this.endGame(); 
-            return; 
+        // テストモード時は制限時間のみで終了するため、通常の320文字制限は無視する
+        if (!this.isTestMode) {
+            const elapsed = performance.now() - this.startTime;
+            if (this.totalTypedCount >= this.targetLimit || (this.startTime && elapsed > this.timeLimitMs)) { 
+                this.endGame(); 
+                return; 
+            }
         }
         if (!this.currentQuestions || this.currentQuestions.length === 0) return;
         let nextIdx;
@@ -316,6 +334,11 @@ if (success) {
 
     prepareNextChar() {
         if (this.kanaList.length === 0) {
+            if (this.isTestMode) {
+                // 文を完了した時点で、表示されている「漢字（日本語）」の文字数を加算
+                const kanji = document.getElementById('display-kanji').innerText;
+                this.testCharactersTyped += kanji.length;
+            }
             this.refreshDisplay();
             this.isTransitioning = true;
             this.highlightKey(null);
@@ -462,6 +485,9 @@ if (success) {
 /* --- main.js：採点アルゴリズムとランクテーブルの刷新 --- */
 
     endGame(reason = "") {
+        // タイマーが動いていれば停止
+        if (this.testTimerId) clearInterval(this.testTimerId);
+        
         this.state = "RESULT";
         document.body.classList.remove('focus-mode');
         document.getElementById('game-screen').classList.add('hidden');
@@ -497,6 +523,35 @@ if (success) {
             const rank = this.getRank(score);
             
             if (resScore) resScore.innerText = score; 
+
+            // テストモード時はリザルト画面の情報を書き換える
+            if (this.isTestMode) {
+                const testRank = this.getTestRank(this.testCharactersTyped);
+                document.getElementById('result-title').innerText = "5分間タイピングテスト結果";
+                
+                // スコア欄に入力文字数を表示し、ラベルを変更
+                resScore.innerText = this.testCharactersTyped;
+                const scoreLabel = document.querySelector('.res-grid-row:nth-child(1) .res-label');
+                if (scoreLabel) scoreLabel.innerText = "入力文字数";
+
+                // ランク表示の更新
+                if (resRank) {
+                    resRank.innerText = testRank;
+                    resRank.style.fontSize = testRank.length > 2 ? "5rem" : "7rem";
+                }
+
+                // コメントを表示
+                const commentEl = document.querySelector('.rank-display-area p');
+                if (commentEl) commentEl.innerText = this.getTestComment(testRank);
+
+                // テストに不要な項目（CPM等の統計）を一時的に隠す
+                document.querySelectorAll('.res-grid-row:nth-child(2), .res-grid-row:nth-child(3)').forEach(el => el.style.display = 'none');
+            } else {
+                // 通常モードなら表示を戻す
+                const scoreLabel = document.querySelector('.res-grid-row:nth-child(1) .res-label');
+                if (scoreLabel) scoreLabel.innerText = "スコア";
+                document.querySelectorAll('.res-grid-row:nth-child(2), .res-grid-row:nth-child(3)').forEach(el => el.style.display = 'flex');
+            }
 
 // [最新版：GA4詳細分析ロジック] 
             // カテゴリIDから日本語のカテゴリ名を取得（例：windows -> Windows操作）
@@ -606,15 +661,76 @@ if (typeof gtag === 'function') {
         });
     }
 
-    playSound(f, d) {
-        if (!this.audioCtx) return;
-        const osc = this.audioCtx.createOscillator(); const gain = this.audioCtx.createGain();
-        osc.connect(gain); gain.connect(this.audioCtx.destination);
-        osc.frequency.value = f; gain.gain.setValueAtTime(0.05, this.audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + d);
-        osc.start(); osc.stop(this.audioCtx.currentTime + d);
+    startTestTimer() {
+        let timeLeft = 300; // 5分間
+        this.updateTestUI(timeLeft);
+        this.testTimerId = setInterval(() => {
+            timeLeft--;
+            this.updateTestUI(timeLeft);
+            if (timeLeft <= 0) {
+                clearInterval(this.testTimerId);
+                this.endGame();
+            }
+        }, 1000);
     }
-}
+
+    updateTestUI(sec) {
+        const min = Math.floor(sec / 60);
+        const s = sec % 60;
+        const timerEl = document.getElementById('test-timer');
+        const charEl = document.getElementById('test-char-count');
+        
+        if (timerEl) {
+            timerEl.innerText = `${min.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+            timerEl.classList.remove('timer-warning', 'timer-danger');
+            if (sec < 30) timerEl.classList.add('timer-danger');
+            else if (sec < 60) timerEl.classList.add('timer-warning');
+        }
+        if (charEl) charEl.innerText = this.testCharactersTyped;
+    }
+
+    getTestRank(s) {
+        if(s >= 1400) return "Legend";
+        if(s >= 1200) return "Master";
+        if(s >= 1100) return "S+";
+        if(s >= 1000) return "S";
+        if(s >= 950)  return "A+";
+        if(s >= 900)  return "A";
+        if(s >= 850)  return "A-";
+        if(s >= 800)  return "B+";
+        if(s >= 750)  return "B"; // 基準値
+        if(s >= 700)  return "B-";
+        if(s >= 650)  return "C+";
+        if(s >= 600)  return "C";
+        if(s >= 550)  return "C-";
+        if(s >= 450)  return "D+";
+        if(s >= 350)  return "D";
+        if(s >= 250)  return "D-";
+        return "E";
+    }
+
+    getTestComment(rank) {
+        const comments = {
+            "Legend": "驚異的な速度です！もはや教えることは何もありません。プロとして自信を持ってください！",
+            "Master": "卓越した技術をお持ちです。どのような実務でも圧倒的なスピードで完遂できるレベルです。",
+            "S+": "素晴らしい！実務の壁を悠々と超えています。正確性を維持できれば最強の相棒です。",
+            "S": "実務トップクラスの速度です。あなたのタイピング力は就職・転職で大きな武器になります。",
+            "A+": "非常にスムーズな打鍵です。即戦力として周囲から頼られる実力が十分に備わっています。",
+            "A": "合格ラインです！実務で困ることはありません。さらに上を目指して楽しみましょう。",
+            "A-": "安定感がありますね。正確な入力を続ければ、速度はさらに自然と伸びていきます。",
+            "B+": "一般的な事務職で十分通用する速度です。この調子で自信を持って仕事に取り組みましょう！",
+            "B": "実務の基本レベルです！ここから一歩ずつ、さらに「できる」を増やしていきましょう。",
+            "B-": "基礎がしっかりと身についています。焦らずリズムを大切にすることで、さらに良くなります。",
+            "C+": "前向きに頑張っていますね。まずは正確率100%を目指すことで、結果的に速度も上がります。",
+            "C": "着実に成長しています！毎日の5分間の積み重ねが、未来のあなたの自信を作ります。",
+            "C-": "ホームポジションを意識できていますね。焦らず、自分に優しいペースで進みましょう。",
+            "D+": "最初の一歩をクリアしました！「できた」を大切に。繰り返し練習を楽しみましょう。",
+            "D": "まずはキーの場所を指に覚えさせましょう。ゆっくりで大丈夫。一歩一歩が大切です。",
+            "D-": "挑戦したことが素晴らしいです！まずは短い言葉から、正確に打つ喜びを感じてください。",
+            "E": "大丈夫、ここから始まります。まずはローマ字の基本から、ゆっくり一緒に歩みましょう！"
+        };
+        return comments[rank] || "お疲れ様でした！次回の挑戦も応援しています。";
+    }
 const app = new TypingApp();
 
 /* ============================================================

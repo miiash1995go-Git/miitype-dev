@@ -118,7 +118,11 @@
                             <button class="btn-category" data-cat="career">就職・転職</button>
                         </div>
                         <div class="category-group special">
-                            <button class="btn-category btn-total" data-cat="total_test">🔥 ぱそトレ！<br>総合判定</button>
+                            <!-- 5分間テストをメインに配置 -->
+                            <button class="btn-category btn-test" data-cat="test_5min">⏱ 5分間<br>タイピングテスト</button>
+                            <!-- 総合判定をコンパクトに下段へ配置 -->
+                            <button class="btn-category btn-total" data-cat="total_test">🔥 総合判定</button>
+                        </div>
                         </div>
                     </div>
                     <div class="controls-master-row">
@@ -136,6 +140,11 @@
             </section>
 
             <section id="game-screen" class="screen hidden">
+                <!-- テストモード専用の情報表示（右上に固定） -->
+                <div id="test-info-overlay" class="test-info-overlay hidden">
+                    <div class="test-info-item">入力文字数: <span id="test-char-count">0</span></div>
+                    <div class="test-info-item">残り時間: <span id="test-timer">05:00</span></div>
+                </div>
                 <div id="typing-container" class="typing-display"></div>
                 <div id="keyboard-container"></div>
             </section>
