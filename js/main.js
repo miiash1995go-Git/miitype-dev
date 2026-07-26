@@ -383,20 +383,47 @@ if (success) {
         if (this.state !== "PLAYING" || this.isTransitioning) return;
         this.lastInputTime = performance.now();
         const key = e.key.toLowerCase();
+
+        // 1. 現在の文字（モーラ）の選択肢と照合
         let matches = this.pendingRomajiOptions.filter(o => o.startsWith(this.currentRomajiStr + key));
+
         if (matches.length > 0) {
-            this.currentRomajiStr += key; this.typedFullRomaji += key;
+            // 正解入力
+            this.currentRomajiStr += key;
+            this.typedFullRomaji += key;
             this.totalTypedCount++;
             this.pendingRomajiOptions = matches;
             if(this.soundEnabled) this.playSound(600, 0.05);
-            if (this.pendingRomajiOptions.includes(this.currentRomajiStr)) this.prepareNextChar();
-            else this.refreshDisplay();
+
+            // 文字が「完全に完了」したか判定
+            // 「n」が正解でも、まだ「nn」という長い選択肢が残っている場合は遷移を待機する（重要）
+            const hasLongerOption = this.pendingRomajiOptions.some(o => o.length > this.currentRomajiStr.length);
+            
+            if (this.pendingRomajiOptions.includes(this.currentRomajiStr) && !hasLongerOption) {
+                this.prepareNextChar();
+            } else {
+                this.refreshDisplay();
+            }
         } else {
-            this.totalMissedCount++;
-            this.logMiss(this.guideRemainRomaji[0]);
-            if(this.soundEnabled) this.playSound(200, 0.1);
-            const container = document.getElementById('typing-container');
-            if (container) { container.classList.add('damage-effect'); setTimeout(() => container.classList.remove('damage-effect'), 50); }
+            // 現在の文字には不適合。
+            // しかし、現在の入力ですでに文字が成立している（例：ん＝n）場合、
+            // そのキーが「次の文字」の開始として正解なら、自動遷移して処理する
+            if (this.pendingRomajiOptions.includes(this.currentRomajiStr)) {
+                this.prepareNextChar();
+                // 遷移後の新しい文字に対して、同じキーを再度評価する（再帰処理）
+                this.handleKeyDown(e);
+                return;
+            } else {
+                // 本当のミス入力
+                this.totalMissedCount++;
+                this.logMiss(this.guideRemainRomaji[0]);
+                if(this.soundEnabled) this.playSound(200, 0.1);
+                const container = document.getElementById('typing-container');
+                if (container) {
+                    container.classList.add('damage-effect');
+                    setTimeout(() => container.classList.remove('damage-effect'), 50);
+                }
+            }
         }
         this.updateStats();
     }
