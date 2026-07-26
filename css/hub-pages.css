@@ -661,9 +661,35 @@
 }
 .hub-roadmap__item--next-word .hub-roadmap__num { color: #1D4ED8 !important; font-weight: 900 !important; }
 
+/* Excel用：左からExcel色(#16A34A)の淡色 → 右へ白く抜ける */
+.hub-roadmap__item--next-excel {
+    background-image: linear-gradient(90deg, #ECFDF5 0%, #FFFFFF 100%) !important;
+    border-left-width: 8px !important;
+    border-left-style: solid !important;
+    border-left-color: #16A34A !important;
+    border-top-color: #d1fae5 !important;
+    border-right-color: #f1f3f5 !important;
+    border-bottom-color: #d1fae5 !important;
+}
+.hub-roadmap__item--next-excel .hub-roadmap__num { color: #16A34A !important; font-weight: 900 !important; }
+
+/* 就職・転職用：左からキャリア色(#F97316)の淡色 → 右へ白く抜ける */
+.hub-roadmap__item--next-career {
+    background-image: linear-gradient(90deg, #FFF7ED 0%, #FFFFFF 100%) !important;
+    border-left-width: 8px !important;
+    border-left-style: solid !important;
+    border-left-color: #F97316 !important;
+    border-top-color: #ffedd5 !important;
+    border-right-color: #f1f3f5 !important;
+    border-bottom-color: #ffedd5 !important;
+}
+.hub-roadmap__item--next-career .hub-roadmap__num { color: #F97316 !important; font-weight: 900 !important; }
+
 /* ホバー時の共通挙動：浮遊感の演出 */
 .hub-roadmap__item--next-ai:hover,
-.hub-roadmap__item--next-word:hover {
+.hub-roadmap__item--next-word:hover,
+.hub-roadmap__item--next-excel:hover,
+.hub-roadmap__item--next-career:hover {
     transform: translateY(-3px) !important;
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.05) !important;
 }
