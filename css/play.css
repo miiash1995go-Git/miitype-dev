@@ -271,6 +271,49 @@ body.focus-mode #app {
 .timer-danger { color: #ef4444; font-weight: 900; }
 
 #typing-container.damage-effect { background-color: #ffdce0 !important; border-top-color: #ffadb5 !important; border-right-color: #ffadb5 !important; border-bottom-color: #ffadb5 !important; border-left-color: #ffadb5 !important; transition: none !important; }
+/* ============================================================
+   目の疲れ軽減：視覚的ストレス・コントロール (v19.9.62)
+   ------------------------------------------------------------
+   ミス時の刺激を抑え、集中力を維持するためのプロパティ統治。
+   ============================================================ */
+
+/* 1. タイピングボックス：ミス時に色が戻る動きを持たせる */
+body.game-body .typing-display {
+    background-color: #fcfcfc !important;
+    border-top-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 1px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #e0e6ed !important;
+    border-right-color: #e0e6ed !important;
+    border-bottom-color: #e0e6ed !important;
+    border-left-color: #e0e6ed !important;
+    /* ミス時のピンクから、0.6秒かけて「じわ〜っ」と白に戻る演出 */
+    transition-property: background-color, border-color !important;
+    transition-duration: 0.6s !important;
+    transition-timing-function: ease-out !important;
+}
+
+/* 2. キーボード：常に目に優しい白で固定 */
+body.game-body #keyboard-container {
+    background-color: #fcfcfc !important;
+    border-top-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 1px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #e0e6ed !important;
+    border-right-color: #e0e6ed !important;
+    border-bottom-color: #e0e6ed !important;
+    border-left-color: #e0e6ed !important;
+}
 
 /* --- 3. タイピング表示エリア (120px圧縮版) --- */
 
