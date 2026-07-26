@@ -734,15 +734,16 @@ if (typeof gtag === 'function') {
 const app = new TypingApp();
 
 /* ============================================================
-   共通機能：ナビゲーション自動統治 ＆ スクロール制御 (v20.7.26.Complete)
+   共通機能：ナビゲーション統治システム（究極復旧版 v20.7.26.Safe）
    ============================================================ */
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. 現在のファイル名を取得
-    var currentPath = window.location.pathname.split("/").pop() || "index.html";
-    var lowerPath = currentPath.toLowerCase();
+    // --- 1. 現在のURLからファイル名を取得 ---
+    var path = window.location.pathname;
+    var page = path.split("/").pop() || "index.html";
+    var lowerPage = page.toLowerCase();
 
-    // 2. カテゴリ判定マッピング（キーワード設定）
-    var folderMapping = {
+    // --- 2. カテゴリ判定用マッピング ---
+    var mapping = {
         'windows': ['windows', 'pc-selection', 'folder'],
         'word':    ['word'],
         'excel':   ['excel'],
@@ -752,7 +753,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'column':  ['column']
     };
 
-    var categoryNames = {
+    var names = {
         'windows': 'Windows基礎',
         'word':    'Word基礎',
         'excel':   'Excel基礎',
@@ -762,132 +763,118 @@ document.addEventListener('DOMContentLoaded', function() {
         'column':  '現場コラム'
     };
 
-    // 3. 現在のカテゴリキーを特定（エラーの出ない安全な数値ループ）
-    var currentCatKey = '';
-    var mappingKeys = Object.keys(folderMapping);
-    for (var i = 0; i < mappingKeys.length; i = i + 1) {
-        var key = mappingKeys[i];
-        var keywords = folderMapping[key];
-        for (var j = 0; j < keywords.length; j = j + 1) {
-            if (lowerPath.indexOf(keywords[j]) !== -1) {
-                currentCatKey = key;
+    // --- 3. 現在のカテゴリを特定 ---
+    var currentCat = "";
+    for (var key in mapping) {
+        var keywords = mapping[key];
+        for (var i = 0; i < keywords.length; i = i + 1) {
+            if (lowerPage.indexOf(keywords[i]) !== -1) {
+                currentCat = key;
                 break;
             }
         }
-        if (currentCatKey) { break; }
+        if (currentCat) break;
     }
 
-    // 4. ヘッダーナビの現在地を点灯（色を変える）
-    var allNavItems = document.querySelectorAll('.nav-item, .mobile-nav-item');
-    for (var k = 0; k < allNavItems.length; k = k + 1) {
-        var item = allNavItems[k];
-        var href = item.getAttribute('href') || '';
-        item.classList.remove('active');
-        
-        if (currentCatKey && href.indexOf(currentCatKey) !== -1) {
-            item.classList.add('active');
-        } else if (lowerPath === 'index.html' && href === 'index.html') {
-            item.classList.add('active');
+    // --- 4. ヘッダーボタンの点灯（Active化） ---
+    var navLinks = document.querySelectorAll('.nav-item, .mobile-nav-item');
+    for (var j = 0; j < navLinks.length; j = j + 1) {
+        var link = navLinks[j];
+        var href = link.getAttribute('href') || "";
+        link.classList.remove('active');
+
+        if (currentCat && href.indexOf(currentCat) !== -1) {
+            link.classList.add('active');
+        } else if (lowerPage === 'index.html' && href === 'index.html') {
+            link.classList.add('active');
         }
     }
 
-    // 5. 動的パンくず生成
-    var breadContainer = document.getElementById('dynamic-breadcrumb');
-    if (breadContainer && lowerPath !== 'index.html') {
-        var breadHTML = '<a href="index.html">ホーム</a>';
-        if (currentCatKey && categoryNames[currentCatKey]) {
-            breadHTML += '<span class="breadcrumb-separator">＞</span>';
-            var isHubPage = lowerPath.indexOf('hub-') === 0;
-            if (isHubPage) {
-                breadHTML += '<span>' + categoryNames[currentCatKey] + '</span>';
+    // --- 5. 動的パンくずの生成 ---
+    var breadBox = document.getElementById('dynamic-breadcrumb');
+    if (breadBox && lowerPage !== 'index.html') {
+        var html = '<a href="index.html">ホーム</a>';
+        if (currentCat && names[currentCat]) {
+            html += '<span class="breadcrumb-separator">＞</span>';
+            if (lowerPage.indexOf('hub-') === 0) {
+                // ハブページの場合
+                html += '<span>' + names[currentCat] + '</span>';
             } else {
-                breadHTML += '<a href="hub-' + currentCatKey + '.html">' + categoryNames[currentCatKey] + '</a>';
-                breadHTML += '<span class="breadcrumb-separator">＞</span>';
+                // 記事ページの場合
+                html += '<a href="hub-' + currentCat + '.html">' + names[currentCat] + '</a>';
+                html += '<span class="breadcrumb-separator">＞</span>';
             }
         }
-        breadContainer.innerHTML = breadHTML;
+        breadBox.innerHTML = html;
     }
 
-    // 6. スマホメニュー開閉
-    var menuBtn = document.getElementById('mobile-menu-btn');
-    var closeBtn = document.getElementById('menu-close-btn');
-    var menuOverlay = document.getElementById('mobile-menu-overlay');
+    // --- 6. スマホメニュー開閉 ---
+    var mBtn = document.getElementById('mobile-menu-btn');
+    var mClose = document.getElementById('menu-close-btn');
+    var mOverlay = document.getElementById('mobile-menu-overlay');
 
-    if (menuBtn && menuOverlay) {
-        menuBtn.addEventListener('click', function(e) {
+    if (mBtn && mOverlay) {
+        mBtn.onclick = function(e) {
             e.preventDefault();
-            menuOverlay.classList.add('is-open');
+            mOverlay.classList.add('is-open');
             document.body.style.overflow = 'hidden';
-        });
+        };
     }
-    if (closeBtn && menuOverlay) {
-        closeBtn.addEventListener('click', function() {
-            menuOverlay.classList.remove('is-open');
+    if (mClose && mOverlay) {
+        mClose.onclick = function() {
+            mOverlay.classList.remove('is-open');
             document.body.style.overflow = '';
-        });
-    }
-    if (menuOverlay) {
-        menuOverlay.addEventListener('click', function(e) {
-            if (e.target === menuOverlay) {
-                menuOverlay.classList.remove('is-open');
-                document.body.style.overflow = '';
-            }
-        });
+        };
     }
 
-    // 7. 現場コラムフィルタリング
-    var tagButtons = document.querySelectorAll('.hub-tag');
-    var articles = document.querySelectorAll('.hub-article-item[data-category]');
-    if (tagButtons.length > 0 && articles.length > 0) {
-        tagButtons.forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                tagButtons.forEach(function(b) { b.classList.remove('active'); });
+    // --- 7. コラムフィルタ ---
+    var tags = document.querySelectorAll('.hub-tag');
+    var arts = document.querySelectorAll('.hub-article-item[data-category]');
+    if (tags.length > 0) {
+        for (var t = 0; k < tags.length; t = t + 1) { /* 修正：ループ用変数をtに */ }
+        // 互換性重視のため、ここは実績のあるforEachを使用
+        tags.forEach(function(btn) {
+            btn.onclick = function() {
+                tags.forEach(function(b) { b.classList.remove('active'); });
                 btn.classList.add('active');
-                var filter = btn.getAttribute('data-filter');
-                articles.forEach(function(art) {
-                    if (filter === 'all' || art.getAttribute('data-category') === filter) {
-                        art.style.display = 'block';
-                    } else {
-                        art.style.display = 'none';
-                    }
+                var f = btn.getAttribute('data-filter');
+                arts.forEach(function(a) {
+                    a.style.display = (f === 'all' || a.getAttribute('data-category') === f) ? 'block' : 'none';
                 });
-            });
+            };
         });
     }
 
-    // 8. 画像拡大モーダル
-    var zoomOverlay = document.createElement('div');
-    zoomOverlay.className = 'image-zoom-overlay';
-    zoomOverlay.innerHTML = '<img class="image-zoom-content" src="" alt="拡大画像">';
-    document.body.appendChild(zoomOverlay);
-    var zoomImg = zoomOverlay.querySelector('.image-zoom-content');
-
+    // --- 8. 画像拡大 ---
+    var zOver = document.createElement('div');
+    zOver.className = 'image-zoom-overlay';
+    zOver.innerHTML = '<img class="image-zoom-content" src="" alt="">';
+    document.body.appendChild(zOver);
+    var zImg = zOver.querySelector('.image-zoom-content');
     document.querySelectorAll('.article-image img').forEach(function(img) {
-        img.addEventListener('click', function(e) {
-            zoomImg.src = e.target.src;
-            zoomOverlay.classList.add('is-active');
+        img.onclick = function() {
+            zImg.src = this.src;
+            zOver.classList.add('is-active');
             document.body.style.overflow = 'hidden';
-        });
+        };
     });
-    zoomOverlay.addEventListener('click', function() {
-        zoomOverlay.classList.remove('is-active');
+    zOver.onclick = function() {
+        zOver.classList.remove('is-active');
         document.body.style.overflow = '';
-    });
+    };
 });
 
-/* --- ページトップへ戻る制御 --- */
-window.addEventListener('scroll', function() {
-    var pageTopBtn = document.getElementById('back-to-top');
-    if (pageTopBtn) {
-        if (window.scrollY > 300) { pageTopBtn.classList.add('visible'); }
-        else { pageTopBtn.classList.remove('visible'); }
+/* --- ページトップ --- */
+window.onscroll = function() {
+    var btn = document.getElementById('back-to-top');
+    if (btn) {
+        if (window.pageYOffset > 300) btn.classList.add('visible');
+        else btn.classList.remove('visible');
     }
-});
-
-document.addEventListener('click', function(e) {
-    var target = e.target.closest('#back-to-top');
-    if (target) {
-        e.preventDefault();
+};
+document.onclick = function(e) {
+    var target = e.target;
+    if (target.id === 'back-to-top' || target.parentElement.id === 'back-to-top') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-});
+};
