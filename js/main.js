@@ -720,6 +720,35 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.classList.remove('is-active');
         document.body.style.overflow = ''; // スクロール再開
     });
+
+    // --- 現場コラム：記事フィルタリングロジック ---
+    const tagButtons = document.querySelectorAll('.hub-tag');
+    const articles = document.querySelectorAll('.hub-article-item[data-category]');
+
+    if (tagButtons.length > 0 && articles.length > 0) {
+        tagButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // ボタンのActive状態を切り替え
+                tagButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                articles.forEach(article => {
+                    if (filterValue === 'all') {
+                        // 「すべて」なら全部出す
+                        article.style.display = 'block';
+                    } else if (article.getAttribute('data-category') === filterValue) {
+                        // カテゴリが一致すれば出す
+                        article.style.display = 'block';
+                    } else {
+                        // 一致しなければ隠す
+                        article.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
 });
 
 /* --- ページトップへ戻るボタンの制御 --- */

@@ -204,13 +204,17 @@
                     <section class="hub-section" style="margin-bottom: 0px;">
                         <div class="hub-archive-header">
                             <h2 class="section-title">すべての記事一覧</h2>
+                            <!-- タグナビゲーション：フィルタリング機能付き (v20.7.26.Filter) -->
                             <div class="hub-tag-nav">
-                                <button class="hub-tag active">すべて</button>
+                                <button class="hub-tag active" data-filter="all">すべて</button>
+                                <button class="hub-tag" data-filter="ai">AI活用</button>
+                                <button class="hub-tag" data-filter="essence">仕事術</button>
+                                <button class="hub-tag" data-filter="career">就職対策</button>
                             </div>
                         </div>
-                        <div class="hub-article-grid">
-                            <!-- 1. AI活用カテゴリの着地点 -->
-                            <a href="column-chatgpt-basics.html" class="hub-article-item" id="cat-ai">
+                        <div class="hub-article-grid" id="column-article-grid">
+                            <!-- 1. AI活用カテゴリ：data-category="ai" を付与 -->
+                            <a href="column-chatgpt-basics.html" class="hub-article-item" data-category="ai">
                                 <div class="hub-article-item__info">
                                     <span class="point-badge">AI活用</span>
                                     <h4>ChatGPT活用ガイド｜プロンプトの基本</h4>
@@ -218,8 +222,8 @@
                                 </div>
                             </a>
 
-                            <!-- 2. 仕事術（実務で役立つ考え方）カテゴリの着地点 -->
-                            <a href="column-pc-skills.html" class="hub-article-item" id="cat-essence">
+                            <!-- 2. 仕事術カテゴリ：data-category="essence" を付与 -->
+                            <a href="column-pc-skills.html" class="hub-article-item" data-category="essence">
                                 <div class="hub-article-item__info">
                                     <span class="point-badge">仕事の本質</span>
                                     <h4>事務職の現場で本当に求められる力</h4>
@@ -227,8 +231,8 @@
                                 </div>
                             </a>
 
-                            <!-- 3. 就職（就職・転職の準備）カテゴリの着地点 -->
-                            <a href="column-interview.html" class="hub-article-item" id="cat-career">
+                            <!-- 3. 就職・転職カテゴリ：data-category="career" を付与 -->
+                            <a href="column-interview.html" class="hub-article-item" data-category="career">
                                 <div class="hub-article-item__info">
                                     <span class="point-badge">就職・転職</span>
                                     <h4>採用を勝ち取るタイピング対策</h4>
