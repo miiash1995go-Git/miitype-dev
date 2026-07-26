@@ -46,11 +46,13 @@ body.focus-mode #app {
 }
 
 
-/* --- 2. スタート画面：カテゴリ選択カード --- */
-
+/* ============================================================
+   カテゴリ選択カード：4カラム完全統治モデル (v20.7.26.Ultimate)
+   ------------------------------------------------------------
+   消失したグリッド構造を再構築し、全てのボタン高さを同期。
+   ============================================================ */
 .card {
-    background: white;
-    /* 上下 25px、左右 30px の余白に広げ、下部の溢れを防止 (v20.7.26.Fix) */
+    background-color: #ffffff;
     padding-top: 25px !important;
     padding-right: 30px !important;
     padding-bottom: 30px !important;
@@ -62,20 +64,121 @@ body.focus-mode #app {
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
     text-align: center;
     width: 920px;
-    /* 高さを固定せず、内容に合わせて自動で広がるように統治 */
     height: auto !important;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
 }
 
-/* コントロール行：カード内での位置を安定させる */
+/* 4つの列を横に並べるコンテナ */
+.btn-group-container {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin-top: 15px !important;
+    margin-bottom: 10px !important;
+    box-sizing: border-box !important;
+}
+
+/* 各列（基礎・Office・実務・実力試し）の共通設定 */
+.category-group {
+    flex-grow: 1 !important;
+    flex-shrink: 1 !important;
+    flex-basis: 0% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    padding-top: 12px !important;
+    padding-right: 10px !important;
+    padding-bottom: 12px !important;
+    padding-left: 10px !important;
+    background-color: #f8f9fa !important;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+    border-bottom-right-radius: 15px !important;
+    border-bottom-left-radius: 15px !important;
+    border-top-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 1px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #eeeeee !important;
+    border-right-color: #eeeeee !important;
+    border-bottom-color: #eeeeee !important;
+    border-left-color: #eeeeee !important;
+    box-sizing: border-box !important;
+}
+
+.group-label {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    font-weight: 800;
+    margin-bottom: 6px;
+    display: block;
+}
+
+/* 通常ボタン（高さ42px × 4枚 ＝ 隙間込み合計186px） */
+.btn-category {
+    width: 100% !important;
+    height: 42px !important;
+    background-color: #ffffff;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-style: solid;
+    border-color: #dddddd;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-sizing: border-box !important;
+}
+
+/* 特殊ボタン（高さ90px × 2枚 ＝ 隙間込み合計186px） */
+.btn-category.btn-test,
+.btn-category.btn-total {
+    height: 90px !important;
+    font-size: 0.95rem !important;
+    line-height: 1.4 !important;
+}
+
+/* ホバー反応 */
+.btn-category:hover:not(.active) {
+    border-color: var(--accent);
+    background-color: #f0f7ff;
+}
+
+/* アクティブ（ON）状態の各色統治 */
+.btn-category.active { background-color: var(--accent) !important; color: #ffffff !important; border-color: var(--accent) !important; }
+.btn-category.btn-test.active { background-image: linear-gradient(135deg, #1e3a8a 0%, #1a365d 100%) !important; color: #ffffff !important; border: none !important; }
+.btn-category.btn-total.active { background-image: linear-gradient(135deg, #f39c12 0%, #e67e22 100%) !important; color: #ffffff !important; border: none !important; }
+
+/* 下部のコントロール行（開始ボタン等） */
 .controls-master-row {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 15px;
-    /* カテゴリ選択エリアとの間に十分な距離（25px）を確保 */
     margin-top: 25px !important;
     padding-top: 0px;
     padding-right: 15px;
@@ -85,27 +188,26 @@ body.focus-mode #app {
     box-sizing: border-box;
 }
 
-.compact-best {
-    margin: 0 !important;
-    min-width: 160px;
-    text-align: left;
-}
+.compact-best { min-width: 160px; text-align: left; }
+.compact-settings { display: flex; gap: 8px; min-width: 220px; justify-content: flex-end; }
+.btn-main.compact-start { padding-top: 12px !important; padding-bottom: 12px !important; padding-right: 45px !important; padding-left: 45px !important; font-size: 1.15rem !important; margin: 0 !important; }
 
-.compact-settings {
-    margin: 0 !important;
+/* --- プレイ中のテスト情報オーバーレイ --- */
+.test-info-overlay {
+    position: absolute;
+    top: -50px;
+    right: 0px;
     display: flex;
-    gap: 8px;
-    min-width: 220px;
-    justify-content: flex-end;
+    flex-direction: row;
+    gap: 30px;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 800;
+    color: #4b5563;
+    font-size: 0.95rem;
+    z-index: 100;
 }
-
-.btn-main.compact-start {
-    padding: 10px 45px !important;
-    font-size: 1.15rem !important;
-    margin: 0 !important;
-    box-shadow: 0 4px 0 #1a252f !important;
-    flex-shrink: 0;
-}
+.timer-warning { color: #f97316; }
+.timer-danger { color: #ef4444; }
 
 
 /* ============================================================
