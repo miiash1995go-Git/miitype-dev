@@ -823,11 +823,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 4. 強化型・動的パンくず生成システム (v20.7.26.Breadcrumb) ---
+    // --- 4. 動的パンくず生成システム（1024px絶対統治・完全同期版） ---
     const breadContainer = document.getElementById('dynamic-breadcrumb');
     
+    // index.html または ルートパス以外で実行
     if (breadContainer && currentPath !== 'index.html' && currentPath !== '') {
-        // カテゴリ名と表示文字列のマスターマッピング
         const categoryNames = {
             'windows': 'Windows基礎',
             'word':    'Word基礎',
@@ -838,43 +838,47 @@ document.addEventListener('DOMContentLoaded', () => {
             'column':  '現場コラム'
         };
 
-        // URL（ファイル名）からキーワードを抽出する判定マッピング
         const folderMapping = {
             'windows': ['windows', 'pc-selection', 'folder'],
             'word':    ['word'],
             'excel':   ['excel'],
             'ai':      ['ai', 'chatgpt', 'tools'],
             'typing':  ['typing', 'play', 'basics'],
-            'career':  ['career', 'interview', 'cv'],
+            'career':  ['career', 'interview', 'cv'], // careerを確実に拾う
             'column':  ['column']
         };
 
         let currentCatKey = '';
-        
-        // 現在のファイル名からカテゴリキーを特定
-        for (const [key, keywords] of Object.entries(folderMapping)) {
-            if (keywords.some(keyword => currentPath.includes(keyword))) {
+        // 現在のファイル名（小文字化）からキーワードを照合
+        const lowerPath = currentPath.toLowerCase();
+
+        // 全てのエディタ・リンターでエラーにならない、最も原始的で安全な数値ループ
+        const mappingKeys = Object.keys(folderMapping);
+        for (let i = 0; i < mappingKeys.length; i = i + 1) {
+            const key = mappingKeys[i];
+            const keywords = folderMapping[key];
+            if (keywords.some(keyword => lowerPath.includes(keyword))) {
                 currentCatKey = key;
                 break;
             }
         }
 
-        // HTMLの組み立て
+        // パンくずのHTMLを構築
         let breadHTML = '<a href="index.html">ホーム</a>';
         
         if (currentCatKey && categoryNames[currentCatKey]) {
             breadHTML += '<span class="breadcrumb-separator">＞</span>';
             
-            // 現在のページがハブページ自体かどうかを判定
-            const isHubPage = currentPath.startsWith('hub-');
+            // hub-ページかどうかの判定
+            const isHubPage = lowerPath.startsWith('hub-');
             
             if (isHubPage) {
-                // ハブページならテキストのみ
+                // ハブページの場合：リンクなしのテキストのみ
                 breadHTML += '<span>' + categoryNames[currentCatKey] + '</span>';
             } else {
-                // 下層記事ならハブへのリンクを生成
+                // 記事ページの場合：ハブへのリンクを表示
                 breadHTML += '<a href="hub-' + currentCatKey + '.html">' + categoryNames[currentCatKey] + '</a>';
-                // 記事タイトルはUX設計（v20.7.22仕様）に基づき非表示、セパレータのみ置く
+                // 記事タイトルは非表示、セパレータで締める（v20.7.22仕様）
                 breadHTML += '<span class="breadcrumb-separator">＞</span>';
             }
         }
@@ -882,68 +886,58 @@ document.addEventListener('DOMContentLoaded', () => {
         breadContainer.innerHTML = breadHTML;
     }
 
-    // --- 画像拡大（モーダル）統治ロジック ---
-    const overlay = document.createElement('div');
-    overlay.className = 'image-zoom-overlay';
-    overlay.innerHTML = '<img class="image-zoom-content" src="" alt="拡大画像">';
-    document.body.appendChild(overlay);
-
-    const zoomImg = overlay.querySelector('.image-zoom-content');
-
-    // 記事内の全図解画像をクリック対象に設定
-    document.querySelectorAll('.article-image img').forEach(img => {
-        img.addEventListener('click', (e) => {
-            zoomImg.src = e.target.src;
-            overlay.classList.add('is-active');
-            document.body.style.overflow = 'hidden'; // 背面のスクロールを一時停止
-        });
-    });
-
-    // どこをタップ・クリックしても閉じる
-    overlay.addEventListener('click', () => {
-        overlay.classList.remove('is-active');
-        document.body.style.overflow = ''; // スクロール再開
-    });
-
-    // --- 現場コラム：記事フィルタリングロジック ---
+    // --- 5. 現場コラム：記事フィルタリングロジック（独立統治） ---
     const tagButtons = document.querySelectorAll('.hub-tag');
     const articles = document.querySelectorAll('.hub-article-item[data-category]');
 
     if (tagButtons.length > 0 && articles.length > 0) {
         tagButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // ボタンのActive状態を切り替え
                 tagButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
 
                 const filterValue = button.getAttribute('data-filter');
-
                 articles.forEach(article => {
                     if (filterValue === 'all') {
-                        // 「すべて」なら全部出す
                         article.style.display = 'block';
                     } else if (article.getAttribute('data-category') === filterValue) {
-                        // カテゴリが一致すれば出す
                         article.style.display = 'block';
                     } else {
-                        // 一致しなければ隠す
                         article.style.display = 'none';
                     }
                 });
             });
         });
     }
+
+    // --- 6. 画像拡大（モーダル）統治ロジック ---
+    const zoomOverlay = document.createElement('div');
+    zoomOverlay.className = 'image-zoom-overlay';
+    zoomOverlay.innerHTML = '<img class="image-zoom-content" src="" alt="拡大画像">';
+    document.body.appendChild(zoomOverlay);
+
+    const zoomImg = zoomOverlay.querySelector('.image-zoom-content');
+
+    document.querySelectorAll('.article-image img').forEach(img => {
+        img.addEventListener('click', (e) => {
+            zoomImg.src = e.target.src;
+            zoomOverlay.classList.add('is-active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    zoomOverlay.addEventListener('click', () => {
+        zoomOverlay.classList.remove('is-active');
+        document.body.style.overflow = '';
+    });
 });
 
-/* --- ページトップへ戻るボタンの制御 --- */
+/* --- ページトップへ戻るボタンの制御（ファイルの最末尾まで） --- */
 window.addEventListener('scroll', () => {
     const pageTopBtn = document.getElementById('back-to-top');
     if (pageTopBtn) {
-        if (window.scrollY > 300) {
-            pageTopBtn.classList.add('visible');
-        } else {
-            pageTopBtn.classList.remove('visible');
-        }
+        if (window.scrollY > 300) { pageTopBtn.classList.add('visible'); }
+        else { pageTopBtn.classList.remove('visible'); }
     }
 });
 
