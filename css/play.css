@@ -172,7 +172,7 @@ body.focus-mode #app {
     background-color: #f0f7ff !important;
 }
 
-/* --- 3. 点灯色（Active）の物理ロック --- */
+/* 【復活】点灯色（Active）の物理設定 */
 .btn-category.active {
     background-color: #3498db !important;
     color: #ffffff !important;
@@ -200,7 +200,7 @@ body.focus-mode #app {
     border-left-style: none !important;
 }
 
-/* --- 4. 下部コントロール行：左・中・右の一直線統治 --- */
+/* 下部コントロール行：左・中・右の一直線統治 */
 .controls-master-row {
     display: flex !important;
     flex-direction: row !important;
