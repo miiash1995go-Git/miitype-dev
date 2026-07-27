@@ -273,7 +273,17 @@ body.focus-mode #app {
 .btn-toggle.active { background-color: #3498db; color: #ffffff; border-color: #3498db; }
 
 /* プレイ中のテスト情報オーバーレイ ＆ ミスエフェクト */
-.test-info-overlay { position: absolute; top: -50px; right: 0px; display: flex; gap: 30px; font-family: 'Roboto Mono', monospace; font-weight: 800; font-size: 0.95rem; z-index: 100; }
+.test-info-overlay {
+    position: absolute;
+    top: 15px; /* ボックス内の上端から15px */
+    right: 20px; /* ボックス内の右端から20px */
+    display: flex;
+    gap: 15px; /* 間隔を少し詰めてコンパクトに */
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 800;
+    font-size: 0.85rem; /* 少し小さくして邪魔にならないように */
+    z-index: 100;
+}
 .test-info-item { background-color: rgba(255,255,255,0.9); padding: 5px 12px; border-radius: 6px; border: 1px solid #eeeeee; }
 .timer-warning { color: #f97316; font-weight: 900; }
 .timer-danger { color: #ef4444; font-weight: 900; }

@@ -291,12 +291,16 @@ if (success) {
 
         // プレイ画面右上の情報表示（オーバーレイ）の制御
         const overlay = document.getElementById('test-info-overlay');
-        if (this.isTestMode) {
-            if (overlay) overlay.classList.remove('hidden');
-            this.testCharactersTyped = 0;
-            this.startTestTimer();
-        } else {
-            if (overlay) overlay.classList.add('hidden');
+        if (overlay) {
+            if (this.isTestMode) {
+                overlay.classList.remove('hidden');
+                overlay.style.display = 'flex'; // 物理的に表示を強制
+                this.testCharactersTyped = 0;
+                this.startTestTimer();
+            } else {
+                overlay.classList.add('hidden');
+                overlay.style.display = 'none';
+            }
         }
     }
 
