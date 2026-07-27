@@ -102,7 +102,7 @@ class TypingApp {
             let loadedData = [];
 if (category.file === "all") {
                 const fetchTasks = this.manifest.categories
-                    .filter(c => c.file !== "all" && c.id !== "roman_pure" && c.id !== "roman_complex")
+                    .filter(c => c.file !== "all" && c.id !== "roman_pure" && c.id !== "roman_complex" && c.id !== "test_5min")
                     .map(c => fetch(`./data/typing/${c.file}`).then(r => r.json()));
                 const results = await Promise.all(fetchTasks);
                 loadedData = results.flatMap(d => d.questions);
