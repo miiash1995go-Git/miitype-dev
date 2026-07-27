@@ -28,9 +28,9 @@
   gtag('js', new Date());
   gtag('config', 'G-KWS4RPPBVV');
 </script>
-	<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/portal-shared.css">
-	<link rel="stylesheet" href="css/play.css">
+    <link rel="stylesheet" href="css/play.css">
 
 </head>
 <body class="game-body">
@@ -140,13 +140,12 @@
                 </div> <!-- .card 終了 -->
             </section>
 
-            <section id="game-screen" class="screen hidden" style="position: relative; width: 100%;">
-                <!-- 情報をボックスの外（すぐ上）に配置 -->
+            <section id="game-screen" class="screen hidden">
+                <!-- テストモード専用の情報表示（右上に固定） -->
                 <div id="test-info-overlay" class="test-info-overlay hidden">
-                    <div class="test-info-item">文字数: <span id="test-char-count">0</span></div>
+                    <div class="test-info-item">入力文字数: <span id="test-char-count">0</span></div>
                     <div class="test-info-item">残り時間: <span id="test-timer">05:00</span></div>
                 </div>
-                
                 <div id="typing-container" class="typing-display"></div>
                 <div id="keyboard-container"></div>
             </section>
