@@ -316,10 +316,7 @@ body.game-body #app {
     background-color: #f0f7ff;
 }
 
-/* 【最優先復旧】ヘッダーActive状態の物理定義 */
-.nav-item.active,
-body.portal-page .nav-item.active,
-body.game-body .nav-item.active {
+.nav-item.active {
     background-color: #1a365d !important;
     color: #ffffff !important;
     border-top-color: #1a365d !important;
@@ -327,17 +324,7 @@ body.game-body .nav-item.active {
     border-bottom-color: #1a365d !important;
     border-left-color: #1a365d !important;
     box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.3) !important;
-    transform: translateY(1px) !important;
-}
-
-/* スマホ版メニューのActive定義 */
-.mobile-nav-item.active {
-    background-color: #f0f7ff !important;
-    border-top-color: #2563EB !important;
-    border-right-color: #2563EB !important;
-    border-bottom-color: #2563EB !important;
-    border-left-color: #2563EB !important;
-    color: #2563EB !important;
+    transform: translateY(1px);
 }
 
 .nav-icon {

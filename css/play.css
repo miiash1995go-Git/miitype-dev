@@ -178,7 +178,7 @@ body.focus-mode #app {
     background-color: #f0f7ff !important;
 }
 
-/* 【最優先復旧】点灯色（Active）の物理ロック */
+/* 点灯色（Active）の復活 */
 body.game-body .btn-category.active {
     background-color: #3498db !important;
     color: #ffffff !important;
@@ -186,27 +186,14 @@ body.game-body .btn-category.active {
     border-right-color: #2980b9 !important;
     border-bottom-color: #2980b9 !important;
     border-left-color: #2980b9 !important;
-    background-image: none !important;
 }
-
 body.game-body .btn-category.btn-test.active {
     background-image: linear-gradient(135deg, #1e3a8a 0%, #1a365d 100%) !important;
     background-color: #1e3a8a !important;
-    color: #ffffff !important;
-    border-top-style: none !important;
-    border-right-style: none !important;
-    border-bottom-style: none !important;
-    border-left-style: none !important;
 }
-
 body.game-body .btn-category.btn-total.active {
     background-image: linear-gradient(135deg, #f39c12 0%, #e67e22 100%) !important;
     background-color: #f39c12 !important;
-    color: #ffffff !important;
-    border-top-style: none !important;
-    border-right-style: none !important;
-    border-bottom-style: none !important;
-    border-left-style: none !important;
 }
 
 /* 下部コントロール行：左・中・右の一直線統治 */
