@@ -286,23 +286,21 @@ if (success) {
         this.lastQuestionIndex = -1;
         this.isTransitioning = false;
         this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        this.nextQuestion();
-        this.updateLoop();
-
-        // プレイ画面右上の情報表示（オーバーレイ）の制御
+        
+        // 5分間テスト表示制御（物理表示を優先）
         const overlay = document.getElementById('test-info-overlay');
         if (overlay) {
             if (this.isTestMode) {
                 overlay.classList.remove('hidden');
-                overlay.style.display = 'flex'; // 物理的に表示を強制
                 this.testCharactersTyped = 0;
                 this.startTestTimer();
             } else {
                 overlay.classList.add('hidden');
-                overlay.style.display = 'none';
             }
         }
-    }
+
+        this.nextQuestion();
+        this.updateLoop();
 
     nextQuestion() {
         // テストモード時は制限時間のみで終了するため、通常の320文字制限は無視する
