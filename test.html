@@ -37,22 +37,25 @@
         </header>
 
         <main class="test-main-wrapper">
-            <!-- 1. 開始前画面 -->
+            <!-- 1. 開始前（準備）画面 -->
             <section id="start-screen" class="test-screen-container">
                 <div class="test-info-card">
-                    <h1>5分間タイピングテスト（模擬試験）</h1>
+                    <h1 class="test-card-title">5分間タイピングテスト</h1>
                     <div class="test-instruction">
-                        <p>このページでは、企業の採用選考や資格試験で実施されるタイピングテストを本番に近い環境で体験できます。</p>
+                        <p class="test-lead-text">企業の採用選考や資格試験で実施されるタイピングテストを体験できる、実務者向けの測定モードです。</p>
+                        
                         <div class="test-notice-box">
-                            <p class="notice-title">💡 受験前の準備</p>
-                            <ul>
+                            <p class="notice-title">💡 テスト前の確認</p>
+                            <ul class="test-notice-list">
                                 <li>日本語入力システムを<strong>「オン」</strong>にしてください。</li>
-                                <li>5分間、誰にも邪魔されない集中できる環境を整えてください。</li>
-                                <li>中断する場合は <strong>[Esc]</strong> キーで戻ることができます。</li>
+                                <li>テストを中断して終了する場合は <strong>[Esc]</strong> キーを押してください。</li>
                             </ul>
                         </div>
                     </div>
-                    <button id="test-start-btn" class="btn-main">試験を開始する</button>
+                    
+                    <div class="test-action-area">
+                        <button id="test-start-btn" class="btn-main">テスト開始</button>
+                    </div>
                 </div>
             </section>
 
