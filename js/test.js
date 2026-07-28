@@ -130,10 +130,16 @@ class TypingExam {
             if(this.isStarted && !this.isTransitioning) this.focusInput(); 
         });
         
-        // 1. 画面全体の監視（Escで結果画面へ）
+        // 1. 画面全体の監視（Escキーの挙動を状況に応じて分岐）
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.isStarted) {
-                this.endExam(true);
+            if (e.key === 'Escape') {
+                if (this.isStarted) {
+                    // テスト中：中断して結果画面（判定不可）へ
+                    this.endExam(true);
+                } else {
+                    // テスト開始前：play.html（カテゴリ選択）へ戻る
+                    window.location.href = 'play.html';
+                }
             }
         });
 
@@ -144,6 +150,7 @@ class TypingExam {
                 if (e.key === 'Escape') {
                     this.endExam(true);
                 }
+                
                 // Backspaceキー：確定済み文字の修正ロジック（ここを追加）
                 else if (e.key === 'Backspace' && this.realInput.value === '') {
                     if (this.progress > 0) {

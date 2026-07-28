@@ -259,17 +259,17 @@ body.test-body .nav-item {
     transition-property: none !important;
 }
 
-/* --- 5. 準備・結果カード専用（860px幅） --- */
+/* --- 5. 準備・結果カード専用（860px幅：垂直高をさらに再圧縮） --- */
 .test-info-card,
 .test-result-card {
     width: 860px;
-    margin-top: 15px;
+    margin-top: 10px; /* 15pxから圧縮 */
     margin-right: auto;
     margin-bottom: 0px;
     margin-left: auto;
-    padding-top: 25px;
+    padding-top: 20px; /* 25pxから圧縮 */
     padding-right: 60px;
-    padding-bottom: 30px;
+    padding-bottom: 20px; /* 30pxから圧縮 */
     padding-left: 60px;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
@@ -282,18 +282,28 @@ body.test-body .nav-item {
 .test-card-title {
     font-size: 1.8rem;
     font-weight: 900;
-    margin-bottom: 20px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 15px; /* 20pxから圧縮 */
+    margin-left: 0px;
 }
 
 .test-instruction {
     text-align: left;
-    margin-bottom: 25px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 20px; /* 25pxから圧縮 */
+    margin-left: 0px;
 }
 
 .test-lead-text {
     font-size: 1.05rem;
     line-height: 1.7;
     color: #475569;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
 }
 
 .test-notice-box {
@@ -301,11 +311,11 @@ body.test-body .nav-item {
     border-left-width: 6px;
     border-left-style: solid;
     border-left-color: #3498db;
-    padding-top: 20px;
+    padding-top: 15px; /* 20pxから圧縮 */
     padding-right: 30px;
-    padding-bottom: 20px;
+    padding-bottom: 15px; /* 20pxから圧縮 */
     padding-left: 30px;
-    margin-top: 20px;
+    margin-top: 15px; /* 20pxから圧縮 */
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
     text-align: left;
