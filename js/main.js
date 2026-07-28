@@ -186,8 +186,14 @@ handleResize() {
         if (startBtn) {
             startBtn.addEventListener('click', async () => {
                 startBtn.disabled = true;
-                // テストモードかどうかをIDで判定
-                this.isTestMode = (this.currentCategoryId === 'test_5min');
+                
+                // 5分間テストモード選択時は、専用模擬試験ページへリダイレクト
+                if (this.currentCategoryId === 'test_5min') {
+                    window.location.href = 'test.html';
+                    return; // 以下のロード処理は行わない
+                }
+
+                this.isTestMode = false;
                 const success = await this.loadQuestions(this.currentCategoryId);
 if (success) { 
                     // [追加] Googleに開始を報告

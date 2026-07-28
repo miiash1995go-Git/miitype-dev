@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5分間タイピングテスト｜模擬試験モード｜ぱそトレ！</title>
+    <link rel="icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
+    <link rel="stylesheet" href="css/test.css">
+</head>
+<body class="test-body">
+    <div id="app">
+        <header>
+            <div class="header-inner">
+                <div class="header-logo-link">
+                    <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
+                </div>
+                <div class="test-title-label">5分間タイピングテスト（模擬試験）</div>
+            </div>
+        </header>
+
+        <main>
+            <!-- 1. 開始前画面 -->
+            <section id="start-screen" class="test-screen">
+                <div class="test-info-card">
+                    <h1>5分間タイピングテスト</h1>
+                    <div class="test-description">
+                        <p>このテストは実際の企業選考を想定した模擬試験です。</p>
+                        <ul>
+                            <li><strong>制限時間：</strong> 5分間</li>
+                            <li><strong>出題形式：</strong> 1画面に3〜4行の文章が表示されます</li>
+                            <li><strong>終了条件：</strong> 5分経過で自動終了</li>
+                        </ul>
+                        <div class="test-notice-box">
+                            <p>⚠️ 注意事項</p>
+                            <ul>
+                                <li>日本語入力システムを<strong>「オン」</strong>にしてから開始してください。</li>
+                                <li>中断して終了する場合は <strong>[Esc]</strong> キーを押してください。</li>
+                                <li>実力を正確に測るため、集中できる環境で受験してください。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button id="test-start-btn" class="btn-main">試験を開始する</button>
+                </div>
+            </section>
+
+            <!-- 2. 試験実施画面 -->
+            <section id="game-screen" class="test-screen hidden">
+                <div class="test-header-stats">
+                    <div class="stat-item">残り時間 <span id="test-timer" class="stat-val">05:00</span></div>
+                    <div class="stat-item">入力済み文字数 <span id="test-char-count" class="stat-val">0</span> 文字</div>
+                </div>
+
+                <div class="test-main-container">
+                    <div id="test-question-display" class="test-question-area">
+                        <!-- ここに複数行の文章が動的に表示される -->
+                    </div>
+                    
+                    <div class="test-input-wrapper">
+                        <input type="text" id="test-input-field" autocomplete="off" placeholder="ここに表示されている文章を入力してください">
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. 結果表示画面 -->
+            <section id="result-screen" class="test-screen hidden">
+                <div class="test-result-card">
+                    <h2>試験結果</h2>
+                    <div class="result-summary-grid">
+                        <div class="result-rank-area">
+                            <div class="res-rank-label">総合評価</div>
+                            <div id="res-rank" class="res-rank-val">-</div>
+                        </div>
+                        <div class="result-stats-area">
+                            <div class="res-stat-row"><span>入力文字数</span><span id="res-total-chars">0</span></div>
+                            <div class="res-stat-row"><span>正確率</span><span id="res-accuracy">0.0</span>%</div>
+                            <div class="res-stat-row"><span>ミス数</span><span id="res-misses">0</span></div>
+                        </div>
+                    </div>
+                    <div id="res-comment" class="result-comment"></div>
+                    <div class="result-actions">
+                        <a href="test.html" class="btn-main">もう一度受験する</a>
+                        <a href="play.html" class="summary-btn">通常練習に戻る</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="js/test.js"></script>
+</body>
+</html>

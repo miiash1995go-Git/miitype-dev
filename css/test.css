@@ -1,0 +1,203 @@
+/* ============================================================
+   ぱそトレ！ 5分間タイピングテスト専用スタイル (v20.7.28.1)
+   ------------------------------------------------------------
+   【管理ルール】
+   - 略記禁止。
+   - 企業のタイピングテストを想定したシンプル・高集中デザイン。
+   ============================================================ */
+
+body.test-body {
+    background-color: #f4f7f6; /* 試験会場をイメージした落ち着いたグレー */
+}
+
+.test-title-label {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #64748b;
+    border-left-width: 4px;
+    border-left-style: solid;
+    border-left-color: #cbd5e1;
+    padding-left: 15px;
+}
+
+.test-screen {
+    max-width: 1024px;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+}
+
+/* 1. 開始前カード */
+.test-info-card {
+    background-color: #ffffff;
+    width: 800px;
+    padding-top: 40px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    padding-left: 50px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.test-info-card h1 {
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.test-notice-box {
+    background-color: #fff9f0;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 6px;
+    border-style: solid;
+    border-color: #f39c12;
+    padding-top: 20px;
+    padding-right: 25px;
+    padding-bottom: 20px;
+    padding-left: 25px;
+    margin-top: 30px;
+}
+
+/* 2. 試験本番エリア */
+.test-header-stats {
+    width: 800px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.stat-item {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #64748b;
+}
+
+.stat-val {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-left: 10px;
+}
+
+.test-main-container {
+    background-color: #ffffff;
+    width: 800px;
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    padding-left: 50px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+/* 問題文表示（3〜4行） */
+.test-question-area {
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: #94a3b8; /* 未入力：薄い色 */
+    margin-bottom: 40px;
+    word-break: break-all;
+    min-height: 160px;
+}
+
+/* 入力完了済みの文字色 */
+.char-correct {
+    color: #2c3e50;
+    font-weight: 900;
+}
+
+/* 入力欄（装飾を最小限にし、集中力を維持） */
+.test-input-wrapper {
+    width: 100%;
+}
+
+#test-input-field {
+    width: 100%;
+    height: 60px;
+    font-size: 1.5rem;
+    padding-top: 0px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #cbd5e1;
+    border-right-color: #cbd5e1;
+    border-bottom-color: #cbd5e1;
+    border-left-color: #cbd5e1;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    outline-style: none;
+    transition-property: border-color;
+    transition-duration: 0.2s;
+}
+
+#test-input-field:focus {
+    border-top-color: #3498db;
+    border-right-color: #3498db;
+    border-bottom-color: #3498db;
+    border-left-color: #3498db;
+}
+
+/* 3. 結果画面 */
+.test-result-card {
+    background-color: #ffffff;
+    width: 800px;
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    padding-left: 50px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    text-align: center;
+}
+
+.result-summary-grid {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.res-rank-val {
+    font-size: 5rem;
+    font-weight: 900;
+    color: #3498db;
+}
+
+.res-stat-row {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #f1f3f5;
+}
