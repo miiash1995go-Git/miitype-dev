@@ -172,12 +172,14 @@ body.test-body .nav-item {
     padding-right: 25px;
     padding-bottom: 15px;
     padding-left: 25px;
-    font-size: 1.8rem;
-    line-height: 1.5;
+    /* 文字サイズを 1.8rem から 1.55rem へ調整 */
+    font-size: 1.55rem;
+    line-height: 1.6;
     color: #1e293b;
     min-height: 85px;
     word-break: break-all;
     white-space: normal;
+    box-sizing: border-box;
 }
 
 /* 下段：入力エリア（ハイブリッド方式：物理レイヤー） */
@@ -200,11 +202,11 @@ body.test-body .nav-item {
     color: #1e293b;
 }
 
-/* 青いキャレット */
+/* 青いキャレット：高さをフォントサイズに同期 */
 .char-current-caret {
     display: inline-block;
     width: 2px;
-    height: 1.8rem;
+    height: 1.55rem;
     background-color: #2563eb;
     margin-right: -2px;
     vertical-align: middle;
@@ -216,7 +218,7 @@ body.test-body .nav-item {
     50% { opacity: 0; }
 }
 
-/* 本物の入力口：変換中のみ可視化。横幅をカード右端（95%）まで開放 */
+/* 本物の入力口：変換中のみ可視化。フォントサイズを 1.55rem に同期 */
 .test-hidden-field {
     position: absolute !important;
     top: 0px;
@@ -225,7 +227,7 @@ body.test-body .nav-item {
     z-index: 10;
     cursor: text;
     font-family: 'Noto Sans JP', sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.55rem;
     line-height: 1.5;
     color: #1e293b;
     background-color: transparent;
@@ -235,8 +237,7 @@ body.test-body .nav-item {
     border-left-style: none !important;
     outline-style: none !important;
     box-shadow: none !important;
-    /* 1000pxのカードに対し、左右パディングを除いたほぼ全域（約920px分）をカバー */
-    width: 95%;
+    width: 500px;
     height: 3rem;
     padding-top: 0px;
     padding-right: 0px;
