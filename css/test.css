@@ -11,7 +11,7 @@ body.test-body {
     margin-left: 0px;
 }
 
-/* ヘッダー：背景色と一体化させて試験会場の静寂さを演出 */
+/* ヘッダー：背景色と一体化（物理高をさらに節約） */
 body.test-body header {
     background-color: #64758A;
     width: 100%;
@@ -20,7 +20,7 @@ body.test-body header {
     border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
-/* 1024px中央配置 ＆ 768px高収容のための垂直余白圧縮 */
+/* 1024px中央配置 ＆ ヘッダー高の最小化 */
 body.test-body .header-inner {
     max-width: 1024px;
     margin-top: 0px;
@@ -31,9 +31,9 @@ body.test-body .header-inner {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding-top: 8px; /* 10pxから圧縮 */
+    padding-top: 5px; /* 8pxからさらに圧縮 */
     padding-right: 0px;
-    padding-bottom: 8px; /* 10pxから圧縮 */
+    padding-bottom: 5px; /* 8pxからさらに圧縮 */
     padding-left: 0px;
 }
 
@@ -49,17 +49,31 @@ body.test-body .nav-item {
     text-decoration-line: none !important;
 }
 
-/* 準備・結果用：中央白カード（768px高 1画面収容モデル） */
-.test-info-card {
-    background-color: #ffffff;
-    width: 860px;
-    margin-top: 25px; /* 40pxから圧縮 */
+/* メインラッパー：カードの浮遊感を保ちつつ上下を詰める */
+.test-main-wrapper {
+    max-width: 1000px;
+    margin-top: 0px;
     margin-right: auto;
     margin-bottom: 0px;
     margin-left: auto;
-    padding-top: 35px; /* 50pxから大幅圧縮 */
+    padding-top: 10px; /* 30pxから圧縮 */
+    padding-right: 0px;
+    padding-bottom: 10px; /* 30pxから圧縮 */
+    padding-left: 0px;
+}
+
+/* 準備・結果用：中央白カード（物理サイズ再定義） */
+.test-info-card,
+.test-result-card {
+    background-color: #ffffff;
+    width: 860px;
+    margin-top: 10px; /* 25pxから圧縮 */
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    padding-top: 25px; /* 35pxから圧縮 */
     padding-right: 60px;
-    padding-bottom: 45px; /* 60pxから圧縮 */
+    padding-bottom: 30px; /* 45pxから圧縮 */
     padding-left: 60px;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
@@ -68,6 +82,18 @@ body.test-body .nav-item {
     box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.2);
     text-align: center;
     box-sizing: border-box;
+}
+
+/* フッター：test.html専用の圧縮デザイン */
+body.test-body footer {
+    width: 100%;
+    background-color: #ffffff;
+    padding-top: 20px; /* style.cssの40pxから圧縮 */
+    padding-right: 0px;
+    padding-bottom: 20px; /* style.cssの40pxから圧縮 */
+    padding-left: 0px;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .test-card-title {
