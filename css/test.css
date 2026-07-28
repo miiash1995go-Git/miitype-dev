@@ -373,14 +373,19 @@ body.test-body .nav-item {
 }
 
 .res-rank-text {
-    font-size: 6.5rem; /* サイズを戻してインパクトを確保 */
+    font-size: 6.5rem;
     font-weight: 900;
     color: #2563eb;
     line-height: 1;
-    margin-top: 0px;
+    margin-top: 15px; /* 判定ランク文字からの距離 */
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
+    /* 判定不可（複数文字）になっても位置が上下に跳ねないよう、最小高さを固定 */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 110px;
 }
 
 .res-stat-row {

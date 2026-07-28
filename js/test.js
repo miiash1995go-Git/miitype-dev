@@ -248,9 +248,9 @@ class TypingExam {
         if (isAborted) {
             // 【指示通り：中断時の結果表示】
             resRank.innerText = "判定不可";
-            // 判定不可時はフォントサイズを微調整し、色を濃い灰色に変更
-            resRank.style.fontSize = "4rem";
-            resRank.style.color = "#4b5563"; 
+            // 主張を抑えたサイズと灰色（#94a3b8）に変更
+            resRank.style.fontSize = "3.8rem";
+            resRank.style.color = "#94a3b8"; 
             
             document.getElementById('res-total-chars').innerText = "---";
             document.getElementById('res-accuracy').innerText = "---";
