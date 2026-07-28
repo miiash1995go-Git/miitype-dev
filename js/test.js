@@ -141,20 +141,26 @@ class TypingExam {
         });
 
         this.isComposing = false;
+        
+        // 変換開始：本物の入力口を可視化し、自作キャレットを隠す
         this.realInput.addEventListener('compositionstart', () => { 
             this.isComposing = true; 
-            this.realInput.style.opacity = '1';
+            this.realInput.style.opacity = '1'; 
             const caret = this.visualText.querySelector('.char-current-caret');
             if (caret) caret.style.visibility = 'hidden';
         });
 
-        this.realInput.addEventListener('compositionupdate', (e) => { });
+        this.realInput.addEventListener('compositionupdate', (e) => {
+            // OS側の描画に任せるため空で維持
+        });
 
+        // 変換確定：本物の入力口を再び隠し、自作キャレットを戻す
         this.realInput.addEventListener('compositionend', (e) => {
             this.isComposing = false;
-            this.realInput.style.opacity = '0';
+            this.realInput.style.opacity = '0'; 
             const caret = this.visualText.querySelector('.char-current-caret');
             if (caret) caret.style.visibility = 'visible';
+            
             this.evaluateString(e.data);
             this.realInput.value = ''; 
         });
