@@ -350,29 +350,35 @@ body.test-body .nav-item {
     margin-left: 0px;
 }
 
-/* 3. 結果画面：洗練されたスタッツ表示 */
+/* 3. 結果画面：768px高 1画面収容モデル (v20.7.28.Compact) */
 .test-result-card {
     background-color: #ffffff;
-    width: 900px;
+    width: 860px;
     margin-top: 20px;
     margin-right: auto;
     margin-bottom: 0px;
     margin-left: auto;
-    padding-top: 40px;
-    padding-right: 50px;
-    padding-bottom: 40px;
-    padding-left: 50px;
+    padding-top: 30px;
+    padding-right: 60px;
+    padding-bottom: 30px;
+    padding-left: 60px;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     border-bottom-left-radius: 25px;
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .res-header {
     font-size: 1.4rem;
     font-weight: 900;
     text-align: center;
-    margin-bottom: 40px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 20px;
+    margin-left: 0px;
     color: #1e293b;
 }
 
@@ -381,11 +387,25 @@ body.test-body .nav-item {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 40px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 20px;
+    margin-left: 0px;
+}
+
+.res-label {
+    font-size: 0.85rem;
+    color: #64748b;
+    font-weight: 800;
+    display: block;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 5px;
+    margin-left: 0px;
 }
 
 .res-rank-text {
-    font-size: 6rem;
+    font-size: 5.5rem;
     font-weight: 900;
     color: #2563eb;
     line-height: 1;
@@ -394,28 +414,74 @@ body.test-body .nav-item {
 .res-stat-row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 280px;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: #f1f5f9;
 }
 
+.res-stat-label {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 800;
+}
+
 .res-stat-num {
     font-size: 1.6rem;
     font-weight: 700;
+    color: #1e293b;
 }
 
+/* アドバイス枠：内側余白を詰め、高さを節約 */
 .res-advice-box {
     background-color: #f8fafc;
-    padding-top: 20px;
+    padding-top: 15px;
     padding-right: 25px;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     padding-left: 25px;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
-    margin-bottom: 40px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 25px;
+    margin-left: 0px;
+    text-align: left;
+}
+
+.advice-label {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #14b8a6;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.advice-text {
+    font-size: 1rem;
+    color: #475569;
+    line-height: 1.6;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+/* アクションエリア：横並びを維持し高さを最小化 */
+.res-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
 }
