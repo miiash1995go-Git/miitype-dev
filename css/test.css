@@ -20,7 +20,7 @@ body.test-body header {
     border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
-/* 1024px中央配置の維持 ＆ 垂直余白の適正化 */
+/* 1024px中央配置 ＆ 768px高収容のための垂直余白圧縮 */
 body.test-body .header-inner {
     max-width: 1024px;
     margin-top: 0px;
@@ -31,35 +31,35 @@ body.test-body .header-inner {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding-top: 10px;
+    padding-top: 8px; /* 10pxから圧縮 */
     padding-right: 0px;
-    padding-bottom: 10px;
+    padding-bottom: 8px; /* 10pxから圧縮 */
     padding-left: 0px;
 }
 
-/* アイコンが巨大化するのを防ぐ物理ロック */
+/* アイコン物理ロック */
 body.test-body .nav-icon {
     width: 18px !important;
     height: 18px !important;
 }
 
-/* ナビゲーション：背景に溶け込まないよう文字色を「白」へ強制 */
+/* ナビゲーション文字色 */
 body.test-body .nav-item {
-    color: #ffffff !important;
+    color: #2c3e50 !important;
     text-decoration-line: none !important;
 }
 
-/* 準備・結果用：中央白カード（1画面収容 768px最適化モデル） */
+/* 準備・結果用：中央白カード（768px高 1画面収容モデル） */
 .test-info-card {
     background-color: #ffffff;
     width: 860px;
-    margin-top: 40px;
+    margin-top: 25px; /* 40pxから圧縮 */
     margin-right: auto;
     margin-bottom: 0px;
     margin-left: auto;
-    padding-top: 50px;
+    padding-top: 35px; /* 50pxから大幅圧縮 */
     padding-right: 60px;
-    padding-bottom: 60px;
+    padding-bottom: 45px; /* 60pxから圧縮 */
     padding-left: 60px;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
@@ -76,32 +76,39 @@ body.test-body .nav-item {
     color: #1e293b;
     margin-top: 0px;
     margin-right: 0px;
-    margin-bottom: 30px;
+    margin-bottom: 20px; /* 30pxから圧縮 */
     margin-left: 0px;
 }
 
 .test-instruction {
     text-align: left;
-    margin-bottom: 40px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 25px; /* 40pxから圧縮 */
+    margin-left: 0px;
 }
 
 .test-lead-text {
-    font-size: 1.1rem;
-    line-height: 1.8;
+    font-size: 1.05rem; /* 微調整 */
+    line-height: 1.7;
     color: #475569;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
 }
 
-/* 注意事項：品位のある落ち着いた案内枠 */
+/* 注意事項：垂直余白を詰めつつ視認性を維持 */
 .test-notice-box {
     background-color: #f8fafc;
     border-left-width: 6px;
     border-left-style: solid;
     border-left-color: #3498db;
-    padding-top: 25px;
+    padding-top: 20px; /* 25pxから圧縮 */
     padding-right: 30px;
-    padding-bottom: 25px;
+    padding-bottom: 20px; /* 25pxから圧縮 */
     padding-left: 30px;
-    margin-top: 30px;
+    margin-top: 20px; /* 30pxから圧縮 */
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
 }
