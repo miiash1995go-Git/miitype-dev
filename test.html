@@ -97,12 +97,15 @@
             <!-- 3. 結果表示画面 -->
             <section id="result-screen" class="test-screen-container hidden">
                 <div class="test-result-card">
-                    <div class="res-header">試験結果</div>
                     <div class="res-main-layout">
+                        <!-- 左側：タイトルとランクを縦にスタック -->
                         <div class="res-rank-block">
+                            <div class="res-header">試験結果</div>
                             <span class="res-label">判定ランク</span>
                             <div id="res-rank" class="res-rank-text">-</div>
                         </div>
+                        
+                        <!-- 右側：統計数値（一段上に繰り上げ） -->
                         <div class="res-stats-block">
                             <div class="res-stat-row">
                                 <span class="res-stat-label">入力文字数</span>
@@ -118,8 +121,9 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- アドバイスエリア：ラベルをカットし、背景を強調 -->
                     <div class="res-advice-box">
-                        <span class="advice-label">アドバイス</span>
                         <p id="res-comment" class="advice-text">--</p>
                     </div>
                     <div class="res-actions">
