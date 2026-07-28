@@ -1404,7 +1404,7 @@ body.portal-page #app {
     margin-bottom: 0px;
     margin-left: 0px;
 }
-/* --- AIボックス内：白抜き誘導ボタン (v20.7.27.Unified) --- */
+/* --- AIボックス内：白抜き誘導ボタン (v20.7.27.VisibilityFixed) --- */
 .ai-role-btn {
     display: block !important;
     margin-top: 15px !important;
@@ -1424,21 +1424,19 @@ body.portal-page #app {
     font-size: 0.85rem !important;
     font-weight: 900 !important;
     background-color: #ffffff !important;
-    /* ホバー時の物理フィードバック設定 */
     transition-property: background-color, color, transform, box-shadow !important;
     transition-duration: 0.2s !important;
     transition-timing-function: ease !important;
     box-sizing: border-box !important;
 }
 
-/* 共通ホバー：浮き上がりと影 */
+/* 共通ホバーフィードバック */
 .ai-role-btn:hover {
     transform: translateY(-3px) !important;
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1) !important;
-    color: #ffffff !important;
 }
 
-/* 就職側ボタン：Career色 (#F97316) と同期 */
+/* 就職側ボタン：Career色 (#F97316) への塗りつぶし ＆ 文字白抜き */
 .ai-role-btn.career-btn {
     border-top-width: 2px !important;
     border-right-width: 2px !important;
@@ -1457,9 +1455,10 @@ body.portal-page #app {
 
 .ai-role-btn.career-btn:hover {
     background-color: #F97316 !important;
+    color: #ffffff !important; /* 文字を白に変更して視認性を確保 */
 }
 
-/* 仕事側ボタン：Excel/Work色 (#16A34A) と同期 */
+/* 仕事側ボタン：Excel/Work色 (#16A34A) への塗りつぶし ＆ 文字白抜き */
 .ai-role-btn.work-btn {
     border-top-width: 2px !important;
     border-right-width: 2px !important;
@@ -1478,6 +1477,7 @@ body.portal-page #app {
 
 .ai-role-btn.work-btn:hover {
     background-color: #16A34A !important;
+    color: #ffffff !important; /* 文字を白に変更して視認性を確保 */
 }
 
 /* --- 3. 目的別クイックアクセス --- */
@@ -2071,21 +2071,18 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     text-decoration-line: none;
     font-weight: 900;
     font-size: 0.9rem;
-    /* ホバー時の滑らかな変化を実現 */
     transition-property: background-color, color, transform, box-shadow;
     transition-duration: 0.2s;
     transition-timing-function: ease;
 }
 
-/* ボタン単体のホバー挙動（共通：浮き上がり） */
 .step-cta-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
-    color: #ffffff !important; /* テキストを白抜きに強制 */
+    color: #ffffff !important;
 }
 
-/* 各ステップの色に合わせた背景色の流し込み（インデント・バラ書き遵守） */
-/* STEP 1: Blue */
+/* 各ステップのテーマカラー塗りつぶし定義 */
 .map-step-card:nth-child(1) .step-cta-btn:hover {
     background-color: #2563EB !important;
     border-top-color: #2563EB !important;
@@ -2094,7 +2091,6 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     border-left-color: #2563EB !important;
 }
 
-/* STEP 2: Orange */
 .map-step-card:nth-child(2) .step-cta-btn:hover {
     background-color: #F97316 !important;
     border-top-color: #F97316 !important;
@@ -2103,7 +2099,6 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     border-left-color: #F97316 !important;
 }
 
-/* STEP 3: Green */
 .map-step-card:nth-child(3) .step-cta-btn:hover {
     background-color: #16A34A !important;
     border-top-color: #16A34A !important;
