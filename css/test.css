@@ -1,17 +1,26 @@
 /* ============================================================
-   ぱそトレ！ 5分間タイピングテスト専用「正典」スタイル (v20.7.28)
+   ぱそトレ！ 5分間タイピングテスト専用「正典」スタイル (v20.7.28.Final)
+   ------------------------------------------------------------
+   【管理ルール】
+   - 略記（shorthand）禁止。
+   - 1024px絶対統治 ＆ 768px高 1画面収容ロジック。
+   - 企業の採用試験を想定した、静寂と集中のデザイン。
    ============================================================ */
 
-/* --- 5分間タイピングテスト専用物理統治 (v20.7.28.Correct) --- */
+/* --- 1. 全体物理配置 ＆ 背景 --- */
 body.test-body {
     background-color: #64758A;
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #1e293b;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* ヘッダー：背景色と一体化（物理高をさらに節約） */
+/* ヘッダー：背景色と一体化（物理高を節約） */
 body.test-body header {
     background-color: #64758A;
     width: 100%;
@@ -20,7 +29,7 @@ body.test-body header {
     border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
-/* 1024px中央配置 ＆ ヘッダー高の最小化 */
+/* 1024px中央配置 ＆ ヘッダー厚みの最小化 */
 body.test-body .header-inner {
     max-width: 1024px;
     margin-top: 0px;
@@ -31,9 +40,9 @@ body.test-body .header-inner {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding-top: 5px; /* 8pxからさらに圧縮 */
+    padding-top: 10px;
     padding-right: 0px;
-    padding-bottom: 5px; /* 8pxからさらに圧縮 */
+    padding-bottom: 10px;
     padding-left: 0px;
 }
 
@@ -49,152 +58,32 @@ body.test-body .nav-item {
     text-decoration-line: none !important;
 }
 
-/* メインラッパー：カードの浮遊感を保ちつつ上下を詰める */
+/* メインラッパー：ヘッダーから指示通り「30px」離す */
 .test-main-wrapper {
     max-width: 1000px;
-    margin-top: 0px;
+    margin-top: 30px;
     margin-right: auto;
     margin-bottom: 0px;
     margin-left: auto;
-    padding-top: 10px; /* 30pxから圧縮 */
+    padding-top: 0px;
     padding-right: 0px;
-    padding-bottom: 10px; /* 30pxから圧縮 */
+    padding-bottom: 15px;
     padding-left: 0px;
 }
 
-/* 準備・結果用：中央白カード（物理サイズ再定義） */
+/* --- 2. 各種カード（白ボックス）共通定義 --- */
 .test-info-card,
+.test-stat-card,
+.test-typing-card,
 .test-result-card {
     background-color: #ffffff;
-    width: 860px;
-    margin-top: 10px; /* 25pxから圧縮 */
-    margin-right: auto;
-    margin-bottom: 0px;
-    margin-left: auto;
-    padding-top: 25px; /* 35pxから圧縮 */
-    padding-right: 60px;
-    padding-bottom: 30px; /* 45pxから圧縮 */
-    padding-left: 60px;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
-    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.2);
-    text-align: center;
     box-sizing: border-box;
 }
 
-/* フッター：test.html専用の圧縮デザイン */
-body.test-body footer {
-    width: 100%;
-    background-color: #ffffff;
-    padding-top: 20px; /* style.cssの40pxから圧縮 */
-    padding-right: 0px;
-    padding-bottom: 20px; /* style.cssの40pxから圧縮 */
-    padding-left: 0px;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.test-card-title {
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: #1e293b;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 20px; /* 30pxから圧縮 */
-    margin-left: 0px;
-}
-
-.test-instruction {
-    text-align: left;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 25px; /* 40pxから圧縮 */
-    margin-left: 0px;
-}
-
-.test-lead-text {
-    font-size: 1.05rem; /* 微調整 */
-    line-height: 1.7;
-    color: #475569;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-}
-
-/* 注意事項：垂直余白を詰めつつ視認性を維持 */
-.test-notice-box {
-    background-color: #f8fafc;
-    border-left-width: 6px;
-    border-left-style: solid;
-    border-left-color: #3498db;
-    padding-top: 20px; /* 25pxから圧縮 */
-    padding-right: 30px;
-    padding-bottom: 20px; /* 25pxから圧縮 */
-    padding-left: 30px;
-    margin-top: 20px; /* 30pxから圧縮 */
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
-}
-
-.notice-title {
-    font-weight: 900;
-    color: #1e293b;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 12px;
-    margin-left: 0px;
-}
-
-.test-notice-list {
-    list-style-type: none;
-    padding-left: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-
-.test-notice-list li {
-    position: relative;
-    padding-left: 20px;
-    margin-bottom: 8px;
-    font-size: 1rem;
-    color: #475569;
-}
-
-.test-notice-list li::before {
-    content: "・";
-    position: absolute;
-    left: 0px;
-    font-weight: 900;
-}
-
-/* アクションエリア：ボタンの物理中央配置 */
-.test-action-area {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-}
-
-/* メインラッパー：余白を最小化（計40px削減） */
-.test-main-wrapper {
-    max-width: 1000px;
-    margin-top: 0px;
-    margin-right: auto;
-    margin-bottom: 0px;
-    margin-left: auto;
-    padding-top: 5px;
-    padding-right: 0px;
-    padding-bottom: 5px;
-    padding-left: 0px;
-}
-
-/* 1. ステータスカード：高さを60pxへ（10px削減） */
-/* 1. ステータスカード：デザインの復旧 ＆ 垂直高の適正化 */
+/* --- 3. ステータスカード（上段） --- */
 .test-stat-card {
-    background-color: #ffffff;
-    height: 65px; /* 60pxから微増させ視認性を確保 */
+    width: 1000px;
+    height: 65px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -203,9 +92,8 @@ body.test-body footer {
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
 }
 
 .stat-group {
@@ -224,7 +112,7 @@ body.test-body footer {
 .stat-value {
     font-family: 'Roboto Mono', monospace;
     font-size: 1.4rem;
-    font-weight: 900; /* 太さを強調 */
+    font-weight: 900;
     color: #1e293b;
 }
 
@@ -235,18 +123,31 @@ body.test-body footer {
     margin-left: 2px;
 }
 
-/* 2. タイピングカード：内側パディングの再調整 */
+/* --- 4. タイピングメインカード（中央） --- */
 .test-typing-card {
-    background-color: #ffffff;
-    padding-top: 25px; /* 20pxから微増：詰まり感を解消 */
+    width: 1000px;
+    padding-top: 25px;
     padding-right: 40px;
-    padding-bottom: 25px; /* 20pxから微増 */
+    padding-bottom: 25px;
     padding-left: 40px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.test-typing-label {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #14b8a6;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .test-text-display {
@@ -274,24 +175,59 @@ body.test-body footer {
     font-size: 1.8rem;
     line-height: 1.5;
     color: #1e293b;
-    min-height: 85px; /* 枠内ギリギリまで使うための調整 */
+    min-height: 85px;
     word-break: break-all;
     white-space: normal;
-    box-sizing: border-box;
 }
 
-/* 物理入力口：不自然な枠（四角）を完全に排除 */
+/* 下段：入力エリア（ハイブリッド方式：物理レイヤー） */
+.test-input-view {
+    background-color: #ffffff;
+    position: relative !important;
+    border-top-color: #cbd5e1;
+    border-right-color: #cbd5e1;
+    border-bottom-color: #cbd5e1;
+    border-left-color: #cbd5e1;
+}
+
+/* サンプル（上段）の進捗：薄グレー */
+.char-done {
+    color: #cbd5e1 !important;
+}
+
+/* 下段入力エリア：確定文字 */
+.char-confirmed {
+    color: #1e293b;
+}
+
+/* 青いキャレット */
+.char-current-caret {
+    display: inline-block;
+    width: 2px;
+    height: 1.8rem;
+    background-color: #2563eb;
+    margin-right: -2px;
+    vertical-align: middle;
+    animation: test-blink 1s step-end infinite;
+}
+
+@keyframes test-blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* 本物の入力口：変換中のみ可視化される */
 .test-hidden-field {
     position: absolute !important;
     top: 0px;
     left: 0px;
-    opacity: 0; /* 常に透明を維持し、IMEの機能だけを利用 */
+    opacity: 0;
     z-index: 10;
     cursor: text;
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 1.8rem;
-    line-height: 1.6;
-    color: transparent; /* 文字色も透明にして二重表示を防止 */
+    line-height: 1.5;
+    color: #1e293b;
     background-color: transparent;
     border-top-style: none !important;
     border-right-style: none !important;
@@ -299,26 +235,35 @@ body.test-body footer {
     border-left-style: none !important;
     outline-style: none !important;
     box-shadow: none !important;
-    width: 20px; /* 最小化してIME候補窓の基準点のみとする */
-    height: 2rem;
+    width: 500px;
+    height: 3rem;
     padding-top: 0px;
     padding-right: 0px;
     padding-bottom: 0px;
     padding-left: 0px;
 }
 
-/* 3. 結果画面：内側パディングとマージンの圧縮（計20px削減） */
+/* ダメージエフェクト（ミス時） */
+.test-input-view.damage-effect {
+    background-color: #fff1f2 !important;
+    border-top-color: #fda4af !important;
+    border-right-color: #fda4af !important;
+    border-bottom-color: #fda4af !important;
+    border-left-color: #fda4af !important;
+    transition-property: none !important;
+}
+
+/* --- 5. 準備・結果カード専用（860px幅） --- */
 .test-info-card,
 .test-result-card {
-    background-color: #ffffff;
     width: 860px;
-    margin-top: 5px;
+    margin-top: 15px;
     margin-right: auto;
     margin-bottom: 0px;
     margin-left: auto;
-    padding-top: 20px;
+    padding-top: 25px;
     padding-right: 60px;
-    padding-bottom: 25px;
+    padding-bottom: 30px;
     padding-left: 60px;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
@@ -326,21 +271,155 @@ body.test-body footer {
     border-bottom-left-radius: 25px;
     box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.2);
     text-align: center;
-    box-sizing: border-box;
 }
 
-/* 結果画面のボタンエリア：ボタン化の強制定義 */
+.test-card-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.test-instruction {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.test-lead-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #475569;
+}
+
+.test-notice-box {
+    background-color: #f8fafc;
+    border-left-width: 6px;
+    border-left-style: solid;
+    border-left-color: #3498db;
+    padding-top: 20px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    margin-top: 20px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    text-align: left;
+}
+
+.notice-title {
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+
+.test-notice-list {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+.test-notice-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #475569;
+}
+
+.test-notice-list li::before {
+    content: "・";
+    position: absolute;
+    left: 0px;
+    font-weight: 900;
+}
+
+/* --- 6. 結果画面詳細 --- */
+.res-header {
+    font-size: 1.4rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.res-main-layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.res-label {
+    font-size: 0.85rem;
+    color: #64748b;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.res-rank-text {
+    font-size: 5.5rem;
+    font-weight: 900;
+    color: #2563eb;
+    line-height: 1;
+}
+
+.res-stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 280px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #f1f5f9;
+}
+
+.res-stat-label {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 800;
+}
+
+.res-stat-num {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.res-advice-box {
+    background-color: #f8fafc;
+    padding-top: 15px;
+    padding-right: 25px;
+    padding-bottom: 15px;
+    padding-left: 25px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.advice-label {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #14b8a6;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.advice-text {
+    font-size: 1rem;
+    color: #475569;
+    line-height: 1.6;
+}
+
 .res-actions {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 20px;
-    margin-top: 0px;
-    width: 100%;
 }
 
-/* summary-btn の test.html 専用定義（ボタン化） */
+/* summary-btn：白背景・青枠 */
 .test-result-card .summary-btn {
     display: inline-flex;
     align-items: center;
@@ -370,7 +449,6 @@ body.test-body footer {
     font-size: 0.95rem;
     transition-property: all;
     transition-duration: 0.2s;
-    box-sizing: border-box;
 }
 
 .test-result-card .summary-btn:hover {
@@ -379,115 +457,32 @@ body.test-body footer {
     transform: translateY(-2px);
 }
 
-.res-header {
-    font-size: 1.4rem;
-    font-weight: 900;
+/* --- 7. フッター（圧縮版） --- */
+body.test-body footer {
+    width: 100%;
+    background-color: #ffffff;
+    padding-top: 20px;
+    padding-bottom: 20px;
     text-align: center;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 20px;
-    margin-left: 0px;
-    color: #1e293b;
+    margin-top: 20px;
 }
 
-.res-main-layout {
+.footer-links {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 20px;
-    margin-left: 0px;
-}
-
-.res-label {
-    font-size: 0.85rem;
-    color: #64748b;
-    font-weight: 800;
-    display: block;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 5px;
-    margin-left: 0px;
-}
-
-.res-rank-text {
-    font-size: 5.5rem;
-    font-weight: 900;
-    color: #2563eb;
-    line-height: 1;
-}
-
-.res-stat-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 280px;
-    padding-top: 10px;
-    padding-right: 0px;
-    padding-bottom: 10px;
-    padding-left: 0px;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: #f1f5f9;
-}
-
-.res-stat-label {
-    font-size: 0.9rem;
-    color: #64748b;
-    font-weight: 800;
-}
-
-.res-stat-num {
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: #1e293b;
-}
-
-/* アドバイス枠：内側余白を詰め、高さを節約 */
-.res-advice-box {
-    background-color: #f8fafc;
-    padding-top: 15px;
-    padding-right: 25px;
-    padding-bottom: 15px;
-    padding-left: 25px;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
-    border-bottom-left-radius: 12px;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 25px;
-    margin-left: 0px;
-    text-align: left;
-}
-
-.advice-label {
-    font-size: 0.8rem;
-    font-weight: 800;
-    color: #14b8a6;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.advice-text {
-    font-size: 1rem;
-    color: #475569;
-    line-height: 1.6;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-}
-
-/* アクションエリア：横並びを維持し高さを最小化 */
-.res-actions {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
+    margin-bottom: 5px;
+}
+
+.footer-links a {
+    color: #2c3e50;
+    text-decoration-line: none;
+    font-size: 0.8rem;
+}
+
+body.test-body footer p {
+    font-size: 0.75rem;
+    color: #7f8c8d;
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
