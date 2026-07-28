@@ -2006,13 +2006,65 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     align-items: center;
     justify-content: center;
     width: 90%;
-    padding: 10px 0;
-    border-radius: 50px;
-    border: 2px solid;
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
     background-color: #ffffff;
-    text-decoration: none;
+    text-decoration-line: none;
     font-weight: 900;
     font-size: 0.9rem;
+    /* ホバー時の滑らかな変化を実現 */
+    transition-property: background-color, color, transform, box-shadow;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+}
+
+/* ボタン単体のホバー挙動（共通：浮き上がり） */
+.step-cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+    color: #ffffff !important; /* テキストを白抜きに強制 */
+}
+
+/* 各ステップの色に合わせた背景色の流し込み（インデント・バラ書き遵守） */
+/* STEP 1: Blue */
+.map-step-card:nth-child(1) .step-cta-btn:hover {
+    background-color: #2563EB !important;
+    border-top-color: #2563EB !important;
+    border-right-color: #2563EB !important;
+    border-bottom-color: #2563EB !important;
+    border-left-color: #2563EB !important;
+}
+
+/* STEP 2: Orange */
+.map-step-card:nth-child(2) .step-cta-btn:hover {
+    background-color: #F97316 !important;
+    border-top-color: #F97316 !important;
+    border-right-color: #F97316 !important;
+    border-bottom-color: #F97316 !important;
+    border-left-color: #F97316 !important;
+}
+
+/* STEP 3: Green */
+.map-step-card:nth-child(3) .step-cta-btn:hover {
+    background-color: #16A34A !important;
+    border-top-color: #16A34A !important;
+    border-right-color: #16A34A !important;
+    border-bottom-color: #16A34A !important;
+    border-left-color: #16A34A !important;
 }
 
 @media (max-width: 768px) {
