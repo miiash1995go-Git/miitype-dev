@@ -120,31 +120,35 @@ class TypingExam {
             if(this.isStarted && !this.isTransitioning) this.focusInput(); 
         });
         
+        // 1. 画面全体の監視（Escで結果画面へ）
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') window.location.href = 'play.html';
+            if (e.key === 'Escape' && this.isStarted) {
+                this.endExam(true);
+            }
+        });
+
+        // 2. 入力欄自体の監視（IME非変換時のEscを拾う）
+        this.realInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.isStarted && !this.isComposing) {
+                this.endExam(true);
+            }
         });
 
         this.isComposing = false;
-        
-        // 変換開始：本物の入力欄を可視化し、キャレットを隠す（IME側が出るため）
         this.realInput.addEventListener('compositionstart', () => { 
             this.isComposing = true; 
             this.realInput.style.opacity = '1';
-            const caret = this.inputViewBox.querySelector('.char-current-caret');
+            const caret = this.visualText.querySelector('.char-current-caret');
             if (caret) caret.style.visibility = 'hidden';
         });
 
-        this.realInput.addEventListener('compositionupdate', (e) => {
-            // 変換中の文字はOSが本物の input 内に描画するため、JSでの描画は不要
-        });
+        this.realInput.addEventListener('compositionupdate', (e) => { });
 
-        // 変換確定：入力を評価し、本物の入力欄を再び隠す
         this.realInput.addEventListener('compositionend', (e) => {
             this.isComposing = false;
             this.realInput.style.opacity = '0';
-            const caret = this.inputViewBox.querySelector('.char-current-caret');
+            const caret = this.visualText.querySelector('.char-current-caret');
             if (caret) caret.style.visibility = 'visible';
-            
             this.evaluateString(e.data);
             this.realInput.value = ''; 
         });
@@ -164,39 +168,27 @@ class TypingExam {
 
     evaluateString(committedStr) {
         if (!this.isStarted || this.isTransitioning || !committedStr) return;
-
         let matchedAny = false;
         let hasError = false;
 
-        // 【新仕様：前方一致・部分受理方式】
-        // 確定された文字列を1文字ずつ先頭から検証する
         for (let i = 0; i < committedStr.length; i++) {
             const char = committedStr[i];
             const targetChar = this.currentText[this.progress];
-
             if (char === targetChar) {
-                // 文字が一致：1文字分進める
                 this.progress++;
                 this.totalChars++;
                 this.inputContent += char;
                 matchedAny = true;
             } else {
-                // 不一致：この文字以降の処理を中断し、ミスとしてカウント
                 this.missCount++;
                 hasError = true;
                 break;
             }
         }
 
-        // ミスがあればエフェクトを発生させる
-        if (hasError) {
-            this.triggerDamageEffect();
-        }
-
+        if (hasError) this.triggerDamageEffect();
         if (matchedAny) {
             document.getElementById('test-char-count').innerText = this.totalChars;
-
-            // 文章完了判定
             if (this.progress >= this.currentText.length) {
                 this.isTransitioning = true;
                 setTimeout(() => {
@@ -210,7 +202,6 @@ class TypingExam {
         this.updateDisplays();
     }
 
-    // ミス時の視覚フィードバック
     triggerDamageEffect() {
         const box = this.inputViewBox;
         if (box) {
@@ -225,27 +216,38 @@ class TypingExam {
             const min = Math.floor(this.timeLeft / 60);
             const sec = this.timeLeft % 60;
             document.getElementById('test-timer').innerText = `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
-            
             if (this.timeLeft <= 0) this.endExam();
         }, 1000);
     }
 
-    endExam() {
+    // 中断フラグ (isAborted) に対応
+    endExam(isAborted = false) {
         this.isStarted = false;
         clearInterval(this.timerId);
         document.getElementById('game-screen').classList.add('hidden');
         document.getElementById('result-screen').classList.remove('hidden');
 
-        // 結果計算
-        const accuracy = this.totalChars > 0 ? (100 - (this.missCount / this.totalChars * 100)).toFixed(1) : "0.0";
-        const cpm = Math.floor(this.totalChars / 5); // 5分間なので5で割る
-        const rank = this.calculateRank(this.totalChars);
+        if (isAborted) {
+            // 【指示通り：中断時の結果表示】
+            document.getElementById('res-rank').innerText = "判定不可";
+            // 判定不可時はフォントサイズを自動調整
+            document.getElementById('res-rank').style.fontSize = "3rem";
+            document.getElementById('res-total-chars').innerText = "---";
+            document.getElementById('res-accuracy').innerText = "---";
+            document.getElementById('res-cpm').innerText = "---";
+            document.getElementById('res-comment').innerText = ""; // コメントなし
+        } else {
+            const accuracy = this.totalChars > 0 ? (100 - (this.missCount / this.totalChars * 100)).toFixed(1) : "0.0";
+            const cpm = Math.floor(this.totalChars / 5);
+            const rank = this.calculateRank(this.totalChars);
 
-        document.getElementById('res-rank').innerText = rank;
-        document.getElementById('res-total-chars').innerText = this.totalChars;
-        document.getElementById('res-accuracy').innerText = accuracy;
-        document.getElementById('res-cpm').innerText = cpm;
-        document.getElementById('res-comment').innerText = this.getComment(rank);
+            document.getElementById('res-rank').innerText = rank;
+            document.getElementById('res-rank').style.fontSize = "5.5rem"; // 通常サイズに戻す
+            document.getElementById('res-total-chars').innerText = this.totalChars;
+            document.getElementById('res-accuracy').innerText = accuracy;
+            document.getElementById('res-cpm').innerText = cpm;
+            document.getElementById('res-comment').innerText = this.getComment(rank);
+        }
     }
 
     calculateRank(chars) {
