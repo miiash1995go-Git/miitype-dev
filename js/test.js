@@ -243,22 +243,28 @@ class TypingExam {
         document.getElementById('game-screen').classList.add('hidden');
         document.getElementById('result-screen').classList.remove('hidden');
 
+        const resRank = document.getElementById('res-rank');
+
         if (isAborted) {
             // 【指示通り：中断時の結果表示】
-            document.getElementById('res-rank').innerText = "判定不可";
-            // 判定不可時はフォントサイズを自動調整
-            document.getElementById('res-rank').style.fontSize = "3rem";
+            resRank.innerText = "判定不可";
+            // 判定不可時はフォントサイズを微調整し、色を濃い灰色に変更
+            resRank.style.fontSize = "4rem";
+            resRank.style.color = "#4b5563"; 
+            
             document.getElementById('res-total-chars').innerText = "---";
             document.getElementById('res-accuracy').innerText = "---";
             document.getElementById('res-cpm').innerText = "---";
-            document.getElementById('res-comment').innerText = ""; // コメントなし
+            document.getElementById('res-comment').innerText = ""; 
         } else {
             const accuracy = this.totalChars > 0 ? (100 - (this.missCount / this.totalChars * 100)).toFixed(1) : "0.0";
             const cpm = Math.floor(this.totalChars / 5);
             const rank = this.calculateRank(this.totalChars);
 
-            document.getElementById('res-rank').innerText = rank;
-            document.getElementById('res-rank').style.fontSize = "5.5rem"; // 通常サイズに戻す
+            resRank.innerText = rank;
+            resRank.style.fontSize = "6.5rem"; 
+            resRank.style.color = "#2563eb"; // 通常時は青色
+            
             document.getElementById('res-total-chars').innerText = this.totalChars;
             document.getElementById('res-accuracy').innerText = accuracy;
             document.getElementById('res-cpm').innerText = cpm;

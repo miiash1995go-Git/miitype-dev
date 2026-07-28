@@ -350,10 +350,10 @@ body.test-body .nav-item {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: flex-end; /* 下揃えにすることで繰り上げ感を演出 */
+    align-items: flex-start; /* 指示通り「上揃え」に修正 */
     margin-top: 0px;
     margin-right: 0px;
-    margin-bottom: 25px; /* コメント欄との距離 */
+    margin-bottom: 25px;
     margin-left: 0px;
 }
 
