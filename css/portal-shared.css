@@ -1404,37 +1404,82 @@ body.portal-page #app {
     margin-bottom: 0px;
     margin-left: 0px;
 }
-/* --- AIボックス内：白抜き誘導ボタン (v20.1.108) --- */
+/* --- AIボックス内：白抜き誘導ボタン (v20.7.27.Unified) --- */
 .ai-role-btn {
     display: block !important;
     margin-top: 15px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: 0px !important;
     padding-top: 8px !important;
+    padding-right: 0px !important;
     padding-bottom: 8px !important;
-    border-radius: 30px !important;
+    padding-left: 0px !important;
+    border-top-left-radius: 30px !important;
+    border-top-right-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+    border-bottom-left-radius: 30px !important;
     text-align: center !important;
-    text-decoration: none !important;
+    text-decoration-line: none !important;
     font-size: 0.85rem !important;
     font-weight: 900 !important;
     background-color: #ffffff !important;
-    transition: all 0.2s ease !important;
+    /* ホバー時の物理フィードバック設定 */
+    transition-property: background-color, color, transform, box-shadow !important;
+    transition-duration: 0.2s !important;
+    transition-timing-function: ease !important;
+    box-sizing: border-box !important;
 }
 
-/* 就職側ボタン（赤枠） */
-.ai-role-btn.career-btn {
-    border: 2px solid #e74c3c !important;
-    color: #e74c3c !important;
-}
-
-/* 仕事側ボタン（緑枠） */
-.ai-role-btn.work-btn {
-    border: 2px solid #217346 !important;
-    color: #217346 !important;
-}
-
+/* 共通ホバー：浮き上がりと影 */
 .ai-role-btn:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.08) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1) !important;
+    color: #ffffff !important;
 }
+
+/* 就職側ボタン：Career色 (#F97316) と同期 */
+.ai-role-btn.career-btn {
+    border-top-width: 2px !important;
+    border-right-width: 2px !important;
+    border-bottom-width: 2px !important;
+    border-left-width: 2px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #F97316 !important;
+    border-right-color: #F97316 !important;
+    border-bottom-color: #F97316 !important;
+    border-left-color: #F97316 !important;
+    color: #F97316 !important;
+}
+
+.ai-role-btn.career-btn:hover {
+    background-color: #F97316 !important;
+}
+
+/* 仕事側ボタン：Excel/Work色 (#16A34A) と同期 */
+.ai-role-btn.work-btn {
+    border-top-width: 2px !important;
+    border-right-width: 2px !important;
+    border-bottom-width: 2px !important;
+    border-left-width: 2px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #16A34A !important;
+    border-right-color: #16A34A !important;
+    border-bottom-color: #16A34A !important;
+    border-left-color: #16A34A !important;
+    color: #16A34A !important;
+}
+
+.ai-role-btn.work-btn:hover {
+    background-color: #16A34A !important;
+}
+
 /* --- 3. 目的別クイックアクセス --- */
 .quick-access-grid {
     display: grid;
