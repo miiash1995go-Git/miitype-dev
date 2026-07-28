@@ -308,18 +308,33 @@ body.test-body .nav-item {
 
 .test-hidden-field {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
+    /* 初期状態は透明 */
     opacity: 0;
     z-index: 10;
     cursor: text;
+    /* 文字の見た目を表示エリアと完全に一致させる */
+    font-family: 'Noto Sans JP', sans-serif;
     font-size: 1.8rem;
+    line-height: 1.6;
+    color: #1e293b;
+    /* 装飾を完全に排除 */
+    background-color: transparent;
     border-top-style: none;
     border-right-style: none;
     border-bottom-style: none;
     border-left-style: none;
+    outline-style: none;
+    /* 入力幅を確保 */
+    width: 500px;
+    height: 3rem;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
 }
 
 /* 3. 結果画面：洗練されたスタッツ表示 */
