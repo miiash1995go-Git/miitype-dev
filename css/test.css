@@ -10,6 +10,42 @@ body.test-body {
     margin-left: 0px;
 }
 
+/* ヘッダー領域の物理保護（白背景を強制し、既存のstyle.cssと同期） */
+body.test-body header {
+    background-color: #ffffff;
+    width: 100%;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #e2e8f0;
+}
+
+/* 1024pxの中央配置を強制 */
+body.test-body .header-inner {
+    max-width: 1024px;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* アイコンが巨大化するのを防ぐ物理ロック */
+body.test-body .nav-icon {
+    width: 18px !important;
+    height: 18px !important;
+}
+
+/* ナビゲーションの文字色をstyle.cssに合わせる */
+body.test-body .nav-item {
+    color: #2c3e50 !important;
+    text-decoration-line: none !important;
+}
+
 .test-main-wrapper {
     max-width: 1000px;
     margin-top: 0px;
