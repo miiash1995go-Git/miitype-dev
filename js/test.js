@@ -45,24 +45,32 @@ class TypingExam {
     }
 
     setupInputEvents() {
-        // 常に入力欄をフォーカス
-        document.addEventListener('click', () => { if(this.isStarted) this.focusInput(); });
+        // クリックで入力を強制フォーカス
+        document.addEventListener('click', () => { 
+            if(this.isStarted && !this.isTransitioning) this.focusInput(); 
+        });
         
-        // Escキーで中断
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') window.location.href = 'play.html';
         });
 
-        // IMEイベントハンドラ
+        // IME入力・確定イベントの統合監視
+        this.isComposing = false;
+        this.realInput.addEventListener('compositionstart', () => { this.isComposing = true; });
         this.realInput.addEventListener('compositionend', (e) => {
+            this.isComposing = false;
+            // 確定された文字列を評価
             this.evaluateString(e.data);
-            this.realInput.value = ''; // 確定後に物理フィールドを空にする
+            this.realInput.value = ''; 
         });
 
-        // 誤入力（正確率用）の簡易検知
-        this.realInput.addEventListener('keydown', (e) => {
-            if (this.isStarted && e.key === 'Enter') {
-                // 確定前のEnter等での空送信を防止
+        // 直接入力（英数）や削除の監視
+        this.realInput.addEventListener('input', (e) => {
+            if (!this.isComposing && e.inputType !== 'deleteContentBackward') {
+                if (this.realInput.value.length > 0) {
+                    this.evaluateString(this.realInput.value);
+                    this.realInput.value = '';
+                }
             }
         });
     }
@@ -70,10 +78,9 @@ class TypingExam {
     focusInput() { this.realInput.focus(); }
 
     renderNextQuestion() {
+        if (this.questions.length === 0) return;
         this.currentText = this.questions[this.currentIndex].kanji;
         this.sampleBox.innerText = this.currentText;
-        
-        // 入力表示エリアを黒文字で初期化
         this.progress = 0;
         this.updateInputView();
     }
@@ -84,36 +91,34 @@ class TypingExam {
         
         let html = `<span class="char-done">${done}</span>`;
         if (remain.length > 0) {
-            html += `<span class="char-current-caret"></span><span>${remain}</span>`;
+            html += `<span class="char-current-caret"></span><span class="char-remain">${remain}</span>`;
+        } else {
+            html += `<span class="char-current-caret"></span>`;
         }
         this.inputViewBox.innerHTML = html;
     }
 
     evaluateString(committedStr) {
-        if (!this.isStarted) return;
-        
+        if (!this.isStarted || this.isTransitioning || !committedStr) return;
         const targetPart = this.currentText.substring(this.progress, this.progress + committedStr.length);
         
         if (committedStr === targetPart) {
-            // 正解
             this.progress += committedStr.length;
             this.totalChars += committedStr.length;
             this.updateInputView();
             document.getElementById('test-char-count').innerText = this.totalChars;
 
-            // 文章完了判定
             if (this.progress >= this.currentText.length) {
                 this.isTransitioning = true;
                 setTimeout(() => {
                     this.currentIndex = (this.currentIndex + 1) % this.questions.length;
                     this.renderNextQuestion();
                     this.isTransitioning = false;
-                }, 1000); // 1秒のインターバル
+                    this.focusInput();
+                }, 1000);
             }
         } else {
-            // ミス（完全一致しない場合は進ませない）
             this.missCount++;
-            // 視覚的フィードバック（必要ならここに追加可能だが、今は静寂を優先）
         }
     }
 
