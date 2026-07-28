@@ -191,9 +191,10 @@ body.test-body footer {
 }
 
 /* 1. ステータスカード：高さを60pxへ（10px削減） */
+/* 1. ステータスカード：デザインの復旧 ＆ 垂直高の適正化 */
 .test-stat-card {
     background-color: #ffffff;
-    height: 60px;
+    height: 65px; /* 60pxから微増させ視認性を確保 */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -202,22 +203,50 @@ body.test-body footer {
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
-/* 2. タイピングカード：内側パディングを大幅圧縮（計30px削減） */
+.stat-group {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #64748b;
+}
+
+.stat-value {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.4rem;
+    font-weight: 900; /* 太さを強調 */
+    color: #1e293b;
+}
+
+.stat-unit {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #94a3b8;
+    margin-left: 2px;
+}
+
+/* 2. タイピングカード：内側パディングの再調整 */
 .test-typing-card {
     background-color: #ffffff;
-    padding-top: 20px;
+    padding-top: 25px; /* 20pxから微増：詰まり感を解消 */
     padding-right: 40px;
-    padding-bottom: 20px;
+    padding-bottom: 25px; /* 20pxから微増 */
     padding-left: 40px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 .test-text-display {
@@ -238,17 +267,44 @@ body.test-body footer {
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
-    padding-top: 15px; /* さらに5px縮小 */
-    padding-right: 30px;
-    padding-bottom: 15px; /* さらに5px縮小 */
-    padding-left: 30px;
+    padding-top: 15px;
+    padding-right: 25px;
+    padding-bottom: 15px;
+    padding-left: 25px;
     font-size: 1.8rem;
     line-height: 1.5;
     color: #1e293b;
-    min-height: 90px; /* 10px削減 */
+    min-height: 85px; /* 枠内ギリギリまで使うための調整 */
     word-break: break-all;
     white-space: normal;
     box-sizing: border-box;
+}
+
+/* 物理入力口：不自然な枠（四角）を完全に排除 */
+.test-hidden-field {
+    position: absolute !important;
+    top: 0px;
+    left: 0px;
+    opacity: 0; /* 常に透明を維持し、IMEの機能だけを利用 */
+    z-index: 10;
+    cursor: text;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: transparent; /* 文字色も透明にして二重表示を防止 */
+    background-color: transparent;
+    border-top-style: none !important;
+    border-right-style: none !important;
+    border-bottom-style: none !important;
+    border-left-style: none !important;
+    outline-style: none !important;
+    box-shadow: none !important;
+    width: 20px; /* 最小化してIME候補窓の基準点のみとする */
+    height: 2rem;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
 }
 
 /* 3. 結果画面：内側パディングとマージンの圧縮（計20px削減） */

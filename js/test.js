@@ -57,7 +57,13 @@ class TypingExam {
 
         // IME入力・確定イベントの統合監視
         this.isComposing = false;
-        this.realInput.addEventListener('compositionstart', () => { this.isComposing = true; });
+        // 変換開始：キャレットを隠す（IME側の下線が出るため）
+        this.realInput.addEventListener('compositionstart', () => { 
+            this.isComposing = true; 
+            // opacityは0のまま、枠線なしの状態でIME候補窓のみを表示させる
+            const caret = this.visualText.querySelector('.char-current-caret');
+            if (caret) caret.style.visibility = 'hidden';
+        });
         this.realInput.addEventListener('compositionend', (e) => {
             this.isComposing = false;
             // 確定された文字列を評価
