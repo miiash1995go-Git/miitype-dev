@@ -80,32 +80,85 @@ class TypingExam {
     renderNextQuestion() {
         if (this.questions.length === 0) return;
         this.currentText = this.questions[this.currentIndex].kanji;
-        this.sampleBox.innerText = this.currentText;
+        
+        // 1. サンプルエリア：お手本を黒文字で表示
+        this.sampleBox.innerHTML = `<span>${this.currentText}</span>`;
+        
+        // 2. 入力エリア：完全に空にする
         this.progress = 0;
-        this.updateInputView();
+        this.inputContent = ''; 
+        this.composingText = '';
+        this.isComposing = false;
+        this.updateDisplays();
     }
 
-    updateInputView() {
+    updateDisplays() {
+        // ① サンプルエリア：確定済みはグレー、未入力は黒
         const done = this.currentText.substring(0, this.progress);
         const remain = this.currentText.substring(this.progress);
-        
-        let html = `<span class="char-done">${done}</span>`;
-        if (remain.length > 0) {
-            html += `<span class="char-current-caret"></span><span class="char-remain">${remain}</span>`;
-        } else {
-            html += `<span class="char-current-caret"></span>`;
+        this.sampleBox.innerHTML = `<span class="char-done">${done}</span><span>${remain}</span>`;
+
+        // ② 入力エリア：確定済み + （あれば）変換中の文字 + キャレット
+        let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
+        if (this.isComposing) {
+            inputHtml += `<span class="char-composing">${this.composingText}</span>`;
         }
-        this.inputViewBox.innerHTML = html;
+        inputHtml += `<span class="char-current-caret"></span>`;
+        this.inputViewBox.innerHTML = inputHtml;
+
+        // IME候補窓をキャレット位置へ同期
+        const caret = this.inputViewBox.querySelector('.char-current-caret');
+        if (caret && this.realInput) {
+            this.realInput.style.left = caret.offsetLeft + 'px';
+            this.realInput.style.top = caret.offsetTop + 'px';
+        }
+    }
+
+    setupInputEvents() {
+        document.addEventListener('click', () => { 
+            if(this.isStarted && !this.isTransitioning) this.focusInput(); 
+        });
+        
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') window.location.href = 'play.html';
+        });
+
+        this.realInput.addEventListener('compositionstart', () => { 
+            this.isComposing = true; 
+        });
+        this.realInput.addEventListener('compositionupdate', (e) => {
+            this.composingText = e.data;
+            this.updateDisplays();
+        });
+        this.realInput.addEventListener('compositionend', (e) => {
+            this.isComposing = false;
+            this.composingText = '';
+            this.evaluateString(e.data);
+            this.realInput.value = ''; 
+        });
+
+        this.realInput.addEventListener('input', (e) => {
+            if (!this.isComposing) {
+                if (e.inputType === 'deleteContentBackward') {
+                    this.inputContent = this.inputContent.slice(0, -1);
+                } else if (this.realInput.value.length > 0) {
+                    this.evaluateString(this.realInput.value);
+                    this.realInput.value = '';
+                }
+                this.updateDisplays();
+            }
+        });
     }
 
     evaluateString(committedStr) {
         if (!this.isStarted || this.isTransitioning || !committedStr) return;
+        
         const targetPart = this.currentText.substring(this.progress, this.progress + committedStr.length);
         
         if (committedStr === targetPart) {
             this.progress += committedStr.length;
             this.totalChars += committedStr.length;
-            this.updateInputView();
+            this.inputContent += committedStr;
             document.getElementById('test-char-count').innerText = this.totalChars;
 
             if (this.progress >= this.currentText.length) {
@@ -120,6 +173,7 @@ class TypingExam {
         } else {
             this.missCount++;
         }
+        this.updateDisplays();
     }
 
     startTimer() {

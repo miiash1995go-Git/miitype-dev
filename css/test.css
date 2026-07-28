@@ -254,33 +254,38 @@ body.test-body .nav-item {
     padding-right: 30px;
     padding-bottom: 20px;
     padding-left: 30px;
-    /* 25文字で綺麗に折り返すためのサイズ調整 */
     font-size: 1.8rem;
     line-height: 1.6;
     color: #1e293b;
-    min-height: 100px;
+    min-height: 110px;
     word-break: break-all;
     white-space: normal;
     box-sizing: border-box;
 }
 
-/* 入力エリア：キャレットと入力判定の土台 */
 .test-input-view {
+    background-color: #ffffff;
     position: relative;
-    background-color: #ffffff; /* 入力中であることを強調 */
+    border-top-color: #cbd5e1;
+    border-right-color: #cbd5e1;
+    border-bottom-color: #cbd5e1;
+    border-left-color: #cbd5e1;
 }
 
-/* 入力済み文字：薄いグレー */
 .char-done {
     color: #cbd5e1 !important;
 }
 
-/* 未入力文字：黒（ガイドとして表示） */
-.char-remain {
+.char-confirmed {
     color: #1e293b;
 }
 
-/* 青いキャレット */
+.char-composing {
+    color: #2563eb;
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+}
+
 .char-current-caret {
     display: inline-block;
     width: 2px;
@@ -296,7 +301,6 @@ body.test-body .nav-item {
     50% { opacity: 0; }
 }
 
-/* 透明な入力口：エリア全体を覆い、クリックを逃さない */
 .test-input-wrapper {
     position: relative;
     width: 100%;
@@ -311,6 +315,11 @@ body.test-body .nav-item {
     opacity: 0;
     z-index: 10;
     cursor: text;
+    font-size: 1.8rem;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
 }
 
 /* 3. 結果画面：洗練されたスタッツ表示 */
