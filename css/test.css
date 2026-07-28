@@ -263,9 +263,10 @@ body.test-body .nav-item {
     box-sizing: border-box;
 }
 
+/* 下段：入力エリア（物理座標の基準点） */
 .test-input-view {
     background-color: #ffffff;
-    position: relative;
+    position: relative !important; /* 絶対座標の基準として強制 */
     border-top-color: #cbd5e1;
     border-right-color: #cbd5e1;
     border-bottom-color: #cbd5e1;
@@ -278,12 +279,6 @@ body.test-body .nav-item {
 
 .char-confirmed {
     color: #1e293b;
-}
-
-.char-composing {
-    color: #2563eb;
-    text-decoration-line: underline;
-    text-decoration-style: dotted;
 }
 
 .char-current-caret {
@@ -306,26 +301,26 @@ body.test-body .nav-item {
     width: 100%;
 }
 
+/* 本物の入力フィールド：基準点からの相対位置で動かす */
 .test-hidden-field {
-    position: absolute;
-    /* 初期状態は透明 */
+    position: absolute !important;
+    top: 0px;
+    left: 0px;
     opacity: 0;
     z-index: 10;
     cursor: text;
-    /* 文字の見た目を表示エリアと完全に一致させる */
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 1.8rem;
     line-height: 1.6;
     color: #1e293b;
-    /* 装飾を完全に排除 */
     background-color: transparent;
     border-top-style: none;
     border-right-style: none;
     border-bottom-style: none;
     border-left-style: none;
     outline-style: none;
-    /* 入力幅を確保 */
-    width: 500px;
+    /* 入力幅を十分に確保 */
+    width: 800px; 
     height: 3rem;
     padding-top: 0px;
     padding-right: 0px;

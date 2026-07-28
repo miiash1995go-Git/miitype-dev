@@ -99,7 +99,6 @@ class TypingExam {
         this.sampleBox.innerHTML = `<span class="char-done">${done}</span><span>${remain}</span>`;
 
         // ② 入力エリア：確定済み文字 ＋ キャレットのみ表示
-        // ※変換中の文字は本物の input 要素がその上に重なって表示される
         let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
         inputHtml += `<span class="char-current-caret"></span>`;
         this.inputViewBox.innerHTML = inputHtml;
@@ -107,7 +106,8 @@ class TypingExam {
         // 本物の input 要素をキャレット（青い線）の物理座標にピッタリ重ねる
         const caret = this.inputViewBox.querySelector('.char-current-caret');
         if (caret && this.realInput) {
-            // 親要素（test-text-display）のパディングや位置を考慮したオフセット計算
+            // 親要素のパディング（20px/30px）を考慮し、ボックス内での位置を計算
+            // offsetLeft/Top は position:relative の親からの距離を返す
             this.realInput.style.left = caret.offsetLeft + 'px';
             this.realInput.style.top = caret.offsetTop + 'px';
         }
