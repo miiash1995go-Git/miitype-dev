@@ -12,33 +12,40 @@
 </head>
 <body class="test-body">
     <div id="app">
+        <!-- サイト共通ヘッダー -->
         <header>
             <div class="header-inner">
-                <div class="header-logo-link">
+                <a href="index.html" class="header-logo-link">
                     <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
-                </div>
-                <div class="test-title-label">5分間タイピングテスト（模擬試験）</div>
+                </a>
+                <nav class="header-nav">
+                    <div class="nav-grid">
+                        <a href="index.html" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                        <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                        <a href="hub-windows.html" class="nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>Windows</span></a>
+                        <a href="hub-word.html" class="nav-item"><img src="img/icon-word.png" class="nav-icon"><span>Word</span></a>
+                        <a href="hub-excel.html" class="nav-item"><img src="img/icon-excel.png" class="nav-item"><span>Excel</span></a>
+                        <a href="hub-ai.html" class="nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                        <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                        <a href="hub-column.html" class="nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                    </div>
+                </nav>
             </div>
         </header>
 
-        <main>
+        <main class="test-main-wrapper">
             <!-- 1. 開始前画面 -->
-            <section id="start-screen" class="test-screen">
+            <section id="start-screen" class="test-screen-container">
                 <div class="test-info-card">
-                    <h1>5分間タイピングテスト</h1>
-                    <div class="test-description">
-                        <p>このテストは実際の企業選考を想定した模擬試験です。</p>
-                        <ul>
-                            <li><strong>制限時間：</strong> 5分間</li>
-                            <li><strong>出題形式：</strong> 1画面に3〜4行の文章が表示されます</li>
-                            <li><strong>終了条件：</strong> 5分経過で自動終了</li>
-                        </ul>
+                    <h1>5分間タイピングテスト（模擬試験）</h1>
+                    <div class="test-instruction">
+                        <p>このページでは、企業の採用選考や資格試験で実施されるタイピングテストを本番に近い環境で体験できます。</p>
                         <div class="test-notice-box">
-                            <p>⚠️ 注意事項</p>
+                            <p class="notice-title">💡 受験前の準備</p>
                             <ul>
-                                <li>日本語入力システムを<strong>「オン」</strong>にしてから開始してください。</li>
-                                <li>中断して終了する場合は <strong>[Esc]</strong> キーを押してください。</li>
-                                <li>実力を正確に測るため、集中できる環境で受験してください。</li>
+                                <li>日本語入力システムを<strong>「オン」</strong>にしてください。</li>
+                                <li>5分間、誰にも邪魔されない集中できる環境を整えてください。</li>
+                                <li>中断する場合は <strong>[Esc]</strong> キーで戻ることができます。</li>
                             </ul>
                         </div>
                     </div>
@@ -47,42 +54,70 @@
             </section>
 
             <!-- 2. 試験実施画面 -->
-            <section id="game-screen" class="test-screen hidden">
-                <div class="test-header-stats">
-                    <div class="stat-item">残り時間 <span id="test-timer" class="stat-val">05:00</span></div>
-                    <div class="stat-item">入力済み文字数 <span id="test-char-count" class="stat-val">0</span> 文字</div>
+            <section id="game-screen" class="test-screen-container hidden">
+                <!-- 上段：ステータスカード -->
+                <div class="test-stat-card">
+                    <div class="stat-group">
+                        <span class="stat-label">⏱ 残り時間</span>
+                        <span id="test-timer" class="stat-value">05:00</span>
+                    </div>
+                    <div class="stat-group">
+                        <span class="stat-label">✏️ 入力済み文字数</span>
+                        <span id="test-char-count" class="stat-value">0</span><span class="stat-unit">文字</span>
+                    </div>
+                    <div class="stat-group">
+                        <span class="stat-label">🎯 正確率</span>
+                        <span id="test-accuracy-live" class="stat-value">---</span><span class="stat-unit">%</span>
+                    </div>
                 </div>
 
-                <div class="test-main-container">
-                    <div id="test-question-display" class="test-question-area">
-                        <!-- ここに複数行の文章が動的に表示される -->
+                <!-- 下段：メインタイピングカード -->
+                <div class="test-typing-card">
+                    <div class="test-typing-label">📖 サンプル文書（お手本）</div>
+                    <div id="sample-box" class="test-text-display">
+                        <!-- ここに文章が表示される -->
                     </div>
                     
-                    <div class="test-input-wrapper">
-                        <input type="text" id="test-input-field" autocomplete="off" placeholder="ここに表示されている文章を入力してください">
+                    <div class="test-typing-label" style="margin-top: 25px;">🖋️ 入力エリア（ここに入力）</div>
+                    <div id="input-view-box" class="test-text-display test-input-view">
+                        <!-- 入力中の文字とキャレットがここに合成表示される -->
                     </div>
+                    <!-- 物理的な入力口（IMEイベントを正確に拾うため隠さずに配置） -->
+                    <input type="text" id="test-real-input" class="test-hidden-field" autocomplete="off" autofocus>
                 </div>
             </section>
 
             <!-- 3. 結果表示画面 -->
-            <section id="result-screen" class="test-screen hidden">
+            <section id="result-screen" class="test-screen-container hidden">
                 <div class="test-result-card">
-                    <h2>試験結果</h2>
-                    <div class="result-summary-grid">
-                        <div class="result-rank-area">
-                            <div class="res-rank-label">総合評価</div>
-                            <div id="res-rank" class="res-rank-val">-</div>
+                    <div class="res-header">試験結果</div>
+                    <div class="res-main-layout">
+                        <div class="res-rank-block">
+                            <span class="res-label">判定ランク</span>
+                            <div id="res-rank" class="res-rank-text">-</div>
                         </div>
-                        <div class="result-stats-area">
-                            <div class="res-stat-row"><span>入力文字数</span><span id="res-total-chars">0</span></div>
-                            <div class="res-stat-row"><span>正確率</span><span id="res-accuracy">0.0</span>%</div>
-                            <div class="res-stat-row"><span>ミス数</span><span id="res-misses">0</span></div>
+                        <div class="res-stats-block">
+                            <div class="res-stat-row">
+                                <span class="res-stat-label">入力文字数</span>
+                                <div class="res-stat-val-group"><span id="res-total-chars" class="res-stat-num">0</span><span class="res-stat-unit">文字</span></div>
+                            </div>
+                            <div class="res-stat-row">
+                                <span class="res-stat-label">正確率</span>
+                                <div class="res-stat-val-group"><span id="res-accuracy" class="res-stat-num">0.0</span><span class="res-stat-unit">%</span></div>
+                            </div>
+                            <div class="res-stat-row">
+                                <span class="res-stat-label">1分あたりの入力</span>
+                                <div class="res-stat-val-group"><span id="res-cpm" class="res-stat-num">0</span><span class="res-stat-unit">文字/分</span></div>
+                            </div>
                         </div>
                     </div>
-                    <div id="res-comment" class="result-comment"></div>
-                    <div class="result-actions">
-                        <a href="test.html" class="btn-main">もう一度受験する</a>
-                        <a href="play.html" class="summary-btn">通常練習に戻る</a>
+                    <div class="res-advice-box">
+                        <span class="advice-label">アドバイス</span>
+                        <p id="res-comment" class="advice-text">--</p>
+                    </div>
+                    <div class="res-actions">
+                        <button onclick="location.reload()" class="btn-main">もう一度テストする</button>
+                        <a href="play.html" class="summary-btn">タイピング練習へ戻る</a>
                     </div>
                 </div>
             </section>

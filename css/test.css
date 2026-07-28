@@ -1,203 +1,219 @@
 /* ============================================================
-   ぱそトレ！ 5分間タイピングテスト専用スタイル (v20.7.28.1)
-   ------------------------------------------------------------
-   【管理ルール】
-   - 略記禁止。
-   - 企業のタイピングテストを想定したシンプル・高集中デザイン。
+   ぱそトレ！ 5分間タイピングテスト専用「正典」スタイル (v20.7.28)
    ============================================================ */
 
 body.test-body {
-    background-color: #f4f7f6; /* 試験会場をイメージした落ち着いたグレー */
+    background-color: #64758A;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
 }
 
-.test-title-label {
-    font-size: 1rem;
-    font-weight: 800;
-    color: #64748b;
-    border-left-width: 4px;
-    border-left-style: solid;
-    border-left-color: #cbd5e1;
-    padding-left: 15px;
-}
-
-.test-screen {
-    max-width: 1024px;
+.test-main-wrapper {
+    max-width: 1000px;
     margin-top: 0px;
     margin-right: auto;
     margin-bottom: 0px;
     margin-left: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 500px;
+    padding-top: 30px;
+    padding-right: 0px;
+    padding-bottom: 30px;
+    padding-left: 0px;
 }
 
-/* 1. 開始前カード */
-.test-info-card {
+/* 1. ステータスカード：高さを抑えたコンパクト設計 */
+.test-stat-card {
     background-color: #ffffff;
-    width: 800px;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stat-group {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #475569;
+}
+
+.stat-value {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.stat-unit {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-left: 4px;
+}
+
+/* 2. メインタイピングカード：白背景で視線を中央へ */
+.test-typing-card {
+    background-color: #ffffff;
     padding-top: 40px;
-    padding-right: 50px;
-    padding-bottom: 50px;
-    padding-left: 50px;
+    padding-right: 40px;
+    padding-bottom: 40px;
+    padding-left: 40px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-.test-info-card h1 {
-    font-size: 1.8rem;
-    font-weight: 900;
-    text-align: center;
-    margin-bottom: 30px;
+.test-typing-label {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #14b8a6; /* AI/実務アクセントカラー */
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.test-notice-box {
-    background-color: #fff9f0;
+.test-text-display {
+    background-color: #f8fafc;
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
-    border-left-width: 6px;
-    border-style: solid;
-    border-color: #f39c12;
-    padding-top: 20px;
-    padding-right: 25px;
-    padding-bottom: 20px;
-    padding-left: 25px;
-    margin-top: 30px;
-}
-
-/* 2. 試験本番エリア */
-.test-header-stats {
-    width: 800px;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-
-.stat-item {
-    font-size: 1rem;
-    font-weight: 800;
-    color: #64748b;
-}
-
-.stat-val {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1.5rem;
-    color: #2c3e50;
-    margin-left: 10px;
-}
-
-.test-main-container {
-    background-color: #ffffff;
-    width: 800px;
-    padding-top: 50px;
-    padding-right: 50px;
-    padding-bottom: 50px;
-    padding-left: 50px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.02);
-}
-
-/* 問題文表示（3〜4行） */
-.test-question-area {
-    font-size: 1.6rem;
-    line-height: 1.8;
-    color: #94a3b8; /* 未入力：薄い色 */
-    margin-bottom: 40px;
-    word-break: break-all;
-    min-height: 160px;
-}
-
-/* 入力完了済みの文字色 */
-.char-correct {
-    color: #2c3e50;
-    font-weight: 900;
-}
-
-/* 入力欄（装飾を最小限にし、集中力を維持） */
-.test-input-wrapper {
-    width: 100%;
-}
-
-#test-input-field {
-    width: 100%;
-    height: 60px;
-    font-size: 1.5rem;
-    padding-top: 0px;
-    padding-right: 20px;
-    padding-bottom: 0px;
-    padding-left: 20px;
-    border-top-width: 2px;
-    border-right-width: 2px;
-    border-bottom-width: 2px;
-    border-left-width: 2px;
+    border-left-width: 1px;
     border-top-style: solid;
     border-right-style: solid;
     border-bottom-style: solid;
     border-left-style: solid;
-    border-top-color: #cbd5e1;
-    border-right-color: #cbd5e1;
-    border-bottom-color: #cbd5e1;
-    border-left-color: #cbd5e1;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    outline-style: none;
-    transition-property: border-color;
-    transition-duration: 0.2s;
+    border-top-color: #e2e8f0;
+    border-right-color: #e2e8f0;
+    border-bottom-color: #e2e8f0;
+    border-left-color: #e2e8f0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding-top: 25px;
+    padding-right: 30px;
+    padding-bottom: 25px;
+    padding-left: 30px;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: #334155;
+    min-height: 110px;
+    /* 25文字での折り返しを想定した幅制御 */
+    word-break: break-all;
+    white-space: normal;
 }
 
-#test-input-field:focus {
-    border-top-color: #3498db;
-    border-right-color: #3498db;
-    border-bottom-color: #3498db;
-    border-left-color: #3498db;
+/* 入力エリアの文字装飾 */
+.test-input-view {
+    position: relative;
 }
 
-/* 3. 結果画面 */
+.char-done {
+    color: #cbd5e1; /* 入力済み：薄いグレー */
+}
+
+.char-current-caret {
+    border-left-width: 3px;
+    border-left-style: solid;
+    border-left-color: #2563eb; /* 青いキャレット */
+    margin-left: -1px;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    from, to { border-color: transparent; }
+    50% { border-color: #2563eb; }
+}
+
+/* 物理的な入力フィールド（透明にして常に最前面） */
+.test-hidden-field {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* 3. 結果画面：洗練されたスタッツ表示 */
 .test-result-card {
     background-color: #ffffff;
-    width: 800px;
-    padding-top: 50px;
+    width: 900px;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    padding-top: 40px;
     padding-right: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 40px;
     padding-left: 50px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    text-align: center;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
 }
 
-.result-summary-grid {
+.res-header {
+    font-size: 1.4rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #1e293b;
+}
+
+.res-main-layout {
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    margin-top: 40px;
     margin-bottom: 40px;
 }
 
-.res-rank-val {
-    font-size: 5rem;
+.res-rank-text {
+    font-size: 6rem;
     font-weight: 900;
-    color: #3498db;
+    color: #2563eb;
+    line-height: 1;
 }
 
 .res-stat-row {
     display: flex;
     justify-content: space-between;
-    width: 200px;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
+    width: 280px;
+    padding-top: 12px;
+    padding-bottom: 12px;
     border-bottom-width: 1px;
     border-bottom-style: solid;
-    border-bottom-color: #f1f3f5;
+    border-bottom-color: #f1f5f9;
+}
+
+.res-stat-num {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.res-advice-box {
+    background-color: #f8fafc;
+    padding-top: 20px;
+    padding-right: 25px;
+    padding-bottom: 20px;
+    padding-left: 25px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    margin-bottom: 40px;
 }

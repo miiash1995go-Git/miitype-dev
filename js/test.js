@@ -1,20 +1,21 @@
 /**
- * ぱそトレ！ 5分間タイピングテスト ロジック (v20.7.28)
+ * ぱそトレ！ 5分間タイピングテスト 試験エンジン (v20.7.28)
  */
-class TypingTest {
+class TypingExam {
     constructor() {
         this.questions = [];
-        this.currentChunk = []; // 3〜4問の塊
-        this.totalCharsTyped = 0;
+        this.currentIndex = 0;
+        this.totalChars = 0;
         this.missCount = 0;
-        this.correctKeys = 0;
+        this.startTime = null;
         this.timeLeft = 300; // 5分
         this.timerId = null;
-        this.isRunning = false;
+        this.isStarted = false;
         
-        // 参照
-        this.inputField = document.getElementById('test-input-field');
-        this.displayArea = document.getElementById('test-question-display');
+        // UI参照
+        this.realInput = document.getElementById('test-real-input');
+        this.sampleBox = document.getElementById('sample-box');
+        this.inputViewBox = document.getElementById('input-view-box');
         
         this.init();
     }
@@ -23,131 +24,149 @@ class TypingTest {
         try {
             const res = await fetch('./data/typing/test_5min.json');
             const data = await res.json();
-            this.questions = data.questions;
+            // 試験用にシャッフル
+            this.questions = data.questions.sort(() => Math.random() - 0.5);
             
-            document.getElementById('test-start-btn').onclick = () => this.startTest();
-            window.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') window.location.href = 'play.html';
-            });
-        } catch (e) { console.error("Data Load Error", e); }
+            document.getElementById('test-start-btn').onclick = () => this.startExam();
+            
+            // IME制御とキー監視
+            this.setupInputEvents();
+        } catch (e) { console.error("試験データの読み込みに失敗しました", e); }
     }
 
-    startTest() {
+    startExam() {
         document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('game-screen').classList.remove('hidden');
-        this.isRunning = true;
-        this.inputField.focus();
-        this.nextSet();
+        this.isStarted = true;
+        this.startTime = Date.now();
+        this.renderNextQuestion();
         this.startTimer();
+        this.focusInput();
+    }
+
+    setupInputEvents() {
+        // 常に入力欄をフォーカス
+        document.addEventListener('click', () => { if(this.isStarted) this.focusInput(); });
         
-        this.inputField.oninput = () => this.checkInput();
+        // Escキーで中断
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') window.location.href = 'play.html';
+        });
+
+        // IMEイベントハンドラ
+        this.realInput.addEventListener('compositionend', (e) => {
+            this.evaluateString(e.data);
+            this.realInput.value = ''; // 確定後に物理フィールドを空にする
+        });
+
+        // 誤入力（正確率用）の簡易検知
+        this.realInput.addEventListener('keydown', (e) => {
+            if (this.isStarted && e.key === 'Enter') {
+                // 確定前のEnter等での空送信を防止
+            }
+        });
+    }
+
+    focusInput() { this.realInput.focus(); }
+
+    renderNextQuestion() {
+        this.currentText = this.questions[this.currentIndex].kanji;
+        this.sampleBox.innerText = this.currentText;
+        
+        // 入力表示エリアを黒文字で初期化
+        this.progress = 0;
+        this.updateInputView();
+    }
+
+    updateInputView() {
+        const done = this.currentText.substring(0, this.progress);
+        const remain = this.currentText.substring(this.progress);
+        
+        let html = `<span class="char-done">${done}</span>`;
+        if (remain.length > 0) {
+            html += `<span class="char-current-caret"></span><span>${remain}</span>`;
+        }
+        this.inputViewBox.innerHTML = html;
+    }
+
+    evaluateString(committedStr) {
+        if (!this.isStarted) return;
+        
+        const targetPart = this.currentText.substring(this.progress, this.progress + committedStr.length);
+        
+        if (committedStr === targetPart) {
+            // 正解
+            this.progress += committedStr.length;
+            this.totalChars += committedStr.length;
+            this.updateInputView();
+            document.getElementById('test-char-count').innerText = this.totalChars;
+
+            // 文章完了判定
+            if (this.progress >= this.currentText.length) {
+                this.isTransitioning = true;
+                setTimeout(() => {
+                    this.currentIndex = (this.currentIndex + 1) % this.questions.length;
+                    this.renderNextQuestion();
+                    this.isTransitioning = false;
+                }, 1000); // 1秒のインターバル
+            }
+        } else {
+            // ミス（完全一致しない場合は進ませない）
+            this.missCount++;
+            // 視覚的フィードバック（必要ならここに追加可能だが、今は静寂を優先）
+        }
     }
 
     startTimer() {
         this.timerId = setInterval(() => {
             this.timeLeft--;
-            this.updateUI();
-            if (this.timeLeft <= 0) this.endTest();
+            const min = Math.floor(this.timeLeft / 60);
+            const sec = this.timeLeft % 60;
+            document.getElementById('test-timer').innerText = `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+            
+            if (this.timeLeft <= 0) this.endExam();
         }, 1000);
     }
 
-    nextSet() {
-        // シャッフルして4つの質問を抽出
-        this.currentChunk = [];
-        const temp = [...this.questions].sort(() => Math.random() - 0.5);
-        this.currentChunk = temp.slice(0, 4);
-        
-        this.renderQuestions();
-        this.inputField.value = '';
-        this.currentSentenceIndex = 0;
-    }
-
-    renderQuestions() {
-        this.displayArea.innerHTML = this.currentChunk.map((q, i) => 
-            `<div id="sentence-${i}" class="test-line">${this.wrapChars(q.kanji)}</div>`
-        ).join('');
-        this.activeLineChars = this.displayArea.querySelectorAll(`#sentence-${this.currentSentenceIndex} span`);
-    }
-
-    wrapChars(text) {
-        return text.split('').map(c => `<span>${c}</span>`).join('');
-    }
-
-    checkInput() {
-        if (!this.isRunning) return;
-        const typed = this.inputField.value;
-        const target = this.currentChunk[this.currentSentenceIndex].kanji;
-
-        // 一致する文字まで色を変える
-        let matchLen = 0;
-        for (let i = 0; i < typed.length; i++) {
-            if (typed[i] === target[i]) {
-                this.activeLineChars[i].classList.add('char-correct');
-                matchLen++;
-            } else {
-                // ミス判定（最後の1文字が違う場合）
-                if (i === typed.length - 1) this.missCount++;
-                break;
-            }
-        }
-
-        // 1文完成
-        if (typed === target) {
-            this.totalCharsTyped += target.length;
-            this.currentSentenceIndex++;
-            this.inputField.value = '';
-            
-            if (this.currentSentenceIndex >= this.currentChunk.length) {
-                this.nextSet();
-            } else {
-                this.activeLineChars = this.displayArea.querySelectorAll(`#sentence-${this.currentSentenceIndex} span`);
-            }
-            this.updateUI();
-        }
-    }
-
-    updateUI() {
-        const min = Math.floor(this.timeLeft / 60);
-        const sec = this.timeLeft % 60;
-        document.getElementById('test-timer').innerText = `${min}:${sec.toString().padStart(2, '0')}`;
-        document.getElementById('test-char-count').innerText = this.totalCharsTyped;
-    }
-
-    endTest() {
-        this.isRunning = false;
+    endExam() {
+        this.isStarted = false;
         clearInterval(this.timerId);
         document.getElementById('game-screen').classList.add('hidden');
         document.getElementById('result-screen').classList.remove('hidden');
 
-        const acc = this.totalCharsTyped > 0 ? (100 - (this.missCount / this.totalCharsTyped * 100)).toFixed(1) : 0;
-        const rank = this.getRank(this.totalCharsTyped);
+        // 結果計算
+        const accuracy = this.totalChars > 0 ? (100 - (this.missCount / this.totalChars * 100)).toFixed(1) : "0.0";
+        const cpm = Math.floor(this.totalChars / 5); // 5分間なので5で割る
+        const rank = this.calculateRank(this.totalChars);
 
         document.getElementById('res-rank').innerText = rank;
-        document.getElementById('res-total_chars').innerText = this.totalCharsTyped;
-        document.getElementById('res-accuracy').innerText = acc;
-        document.getElementById('res-misses').innerText = this.missCount;
+        document.getElementById('res-total-chars').innerText = this.totalChars;
+        document.getElementById('res-accuracy').innerText = accuracy;
+        document.getElementById('res-cpm').innerText = cpm;
         document.getElementById('res-comment').innerText = this.getComment(rank);
     }
 
-    getRank(s) {
-        if(s >= 1200) return "Master";
-        if(s >= 1000) return "S";
-        if(s >= 800) return "A";
-        if(s >= 600) return "B";
-        if(s >= 400) return "C";
+    calculateRank(chars) {
+        if(chars >= 1400) return "Legend";
+        if(chars >= 1200) return "Master";
+        if(chars >= 1000) return "S";
+        if(chars >= 800)  return "A";
+        if(chars >= 600)  return "B";
+        if(chars >= 400)  return "C";
         return "D";
     }
 
     getComment(rank) {
-        const comments = {
-            "Master": "卓越した技術です。実務において圧倒的な生産性を発揮できるでしょう。",
-            "S": "非常に高いスキルです。自信を持って仕事に取り組めます。",
-            "A": "合格ラインです。一般的な事務職として十分な速度を備えています。",
-            "B": "実務の基本レベルです。さらなる正確性を磨きましょう。",
-            "C": "基礎はできています。ホームポジションを再確認してください。",
-            "D": "まずは正確に入力することから始めましょう。"
+        const list = {
+            "Legend": "もはや教えることはありません。プロのタイピストとして自信を持ってください。",
+            "Master": "卓越した技術です。どのような事務現場でも圧倒的な信頼を得られるでしょう。",
+            "S": "非常に高い入力能力です。実務において速度が壁になることはありません。",
+            "A": "合格ラインです。正確性を維持できれば即戦力として十分に活躍できます。",
+            "B": "実務の基本レベルです。変換前に一呼吸置くことで、さらに正確性が向上します。",
+            "C": "基礎は身についています。毎日1回このテストを継続して、指を慣らしましょう。",
+            "D": "まずはホームポジションを再確認し、正確に入力することを意識してください。"
         };
-        return comments[rank];
+        return list[rank] || "お疲れ様でした。";
     }
 }
-new TypingTest();
+new TypingExam();
