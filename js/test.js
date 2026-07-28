@@ -118,6 +118,10 @@ class TypingExam {
         if (caret && this.realInput) {
             this.realInput.style.left = caret.offsetLeft + 'px';
             this.realInput.style.top = caret.offsetTop + 'px';
+            
+            // 右端の壁（920px）までの残り幅を計算し、IME窓がはみ出さないように制限
+            const remainingWidth = 920 - caret.offsetLeft;
+            this.realInput.style.width = Math.max(remainingWidth, 100) + 'px';
         }
     }
 

@@ -216,7 +216,7 @@ body.test-body .nav-item {
     50% { opacity: 0; }
 }
 
-/* 本物の入力口：変換中のみ可視化される */
+/* 本物の入力口：変換中のみ可視化。横幅をカード右端（95%）まで開放 */
 .test-hidden-field {
     position: absolute !important;
     top: 0px;
@@ -235,12 +235,17 @@ body.test-body .nav-item {
     border-left-style: none !important;
     outline-style: none !important;
     box-shadow: none !important;
-    width: 500px;
+    /* 1000pxのカードに対し、左右パディングを除いたほぼ全域（約920px分）をカバー */
+    width: 95%;
     height: 3rem;
     padding-top: 0px;
     padding-right: 0px;
     padding-bottom: 0px;
     padding-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
 }
 
 /* ダメージエフェクト（ミス時） */
