@@ -293,28 +293,31 @@ body.test-body footer {
 .test-input-view {
     background-color: #ffffff;
     position: relative !important;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
     border-top-color: #cbd5e1;
     border-right-color: #cbd5e1;
     border-bottom-color: #cbd5e1;
     border-left-color: #cbd5e1;
+    /* ダメージエフェクト用のアニメーション設定 */
+    transition-property: background-color, border-color;
+    transition-duration: 0.1s;
 }
 
-/* 物理入力口：常にテキストの開始位置に固定し、IME窓を誘導する */
-.test-hidden-field {
-    position: absolute !important;
-    top: 20px; /* パディングに合わせる */
-    left: 30px; /* パディングに合わせる */
-    width: 10px; /* 最小化して邪魔しない */
-    height: 1.8rem;
-    opacity: 0;
-    z-index: 10;
-    font-size: 1.8rem;
-    background-color: transparent;
-    border-top-style: none;
-    border-right-style: none;
-    border-bottom-style: none;
-    border-left-style: none;
-    outline-style: none;
+/* ミスした瞬間に箱を赤く光らせる */
+.test-input-view.damage-effect {
+    background-color: #fff1f2 !important;
+    border-top-color: #fda4af !important;
+    border-right-color: #fda4af !important;
+    border-bottom-color: #fda4af !important;
+    border-left-color: #fda4af !important;
+    transition-property: none !important;
 }
 
 .char-done {

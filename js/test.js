@@ -164,15 +164,39 @@ class TypingExam {
 
     evaluateString(committedStr) {
         if (!this.isStarted || this.isTransitioning || !committedStr) return;
-        
-        const targetPart = this.currentText.substring(this.progress, this.progress + committedStr.length);
-        
-        if (committedStr === targetPart) {
-            this.progress += committedStr.length;
-            this.totalChars += committedStr.length;
-            this.inputContent += committedStr;
+
+        let matchedAny = false;
+        let hasError = false;
+
+        // 【新仕様：前方一致・部分受理方式】
+        // 確定された文字列を1文字ずつ先頭から検証する
+        for (let i = 0; i < committedStr.length; i++) {
+            const char = committedStr[i];
+            const targetChar = this.currentText[this.progress];
+
+            if (char === targetChar) {
+                // 文字が一致：1文字分進める
+                this.progress++;
+                this.totalChars++;
+                this.inputContent += char;
+                matchedAny = true;
+            } else {
+                // 不一致：この文字以降の処理を中断し、ミスとしてカウント
+                this.missCount++;
+                hasError = true;
+                break;
+            }
+        }
+
+        // ミスがあればエフェクトを発生させる
+        if (hasError) {
+            this.triggerDamageEffect();
+        }
+
+        if (matchedAny) {
             document.getElementById('test-char-count').innerText = this.totalChars;
 
+            // 文章完了判定
             if (this.progress >= this.currentText.length) {
                 this.isTransitioning = true;
                 setTimeout(() => {
@@ -182,10 +206,17 @@ class TypingExam {
                     this.focusInput();
                 }, 1000);
             }
-        } else {
-            this.missCount++;
         }
         this.updateDisplays();
+    }
+
+    // ミス時の視覚フィードバック
+    triggerDamageEffect() {
+        const box = this.inputViewBox;
+        if (box) {
+            box.classList.add('damage-effect');
+            setTimeout(() => box.classList.remove('damage-effect'), 100);
+        }
     }
 
     startTimer() {
