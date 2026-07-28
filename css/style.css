@@ -327,6 +327,7 @@ body.game-body #app {
     transform: translateY(1px);
 }
 
+
 .mobile-nav-item.active {
     background-color: #f0f7ff;
     border-top-color: #2563EB;
