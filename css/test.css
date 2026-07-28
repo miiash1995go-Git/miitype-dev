@@ -266,11 +266,29 @@ body.test-body .nav-item {
 /* 下段：入力エリア（物理座標の基準点） */
 .test-input-view {
     background-color: #ffffff;
-    position: relative !important; /* 絶対座標の基準として強制 */
+    position: relative !important;
     border-top-color: #cbd5e1;
     border-right-color: #cbd5e1;
     border-bottom-color: #cbd5e1;
     border-left-color: #cbd5e1;
+}
+
+/* 物理入力口：常にテキストの開始位置に固定し、IME窓を誘導する */
+.test-hidden-field {
+    position: absolute !important;
+    top: 20px; /* パディングに合わせる */
+    left: 30px; /* パディングに合わせる */
+    width: 10px; /* 最小化して邪魔しない */
+    height: 1.8rem;
+    opacity: 0;
+    z-index: 10;
+    font-size: 1.8rem;
+    background-color: transparent;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    outline-style: none;
 }
 
 .char-done {

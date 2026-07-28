@@ -16,6 +16,7 @@ class TypingExam {
         this.realInput = document.getElementById('test-real-input');
         this.sampleBox = document.getElementById('sample-box');
         this.inputViewBox = document.getElementById('input-view-box');
+        this.visualText = document.getElementById('test-visual-text');
         
         this.init();
     }
@@ -98,16 +99,17 @@ class TypingExam {
         const remain = this.currentText.substring(this.progress);
         this.sampleBox.innerHTML = `<span class="char-done">${done}</span><span>${remain}</span>`;
 
-        // ② 入力エリア：確定済み文字 ＋ キャレットのみ表示
+        // ② 入力エリア：visualText レイヤーのみを更新（input要素を消さない）
         let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
+        if (this.isComposing) {
+            // 変換中はIMEの文字が出るため、ここでの表示は最小限（キャレットのみ等）にする
+        }
         inputHtml += `<span class="char-current-caret"></span>`;
-        this.inputViewBox.innerHTML = inputHtml;
+        this.visualText.innerHTML = inputHtml;
 
-        // 本物の input 要素をキャレット（青い線）の物理座標にピッタリ重ねる
-        const caret = this.inputViewBox.querySelector('.char-current-caret');
+        // IME候補窓を「現在の入力位置」へ追従させる
+        const caret = this.visualText.querySelector('.char-current-caret');
         if (caret && this.realInput) {
-            // 親要素のパディング（20px/30px）を考慮し、ボックス内での位置を計算
-            // offsetLeft/Top は position:relative の親からの距離を返す
             this.realInput.style.left = caret.offsetLeft + 'px';
             this.realInput.style.top = caret.offsetTop + 'px';
         }
