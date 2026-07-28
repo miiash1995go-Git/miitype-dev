@@ -137,10 +137,26 @@ class TypingExam {
             }
         });
 
-        // 2. 入力欄自体の監視（IME非変換時のEscを拾う）
+        // 2. 入力欄自体の監視（IME非変換時のEsc ＆ 確定文字の削除を拾う）
         this.realInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.isStarted && !this.isComposing) {
-                this.endExam(true);
+            if (this.isStarted && !this.isComposing) {
+                // Escキー：中断処理
+                if (e.key === 'Escape') {
+                    this.endExam(true);
+                }
+                // Backspaceキー：確定済み文字の修正ロジック（ここを追加）
+                else if (e.key === 'Backspace' && this.realInput.value === '') {
+                    if (this.progress > 0) {
+                        // 1文字分、時計の針を戻す
+                        this.progress--;
+                        this.totalChars--;
+                        this.inputContent = this.inputContent.slice(0, -1);
+                        
+                        // 統計表示とUIを更新
+                        document.getElementById('test-char-count').innerText = this.totalChars;
+                        this.updateDisplays();
+                    }
+                }
             }
         });
 
