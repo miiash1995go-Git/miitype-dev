@@ -63,13 +63,13 @@ class TypingExam {
         this.renderNextQuestion();
         
         let count = 5;
-        // サンプルエリアにカウントダウンを大きく表示
-        this.sampleBox.innerHTML = `<div style="font-size: 5rem; font-weight: 900; color: #2563eb; text-align: center;">${count}</div>`;
+        // サンプルエリアの1行目に収まるサイズ（1.55rem）でカウントダウンを表示
+        this.sampleBox.innerHTML = `<div style="font-size: 1.55rem; font-weight: 900; color: #2563eb; text-align: center;">テスト開始まで：${count}</div>`;
         
         const countdownTimer = setInterval(() => {
             count--;
             if (count > 0) {
-                this.sampleBox.innerHTML = `<div style="font-size: 5rem; font-weight: 900; color: #2563eb; text-align: center;">${count}</div>`;
+                this.sampleBox.innerHTML = `<div style="font-size: 1.55rem; font-weight: 900; color: #2563eb; text-align: center;">テスト開始まで：${count}</div>`;
             } else {
                 clearInterval(countdownTimer);
                 // 試験開始の確定
@@ -77,7 +77,7 @@ class TypingExam {
                 this.startTime = Date.now();
                 this.startTimer();
                 this.focusInput();
-                // 本来の問題文表示に戻す
+                // サンプル文を正しい表示（グレーなしの初期状態）に戻す
                 this.updateDisplays();
             }
         }, 1000);
