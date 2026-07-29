@@ -57,11 +57,30 @@ class TypingExam {
     startExam() {
         document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('game-screen').classList.remove('hidden');
-        this.isStarted = true;
-        this.startTime = Date.now();
+        
+        // カウントダウン中はまだ「開始（isStarted）」としない
+        this.isStarted = false;
         this.renderNextQuestion();
-        this.startTimer();
-        this.focusInput();
+        
+        let count = 5;
+        // サンプルエリアにカウントダウンを大きく表示
+        this.sampleBox.innerHTML = `<div style="font-size: 5rem; font-weight: 900; color: #2563eb; text-align: center;">${count}</div>`;
+        
+        const countdownTimer = setInterval(() => {
+            count--;
+            if (count > 0) {
+                this.sampleBox.innerHTML = `<div style="font-size: 5rem; font-weight: 900; color: #2563eb; text-align: center;">${count}</div>`;
+            } else {
+                clearInterval(countdownTimer);
+                // 試験開始の確定
+                this.isStarted = true;
+                this.startTime = Date.now();
+                this.startTimer();
+                this.focusInput();
+                // 本来の問題文表示に戻す
+                this.updateDisplays();
+            }
+        }, 1000);
     }
 
     // カテゴリの重複を避けつつ、データ末尾の空白を除去して選出
