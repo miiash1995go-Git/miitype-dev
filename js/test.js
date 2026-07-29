@@ -1,9 +1,20 @@
 /**
- * ぱそトレ！ 5分間タイピングテスト 試験エンジン (v20.7.28)
+ * ぱそトレ！ 5分間タイピングテスト 試験エンジン (v20.7.29.Ultimate)
+ * ------------------------------------------------------------
+ * 【実装済み機能】
+ * 1. ハイブリッド・インプット（変換中可視化）
+ * 2. 前方一致・部分受理ロジック
+ * 3. 確定済み文字のBackspace修正（逆流処理）
+ * 4. 5カテゴリ出題管理（連続出題禁止）
+ * 5. 精密ランク判定（19段階）＆ 1行アドバイス
+ * 6. エラー時ダメージエフェクト
+ * ============================================================
  */
+
 class TypingExam {
     constructor() {
-        this.questions = [];
+        this.questionPool = {};     // カテゴリ分けされた全問題
+        this.lastCategoryId = null; // 直前の出題カテゴリID
         this.currentIndex = 0;
         this.totalChars = 0;
         this.missCount = 0;
@@ -11,6 +22,10 @@ class TypingExam {
         this.timeLeft = 300; // 5分
         this.timerId = null;
         this.isStarted = false;
+        this.isTransitioning = false;
+        this.inputContent = ''; 
+        this.composingText = '';
+        this.isComposing = false;
         
         // UI参照
         this.realInput = document.getElementById('test-real-input');
@@ -25,12 +40,10 @@ class TypingExam {
         try {
             const res = await fetch('./data/typing/test_5min.json');
             const data = await res.json();
-            // 試験用にシャッフル
-            this.questions = data.questions.sort(() => Math.random() - 0.5);
+            // カテゴリごとにデータを保持
+            this.questionPool = data.categories;
             
             document.getElementById('test-start-btn').onclick = () => this.startExam();
-            
-            // IME制御とキー監視
             this.setupInputEvents();
         } catch (e) { console.error("試験データの読み込みに失敗しました", e); }
     }
@@ -45,48 +58,23 @@ class TypingExam {
         this.focusInput();
     }
 
-    setupInputEvents() {
-        // クリックで入力を強制フォーカス
-        document.addEventListener('click', () => { 
-            if(this.isStarted && !this.isTransitioning) this.focusInput(); 
-        });
+    // カテゴリの重複を避けつつランダムに1問選出する
+    pickNextQuestion() {
+        const catIds = Object.keys(this.questionPool);
+        // 直前のカテゴリID以外から抽選
+        const availableCats = catIds.filter(id => id !== this.lastCategoryId);
+        const selectedCatId = availableCats[Math.floor(Math.random() * availableCats.length)];
         
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') window.location.href = 'play.html';
-        });
-
-        // IME入力・確定イベントの統合監視
-        this.isComposing = false;
-        // 変換開始：キャレットを隠す（IME側の下線が出るため）
-        this.realInput.addEventListener('compositionstart', () => { 
-            this.isComposing = true; 
-            // opacityは0のまま、枠線なしの状態でIME候補窓のみを表示させる
-            const caret = this.visualText.querySelector('.char-current-caret');
-            if (caret) caret.style.visibility = 'hidden';
-        });
-        this.realInput.addEventListener('compositionend', (e) => {
-            this.isComposing = false;
-            // 確定された文字列を評価
-            this.evaluateString(e.data);
-            this.realInput.value = ''; 
-        });
-
-        // 直接入力（英数）や削除の監視
-        this.realInput.addEventListener('input', (e) => {
-            if (!this.isComposing && e.inputType !== 'deleteContentBackward') {
-                if (this.realInput.value.length > 0) {
-                    this.evaluateString(this.realInput.value);
-                    this.realInput.value = '';
-                }
-            }
-        });
+        const pool = this.questionPool[selectedCatId];
+        const question = pool[Math.floor(Math.random() * pool.length)];
+        
+        this.lastCategoryId = selectedCatId;
+        return question;
     }
 
-    focusInput() { this.realInput.focus(); }
-
     renderNextQuestion() {
-        if (this.questions.length === 0) return;
-        this.currentText = this.questions[this.currentIndex].kanji;
+        const q = this.pickNextQuestion();
+        this.currentText = q.kanji;
         
         // 1. サンプルエリア：お手本を黒文字で表示
         this.sampleBox.innerHTML = `<span>${this.currentText}</span>`;
@@ -105,21 +93,18 @@ class TypingExam {
         const remain = this.currentText.substring(this.progress);
         this.sampleBox.innerHTML = `<span class="char-done">${done}</span><span>${remain}</span>`;
 
-        // ② 入力エリア：visualText レイヤーのみを更新（input要素を消さない）
+        // ② 入力エリア：確定済み文字 ＋ キャレットのみ表示
         let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
-        if (this.isComposing) {
-            // 変換中はIMEの文字が出るため、ここでの表示は最小限（キャレットのみ等）にする
-        }
         inputHtml += `<span class="char-current-caret"></span>`;
         this.visualText.innerHTML = inputHtml;
 
-        // IME候補窓を「現在の入力位置」へ追従させる
+        // IME候補窓の位置を、青いキャレットの位置にミリ単位で同期
         const caret = this.visualText.querySelector('.char-current-caret');
         if (caret && this.realInput) {
             this.realInput.style.left = caret.offsetLeft + 'px';
             this.realInput.style.top = caret.offsetTop + 'px';
             
-            // 右端の壁（920px）までの残り幅を計算し、IME窓がはみ出さないように制限
+            // 右端（約920px）までの残り幅を計算し、IME窓の突き抜けを防止
             const remainingWidth = 920 - caret.offsetLeft;
             this.realInput.style.width = Math.max(remainingWidth, 100) + 'px';
         }
@@ -134,32 +119,26 @@ class TypingExam {
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 if (this.isStarted) {
-                    // テスト中：中断して結果画面（判定不可）へ
-                    this.endExam(true);
+                    this.endExam(true); // テスト中なら結果画面へ
                 } else {
-                    // テスト開始前：play.html（カテゴリ選択）へ戻る
-                    window.location.href = 'play.html';
+                    window.location.href = 'play.html'; // 開始前なら戻る
                 }
             }
         });
 
-        // 2. 入力欄自体の監視（IME非変換時のEsc ＆ 確定文字の削除を拾う）
+        // 2. 入力欄自体の監視（中断 ＆ 確定済み文字のBackspace修正）
         this.realInput.addEventListener('keydown', (e) => {
             if (this.isStarted && !this.isComposing) {
-                // Escキー：中断処理
+                // Escキー
                 if (e.key === 'Escape') {
                     this.endExam(true);
                 }
-
-                // Backspaceキー：確定済み文字の修正ロジック（ここを追加）
+                // Backspaceキー：確定済みエリアへの逆流修正
                 else if (e.key === 'Backspace' && this.realInput.value === '') {
                     if (this.progress > 0) {
-                        // 1文字分、時計の針を戻す
                         this.progress--;
                         this.totalChars--;
                         this.inputContent = this.inputContent.slice(0, -1);
-                        
-                        // 統計表示とUIを更新
                         document.getElementById('test-char-count').innerText = this.totalChars;
                         this.updateDisplays();
                     }
@@ -167,24 +146,17 @@ class TypingExam {
             }
         });
 
-        this.isComposing = false;
-        
-        // 変換開始：本物の入力口を可視化し、自作キャレットを隠す
+        // 3. ハイブリッドIME制御
         this.realInput.addEventListener('compositionstart', () => { 
             this.isComposing = true; 
-            this.realInput.style.opacity = '1'; 
+            this.realInput.style.opacity = '1'; // 変換中の文字と下線を可視化
             const caret = this.visualText.querySelector('.char-current-caret');
             if (caret) caret.style.visibility = 'hidden';
         });
 
-        this.realInput.addEventListener('compositionupdate', (e) => {
-            // OS側の描画に任せるため空で維持
-        });
-
-        // 変換確定：本物の入力口を再び隠し、自作キャレットを戻す
         this.realInput.addEventListener('compositionend', (e) => {
             this.isComposing = false;
-            this.realInput.style.opacity = '0'; 
+            this.realInput.style.opacity = '0'; // 確定したら隠す
             const caret = this.visualText.querySelector('.char-current-caret');
             if (caret) caret.style.visibility = 'visible';
             
@@ -195,7 +167,7 @@ class TypingExam {
         this.realInput.addEventListener('input', (e) => {
             if (!this.isComposing) {
                 if (e.inputType === 'deleteContentBackward') {
-                    this.inputContent = this.inputContent.slice(0, -1);
+                    // 通常の文字入力中以外の削除は親のkeydownで処理済み
                 } else if (this.realInput.value.length > 0) {
                     this.evaluateString(this.realInput.value);
                     this.realInput.value = '';
@@ -207,12 +179,15 @@ class TypingExam {
 
     evaluateString(committedStr) {
         if (!this.isStarted || this.isTransitioning || !committedStr) return;
+
         let matchedAny = false;
         let hasError = false;
 
+        // 【前方一致・部分受理方式】
         for (let i = 0; i < committedStr.length; i++) {
             const char = committedStr[i];
             const targetChar = this.currentText[this.progress];
+
             if (char === targetChar) {
                 this.progress++;
                 this.totalChars++;
@@ -226,16 +201,17 @@ class TypingExam {
         }
 
         if (hasError) this.triggerDamageEffect();
+
         if (matchedAny) {
             document.getElementById('test-char-count').innerText = this.totalChars;
+            // 文章完了判定
             if (this.progress >= this.currentText.length) {
                 this.isTransitioning = true;
                 setTimeout(() => {
-                    this.currentIndex = (this.currentIndex + 1) % this.questions.length;
                     this.renderNextQuestion();
                     this.isTransitioning = false;
                     this.focusInput();
-                }, 1000);
+                }, 1000); // 1秒待機
             }
         }
         this.updateDisplays();
@@ -249,6 +225,8 @@ class TypingExam {
         }
     }
 
+    focusInput() { this.realInput.focus(); }
+
     startTimer() {
         this.timerId = setInterval(() => {
             this.timeLeft--;
@@ -259,7 +237,6 @@ class TypingExam {
         }, 1000);
     }
 
-    // 中断フラグ (isAborted) に対応
     endExam(isAborted = false) {
         this.isStarted = false;
         clearInterval(this.timerId);
@@ -269,12 +246,9 @@ class TypingExam {
         const resRank = document.getElementById('res-rank');
 
         if (isAborted) {
-            // 【指示通り：中断時の結果表示】
             resRank.innerText = "判定不可";
-            // 主張を抑えたサイズと灰色（#94a3b8）に変更
             resRank.style.fontSize = "3.8rem";
             resRank.style.color = "#94a3b8"; 
-            
             document.getElementById('res-total-chars').innerText = "---";
             document.getElementById('res-accuracy').innerText = "---";
             document.getElementById('res-cpm').innerText = "---";
@@ -286,8 +260,7 @@ class TypingExam {
 
             resRank.innerText = rank;
             resRank.style.fontSize = "6.5rem"; 
-            resRank.style.color = "#2563eb"; // 通常時は青色
-            
+            resRank.style.color = "#2563eb";
             document.getElementById('res-total-chars').innerText = this.totalChars;
             document.getElementById('res-accuracy').innerText = accuracy;
             document.getElementById('res-cpm').innerText = cpm;
@@ -295,10 +268,6 @@ class TypingExam {
         }
     }
 
-    /**
-     * calculateRank: 5分間の合計文字数に基づきランクを決定
-     * ユーザー指定基準：Legend(1100)〜E(50)
-     */
     calculateRank(chars) {
         if (chars >= 1100) return "Legend";
         if (chars >= 1000) return "Master";
@@ -322,9 +291,6 @@ class TypingExam {
         return "E-";
     }
 
-    /**
-     * getComment: ランクに応じた1行以内のアドバイスメッセージ
-     */
     getComment(rank) {
         const list = {
             "Legend": "極めて高い技術です。実務の枠を超えた驚異的な実力をお持ちです。",
@@ -337,8 +303,8 @@ class TypingExam {
             "A-":     "安定した入力能力です。正確なリズムを保ちながら練習を続けましょう。",
             "B+":     "標準的な事務職の理想的なレベルです。日々の業務でさらに馴染ませましょう。",
             "B":      "実務の基本レベルをクリアしています。ミスを減らすと速度はさらに伸びます。",
-            "B-":     "しっかり身についています。正確性を第一に考えるのが上達の近道です。",
-            "C+":     "着実な成長を感じます。正確率97%を目指すと、速度も自然に向上します。",
+            "B-":     "基礎がしっかり身についています。正確性を第一に考えるのが上達の近道です。",
+            "C+":     "着実な成長を感じます。正確率100%を目指すと、速度も自然に向上します。",
             "C":      "練習の成果が出ています。毎日の積み重ねが、未来のあなたの自信を作ります。",
             "C-":     "一歩ずつ進んでいます。見ずに打てる文字を増やすと、入力が楽になります。",
             "D+":     "最初の一歩をクリアしました。まずは正確に打つ喜びを大切にしましょう。",
