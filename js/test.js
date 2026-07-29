@@ -83,6 +83,7 @@ class TypingExam {
         }, 1000);
     }
 
+
     // カテゴリの重複を避けつつ、データ末尾の空白を除去して選出
     pickNextQuestion() {
         const catIds = Object.keys(this.questionPool);
