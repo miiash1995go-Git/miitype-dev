@@ -66,11 +66,16 @@ class TypingExam {
         const selectedCatId = availableCats[Math.floor(Math.random() * availableCats.length)];
         
         const pool = this.questionPool[selectedCatId];
-        const question = pool[Math.floor(Math.random() * pool.length)];
+        const rawQuestion = pool[Math.floor(Math.random() * pool.length)];
+        
+        // 【重要】データ末尾の不要な空白を削除して、タイピングの中断を防止
+        const sanitizedQuestion = {
+            kanji: rawQuestion.kanji.trim(),
+            kana: rawQuestion.kana.trim()
+        };
         
         this.lastCategoryId = selectedCatId;
-        return question;
-    }
+        return sanitizedQuestion;
 
     renderNextQuestion() {
         const q = this.pickNextQuestion();
