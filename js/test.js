@@ -1,11 +1,11 @@
 /**
- * ぱそトレ！ 5分間タイピングテスト 試験エンジン (v20.7.29.Ultimate)
+ * ぱそトレ！ 5分間タイピングテスト 試験エンジン (v20.7.29.Final_Fixed)
  * ------------------------------------------------------------
  * 【実装済み機能】
  * 1. ハイブリッド・インプット（変換中可視化）
  * 2. 前方一致・部分受理ロジック
  * 3. 確定済み文字のBackspace修正（逆流処理）
- * 4. 5カテゴリ出題管理（連続出題禁止）
+ * 4. 5カテゴリ出題管理（連続出題禁止 ＆ 自動トリム）
  * 5. 精密ランク判定（19段階）＆ 1行アドバイス
  * 6. エラー時ダメージエフェクト
  * ============================================================
@@ -43,9 +43,15 @@ class TypingExam {
             // カテゴリごとにデータを保持
             this.questionPool = data.categories;
             
-            document.getElementById('test-start-btn').onclick = () => this.startExam();
+            // ボタンイベントの確実な割り当て
+            const startBtn = document.getElementById('test-start-btn');
+            if (startBtn) {
+                startBtn.onclick = () => this.startExam();
+            }
             this.setupInputEvents();
-        } catch (e) { console.error("試験データの読み込みに失敗しました", e); }
+        } catch (e) { 
+            console.error("試験データの読み込みに失敗しました", e); 
+        }
     }
 
     startExam() {
@@ -58,17 +64,21 @@ class TypingExam {
         this.focusInput();
     }
 
-    // カテゴリの重複を避けつつランダムに1問選出する
+    // カテゴリの重複を避けつつ、データ末尾の空白を除去して選出
     pickNextQuestion() {
         const catIds = Object.keys(this.questionPool);
-        // 直前のカテゴリID以外から抽選
-        const availableCats = catIds.filter(id => id !== this.lastCategoryId);
+        if (catIds.length === 0) return { kanji: "エラー：データがありません", kana: "" };
+
+        // 直前のカテゴリID以外から抽選（初回は全カテゴリ対象）
+        const availableCats = this.lastCategoryId 
+            ? catIds.filter(id => id !== this.lastCategoryId) 
+            : catIds;
+            
         const selectedCatId = availableCats[Math.floor(Math.random() * availableCats.length)];
-        
         const pool = this.questionPool[selectedCatId];
         const rawQuestion = pool[Math.floor(Math.random() * pool.length)];
         
-        // 【重要】データ末尾の不要な空白を削除して、タイピングの中断を防止
+        // データ末尾の不要な空白（半角スペース等）を自動削除して、判定不全を防止
         const sanitizedQuestion = {
             kanji: rawQuestion.kanji.trim(),
             kana: rawQuestion.kana.trim()
@@ -76,15 +86,16 @@ class TypingExam {
         
         this.lastCategoryId = selectedCatId;
         return sanitizedQuestion;
+    }
 
     renderNextQuestion() {
         const q = this.pickNextQuestion();
         this.currentText = q.kanji;
         
-        // 1. サンプルエリア：お手本を黒文字で表示
+        // 1. サンプルエリア：お手本を表示
         this.sampleBox.innerHTML = `<span>${this.currentText}</span>`;
         
-        // 2. 入力エリア：完全に空にする
+        // 2. 入力エリア：完全にリセット
         this.progress = 0;
         this.inputContent = ''; 
         this.composingText = '';
@@ -103,7 +114,7 @@ class TypingExam {
         inputHtml += `<span class="char-current-caret"></span>`;
         this.visualText.innerHTML = inputHtml;
 
-        // IME候補窓の位置を、青いキャレットの位置にミリ単位で同期
+        // IME候補窓を青いキャレットの位置にミリ単位で同期
         const caret = this.visualText.querySelector('.char-current-caret');
         if (caret && this.realInput) {
             this.realInput.style.left = caret.offsetLeft + 'px';
@@ -116,29 +127,30 @@ class TypingExam {
     }
 
     setupInputEvents() {
+        // ボックス内クリックでフォーカスを戻す
         document.addEventListener('click', () => { 
             if(this.isStarted && !this.isTransitioning) this.focusInput(); 
         });
         
-        // 1. 画面全体の監視（Escキーの挙動を状況に応じて分岐）
+        // 1. 画面全体の監視（Escキー：開始前は戻る、開始後は中断）
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 if (this.isStarted) {
-                    this.endExam(true); // テスト中なら結果画面へ
+                    this.endExam(true);
                 } else {
-                    window.location.href = 'play.html'; // 開始前なら戻る
+                    window.location.href = 'play.html';
                 }
             }
         });
 
-        // 2. 入力欄自体の監視（中断 ＆ 確定済み文字のBackspace修正）
+        // 2. 入力欄自体の監視（IME非変換時の特殊キー処理）
         this.realInput.addEventListener('keydown', (e) => {
             if (this.isStarted && !this.isComposing) {
-                // Escキー
+                // Escでの中断
                 if (e.key === 'Escape') {
                     this.endExam(true);
                 }
-                // Backspaceキー：確定済みエリアへの逆流修正
+                // Backspace：確定済みエリアへの修正（逆流）
                 else if (e.key === 'Backspace' && this.realInput.value === '') {
                     if (this.progress > 0) {
                         this.progress--;
@@ -151,17 +163,17 @@ class TypingExam {
             }
         });
 
-        // 3. ハイブリッドIME制御
+        // 3. ハイブリッドIME制御（変換中のみ実体を可視化）
         this.realInput.addEventListener('compositionstart', () => { 
             this.isComposing = true; 
-            this.realInput.style.opacity = '1'; // 変換中の文字と下線を可視化
+            this.realInput.style.opacity = '1'; 
             const caret = this.visualText.querySelector('.char-current-caret');
             if (caret) caret.style.visibility = 'hidden';
         });
 
         this.realInput.addEventListener('compositionend', (e) => {
             this.isComposing = false;
-            this.realInput.style.opacity = '0'; // 確定したら隠す
+            this.realInput.style.opacity = '0'; 
             const caret = this.visualText.querySelector('.char-current-caret');
             if (caret) caret.style.visibility = 'visible';
             
@@ -171,9 +183,7 @@ class TypingExam {
 
         this.realInput.addEventListener('input', (e) => {
             if (!this.isComposing) {
-                if (e.inputType === 'deleteContentBackward') {
-                    // 通常の文字入力中以外の削除は親のkeydownで処理済み
-                } else if (this.realInput.value.length > 0) {
+                if (e.inputType !== 'deleteContentBackward' && this.realInput.value.length > 0) {
                     this.evaluateString(this.realInput.value);
                     this.realInput.value = '';
                 }
@@ -209,14 +219,13 @@ class TypingExam {
 
         if (matchedAny) {
             document.getElementById('test-char-count').innerText = this.totalChars;
-            // 文章完了判定
             if (this.progress >= this.currentText.length) {
                 this.isTransitioning = true;
                 setTimeout(() => {
                     this.renderNextQuestion();
                     this.isTransitioning = false;
                     this.focusInput();
-                }, 1000); // 1秒待機
+                }, 1000); // 次の文章まで1秒待機
             }
         }
         this.updateDisplays();
@@ -308,8 +317,8 @@ class TypingExam {
             "A-":     "安定した入力能力です。正確なリズムを保ちながら練習を続けましょう。",
             "B+":     "標準的な事務職の理想的なレベルです。日々の業務でさらに馴染ませましょう。",
             "B":      "実務の基本レベルをクリアしています。ミスを減らすと速度はさらに伸びます。",
-            "B-":     "しっかり身についています。速度と正確性のバランスが大事です。",
-            "C+":     "着実な成長を感じます。正確率UP%を目指すと、速度も自然に向上します。",
+            "B-":     "しっかり身についています。正確性を第一に考えるのが上達の近道です。",
+            "C+":     "着実な成長を感じます。正確率98%を目指すと、速度も自然に向上します。",
             "C":      "練習の成果が出ています。毎日の積み重ねが、未来のあなたの自信を作ります。",
             "C-":     "一歩ずつ進んでいます。見ずに打てる文字を増やすと、入力が楽になります。",
             "D+":     "最初の一歩をクリアしました。まずは正確に打つ喜びを大切にしましょう。",
