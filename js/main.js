@@ -831,18 +831,57 @@ if (typeof gtag === 'function') {
             mOver.onclick = function(e) { if(e.target === mOver) { mOver.classList.remove('is-open'); document.body.style.overflow = ''; } };
         }
 
-        // 7. コラムフィルタ
+        // 7. コラムフィルタ（拡張：リモートトリガー対応版）
         var tags = document.querySelectorAll('.hub-tag');
         var arts = document.querySelectorAll('.hub-article-item[data-category]');
+        var remoteBtns = document.querySelectorAll('[data-remote-filter]');
+
         if (tags.length > 0) {
+            // 共通のフィルタ実行関数
+            var applyFilter = function(filterValue) {
+                // 1. 下部タグボタンの表示を切り替え
+                tags.forEach(function(t) {
+                    if (t.getAttribute('data-filter') === filterValue) {
+                        t.classList.add('active');
+                    } else {
+                        t.classList.remove('active');
+                    }
+                });
+
+                // 2. 記事の表示/非表示を切り替え
+                arts.forEach(function(a) {
+                    if (filterValue === 'all' || a.getAttribute('data-category') === filterValue) {
+                        a.style.display = 'block';
+                    } else {
+                        a.style.display = 'none';
+                    }
+                });
+            };
+
+            // 下部のタグボタン自体のクリックイベント
             tags.forEach(function(btn) {
                 btn.onclick = function() {
-                    tags.forEach(function(b) { b.classList.remove('active'); });
-                    btn.classList.add('active');
                     var f = btn.getAttribute('data-filter');
-                    arts.forEach(function(a) {
-                        a.style.display = (f === 'all' || a.getAttribute('data-category') === f) ? 'block' : 'none';
-                    });
+                    applyFilter(f);
+                };
+            });
+
+            // テーマ別大きなボタン（リモートトリガー）のクリックイベント
+            remoteBtns.forEach(function(rBtn) {
+                rBtn.onclick = function() {
+                    var f = rBtn.getAttribute('data-remote-filter');
+                    // 絞り込み実行
+                    applyFilter(f);
+                    // 記事一覧エリアの開始点までスムーズスクロール
+                    var target = document.getElementById('column-article-grid');
+                    if (target) {
+                        // 1024px統治下での視認性を考慮し、少し手前で止める
+                        var offset = target.getBoundingClientRect().top + window.pageYOffset - 180;
+                        window.scrollTo({
+                            top: offset,
+                            behavior: 'smooth'
+                        });
+                    }
                 };
             });
         }
