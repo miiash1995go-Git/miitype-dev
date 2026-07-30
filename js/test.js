@@ -37,6 +37,17 @@ class TypingExam {
     }
 
     async init() {
+        // 【修正】データの読み込み成否に関わらず、Escキー（戻る操作）を即座に有効化
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (this.isStarted) {
+                    this.endExam(true);
+                } else {
+                    window.location.href = 'play.html';
+                }
+            }
+        });
+
         try {
             const res = await fetch('./data/typing/test_5min.json');
             const data = await res.json();
@@ -152,17 +163,6 @@ class TypingExam {
             if(this.isStarted && !this.isTransitioning) this.focusInput(); 
         });
         
-        // 1. 画面全体の監視（Escキー：開始前は戻る、開始後は中断）
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                if (this.isStarted) {
-                    this.endExam(true);
-                } else {
-                    window.location.href = 'play.html';
-                }
-            }
-        });
-
         // 2. 入力欄自体の監視（IME非変換時の特殊キー処理）
         this.realInput.addEventListener('keydown', (e) => {
             if (this.isStarted && !this.isComposing) {
