@@ -299,6 +299,16 @@ class TypingExam {
             document.getElementById('res-accuracy').innerText = accuracy;
             document.getElementById('res-cpm').innerText = cpm;
             document.getElementById('res-comment').innerText = this.getComment(rank);
+
+            // 【正典実装】5分間テストの確定文字数を自己ベストとして記録
+            const storageKey = 'pasotore_best';
+            const bestScores = JSON.parse(localStorage.getItem(storageKey)) || {};
+            
+            // 既存の記録がない、または今回の確定文字数がこれまでの記録を上回った場合に更新
+            if (!bestScores['test_5min'] || this.totalChars > bestScores['test_5min']) {
+                bestScores['test_5min'] = this.totalChars;
+                localStorage.setItem(storageKey, JSON.stringify(bestScores));
+            }
         }
     }
 

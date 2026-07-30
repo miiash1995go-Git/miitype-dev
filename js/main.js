@@ -233,7 +233,14 @@ if (success) {
         const best = this.bestScores[this.currentCategoryId] || 0;
         const el = document.getElementById('best-score-display');
         if(el) {
-            el.innerHTML = `<span class="best-label">自己ベスト</span><span class="best-value">${best}</span>`;
+            // カテゴリに応じて表示単位を切り分ける
+            var unit = " スコア"; 
+            if (this.currentCategoryId === 'test_5min') {
+                unit = " 文字";
+            }
+            
+            var displayValue = best + unit;
+            el.innerHTML = '<span class="best-label">自己ベスト</span><span class="best-value">' + displayValue + '</span>';
         }
     }
 
