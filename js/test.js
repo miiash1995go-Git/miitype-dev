@@ -245,7 +245,7 @@ class TypingExam {
                     this.renderNextQuestion();
                     this.isTransitioning = false;
                     this.focusInput();
-                }, 1000); // 次の文章まで1秒待機
+                }, 600); // 次の文章まで1秒待機
             }
         }
         this.updateDisplays();
