@@ -233,14 +233,17 @@ if (success) {
         const best = this.bestScores[this.currentCategoryId] || 0;
         const el = document.getElementById('best-score-display');
         if(el) {
-            // カテゴリに応じて表示単位を切り分ける
-            var unit = " スコア"; 
+            // カテゴリに応じて表示単位を切り分け
+            var unitText = "スコア"; 
             if (this.currentCategoryId === 'test_5min') {
-                unit = " 文字";
+                unitText = "文字";
             }
             
-            var displayValue = best + unit;
-            el.innerHTML = '<span class="best-label">自己ベスト</span><span class="best-value">' + displayValue + '</span>';
+            // 数値と単位に個別のタグを割り当てて視認性を向上
+            el.innerHTML = 
+                '<span class="best-label">自己ベスト</span>' +
+                '<span class="best-value">' + best + '</span>' +
+                '<span class="best-unit">' + unitText + '</span>';
         }
     }
 

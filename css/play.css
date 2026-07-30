@@ -233,8 +233,24 @@ body.focus-mode #app {
     display: flex;
     align-items: center;
 }
-.best-label { font-size: 0.75rem; color: #7f8c8d; font-weight: 800; margin-right: 8px; }
-.best-value { font-size: 1.1rem; color: #3498db; font-weight: 900; }
+.best-label {
+    font-size: 0.75rem;
+    color: #7f8c8d;
+    font-weight: 800;
+    margin-right: 8px;
+}
+.best-value {
+    font-size: 1.2rem;
+    color: #3498db;
+    font-weight: 900;
+}
+/* 単位専用：数値より小さく、落ち着いたグレーに設定 */
+.best-unit {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    font-weight: 800;
+    margin-left: 4px;
+}
 
 #start-btn {
     position: absolute !important;
