@@ -82,6 +82,16 @@ class TypingApp {
         this.CENTER_X = 400;   // 430から400へ（コンテナ幅が800pxになるため）
 
         this.init();
+
+        // ブラウザバック（bfcache）時の状態不整合を強制リセット
+        window.addEventListener('pageshow', (event) => {
+            if (event.persisted) {
+                this.state = "START";
+                this.isTransitioning = false;
+                const startBtn = document.getElementById('start-btn');
+                if (startBtn) startBtn.disabled = false;
+            }
+        });
     }
 
     async init() {
@@ -196,13 +206,15 @@ handleResize() {
         const startBtn = document.getElementById('start-btn');
         if (startBtn) {
             startBtn.addEventListener('click', async () => {
-                startBtn.disabled = true;
-                
-                // 5分間テストモード選択時は、専用模擬試験ページへリダイレクト
+                // 5分間テストの場合は無効化せずにリダイレクト（バック時に固まるのを防ぐ）
                 if (this.currentCategoryId === 'test_5min') {
                     window.location.href = 'test.html';
-                    return; // 以下のロード処理は行わない
+                    return;
                 }
+
+                startBtn.disabled = true;
+                this.state = "START"; 
+                this.isTransitioning = false; 
 
                 this.isTestMode = false;
                 const success = await this.loadQuestions(this.currentCategoryId);
