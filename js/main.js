@@ -60,8 +60,9 @@ class TypingApp {
         this.keyboardColorEnabled = localStorage.getItem('pasotore_kb_color') !== 'false';
         this.bestScores = JSON.parse(localStorage.getItem('pasotore_best')) || {};
         
-        this.targetLimit = 320;
-        this.timeLimitMs = 240000;
+        // ローマ字基礎（初期値）は軽量設定
+        this.targetLimit = 200;
+        this.timeLimitMs = 180000;
         this.inactivityLimit = 120000;
         
         this.startTime = null;
@@ -159,6 +160,16 @@ handleResize() {
                 document.querySelectorAll('.btn-category').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 this.currentCategoryId = btn.dataset.cat;
+
+                // 【新規】ローマ字基礎カテゴリのみ軽量化（200文字/3分）
+                if (this.currentCategoryId === 'roman_pure' || this.currentCategoryId === 'roman_complex') {
+                    this.targetLimit = 200;
+                    this.timeLimitMs = 180000;
+                } else {
+                    this.targetLimit = 320;
+                    this.timeLimitMs = 240000;
+                }
+
                 this.updateBestScoreDisplay();
             });
         });
