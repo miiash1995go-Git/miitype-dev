@@ -1480,303 +1480,44 @@ body.portal-page #app {
     color: #ffffff !important; /* 文字を白に変更して視認性を確保 */
 }
 
-/* ============================================================
-   目的別クイックアクセス：PC 2-1-2 / スマホ 1列（完全復旧版）
-   ============================================================ */
-.quick-custom-grid {
+/* --- 3. 目的別クイックアクセス --- */
+.quick-access-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     margin-top: 30px;
-    /* セクション間の余白を他と同期 */
-    margin-bottom: 80px; 
 }
-
-.q-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 18px;
-    padding-right: 25px;
-    padding-bottom: 18px;
-    padding-left: 25px;
-    background-color: #ffffff;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-style: solid;
-    border-color: #e2e8f0;
-    text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    position: relative;
-    overflow: hidden;
-    box-sizing: border-box;
-}
-
-.q-card--wide {
-    grid-column: span 2;
-    padding-top: 22px;
-    padding-bottom: 22px;
-    text-align: center;
-}
-
-.q-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.05);
-    border-top-color: #cbd5e1;
-    border-right-color: #cbd5e1;
-    border-bottom-color: #cbd5e1;
-    border-left-color: #cbd5e1;
-}
-
-/* カード左端のアクセントライン（復旧） */
-.q-card::before {
-    content: "";
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    bottom: 0px;
-    width: 6px;
-    opacity: 0.3;
-}
-
-.q-card--typing::before { background-color: #2563EB; }
-.q-card--windows::before { background-color: #38BDF8; }
-.q-card--office::before { background-color: #1D4ED8; opacity: 0.6; }
-.q-card--career::before { background-color: #F97316; }
-.q-card--ai::before { background-color: #14B8A6; }
-
-.q-title {
-    font-size: 1.1rem;
-    font-weight: 900;
-    color: #2c3e50;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 3px;
-    margin-left: 0px;
-    display: block;
-}
-
-.q-sub {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #94a3b8;
-    display: block;
-}
-
-.q-arrow {
-    display: inline-block;
-    margin-left: 8px;
-    font-size: 1.1rem;
-    color: #cbd5e1;
-    transition: transform 0.3s ease, color 0.3s ease;
-    vertical-align: middle;
-}
-
-.q-card:hover .q-arrow {
-    transform: translateX(5px);
-    color: #2563EB;
-}
-
-@media (max-width: 768px) {
-    .quick-custom-grid { grid-template-columns: 1fr !important; margin-bottom: 50px; }
-    .q-card--wide { grid-column: span 1 !important; text-align: left; padding-top: 18px; padding-bottom: 18px; }
-}
-
-/* ============================================================
-   カテゴリーナビゲーション：4-3配置（完全復旧版）
-   ============================================================ */
-.cat-nav-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-    /* 下のランキングセクションとの間に80pxの「呼吸」を確保 */
-    margin-bottom: 80px; 
-    width: 100%;
-}
-
-.cat-nav-btn {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding-top: 12px;
-    padding-right: 15px;
-    padding-bottom: 12px;
-    padding-left: 15px;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
-    border-bottom-left-radius: 12px;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    width: calc(25% - 10px); 
-    
-/* ============================================================
-   人気コンテンツ：2カラムランキング（v20.7.30 完全復旧版）
-   ============================================================ */
-.ranking-container {
-    display: flex;
-    flex-direction: row;
-    gap: 25px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-.ranking-featured {
-    flex-grow: 1.2;
-    flex-shrink: 1;
-    flex-basis: 0%;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-style: solid;
-    border-color: #e2e8f0;
-    padding-top: 30px;
-    padding-right: 30px;
-    padding-bottom: 30px;
-    padding-left: 30px;
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.ranking-featured:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.06);
-    border-top-color: #2563EB;
-    border-right-color: #2563EB;
-    border-bottom-color: #2563EB;
-    border-left-color: #2563EB;
-}
-
-.rank-badge-big {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: #e2e8f0;
-    line-height: 1;
-}
-
-.rank-featured-label {
-    font-size: 0.8rem;
-    font-weight: 900;
-    color: #2563EB;
-    margin-bottom: 10px;
-    display: block;
-    position: relative;
-    z-index: 2;
-}
-
-.rank-featured-title {
-    font-size: 1.4rem;
-    font-weight: 900;
-    color: #2c3e50;
-    line-height: 1.5;
-    margin-bottom: 20px;
-    position: relative;
-    z-index: 2;
-}
-
-.rank-featured-tags {
-    display: flex;
-    gap: 8px;
-    position: relative;
-    z-index: 2;
-}
-
-.ranking-side-list {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 0%;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.rank-side-item {
+.quick-card {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding-top: 15px;
-    padding-right: 20px;
-    padding-bottom: 15px;
-    padding-left: 20px;
     background-color: #ffffff;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-style: solid;
-    border-color: #e2e8f0;
+    padding: 15px 20px;
+    border-radius: 15px;
     text-decoration: none;
+    border: 1px solid #eef2f6;
     transition: all 0.2s ease;
 }
+.quick-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.quick-icon { font-size: 1.5rem; margin-right: 15px; width: 40px; text-align: center; }
+.quick-text h4 { font-size: 0.95rem; font-weight: 900; color: var(--primary); margin: 0; }
+.quick-text p { font-size: 0.75rem; color: #94a3b8; margin: 2px 0 0 0; }
 
-.rank-side-item:hover {
-    border-top-color: #38BDF8;
-    border-right-color: #38BDF8;
-    border-bottom-color: #38BDF8;
-    border-left-color: #38BDF8;
-    background-color: #F0F9FF;
+/* --- 4. 人気コンテンツ・リスト --- */
+.popular-list-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #eef2f6;
 }
-
-.rank-num-small {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: #94a3b8;
-    width: 25px;
-    flex-shrink: 0;
+.popular-list { list-style: none; padding: 0; margin: 0; }
+.popular-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #f8f9fa;
+    display: flex;
+    align-items: center;
 }
-
-.rank-side-title {
-    font-size: 0.95rem;
-    font-weight: 800;
-    color: #2c3e50;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-@media (max-width: 768px) {
-    .ranking-container { flex-direction: column; }
-    .ranking-featured { padding: 25px; }
-    .rank-featured-title { font-size: 1.2rem; }
-}
+.popular-list li::before { content: "・"; color: var(--accent); font-weight: 900; margin-right: 10px; }
+.popular-list a { text-decoration: none; color: var(--primary); font-weight: 500; font-size: 0.95rem; }
 .popular-list a:hover { color: var(--accent); }
 
 /* --- 5. Newsセクション：重なり・スクロール・カラー統治 (v20.1.87) --- */
@@ -1822,30 +1563,11 @@ body.portal-page .news-item {
 body.portal-page .news-item:last-child { border-bottom: none; }
 body.portal-page .news-meta {
     display: flex !important;
-    min-width: 0 !important; 
-    flex: 0 0 160px !important;
-    width: 160px !important;
+    flex: 0 0 145px !important;
+    width: 145px !important;
     align-items: center !important;
-    gap: 8px !important;
+    gap: 6px !important;
 }
-
-body.portal-page .news-tag {
-    font-size: 0.75rem !important;
-    font-weight: 900 !important;
-    padding-top: 3px !important;
-    padding-right: 0px !important;
-    padding-bottom: 3px !important;
-    padding-left: 0px !important;
-    border-top-left-radius: 4px !important;
-    border-top-right-radius: 4px !important;
-    border-bottom-right-radius: 4px !important;
-    border-bottom-left-radius: 4px !important;
-    text-align: center !important;
-    width: 76px !important;
-    min-width: 76px !important;
-    display: block !important;
-}
-
 .news-date { font-family: 'Roboto Mono', monospace; font-size: 0.85rem; color: #94a3b8; font-weight: 700; }
 body.portal-page .news-tag {
     font-size: 0.75rem !important;
@@ -1903,18 +1625,9 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     .map-container, .ai-dual-role-box, .quick-access-grid { flex-direction: column; }
     .ai-dual-role-box { gap: 20px !important; }
     .ai-dual-role-box::before { display: none; } /* スマホ縦並び時は点線を消す */
-    /* スマホ版：145pxで日付(`2026.07.30`)とタグ(`70px`)を安全に共存させる */
-    body.portal-page .news-meta {
-        flex: 0 0 145px !important;
-        width: 145px !important;
-        gap: 5px !important;
-    }
-    body.portal-page .news-tag {
-        width: 70px !important;
-        min-width: 70px !important;
-        font-size: 0.7rem !important;
-    }
-    
+    body.portal-page .news-meta { flex: 0 0 160px !important; width: 160px !important; gap: 5px !important; }
+    body.portal-page .news-tag { width: 70px !important; min-width: 70px !important; font-size: 0.7rem !important; }
+}
 /* カテゴリーナビゲーション：4-3配置・等間隔統治モデル */
 .cat-nav-container {
     display: flex;
