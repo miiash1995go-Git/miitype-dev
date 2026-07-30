@@ -1480,12 +1480,16 @@ body.portal-page #app {
     color: #ffffff !important; /* 文字を白に変更して視認性を確保 */
 }
 
-/* --- 目的別クイックアクセス：PC 2-1-2 / スマホ 1列（ここから復旧） --- */
+/* ============================================================
+   目的別クイックアクセス：PC 2-1-2 / スマホ 1列（完全復旧版）
+   ============================================================ */
 .quick-custom-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     margin-top: 30px;
+    /* セクション間の余白を他と同期 */
+    margin-bottom: 80px; 
 }
 
 .q-card {
@@ -1501,7 +1505,12 @@ body.portal-page #app {
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
-    border: 1px solid #e2e8f0;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-style: solid;
+    border-color: #e2e8f0;
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
@@ -1519,14 +1528,37 @@ body.portal-page #app {
 .q-card:hover {
     transform: translateY(-3px);
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.05);
-    border-color: #cbd5e1;
+    border-top-color: #cbd5e1;
+    border-right-color: #cbd5e1;
+    border-bottom-color: #cbd5e1;
+    border-left-color: #cbd5e1;
 }
+
+/* カード左端のアクセントライン（復旧） */
+.q-card::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    width: 6px;
+    opacity: 0.3;
+}
+
+.q-card--typing::before { background-color: #2563EB; }
+.q-card--windows::before { background-color: #38BDF8; }
+.q-card--office::before { background-color: #1D4ED8; opacity: 0.6; }
+.q-card--career::before { background-color: #F97316; }
+.q-card--ai::before { background-color: #14B8A6; }
 
 .q-title {
     font-size: 1.1rem;
     font-weight: 900;
     color: #2c3e50;
+    margin-top: 0px;
+    margin-right: 0px;
     margin-bottom: 3px;
+    margin-left: 0px;
     display: block;
 }
 
@@ -1552,11 +1584,13 @@ body.portal-page #app {
 }
 
 @media (max-width: 768px) {
-    .quick-custom-grid { grid-template-columns: 1fr !important; }
+    .quick-custom-grid { grid-template-columns: 1fr !important; margin-bottom: 50px; }
     .q-card--wide { grid-column: span 1 !important; text-align: left; padding-top: 18px; padding-bottom: 18px; }
 }
 
-/* --- カテゴリーナビゲーション：4-3配置・等間隔統治（ここも復旧） --- */
+/* ============================================================
+   カテゴリーナビゲーション：4-3配置（完全復旧版）
+   ============================================================ */
 .cat-nav-container {
     display: flex;
     flex-direction: row;
@@ -1565,6 +1599,8 @@ body.portal-page #app {
     justify-content: center;
     align-items: center;
     margin-top: 30px;
+    /* 下のランキングセクションとの間に80pxの「呼吸」を確保 */
+    margin-bottom: 80px; 
     width: 100%;
 }
 
@@ -1586,33 +1622,14 @@ body.portal-page #app {
     border-right-width: 1px;
     border-bottom-width: 1px;
     border-left-width: 1px;
-    border-style: solid;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
     text-decoration: none;
     transition: all 0.2s ease;
     width: calc(25% - 10px); 
-    box-sizing: border-box;
-    background-color: #ffffff;
-}
-
-.cat-nav-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.05);
-}
-
-.cat-nav-icon {
-    width: 28px;
-    height: auto;
-    flex-shrink: 0;
-}
-
-.cat-nav-text {
-    font-size: 0.95rem;
-    font-weight: 900;
-}
-
-@media (max-width: 768px) {
-    .cat-nav-btn { width: calc(50% - 6px); }
-}
+    b
 
 /* ============================================================
    人気コンテンツ：2カラムランキング（v20.7.30 完全復旧版）
