@@ -1564,8 +1564,8 @@ body.portal-page .news-item:last-child { border-bottom: none; }
 body.portal-page .news-meta {
     display: flex !important;
     /* 160px：日付とタグを収めつつ、｜にグッと近づける理想の幅 */
-    flex: 0 0 160px !important;
-    width: 160px !important;
+    flex: 0 0 185px !important;
+    width: 185px !important;
     align-items: center !important;
     gap: 8px !important;
 }
