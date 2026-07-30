@@ -758,14 +758,15 @@ if (typeof gtag === 'function') {
         if (page === "" || page.indexOf('.') === -1) { page = "index.html"; }
 
         // 2. カテゴリ判定マッピング
+        // ※ column を最上位に配置することで、ファイル名に他のキーワードが含まれていても「現場コラム」を優先判定させる
         var mapping = {
+            'column':  ['column'],
             'windows': ['windows', 'pc-selection', 'folder'],
             'word':    ['word'],
             'excel':   ['excel'],
             'ai':      ['ai', 'chatgpt', 'tools'],
             'typing':  ['typing', 'play', 'basics'],
-            'career':  ['career', 'interview', 'cv'],
-            'column':  ['column']
+            'career':  ['career', 'interview', 'cv']
         };
 
         var names = {
