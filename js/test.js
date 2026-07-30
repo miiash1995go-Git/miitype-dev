@@ -305,7 +305,7 @@ class TypingExam {
             if (typeof gtag === 'function') {
                 gtag('event', 'typing_complete', {
                     'category_name': '5分間タイピングテスト', // レポートで仕分けるための名前
-                    '判定ランク': rank,                    // レポートの「判定ランク」列に表示
+                    'rank': rank,                    // レポートの「判定ランク」列に表示
                     'score': this.totalChars,             // レポートの「スコア」列に文字数を表示
                     'accuracy': parseFloat(accuracy),      // 正確率
                     'cpm': cpm                             // 打鍵速度
