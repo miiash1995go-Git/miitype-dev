@@ -1563,11 +1563,29 @@ body.portal-page .news-item {
 body.portal-page .news-item:last-child { border-bottom: none; }
 body.portal-page .news-meta {
     display: flex !important;
-    flex: 0 0 145px !important;
-    width: 145px !important;
+    /* 古いスタイルの干渉を完全に遮断 */
+    min-width: 0 !important; 
+    /* 160pxに微調整：日付＋タグを収めつつ縦棒に接近させる */
+    flex: 0 0 160px !important;
+    width: 160px !important;
     align-items: center !important;
-    gap: 6px !important;
+    gap: 8px !important;
 }
+
+/* タグ自体の幅を少し絞って余白を詰める */
+body.portal-page .news-tag {
+    font-size: 0.75rem !important;
+    font-weight: 900 !important;
+    padding-top: 3px !important;
+    padding-bottom: 3px !important;
+    border-radius: 4px !important;
+    text-align: center !important;
+    /* 85pxから76pxへ短縮：文字の左右の余白をタイトに */
+    width: 76px !important;
+    min-width: 76px !important;
+    display: block !important;
+}
+
 .news-date { font-family: 'Roboto Mono', monospace; font-size: 0.85rem; color: #94a3b8; font-weight: 700; }
 body.portal-page .news-tag {
     font-size: 0.75rem !important;
@@ -1625,9 +1643,18 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     .map-container, .ai-dual-role-box, .quick-access-grid { flex-direction: column; }
     .ai-dual-role-box { gap: 20px !important; }
     .ai-dual-role-box::before { display: none; } /* スマホ縦並び時は点線を消す */
-    body.portal-page .news-meta { flex: 0 0 160px !important; width: 160px !important; gap: 5px !important; }
-    body.portal-page .news-tag { width: 70px !important; min-width: 70px !important; font-size: 0.7rem !important; }
-}
+    /* スマホ版：145pxで日付(`2026.07.30`)とタグ(`70px`)を安全に共存させる */
+    body.portal-page .news-meta {
+        flex: 0 0 145px !important;
+        width: 145px !important;
+        gap: 5px !important;
+    }
+    body.portal-page .news-tag {
+        width: 70px !important;
+        min-width: 70px !important;
+        font-size: 0.7rem !important;
+    }
+    
 /* カテゴリーナビゲーション：4-3配置・等間隔統治モデル */
 .cat-nav-container {
     display: flex;
