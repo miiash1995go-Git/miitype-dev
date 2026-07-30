@@ -300,11 +300,21 @@ class TypingExam {
             document.getElementById('res-cpm').innerText = cpm;
             document.getElementById('res-comment').innerText = this.getComment(rank);
 
-            // 【正典実装】5分間テストの確定文字数を自己ベストとして記録
+            // 【Googleアナリティクス連携】
+            // このレポート専用の名前（5分間タイピングテスト）でデータを送信します
+            if (typeof gtag === 'function') {
+                gtag('event', 'typing_complete', {
+                    'category_name': '5分間タイピングテスト', // レポートで仕分けるための名前
+                    '判定ランク': rank,                    // レポートの「判定ランク」列に表示
+                    'score': this.totalChars,             // レポートの「スコア」列に文字数を表示
+                    'accuracy': parseFloat(accuracy),      // 正確率
+                    'cpm': cpm                             // 打鍵速度
+                });
+            }
+
+            // 【自己ベスト保存】
             const storageKey = 'pasotore_best';
             const bestScores = JSON.parse(localStorage.getItem(storageKey)) || {};
-            
-            // 既存の記録がない、または今回の確定文字数がこれまでの記録を上回った場合に更新
             if (!bestScores['test_5min'] || this.totalChars > bestScores['test_5min']) {
                 bestScores['test_5min'] = this.totalChars;
                 localStorage.setItem(storageKey, JSON.stringify(bestScores));
