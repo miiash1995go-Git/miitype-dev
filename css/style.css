@@ -1439,8 +1439,6 @@ body.portal-page .content-body table.setup-table td {
     align-items: center;
     justify-content: flex-start;
     gap: 15px;
-    /* 【改善】タグの長文化に対応するため、240pxから280pxへ拡張 */
-    min-width: 280px;
     margin-top: 0px;
     margin-right: 20px; /* 本文との間に決定的な「呼吸」を確保 */
     margin-bottom: 0px;

@@ -1563,10 +1563,11 @@ body.portal-page .news-item {
 body.portal-page .news-item:last-child { border-bottom: none; }
 body.portal-page .news-meta {
     display: flex !important;
-    flex: 0 0 145px !important;
-    width: 145px !important;
+    /* 160px：日付とタグを収めつつ、｜にグッと近づける理想の幅 */
+    flex: 0 0 160px !important;
+    width: 160px !important;
     align-items: center !important;
-    gap: 6px !important;
+    gap: 8px !important;
 }
 .news-date { font-family: 'Roboto Mono', monospace; font-size: 0.85rem; color: #94a3b8; font-weight: 700; }
 body.portal-page .news-tag {
