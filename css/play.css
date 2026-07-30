@@ -274,8 +274,15 @@ body.focus-mode #app {
     cursor: pointer !important;
     z-index: 50 !important;
     white-space: nowrap !important;
-    transition-property: transform, box-shadow !important;
-    transition-duration: 0.1s !important;
+    transition-property: transform, box-shadow, background-color !important;
+    transition-duration: 0.2s !important;
+}
+
+/* マウスホバー：浮き上がりと色の変化 */
+#start-btn:hover:not(:disabled) {
+    background-color: #34495e !important;
+    transform: translate(-50%, calc(-50% - 3px)) !important;
+    box-shadow: 0px 7px 0px #1a252f !important;
 }
 
 /* 練習開始ボタン：クリック時の物理沈み込み演出 */
