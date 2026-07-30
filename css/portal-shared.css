@@ -1502,22 +1502,153 @@ body.portal-page #app {
 .quick-text h4 { font-size: 0.95rem; font-weight: 900; color: var(--primary); margin: 0; }
 .quick-text p { font-size: 0.75rem; color: #94a3b8; margin: 2px 0 0 0; }
 
-/* --- 4. 人気コンテンツ・リスト --- */
-.popular-list-card {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 20px;
-    border: 1px solid #eef2f6;
+/* ============================================================
+   人気コンテンツ：2カラムランキング（v20.7.30 完全復旧版）
+   ============================================================ */
+.ranking-container {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
-.popular-list { list-style: none; padding: 0; margin: 0; }
-.popular-list li {
-    padding: 12px 0;
-    border-bottom: 1px solid #f8f9fa;
+
+.ranking-featured {
+    flex-grow: 1.2;
+    flex-shrink: 1;
+    flex-basis: 0%;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-style: solid;
+    border-color: #e2e8f0;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.ranking-featured:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.06);
+    border-top-color: #2563EB;
+    border-right-color: #2563EB;
+    border-bottom-color: #2563EB;
+    border-left-color: #2563EB;
+}
+
+.rank-badge-big {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #e2e8f0;
+    line-height: 1;
+}
+
+.rank-featured-label {
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: #2563EB;
+    margin-bottom: 10px;
+    display: block;
+    position: relative;
+    z-index: 2;
+}
+
+.rank-featured-title {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #2c3e50;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.rank-featured-tags {
+    display: flex;
+    gap: 8px;
+    position: relative;
+    z-index: 2;
+}
+
+.ranking-side-list {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.rank-side-item {
     display: flex;
     align-items: center;
+    gap: 15px;
+    padding-top: 15px;
+    padding-right: 20px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    background-color: #ffffff;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-style: solid;
+    border-color: #e2e8f0;
+    text-decoration: none;
+    transition: all 0.2s ease;
 }
-.popular-list li::before { content: "・"; color: var(--accent); font-weight: 900; margin-right: 10px; }
-.popular-list a { text-decoration: none; color: var(--primary); font-weight: 500; font-size: 0.95rem; }
+
+.rank-side-item:hover {
+    border-top-color: #38BDF8;
+    border-right-color: #38BDF8;
+    border-bottom-color: #38BDF8;
+    border-left-color: #38BDF8;
+    background-color: #F0F9FF;
+}
+
+.rank-num-small {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #94a3b8;
+    width: 25px;
+    flex-shrink: 0;
+}
+
+.rank-side-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #2c3e50;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+    .ranking-container { flex-direction: column; }
+    .ranking-featured { padding: 25px; }
+    .rank-featured-title { font-size: 1.2rem; }
+}
 .popular-list a:hover { color: var(--accent); }
 
 /* --- 5. Newsセクション：重なり・スクロール・カラー統治 (v20.1.87) --- */
@@ -1563,24 +1694,25 @@ body.portal-page .news-item {
 body.portal-page .news-item:last-child { border-bottom: none; }
 body.portal-page .news-meta {
     display: flex !important;
-    /* 古いスタイルの干渉を完全に遮断 */
     min-width: 0 !important; 
-    /* 160pxに微調整：日付＋タグを収めつつ縦棒に接近させる */
     flex: 0 0 160px !important;
     width: 160px !important;
     align-items: center !important;
     gap: 8px !important;
 }
 
-/* タグ自体の幅を少し絞って余白を詰める */
 body.portal-page .news-tag {
     font-size: 0.75rem !important;
     font-weight: 900 !important;
     padding-top: 3px !important;
+    padding-right: 0px !important;
     padding-bottom: 3px !important;
-    border-radius: 4px !important;
+    padding-left: 0px !important;
+    border-top-left-radius: 4px !important;
+    border-top-right-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+    border-bottom-left-radius: 4px !important;
     text-align: center !important;
-    /* 85pxから76pxへ短縮：文字の左右の余白をタイトに */
     width: 76px !important;
     min-width: 76px !important;
     display: block !important;
