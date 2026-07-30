@@ -1014,9 +1014,9 @@ body.game-body .summary-btn:hover {
     color: #ffffff !important;
     transform: translateY(-2px) !important;
 }
-/* --- 5分間テスト・総合力ボタン 最終統治 (v20.7.26.Fixed) --- */
+/* --- 5分間テスト・総合力ボタン 最終統治 (v20.7.30.Update) --- */
 
-/* 実力試しエリア：他のカテゴリグループと物理高さを完全同期 (v20.7.26.PerfectFit) */
+/* 実力判定エリア：他のカテゴリグループと物理高さを完全同期 (v20.7.30.PerfectFit) */
 .category-group.special {
     flex-grow: 1;
     flex-shrink: 1;
