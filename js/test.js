@@ -37,6 +37,15 @@ class TypingExam {
     }
 
     async init() {
+        // ページ読み込み時にコンテンツ最上部へ自動スクロール（ヘッダーを隠す）
+        // タイミングを確実に合わせるため、少し遅延させて実行
+        window.addEventListener('load', () => {
+            const wrapper = document.querySelector('.test-main-wrapper');
+            if (wrapper) {
+                wrapper.scrollIntoView({ behavior: 'auto', block: 'start' });
+            }
+        });
+
         // 【修正】データの読み込み成否に関わらず、Escキー（戻る操作）を即座に有効化
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
