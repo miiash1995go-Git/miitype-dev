@@ -37,11 +37,13 @@ class TypingExam {
     }
 
     async init() {
-        // ページ読み込み時にコンテンツ最上部へ自動スクロール（ヘッダーを隠す）
+        // ページ読み込み時、描画を待ってからコンテンツ最上部へスクロール
         window.addEventListener('load', () => {
             const wrapper = document.querySelector('.test-main-wrapper');
             if (wrapper) {
-                wrapper.scrollIntoView({ behavior: 'auto', block: 'start' });
+                setTimeout(() => {
+                    wrapper.scrollIntoView({ behavior: 'auto', block: 'start' });
+                }, 50);
             }
         });
 

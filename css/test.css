@@ -66,8 +66,6 @@ body.test-body .nav-item {
     margin-bottom: 0px;
     margin-left: auto;
     padding-top: 20px;
-    /* 【重要】画面1枚分の高さを保証し、ヘッダーを上に隠せるようにする */
-    min-height: 100vh;
 }
 
 /* --- 2. 各種カード（白ボックス）共通定義 --- */
@@ -122,7 +120,7 @@ body.test-body .nav-item {
     margin-left: 2px;
 }
 
-/* --- 4. タイピングメインカード（中央） --- */
+/* --- 4. タイピングメインカード：IME用の180pxを厳守 --- */
 .test-typing-card {
     width: 1000px;
     padding-top: 20px;
