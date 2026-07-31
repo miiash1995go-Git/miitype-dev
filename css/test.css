@@ -136,51 +136,8 @@ body.test-body .nav-item {
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.15);
-    /* 重要：ここがIME制御の鍵。下部に「空き地」を強制的に作る */
+    /* IME候補リストの表示スペースを180px確保（将来のアドセンス枠を兼ねる） */
     margin-bottom: 180px; 
-}
-
-/* 将来用アドセンス枠（120px高）の定義 */
-.test-ad-placeholder {
-    width: 1000px;
-    height: 120px;
-    background-color: #f1f5f9;
-    border-top-width: 1px;
-    border-top-style: dashed;
-    border-top-color: #cbd5e1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin-top: 20px;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    overflow: hidden;
-}
-
-.ad-tag-label {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 0.65rem;
-    font-weight: 900;
-    color: #94a3b8;
-    background-color: #e2e8f0;
-    padding-top: 2px;
-    padding-right: 6px;
-    padding-bottom: 2px;
-    padding-left: 6px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-}
-
-.ad-inner-content {
-    font-size: 0.85rem;
-    font-weight: 800;
-    color: #94a3b8;
 }
 
 .test-typing-label {
