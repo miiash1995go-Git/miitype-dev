@@ -65,10 +65,9 @@ body.test-body .nav-item {
     margin-right: auto;
     margin-bottom: 0px;
     margin-left: auto;
-    padding-top: 15px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
+    padding-top: 20px;
+    /* 【重要】画面1枚分の高さを保証し、ヘッダーを上に隠せるようにする */
+    min-height: 100vh;
 }
 
 /* --- 2. 各種カード（白ボックス）共通定義 --- */
