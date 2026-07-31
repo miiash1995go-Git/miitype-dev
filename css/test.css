@@ -58,18 +58,17 @@ body.test-body .nav-item {
     text-decoration-line: none !important;
 }
 
-/* メインラッパー：スクロール先の起点となるため margin-top を 0 にし、padding で微調整 */
+/* メインラッパー：自動スクロールの起点となるため margin-top を 0 にし、padding で微調整 */
 .test-main-wrapper {
     max-width: 1000px;
     margin-top: 0px;
     margin-right: auto;
     margin-bottom: 0px;
     margin-left: auto;
-    padding-top: 15px; /* スクロール後の最上部との距離 */
+    padding-top: 15px;
     padding-right: 0px;
     padding-bottom: 0px;
     padding-left: 0px;
-    min-height: 800px; /* スクロール代を確保するための高さ */
 }
 
 /* --- 2. 各種カード（白ボックス）共通定義 --- */
@@ -263,17 +262,17 @@ body.test-body .nav-item {
     transition-property: none !important;
 }
 
-/* --- 5. 準備・結果カード専用（860px幅：垂直高をさらに再圧縮） --- */
+/* --- 5. 準備・結果カード専用：余白を 180px に統一 --- */
 .test-info-card,
 .test-result-card {
     width: 860px;
-    margin-top: 10px; /* 15pxから圧縮 */
+    margin-top: 10px;
     margin-right: auto;
-    margin-bottom: 0px;
+    margin-bottom: 180px;
     margin-left: auto;
-    padding-top: 20px; /* 25pxから圧縮 */
+    padding-top: 20px;
     padding-right: 60px;
-    padding-bottom: 20px; /* 30pxから圧縮 */
+    padding-bottom: 20px;
     padding-left: 60px;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
@@ -506,14 +505,14 @@ body.test-body .nav-item {
     transform: translateY(-2px);
 }
 
-/* --- 7. フッター（圧縮版） --- */
+/* --- 7. フッター：スクロール代（ヘッダーを隠すための遊び）を確保 --- */
 body.test-body footer {
     width: 100%;
     background-color: #ffffff;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 120px;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 .footer-links {
