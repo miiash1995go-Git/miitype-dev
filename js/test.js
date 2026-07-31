@@ -38,7 +38,6 @@ class TypingExam {
 
     async init() {
         // ページ読み込み時にコンテンツ最上部へ自動スクロール（ヘッダーを隠す）
-        // タイミングを確実に合わせるため、少し遅延させて実行
         window.addEventListener('load', () => {
             const wrapper = document.querySelector('.test-main-wrapper');
             if (wrapper) {
