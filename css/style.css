@@ -60,158 +60,108 @@ body.portal-page #app {
 }
 
 /* ============================================================
-   新生ヒーロー：2重表示・余白を物理排除した最終確定モデル (v20.7.22.15)
+   統合ヒーロー：1024px物理座標固定・聖域モデル (v20.8.01.Final)
+   ------------------------------------------------------------
+   ・左端から85px、上から335pxの物理座標を絶対死守。
+   ・HTMLに存在しない要素（content, badge等）の旧定義を全削除。
    ============================================================ */
 .index-hero {
     max-width: 1024px;
-    width: 100%;
-    margin-top: 0px;
+    width: 1024px; 
+    height: auto;
+    margin-top: 30px;
     margin-right: auto;
     margin-bottom: 50px;
     margin-left: auto;
-    position: relative; /* 文字を重ねる基準 */
-    /* ★重要：過去の背景設定をすべてリセット（2重表示を根絶） */
-    background: none !important; 
-    background-image: none !important;
-    background-color: transparent !important;
-    line-height: 0;    /* 画像下の隙間を0にする */
-    font-size: 0;      /* インライン要素の隙間を消す */
+    position: relative;
+    background-color: transparent;
+    display: block;
+    line-height: 0;
+    font-size: 0;
     overflow: hidden;
 }
 
-/* 土台の画像：比率を100%守り、エリアの「高さ」を自動決定させる */
 .hero-base-img {
-    width: 100%;
+    width: 1024px;
     height: auto;
-    display: block; 
-    margin: 0;
-    padding: 0;
-    border-top-style: none;
-    border-right-style: none;
-    border-bottom-style: none;
-    border-left-style: none;
-}
-
-/* メッセージエリア：画像の上に載る透明なレイヤー */
-.index-hero__content {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    text-align: left;
-    /* 文字サイズと行間をここで正常化 */
-    font-size: 1rem;
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 6%; /* 上端からの位置 */
-    box-sizing: border-box;
-    z-index: 10;
-}
-
-/* バッジとタイトル：左側のノートブックを避ける基準位置 */
-.index-hero__badge,
-.index-hero__title {
-    margin-left: 6%;
-}
-
-.index-hero__badge {
-    display: inline-flex;
-    align-self: flex-start;
-    align-items: center;
-    gap: 8px;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding-top: 5px;
-    padding-right: 15px;
-    padding-bottom: 5px;
-    padding-left: 15px;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-    border-bottom-left-radius: 40px;
-    border: 1px solid #3498db;
-    margin-bottom: 12px;
-}
-.index-hero__badge-text { font-size: 0.8rem; font-weight: 800; color: #3498db; }
-
-/* タイトル：2.1remまで絞り、絶対に2行で収めます */
-.index-hero__title {
-    font-size: 2.1rem !important;
-    font-weight: 900;
-    line-height: 1.3;
-    color: #2c3e50;
+    display: block;
     margin-top: 0px;
     margin-right: 0px;
-    margin-bottom: 15px;
-    margin-left: 6%;
-}
-.index-hero__title span.accent { color: #2563EB; }
-
-/* ★重要：サブタイトル・ボタン・リンクをさらに右へ（メモ帳を完璧に回避） */
-.index-hero__description,
-.hero-cta-btn,
-.hero-sub-guide {
-    margin-left: 30%; /* 24%から30%へ拡大：白い谷間の中心に配置 */
+    margin-bottom: 0px;
+    margin-left: 0px;
+    border-style: none;
 }
 
-.index-hero__description {
-    font-size: 1rem;
-    line-height: 1.7;
-    font-weight: 700;
-    color: #4b5563;
-    margin-bottom: 25px;
+.index-hero__action-area {
+    position: absolute;
+    top: 335px;
+    left: 85px; 
+    display: block; 
+    width: auto;
+    z-index: 100;
 }
 
 .hero-cta-btn {
     display: inline-flex;
-    align-self: flex-start;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
     background-color: #1a365d;
     color: #ffffff !important;
-    padding-top: 12px;
-    padding-right: 30px;
-    padding-bottom: 12px;
-    padding-left: 25px;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-    border-bottom-left-radius: 50px;
+    padding-top: 18px;
+    padding-right: 50px;
+    padding-bottom: 18px;
+    padding-left: 40px;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 60px;
+    border-bottom-left-radius: 60px;
     text-decoration: none;
-    font-size: 1rem;
-    font-weight: 900;
-    box-shadow: 0px 8px 20px rgba(26, 54, 93, 0.2);
+    font-size: 1.15rem !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    min-width: 340px;
+    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.hero-cta-btn:hover {
+    background-color: #2563EB;
 }
 
 .hero-sub-guide {
-    margin-top: 15px;
+    margin-top: 25px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 120px; /* 聖域：右へのオフセット値を維持 */
+    padding-left: 0px;
+    text-align: left;
 }
+
 .hero-sub-link {
     display: inline-block;
-    text-decoration: none;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-size: 1.05rem;
     color: #38BDF8;
     font-weight: 900;
-    font-size: 0.85rem;
-    white-space: nowrap; /* 1行死守 */
+    line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+    .index-hero { width: 100%; }
+    .hero-base-img { width: 100%; }
+    .index-hero__action-area {
+        left: 8.3%;
+        top: 65%;
+    }
 }
 
 @media (max-width: 768px) {
-    .index-hero__content {
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        width: 90%; height: auto;
-        padding: 25px 15px;
-        background-color: rgba(255, 255, 255, 0.95);
-        border-radius: 20px;
-        text-align: center;
-    }
-    .index-hero__badge, .index-hero__title, .index-hero__description, .hero-cta-btn, .hero-sub-guide {
-        margin-left: 0 !important;
-        align-self: center;
-    }
+    .index-hero__action-area { display: none !important; }
+    .index-hero { width: 100%; margin-bottom: 20px; }
 }
 
 /* 共通インナー：常に横並びを絶対死守 */
@@ -409,119 +359,7 @@ main {
 }
 
 
-/* ============================================================
-   ヒーローエリア：ボタン位置固定 ＆ リンク位置復旧モデル (v20.7.22.115)
-   ------------------------------------------------------------
-   ・ボタン位置は【左端から85px】で完全固定（二度といじらない）。
-   ・リンク文字の開始位置のみ、以前の良好な位置（右へ80pxオフセット）へ復旧。
-   ============================================================ */
-.index-hero {
-    max-width: 1024px;
-    width: 1024px; 
-    height: auto;
-    margin-top: 30px;
-    margin-right: auto;
-    margin-bottom: 50px;
-    margin-left: auto;
-    position: relative;
-    background-color: transparent;
-    display: block;
-}
 
-.hero-base-img {
-    width: 1024px;
-    height: auto;
-    display: block;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-}
-
-/* アクションエリア：85px地点に絶対固定（ボタンの開始線） */
-.index-hero__action-area {
-    position: absolute;
-    top: 335px;
-    left: 85px; 
-    display: block; 
-    width: auto;
-    z-index: 100;
-}
-
-/* メインボタン：物理仕様を完全維持 */
-.hero-cta-btn {
-    display: inline-flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    background-color: #1a365d;
-    color: #ffffff !important;
-    padding-top: 18px;
-    padding-right: 50px;
-    padding-bottom: 18px;
-    padding-left: 40px;
-    border-top-left-radius: 60px;
-    border-top-right-radius: 60px;
-    border-bottom-right-radius: 60px;
-    border-bottom-left-radius: 60px;
-    text-decoration: none;
-    font-size: 1.15rem !important;
-    font-weight: 900 !important;
-    line-height: 1 !important;
-    white-space: nowrap !important;
-    min-width: 340px;
-    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.25);
-    transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.hero-cta-btn:hover {
-    background-color: #2563EB;
-}
-
-/* 下部リンク：良好だった「右へ80px」の位置へ差し戻し */
-.hero-sub-guide {
-    margin-top: 25px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 120px; /* 以前の良好なオフセット値を復旧 */
-    padding-left: 0px;
-    text-align: left;
-}
-
-.hero-sub-link {
-    display: inline-block;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-}
-
-.hero-sub-link__main {
-    font-size: 1.05rem;
-    color: #38BDF8;
-    font-weight: 900;
-    line-height: 1.5;
-}
-
-/* 1024px以下のレスポンシブ（左端からの比率を維持） */
-@media (max-width: 1024px) {
-    .index-hero { width: 100%; }
-    .hero-base-img { width: 100%; }
-    .index-hero__action-area {
-        left: 8.3%;
-        top: 65%;
-    }
-}
-
-/* スマホ表示：物理キーボードがない環境のためタイピング導線をカット */
-@media (max-width: 768px) {
-    .index-hero__action-area {
-        display: none !important;
-    }
-    .index-hero {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-}
 
 
 
