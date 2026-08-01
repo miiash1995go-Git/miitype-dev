@@ -36,7 +36,6 @@ class TypingExam {
         this.init();
     }
 
-
     async init() {
         // ページ読み込み時、描画を待ってからコンテンツ最上部へスクロール
         window.addEventListener('load', () => {
@@ -47,7 +46,6 @@ class TypingExam {
                 }, 50);
             }
         });
-
         // 【修正】データの読み込み成否に関わらず、Escキー（戻る操作）を即座に有効化
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
