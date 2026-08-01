@@ -62,17 +62,16 @@
 
             <!-- 2. 試験実施画面 -->
             <section id="game-screen" class="test-screen-container hidden">
-                <!-- メインタイピングカード -->
                 <div class="test-typing-card">
-                    <!-- 新設：右上ミニステータス -->
+                    <!-- ステータス窓をカードの「内側」に配置 -->
                     <div class="test-mini-status">
                         <div class="mini-stat-item">
-                            <div class="mini-label"><img src="img/icon-timer.png" class="mini-icon">残り時間</div>
+                            <div class="mini-label">残り時間</div>
                             <div id="test-timer" class="mini-value">05:00</div>
                         </div>
                         <div class="mini-sep"></div>
                         <div class="mini-stat-item">
-                            <div class="mini-label"><img src="img/icon-typing.png" class="mini-icon">入力済み文字数</div>
+                            <div class="mini-label">入力済み文字数</div>
                             <div class="mini-val-group">
                                 <span id="test-char-count" class="mini-value">0</span>
                                 <span class="mini-unit">文字</span>
@@ -80,8 +79,6 @@
                         </div>
                     </div>
 
-                <!-- 下段：メインタイピングカード -->
-                <div class="test-typing-card">
                     <div class="test-typing-label">📖 サンプル文書（お手本）</div>
                     <div id="sample-box" class="test-text-display">
                         <!-- ここに文章が表示される -->

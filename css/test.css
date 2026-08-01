@@ -68,13 +68,18 @@ body.test-body .nav-item {
     padding-top: 20px;
 }
 
-/* --- 2. 各種カード（白ボックス）共通定義 --- */
+/* --- 2. 各種カード（白ボックス）定義 --- */
 .test-info-card,
-.test-stat-card,
 .test-typing-card,
 .test-result-card {
     background-color: #ffffff;
     box-sizing: border-box;
+}
+
+/* 画面コンテナ自体の背景（後ろの白い箱）を透明化 */
+.test-screen-container {
+    background-color: transparent !important;
+    box-shadow: none !important;
 }
 
 //* --- 3. ミニステータス（カード内右上） --- */
@@ -164,19 +169,20 @@ body.test-body .nav-item {
 /* --- 4. タイピングメインカード（中央） --- */
 .test-typing-card {
     position: relative;
-    width: 100%; /* 1000px固定をやめ、親に追従させる */
-    max-width: 1000px;
+    width: 1000px;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 180px;
+    margin-left: auto;
     padding-top: 25px;
-    padding-right: 30px;
-    padding-bottom: 25px;
-    padding-left: 30px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.1);
-    margin-bottom: 180px; 
-    box-sizing: border-box; /* パディングを含めて1000pxにする */
+    padding-right: 40px;
+    padding-bottom: 30px;
+    padding-left: 40px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.2);
 }
 
 .test-typing-label {
