@@ -95,7 +95,7 @@ body.portal-page #app {
 .index-hero__action-area {
     position: absolute;
     top: 335px;
-    left: 230px; 
+    left: 200px; 
     display: block; 
     width: auto;
     z-index: 100;
@@ -132,7 +132,7 @@ body.portal-page #app {
 }
 
 .hero-sub-guide {
-    margin: 25px 0 0 70px;
+    margin: 25px 0 0 170px;
     text-align: left;
 }
 
