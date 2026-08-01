@@ -36,6 +36,7 @@ class TypingExam {
         this.init();
     }
 
+
     async init() {
         // ページ読み込み時、描画を待ってからコンテンツ最上部へスクロール
         window.addEventListener('load', () => {
