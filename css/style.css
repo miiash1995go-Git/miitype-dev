@@ -95,7 +95,7 @@ body.portal-page #app {
 .index-hero__action-area {
     position: absolute;
     top: 335px;
-    left: 85px; 
+    left: 130px; 
     display: block; 
     width: auto;
     z-index: 100;
@@ -132,11 +132,7 @@ body.portal-page #app {
 }
 
 .hero-sub-guide {
-    margin-top: 25px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 120px; /* 聖域：右へのオフセット値を維持 */
-    padding-left: 0px;
+    margin: 25px 0 0 120px;
     text-align: left;
 }
 
