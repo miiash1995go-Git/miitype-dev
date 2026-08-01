@@ -80,13 +80,16 @@ body.test-body .nav-item {
 .test-screen-container {
     background-color: transparent !important;
     box-shadow: none !important;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
-//* --- 3. ミニステータス（カード内右上） --- */
+/* --- 3. ミニステータス（カード内右上に固定） --- */
 .test-mini-status {
     position: absolute;
-    top: 25px; /* ラベルと高さを合わせる */
-    right: 30px; /* カードの右余白に吸着 */
+    top: 25px; /* ラベルの高さに合わせる */
+    right: 40px; /* カードの右余白に合わせる */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -107,11 +110,11 @@ body.test-body .nav-item {
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
-    padding-top: 8px;
+    padding-top: 10px;
     padding-right: 20px;
-    padding-bottom: 8px;
+    padding-bottom: 10px;
     padding-left: 20px;
-    box-shadow: 0px 4px 15px rgba(20, 184, 166, 0.08);
+    box-shadow: 0px 4px 15px rgba(20, 184, 166, 0.1);
     z-index: 100;
 }
 
@@ -168,8 +171,9 @@ body.test-body .nav-item {
 
 /* --- 4. タイピングメインカード（中央） --- */
 .test-typing-card {
-    position: relative;
+    position: relative; /* これにより右上の窓がこのカードの中に固定されます */
     width: 1000px;
+    background-color: #ffffff;
     margin-top: 0px;
     margin-right: auto;
     margin-bottom: 180px;
@@ -182,7 +186,8 @@ body.test-body .nav-item {
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     border-bottom-left-radius: 25px;
-    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
 }
 
 .test-typing-label {
