@@ -77,51 +77,93 @@ body.test-body .nav-item {
     box-sizing: border-box;
 }
 
-/* --- 3. ステータスカード（上段） --- */
-.test-stat-card {
-    width: 1000px;
-    height: 65px;
+/* --- 3. ミニステータス（カード内右上） --- */
+.test-mini-status {
+    position: absolute;
+    top: 20px;
+    right: 40px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    background-color: #ffffff;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #14b8a6;
+    border-right-color: #14b8a6;
+    border-bottom-color: #14b8a6;
+    border-left-color: #14b8a6;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
-    margin-bottom: 15px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    padding-top: 10px;
+    padding-right: 25px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    box-shadow: 0px 4px 12px rgba(20, 184, 166, 0.1);
+    z-index: 100;
 }
 
-.stat-group {
+.mini-stat-item {
     display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    gap: 8px;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
 }
 
-.stat-label {
-    font-size: 0.85rem;
+.mini-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.7rem;
     font-weight: 800;
     color: #64748b;
 }
 
-.stat-value {
+.mini-icon {
+    width: 14px;
+    height: 14px;
+}
+
+.mini-value {
     font-family: 'Roboto Mono', monospace;
     font-size: 1.4rem;
     font-weight: 900;
     color: #1e293b;
+    line-height: 1.2;
 }
 
-.stat-unit {
+.mini-val-group {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.mini-unit {
     font-size: 0.75rem;
     font-weight: 800;
     color: #94a3b8;
-    margin-left: 2px;
 }
 
-/* --- 4. タイピングメインカード：IME用の180pxを厳守 --- */
+.mini-sep {
+    width: 1px;
+    height: 40px;
+    background-color: #e2e8f0;
+    margin-top: 0px;
+    margin-right: 20px;
+    margin-bottom: 0px;
+    margin-left: 20px;
+}
+
+/* --- 4. タイピングメインカード（中央） --- */
 .test-typing-card {
+    position: relative; /* 子要素の絶対配置の基準 */
     width: 1000px;
     padding-top: 20px;
     padding-right: 40px;

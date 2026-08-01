@@ -62,21 +62,23 @@
 
             <!-- 2. 試験実施画面 -->
             <section id="game-screen" class="test-screen-container hidden">
-                <!-- 上段：ステータスカード -->
-                <div class="test-stat-card">
-                    <div class="stat-group">
-                        <span class="stat-label">⏱ 残り時間</span>
-                        <span id="test-timer" class="stat-value">05:00</span>
+                <!-- メインタイピングカード -->
+                <div class="test-typing-card">
+                    <!-- 新設：右上ミニステータス -->
+                    <div class="test-mini-status">
+                        <div class="mini-stat-item">
+                            <div class="mini-label"><img src="img/icon-timer.png" class="mini-icon">残り時間</div>
+                            <div id="test-timer" class="mini-value">05:00</div>
+                        </div>
+                        <div class="mini-sep"></div>
+                        <div class="mini-stat-item">
+                            <div class="mini-label"><img src="img/icon-typing.png" class="mini-icon">入力済み文字数</div>
+                            <div class="mini-val-group">
+                                <span id="test-char-count" class="mini-value">0</span>
+                                <span class="mini-unit">文字</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="stat-group">
-                        <span class="stat-label">✏️ 入力済み文字数</span>
-                        <span id="test-char-count" class="stat-value">0</span><span class="stat-unit">文字</span>
-                    </div>
-                    <div class="stat-group">
-                        <span class="stat-label">🎯 正確率</span>
-                        <span id="test-accuracy-live" class="stat-value">---</span><span class="stat-unit">%</span>
-                    </div>
-                </div>
 
                 <!-- 下段：メインタイピングカード -->
                 <div class="test-typing-card">
