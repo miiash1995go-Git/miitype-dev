@@ -80,27 +80,28 @@ class TypingExam {
         document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('game-screen').classList.remove('hidden');
         
-        // カウントダウン中はまだ「開始（isStarted）」としない
         this.isStarted = false;
-        this.renderNextQuestion();
-        
         let count = 5;
-        // サンプルエリアの1行目に収まるサイズ（1.55rem）でカウントダウンを表示
-        this.sampleBox.innerHTML = `<div style="font-size: 1.55rem; font-weight: 900; color: #2563eb; text-align: center;">テスト開始まで：${count}</div>`;
+        
+        // カウントダウン表示（この時点ではまだ2行構造を作らない）
+        this.sampleBox.innerHTML = `<div style="font-size: 1.55rem; font-weight: 900; color: #2563eb; text-align: center; line-height: 110px;">テスト開始まで：${count}</div>`;
         
         const countdownTimer = setInterval(() => {
             count--;
             if (count > 0) {
-                this.sampleBox.innerHTML = `<div style="font-size: 1.55rem; font-weight: 900; color: #2563eb; text-align: center;">テスト開始まで：${count}</div>`;
+                this.sampleBox.innerHTML = `<div style="font-size: 1.55rem; font-weight: 900; color: #2563eb; text-align: center; line-height: 110px;">テスト開始まで：${count}</div>`;
             } else {
                 clearInterval(countdownTimer);
-                // 試験開始の確定
+                // 1. 状態を「開始」へ
                 this.isStarted = true;
                 this.startTime = Date.now();
+                
+                // 2. ここで初めて2行構造を生成する（上書きを防止）
+                this.renderNextQuestion();
+                
+                // 3. タイマーとフォーカスを開始
                 this.startTimer();
                 this.focusInput();
-                // サンプル文を正しい表示（グレーなしの初期状態）に戻す
-                this.updateDisplays();
             }
         }, 1000);
     }
