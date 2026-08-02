@@ -97,6 +97,44 @@ class TypingExam {
                 this.focusInput();
             }
         }, 1000);
+    }startExam() {
+        document.getElementById('start-screen').classList.add('hidden');
+        document.getElementById('game-screen').classList.remove('hidden');
+        
+        this.isStarted = false;
+        let count = 5;
+
+        // 【改良】カウントダウン開始と同時にフォーカスを奪取し、空振りを防ぐ
+        this.focusInput();
+
+        // 【改良】リマインド文を追加。line-heightを調整して中央寄せを維持
+        const getCountdownHtml = (c) => `
+            <div style="text-align: center; padding-top: 10px;">
+                <div style="font-size: 2.2rem; font-weight: 900; color: #2563eb; margin-bottom: 5px;">${c}</div>
+                <div style="font-size: 0.9rem; font-weight: 800; color: #64748b;">日本語入力を「オン」にしてお待ちください</div>
+            </div>
+        `;
+        this.sampleBox.innerHTML = getCountdownHtml(count);
+        
+        const countdownTimer = setInterval(() => {
+            count--;
+            if (count > 0) {
+                this.sampleBox.innerHTML = getCountdownHtml(count);
+                // 待機中もフォーカスを維持（ユーザーがよそ見クリックしても戻す）
+                this.focusInput();
+            } else {
+                clearInterval(countdownTimer);
+                this.isStarted = true;
+                this.startTime = Date.now();
+                
+                // 【改良】1文字目のゴミ入力をクリアしてから開始
+                this.realInput.value = '';
+                
+                this.renderNextQuestion();
+                this.startTimer();
+                this.focusInput();
+            }
+        }, 1000);
     }
 
     pickNextQuestion() {
