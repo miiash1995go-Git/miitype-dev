@@ -238,12 +238,12 @@ body.test-body .nav-item {
     position: relative;
 }
 
-/* スライド用コンテナ */
+/* スライド用コンテナ：行間を 10px -> 4px へ短縮 */
 .sample-inner-stack {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    transition: transform 0.3s ease-in-out;
+    gap: 4px;
+    transition: transform 0.2s ease-in-out;
 }
 
 .sample-line {
@@ -251,12 +251,15 @@ body.test-body .nav-item {
     opacity: 1;
 }
 
+/* 次の文章：フォントサイズを 1.55rem -> 1.3rem へ微減 */
 .sample-line--next {
-    opacity: 0.25; /* 次の文章は薄く表示 */
+    opacity: 0.25;
+    font-size: 1.3rem;
 }
 
+/* スライド実行：行間短縮に合わせて移動距離を -60px -> -55px へ調整 */
 .is-sliding {
-    transform: translateY(-60px); /* 1行分＋ギャップ分を上へスライド */
+    transform: translateY(-55px);
 }
 
 /* 下段：入力エリア（ハイブリッド方式：物理レイヤー）：こちらは1行（85px）に固定 */

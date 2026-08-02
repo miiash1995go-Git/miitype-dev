@@ -246,20 +246,24 @@ class TypingExam {
             if (this.progress >= this.currentText.length) {
                 this.isTransitioning = true;
                 
-                // 完了時：0.3秒ラグの後にスライド開始
+                // 完了時：ラグを 300ms -> 150ms に短縮し、即座に次弾を装填
                 setTimeout(() => {
                     const stack = document.getElementById('sample-inner');
-                    if (stack) stack.classList.add('is-sliding');
+                    if (stack) {
+                        stack.classList.add('is-sliding');
+                    }
 
-                    // スライド完了(300ms)後にデータスワップ
+                    // CSS遷移(0.2s)に合わせて 200ms 後にデータを入れ替える
                     setTimeout(() => {
                         this.currentText = this.nextText;
                         this.nextText = this.pickNextQuestion().kanji;
+                        
                         this.renderNextQuestion();
                         this.isTransitioning = false;
                         this.focusInput();
-                    }, 300);
-                }, 300);
+                    }, 200);
+
+                }, 150); 
             }
         }
         this.updateDisplays();
