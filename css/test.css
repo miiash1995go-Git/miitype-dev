@@ -259,7 +259,7 @@ body.test-body .nav-item {
     transform: translateY(-60px); /* 1行分＋ギャップ分を上へスライド */
 }
 
-/* 下段：入力エリア（ハイブリッド方式：物理レイヤー） */
+/* 下段：入力エリア（ハイブリッド方式：物理レイヤー）：こちらは1行（85px）に固定 */
 .test-input-view {
     background-color: #ffffff;
     position: relative !important;
@@ -267,6 +267,7 @@ body.test-body .nav-item {
     border-right-color: #cbd5e1;
     border-bottom-color: #cbd5e1;
     border-left-color: #cbd5e1;
+    height: 85px !important;
 }
 
 /* サンプル（上段）の進捗：薄グレー */
