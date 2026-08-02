@@ -329,7 +329,12 @@ class TypingExam {
 
     endExam(isAborted = false) {
         this.isStarted = false;
+        this.isTransitioning = false;
         clearInterval(this.timerId);
+
+        // 【最優先】リザルト画面が確実に視界に入るよう、スクロールをトップへ戻す
+        window.scrollTo(0, 0);
+
         document.getElementById('game-screen').classList.add('hidden');
         document.getElementById('result-screen').classList.remove('hidden');
 

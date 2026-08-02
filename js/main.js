@@ -528,13 +528,17 @@ if (success) {
 /* --- main.js：採点アルゴリズムとランクテーブルの刷新 --- */
 
     endGame(reason = "") {
-        // タイマーが動いていれば停止
+        this.isTransitioning = false;
         if (this.testTimerId) clearInterval(this.testTimerId);
         
-        this.state = "RESULT";
+        // 【最優先】まず暗転を解除し、スクロールをトップに戻して「見える」状態を確保する
         document.body.classList.remove('focus-mode');
+        window.scrollTo(0, 0);
+
+        this.state = "RESULT";
         document.getElementById('game-screen').classList.add('hidden');
         document.getElementById('result-screen').classList.remove('hidden');
+        
         const resScore = document.getElementById('res-score');
         const resRank = document.getElementById('result-rank');
         const resultTitle = document.getElementById('result-title');
@@ -544,7 +548,7 @@ if (success) {
             if(resRank) {
                 resRank.innerText = "評価不可";
                 resRank.style.color = "#95a5a6";
-                // ★ここを修正：直接サイズを指定せずクラスを付与
+                resRank.style.fontSize = "3.8rem";
                 resRank.classList.add('is-aborted'); 
                 resRank.classList.remove('sparkle');
             }
