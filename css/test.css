@@ -228,12 +228,35 @@ body.test-body .nav-item {
     font-size: 1.55rem;
     line-height: 1.5;
     color: #1e293b;
-    /* 物理高を85pxに固定し、1行収容を維持 */
-    height: 85px;
+    /* 物理高を140pxに拡張し、2行収容 ＆ スライド窓として統治 */
+    height: 140px;
     word-break: break-all;
     white-space: normal;
     box-sizing: border-box;
     text-align: left;
+    overflow: hidden;
+    position: relative;
+}
+
+/* スライド用コンテナ */
+.sample-inner-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.sample-line {
+    min-height: 50px;
+    opacity: 1;
+}
+
+.sample-line--next {
+    opacity: 0.25; /* 次の文章は薄く表示 */
+}
+
+.is-sliding {
+    transform: translateY(-60px); /* 1行分＋ギャップ分を上へスライド */
 }
 
 /* 下段：入力エリア（ハイブリッド方式：物理レイヤー） */

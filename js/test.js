@@ -15,6 +15,8 @@ class TypingExam {
     constructor() {
         this.questionPool = {};     // カテゴリ分けされた全問題
         this.lastCategoryId = null; // 直前の出題カテゴリID
+        this.currentText = '';      // 1行目
+        this.nextText = '';         // 2行目
         this.currentIndex = 0;
         this.totalChars = 0;
         this.missCount = 0;
@@ -124,18 +126,21 @@ class TypingExam {
             kana: rawQuestion.kana.trim()
         };
         
-        this.lastCategoryId = selectedCatId;
-        return sanitizedQuestion;
-    }
+        renderNextQuestion() {
+        // 初回のみ2つ分ロード
+        if (!this.currentText) {
+            this.currentText = this.pickNextQuestion().kanji;
+            this.nextText = this.pickNextQuestion().kanji;
+        }
 
-    renderNextQuestion() {
-        const q = this.pickNextQuestion();
-        this.currentText = q.kanji;
+        // 構造を2行スタックへ
+        this.sampleBox.innerHTML = `
+            <div id="sample-inner" class="sample-inner-stack">
+                <div id="line-current" class="sample-line"></div>
+                <div id="line-next" class="sample-line sample-line--next">${this.nextText}</div>
+            </div>
+        `;
         
-        // 1. サンプルエリア：お手本を表示
-        this.sampleBox.innerHTML = `<span>${this.currentText}</span>`;
-        
-        // 2. 入力エリア：完全にリセット
         this.progress = 0;
         this.inputContent = ''; 
         this.composingText = '';
@@ -144,10 +149,13 @@ class TypingExam {
     }
 
     updateDisplays() {
-        // ① サンプルエリア：確定済みはグレー、未入力は黒
-        const done = this.currentText.substring(0, this.progress);
-        const remain = this.currentText.substring(this.progress);
-        this.sampleBox.innerHTML = `<span class="char-done">${done}</span><span>${remain}</span>`;
+        // ① サンプルエリア：確定済みはグレー、未入力は黒（1行目のみ更新）
+        const line1 = document.getElementById('line-current');
+        if (line1) {
+            const done = this.currentText.substring(0, this.progress);
+            const remain = this.currentText.substring(this.progress);
+            line1.innerHTML = `<span class="char-done">${done}</span><span>${remain}</span>`;
+        }
 
         // ② 入力エリア：確定済み文字 ＋ キャレットのみ表示
         let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
@@ -250,11 +258,22 @@ class TypingExam {
             document.getElementById('test-char-count').innerText = this.totalChars;
             if (this.progress >= this.currentText.length) {
                 this.isTransitioning = true;
+                
+                // 1行目完了：0.3秒後にスライド開始
                 setTimeout(() => {
-                    this.renderNextQuestion();
-                    this.isTransitioning = false;
-                    this.focusInput();
-                }, 600); // 次の文章まで1秒待機
+                    const stack = document.getElementById('sample-inner');
+                    if (stack) stack.classList.add('is-sliding');
+
+                    // スライドアニメーション完了後（さらに0.3秒後）にデータ入れ替え
+                    setTimeout(() => {
+                        this.currentText = this.nextText;
+                        this.nextText = this.pickNextQuestion().kanji;
+                        
+                        this.renderNextQuestion();
+                        this.isTransitioning = false;
+                        this.focusInput();
+                    }, 300);
+                }, 300);
             }
         }
         this.updateDisplays();
