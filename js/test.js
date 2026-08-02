@@ -332,11 +332,16 @@ class TypingExam {
         this.isTransitioning = false;
         clearInterval(this.timerId);
 
-        // 【最優先】リザルト画面が確実に視界に入るよう、スクロールをトップへ戻す
-        window.scrollTo(0, 0);
-
         document.getElementById('game-screen').classList.add('hidden');
         document.getElementById('result-screen').classList.remove('hidden');
+
+        // 【物理仕様復旧】ノートPC環境でヘッダーを隠し、結果カードを最上部へ配置する自動スクロール
+        const wrapper = document.querySelector('.test-main-wrapper');
+        if (wrapper) {
+            setTimeout(() => {
+                wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
+        }
 
         const resRank = document.getElementById('res-rank');
 
