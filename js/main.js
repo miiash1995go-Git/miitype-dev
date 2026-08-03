@@ -924,7 +924,24 @@ if (typeof gtag === 'function') {
             });
         }
 
-        // 8. 画像拡大モーダル
+        // 8. News 1件目の自動転記ロジック（index.html専用）
+        var announceBox = document.getElementById('new-article-announce');
+        var firstNews = document.querySelector('.news-scroll-container .news-item');
+        if (announceBox && firstNews) {
+            var newsLink = firstNews.querySelector('.news-text');
+            if (newsLink) {
+                var linkHref = newsLink.getAttribute('href') || '#';
+                var linkText = newsLink.textContent.replace('｜', '').trim();
+                
+                announceBox.innerHTML = '<a href="' + linkHref + '">' +
+                                        '<span class="new-badge-label">New!</span>' +
+                                        '<span>' + linkText + '</span>' +
+                                        '</a>';
+                announceBox.classList.remove('hidden');
+            }
+        }
+
+        // 9. 画像拡大モーダル（番号を繰り下げ）
         var zOver = document.createElement('div');
         zOver.className = 'image-zoom-overlay';
         zOver.innerHTML = '<img class="image-zoom-content" src="" alt="拡大画像">';
