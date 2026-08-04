@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordの実務スキル｜社内文書をスッキリ整える基本ルール | ぱそトレ！</title>
+    <meta name="description" content="Wordで報告書や連絡書などの社内文書を作成する際の基本ルールを解説。機能を覚えるのではなく、文字だけの状態からどのように整えれば読みやすくなるのか、その理由を現役講師がやさしくガイドします。">
+    <link rel="canonical" href="https://miitype.com/guide-word-practice-01.html">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- アドセンス -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
+
+    <!-- 管理者除外スクリプト -->
+    <script>
+        if (localStorage.getItem('pasotore_admin') === 'true') {
+            window['ga-disable-G-KWS4RPPBVV'] = true;
+            console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
+        }
+    </script>
+     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
+</head>
+<body class="portal-page">
+    <div id="app">
+        <!-- 共通ヘッダー -->
+        <header>
+            <div class="header-inner">
+                <a href="./" class="header-logo-link">
+                    <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
+                </a>
+                <nav class="header-nav">
+                    <div class="nav-grid">
+                        <a href="./" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                        <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                        <a href="hub-windows.html" class="nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>Windows</span></a>
+                        <a href="hub-word.html" class="nav-item"><img src="img/icon-word.png" class="nav-icon"><span>Word</span></a>
+                        <a href="hub-excel.html" class="nav-item"><img src="img/icon-excel.png" class="nav-icon"><span>Excel</span></a>
+                        <a href="hub-ai.html" class="nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                        <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                        <a href="hub-column.html" class="nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                    </div>
+                    <button class="mobile-menu-trigger" id="mobile-menu-btn">
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="menu-label">メニュー</span>
+                    </button>
+                </nav>
+            </div>
+            <div class="mobile-nav-overlay" id="mobile-menu-overlay">
+                <button class="menu-close-btn" id="menu-close-btn">×</button>
+                <div class="mobile-nav-grid">
+                    <a href="./" class="mobile-nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                    <a href="hub-typing.html" class="mobile-nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                    <a href="hub-windows.html" class="mobile-nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>Windows</span></a>
+                    <a href="hub-word.html" class="mobile-nav-item"><img src="img/icon-word.png" class="nav-icon"><span>Word</span></a>
+                    <a href="hub-excel.html" class="mobile-nav-item"><img src="img/icon-excel.png" class="nav-icon"><span>Excel</span></a>
+                    <a href="hub-ai.html" class="mobile-nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                    <a href="hub-career.html" class="mobile-nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                    <a href="hub-column.html" class="mobile-nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                </div>
+            </div>
+        </header>
+
+        <main class="portal-main">
+            <article class="static-page">
+                <nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
+
+                <h1 class="page-title">Wordで作る「社内文書」の整え方</h1>
+                
+                <div class="content-body">
+                    <!-- ① 導入 -->
+                    <p>仕事でWordを使う際、報告書や連絡書、マニュアル作成など「組織内での共有」を目的とした書類を作る機会が多くあります。こうした社内文書で最も大切なのは、凝ったデザインではなく**「誰が読んでも情報の見落としがないこと」**です。</p>
+                    <p>今回は一つの例題を通して、文字だけの状態からどのように情報を整理していけば、実務で役立つ分かりやすい書類になるのか、その共通ルールを確認しましょう。</p>
+
+                    <div class="instructor-advice">
+                        <b>💡 この記事で学べること</b><br>
+                        ・ビジネス文書としての適切な「配置」の考え方<br>
+                        ・優先順位を明確にする「強調」のしかた<br>
+                        ・図や表を用いた情報の「整理」のしかた
+                    </div>
+
+                    <!-- ② 完成イメージ -->
+                    <h2>1. 完成図：目指すべき書類の形</h2>
+                    <p>まずは、今回作成する書類の完成した姿を見てみましょう。日付、宛先、タイトル、そして詳細な情報。これらが適切な場所に配置されることで、読み手は内容をスムーズに把握できるようになります。</p>
+
+                    <div class="article-image article-image--window">
+                        <img src="img/Word/word-practice01-complete.jpg" alt="完成した社内文書のイメージ">
+                        <p class="small-text">▲ このような、スッキリと読みやすい書類を目標にします</p>
+                    </div>
+
+                    <!-- ③ 文字入力 -->
+                    <h2>2. 文字入力：まずは「内容」をすべて用意する</h2>
+                    <p>Wordで作成を始める際、あらかじめページのレイアウト（余白・行数・文字数・用紙サイズなど）を作る文書に合わせて変更しておくと、その後の編集作業がスムーズになります。</p>
+                    <p>レイアウトが整ったら、形を整える前に**「中身の文章」をすべて入力してしまいましょう。**タイピングに集中して、まずは左詰めのまま必要な情報を打ち込みます。太字や中央揃えなどの操作は、最後に行うのが最も効率的です。</p>
+
+                    <div class="info-note-box" style="background-color: #f8f9fa; font-family: 'Roboto Mono', monospace; line-height: 1.6;">
+                        令和8年7月1日<br>
+                        総務部<br>
+                        社内研修会のご案内<br>
+                        社員各位<br>
+                        平素は格別の協力をいただき、誠にありがとうございます。皆様には日頃より業務にご尽力いただき、心より感謝申し上げます。<br>
+                        さて、社員の皆様のビジネススキル向上を目的として、このたび下記の通り社内研修会を開催することとなりました。今回は特に、社会人として基本となるビジネスマナーについて、実践を交えながら学んでいただける内容となっております。<br>
+                        ご多用のこととは存じますが、皆様のご参加を心よりお待ちしております。<br>
+                        記<br>
+                        日時 令和8年8月20日（水） 10:00～12:00<br>
+                        場所 本社大会議室（3階）<br>
+                        内容 ビジネスマナー研修<br>
+                        対象 全社員<br>
+                        持ち物 筆記用具、ノート<br>
+                        開催時間 内容<br>
+                        10:00～10:10 オリエンテーション<br>
+                        10:10～11:30 研修<br>
+                        11:30～11:50 質疑応答<br>
+                        11:50～12:00 アンケート記入・閉会<br>
+                        ご不明な点がございましたら、総務部までお問い合わせください。<br>
+                        以上
+                    </div>
+
+                    <div class="instructor-advice" style="background-color: #eef9ff; border-left-color: #3498db;">
+                        <b>💡 初心者が知っておきたいWordの挙動</b><br>
+                        途中で「記」という文字を入力して <kbd>Enter</kbd> キーを押すと、自動的に「記」が中央へ移動し、次の行に「以上」という文字が右端に出現することがあります。これは**「入力オートフォーマット」**というWordの便利な機能です。
+                        もし自動で出た場合は、そのまま利用してOKです。出なかった場合も、最後にご自身で入力して整えれば全く問題ありません。
+                    </div>
+
+                    <div class="article-image article-image--window">
+                        <img src="img/Word/word-practice01-raw.jpg" alt="文章だけを入力した状態のWord画面">
+                        <p class="small-text">▲ 文章を打ち終えた「素材」の状態です。ここから整えていきます。</p>
+                    </div>
+
+                    <!-- ④ 添削：見やすさを生む理由 -->
+                    <h2>3. 解説：見やすさを生む「理由」を知る</h2>
+                    <p>打ち込んだ文字をどう動かせば、分かりやすい書類になるのでしょうか。現役講師が改善のアドバイスを送るイメージで、操作の「理由」を確認していきましょう。</p>
+
+                    <div class="article-image article-image--window">
+                        <img src="img/Word/word-practice01-redline.jpg" alt="社内文書を整えるための改善ポイント解説図">
+                        <p class="small-text">▲ どの操作にも「読み手のため」という理由があります</p>
+                    </div>
+
+                    <h3>情報の役割ごとに場所を決める（配置のルール）</h3>
+                    <p>日付や発信元を右に寄せ、タイトルを中央に配置します。</p>
+                    <p><strong>【理由】</strong><br>
+                    日付などは「いつ・誰が」という記録用の情報なので、右上にまとめておくことで本文の邪魔をしません。逆にタイトルは「書類の主題」なので、中央に大きく置くことで、読み手が何の書類かを一瞬で判断できるようになります。</p>
+
+                    <h3>重要な情報に優先順位をつける（強調のしかた）</h3>
+                    <p>タイトルを大きくし、太字に変更します。</p>
+                    <p><strong>【理由】</strong><br>
+                    すべて同じ大きさの文字が並んでいると、どこが重要なのかが分かりにくくなります。メリハリをつけることで、読み手の注意を最も大切な場所へ引きつけることができます。</p>
+
+                    <h3>縦のラインを揃えて視線を安定させる（整列のしかた）</h3>
+                    <p>詳細項目の幅を揃え、続く内容の開始位置を縦に一直線に並べます。</p>
+                    <p><strong>【理由】</strong><br>
+                    文字の開始位置が揃っていると、脳は情報を整理しやすくなります。均等割り付けやTabキーを使い、見えない「縦のライン」を通すことで、清潔感のある読みやすい紙面になります。</p>
+
+                    <h3>複雑な情報を構造化する（表の活用）</h3>
+                    <p>時間割などの細かいデータは、枠線（表）で囲み、項目に色をつけます。</p>
+                    <p><strong>【理由】</strong><br>
+                    今回は、あらかじめ打ち込んでおいた文字を後から表に変換する機能を使っています。もちろん、最初から表を挿入して直接入力する方法もあり、状況に合わせて作りやすい方を選んで大丈夫です。
+                    表形式にすることで情報の対応関係が明確になり、見出しに薄い色を塗ることで区切りが視覚的にハッキリし、読み間違いを防げます。</p>
+
+                    <div class="instructor-advice" style="background-color: #fff9f0; border-left-color: #f39c12;">
+                        <b>💡 講師のアドバイス：Wordを「考える仕組み」に</b><br>
+                        Wordの操作は「ボタンを覚えること」がゴールではありません。「どうすれば相手が楽に読めるか」を考えることが、本当のスキルアップに繋がります。社内の議事録や報告書など、あらゆる書類に今回の考え方を活用してみてください。
+                    </div>
+
+                    <!-- ⑤ 今回覚えたこと -->
+                    <div class="summary-box">
+                        <h2 class="section-title--summary">まとめ</h2>
+                        <p>Wordを使えば、同じ文章でも全く違う印象の書類に仕上げることができます。まずは以下の基本を意識してみてください。</p>
+                        <ul>
+                            <li><strong>事前のレイアウト設定</strong>：作成前に用紙サイズや余白を決めておく。</li>
+                            <li><strong>配置のルール</strong>：日付は右、タイトルは中央。情報の役割に合わせる。</li>
+                            <li><strong>適切な強調</strong>：文字の大きさに差をつけ、優先順位を示す。</li>
+                            <li><strong>縦の整列</strong>：項目の幅を揃え、視線の動きを安定させる。</li>
+                            <li><strong>情報の整理</strong>：複雑な内容は表を活用して分かりやすくする。</li>
+                        </ul>
+                        <p>今回は研修の案内を一例にしましたが、この方法は報告書やマニュアルなど、あらゆる社内文書に応用できます。<span class="marker-yellow">まずは見本を見ながら、一歩ずつ自分の手で形にしてみてください。</span>その積み重ねが、実務での自信と信頼に繋がります。</p>
+                    </div>
+
+                    <div class="article-footer-nav">
+                        <p class="article-footer-nav__text">Wordではほかにも、実務に役立つさまざまな文書が作成できます</p>
+                        <div class="summary-nav">
+                            <a href="hub-word.html" class="summary-btn">Wordガイドへ戻る</a>
+                            <a href="./" class="summary-btn">ホームへ戻る</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="about.html">運営者情報</a>
+            </div>
+            <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
+        </footer>
+    </div>
+    <a href="#" id="back-to-top" class="back-to-top">↑</a>
+    <script src="js/main.js"></script>
+</body>
+</html>
