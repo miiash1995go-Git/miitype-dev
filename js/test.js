@@ -366,14 +366,18 @@ class TypingExam {
             document.getElementById('res-cpm').innerText = cpm;
             document.getElementById('res-comment').innerText = this.getComment(rank);
 
-            // GA4送信
+            // GA4送信：通常練習とレポート列を共通化しつつ、テスト独自の数値を送信
             if (typeof gtag === 'function') {
                 gtag('event', 'typing_complete', {
-                    'category_name': '5分間タイピングテスト',
-                    'rank': rank,
-                    'score': this.totalChars,
+                    'timestamp': new Date().getTime(),
+                    'score': this.totalChars,             /* 探索レポートの「スコア」列に文字数を表示させる */
+                    'rank': rank,                         /* 判定ランク（Legend〜E-） */
+                    'category_name': '5分間タイピングテスト', /* カテゴリ名列に固定表示 */
+                    'cpm': cpm,
                     'accuracy': parseFloat(accuracy),
-                    'cpm': cpm
+                    'miss_count': this.missCount,
+                    'time_spent_sec': Math.floor((Date.now() - this.startTime) / 1000),
+                    'total_keys': this.totalChars + this.missCount
                 });
             }
 
