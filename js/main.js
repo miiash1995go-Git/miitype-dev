@@ -83,42 +83,14 @@ class TypingApp {
 
         this.init();
 
-        // 再訪問・再読込・リサイズ時のフリーズと表示ズレを根絶する（v20.8.07.Ultimate）
+        // ブラウザバック（bfcache）時の状態不整合を強制リセット
         window.addEventListener('pageshow', (event) => {
-            // 1. 全ての暗転状態を剥がす
-            document.body.classList.remove('focus-mode');
-            
-            // 2. メイン枠を表示保証
-            const app = document.getElementById('app');
-            if (app) {
-                app.style.display = 'flex';
-                app.style.visibility = 'visible';
-                app.style.opacity = '1';
+            if (event.persisted) {
+                this.state = "START";
+                this.isTransitioning = false;
+                const startBtn = document.getElementById('start-btn');
+                if (startBtn) startBtn.disabled = false;
             }
-
-            // 3. 状態のリセット
-            this.state = "START";
-            this.isTransitioning = false;
-            
-            const screens = {
-                'start-screen': false,
-                'game-screen': true,
-                'result-screen': true
-            };
-
-            for (const [id, shouldHide] of Object.entries(screens)) {
-                const el = document.getElementById(id);
-                if (el) {
-                    if (shouldHide) el.classList.add('hidden');
-                    else el.classList.remove('hidden');
-                }
-            }
-
-            const startBtn = document.getElementById('start-btn');
-            if (startBtn) startBtn.disabled = false;
-
-            // 4. 【最重要】中央配置を再計算してズレを直す
-            this.handleResize();
         });
     }
 
@@ -131,18 +103,14 @@ class TypingApp {
             this.manifest = await res.json();
             this.updateBestScoreDisplay();
 
-            // カテゴリ自動選択の安全実行（v20.8.07.Final）
-            const urlParams = new URLSearchParams(window.location.search);
-            const targetCatId = urlParams.get('cat');
-            if (targetCatId) {
-                setTimeout(() => {
-                    const btn = document.querySelector(`.btn-category[data-cat="${targetCatId}"]`);
-                    if (btn) {
-                        btn.click();
-                    }
-                }, 50);
+            // 既存のボタンを自動選択するロジック（v20.8.06）
+            const params = new URLSearchParams(window.location.search);
+            const targetCat = params.get('cat');
+            if (targetCat) {
+                const targetBtn = document.querySelector(`.btn-category[data-cat="${targetCat}"]`);
+                if (targetBtn) { targetBtn.click(); }
             }
-        } catch (e) { 
+        } catch (e) {
             console.error("Critical Initialization Failure:", e); 
         }
         this.handleResize();
