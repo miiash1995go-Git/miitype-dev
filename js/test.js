@@ -66,7 +66,6 @@ class TypingExam {
             }
         });
 
-
         try {
             const res = await fetch('./data/typing/test_5min.json');
             const data = await res.json();
