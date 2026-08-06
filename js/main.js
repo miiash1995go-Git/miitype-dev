@@ -135,16 +135,14 @@ class TypingApp {
             const urlParams = new URLSearchParams(window.location.search);
             const targetCatId = urlParams.get('cat');
             if (targetCatId) {
-                // DOMが落ち着くまで少しだけ（30ms）待機してからクリックを実行
                 setTimeout(() => {
                     const btn = document.querySelector(`.btn-category[data-cat="${targetCatId}"]`);
                     if (btn) {
                         btn.click();
-                        console.log("Category automatically selected:", targetCatId);
                     }
-                }, 30);
+                }, 50);
             }
-        } catch (e) {
+        } catch (e) { 
             console.error("Critical Initialization Failure:", e); 
         }
         this.handleResize();
