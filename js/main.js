@@ -87,6 +87,7 @@ class TypingApp {
         window.addEventListener('pageshow', (event) => {
             if (event.persisted) {
                 this.state = "START";
+                document.body.classList.remove('focus-mode');
                 this.isTransitioning = false;
                 const startBtn = document.getElementById('start-btn');
                 if (startBtn) startBtn.disabled = false;
