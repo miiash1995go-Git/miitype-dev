@@ -48,14 +48,21 @@ class TypingExam {
             }
         });
 
-        // Escキーによる中断・戻り
+        // Escキーによる中断・戻り（バブリング/連鎖発火の防止版）
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
+            if (e.key === 'Escape' || e.key === 'Esc') {
                 if (this.isStarted) {
+                    // 1. 試験中の場合：試験を中止して「結果画面」を表示する（ここで止める）
+                    this.isStarted = false; // 連鎖防止のため即座にフラグを折る
                     this.endExam(true);
-                } else {
+                    e.preventDefault(); 
+                    e.stopPropagation(); 
+                } else if (document.getElementById('result-screen').classList.contains('hidden')) {
+                    // 2. 開始前画面にいる場合のみ、Playへ戻る
                     window.location.href = './play.html';
                 }
+                // 3. 結果画面が表示されている状態でのEscは、何もしない（誤操作による即戻りを防止）
+                //    または、戻りたい場合は「もう一度Esc」ではなく画面のボタンを押させる
             }
         });
 

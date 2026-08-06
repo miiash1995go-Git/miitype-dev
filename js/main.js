@@ -97,6 +97,9 @@ class TypingApp {
 
     async init() {
         try {
+            // 物理的お掃除の徹底：キャッシュやリダイレクト時の暗転残留を強制排除
+            document.body.classList.remove('focus-mode');
+            
             this.renderKeyboard();
             this.updateSettingsBtnDisplay();
             this.setupEventListeners();
