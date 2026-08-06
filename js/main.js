@@ -102,7 +102,15 @@ class TypingApp {
             const res = await fetch('./data/category_manifest.json');
             this.manifest = await res.json();
             this.updateBestScoreDisplay();
-        } catch (e) { 
+
+            // 既存のボタンを自動選択するロジック（v20.8.06）
+            const params = new URLSearchParams(window.location.search);
+            const targetCat = params.get('cat');
+            if (targetCat) {
+                const targetBtn = document.querySelector(`.btn-category[data-cat="${targetCat}"]`);
+                if (targetBtn) { targetBtn.click(); }
+            }
+        } catch (e) {
             console.error("Critical Initialization Failure:", e); 
         }
         this.handleResize();
