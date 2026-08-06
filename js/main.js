@@ -83,10 +83,12 @@ class TypingApp {
 
         this.init();
 
-        // 再訪問・再読込時のフリーズを根絶する最終リセットプロトコル（v20.8.07.Ultimate）
+        // 再訪問・再読込・リサイズ時のフリーズと表示ズレを根絶する（v20.8.07.Ultimate）
         window.addEventListener('pageshow', (event) => {
-            // 1. 全ての暗転・非表示状態を物理的に剥がす
+            // 1. 全ての暗転状態を剥がす
             document.body.classList.remove('focus-mode');
+            
+            // 2. メイン枠を表示保証
             const app = document.getElementById('app');
             if (app) {
                 app.style.display = 'flex';
@@ -94,14 +96,14 @@ class TypingApp {
                 app.style.opacity = '1';
             }
 
-            // 2. 内部状態と画面表示を強制的に「カテゴリ選択」に戻す
+            // 3. 状態のリセット
             this.state = "START";
             this.isTransitioning = false;
             
             const screens = {
-                'start-screen': false, // 表示
-                'game-screen': true,   // 非表示
-                'result-screen': true  // 非表示
+                'start-screen': false,
+                'game-screen': true,
+                'result-screen': true
             };
 
             for (const [id, shouldHide] of Object.entries(screens)) {
@@ -112,9 +114,11 @@ class TypingApp {
                 }
             }
 
-            // 3. 開始ボタンのロックを解除
             const startBtn = document.getElementById('start-btn');
             if (startBtn) startBtn.disabled = false;
+
+            // 4. 【最重要】中央配置を再計算してズレを直す
+            this.handleResize();
         });
     }
 
