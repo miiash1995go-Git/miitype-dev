@@ -131,14 +131,18 @@ class TypingApp {
             this.manifest = await res.json();
             this.updateBestScoreDisplay();
 
-            // URLパラメータによる自動選択ロジック（安全な10ms遅延実行）
-            const params = new URLSearchParams(window.location.search);
-            const targetCat = params.get('cat');
-            if (targetCat) {
+            // カテゴリ自動選択の安全実行（v20.8.07.Final）
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetCatId = urlParams.get('cat');
+            if (targetCatId) {
+                // DOMが落ち着くまで少しだけ（30ms）待機してからクリックを実行
                 setTimeout(() => {
-                    const targetBtn = document.querySelector(`.btn-category[data-cat="${targetCat}"]`);
-                    if (targetBtn) { targetBtn.click(); }
-                }, 10);
+                    const btn = document.querySelector(`.btn-category[data-cat="${targetCatId}"]`);
+                    if (btn) {
+                        btn.click();
+                        console.log("Category automatically selected:", targetCatId);
+                    }
+                }, 30);
             }
         } catch (e) {
             console.error("Critical Initialization Failure:", e); 

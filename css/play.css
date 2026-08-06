@@ -1102,3 +1102,24 @@ body.game-body .summary-btn:hover {
     border-bottom-color: #eeeeee;
     border-left-color: #eeeeee;
 }
+
+/* --- デスクトップ環境(769px以上)でのクリック遮断を物理的に根絶する --- */
+@media (min-width: 769px) {
+    /* 1. 壁を画面の裏側に隠し、透明度を0にする */
+    body.game-body .mobile-restriction-overlay {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important; /* クリックを完全にスルーさせる */
+        z-index: -1 !important;          /* 背面に隠す */
+    }
+    /* 2. サイト本体を最前面に出し、クリックを許可する */
+    body.game-body #app {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important; /* 確実にクリックを受け付ける */
+        position: relative !important;
+        z-index: 10 !important;
+    }
+}
