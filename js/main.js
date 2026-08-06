@@ -83,30 +83,26 @@ class TypingApp {
 
         this.init();
 
-        // 再訪問・再読込時のフリーズを根絶するリセットプロトコル（v20.8.07.Final）
+        // 再訪問・再読込時のフリーズを根絶する最終リセットプロトコル（v20.8.07.Ultimate）
         window.addEventListener('pageshow', (event) => {
+            // 1. 全ての暗転・非表示状態を物理的に剥がす
             document.body.classList.remove('focus-mode');
             const app = document.getElementById('app');
             if (app) {
                 app.style.display = 'flex';
                 app.style.visibility = 'visible';
+                app.style.opacity = '1';
             }
 
+            // 2. 内部状態と画面表示を強制的に「カテゴリ選択」に戻す
             this.state = "START";
             this.isTransitioning = false;
             
-            // 画面の初期化
-            const sStart = document.getElementById('start-screen');
-            const sGame = document.getElementById('game-screen');
-            const sResult = document.getElementById('result-screen');
-            
-            if (sStart) sStart.classList.remove('hidden');
-            if (sGame) sGame.classList.add('hidden');
-            if (sResult) sResult.classList.add('hidden');
-
-            const startBtn = document.getElementById('start-btn');
-            if (startBtn) startBtn.disabled = false;
-        });
+            const screens = {
+                'start-screen': false, // 表示
+                'game-screen': true,   // 非表示
+                'result-screen': true  // 非表示
+            };
 
             for (const [id, shouldHide] of Object.entries(screens)) {
                 const el = document.getElementById(id);
@@ -116,7 +112,7 @@ class TypingApp {
                 }
             }
 
-            // 4. ボタンのロックを解除
+            // 3. 開始ボタンのロックを解除
             const startBtn = document.getElementById('start-btn');
             if (startBtn) startBtn.disabled = false;
         });
