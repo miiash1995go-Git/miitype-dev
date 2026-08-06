@@ -85,6 +85,9 @@ class TypingApp {
 
         // ブラウザバック（bfcache）時の状態不整合を強制リセット
         window.addEventListener('pageshow', (event) => {
+            // 暗転モードを強制解除し、画面を明るく戻す（フリーズ対策 v20.8.06）
+            document.body.classList.remove('focus-mode');
+            
             if (event.persisted) {
                 this.state = "START";
                 this.isTransitioning = false;
@@ -103,16 +106,13 @@ class TypingApp {
             this.manifest = await res.json();
             this.updateBestScoreDisplay();
 
-            // 既存のボタンを自動選択するロジック（v20.8.06.Fixed）
+            // URLパラメータによる自動選択ロジック（安全な10ms遅延実行）
             const params = new URLSearchParams(window.location.search);
             const targetCat = params.get('cat');
             if (targetCat) {
-                // DOMの描画を確実に待ってから処理
                 setTimeout(() => {
                     const targetBtn = document.querySelector(`.btn-category[data-cat="${targetCat}"]`);
-                    if (targetBtn) {
-                        targetBtn.click();
-                    }
+                    if (targetBtn) { targetBtn.click(); }
                 }, 10);
             }
         } catch (e) {
