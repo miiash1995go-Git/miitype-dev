@@ -785,13 +785,17 @@ body.game-body #keyboard-container {
     }
 }
 
-/* 769px以上のデスクトップ環境では「壁」を物理的に消去し、クリックを保証 */
+/* - 769px以上のデスクトップ環境では「壁」を物理的に消去し、クリックを保証 - */
 @media (min-width: 769px) {
     body.game-body .mobile-restriction-overlay {
         display: none !important;
+        pointer-events: none !important; /* 壁を無視してクリックを通す */
+        visibility: hidden !important;   /* 視覚的にも完全に隠蔽 */
     }
     body.game-body #app {
         display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 }
 
