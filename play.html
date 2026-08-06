@@ -35,6 +35,7 @@
 
 </head>
 <body class="game-body">
+    <!-- モバイル制限：独立したレイヤーとして統治 -->
     <div class="mobile-restriction-overlay">
         <div class="restriction-card">
             <h2>PC環境での学習を推奨</h2>
@@ -44,10 +45,13 @@
                 <!-- 最優先：元いた記事に戻す（離脱防止） -->
                 <a href="javascript:history.back()" class="btn-main" style="width: 100%; max-width: 240px; padding: 12px 0; font-size: 1rem; box-shadow: none;">元のページに戻る</a>
                 
-                <!-- 予備：ホームへ戻る（テキストリンク化し、圧迫感を減らす） -->
+                <!-- 予備：ホームへ戻る（テキストリンク化） -->
                 <a href="./" style="color: #64748b; font-size: 0.9rem; font-weight: 800; text-decoration: underline; margin-top: 5px;">ホームへ戻る</a>
             </div>
         </div>
+    </div>
+
+    <!-- メインコンテンツ：ここから独立 -->
     <div id="app">
 <header>
             <div class="header-inner">

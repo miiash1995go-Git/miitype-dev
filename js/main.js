@@ -103,12 +103,17 @@ class TypingApp {
             this.manifest = await res.json();
             this.updateBestScoreDisplay();
 
-            // 既存のボタンを自動選択するロジック（v20.8.06）
+            // 既存のボタンを自動選択するロジック（v20.8.06.Fixed）
             const params = new URLSearchParams(window.location.search);
             const targetCat = params.get('cat');
             if (targetCat) {
-                const targetBtn = document.querySelector(`.btn-category[data-cat="${targetCat}"]`);
-                if (targetBtn) { targetBtn.click(); }
+                // DOMの描画を確実に待ってから処理
+                setTimeout(() => {
+                    const targetBtn = document.querySelector(`.btn-category[data-cat="${targetCat}"]`);
+                    if (targetBtn) {
+                        targetBtn.click();
+                    }
+                }, 10);
             }
         } catch (e) {
             console.error("Critical Initialization Failure:", e); 
