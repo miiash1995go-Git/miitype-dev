@@ -761,10 +761,38 @@ body.game-body #keyboard-container {
     box-shadow: 0 10px 40px rgba(0,0,0,0.1); max-width: 450px; width: 90%; text-align: center;
 }
 
-/* モバイル制限：768px以下のスマホサイズのみで発動 */
+/* --- モバイル制限の最終統治：クリック遮断を根絶 --- */
+.mobile-restriction-overlay {
+    display: none; /* 基本は非表示 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f8f9fa;
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 768px以下のスマホサイズのみで「壁」を出現させる */
 @media (max-width: 768px) {
-    body.game-body .mobile-restriction-overlay { display: flex !important; }
-    body.game-body #app { display: none !important; }
+    body.game-body .mobile-restriction-overlay {
+        display: flex !important;
+    }
+    body.game-body #app {
+        display: none !important;
+    }
+}
+
+/* 769px以上のデスクトップ環境では「壁」を物理的に消去し、クリックを保証 */
+@media (min-width: 769px) {
+    body.game-body .mobile-restriction-overlay {
+        display: none !important;
+    }
+    body.game-body #app {
+        display: flex !important;
+    }
 }
 
 /* ============================================================

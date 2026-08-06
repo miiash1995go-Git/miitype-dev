@@ -83,26 +83,26 @@ class TypingApp {
 
         this.init();
 
-        // 再訪問・再読込・リサイズ時のフリーズを物理的に根絶する強制リセット（v20.8.07.Ultimate）
+        // 再訪問・再読込時のフリーズを根絶するリセットプロトコル（v20.8.07.Final）
         window.addEventListener('pageshow', (event) => {
-            // 暗転（集中モード）を強制解除
             document.body.classList.remove('focus-mode');
-            
-            // 消えている可能性のある #app をJavaScriptで強制表示させる
             const app = document.getElementById('app');
             if (app) {
                 app.style.display = 'flex';
                 app.style.visibility = 'visible';
-                app.style.opacity = '1';
             }
 
-            // 全ての状態を初期（START）にリセット
             this.state = "START";
             this.isTransitioning = false;
             
-            if (document.getElementById('start-screen')) document.getElementById('start-screen').classList.remove('hidden');
-            if (document.getElementById('game-screen')) document.getElementById('game-screen').classList.add('hidden');
-            if (document.getElementById('result-screen')) document.getElementById('result-screen').classList.add('hidden');
+            // 画面の初期化
+            const sStart = document.getElementById('start-screen');
+            const sGame = document.getElementById('game-screen');
+            const sResult = document.getElementById('result-screen');
+            
+            if (sStart) sStart.classList.remove('hidden');
+            if (sGame) sGame.classList.add('hidden');
+            if (sResult) sResult.classList.add('hidden');
 
             const startBtn = document.getElementById('start-btn');
             if (startBtn) startBtn.disabled = false;
