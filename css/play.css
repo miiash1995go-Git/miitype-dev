@@ -761,9 +761,9 @@ body.game-body #keyboard-container {
     box-shadow: 0 10px 40px rgba(0,0,0,0.1); max-width: 450px; width: 90%; text-align: center;
 }
 
-/* 1024px以下での制限発動 */
-@media (max-width: 1024px) {
-    body.game-body .mobile-restriction-overlay { display: flex; }
+/* モバイル制限：768px以下のスマホサイズのみで発動 */
+@media (max-width: 768px) {
+    body.game-body .mobile-restriction-overlay { display: flex !important; }
     body.game-body #app { display: none !important; }
 }
 

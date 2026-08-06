@@ -83,17 +83,42 @@ class TypingApp {
 
         this.init();
 
-        // ブラウザバック（bfcache）時の状態不整合を強制リセット
+        // 再訪問・再読込・リサイズ時のフリーズを物理的に根絶する強制リセット（v20.8.07.Ultimate）
         window.addEventListener('pageshow', (event) => {
-            // 暗転モードを強制解除し、画面を明るく戻す（フリーズ対策 v20.8.06）
+            // 暗転（集中モード）を強制解除
             document.body.classList.remove('focus-mode');
             
-            if (event.persisted) {
-                this.state = "START";
-                this.isTransitioning = false;
-                const startBtn = document.getElementById('start-btn');
-                if (startBtn) startBtn.disabled = false;
+            // 消えている可能性のある #app をJavaScriptで強制表示させる
+            const app = document.getElementById('app');
+            if (app) {
+                app.style.display = 'flex';
+                app.style.visibility = 'visible';
+                app.style.opacity = '1';
             }
+
+            // 全ての状態を初期（START）にリセット
+            this.state = "START";
+            this.isTransitioning = false;
+            
+            if (document.getElementById('start-screen')) document.getElementById('start-screen').classList.remove('hidden');
+            if (document.getElementById('game-screen')) document.getElementById('game-screen').classList.add('hidden');
+            if (document.getElementById('result-screen')) document.getElementById('result-screen').classList.add('hidden');
+
+            const startBtn = document.getElementById('start-btn');
+            if (startBtn) startBtn.disabled = false;
+        });
+
+            for (const [id, shouldHide] of Object.entries(screens)) {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (shouldHide) el.classList.add('hidden');
+                    else el.classList.remove('hidden');
+                }
+            }
+
+            // 4. ボタンのロックを解除
+            const startBtn = document.getElementById('start-btn');
+            if (startBtn) startBtn.disabled = false;
         });
     }
 
