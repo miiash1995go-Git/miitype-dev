@@ -131,11 +131,15 @@ class TypingExam {
                 this.focusInput();
             } else {
                 clearInterval(countdownTimer);
+                
+                // 物理リセット：ブラウザの入力保持機能とフライング状態を完全に排除
+                this.realInput.value = ''; 
+                this.isComposing = false; // 変換中フラグを強制解除（最重要）
+                this.inputContent = ''; 
+                this.totalChars = 0;      // 2回目プレイ時のスコアを0に戻す
+                
                 this.isStarted = true;
                 this.startTime = Date.now();
-                
-                // 【改良】1文字目のゴミ入力をクリアしてから開始
-                this.realInput.value = '';
                 
                 this.renderNextQuestion();
                 this.startTimer();
