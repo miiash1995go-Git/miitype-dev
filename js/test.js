@@ -132,11 +132,14 @@ class TypingExam {
             } else {
                 clearInterval(countdownTimer);
                 
-                // 物理リセット：ブラウザの入力保持機能とフライング状態を完全に排除
-                this.realInput.value = ''; 
-                this.isComposing = false; // 変換中フラグを強制解除（最重要）
-                this.inputContent = ''; 
-                this.totalChars = 0;      // 2回目プレイ時のスコアを0に戻す
+                // 【追加対策】物理リセット強化：IME（日本語入力）のセッションを一度切り、ブラウザの記憶を完全に初期化
+                this.realInput.blur();      // 1. フォーカスを強制的に外してIMEの予測・変換状態をリセット
+                this.realInput.value = '';  // 2. 入力欄を空にする
+                this.realInput.setAttribute('autocomplete', 'off'); // 3. ブラウザの入力履歴機能を念押しで無効化
+                
+                this.isComposing = false;   // 変換中フラグを解除
+                this.inputContent = '';     // 入力済み内容をクリア
+                this.totalChars = 0;        // スコアを0に戻す
                 
                 this.isStarted = true;
                 this.startTime = Date.now();
