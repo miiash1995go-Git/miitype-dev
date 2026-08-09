@@ -179,8 +179,8 @@ class TypingExam {
         }
 
         // ② 入力エリア：確定済み文字 ＋ 「入力中のアルファベット」 ＋ 青いキャレットを表示
-        // 物理防御：部品(realInput)が見つからない状態でのクラッシュを防止
-        const unconfirmed = (this.realInput) ? this.realInput.value : ""; 
+        // 物理防御：部品が見つからない場合、または「変換中でない」時は表示しない（二重表示の防止）
+        const unconfirmed = (this.realInput && this.isComposing) ? this.realInput.value : "";
         let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
         inputHtml += `<span class="char-composing" style="color: #94a3b8; text-decoration: underline;">${unconfirmed}</span>`;
         inputHtml += `<span class="char-current-caret"></span>`;
@@ -239,6 +239,9 @@ class TypingExam {
         this.realInput.addEventListener('input', (e) => {
             if (!this.isComposing) {
                 const val = this.realInput.value;
+
+                // 【幽霊入力ガード】確定直後に届く「日本語入りのinput信号」を無視して二重判定（ミス）を防止
+                if (val && /[^a-zA-Z0-9\s!-/:-@[-`{-~]/.test(val)) return;
 
                 // 【論理ガード】日本語を待っている時にアルファベットが届いた場合、
                 // IMEの変換途中の可能性があるため、判定を保留して入力を保持する（ホールド）
