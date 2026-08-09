@@ -176,16 +176,14 @@ class TypingExam {
             lineCurrent.innerHTML = `<span class="char-done">${done}</span><span>${remain}</span>`;
         }
 
-        // ② 入力エリア：確定文字 ＋ 「入力中の文字（変換前）」 ＋ キャレットを表示
-        // 改善：英数字なら常に表示（無反応対策）、日本語はダブり防止のため確定するまで非表示にする
-        let unconfirmed = "";
-        if (this.realInput) {
-            const val = this.realInput.value;
-            const isAlphaNum = /^[a-zA-Z0-9\s!-/:-@[-`{-~]+$/.test(val);
-            if (this.isComposing || isAlphaNum) {
-                unconfirmed = val;
-            }
+        // ② 入力エリア：確定済み文字 ＋ 「新しく入力中の文字のみ」を表示
+        let unconfirmed = (this.realInput) ? this.realInput.value : ""; 
+        
+        // 【重要：ダブり防止】入力欄に残っている確定済みの文字を引き算して消す
+        if (unconfirmed && this.inputContent && unconfirmed.startsWith(this.inputContent)) {
+            unconfirmed = unconfirmed.substring(this.inputContent.length);
         }
+
         let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
         inputHtml += `<span class="char-composing" style="color: #94a3b8; text-decoration: underline;">${unconfirmed}</span>`;
         inputHtml += `<span class="char-current-caret"></span>`;
@@ -244,16 +242,15 @@ class TypingExam {
 
         this.realInput.addEventListener('input', (e) => {
             if (!this.isComposing) {
-                const val = this.realInput.value;
-                // 【幽霊入力の物理排除】
-                // 確定済みの日本語がinputイベントとして再度届いた場合は、判定せず即座に箱を空にする
-                const hasJapanese = /[^a-zA-Z0-9\s!-/:-@[-`{-~]/.test(val);
-                if (hasJapanese) {
-                    this.realInput.value = '';
-                    return;
+                let val = this.realInput.value;
+
+                // 【重要：二重判定防止】確定済みの文字が含まれている場合、その分を除去して「新しい入力分」だけを取り出す
+                if (val && this.inputContent && val.startsWith(this.inputContent)) {
+                    val = val.substring(this.inputContent.length);
                 }
 
                 if (e.inputType !== 'deleteContentBackward' && val.length > 0) {
+                    // 真に新しい入力分だけを判定し、判定が行われたら入力をクリア
                     if (this.evaluateString(val)) {
                         this.realInput.value = '';
                     }
