@@ -176,12 +176,8 @@ class TypingExam {
             lineCurrent.innerHTML = `<span class="char-done">${done}</span><span>${remain}</span>`;
         }
 
-        // ② 入力エリアの更新
-        // 未確定文字（灰色）は、入力欄の中身をそのまま映す
-        const unconfirmed = (this.realInput) ? this.realInput.value : "";
-        
+        // ② 入力エリアの更新：確定済みの黒文字のみを表示（灰色文字は非表示）
         let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
-        inputHtml += `<span class="char-composing" style="color: #94a3b8; text-decoration: underline;">${unconfirmed}</span>`;
         inputHtml += `<span class="char-current-caret"></span>`;
         this.visualText.innerHTML = inputHtml;
 
@@ -234,28 +230,22 @@ class TypingExam {
         });
 
         this.realInput.addEventListener('input', (e) => {
-            if (this.isComposing) {
-                this.updateDisplays(); // 変換中は表示を更新するだけ
-                return;
-            }
+            if (!this.isComposing) {
+                let val = this.realInput.value;
 
-            const val = this.realInput.value;
-            if (e.inputType !== 'deleteContentBackward' && val.length > 0) {
-                // 【判定ガード】日本語（漢字等）を待っている時に英数字が届いた場合、
-                // IMEの入力途中とみなして、判定（ミス）を保留し消去もせず次を待つ
-                const isInputAlpha = /^[a-zA-Z0-9]+$/.test(val);
-                const isTargetJp = this.currentText[this.progress] && !/^[a-zA-Z0-9]/.test(this.currentText[this.progress]);
-                
-                if (isInputAlpha && isTargetJp) {
-                    this.updateDisplays();
-                    return; 
+                // 確定済みの文字が入力欄に残っている（残像）場合は、引き算して新入力分だけを取り出す
+                if (val && this.inputContent && val.startsWith(this.inputContent)) {
+                    val = val.substring(this.inputContent.length);
                 }
 
-                // 英単語問題、または直接入力された文字は即座に判定
-                this.evaluateString(val);
-                this.realInput.value = '';
+                if (e.inputType !== 'deleteContentBackward' && val.length > 0) {
+                    // 判定が実行（消費）された場合のみ、物理入力欄を掃除してダブりを防ぐ
+                    if (this.evaluateString(val)) {
+                        this.realInput.value = '';
+                    }
+                }
+                this.updateDisplays();
             }
-            this.updateDisplays();
         });
     }
 
@@ -277,9 +267,9 @@ class TypingExam {
                 matchedAny = true;
                 isConsumed = true;
             } else {
-                // 【論理ガード】日本語を待っている時のアルファベット入力は、変換途中とみなし判定を保留（無視）
+                // 【重要】日本語を待っている時のアルファベット入力は、変換途中とみなし無視（ホールド）する
                 const isAlpha = /^[a-zA-Zａ-ｚＡ-Ｚ0-9０-９]+$/.test(char);
-                const isTargetJp = targetChar && !/^[a-zA-Z0-9]+$/.test(targetChar);
+                const isTargetJp = targetChar && !/^[a-zA-Z0-9]/.test(targetChar);
                 
                 if (isAlpha && isTargetJp) {
                     continue; 
