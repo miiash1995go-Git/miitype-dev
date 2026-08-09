@@ -285,6 +285,7 @@ class TypingExam {
                     break;
                 }
             }
+        } // ← ここに for 文を閉じるカッコが不足していました
 
         if (hasError) this.triggerDamageEffect();
 
