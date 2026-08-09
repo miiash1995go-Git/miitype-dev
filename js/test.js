@@ -85,9 +85,12 @@ class TypingExam {
         let count = 5;
 
         // 【物理リセット】IME（日本語入力）のセッションを一度切り、ブラウザの記憶を完全に初期化
-        this.realInput.blur();
-        this.realInput.value = '';
-        this.realInput.setAttribute('autocomplete', 'off');
+        // null安全ガード：部品が存在する場合のみリセットを実行
+        if (this.realInput) {
+            this.realInput.blur();
+            this.realInput.value = '';
+            this.realInput.setAttribute('autocomplete', 'off');
+        }
 
         const getCountdownHtml = (c) => `
             <div style="text-align: center; padding-top: 10px;">
@@ -176,7 +179,8 @@ class TypingExam {
         }
 
         // ② 入力エリア：確定済み文字 ＋ 「入力中のアルファベット」 ＋ 青いキャレットを表示
-        const unconfirmed = this.realInput.value; 
+        // 物理防御：部品(realInput)が見つからない状態でのクラッシュを防止
+        const unconfirmed = (this.realInput) ? this.realInput.value : ""; 
         let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
         inputHtml += `<span class="char-composing" style="color: #94a3b8; text-decoration: underline;">${unconfirmed}</span>`;
         inputHtml += `<span class="char-current-caret"></span>`;
