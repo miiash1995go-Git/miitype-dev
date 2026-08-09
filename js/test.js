@@ -84,8 +84,7 @@ class TypingExam {
         this.isStarted = false;
         let count = 5;
 
-        // 【物理リセット】IME（日本語入力）のセッションを一度切り、ブラウザの記憶を完全に初期化
-        // null安全ガード：部品が存在する場合のみリセットを実行
+        // 【ハードリセット】カウントダウン中はフォーカスを外し、ブラウザとIMEの古い関係を完全に断ち切る
         if (this.realInput) {
             this.realInput.blur();
             this.realInput.value = '';
@@ -104,11 +103,10 @@ class TypingExam {
             count--;
             if (count > 0) {
                 this.sampleBox.innerHTML = getCountdownHtml(count);
-                this.focusInput();
             } else {
                 clearInterval(countdownTimer);
                 
-                // 【開始直前の最終リセット】2回転目以降の不整合を排除
+                // 開始の瞬間に、新品の状態として初期化
                 this.realInput.value = ''; 
                 this.isComposing = false; 
                 this.inputContent = ''; 
@@ -120,8 +118,8 @@ class TypingExam {
                 
                 this.renderNextQuestion();
                 this.startTimer();
-                // 描画を待ってからフォーカスすることでIMEを正常に起動させる
-                setTimeout(() => this.focusInput(), 10);
+                // 0になった瞬間に初めてフォーカスし、IMEを新鮮な状態で起動させる
+                this.focusInput();
             }
         }, 1000);
     }
@@ -179,8 +177,8 @@ class TypingExam {
         }
 
         // ② 入力エリア：確定済み文字 ＋ 「入力中のアルファベット」 ＋ 青いキャレットを表示
-        // 物理防御：部品が見つからない場合、または「変換中でない」時は表示しない（二重表示の防止）
-        const unconfirmed = (this.realInput && this.isComposing) ? this.realInput.value : "";
+        // 改良：合図（isComposing）を待たず、入力欄に中身があれば即座に表示して「無反応」を防ぐ
+        const unconfirmed = (this.realInput) ? this.realInput.value : "";
         let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
         inputHtml += `<span class="char-composing" style="color: #94a3b8; text-decoration: underline;">${unconfirmed}</span>`;
         inputHtml += `<span class="char-current-caret"></span>`;
@@ -240,15 +238,11 @@ class TypingExam {
             if (!this.isComposing) {
                 const val = this.realInput.value;
 
-                // 【幽霊入力ガード】確定直後に届く「日本語入りのinput信号」を無視して二重判定（ミス）を防止
-                if (val && /[^a-zA-Z0-9\s!-/:-@[-`{-~]/.test(val)) return;
-
-                // 【論理ガード】日本語を待っている時にアルファベットが届いた場合、
-                // IMEの変換途中の可能性があるため、判定を保留して入力を保持する（ホールド）
-                const isAlphaDraft = /^[a-zA-Z]+$/.test(val);
-                const isTargetJp = this.currentText[this.progress] && !/[a-zA-Z0-9]/.test(this.currentText[this.progress]);
-                
-                if (isAlphaDraft && isTargetJp) return; // 判定に進まず、入力欄も消さずに戻る
+                // 【幽霊入力ガード】確定直後の残像（日本語を含む信号）が届いた場合は、判定せず無視する
+                if (val && /[^a-zA-Z0-9\s!-/:-@[-`{-~]/.test(val)) {
+                    this.realInput.value = ''; // 次の入力に備えて念のため空にする
+                    return;
+                }
 
                 if (e.inputType !== 'deleteContentBackward' && val.length > 0) {
                     this.evaluateString(val);
