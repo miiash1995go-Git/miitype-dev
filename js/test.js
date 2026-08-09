@@ -176,12 +176,16 @@ class TypingExam {
             lineCurrent.innerHTML = `<span class="char-done">${done}</span><span>${remain}</span>`;
         }
 
-        // ② 入力エリア：確定済み文字 ＋ 「新しく入力中の文字のみ」を表示
-        let unconfirmed = (this.realInput) ? this.realInput.value : ""; 
-        
-        // 【重要：ダブり防止】入力欄に残っている確定済みの文字を引き算して消す
+        // ② 入力エリア：確定文字 ＋ 「差分（入力中の文字のみ）」を表示
+        let rawVal = (this.realInput) ? this.realInput.value : "";
+        let unconfirmed = rawVal;
+
+        // 【引き算ロジック】入力欄に残っている文字から、すでに確定済みの文字（inputContent）を削る
         if (unconfirmed && this.inputContent && unconfirmed.startsWith(this.inputContent)) {
             unconfirmed = unconfirmed.substring(this.inputContent.length);
+        } else if (unconfirmed && this.inputContent && this.inputContent.endsWith(unconfirmed)) {
+            // 日本語確定時の残像（末尾が重複している場合）は表示しない
+            unconfirmed = "";
         }
 
         let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
@@ -244,13 +248,16 @@ class TypingExam {
             if (!this.isComposing) {
                 let val = this.realInput.value;
 
-                // 【重要：二重判定防止】確定済みの文字が含まれている場合、その分を除去して「新しい入力分」だけを取り出す
+                // 【引き算ロジック】確定済みの文字が含まれている場合、その分を削って「新しい入力分」だけを取り出す
                 if (val && this.inputContent && val.startsWith(this.inputContent)) {
                     val = val.substring(this.inputContent.length);
+                } else if (val && this.inputContent && this.inputContent.endsWith(val)) {
+                    // 入力欄の中身が確定済みの文字と重複している（残像）なら無視
+                    val = "";
                 }
 
                 if (e.inputType !== 'deleteContentBackward' && val.length > 0) {
-                    // 真に新しい入力分だけを判定し、判定が行われたら入力をクリア
+                    // 真に新しい入力分だけを判定し、判定に成功（文字を消費）したら入力をクリア
                     if (this.evaluateString(val)) {
                         this.realInput.value = '';
                     }
