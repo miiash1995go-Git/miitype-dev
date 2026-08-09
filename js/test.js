@@ -84,12 +84,10 @@ class TypingExam {
         this.isStarted = false;
         let count = 5;
 
-        // 【物理リセット】IME（日本語入力）を一度切り、ブラウザの古い記憶を掃除
-        if (this.realInput) {
-            this.realInput.blur();
-            this.realInput.value = '';
-            this.realInput.setAttribute('autocomplete', 'off');
-        }
+        // 【物理リセット】IME（日本語入力）のセッションを一度切り、ブラウザの記憶を完全に初期化
+        this.realInput.blur();
+        this.realInput.value = '';
+        this.realInput.setAttribute('autocomplete', 'off');
 
         const getCountdownHtml = (c) => `
             <div style="text-align: center; padding-top: 10px;">
@@ -107,7 +105,7 @@ class TypingExam {
             } else {
                 clearInterval(countdownTimer);
                 
-                // 【開始直前の最終リセット】
+                // 【開始直前の最終リセット】2回転目以降の不整合を排除
                 this.realInput.value = ''; 
                 this.isComposing = false; 
                 this.inputContent = ''; 
@@ -177,8 +175,8 @@ class TypingExam {
             lineCurrent.innerHTML = `<span class="char-done">${done}</span><span>${remain}</span>`;
         }
 
-        // ② 入力エリア：確定済み文字 ＋ 「入力中のアルファベット」 ＋ キャレットを表示
-        const unconfirmed = this.realInput.value; // Enter押す前の文字を取得
+        // ② 入力エリア：確定済み文字 ＋ 「入力中のアルファベット」 ＋ 青いキャレットを表示
+        const unconfirmed = this.realInput.value; 
         let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
         inputHtml += `<span class="char-composing" style="color: #94a3b8; text-decoration: underline;">${unconfirmed}</span>`;
         inputHtml += `<span class="char-current-caret"></span>`;
@@ -265,22 +263,19 @@ class TypingExam {
             const targetChar = this.currentText[this.progress];
 
             if (char === targetChar) {
-                // 1. 一致する場合：正解として処理
                 this.progress++;
                 this.totalChars++;
                 this.inputContent += char;
                 matchedAny = true;
             } else {
-                // 2. 不一致の場合：論理ガード（全角・半角アルファベットの吸収）
-                // 半角 a-z および 全角 ａ-ｚ Ａ-Ｚ を判定
+                // 【論理ガード】全角・半角アルファベットが届いた場合、日本語入力中（変換中）とみなし、ミス判定せず無視して次を待つ
                 const isAlpha = /^[a-zA-Zａ-ｚＡ-Ｚ0-9０-９]+$/.test(char);
                 const isTargetJp = targetChar && !/^[a-zA-Z0-9]+$/.test(targetChar);
                 
                 if (isAlpha && isTargetJp) {
-                    // 日本語入力中のアルファベット（全角含む）はミス判定せず、IMEの変換を待つ
                     continue; 
                 } else {
-                    // 本当の打ち間違い
+                    // 本当の打ち間違い（日本語同士の相違、または英単語のミス）
                     this.missCount++;
                     hasError = true;
                     break;
