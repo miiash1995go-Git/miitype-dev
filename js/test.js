@@ -177,8 +177,16 @@ class TypingExam {
         }
 
         // ② 入力エリア：確定済み文字 ＋ 「入力中のアルファベット」 ＋ 青いキャレットを表示
-        // 改良：合図（isComposing）を待たず、入力欄に中身があれば即座に表示して「無反応」を防ぐ
-        const unconfirmed = (this.realInput) ? this.realInput.value : "";
+        // 究極改良：アルファベット入力（変換前）は常に表示し、確定後の日本語の「残像」は表示しないことでダブりを防ぐ
+        let unconfirmed = "";
+        if (this.realInput) {
+            const val = this.realInput.value;
+            const hasJapanese = /[^a-zA-Z0-9\s!-/:-@[-`{-~]/.test(val);
+            // 変換中フラグが立っているか、または入力が英数字のみ（IME起動遅れ）の場合に表示
+            if (this.isComposing || (val && !hasJapanese)) {
+                unconfirmed = val;
+            }
+        }
         let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
         inputHtml += `<span class="char-composing" style="color: #94a3b8; text-decoration: underline;">${unconfirmed}</span>`;
         inputHtml += `<span class="char-current-caret"></span>`;
@@ -227,6 +235,9 @@ class TypingExam {
         this.realInput.addEventListener('compositionend', (e) => {
             this.isComposing = false;
             this.realInput.style.opacity = '0'; 
+            
+            this.evaluateString(e.data);
+            this.realInput.value = ''; // 確定した瞬間に物理的に箱を空にする
             const caret = this.visualText.querySelector('.char-current-caret');
             if (caret) caret.style.visibility = 'visible';
             
