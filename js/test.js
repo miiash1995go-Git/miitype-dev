@@ -221,10 +221,19 @@ class TypingExam {
 
         this.realInput.addEventListener('compositionstart', () => { 
             this.isComposing = true; 
-            // 2重カーソル防止：入力中はネイティブのカーソルと文字を見せ、青いカスタムカーソルを隠す
+            // 変換中もネイティブ入力欄を可視化する（変換文字を見せるため）
             this.realInput.style.opacity = '1'; 
-            const caret = this.visualText.querySelector('.char-current-caret');
-            if (caret) caret.style.visibility = 'hidden';
+        });
+
+        this.realInput.addEventListener('compositionend', (e) => {
+            this.isComposing = false;
+            // 確定後はネイティブ入力欄を隠す
+            this.realInput.style.opacity = '0'; 
+            
+            // 確定した日本語を判定し、物理入力欄を完全に掃除する
+            this.evaluateString(e.data);
+            this.realInput.value = ''; 
+            this.updateDisplays();
         });
 
         this.realInput.addEventListener('compositionend', (e) => {
