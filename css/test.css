@@ -307,7 +307,6 @@ body.test-body .nav-item {
     opacity: 0;
     z-index: 10;
     cursor: text;
-    caret-color: transparent !important; /* 物理的対策：ブラウザ標準のカーソルを透明にして隠す */
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 1.55rem;
     line-height: 1.5;

@@ -176,7 +176,8 @@ class TypingExam {
             lineCurrent.innerHTML = `<span class="char-done">${done}</span><span>${remain}</span>`;
         }
 
-        // ② 入力エリアの更新：確定済みの黒文字のみを表示（灰色文字は非表示）
+        // ② 入力エリア：確定済み文字 ＋ 青いキャレットを表示
+        // 灰色文字はネイティブ入力欄（realInput）が表示されている時のみブラウザ側で描画される
         let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
         inputHtml += `<span class="char-current-caret"></span>`;
         this.visualText.innerHTML = inputHtml;
@@ -216,8 +217,23 @@ class TypingExam {
 
         this.realInput.addEventListener('compositionstart', () => { 
             this.isComposing = true; 
-            // 2重カーソル防止：ネイティブ入力欄は常に透明を維持し、カスタムカーソルも隠さない
+            // 入力中：ネイティブの文字とカーソルを見せ、カスタムカーソルを隠す
+            this.realInput.style.opacity = '1'; 
+            const caret = this.visualText.querySelector('.char-current-caret');
+            if (caret) caret.style.visibility = 'hidden';
+        });
+
+        this.realInput.addEventListener('compositionend', (e) => {
+            this.isComposing = false;
+            // 確定後：ネイティブの文字を隠し、カスタムカーソルを復帰させる
             this.realInput.style.opacity = '0'; 
+            const caret = this.visualText.querySelector('.char-current-caret');
+            if (caret) caret.style.visibility = 'visible';
+            
+            // 確定した日本語を判定し、入力をリセット
+            this.evaluateString(e.data);
+            this.realInput.value = ''; 
+            this.updateDisplays();
         });
 
         this.realInput.addEventListener('compositionend', (e) => {
