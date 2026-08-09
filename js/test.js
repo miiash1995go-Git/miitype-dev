@@ -177,8 +177,15 @@ class TypingExam {
         }
 
         // ② 入力エリア：確定文字 ＋ 「入力中の文字（変換前）」 ＋ キャレットを表示
-        // 入力欄に文字があれば、フラグに関わらず常に表示して無反応感をなくす
-        const unconfirmed = (this.realInput) ? this.realInput.value : ""; 
+        // 改善：英数字なら常に表示（無反応対策）、日本語はダブり防止のため確定するまで非表示にする
+        let unconfirmed = "";
+        if (this.realInput) {
+            const val = this.realInput.value;
+            const isAlphaNum = /^[a-zA-Z0-9\s!-/:-@[-`{-~]+$/.test(val);
+            if (this.isComposing || isAlphaNum) {
+                unconfirmed = val;
+            }
+        }
         let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
         inputHtml += `<span class="char-composing" style="color: #94a3b8; text-decoration: underline;">${unconfirmed}</span>`;
         inputHtml += `<span class="char-current-caret"></span>`;
@@ -238,8 +245,15 @@ class TypingExam {
         this.realInput.addEventListener('input', (e) => {
             if (!this.isComposing) {
                 const val = this.realInput.value;
+                // 【幽霊入力の物理排除】
+                // 確定済みの日本語がinputイベントとして再度届いた場合は、判定せず即座に箱を空にする
+                const hasJapanese = /[^a-zA-Z0-9\s!-/:-@[-`{-~]/.test(val);
+                if (hasJapanese) {
+                    this.realInput.value = '';
+                    return;
+                }
+
                 if (e.inputType !== 'deleteContentBackward' && val.length > 0) {
-                    // 判定にかけ、実際に文字が「消費」された場合のみ入力欄を空にする（残像ダブり防止）
                     if (this.evaluateString(val)) {
                         this.realInput.value = '';
                     }
@@ -254,28 +268,26 @@ class TypingExam {
 
         let matchedAny = false;
         let hasError = false;
-        let isConsumed = false; // 判定が実行されたかのフラグ
+        let isConsumed = false; 
 
         for (let i = 0; i < committedStr.length; i++) {
             const char = committedStr[i];
             const targetChar = this.currentText[this.progress];
 
             if (char === targetChar) {
-                // 正解の場合
                 this.progress++;
                 this.totalChars++;
                 this.inputContent += char;
                 matchedAny = true;
                 isConsumed = true;
             } else {
-                // 不一致の場合：論理ガード（日本語待ちのアルファベットは無視）
+                // 【論理ガード】日本語を待っている時のアルファベット入力は、変換途中とみなし判定を保留（無視）
                 const isAlpha = /^[a-zA-Zａ-ｚＡ-Ｚ0-9０-９]+$/.test(char);
                 const isTargetJp = targetChar && !/^[a-zA-Z0-9]+$/.test(targetChar);
                 
                 if (isAlpha && isTargetJp) {
                     continue; 
                 } else {
-                    // 本当の打ち間違い
                     this.missCount++;
                     hasError = true;
                     isConsumed = true;
@@ -304,7 +316,7 @@ class TypingExam {
             }
         }
         this.updateDisplays();
-        return isConsumed; // 判定が成功・または間違いとして消費された場合のみtrueを返す
+        return isConsumed; 
     }
 
     triggerDamageEffect() {
