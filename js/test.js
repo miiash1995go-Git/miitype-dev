@@ -168,7 +168,7 @@ class TypingExam {
     }
 
     updateDisplays() {
-        // ① サンプルエリアの更新
+        // ① サンプルエリア：1行目の進捗更新
         const lineCurrent = document.getElementById('line-current');
         if (lineCurrent) {
             const done = this.currentText.substring(0, this.progress);
@@ -176,8 +176,12 @@ class TypingExam {
             lineCurrent.innerHTML = `<span class="char-done">${done}</span><span>${remain}</span>`;
         }
 
+        // 【物理的解決】2回転目開始時に文字が消えないよう、入力欄に1文字でもあれば不透明度を強制的に1にする
+        if (this.realInput) {
+            this.realInput.style.opacity = (this.isComposing || this.realInput.value.length > 0) ? '1' : '0';
+        }
+
         // ② 入力エリア：確定済み文字 ＋ 青いキャレットを表示
-        // 灰色文字はネイティブ入力欄（realInput）が表示されている時のみブラウザ側で描画される
         let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
         inputHtml += `<span class="char-current-caret"></span>`;
         this.visualText.innerHTML = inputHtml;
@@ -217,7 +221,7 @@ class TypingExam {
 
         this.realInput.addEventListener('compositionstart', () => { 
             this.isComposing = true; 
-            // 入力中：ネイティブの文字とカーソルを見せ、カスタムカーソルを隠す
+            // 2重カーソル防止：入力中はネイティブのカーソルと文字を見せ、青いカスタムカーソルを隠す
             this.realInput.style.opacity = '1'; 
             const caret = this.visualText.querySelector('.char-current-caret');
             if (caret) caret.style.visibility = 'hidden';
@@ -225,42 +229,40 @@ class TypingExam {
 
         this.realInput.addEventListener('compositionend', (e) => {
             this.isComposing = false;
-            // 確定後：ネイティブの文字を隠し、カスタムカーソルを復帰させる
+            // 確定後：ネイティブの文字とカーソルを隠し、青いカスタムカーソルを復帰させる
             this.realInput.style.opacity = '0'; 
             const caret = this.visualText.querySelector('.char-current-caret');
             if (caret) caret.style.visibility = 'visible';
             
-            // 確定した日本語を判定し、入力をリセット
-            this.evaluateString(e.data);
-            this.realInput.value = ''; 
-            this.updateDisplays();
-        });
-
-        this.realInput.addEventListener('compositionend', (e) => {
-            this.isComposing = false;
-            // 確定の合図が来たら、その文字列をジャッジに送る
+            // 確定した日本語を判定し、物理入力欄を完全に掃除する
             this.evaluateString(e.data);
             this.realInput.value = ''; 
             this.updateDisplays();
         });
 
         this.realInput.addEventListener('input', (e) => {
-            if (!this.isComposing) {
-                let val = this.realInput.value;
-
-                // 確定済みの文字が入力欄に残っている（残像）場合は、引き算して新入力分だけを取り出す
-                if (val && this.inputContent && val.startsWith(this.inputContent)) {
-                    val = val.substring(this.inputContent.length);
-                }
-
-                if (e.inputType !== 'deleteContentBackward' && val.length > 0) {
-                    // 判定が実行（消費）された場合のみ、物理入力欄を掃除してダブりを防ぐ
-                    if (this.evaluateString(val)) {
-                        this.realInput.value = '';
-                    }
-                }
-                this.updateDisplays();
+            if (this.isComposing) {
+                this.updateDisplays(); 
+                return;
             }
+
+            const val = this.realInput.value;
+            if (!val) return;
+
+            // 【赤フラッシュ防止ガード】確定時の「残像信号」による二重判定（ミス）を無視する
+            if (/[^a-zA-Z0-9\s!-/:-@[-`{-~]/.test(val)) {
+                this.realInput.value = '';
+                this.updateDisplays();
+                return;
+            }
+
+            if (e.inputType !== 'deleteContentBackward' && val.length > 0) {
+                // 英数字の直接入力のみ判定に進む
+                if (this.evaluateString(val)) {
+                    this.realInput.value = '';
+                }
+            }
+            this.updateDisplays();
         });
     }
 
@@ -282,7 +284,7 @@ class TypingExam {
                 matchedAny = true;
                 isConsumed = true;
             } else {
-                // 【重要】日本語を待っている時のアルファベット入力は、変換途中とみなし無視（ホールド）する
+                // 【論理ガード】日本語を待っている時のアルファベット入力は、変換途中とみなし無視（ホールド）する
                 const isAlpha = /^[a-zA-Zａ-ｚＡ-Ｚ0-9０-９]+$/.test(char);
                 const isTargetJp = targetChar && !/^[a-zA-Z0-9]/.test(targetChar);
                 
