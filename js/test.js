@@ -97,11 +97,23 @@ class TypingExam {
                 this.sampleBox.innerHTML = `<div style="font-size: 1.55rem; font-weight: 900; color: #2563eb; text-align: center; line-height: 110px;">テスト開始まで：${count}</div>`;
             } else {
                 clearInterval(countdownTimer);
+                
+                // 【物理リセット】IME（日本語入力）のセッションを一度切り、ブラウザの記憶を完全に初期化
+                this.realInput.blur();      // 1. フォーカスを外してIMEの状態をリセット
+                this.realInput.value = '';  // 2. 入力欄を空にする
+                this.realInput.setAttribute('autocomplete', 'off'); // 3. ブラウザの履歴機能を無効化
+                
+                this.isComposing = false;   
+                this.inputContent = ''; 
+                this.totalChars = 0;
+                
                 this.isStarted = true;
                 this.startTime = Date.now();
-                this.renderNextQuestion(); // ここで2行構造を生成
+                this.renderNextQuestion();
                 this.startTimer();
-                this.focusInput();
+                
+                // わずかに遅らせてフォーカスすることで、IMEを「真っさらな状態」で再起動させます
+                setTimeout(() => this.focusInput(), 10);
             }
         }, 1000);
     }startExam() {
@@ -260,8 +272,17 @@ class TypingExam {
 
         this.realInput.addEventListener('input', (e) => {
             if (!this.isComposing) {
-                if (e.inputType !== 'deleteContentBackward' && this.realInput.value.length > 0) {
-                    this.evaluateString(this.realInput.value);
+                const val = this.realInput.value;
+
+                // 【論理ガード】日本語を待っている時にアルファベットが届いた場合、
+                // IMEの変換途中の可能性があるため、判定を保留して入力を保持する（ホールド）
+                const isAlphaDraft = /^[a-zA-Z]+$/.test(val);
+                const isTargetJp = this.currentText[this.progress] && !/[a-zA-Z0-9]/.test(this.currentText[this.progress]);
+                
+                if (isAlphaDraft && isTargetJp) return; // 判定に進まず、入力欄も消さずに戻る
+
+                if (e.inputType !== 'deleteContentBackward' && val.length > 0) {
+                    this.evaluateString(val);
                     this.realInput.value = '';
                 }
                 this.updateDisplays();
