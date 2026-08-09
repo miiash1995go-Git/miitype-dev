@@ -215,8 +215,10 @@ class TypingExam {
             lineCurrent.innerHTML = `<span class="char-done">${done}</span><span>${remain}</span>`;
         }
 
-        // ② 入力エリア：確定済み文字 ＋ 青いキャレットを表示
+        // ② 入力エリア：確定済み文字 ＋ 「入力中のアルファベット」 ＋ キャレットを表示
+        const unconfirmed = this.realInput.value; // Enter押す前の文字を取得
         let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
+        inputHtml += `<span class="char-composing" style="color: #94a3b8; text-decoration: underline;">${unconfirmed}</span>`;
         inputHtml += `<span class="char-current-caret"></span>`;
         this.visualText.innerHTML = inputHtml;
 
@@ -307,21 +309,21 @@ class TypingExam {
                 this.inputContent += char;
                 matchedAny = true;
             } else {
-                // 2. 不一致の場合：論理ガード（IME起動遅れのアルファベット吸収）
-                const isInputAlpha = /[a-zA-Z]/.test(char); // 入力が半角英字か
-                const isTargetJapanese = targetChar && !/[a-zA-Z]/.test(targetChar); // 正解が日本語か
+                // 2. 不一致の場合：論理ガード（全角・半角アルファベットの吸収）
+                // 半角 a-z および 全角 ａ-ｚ Ａ-Ｚ を判定
+                const isAlpha = /^[a-zA-Zａ-ｚＡ-Ｚ0-9０-９]+$/.test(char);
+                const isTargetJp = targetChar && !/^[a-zA-Z0-9]+$/.test(targetChar);
                 
-                if (isInputAlpha && isTargetJapanese) {
-                    // 【論理ガード】日本語を打つべき場面で英字が届いた場合、ミス判定せず無視（吸収）して次を待つ
+                if (isAlpha && isTargetJp) {
+                    // 日本語入力中のアルファベット（全角含む）はミス判定せず、IMEの変換を待つ
                     continue; 
                 } else {
-                    // 本当のミス（日本語同士の打ち間違い、または英単語の打ち間違い）
+                    // 本当の打ち間違い
                     this.missCount++;
                     hasError = true;
                     break;
                 }
             }
-        }
 
         if (hasError) this.triggerDamageEffect();
 
