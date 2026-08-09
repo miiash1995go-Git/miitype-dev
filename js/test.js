@@ -216,9 +216,8 @@ class TypingExam {
 
         this.realInput.addEventListener('compositionstart', () => { 
             this.isComposing = true; 
-            this.realInput.style.opacity = '1'; 
-            const caret = this.visualText.querySelector('.char-current-caret');
-            if (caret) caret.style.visibility = 'hidden';
+            // 2重カーソル防止：ネイティブ入力欄は常に透明を維持し、カスタムカーソルも隠さない
+            this.realInput.style.opacity = '0'; 
         });
 
         this.realInput.addEventListener('compositionend', (e) => {
