@@ -52,13 +52,17 @@ class TypingExam {
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' || e.key === 'Esc') {
                 if (this.isStarted) {
-                    this.isStarted = false; 
+                    // 1. 試験中の場合：試験を中止して「結果画面」を表示する（ここで止める）
+                    this.isStarted = false; // 連鎖防止のため即座にフラグを折る
                     this.endExam(true);
                     e.preventDefault(); 
                     e.stopPropagation(); 
                 } else if (document.getElementById('result-screen').classList.contains('hidden')) {
+                    // 2. 開始前画面にいる場合のみ、Playへ戻る
                     window.location.href = './play.html';
                 }
+                // 3. 結果画面が表示されている状態でのEscは、何もしない（誤操作による即戻りを防止）
+                //    または、戻りたい場合は「もう一度Esc」ではなく画面のボタンを押させる
             }
         });
 
@@ -84,13 +88,33 @@ class TypingExam {
         this.isStarted = false;
         let count = 5;
 
-        // 【ハードリセット】カウントダウン中はフォーカスを外し、ブラウザとIMEの古い関係を断つ
-        if (this.realInput) {
-            this.realInput.blur();
-            this.realInput.value = '';
-            this.realInput.setAttribute('autocomplete', 'off');
-        }
+        // カウントダウン表示（中央配置）
+        this.sampleBox.innerHTML = `<div style="font-size: 1.55rem; font-weight: 900; color: #2563eb; text-align: center; line-height: 110px;">テスト開始まで：${count}</div>`;
+        
+        const countdownTimer = setInterval(() => {
+            count--;
+            if (count > 0) {
+                this.sampleBox.innerHTML = `<div style="font-size: 1.55rem; font-weight: 900; color: #2563eb; text-align: center; line-height: 110px;">テスト開始まで：${count}</div>`;
+            } else {
+                clearInterval(countdownTimer);
+                this.isStarted = true;
+                this.startTime = Date.now();
+                this.renderNextQuestion(); // ここで2行構造を生成
+                this.startTimer();
+                this.focusInput();
+            }
+        }, 1000);
+    }startExam() {
+        document.getElementById('start-screen').classList.add('hidden');
+        document.getElementById('game-screen').classList.remove('hidden');
+        
+        this.isStarted = false;
+        let count = 5;
 
+        // 【改良】カウントダウン開始と同時にフォーカスを奪取し、空振りを防ぐ
+        this.focusInput();
+
+        // 【改良】リマインド文を追加。line-heightを調整して中央寄せを維持
         const getCountdownHtml = (c) => `
             <div style="text-align: center; padding-top: 10px;">
                 <div style="font-size: 2.2rem; font-weight: 900; color: #2563eb; margin-bottom: 5px;">${c}</div>
@@ -103,22 +127,22 @@ class TypingExam {
             count--;
             if (count > 0) {
                 this.sampleBox.innerHTML = getCountdownHtml(count);
+                // 待機中もフォーカスを維持（ユーザーがよそ見クリックしても戻す）
+                this.focusInput();
             } else {
                 clearInterval(countdownTimer);
                 
-                // 開始の瞬間にすべての状態を初期化
+                // 物理リセット：ブラウザの入力保持機能とフライング状態を完全に排除
                 this.realInput.value = ''; 
-                this.isComposing = false; 
+                this.isComposing = false; // 変換中フラグを強制解除（最重要）
                 this.inputContent = ''; 
-                this.totalChars = 0;
-                this.progress = 0;
+                this.totalChars = 0;      // 2回目プレイ時のスコアを0に戻す
                 
                 this.isStarted = true;
                 this.startTime = Date.now();
                 
                 this.renderNextQuestion();
                 this.startTimer();
-                // 0になった瞬間にフォーカス。IMEが新鮮な状態で起動します
                 this.focusInput();
             }
         }, 1000);
@@ -168,17 +192,12 @@ class TypingExam {
     }
 
     updateDisplays() {
-        // ① サンプルエリア：1行目の進捗更新
+        // ① サンプルエリア：1行目(line-current)のみを更新対象にする
         const lineCurrent = document.getElementById('line-current');
         if (lineCurrent) {
             const done = this.currentText.substring(0, this.progress);
             const remain = this.currentText.substring(this.progress);
             lineCurrent.innerHTML = `<span class="char-done">${done}</span><span>${remain}</span>`;
-        }
-
-        // 【物理的解決】2回転目開始時に文字が消えないよう、入力欄に1文字でもあれば不透明度を強制的に1にする
-        if (this.realInput) {
-            this.realInput.style.opacity = (this.isComposing || this.realInput.value.length > 0) ? '1' : '0';
         }
 
         // ② 入力エリア：確定済み文字 ＋ 青いキャレットを表示
@@ -221,66 +240,37 @@ class TypingExam {
 
         this.realInput.addEventListener('compositionstart', () => { 
             this.isComposing = true; 
-            // 変換中もネイティブ入力欄を可視化する（変換文字を見せるため）
             this.realInput.style.opacity = '1'; 
+            const caret = this.visualText.querySelector('.char-current-caret');
+            if (caret) caret.style.visibility = 'hidden';
         });
 
         this.realInput.addEventListener('compositionend', (e) => {
             this.isComposing = false;
-            // 確定後はネイティブ入力欄を隠す
-            this.realInput.style.opacity = '0'; 
-            
-            // 確定した日本語を判定し、物理入力欄を完全に掃除する
-            this.evaluateString(e.data);
-            this.realInput.value = ''; 
-            this.updateDisplays();
-        });
-
-        this.realInput.addEventListener('compositionend', (e) => {
-            this.isComposing = false;
-            // 確定後：ネイティブの文字とカーソルを隠し、青いカスタムカーソルを復帰させる
             this.realInput.style.opacity = '0'; 
             const caret = this.visualText.querySelector('.char-current-caret');
             if (caret) caret.style.visibility = 'visible';
             
-            // 確定した日本語を判定し、物理入力欄を完全に掃除する
             this.evaluateString(e.data);
             this.realInput.value = ''; 
-            this.updateDisplays();
         });
 
         this.realInput.addEventListener('input', (e) => {
-            if (this.isComposing) {
-                this.updateDisplays(); 
-                return;
-            }
-
-            const val = this.realInput.value;
-            if (!val) return;
-
-            // 【赤フラッシュ防止ガード】確定時の「残像信号」による二重判定（ミス）を無視する
-            if (/[^a-zA-Z0-9\s!-/:-@[-`{-~]/.test(val)) {
-                this.realInput.value = '';
-                this.updateDisplays();
-                return;
-            }
-
-            if (e.inputType !== 'deleteContentBackward' && val.length > 0) {
-                // 英数字の直接入力のみ判定に進む
-                if (this.evaluateString(val)) {
+            if (!this.isComposing) {
+                if (e.inputType !== 'deleteContentBackward' && this.realInput.value.length > 0) {
+                    this.evaluateString(this.realInput.value);
                     this.realInput.value = '';
                 }
+                this.updateDisplays();
             }
-            this.updateDisplays();
         });
     }
 
     evaluateString(committedStr) {
-        if (!this.isStarted || this.isTransitioning || !committedStr) return false;
+        if (!this.isStarted || this.isTransitioning || !committedStr) return;
 
         let matchedAny = false;
         let hasError = false;
-        let isConsumed = false; 
 
         for (let i = 0; i < committedStr.length; i++) {
             const char = committedStr[i];
@@ -291,20 +281,10 @@ class TypingExam {
                 this.totalChars++;
                 this.inputContent += char;
                 matchedAny = true;
-                isConsumed = true;
             } else {
-                // 【論理ガード】日本語を待っている時のアルファベット入力は、変換途中とみなし無視（ホールド）する
-                const isAlpha = /^[a-zA-Zａ-ｚＡ-Ｚ0-9０-９]+$/.test(char);
-                const isTargetJp = targetChar && !/^[a-zA-Z0-9]/.test(targetChar);
-                
-                if (isAlpha && isTargetJp) {
-                    continue; 
-                } else {
-                    this.missCount++;
-                    hasError = true;
-                    isConsumed = true;
-                    break;
-                }
+                this.missCount++;
+                hasError = true;
+                break;
             }
         }
 
@@ -314,21 +294,28 @@ class TypingExam {
             document.getElementById('test-char-count').innerText = this.totalChars;
             if (this.progress >= this.currentText.length) {
                 this.isTransitioning = true;
+                
+                // 完了時：ラグを 300ms -> 150ms に短縮し、即座に次弾を装填
                 setTimeout(() => {
                     const stack = document.getElementById('sample-inner');
-                    if (stack) stack.classList.add('is-sliding');
+                    if (stack) {
+                        stack.classList.add('is-sliding');
+                    }
+
+                    // CSS遷移(0.2s)に合わせて 200ms 後にデータを入れ替える
                     setTimeout(() => {
                         this.currentText = this.nextText;
                         this.nextText = this.pickNextQuestion().kanji;
+                        
                         this.renderNextQuestion();
                         this.isTransitioning = false;
                         this.focusInput();
                     }, 200);
+
                 }, 150); 
             }
         }
         this.updateDisplays();
-        return isConsumed; 
     }
 
     triggerDamageEffect() {
