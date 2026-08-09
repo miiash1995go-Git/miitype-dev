@@ -280,14 +280,25 @@ class TypingExam {
             const targetChar = this.currentText[this.progress];
 
             if (char === targetChar) {
+                // 1. 一致する場合：正解として処理
                 this.progress++;
                 this.totalChars++;
                 this.inputContent += char;
                 matchedAny = true;
             } else {
-                this.missCount++;
-                hasError = true;
-                break;
+                // 2. 不一致の場合：論理ガード（IME起動遅れのアルファベット吸収）
+                const isInputAlpha = /[a-zA-Z]/.test(char); // 入力が半角英字か
+                const isTargetJapanese = targetChar && !/[a-zA-Z]/.test(targetChar); // 正解が日本語か
+                
+                if (isInputAlpha && isTargetJapanese) {
+                    // 【論理ガード】日本語を打つべき場面で英字が届いた場合、ミス判定せず無視（吸収）して次を待つ
+                    continue; 
+                } else {
+                    // 本当のミス（日本語同士の打ち間違い、または英単語の打ち間違い）
+                    this.missCount++;
+                    hasError = true;
+                    break;
+                }
             }
         }
 
