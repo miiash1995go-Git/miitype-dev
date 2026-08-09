@@ -82,39 +82,31 @@ class TypingExam {
     }
 
     startExam() {
+        // 画面の切り替え
         document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('game-screen').classList.remove('hidden');
         
+        // --- 1. 内部状態の完全リセット（2回転目開始バグの抑制） ---
         this.isStarted = false;
-        let count = 5;
-
-        // カウントダウン表示（中央配置）
-        this.sampleBox.innerHTML = `<div style="font-size: 1.55rem; font-weight: 900; color: #2563eb; text-align: center; line-height: 110px;">テスト開始まで：${count}</div>`;
+        this.isTransitioning = false;
+        this.totalChars = 0;
+        this.missCount = 0;
+        this.progress = 0;
+        this.inputContent = ''; 
+        this.composingText = '';
+        this.isComposing = false;
+        this.currentText = '';
+        this.nextText = '';
+        this.timeLeft = 300;
         
-        const countdownTimer = setInterval(() => {
-            count--;
-            if (count > 0) {
-                this.sampleBox.innerHTML = `<div style="font-size: 1.55rem; font-weight: 900; color: #2563eb; text-align: center; line-height: 110px;">テスト開始まで：${count}</div>`;
-            } else {
-                clearInterval(countdownTimer);
-                this.isStarted = true;
-                this.startTime = Date.now();
-                this.renderNextQuestion(); // ここで2行構造を生成
-                this.startTimer();
-                this.focusInput();
-            }
-        }, 1000);
-    }startExam() {
-        document.getElementById('start-screen').classList.add('hidden');
-        document.getElementById('game-screen').classList.remove('hidden');
-        
-        this.isStarted = false;
-        let count = 5;
+        // UI表示の初期化
+        document.getElementById('test-char-count').innerText = "0";
+        document.getElementById('test-timer').innerText = "05:00";
 
-        // 【改良】カウントダウン開始と同時にフォーカスを奪取し、空振りを防ぐ
+        let count = 5;
         this.focusInput();
 
-        // 【改良】リマインド文を追加。line-heightを調整して中央寄せを維持
+        // カウントダウンHTMLの生成（日本語入力リマインド付き）
         const getCountdownHtml = (c) => `
             <div style="text-align: center; padding-top: 10px;">
                 <div style="font-size: 2.2rem; font-weight: 900; color: #2563eb; margin-bottom: 5px;">${c}</div>
@@ -127,23 +119,23 @@ class TypingExam {
             count--;
             if (count > 0) {
                 this.sampleBox.innerHTML = getCountdownHtml(count);
-                // 待機中もフォーカスを維持（ユーザーがよそ見クリックしても戻す）
                 this.focusInput();
             } else {
                 clearInterval(countdownTimer);
                 
-                // 物理リセット：ブラウザの入力保持機能とフライング状態を完全に排除
-                this.realInput.value = ''; 
-                this.isComposing = false; // 変換中フラグを強制解除（最重要）
-                this.inputContent = ''; 
-                this.totalChars = 0;      // 2回目プレイ時のスコアを0に戻す
+                // --- 2. カウントダウン終了時の物理クリーンアップ ---
+                // IMEセッションを一度切り、バッファ（変換途中の残骸）を強制廃棄
+                this.realInput.value = '';
+                this.realInput.blur();
                 
-                this.isStarted = true;
-                this.startTime = Date.now();
-                
-                this.renderNextQuestion();
-                this.startTimer();
-                this.focusInput();
+                // わずかな遅延を置いてから再フォーカスし、セッションを新しく開始させる
+                setTimeout(() => {
+                    this.isStarted = true;
+                    this.startTime = Date.now();
+                    this.renderNextQuestion();
+                    this.startTimer();
+                    this.focusInput();
+                }, 20);
             }
         }, 1000);
     }
