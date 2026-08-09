@@ -84,7 +84,7 @@ class TypingExam {
         this.isStarted = false;
         let count = 5;
 
-        // 【ハードリセット】カウントダウン中はフォーカスを外し、ブラウザとIMEの古い関係を完全に断ち切る
+        // 【ハードリセット】カウントダウン中はフォーカスを外し、ブラウザとIMEの古い関係を断つ
         if (this.realInput) {
             this.realInput.blur();
             this.realInput.value = '';
@@ -106,7 +106,7 @@ class TypingExam {
             } else {
                 clearInterval(countdownTimer);
                 
-                // 開始の瞬間に、新品の状態として初期化
+                // 開始の瞬間にすべての状態を初期化
                 this.realInput.value = ''; 
                 this.isComposing = false; 
                 this.inputContent = ''; 
@@ -118,7 +118,7 @@ class TypingExam {
                 
                 this.renderNextQuestion();
                 this.startTimer();
-                // 0になった瞬間に初めてフォーカスし、IMEを新鮮な状態で起動させる
+                // 0になった瞬間にフォーカス。IMEが新鮮な状態で起動します
                 this.focusInput();
             }
         }, 1000);
@@ -168,7 +168,7 @@ class TypingExam {
     }
 
     updateDisplays() {
-        // ① サンプルエリア：1行目の進捗更新
+        // ① サンプルエリアの更新
         const lineCurrent = document.getElementById('line-current');
         if (lineCurrent) {
             const done = this.currentText.substring(0, this.progress);
@@ -176,18 +176,10 @@ class TypingExam {
             lineCurrent.innerHTML = `<span class="char-done">${done}</span><span>${remain}</span>`;
         }
 
-        // ② 入力エリア：確定文字 ＋ 「差分（入力中の文字のみ）」を表示
-        let rawVal = (this.realInput) ? this.realInput.value : "";
-        let unconfirmed = rawVal;
-
-        // 【引き算ロジック】入力欄に残っている文字から、すでに確定済みの文字（inputContent）を削る
-        if (unconfirmed && this.inputContent && unconfirmed.startsWith(this.inputContent)) {
-            unconfirmed = unconfirmed.substring(this.inputContent.length);
-        } else if (unconfirmed && this.inputContent && this.inputContent.endsWith(unconfirmed)) {
-            // 日本語確定時の残像（末尾が重複している場合）は表示しない
-            unconfirmed = "";
-        }
-
+        // ② 入力エリアの更新
+        // 未確定文字（灰色）は、入力欄の中身をそのまま映す
+        const unconfirmed = (this.realInput) ? this.realInput.value : "";
+        
         let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
         inputHtml += `<span class="char-composing" style="color: #94a3b8; text-decoration: underline;">${unconfirmed}</span>`;
         inputHtml += `<span class="char-current-caret"></span>`;
@@ -235,35 +227,35 @@ class TypingExam {
 
         this.realInput.addEventListener('compositionend', (e) => {
             this.isComposing = false;
-            this.realInput.style.opacity = '0'; 
-            const caret = this.visualText.querySelector('.char-current-caret');
-            if (caret) caret.style.visibility = 'visible';
-            
-            // 確定した日本語を判定し、箱を空にする
+            // 確定の合図が来たら、その文字列をジャッジに送る
             this.evaluateString(e.data);
             this.realInput.value = ''; 
+            this.updateDisplays();
         });
 
         this.realInput.addEventListener('input', (e) => {
-            if (!this.isComposing) {
-                let val = this.realInput.value;
-
-                // 【引き算ロジック】確定済みの文字が含まれている場合、その分を削って「新しい入力分」だけを取り出す
-                if (val && this.inputContent && val.startsWith(this.inputContent)) {
-                    val = val.substring(this.inputContent.length);
-                } else if (val && this.inputContent && this.inputContent.endsWith(val)) {
-                    // 入力欄の中身が確定済みの文字と重複している（残像）なら無視
-                    val = "";
-                }
-
-                if (e.inputType !== 'deleteContentBackward' && val.length > 0) {
-                    // 真に新しい入力分だけを判定し、判定に成功（文字を消費）したら入力をクリア
-                    if (this.evaluateString(val)) {
-                        this.realInput.value = '';
-                    }
-                }
-                this.updateDisplays();
+            if (this.isComposing) {
+                this.updateDisplays(); // 変換中は表示を更新するだけ
+                return;
             }
+
+            const val = this.realInput.value;
+            if (e.inputType !== 'deleteContentBackward' && val.length > 0) {
+                // 【判定ガード】日本語（漢字等）を待っている時に英数字が届いた場合、
+                // IMEの入力途中とみなして、判定（ミス）を保留し消去もせず次を待つ
+                const isInputAlpha = /^[a-zA-Z0-9]+$/.test(val);
+                const isTargetJp = this.currentText[this.progress] && !/^[a-zA-Z0-9]/.test(this.currentText[this.progress]);
+                
+                if (isInputAlpha && isTargetJp) {
+                    this.updateDisplays();
+                    return; 
+                }
+
+                // 英単語問題、または直接入力された文字は即座に判定
+                this.evaluateString(val);
+                this.realInput.value = '';
+            }
+            this.updateDisplays();
         });
     }
 
