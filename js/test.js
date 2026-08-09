@@ -168,7 +168,7 @@ class TypingExam {
     }
 
     updateDisplays() {
-        // ① サンプルエリア：1行目(line-current)のみを更新対象にする
+        // ① サンプルエリア：1行目の進捗更新
         const lineCurrent = document.getElementById('line-current');
         if (lineCurrent) {
             const done = this.currentText.substring(0, this.progress);
@@ -176,17 +176,9 @@ class TypingExam {
             lineCurrent.innerHTML = `<span class="char-done">${done}</span><span>${remain}</span>`;
         }
 
-        // ② 入力エリア：確定済み文字 ＋ 「入力中のアルファベット」 ＋ 青いキャレットを表示
-        // 究極改良：アルファベット入力（変換前）は常に表示し、確定後の日本語の「残像」は表示しないことでダブりを防ぐ
-        let unconfirmed = "";
-        if (this.realInput) {
-            const val = this.realInput.value;
-            const hasJapanese = /[^a-zA-Z0-9\s!-/:-@[-`{-~]/.test(val);
-            // 変換中フラグが立っているか、または入力が英数字のみ（IME起動遅れ）の場合に表示
-            if (this.isComposing || (val && !hasJapanese)) {
-                unconfirmed = val;
-            }
-        }
+        // ② 入力エリア：確定文字 ＋ 「入力中の文字（変換前）」 ＋ キャレットを表示
+        // 入力欄に文字があれば、フラグに関わらず常に表示して無反応感をなくす
+        const unconfirmed = (this.realInput) ? this.realInput.value : ""; 
         let inputHtml = `<span class="char-confirmed">${this.inputContent}</span>`;
         inputHtml += `<span class="char-composing" style="color: #94a3b8; text-decoration: underline;">${unconfirmed}</span>`;
         inputHtml += `<span class="char-current-caret"></span>`;
@@ -235,12 +227,10 @@ class TypingExam {
         this.realInput.addEventListener('compositionend', (e) => {
             this.isComposing = false;
             this.realInput.style.opacity = '0'; 
-            
-            this.evaluateString(e.data);
-            this.realInput.value = ''; // 確定した瞬間に物理的に箱を空にする
             const caret = this.visualText.querySelector('.char-current-caret');
             if (caret) caret.style.visibility = 'visible';
             
+            // 確定した日本語を判定し、箱を空にする
             this.evaluateString(e.data);
             this.realInput.value = ''; 
         });
@@ -248,16 +238,11 @@ class TypingExam {
         this.realInput.addEventListener('input', (e) => {
             if (!this.isComposing) {
                 const val = this.realInput.value;
-
-                // 【幽霊入力ガード】確定直後の残像（日本語を含む信号）が届いた場合は、判定せず無視する
-                if (val && /[^a-zA-Z0-9\s!-/:-@[-`{-~]/.test(val)) {
-                    this.realInput.value = ''; // 次の入力に備えて念のため空にする
-                    return;
-                }
-
                 if (e.inputType !== 'deleteContentBackward' && val.length > 0) {
-                    this.evaluateString(val);
-                    this.realInput.value = '';
+                    // 判定にかけ、実際に文字が「消費」された場合のみ入力欄を空にする（残像ダブり防止）
+                    if (this.evaluateString(val)) {
+                        this.realInput.value = '';
+                    }
                 }
                 this.updateDisplays();
             }
@@ -265,35 +250,39 @@ class TypingExam {
     }
 
     evaluateString(committedStr) {
-        if (!this.isStarted || this.isTransitioning || !committedStr) return;
+        if (!this.isStarted || this.isTransitioning || !committedStr) return false;
 
         let matchedAny = false;
         let hasError = false;
+        let isConsumed = false; // 判定が実行されたかのフラグ
 
         for (let i = 0; i < committedStr.length; i++) {
             const char = committedStr[i];
             const targetChar = this.currentText[this.progress];
 
             if (char === targetChar) {
+                // 正解の場合
                 this.progress++;
                 this.totalChars++;
                 this.inputContent += char;
                 matchedAny = true;
+                isConsumed = true;
             } else {
-                // 【論理ガード】全角・半角アルファベットが届いた場合、日本語入力中（変換中）とみなし、ミス判定せず無視して次を待つ
+                // 不一致の場合：論理ガード（日本語待ちのアルファベットは無視）
                 const isAlpha = /^[a-zA-Zａ-ｚＡ-Ｚ0-9０-９]+$/.test(char);
                 const isTargetJp = targetChar && !/^[a-zA-Z0-9]+$/.test(targetChar);
                 
                 if (isAlpha && isTargetJp) {
                     continue; 
                 } else {
-                    // 本当の打ち間違い（日本語同士の相違、または英単語のミス）
+                    // 本当の打ち間違い
                     this.missCount++;
                     hasError = true;
+                    isConsumed = true;
                     break;
                 }
             }
-        } // ← ここに for 文を閉じるカッコが不足していました
+        }
 
         if (hasError) this.triggerDamageEffect();
 
@@ -301,28 +290,21 @@ class TypingExam {
             document.getElementById('test-char-count').innerText = this.totalChars;
             if (this.progress >= this.currentText.length) {
                 this.isTransitioning = true;
-                
-                // 完了時：ラグを 300ms -> 150ms に短縮し、即座に次弾を装填
                 setTimeout(() => {
                     const stack = document.getElementById('sample-inner');
-                    if (stack) {
-                        stack.classList.add('is-sliding');
-                    }
-
-                    // CSS遷移(0.2s)に合わせて 200ms 後にデータを入れ替える
+                    if (stack) stack.classList.add('is-sliding');
                     setTimeout(() => {
                         this.currentText = this.nextText;
                         this.nextText = this.pickNextQuestion().kanji;
-                        
                         this.renderNextQuestion();
                         this.isTransitioning = false;
                         this.focusInput();
                     }, 200);
-
                 }, 150); 
             }
         }
         this.updateDisplays();
+        return isConsumed; // 判定が成功・または間違いとして消費された場合のみtrueを返す
     }
 
     triggerDamageEffect() {
