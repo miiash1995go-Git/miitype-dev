@@ -81,52 +81,20 @@ class TypingExam {
         }
     }
 
-    startExam() {
+startExam() {
         document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('game-screen').classList.remove('hidden');
         
         this.isStarted = false;
         let count = 5;
 
-        // カウントダウン表示（中央配置）
-        this.sampleBox.innerHTML = `<div style="font-size: 1.55rem; font-weight: 900; color: #2563eb; text-align: center; line-height: 110px;">テスト開始まで：${count}</div>`;
-        
-        const countdownTimer = setInterval(() => {
-            count--;
-            if (count > 0) {
-                this.sampleBox.innerHTML = `<div style="font-size: 1.55rem; font-weight: 900; color: #2563eb; text-align: center; line-height: 110px;">テスト開始まで：${count}</div>`;
-            } else {
-                clearInterval(countdownTimer);
-                
-                // 【物理リセット】IME（日本語入力）のセッションを一度切り、ブラウザの記憶を完全に初期化
-                this.realInput.blur();      // 1. フォーカスを外してIMEの状態をリセット
-                this.realInput.value = '';  // 2. 入力欄を空にする
-                this.realInput.setAttribute('autocomplete', 'off'); // 3. ブラウザの履歴機能を無効化
-                
-                this.isComposing = false;   
-                this.inputContent = ''; 
-                this.totalChars = 0;
-                
-                this.isStarted = true;
-                this.startTime = Date.now();
-                this.renderNextQuestion();
-                this.startTimer();
-                
-                // わずかに遅らせてフォーカスすることで、IMEを「真っさらな状態」で再起動させます
-                setTimeout(() => this.focusInput(), 10);
-            }
-        }, 1000);
-    }startExam() {
-        document.getElementById('start-screen').classList.add('hidden');
-        document.getElementById('game-screen').classList.remove('hidden');
-        
-        this.isStarted = false;
-        let count = 5;
+        // 【物理リセット】開始直前の掃除（IME切断・入力欄クリア）
+        if (this.realInput) {
+            this.realInput.blur();
+            this.realInput.value = '';
+            this.realInput.setAttribute('autocomplete', 'off');
+        }
 
-        // 【改良】カウントダウン開始と同時にフォーカスを奪取し、空振りを防ぐ
-        this.focusInput();
-
-        // 【改良】リマインド文を追加。line-heightを調整して中央寄せを維持
         const getCountdownHtml = (c) => `
             <div style="text-align: center; padding-top: 10px;">
                 <div style="font-size: 2.2rem; font-weight: 900; color: #2563eb; margin-bottom: 5px;">${c}</div>
@@ -139,26 +107,24 @@ class TypingExam {
             count--;
             if (count > 0) {
                 this.sampleBox.innerHTML = getCountdownHtml(count);
-                // 待機中もフォーカスを維持（ユーザーがよそ見クリックしても戻す）
                 this.focusInput();
             } else {
                 clearInterval(countdownTimer);
                 
-                // 【追加対策】物理リセット強化：IME（日本語入力）のセッションを一度切り、ブラウザの記憶を完全に初期化
-                this.realInput.blur();      // 1. フォーカスを強制的に外してIMEの予測・変換状態をリセット
-                this.realInput.value = '';  // 2. 入力欄を空にする
-                this.realInput.setAttribute('autocomplete', 'off'); // 3. ブラウザの入力履歴機能を念押しで無効化
-                
-                this.isComposing = false;   // 変換中フラグを解除
-                this.inputContent = '';     // 入力済み内容をクリア
-                this.totalChars = 0;        // スコアを0に戻す
+                // 【物理リセット実行】2回転目以降のゴミを完全に排除
+                this.realInput.value = ''; 
+                this.isComposing = false; 
+                this.inputContent = ''; 
+                this.totalChars = 0;
+                this.progress = 0;
                 
                 this.isStarted = true;
                 this.startTime = Date.now();
                 
                 this.renderNextQuestion();
                 this.startTimer();
-                this.focusInput();
+                // わずかに遅らせてフォーカスすることでIMEを正常起動させる
+                setTimeout(() => this.focusInput(), 10);
             }
         }, 1000);
     }
