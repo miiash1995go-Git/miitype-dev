@@ -52,17 +52,13 @@ class TypingExam {
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' || e.key === 'Esc') {
                 if (this.isStarted) {
-                    // 1. 試験中の場合：試験を中止して「結果画面」を表示する（ここで止める）
-                    this.isStarted = false; // 連鎖防止のため即座にフラグを折る
+                    this.isStarted = false; 
                     this.endExam(true);
                     e.preventDefault(); 
                     e.stopPropagation(); 
                 } else if (document.getElementById('result-screen').classList.contains('hidden')) {
-                    // 2. 開始前画面にいる場合のみ、Playへ戻る
                     window.location.href = './play.html';
                 }
-                // 3. 結果画面が表示されている状態でのEscは、何もしない（誤操作による即戻りを防止）
-                //    または、戻りたい場合は「もう一度Esc」ではなく画面のボタンを押させる
             }
         });
 
@@ -81,14 +77,14 @@ class TypingExam {
         }
     }
 
-startExam() {
+    startExam() {
         document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('game-screen').classList.remove('hidden');
         
         this.isStarted = false;
         let count = 5;
 
-        // 【物理リセット】開始直前の掃除（IME切断・入力欄クリア）
+        // 【物理リセット】IME（日本語入力）を一度切り、ブラウザの古い記憶を掃除
         if (this.realInput) {
             this.realInput.blur();
             this.realInput.value = '';
@@ -111,7 +107,7 @@ startExam() {
             } else {
                 clearInterval(countdownTimer);
                 
-                // 【物理リセット実行】2回転目以降のゴミを完全に排除
+                // 【開始直前の最終リセット】
                 this.realInput.value = ''; 
                 this.isComposing = false; 
                 this.inputContent = ''; 
@@ -123,7 +119,7 @@ startExam() {
                 
                 this.renderNextQuestion();
                 this.startTimer();
-                // わずかに遅らせてフォーカスすることでIMEを正常起動させる
+                // 描画を待ってからフォーカスすることでIMEを正常に起動させる
                 setTimeout(() => this.focusInput(), 10);
             }
         }, 1000);
