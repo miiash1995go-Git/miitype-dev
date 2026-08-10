@@ -183,8 +183,11 @@ handleResize() {
                 btn.classList.add('active');
                 this.currentCategoryId = btn.dataset.cat;
 
-                // 【新規】ローマ字基礎カテゴリのみ軽量化（200文字/3分）
-                if (this.currentCategoryId === 'roman_pure' || this.currentCategoryId === 'roman_complex') {
+                // カテゴリ別の制限設定
+                if (this.currentCategoryId === 'tenkey') {
+                    this.targetLimit = 200; // テンキーは200文字
+                    this.timeLimitMs = 180000;
+                } else if (this.currentCategoryId === 'roman_pure' || this.currentCategoryId === 'roman_complex') {
                     this.targetLimit = 200;
                     this.timeLimitMs = 180000;
                 } else {
@@ -192,6 +195,7 @@ handleResize() {
                     this.timeLimitMs = 240000;
                 }
 
+                this.renderKeyboard(); // カテゴリ変更に合わせてキーボード再描画
                 this.updateBestScoreDisplay();
             });
         });
@@ -696,28 +700,67 @@ if (typeof gtag === 'function') {
         return "E-";
     }
     renderKeyboard() {
-        const layout = [["1","2","3","4","5","6","7","8","9","0","-","^"],["Q","W","E","R","T","Y","U","I","O","P","@"],["A","S","D","F","G","H","J","K","L",";",":","]"],["Shift","Z","X","C","V","B","N","M",",",".","/","\\","Shift"],["Space"]];
-        const fingerMap = {"1":"lp","Q":"lp","A":"lp","Z":"lp","Shift":"lp","2":"lr","W":"lr","S":"lr","X":"lr","3":"lm","E":"lm","D":"lm","C":"lm","4":"li","5":"li","R":"li","T":"li","F":"li","G":"li","V":"li","B":"li","6":"ri","7":"ri","Y":"ri","U":"ri","H":"ri","J":"ri","N":"ri","M":"ri","8":"rm","I":"rm","K":"rm",",":"rm","9":"rr","O":"rr","L":"rr",".":"rr","0":"rp","-":"rp","^":"rp","P":"rp","@":"rp",";":"rp",":":"rp","]":"rp","/":"rp","\\":"rp"};
         const container = document.getElementById('keyboard-container');
         if(!container) return;
         container.innerHTML = "";
-        layout.forEach((row, i) => {
-            const rowEl = document.createElement('div'); rowEl.className = `keyboard-row row-${i}`;
-            row.forEach((key, j) => {
-                const kEl = document.createElement('div'); kEl.className = 'key';
-                if(key === "Space") kEl.classList.add('space');
-                if(key === "Shift") kEl.classList.add('wide-shift');
-                if (this.keyboardColorEnabled && fingerMap[key]) kEl.classList.add(`f-${fingerMap[key]}`);
-                kEl.innerText = key;
-                let id = key.toLowerCase();
-                if (key === "Space") id = "space";
-                if (key === "\\") id = "backslash";
-                if (key === "Shift") id = (j === 0) ? "shift-l" : "shift-r";
-                kEl.id = `k-${id}`;
-                rowEl.appendChild(kEl);
+
+        if (this.currentCategoryId === 'tenkey') {
+            // テンキー配列のレンダリング
+            container.classList.add('tenkey-mode');
+            const tkLayout = [
+                ["", "/", "*", "-"],
+                ["7", "8", "9", "+"],
+                ["4", "5", "6"],
+                ["1", "2", "3", "Ent"],
+                ["0", ".", ""]
+            ];
+            
+            tkLayout.forEach((row, i) => {
+                const rowEl = document.createElement('div'); 
+                rowEl.className = `keyboard-row tk-row-${i}`;
+                row.forEach(key => {
+                    const kEl = document.createElement('div'); 
+                    kEl.className = 'key tk-key';
+                    if (key === "") kEl.classList.add('tk-empty');
+                    if (key === "0") kEl.classList.add('tk-wide');
+                    if (key === "+" || key === "Ent") kEl.classList.add('tk-tall');
+                    kEl.innerText = key;
+                    let id = key;
+                    if (key === "/") id = "divide";
+                    if (key === "*") id = "multiply";
+                    if (key === "-") id = "minus";
+                    if (key === "+") id = "plus";
+                    if (key === ".") id = "decimal";
+                    if (key === "Ent") id = "enter";
+                    kEl.id = `k-${id}`;
+                    rowEl.appendChild(kEl);
+                });
+                container.appendChild(rowEl);
             });
-            container.appendChild(rowEl);
-        });
+        } else {
+            // 通常QWERTY配列のレンダリング
+            container.classList.remove('tenkey-mode');
+            const layout = [["1","2","3","4","5","6","7","8","9","0","-","^"],["Q","W","E","R","T","Y","U","I","O","P","@"],["A","S","D","F","G","H","J","K","L",";",":","]"],["Shift","Z","X","C","V","B","N","M",",",".","/","\\","Shift"],["Space"]];
+            const fingerMap = {"1":"lp","Q":"lp","A":"lp","Z":"lp","Shift":"lp","2":"lr","W":"lr","S":"lr","X":"lr","3":"lm","E":"lm","D":"lm","C":"lm","4":"li","5":"li","R":"li","T":"li","F":"li","G":"li","V":"li","B":"li","6":"ri","7":"ri","Y":"ri","U":"ri","H":"ri","J":"ri","N":"ri","M":"ri","8":"rm","I":"rm","K":"rm",",":"rm","9":"rr","O":"rr","L":"rr",".":"rr","0":"rp","-":"rp","^":"rp","P":"rp","@":"rp",";":"rp",":":"rp","]":"rp","/":"rp","\\":"rp"};
+            
+            layout.forEach((row, i) => {
+                const rowEl = document.createElement('div'); rowEl.className = `keyboard-row row-${i}`;
+                row.forEach((key, j) => {
+                    const kEl = document.createElement('div'); kEl.className = 'key';
+                    if(key === "Space") kEl.classList.add('space');
+                    if(key === "Shift") kEl.classList.add('wide-shift');
+                    if (this.keyboardColorEnabled && fingerMap[key]) kEl.classList.add(`f-${fingerMap[key]}`);
+                    kEl.innerText = key;
+                    let id = key.toLowerCase();
+                    if (key === "Space") id = "space";
+                    if (key === "\\") id = "backslash";
+                    if (key === "Shift") id = (j === 0) ? "shift-l" : "shift-r";
+                    kEl.id = `k-${id}`;
+                    rowEl.appendChild(kEl);
+                });
+                container.appendChild(rowEl);
+            });
+        }
     }
 
     startTestTimer() {

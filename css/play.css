@@ -1070,3 +1070,55 @@ body.game-body .summary-btn:hover {
     border-bottom-color: #eeeeee;
     border-left-color: #eeeeee;
 }
+
+/* ============================================================
+   テンキー専用レイアウト (v20.8.10)
+   ============================================================ */
+#keyboard-container.tenkey-mode {
+    width: 240px !important; /* テンキーなので幅を絞る */
+    margin-left: auto !important; /* 右側に寄せる */
+    margin-right: 40px !important;
+    padding: 15px !important;
+    display: block !important;
+}
+
+#keyboard-container.tenkey-mode .keyboard-row {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    padding-left: 0 !important;
+    margin-bottom: 5px !important;
+}
+
+.tk-key {
+    width: 48px !important;
+    height: 48px !important;
+    margin: 2px !important;
+}
+
+.tk-empty {
+    visibility: hidden;
+}
+
+.tk-wide {
+    width: 102px !important; /* 0ボタン */
+}
+
+/* +とEnterの縦長処理 */
+.tk-row-1 { position: relative; }
+.tk-row-3 { position: relative; }
+
+.tk-tall {
+    height: 102px !important;
+    position: absolute;
+    right: 0;
+    z-index: 10;
+}
+/* 配置の微調整：QWERTYと共存させるための相対位置 */
+#k-plus { top: 0; }
+#k-enter { top: 0; }
+
+#keyboard-container.tenkey-mode .tk-row-2,
+#keyboard-container.tenkey-mode .tk-row-4 {
+    padding-right: 54px !important; /* 縦長ボタンのスペースを空ける */
+}

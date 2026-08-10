@@ -10,7 +10,7 @@
     {"id": "excel_mos", "name": "Excel(MOS)", "file": "excel_mos.json"},
     {"id": "ai_terms", "name": "AI用語", "file": "ai_terms.json"},
     {"id": "business", "name": "ビジネス", "file": "business.json"},
-    {"id": "career", "name": "就職・転職", "file": "career.json"},
+    {"id": "tenkey", "name": "テンキー", "file": "tenkey_practice.json"},
     {"id": "daily", "name": "日常会話", "file": "daily.json"},
     {"id": "test_5min", "name": "5分間タイピングテスト", "file": "test_5min.json"},
     {"id": "total_test", "name": "ぱそトレ！総合判定", "file": "all"}
