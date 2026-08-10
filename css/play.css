@@ -1072,53 +1072,53 @@ body.game-body .summary-btn:hover {
 }
 
 /* ============================================================
-   テンキー専用レイアウト (v20.8.10)
+   テンキー専用レイアウト (v20.8.10.Fixed)
    ============================================================ */
 #keyboard-container.tenkey-mode {
-    width: 240px !important; /* テンキーなので幅を絞る */
-    margin-left: auto !important; /* 右側に寄せる */
+    width: 260px !important;
+    margin-left: auto !important;
     margin-right: 40px !important;
     padding: 15px !important;
-    display: block !important;
+    display: grid !important;
+    /* 4列、5行の均等グリッドを定義 */
+    grid-template-columns: repeat(4, 54px);
+    grid-template-rows: repeat(5, 54px);
+    gap: 8px !important;
+    background-color: #f1f2f6;
+    border-radius: 18px;
+    justify-content: center;
 }
 
-#keyboard-container.tenkey-mode .keyboard-row {
+/* 共通キー設定の初期化 */
+#keyboard-container.tenkey-mode .tk-key {
     width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
     display: flex !important;
-    justify-content: space-between !important;
-    padding-left: 0 !important;
-    margin-bottom: 5px !important;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box !important;
 }
 
-.tk-key {
-    width: 48px !important;
-    height: 48px !important;
-    margin: 2px !important;
+/* 特殊キーの結合（スパン）定義 */
+#k-plus {
+    grid-area: 2 / 4 / 4 / 5; /* 2行目から4行目の手前まで、4列目 */
 }
 
+#k-enter {
+    grid-area: 4 / 4 / 6 / 5; /* 4行目から6行目の手前まで、4列目 */
+}
+
+#k-0 {
+    grid-area: 5 / 1 / 6 / 3; /* 5行目、1列目から3列目の手前まで（2列分） */
+}
+
+/* 空白セルの非表示 */
 .tk-empty {
     visibility: hidden;
 }
 
-.tk-wide {
-    width: 102px !important; /* 0ボタン */
-}
-
-/* +とEnterの縦長処理 */
-.tk-row-1 { position: relative; }
-.tk-row-3 { position: relative; }
-
-.tk-tall {
-    height: 102px !important;
-    position: absolute;
-    right: 0;
-    z-index: 10;
-}
-/* 配置の微調整：QWERTYと共存させるための相対位置 */
-#k-plus { top: 0; }
-#k-enter { top: 0; }
-
-#keyboard-container.tenkey-mode .tk-row-2,
-#keyboard-container.tenkey-mode .tk-row-4 {
-    padding-right: 54px !important; /* 縦長ボタンのスペースを空ける */
+/* テンキーモード時は既存のrow設定を無効化 */
+#keyboard-container.tenkey-mode .keyboard-row {
+    display: none !important;
 }

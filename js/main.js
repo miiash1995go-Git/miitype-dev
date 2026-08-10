@@ -705,37 +705,23 @@ if (typeof gtag === 'function') {
         container.innerHTML = "";
 
         if (this.currentCategoryId === 'tenkey') {
-            // テンキー配列のレンダリング
+            // テンキー配列のレンダリング（Grid制御用にフラットな構造に変更）
             container.classList.add('tenkey-mode');
-            const tkLayout = [
-                ["", "/", "*", "-"],
-                ["7", "8", "9", "+"],
-                ["4", "5", "6"],
-                ["1", "2", "3", "Ent"],
-                ["0", ".", ""]
+            // レイアウト定義：[表示文字, ID名, クラス名]
+            const tkKeys = [
+                ["", "empty", "tk-empty"], ["/", "divide", ""], ["*", "multiply", ""], ["-", "minus", ""],
+                ["7", "7", ""], ["8", "8", ""], ["9", "9", ""], ["+", "plus", "tk-tall"],
+                ["4", "4", ""], ["5", "5", ""], ["6", "6", ""],
+                ["1", "1", ""], ["2", "2", ""], ["3", "3", ""], ["Ent", "enter", "tk-tall"],
+                ["0", "0", "tk-wide"], [".", "decimal", ""]
             ];
             
-            tkLayout.forEach((row, i) => {
-                const rowEl = document.createElement('div'); 
-                rowEl.className = `keyboard-row tk-row-${i}`;
-                row.forEach(key => {
-                    const kEl = document.createElement('div'); 
-                    kEl.className = 'key tk-key';
-                    if (key === "") kEl.classList.add('tk-empty');
-                    if (key === "0") kEl.classList.add('tk-wide');
-                    if (key === "+" || key === "Ent") kEl.classList.add('tk-tall');
-                    kEl.innerText = key;
-                    let id = key;
-                    if (key === "/") id = "divide";
-                    if (key === "*") id = "multiply";
-                    if (key === "-") id = "minus";
-                    if (key === "+") id = "plus";
-                    if (key === ".") id = "decimal";
-                    if (key === "Ent") id = "enter";
-                    kEl.id = `k-${id}`;
-                    rowEl.appendChild(kEl);
-                });
-                container.appendChild(rowEl);
+            tkKeys.forEach(([label, id, extraClass]) => {
+                const kEl = document.createElement('div');
+                kEl.className = `key tk-key ${extraClass}`;
+                kEl.innerText = label;
+                kEl.id = `k-${id}`;
+                container.appendChild(kEl);
             });
         } else {
             // 通常QWERTY配列のレンダリング
