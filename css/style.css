@@ -178,60 +178,28 @@ body.portal-page #app {
     border-left-color: #eef2f6;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-}
-
-/* --- NEW バッジ：厚みのある水平スタンプデザイン (v20.8.11.Stable) --- */
-.new-badge-label {
-    background-color: #ffffff;
-    color: #ef4444;
-    /* 2.5pxの太枠でスタンプの質感を表現。回転(rotate)は廃止し水平に固定 */
-    border-top-width: 2.5px;
-    border-right-width: 2.5px;
-    border-bottom-width: 2.5px;
-    border-left-width: 2.5px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-top-color: #ef4444;
-    border-right-color: #ef4444;
-    border-bottom-color: #ef4444;
-    border-left-color: #ef4444;
-    font-size: 0.75rem;
-    font-weight: 900;
-    padding-top: 1px;
-    padding-right: 0px;
-    padding-bottom: 1px;
-    padding-left: 0px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
-    letter-spacing: 0.05em;
-    flex-shrink: 0;
-    margin-right: 12px;
-    display: inline-block;
-    vertical-align: middle;
-    /* 幅を54pxに固定し、2行目の日付と位置を完全に同期させる */
-    width: 54px;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-/* 2行目の日付を揃えるための透明スペーサー */
-.new-badge-spacer {
-    display: inline-block;
-    width: 54px;
-    margin-right: 12px;
-    flex-shrink: 0;
-    vertical-align: middle;
+    /* gapを廃止し、個別の行のパディングと境界線で管理 (v20.8.11.Final) */
 }
 
 .announce-row {
     display: flex;
     align-items: center;
     text-align: left;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #f1f5f9;
+}
+
+/* 1行目の上余白を詰め、2行目（最後）の境界線を消去して枠内に収める */
+.announce-row:first-child {
+    padding-top: 0px;
+}
+
+.announce-row:last-child {
+    padding-bottom: 0px;
+    border-bottom-style: none;
 }
 
 .announce-row a {
