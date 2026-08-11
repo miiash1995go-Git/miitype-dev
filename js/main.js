@@ -236,17 +236,14 @@ handleResize() {
         const startBtn = document.getElementById('start-btn');
         if (startBtn) {
             startBtn.addEventListener('click', async () => {
-                // 5分間テストの場合
+                // 5分間テストの場合は即座にリダイレクト
                 if (this.currentCategoryId === 'test_5min') {
-                    // ブラウザにボタンが沈む様子を描画させるための極小の待ち（40ms）
-                    // これによりhubページのリンクボタンと同じ「カチッ」とした手応えが生まれます
-                    setTimeout(() => {
-                        window.location.href = 'test.html';
-                    }, 40);
+                    window.location.href = 'test.html';
                     return;
                 }
 
-                startBtn.disabled = true;
+                // aタグには .disabled がないため、CSSクラスでクリックを封じる
+                startBtn.classList.add('is-disabled');
                 this.state = "START"; 
                 this.isTransitioning = false; 
 
