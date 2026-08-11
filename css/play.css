@@ -281,14 +281,15 @@ body.focus-mode #app {
 /* マウスホバー：浮き上がりと色の変化 */
 #start-btn:hover:not(:disabled) {
     background-color: #34495e !important;
+    /* hubボタンと同じく2px浮かせ、6pxの深い影を出す */
     transform: translate(-50%, calc(-50% - 2px)) !important;
     box-shadow: 0px 6px 0px #1a252f !important;
 }
 
-/* 練習開始ボタン：余計なアニメーションを排除し、hubボタン同様の「ストン」とした沈み込みを実現 */
+/* 練習開始ボタン：クリックした瞬間に3px沈ませ、影を2pxまで圧縮（hubボタンと完全同期） */
 #start-btn:active {
     transform: translate(-50%, calc(-50% + 3px)) !important;
-    box-shadow: 0px 1px 0px #1a252f !important;
+    box-shadow: 0px 2px 0px #1a252f !important;
     transition: none !important;
 }
 

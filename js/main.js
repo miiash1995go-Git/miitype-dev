@@ -236,9 +236,13 @@ handleResize() {
         const startBtn = document.getElementById('start-btn');
         if (startBtn) {
             startBtn.addEventListener('click', async () => {
-                // 5分間テストの場合は即座にリダイレクト（hubボタンと同じ挙動）
+                // 5分間テストの場合
                 if (this.currentCategoryId === 'test_5min') {
-                    window.location.href = 'test.html';
+                    // ブラウザにボタンが沈む様子を描画させるための極小の待ち（40ms）
+                    // これによりhubページのリンクボタンと同じ「カチッ」とした手応えが生まれます
+                    setTimeout(() => {
+                        window.location.href = 'test.html';
+                    }, 40);
                     return;
                 }
 
