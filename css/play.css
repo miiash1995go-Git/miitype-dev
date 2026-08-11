@@ -285,10 +285,11 @@ body.focus-mode #app {
     box-shadow: 0px 7px 0px #1a252f !important;
 }
 
-/* 練習開始ボタン：クリック時の物理沈み込み演出 */
+/* 練習開始ボタン：クリック時の物理沈み込み演出を強化（影を消して深く下げる） */
 #start-btn:active {
     transform: translate(-50%, calc(-50% + 2px)) !important;
-    box-shadow: 0px 2px 0px #1a252f !important;
+    box-shadow: 0px 0px 0px #1a252f !important;
+    transition: none !important; /* クリックの瞬間はアニメーションを無効化して即時反応させる */
 }
 
 .compact-settings { flex: 0 0 240px !important; display: flex; gap: 8px; justify-content: flex-end; }
