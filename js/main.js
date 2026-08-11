@@ -75,7 +75,12 @@ class TypingApp {
         this.isTransitioning = false;
         this.isTestMode = false;      // 5分間テストモード判定フラグ
         this.testTimerId = null;      // タイマー管理用
-        this.testCharactersTyped = 0; // 確定した日本語文字数
+        this.testCharactersTyped = 0; 
+        
+        // --- テンキー出題管理用 ---
+        this.tenkeyData = null;           // JSONから読み込んだ全カテゴリ
+        this.tenkeyCategoryIndex = 0;    // 現在のカテゴリ位置
+        this.tenkeyQuestionInCatCount = 0; // そのカテゴリで何問目か (0 or 1)
 
         // 【修正】コンパクト化に伴い、基準数値を微調整
         this.LEFT_PADDING = 40; // 50から40へ
@@ -137,7 +142,16 @@ if (category.file === "all") {
                 const res = await fetch(`./data/typing/${category.file}`);
                 if (!res.ok) throw new Error("File not found");
                 const data = await res.json();
-                loadedData = data.questions;
+                
+                // テンキーの場合は構造が異なるため tenkeyData に保持
+                if (categoryId === 'tenkey') {
+                    this.tenkeyData = data.categories;
+                    loadedData = data.categories[0].items; // 初期候補として最初のカテゴリを入れる
+                    this.tenkeyCategoryIndex = 0;
+                    this.tenkeyQuestionInCatCount = 0;
+                } else {
+                    loadedData = data.questions;
+                }
             }
             this.currentQuestions = loadedData;
             return loadedData && loadedData.length > 0;
@@ -356,7 +370,7 @@ if (success) {
     }
 
     nextQuestion() {
-        // テストモード時は制限時間のみで終了するため、通常の320文字制限は無視する
+        // 1. 終了判定（テストモード以外）
         if (!this.isTestMode) {
             const elapsed = performance.now() - this.startTime;
             if (this.totalTypedCount >= this.targetLimit || (this.startTime && elapsed > this.timeLimitMs)) { 
@@ -364,21 +378,60 @@ if (success) {
                 return; 
             }
         }
-        if (!this.currentQuestions || this.currentQuestions.length === 0) return;
-        let nextIdx;
-        const totalQ = this.currentQuestions.length;
-        if (totalQ > 1) {
-            do { nextIdx = Math.floor(Math.random() * totalQ); } while (nextIdx === this.lastQuestionIndex);
-        } else { nextIdx = 0; }
-        this.lastQuestionIndex = nextIdx;
-        const nextQ = this.currentQuestions[nextIdx];
-        this.kanaList = this.splitKana(nextQ.kana);
-        this.typedFullRomaji = ""; this.currentRomajiStr = "";
-        const kanjiEl = document.getElementById('display-kanji');
-        const kanaEl = document.getElementById('display-kana');
-        if (kanjiEl) kanjiEl.innerText = nextQ.kanji;
-        if (kanaEl) kanaEl.innerText = nextQ.kana;
-        this.prepareNextChar();
+
+        // 2. テンキー専用の順次出題ロジック
+        if (this.currentCategoryId === 'tenkey' && this.tenkeyData) {
+            const currentCat = this.tenkeyData[this.tenkeyCategoryIndex];
+            
+            // カテゴリ内のアイテムからランダムに1問選択（直前と同じ問題は避ける）
+            let selectedItem;
+            do {
+                selectedItem = currentCat.items[Math.floor(Math.random() * currentCat.items.length)];
+            } while (currentCat.items.length > 1 && selectedItem.value === this.lastTenkeyText);
+            
+            this.lastTenkeyText = selectedItem.value;
+            const text = selectedItem.value;
+
+            // 文字分割と初期化
+            this.kanaList = this.splitKana(text);
+            this.typedFullRomaji = ""; 
+            this.currentRomajiStr = "";
+            
+            // 表示の更新（かなエリアにはカテゴリ名を表示）
+            const kanjiEl = document.getElementById('display-kanji');
+            const kanaEl = document.getElementById('display-kana');
+            if (kanjiEl) kanjiEl.innerText = text;
+            if (kanaEl) kanaEl.innerText = currentCat.name; 
+
+            // カウント進捗とカテゴリ切り替え判定（2問ごとに次へ）
+            this.tenkeyQuestionInCatCount++;
+            if (this.tenkeyQuestionInCatCount >= 2) {
+                this.tenkeyQuestionInCatCount = 0;
+                this.tenkeyCategoryIndex++;
+                if (this.tenkeyCategoryIndex >= this.tenkeyData.length) {
+                    this.tenkeyCategoryIndex = 0; // 全カテゴリ終わったら最初に戻る
+                }
+            }
+            this.prepareNextChar();
+
+        } else {
+            // 3. 通常のタイピングロジック
+            if (!this.currentQuestions || this.currentQuestions.length === 0) return;
+            let nextIdx;
+            const totalQ = this.currentQuestions.length;
+            if (totalQ > 1) {
+                do { nextIdx = Math.floor(Math.random() * totalQ); } while (nextIdx === this.lastQuestionIndex);
+            } else { nextIdx = 0; }
+            this.lastQuestionIndex = nextIdx;
+            const nextQ = this.currentQuestions[nextIdx];
+            this.kanaList = this.splitKana(nextQ.kana);
+            this.typedFullRomaji = ""; this.currentRomajiStr = "";
+            const kanjiEl = document.getElementById('display-kanji');
+            const kanaEl = document.getElementById('display-kana');
+            if (kanjiEl) kanjiEl.innerText = nextQ.kanji;
+            if (kanaEl) kanaEl.innerText = nextQ.kana;
+            this.prepareNextChar();
+        }
     }
 
     splitKana(kana) {
