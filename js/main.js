@@ -95,7 +95,7 @@ class TypingApp {
                 document.body.classList.remove('focus-mode');
                 this.isTransitioning = false;
                 const startBtn = document.getElementById('start-btn');
-                if (startBtn) startBtn.disabled = false;
+                if (startBtn) startBtn.classList.remove('is-disabled');
             }
         });
     }
@@ -256,7 +256,7 @@ if (success) {
                     }
                     this.prepareReady(); 
                 }
-                startBtn.disabled = false;
+                startBtn.classList.remove('is-disabled');
             });
         }
 
