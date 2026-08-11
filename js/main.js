@@ -236,12 +236,9 @@ handleResize() {
         const startBtn = document.getElementById('start-btn');
         if (startBtn) {
             startBtn.addEventListener('click', async () => {
-                // 5分間テストの場合は無効化せずにリダイレクト
+                // 5分間テストの場合は即座にリダイレクト（hubボタンと同じ挙動）
                 if (this.currentCategoryId === 'test_5min') {
-                    // 物理的な「押し込み演出」を視覚的に認識させるため、150msの猶予を置いて遷移
-                    setTimeout(() => {
-                        window.location.href = 'test.html';
-                    }, 150);
+                    window.location.href = 'test.html';
                     return;
                 }
 
