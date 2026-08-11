@@ -1078,9 +1078,14 @@ if (typeof gtag === 'function') {
                     var linkHref = newsLink.getAttribute('href') || '#';
                     var linkText = newsLink.textContent.replace('｜', '').trim();
                     
+                    // 1行目はNEWバッジ、2行目は位置合わせ用の透明スペーサーを出力
+                    var badgePart = (i === 0) 
+                        ? '<span class="new-badge-label">NEW</span>' 
+                        : '<span class="new-badge-spacer"></span>';
+
                     htmlContent += '<div class="announce-row">' +
                                    '<a href="' + linkHref + '">' +
-                                   (i === 0 ? '<span class="new-badge-label">New!</span>' : '') +
+                                   badgePart +
                                    '<span class="announce-date">' + dateStr + '</span>' +
                                    '<span>' + linkText + '</span>' +
                                    '</a>' +
