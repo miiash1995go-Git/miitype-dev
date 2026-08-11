@@ -1658,10 +1658,11 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
+    /* 枠線を2pxに強化して「押しボタン」としての存在感を確立 */
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
     border-top-style: solid;
     border-right-style: solid;
     border-bottom-style: solid;
@@ -1676,8 +1677,10 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     background-color: #ffffff;
 }
 .cat-nav-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.05);
+    /* 浮遊感を強め、影をより深く設定することでクリックの期待感を向上 */
+    transform: translateY(-4px);
+    box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff !important; /* 背景を白くしてコントラストを上げる */
 }
 .cat-nav-icon {
     width: 28px;
