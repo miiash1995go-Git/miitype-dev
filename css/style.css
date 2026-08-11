@@ -66,8 +66,9 @@ body.portal-page #app {
    ・HTMLに存在しない要素（content, badge等）の旧定義を全削除。
    ============================================================ */
 .index-hero {
-    max-width: 1024px;
-    width: 1024px; 
+    /* コンテナ(#app)の1000pxに完全一致させ、ヘッダーの両端と垂直整列させる */
+    max-width: 1000px;
+    width: 1000px; 
     height: auto;
     margin-top: 30px;
     margin-right: auto;
@@ -82,7 +83,7 @@ body.portal-page #app {
 }
 
 .hero-base-img {
-    width: 1024px;
+    width: 1000px; /* 1024pxから1000pxへ縮小 */
     height: auto;
     display: block;
     margin-top: 0px;
@@ -94,8 +95,9 @@ body.portal-page #app {
 
 .index-hero__action-area {
     position: absolute;
-    top: 335px;
-    left: 200px; 
+    /* 画像縮小(1000/1024)に合わせて座標を再計算し、見た目の位置を維持 */
+    top: 327px; 
+    left: 195px; 
     display: block; 
     width: auto;
     z-index: 100;
@@ -146,18 +148,18 @@ body.portal-page #app {
     line-height: 1.5;
 }
 
-/* ヒーロー下お知らせバー：最新2件を1つのワイドカードに統合 (v20.8.11.Ultimate) */
+/* ヒーロー下お知らせバー：ヘッダー・ヒーロー画像(1000px)と端を完全に揃える (v20.8.11.Final.Fixed) */
 .new-article-announce {
-    width: 95%;
-    max-width: 960px;
+    width: 100%; /* 親コンテナ(#app=1000px)に追従 */
+    max-width: 1000px; 
     margin-top: -10px;
     margin-right: auto;
     margin-bottom: 40px;
     margin-left: auto;
     background-color: #ffffff;
-    padding-top: 5px; /* 行パディングで調整するため最小化 */
+    padding-top: 5px;
     padding-right: 30px;
-    padding-bottom: 5px; /* 行パディングで調整するため最小化 */
+    padding-bottom: 5px;
     padding-left: 30px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -178,6 +180,7 @@ body.portal-page #app {
     border-left-color: #eef2f6;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
 /* --- NEW バッジ：厚みのある水平スタンプデザイン (v20.8.11.Final) --- */
