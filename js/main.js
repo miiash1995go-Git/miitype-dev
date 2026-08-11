@@ -514,8 +514,19 @@ if (success) {
         document.querySelectorAll('.key').forEach(k => k.classList.remove('highlight'));
         if (!char) return;
         let id = char.toLowerCase();
+        
+        // 通常キーボード用マッピング
         if (id === ' ') id = 'space';
         if (id === '\\') id = 'backslash';
+
+        // テンキー用マッピング（記号とIDを一致させる）
+        if (id === '/') id = 'divide';
+        if (id === '*') id = 'multiply';
+        if (id === '-') id = 'minus';
+        if (id === '+') id = 'plus';
+        if (id === '.') id = 'decimal';
+        if (id === 'ent') id = 'enter';
+
         const el = document.getElementById(`k-${id}`);
         if (el) el.classList.add('highlight');
     }
