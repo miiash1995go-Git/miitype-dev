@@ -247,26 +247,50 @@ body.portal-page #app {
     flex-shrink: 0;
 }
 
-.announce-row a {
-    text-decoration: none;
-    color: #2c3e50;
-    font-size: 0.95rem;
-    font-weight: 800;
-    transition: color 0.2s;
-    display: flex;
-    align-items: center;
-}
+/* ============================================================
+   NEW欄 スマホ最適化：1行強制 ＆ 横スクロール統治 (v20.8.11.Mobile)
+   ============================================================ */
+@media (max-width: 768px) {
+    .new-article-announce {
+        width: 100% !important; /* スマホでは画面端まで使う */
+        margin-top: 0px !important;
+        margin-bottom: 20px !important;
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+        border-top-left-radius: 0px !important;
+        border-top-right-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
+        border-bottom-left-radius: 0px !important;
+        border-right-style: none !important;
+        border-left-style: none !important;
+    }
 
-.announce-row a:hover {
-    color: #2563EB;
-}
+    .announce-row {
+        /* 横スクロールを物理的に許可 */
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch; /* iOSでの滑らかなスクロール */
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+    }
 
-.announce-date {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.85rem;
-    color: #94a3b8;
-    margin-right: 15px;
-    font-weight: 700;
+    /* スクロールバーを非表示（スッキリさせるため） */
+    .announce-row::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .announce-row a {
+        /* 改行を禁止し、1行で表示を維持 */
+        white-space: nowrap !important;
+        display: flex !important;
+        align-items: center !important;
+        width: max-content !important; /* テキストの長さに合わせる */
+    }
+
+    .new-badge-label, .new-badge-spacer {
+        width: 48px !important; /* スマホ用にバッジ幅をわずかに縮小 */
+        margin-right: 8px !important;
+    }
 }
 
 @media (max-width: 1024px) {
