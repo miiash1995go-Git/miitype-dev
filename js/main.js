@@ -1062,21 +1062,33 @@ if (typeof gtag === 'function') {
             });
         }
 
-        // 8. News 1件目の自動転記ロジック（index.html専用）
+        // 8. News 最新2件の自動転記ロジック（v20.8.11：日付・白抜き対応）
         var announceBox = document.getElementById('new-article-announce');
-        var firstNews = document.querySelector('.news-scroll-container .news-item');
-        if (announceBox && firstNews) {
-            var newsLink = firstNews.querySelector('.news-text');
-            if (newsLink) {
-                var linkHref = newsLink.getAttribute('href') || '#';
-                var linkText = newsLink.textContent.replace('｜', '').trim();
+        var newsItems = document.querySelectorAll('.news-scroll-container .news-item');
+        
+        if (announceBox && newsItems.length > 0) {
+            var htmlContent = '';
+            // 最大2件分ループ
+            for (var i = 0; i < Math.min(newsItems.length, 2); i++) {
+                var item = newsItems[i];
+                var dateStr = item.querySelector('.news-date').textContent;
+                var newsLink = item.querySelector('.news-text');
                 
-                announceBox.innerHTML = '<a href="' + linkHref + '">' +
-                                        '<span class="new-badge-label">New!</span>' +
-                                        '<span>' + linkText + '</span>' +
-                                        '</a>';
-                announceBox.classList.remove('hidden');
+                if (newsLink) {
+                    var linkHref = newsLink.getAttribute('href') || '#';
+                    var linkText = newsLink.textContent.replace('｜', '').trim();
+                    
+                    htmlContent += '<div class="announce-row">' +
+                                   '<a href="' + linkHref + '">' +
+                                   (i === 0 ? '<span class="new-badge-label">New!</span>' : '') +
+                                   '<span class="announce-date">' + dateStr + '</span>' +
+                                   '<span>' + linkText + '</span>' +
+                                   '</a>' +
+                                   '</div>';
+                }
             }
+            announceBox.innerHTML = htmlContent;
+            announceBox.classList.remove('hidden');
         }
 
 
