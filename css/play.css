@@ -1072,18 +1072,18 @@ body.game-body .summary-btn:hover {
 }
 
 /* ============================================================
-   テンキー専用レイアウト (v20.8.10.Fixed)
+   テンキー専用レイアウト (v20.8.10.Compact)
    ============================================================ */
 #keyboard-container.tenkey-mode {
-    width: 260px !important;
+    width: 180px !important; /* 約2/3サイズに縮小 */
     margin-left: auto !important;
     margin-right: 40px !important;
-    padding: 15px !important;
+    padding: 12px !important; /* 通常キーボードと統一 */
     display: grid !important;
-    /* 4列、5行の均等グリッドを定義 */
-    grid-template-columns: repeat(4, 54px);
-    grid-template-rows: repeat(5, 54px);
-    gap: 8px !important;
+    /* 通常キーと同じ36pxのグリッドに変更 */
+    grid-template-columns: repeat(4, 36px);
+    grid-template-rows: repeat(5, 36px);
+    gap: 4px !important; /* 通常キーボードと統一 */
     background-color: #f1f2f6;
     border-radius: 18px;
     justify-content: center;
@@ -1098,19 +1098,20 @@ body.game-body .summary-btn:hover {
     align-items: center;
     justify-content: center;
     box-sizing: border-box !important;
+    font-size: 0.85rem !important; /* 文字サイズを通常キーに合わせる */
 }
 
 /* 特殊キーの結合（スパン）定義 */
 #k-plus {
-    grid-area: 2 / 4 / 4 / 5; /* 2行目から4行目の手前まで、4列目 */
+    grid-area: 2 / 4 / 4 / 5;
 }
 
 #k-enter {
-    grid-area: 4 / 4 / 6 / 5; /* 4行目から6行目の手前まで、4列目 */
+    grid-area: 4 / 4 / 6 / 5;
 }
 
 #k-0 {
-    grid-area: 5 / 1 / 6 / 3; /* 5行目、1列目から3列目の手前まで（2列分） */
+    grid-area: 5 / 1 / 6 / 3;
 }
 
 /* 空白セルの非表示 */
