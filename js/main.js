@@ -739,28 +739,60 @@ if (typeof gtag === 'function') {
 /* --- main.js：getRankメソッドを以下に差し替え（ユーザー指定基準） --- */
 
     /**
-     * getRank: ユーザー指定の「200=A- / 160=B- / 100=C- / 51=D-」を厳守した基準
+     * getRank: カテゴリに応じて「ものさし」を切り替える
      */
     getRank(s) {
-        if(s >= 500) return "Legend"; // 天井（ほぼ到達不能な名誉職）
-        if(s >= 400) return "Master"; // 超人（タイピング特化の人）
+        // 200文字制限の軽量モード（テンキー・ローマ字基礎）は専用の閾値を使用
+        if (this.currentCategoryId === 'tenkey' || this.currentCategoryId === 'roman_pure' || this.currentCategoryId === 'roman_complex') {
+            return this.getShortModeRank(s);
+        }
+
+        // 通常モード（320文字制限）の基準
+        if(s >= 500) return "Legend";
+        if(s >= 400) return "Master";
         if(s >= 350) return "SSS"; 
         if(s >= 325) return "SS"; 
-        if(s >= 300) return "S";      // 300 CPM & 高正確率の壁
-        if(s >= 260) return "A+";     // ★今回の276点はこの「A+」になります
+        if(s >= 300) return "S";
+        if(s >= 260) return "A+";
         if(s >= 230) return "A"; 
-        if(s >= 200) return "A-";     // 【指定】200以上
+        if(s >= 200) return "A-";
         if(s >= 185) return "B+"; 
         if(s >= 170) return "B"; 
-        if(s >= 160) return "B-";     // 【指定】160以上
+        if(s >= 160) return "B-";
         if(s >= 140) return "C+"; 
         if(s >= 120) return "C"; 
-        if(s >= 100) return "C-";     // 【指定】100以上
+        if(s >= 100) return "C-";
         if(s >= 85)  return "D+"; 
         if(s >= 65)  return "D"; 
-        if(s >= 51)  return "D-";     // 【指定】51以上
+        if(s >= 51)  return "D-";
         if(s >= 30)  return "E+"; 
         if(s >= 10)  return "E"; 
+        return "E-";
+    }
+
+    /**
+     * getShortModeRank: テンキー・ローマ字基礎専用（通常モードの約75%のスコアで同等評価）
+     */
+    getShortModeRank(s) {
+        if(s >= 375) return "Legend";
+        if(s >= 300) return "Master";
+        if(s >= 260) return "SSS";
+        if(s >= 240) return "SS";
+        if(s >= 220) return "S";      // テンキーで220点なら通常300点相当の腕前
+        if(s >= 195) return "A+";
+        if(s >= 170) return "A";
+        if(s >= 150) return "A-";     // テンキーでの合格目安
+        if(s >= 135) return "B+";
+        if(s >= 125) return "B";
+        if(s >= 115) return "B-";
+        if(s >= 105) return "C+";
+        if(s >= 90)  return "C";
+        if(s >= 75)  return "C-";
+        if(s >= 60)  return "D+";
+        if(s >= 45)  return "D";
+        if(s >= 35)  return "D-";
+        if(s >= 20)  return "E+";
+        if(s >= 7)   return "E";
         return "E-";
     }
     renderKeyboard() {
