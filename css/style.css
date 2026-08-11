@@ -248,48 +248,59 @@ body.portal-page #app {
 }
 
 /* ============================================================
-   NEW欄 スマホ最適化：1行強制 ＆ 横スクロール統治 (v20.8.11.Mobile)
+   NEW欄 スマホ最適化：全体スクロール ＆ 垂直整列同期 (v20.8.11.Final)
    ============================================================ */
 @media (max-width: 768px) {
     .new-article-announce {
-        width: 100% !important; /* スマホでは画面端まで使う */
+        width: 100% !important;
         margin-top: 0px !important;
         margin-bottom: 20px !important;
-        padding-right: 15px !important;
-        padding-left: 15px !important;
+        padding-right: 0px !important; /* 内側スクロールのため0に */
+        padding-left: 0px !important;  /* 内側スクロールのため0に */
         border-top-left-radius: 0px !important;
         border-top-right-radius: 0px !important;
         border-bottom-right-radius: 0px !important;
         border-bottom-left-radius: 0px !important;
         border-right-style: none !important;
         border-left-style: none !important;
-    }
-
-    .announce-row {
-        /* 横スクロールを物理的に許可 */
+        /* カード全体で横スクロールを受け止める */
         overflow-x: auto !important;
         overflow-y: hidden !important;
-        -webkit-overflow-scrolling: touch; /* iOSでの滑らかなスクロール */
-        padding-top: 15px !important;
-        padding-bottom: 15px !important;
+        -webkit-overflow-scrolling: touch;
     }
 
-    /* スクロールバーを非表示（スッキリさせるため） */
-    .announce-row::-webkit-scrollbar {
+    /* スクロールバーを非表示 */
+    .new-article-announce::-webkit-scrollbar {
         display: none !important;
     }
 
+    .announce-row {
+        /* 個別のスクロール設定を廃止し、親に従う */
+        overflow: visible !important;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+        width: max-content !important; /* テキストの長さに合わせて幅を広げる */
+        min-width: 100% !important;
+    }
+
     .announce-row a {
-        /* 改行を禁止し、1行で表示を維持 */
         white-space: nowrap !important;
         display: flex !important;
         align-items: center !important;
-        width: max-content !important; /* テキストの長さに合わせる */
+        /* スマホでリンクが青くならないよう強制上書き */
+        color: #2c3e50 !important;
+        text-decoration: none !important;
     }
 
     .new-badge-label, .new-badge-spacer {
-        width: 48px !important; /* スマホ用にバッジ幅をわずかに縮小 */
-        margin-right: 8px !important;
+        width: 48px !important;
+        margin-right: 10px !important;
+    }
+
+    .announce-date {
+        margin-right: 10px !important;
     }
 }
 
