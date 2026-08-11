@@ -133,8 +133,9 @@ class TypingApp {
         try {
             let loadedData = [];
 if (category.file === "all") {
+                // 総合判定から、特殊構造の「ローマ字基礎」および「テンキー」「5分間テスト」を除外
                 const fetchTasks = this.manifest.categories
-                    .filter(c => c.file !== "all" && c.id !== "roman_pure" && c.id !== "roman_complex" && c.id !== "test_5min")
+                    .filter(c => c.file !== "all" && c.id !== "roman_pure" && c.id !== "roman_complex" && c.id !== "test_5min" && c.id !== "tenkey")
                     .map(c => fetch(`./data/typing/${c.file}`).then(r => r.json()));
                 const results = await Promise.all(fetchTasks);
                 loadedData = results.flatMap(d => d.questions);
