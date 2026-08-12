@@ -1131,17 +1131,14 @@ if (typeof gtag === 'function') {
     }
 
 /* ============================================================
-       10. リッチSitemap連動型・動的索引生成システム (v20.8.12.SitemapIndex)
+       10. リッチSitemap連動型・動的索引生成システム (v20.8.12.Ultimate_Fix)
        ------------------------------------------------------------
-       仕組み：sitemap.xmlを読み込み、n:titleタグなどから索引リストを
-       全自動で組み立てます。
+       物理整合性：ドメイン名に依存せず、名前空間(n:)を確実に抽出する
        ============================================================ */
     async function initSitemapIndex() {
-        // ① 画面に「索引エリア」があるか探す（なければ何もしない）
         const indexSection = document.getElementById('dynamic-sitemap-index');
         if (!indexSection) return;
 
-        // ② ハブページごとに「最初に表示するカテゴリ」を取得（typing等）
         const initialCat = indexSection.dataset.initial || 'all';
         const categoryMap = {
             'typing': 'タイピング', 'windows': 'Windows', 'word': 'Word',
@@ -1149,42 +1146,56 @@ if (typeof gtag === 'function') {
         };
 
         try {
-            // ③ sitemap.xmlを読み込む
+            // 相対パスで取得。Dev環境でも本番でも「その場」のxmlを読みます
             const response = await fetch('./sitemap.xml');
+            if (!response.ok) throw new Error("Sitemap not found");
+            
             const text = await response.text();
             const parser = new DOMParser();
             const xmlDoc = parser.parseFromString(text, "text/xml");
             const urls = xmlDoc.getElementsByTagName("url");
 
-            // ④ サイトマップから記事情報だけを抜き出してリスト化する
             let articleData = [];
             for (let i = 0; i < urls.length; i++) {
-                const loc = urls[i].getElementsByTagName("loc")[0]?.textContent;
-                // n:title または title タグを探す
-                const titleEl = urls[i].getElementsByTagName("n:title")[0] || urls[i].getElementsByTagName("title")[0];
-                const categoryEl = urls[i].getElementsByTagName("n:category")[0] || urls[i].getElementsByTagName("category")[0];
+                const node = urls[i];
+                
+                // 【物理修復】URLの抽出：ドメイン名(dev/本番)を問わず、最後のファイル名だけ抜き出す
+                const locFull = node.getElementsByTagName("loc")[0]?.textContent || "";
+                const urlPath = locFull.split('/').pop(); // 最後の「guide-xxx.html」だけを取得
 
-                // タイトルとカテゴリが書いてあるものだけ採用
-                if (titleEl && categoryEl) {
+                // 【物理修復】名前空間（n:）があってもなくても「title」という名前なら取得するヘルパー
+                const getExtTag = (parent, tagName) => {
+                    return Array.from(parent.childNodes).find(n => 
+                        n.nodeName === tagName || n.nodeName === `n:${tagName}` || n.localName === tagName
+                    )?.textContent;
+                };
+
+                const title = getExtTag(node, "title");
+                const category = getExtTag(node, "category");
+
+                if (title && category) {
                     articleData.push({
-                        url: loc.replace('https://miitype.com/', ''), // リンク先
-                        title: titleEl.textContent,                   // 記事タイトル
-                        category: categoryEl.textContent              // バッジの種類
+                        url: urlPath,
+                        title: title,
+                        category: category
                     });
                 }
             }
 
-            // ⑤ 表示場所とボタン（タブ）を取得
             const tabs = indexSection.querySelectorAll('.hub-index-tab');
             const listBody = document.getElementById('column-article-grid');
 
-            // ⑥ 画面にリストを書き出す「描画関数」
             function renderList(filter) {
                 if (!listBody) return;
-                // カテゴリで絞り込む
+                listBody.innerHTML = ""; // 一旦クリア
+                
                 const filtered = articleData.filter(a => filter === 'all' || a.category === filter);
                 
-                // HTMLを組み立てて流し込む
+                if (filtered.length === 0) {
+                    listBody.innerHTML = '<div style="padding:40px; color:#94a3b8; text-align:center;">このカテゴリの記事はまだありません</div>';
+                    return;
+                }
+
                 listBody.innerHTML = filtered.map(a => `
                     <a href="${a.url}" class="hub-index-row">
                         <div class="hub-index-meta">
@@ -1197,21 +1208,21 @@ if (typeof gtag === 'function') {
                 `).join('');
             }
 
-            // ⑦ タブをクリックしたときの動きを設定
+            // タブへのクリックイベント登録
             tabs.forEach(tab => {
                 tab.addEventListener('click', (e) => {
                     e.preventDefault();
-                    tabs.forEach(t => t.classList.remove('active')); // 他のボタンを消灯
-                    tab.classList.add('active');                     // 押したボタンを点灯
-                    renderList(tab.dataset.filter);                  // リストを書き換え
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    renderList(tab.dataset.filter);
                 });
             });
 
-            // ⑧ 最初の一回目を表示する
+            // 最初に指定されたカテゴリを表示
             renderList(initialCat);
 
         } catch (e) {
-            console.error("Sitemap Indexシステムでエラーが発生しました:", e);
+            console.error("索引システムエラー:", e);
         }
     }
     
