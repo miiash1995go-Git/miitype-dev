@@ -74,11 +74,11 @@
     display: block;
 }
 
-/* --- 3. 「学習を始める」グリッド：2列統治 (v20.8.12.Fixed) --- */
+/* --- 3. 「学習を始める」グリッド ＆ カード --- */
 .hub-priority-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
+    gap: 24px;
     margin-top: 30px;
     margin-right: 0px;
     margin-bottom: 0px;
@@ -86,7 +86,7 @@
 }
 
 .hub-priority-card {
-    background-color: #f8fbfe;
+    background-color: #f8fbfe; /* 背景色を薄く付けて白から分離 */
     padding-top: 35px;
     padding-right: 30px;
     padding-bottom: 30px;
@@ -95,7 +95,7 @@
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    border-top-width: 2px;
+    border-top-width: 2px; /* 枠線を太く設定 */
     border-right-width: 2px;
     border-bottom-width: 2px;
     border-left-width: 2px;
@@ -115,7 +115,7 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.02);
     position: relative;
     display: flex;
-    flex-direction: column; /* カード形式：縦積みを死守 */
+    flex-direction: column;
 }
 
 .hub-priority-card:hover {
@@ -128,7 +128,7 @@
     box-shadow: 0px 15px 40px rgba(52, 152, 219, 0.12);
 }
 
-/* 【イチオシ（Featured）】 */
+/* 【イチオシ（Featured）】強めのオレンジ・赤系枠 */
 .hub-priority-card--featured {
     background-color: #fffaf5;
     border-top-color: #f39c12;
@@ -164,7 +164,7 @@
 }
 
 .hub-priority-card--featured .hub-priority-card__badge {
-    background-color: #e67e22;
+    background-color: #e67e22; /* イチオシ用バッジ色 */
 }
 
 .hub-priority-card h3 {
@@ -285,7 +285,7 @@
     white-space: nowrap;
 }
 
-/* --- 5. 下部アクセントエリア（薄緑背景）：2列統治 --- */
+/* --- 5. 下部アクセントエリア（薄緑背景）：真四角終了版 (v20.1.13) --- */
 .hub-accent-area {
     background-color: #f0fdf4;
     margin-top: 80px;
@@ -296,6 +296,7 @@
     padding-right: 60px;
     padding-bottom: 60px;
     padding-left: 60px;
+    /* 角丸を物理的に「0px」へ統治し、親の白枠との競合を封殺 */
     border-top-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
     border-bottom-left-radius: 0px !important;
@@ -304,8 +305,8 @@
 
 .hub-popular-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 人気記事も2列で安定化 */
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
     margin-top: 25px;
     margin-right: 0px;
     margin-bottom: 0px;
@@ -314,10 +315,10 @@
 
 .hub-popular-card {
     background-color: #ffffff;
-    padding-top: 25px;
-    padding-right: 25px;
-    padding-bottom: 25px;
-    padding-left: 25px;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
@@ -337,8 +338,6 @@
     border-right-color: #e2e8f0;
     border-bottom-color: #e2e8f0;
     border-left-color: #e2e8f0;
-    display: flex;
-    flex-direction: column; /* 人気記事カード：縦積みを死守 */
 }
 
 .hub-popular-card:hover {
@@ -370,7 +369,7 @@
     border-bottom-style: none;
 }
 
-/* --- 6. すべての記事：絶縁された索引リスト形式 (v20.8.12.Archive) --- */
+/* --- 6. すべての記事（アーカイブ） --- */
 .hub-archive-header {
     display: flex;
     flex-direction: row;
@@ -384,19 +383,55 @@
     margin-left: 0px;
 }
 
-/* 索引リスト専用コンテナ：他の grid クラスとの物理的癒着を切断 */
-.hub-archive-list-container {
-    display: flex !important;
-    flex-direction: column !important; /* リストとして縦に積み上げる */
+.hub-tag-nav {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.hub-tag {
+    background-color: #f1f2f6;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    padding-top: 8px;
+    padding-right: 18px;
+    padding-bottom: 8px;
+    padding-left: 18px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #4b5563;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.hub-tag.active {
+    background-color: var(--primary);
+    color: #ffffff;
+}
+
+.hub-article-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.hub-article-item {
     background-color: #ffffff;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    padding-top: 10px;
+    padding-top: 25px;
     padding-right: 25px;
-    padding-bottom: 10px;
+    padding-bottom: 25px;
     padding-left: 25px;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    border-bottom-left-radius: 18px;
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
@@ -409,44 +444,75 @@
     border-right-color: #f1f3f5;
     border-bottom-color: #f1f3f5;
     border-left-color: #f1f3f5;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.04);
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* 索引リストの各行：既存の .hub-article-item との名前衝突を回避 */
-.hub-archive-list-row {
-    display: flex;
-    flex-direction: row; /* 横1行のNews型 */
-    align-items: center;
-    justify-content: flex-start;
-    padding-top: 18px;
-    padding-right: 0px;
-    padding-bottom: 18px;
-    padding-left: 0px;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: #f8f9fa;
-    text-decoration-line: none;
-    transition-property: transform;
+    text-decoration: none;
     transition-duration: 0.2s;
 }
 
-.hub-archive-list-row:last-child { border-bottom-style: none; }
-.hub-archive-list-row:hover { transform: translateX(8px); }
+.hub-article-item:hover {
+    border-top-color: var(--accent);
+    border-right-color: var(--accent);
+    border-bottom-color: var(--accent);
+    border-left-color: var(--accent);
+}
 
-.hub-archive-list-row__meta { flex: 0 0 120px; margin-right: 20px; }
-.hub-archive-list-row__info { flex: 1; display: flex; flex-direction: row; align-items: center; gap: 15px; }
+.hub-article-item h4 {
+    margin-top: 8px;
+    margin-right: 0px;
+    margin-bottom: 8px;
+    margin-left: 0px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1.4;
+    border-bottom-style: none;
+}
 
-.hub-archive-list-row h4 { margin: 0; font-size: 1rem; font-weight: 800; color: var(--primary); white-space: nowrap; }
-.hub-archive-list-row p { margin: 0; font-size: 0.85rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* --- 7. 下部接続導線 --- */
+.hub-footer-nav {
+    margin-top: 60px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    text-align: center;
+}
 
-/* 索引リスト専用のスマホレスポンシブ：他を壊さないよう限定定義 */
+.hub-footer-nav__text {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #64748b;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 25px;
+    margin-left: 0px;
+}
+
+/* ============================================================
+   レスポンシブ
+   ============================================================ */
 @media (max-width: 768px) {
-    .hub-archive-list-row { flex-direction: column; align-items: flex-start; gap: 8px; }
-    .hub-archive-list-row__meta { width: auto; margin-right: 0px; }
-    .hub-archive-list-row__info { flex-direction: column; align-items: flex-start; gap: 4px; }
-    .hub-archive-list-row h4, .hub-archive-list-row p { white-space: normal; }
+    .hub-hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        padding-bottom: 30px;
+    }
+    .hub-priority-grid, 
+    .hub-article-grid, 
+    .hub-popular-grid {
+        grid-template-columns: 1fr;
+    }
+    .hub-accent-area {
+        margin-right: -15px;
+        margin-left: -15px;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+    .hub-roadmap__item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
 }
 
 /* --- 9. 全ハブ共通：メリット・特徴セクション (v20.1.40 視認性強化版) --- */
