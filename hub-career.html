@@ -215,46 +215,22 @@
                             </a>
                         </div>
                     </section>
-                    <!-- セクション④：すべての記事一覧 -->
-                    <section class="hub-section" style="margin-bottom: 0px;">
+                    <!-- セクション④：動的索引リスト（Sitemap.xmlより自動生成） -->
+                    <section class="hub-section" id="dynamic-sitemap-index" data-initial="career" style="margin-bottom: 0px;">
                         <div class="hub-archive-header">
                             <h2 class="section-title">すべての記事一覧</h2>
-                            <div class="hub-tag-nav">
-                                <button class="hub-tag active">すべて</button>
-                            </div>
                         </div>
-                        <div class="hub-article-grid">
-                            <a href="column-interview.html" class="hub-article-item">
-                                <div class="hub-article-item__info">
-                                    <h4>採用を勝ち取るタイピングテスト対策</h4>
-                                    <p>選考の基準と実務で「本当に評価される」重要ポイントを詳しく解説。</p>
-                                </div>
-                            </a>
-                            <a href="guide-career-cv.html" class="hub-article-item">
-                                <div class="hub-article-item__info">
-                                    <h4>職務経歴書の作成ポイント</h4>
-                                    <p>これまでの社会人経験を事務の言葉に言い換える「ポジティブな翻訳術」を詳しく解説。</p>
-                                </div>
-                            </a>
-                            <a href="column-pc-skills.html" class="hub-article-item">
-                                <div class="hub-article-item__info">
-                                    <h4>事務職の現場で本当に求められる3つの力</h4>
-                                    <p>入力・調査・作成。即戦力として評価されるスキルの本質を講師が伝授。</p>
-                                </div>
-                            </a>
-                            <a href="career.html" class="hub-article-item">
-                                <div class="hub-article-item__info">
-                                    <h4>就職・転職を成功させるステップ</h4>
-                                    <p>客観的な数値を使い、これまでの経験と学習成果を書類にまとめる方法。</p>
-                                </div>
-                            </a>
-                            <a href="guide-career-otg.html" class="hub-article-item">
-                                <div class="hub-article-item__info">
-                                    <h4>OTGケーブル活用ガイド｜履歴書をスマホで送る方法</h4>
-                                    <p>ネット環境がないPCでも大丈夫。USBメモリを直接スマホに繋いでメール送信する手順。</p>
-                                </div>
-                            </a>
+                        <div class="hub-index-nav">
+                            <button class="hub-index-tab" data-filter="all">すべて</button>
+                            <button class="hub-index-tab" data-filter="typing">タイピング</button>
+                            <button class="hub-index-tab" data-filter="windows">Windows</button>
+                            <button class="hub-index-tab" data-filter="word">Word</button>
+                            <button class="hub-index-tab" data-filter="excel">Excel</button>
+                            <button class="hub-index-tab" data-filter="ai">生成AI</button>
+                            <button class="hub-index-tab active" data-filter="career">就職・転職</button>
+                            <button class="hub-index-tab" data-filter="column">現場コラム</button>
                         </div>
+                        <div class="hub-index-list" id="column-article-grid"></div>
                     </section>
                 </div> <!-- /hub-accent-area（ここで薄緑を真四角に終了） -->
 

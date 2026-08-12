@@ -271,22 +271,22 @@
                         </div>
                     </section>
 
-                    <!-- セクション④：すべての記事一覧 -->
-                    <section class="hub-section" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">
+                    <!-- セクション④：動的索引リスト（Sitemap.xmlより自動生成） -->
+                    <section class="hub-section" id="dynamic-sitemap-index" data-initial="excel" style="margin-bottom: 0px;">
                         <div class="hub-archive-header">
                             <h2 class="section-title">すべての記事一覧</h2>
-                            <div class="hub-tag-nav">
-                                <button class="hub-tag active">すべて</button>
-                            </div>
                         </div>
-                        <div class="hub-article-grid">
-                            <a href="guide-excel-basics.html" class="hub-article-item">
-                                <div class="hub-article-item__info">
-                                    <h4 style="margin-top: 8px; margin-right: 0px; margin-bottom: 8px; margin-left: 0px;">実際に仕事で困らないためのExcel講座</h4>
-                                    <p style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">操作の「理由」から丁寧に紹介する、初心者向けの実務特化型ガイド。</p>
-                                </div>
-                            </a>
+                        <div class="hub-index-nav">
+                            <button class="hub-index-tab" data-filter="all">すべて</button>
+                            <button class="hub-index-tab" data-filter="typing">タイピング</button>
+                            <button class="hub-index-tab" data-filter="windows">Windows</button>
+                            <button class="hub-index-tab" data-filter="word">Word</button>
+                            <button class="hub-index-tab active" data-filter="excel">Excel</button>
+                            <button class="hub-index-tab" data-filter="ai">生成AI</button>
+                            <button class="hub-index-tab" data-filter="career">就職・転職</button>
+                            <button class="hub-index-tab" data-filter="column">現場コラム</button>
                         </div>
+                        <div class="hub-index-list" id="column-article-grid"></div>
                     </section>
                 </div> <!-- /hub-accent-area：ここで薄緑の背景色が真四角に終わります -->
 
