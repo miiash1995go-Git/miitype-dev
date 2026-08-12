@@ -416,22 +416,19 @@
     color: #ffffff;
 }
 
-.hub-article-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-.hub-article-item {
+/* --- 記事一覧：News型リスト形式への刷新 (v20.8.12.List) --- */
+.hub-article-list {
+    display: flex;
+    flex-direction: column;
     background-color: #ffffff;
-    padding-top: 25px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding-top: 10px;
     padding-right: 25px;
-    padding-bottom: 25px;
+    padding-bottom: 10px;
     padding-left: 25px;
-    border-top-left-radius: 18px;
-    border-top-right-radius: 18px;
-    border-bottom-right-radius: 18px;
-    border-bottom-left-radius: 18px;
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
@@ -444,74 +441,99 @@
     border-right-color: #f1f3f5;
     border-bottom-color: #f1f3f5;
     border-left-color: #f1f3f5;
-    text-decoration: none;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.hub-article-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 18px;
+    padding-right: 0px;
+    padding-bottom: 18px;
+    padding-left: 0px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #f8f9fa;
+    text-decoration-line: none;
+    transition-property: transform;
     transition-duration: 0.2s;
+    transition-timing-function: ease;
 }
 
-.hub-article-item:hover {
-    border-top-color: var(--accent);
-    border-right-color: var(--accent);
-    border-bottom-color: var(--accent);
-    border-left-color: var(--accent);
-}
-
-.hub-article-item h4 {
-    margin-top: 8px;
-    margin-right: 0px;
-    margin-bottom: 8px;
-    margin-left: 0px;
-    font-size: 1.05rem;
-    font-weight: 800;
-    color: var(--primary);
-    line-height: 1.4;
+.hub-article-item:last-child {
     border-bottom-style: none;
 }
 
-/* --- 7. 下部接続導線 --- */
-.hub-footer-nav {
-    margin-top: 60px;
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
-    text-align: center;
+.hub-article-item:hover {
+    transform: translateX(8px);
 }
 
-.hub-footer-nav__text {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: #64748b;
+/* リスト内の要素配置 */
+.hub-article-item__meta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    width: 120px; /* バッジの幅を固定 */
+    margin-right: 20px;
+}
+
+.hub-article-item__info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.hub-article-item h4 {
     margin-top: 0px;
     margin-right: 0px;
-    margin-bottom: 25px;
+    margin-bottom: 0px;
     margin-left: 0px;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--primary);
+    white-space: nowrap;
 }
 
-/* ============================================================
-   レスポンシブ
-   ============================================================ */
+.hub-article-item p {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    font-size: 0.85rem;
+    color: #64748b;
+    line-height: 1.4;
+    /* PCでは説明文を1行に制限 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* スマホ表示：2段組みへの最適化 */
 @media (max-width: 768px) {
-    .hub-hero {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-        padding-bottom: 30px;
-    }
-    .hub-priority-grid, 
-    .hub-article-grid, 
-    .hub-popular-grid {
-        grid-template-columns: 1fr;
-    }
-    .hub-accent-area {
-        margin-right: -15px;
-        margin-left: -15px;
-        padding-right: 20px;
-        padding-left: 20px;
-    }
-    .hub-roadmap__item {
+    .hub-article-item {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 8px;
+    }
+    .hub-article-item__meta {
+        width: auto;
+        margin-right: 0px;
+    }
+    .hub-article-item__info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+    .hub-article-item h4 {
+        white-space: normal;
+    }
+    .hub-article-item p {
+        white-space: normal;
     }
 }
 

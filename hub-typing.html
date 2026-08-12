@@ -259,38 +259,62 @@
                         </div>
                     </section>
 
-                    <!-- セクション④：すべての記事一覧（日付とタグを削除） -->
-<section class="hub-section" style="margin-bottom: 0px;">
+                    <!-- セクション④：すべての記事一覧（News型リスト ＆ フィルタ対応） -->
+                    <section class="hub-section" style="margin-bottom: 0px;">
                         <div class="hub-archive-header">
                             <h2 class="section-title">すべての記事一覧</h2>
-                            <!-- タグの復活：運用初期のため「すべて」のみ配置 -->
+                            <!-- カテゴリフィルター：将来の拡張性を担保 -->
                             <div class="hub-tag-nav">
-                                <button class="hub-tag active">すべて</button>
+                                <button class="hub-tag active" data-filter="all">すべて</button>
+                                <button class="hub-tag" data-filter="typing">タイピング</button>
+                                <button class="hub-tag" data-filter="windows">Windows</button>
+                                <button class="hub-tag" data-filter="word">Word</button>
+                                <button class="hub-tag" data-filter="excel">Excel</button>
+                                <button class="hub-tag" data-filter="ai">生成AI</button>
+                                <button class="hub-tag" data-filter="career">就職・転職</button>
                             </div>
                         </div>
-                        <div class="hub-article-grid">
-                            <a href="guide-basics.html" class="hub-article-item">
+
+                        <!-- リストコンテナ：gridからlistへクラス名を変更 -->
+                        <div class="hub-article-list" id="column-article-grid">
+                            <!-- 記事 1 -->
+                            <a href="guide-basics.html" class="hub-article-item" data-category="typing">
+                                <div class="hub-article-item__meta">
+                                    <span class="news-tag tag-typing">タイピング</span>
+                                </div>
                                 <div class="hub-article-item__info">
                                     <h4>タイピング（文字入力）の基本</h4>
                                     <p>ホームポジションの考え方と指別の担当ガイド。正しい「型」を習得しましょう。</p>
                                 </div>
                             </a>
-                            <a href="guide-typing.html" class="hub-article-item">
+                            <!-- 記事 2 -->
+                            <a href="guide-typing.html" class="hub-article-item" data-category="typing">
+                                <div class="hub-article-item__meta">
+                                    <span class="news-tag tag-typing">タイピング</span>
+                                </div>
                                 <div class="hub-article-item__info">
                                     <h4>タイピング上達法｜練習のコツ</h4>
-                                    <p>16文字理論で覚える、最短距離の上達ルート。ミスを減らす脳の使い方も解説。</p>
+                                    <p>16文字理論で覚える最短上達ルート。ミスを減らす脳の使い方も解説。</p>
                                 </div>
                             </a>
-                            <a href="guide-typing-conversion.html" class="hub-article-item">
+                            <!-- 記事 3 -->
+                            <a href="guide-typing-conversion.html" class="hub-article-item" data-category="typing">
+                                <div class="hub-article-item__meta">
+                                    <span class="news-tag tag-typing">タイピング</span>
+                                </div>
                                 <div class="hub-article-item__info">
                                     <h4>通常変換と予測変換の違いとは？</h4>
-                                    <p>実務で役立つ変換キーの使い分けと、F10キーを使ったスマートな英字入力法。</p>
+                                    <p>実務で役立つ変換キーの使い分けと、F10キーを使った英字入力法。</p>
                                 </div>
                             </a>
-                            <a href="guide-typing-tenkey.html" class="hub-article-item">
+                            <!-- 記事 4：本日追加分 -->
+                            <a href="guide-typing-tenkey.html" class="hub-article-item" data-category="typing">
+                                <div class="hub-article-item__meta">
+                                    <span class="news-tag tag-typing">タイピング</span>
+                                </div>
                                 <div class="hub-article-item__info">
                                     <h4>テンキーの使い方｜数字入力の基本</h4>
-                                    <p>Excelやデータ入力で差がつく数字入力のコツ。5の突起の活用法や薬指でのマイナス入力を紹介。</p>
+                                    <p>Excelで差がつく数字入力。5の突起の活用法や薬指マイナス入力を紹介。</p>
                                 </div>
                             </a>
                         </div>
