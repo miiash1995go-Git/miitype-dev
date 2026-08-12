@@ -816,6 +816,29 @@ if (typeof gtag === 'function') {
                 ["4", "4", "", "f-li"], ["5", "5", "", "f-rm"], ["6", "6", "", "f-rr"],
                 ["1", "1", "", "f-li"], ["2", "2", "", "f-rm"], ["3", "3", "", "f-rr"], ["Ent", "enter", "tk-tall", "f-rp"],
                 ["0", "0", "tk-wide", "f-lp"], [".", "decimal", "", "f-lm"]
+            ];if (this.currentCategoryId === 'tenkey') {
+            // テンキー配列のレンダリング
+            container.classList.add('tenkey-mode');
+            // レイアウト定義：[表示文字, ID名, クラス名, 指色クラス]
+            // ri=人差指(紫), rm=中指(緑), rr=薬指(黄), rp=小指(赤), rt=親指(濃緑)
+            const tkKeys = [
+                ["", "empty", "tk-empty", ""], 
+                ["/", "divide", "", "f-rm"], 
+                ["*", "multiply", "", "f-rr"], 
+                ["-", "minus", "", "f-rr"],
+                ["7", "7", "", "f-ri"], 
+                ["8", "8", "", "f-rm"], 
+                ["9", "9", "", "f-rr"], 
+                ["+", "plus", "tk-tall", "f-rp"],
+                ["4", "4", "", "f-ri"], 
+                ["5", "5", "", "f-rm"], 
+                ["6", "6", "", "f-rr"],
+                ["1", "1", "", "f-ri"], 
+                ["2", "2", "", "f-rm"], 
+                ["3", "3", "", "f-rr"], 
+                ["Ent", "enter", "tk-tall", "f-rp"],
+                ["0", "0", "tk-wide", "f-rt"], 
+                [".", "decimal", "", "f-rr"]
             ];
             
             tkKeys.forEach(([label, id, extraClass, fingerClass]) => {

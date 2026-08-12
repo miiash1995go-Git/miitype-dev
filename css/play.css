@@ -538,7 +538,8 @@ body.game-body #keyboard-container {
 .key.f-rm { background-color: #e2f9e1; }
 .key.f-rr { background-color: #fff3d6; }
 .key.f-rp { background-color: #ffdce0; }
-
+/* 右手親指用：濃いめのパステル緑 (v20.8.12) */
+.key.f-rt { background-color: #a8d8a5; }
 
 /* 結果画面コンテナ：360pxへ圧縮し、少し上に引き上げる */
 .result-container {
