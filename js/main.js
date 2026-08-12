@@ -1172,6 +1172,8 @@ if (typeof gtag === 'function') {
                 function render(filter) {
                     if (!listBody) return;
                     listBody.innerHTML = "";
+                    // 【物理修復】タブ切り替え時にリストのスクロール位置を一番上にリセット
+                    listBody.scrollTop = 0;
                     const filtered = articleData.filter(a => filter === 'all' || a.category === filter);
                     
                     if (filtered.length === 0) {
