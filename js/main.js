@@ -1115,25 +1115,6 @@ if (typeof gtag === 'function') {
         }
 
 
-        // 9. 画像拡大モーダル（番号を繰り下げ）
-        var zOver = document.createElement('div');
-        zOver.className = 'image-zoom-overlay';
-        zOver.innerHTML = '<img class="image-zoom-content" src="" alt="拡大画像">';
-        document.body.appendChild(zOver);
-        document.querySelectorAll('.article-image img').forEach(function(img) {
-            img.onclick = function() {
-                zOver.querySelector('img').src = this.src;
-                zOver.classList.add('is-active');
-                document.body.style.overflow = 'hidden';
-            };
-        });
-        zOver.onclick = function() { zOver.classList.remove('is-active'); document.body.style.overflow = ''; };
-    }
-
-announceBox.innerHTML = htmlContent;
-            announceBox.classList.remove('hidden');
-        }
-
         // 9. 画像拡大モーダル
         var zOver = document.createElement('div');
         zOver.className = 'image-zoom-overlay';
@@ -1149,9 +1130,9 @@ announceBox.innerHTML = htmlContent;
         zOver.onclick = function() { zOver.classList.remove('is-active'); document.body.style.overflow = ''; };
 
         /* ============================================================
-           10. アルティメット索引生成エンジン (v20.8.12.SitemapMaster)
+           10. アルティメット索引生成エンジン (v20.8.12.Complete_Fix)
            ------------------------------------------------------------
-           物理整合性：ブラウザの解析をバイパスし、XML文字列から直接抽出
+           物理整合性：名前空間(n:)を物理的に無視し、DOMツリーから直接抽出
            ============================================================ */
         async function initSitemapIndex() {
             const section = document.getElementById('dynamic-sitemap-index');
@@ -1163,28 +1144,30 @@ announceBox.innerHTML = htmlContent;
 
             try {
                 const res = await fetch('./sitemap.xml');
-                const rawText = await res.text();
+                if (!res.ok) throw new Error("Sitemap Load Failed");
+                const xmlText = await res.text();
+                const xmlDoc = new DOMParser().parseFromString(xmlText, "text/xml");
+                const urlNodes = Array.from(xmlDoc.getElementsByTagName("url"));
 
-                const articleData = [];
-                // <url>ブロックごとに情報を抜き出す物理スキャン
-                const urlBlocks = rawText.match(/<url>([\s\S]*?)<\/url>/g);
+                const articleData = urlNodes.map(node => {
+                    const loc = node.getElementsByTagName("loc")[0]?.textContent || "";
+                    const children = Array.from(node.childNodes);
+                    const findInNode = (name) => children.find(c => 
+                        c.nodeName === name || c.nodeName === `n:${name}` || c.localName === name
+                    )?.textContent;
 
-                if (urlBlocks) {
-                    urlBlocks.forEach(block => {
-                        const loc = block.match(/<loc>(.*?)<\/loc>/)?.[1] || "";
-                        // 名前空間の有無に関わらず抽出できるよう正規表現を最適化
-                        const title = block.match(/<(?:n:)?title>(.*?)<\/(?:n:)?title>/)?.[1];
-                        const category = block.match(/<(?:n:)?category>(.*?)<\/(?:n:)?category>/)?.[1];
+                    const title = findInNode("title");
+                    const category = findInNode("category");
 
-                        if (title && category && loc) {
-                            articleData.push({
-                                url: loc.split('/').pop(),
-                                title: title.trim(),
-                                category: category.trim()
-                            });
-                        }
-                    });
-                }
+                    if (title && category) {
+                        return {
+                            url: loc.split('/').pop(),
+                            title: title.trim(),
+                            category: category.trim()
+                        };
+                    }
+                    return null;
+                }).filter(v => v !== null);
 
                 function render(filter) {
                     if (!listBody) return;
@@ -1192,42 +1175,44 @@ announceBox.innerHTML = htmlContent;
                     const filtered = articleData.filter(a => filter === 'all' || a.category === filter);
                     
                     if (filtered.length === 0) {
-                        listBody.innerHTML = '<div style="padding:40px; color:#94a3b8; text-align:center; font-weight:800;">該当する記事がありません</div>';
+                        listBody.innerHTML = '<div style="padding:40px; color:#94a3b8; text-align:center;">該当する記事がありません</div>';
                         return;
                     }
 
-                    listBody.innerHTML = filtered.map(a => `
-                        <a href="${a.url}" class="hub-index-row">
-                            <div class="hub-index-meta"><span class="news-tag tag-${a.category}">${categoryMap[a.category] || a.category}</span></div>
-                            <div class="hub-index-info"><h4>${a.title}</h4></div>
-                        </a>
-                    `).join('');
+                    listBody.innerHTML = filtered.map(a => 
+                        '<a href="' + a.url + '" class="hub-index-row">' +
+                        '<div class="hub-index-meta"><span class="news-tag tag-' + a.category + '">' + (categoryMap[a.category] || a.category) + '</span></div>' +
+                        '<div class="hub-index-info"><h4>' + a.title + '</h4></div>' +
+                        '</a>'
+                    ).join('');
                 }
 
-                section.onclick = function(e) {
-                    const btn = e.target.closest('.hub-index-tab');
-                    if (!btn) return;
-                    e.preventDefault();
-                    section.querySelectorAll('.hub-index-tab').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    render(btn.getAttribute('data-filter'));
-                };
+                const nav = section.querySelector('.hub-index-nav');
+                if (nav) {
+                    nav.onclick = function(e) {
+                        const tab = e.target.closest('.hub-index-tab');
+                        if (!tab) return;
+                        e.preventDefault();
+                        this.querySelectorAll('.hub-index-tab').forEach(b => b.classList.remove('active'));
+                        tab.classList.add('active');
+                        render(tab.getAttribute('data-filter'));
+                    };
+                }
 
                 render(initialCat);
 
             } catch (err) { console.error("Index System Error:", err); }
         }
-        // 索引システムを起動
         initSitemapIndex();
-    }
+    } // initNavigation の閉じカッコ
 
-    // 起動シーケンス
+    // --- 統合起動シーケンス ---
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initNavigation);
     } else {
         initNavigation();
     }
-})();
+})(); // IIFE の閉じカッコ
 
 /* --- ページトップ制御 --- */
 window.onscroll = function() {
