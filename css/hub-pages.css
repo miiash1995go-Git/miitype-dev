@@ -796,7 +796,7 @@
 .hub-index-list::-webkit-scrollbar { width: 6px; }
 .hub-index-list::-webkit-scrollbar-thumb { background-color: #d1d5db; border-radius: 10px; }
 
-/* 3. リスト行：PC版（1行・横スクロール対応） */
+/* 3. リスト行：物理整合性修復版 (v20.8.12.Ultimate_Scroll_Final) */
 .hub-index-row {
     display: flex;
     flex-direction: row;
@@ -813,9 +813,9 @@
     transition-property: transform;
     transition-duration: 0.2s;
     width: 100%;
-    /* 【物理修復】行ごとのスクロール（矢印）の発生を完全に封殺 */
-    overflow-x: hidden;
-    overflow-y: hidden;
+    /* 行自体の隠蔽を解除し、スマホの2段積みを許可 */
+    overflow-x: visible;
+    overflow-y: visible;
     box-sizing: border-box;
 }
 
@@ -837,6 +837,15 @@
 .hub-index-info {
     flex-grow: 1;
     min-width: 0;
+    /* 【物理仕様】横スクロールを許可し、かつ醜い矢印・バーを消去 */
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.hub-index-info::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
 }
 
 .hub-index-info h4 {
@@ -847,13 +856,11 @@
     font-size: 1rem;
     font-weight: 800;
     color: var(--primary);
-    white-space: nowrap;
-    /* 【物理修復】長いタイトルは末尾を「...」にして、物理枠を守る */
-    overflow-x: hidden;
-    text-overflow: ellipsis;
+    /* スクロール対象にするため、...による省略(ellipsis)を廃止 */
+    overflow: visible;
 }
 
-/* 4. スマホ版：物理2段構成 */
+/* 4. スマホ版：物理2段構成 ＆ スクロール死守 */
 @media (max-width: 768px) {
     .hub-index-nav {
         grid-template-columns: repeat(2, 1fr) !important;
@@ -862,15 +869,22 @@
     .hub-index-row {
         flex-direction: column;
         align-items: flex-start;
+        padding-top: 12px;
+        padding-bottom: 12px;
         gap: 8px;
     }
 
     .hub-index-meta {
         width: auto;
         margin-right: 0px;
+        flex-shrink: 0;
+    }
+
+    .hub-index-info {
+        width: 100%; /* 横幅一杯でスクロールさせる */
     }
 
     .hub-index-info h4 {
-        white-space: normal;
+        white-space: nowrap; /* スマホでも横スクロール仕様を維持 */
     }
 }
