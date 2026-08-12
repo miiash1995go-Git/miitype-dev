@@ -1135,84 +1135,72 @@ if (typeof gtag === 'function') {
            物理整合性：名前空間(n:)を物理的に無視し、DOMツリーから直接抽出
            ============================================================ */
         async function initSitemapIndex() {
-            const section = document.getElementById('dynamic-sitemap-index');
-            if (!section) return;
+        const section = document.getElementById('dynamic-sitemap-index');
+        if (!section) return;
 
-            const listBody = document.getElementById('column-article-grid');
-            const initialCat = section.dataset.initial || 'all';
-            const categoryMap = {'typing':'タイピング','windows':'Windows','word':'Word','excel':'Excel','ai':'生成AI','career':'就職・転職','column':'現場コラム'};
+        const listBody = document.getElementById('column-article-grid');
+        const initialCat = section.dataset.initial || 'all';
+        const categoryMap = {'typing':'タイピング','windows':'Windows','word':'Word','excel':'Excel','ai':'生成AI','career':'就職・転職','column':'現場コラム'};
 
-            try {
-                const res = await fetch('./sitemap.xml');
-                if (!res.ok) throw new Error("Sitemap Load Failed");
-                const xmlText = await res.text();
-                const xmlDoc = new DOMParser().parseFromString(xmlText, "text/xml");
-                const urlNodes = Array.from(xmlDoc.getElementsByTagName("url"));
+        try {
+            // Sitemapを単なるテキストファイルとして読み込む
+            const res = await fetch('./sitemap.xml');
+            if (!res.ok) throw new Error("Sitemap Load Failed");
+            const rawText = await res.text();
 
-                const articleData = urlNodes.map(node => {
-                    const loc = node.getElementsByTagName("loc")[0]?.textContent || "";
-                    const children = Array.from(node.childNodes);
-                    const findInNode = (name) => children.find(c => 
-                        c.nodeName === name || c.nodeName === `n:${name}` || c.localName === name
-                    )?.textContent;
+            const articleData = [];
+            // <url> 〜 </url> のブロックを物理的に切り出す
+            const urlBlocks = rawText.match(/<url>([\s\S]*?)<\/url>/g);
 
-                    const title = findInNode("title");
-                    const category = findInNode("category");
+            if (urlBlocks) {
+                urlBlocks.forEach(block => {
+                    const loc = block.match(/<loc>(.*?)<\/loc>/)?.[1] || "";
+                    // 【物理修復】コメント <!-- [INDEX] タイトル | カテゴリ --> を正規表現で抽出
+                    const meta = block.match(/<!--\s*\[INDEX\]\s*(.*?)\s*\|\s*(.*?)\s*-->/);
 
-                    if (title && category) {
-                        return {
-                            url: loc.split('/').pop(),
-                            title: title.trim(),
-                            category: category.trim()
-                        };
+                    if (loc && meta) {
+                        articleData.push({
+                            url: loc.split('/').pop(), // ファイル名を取得
+                            title: meta[1].trim(),
+                            category: meta[2].trim()
+                        });
                     }
-                    return null;
-                }).filter(v => v !== null);
+                });
+            }
 
-                function render(filter) {
-                    if (!listBody) return;
-                    listBody.innerHTML = "";
-                    // 【物理修復】タブ切り替え時にリストのスクロール位置を一番上にリセット
-                    listBody.scrollTop = 0;
-                    const filtered = articleData.filter(a => filter === 'all' || a.category === filter);
-                    
-                    if (filtered.length === 0) {
-                        listBody.innerHTML = '<div style="padding:40px; color:#94a3b8; text-align:center;">該当する記事がありません</div>';
-                        return;
-                    }
+            function render(filter) {
+                if (!listBody) return;
+                listBody.innerHTML = "";
+                listBody.scrollTop = 0;
 
-                    listBody.innerHTML = filtered.map(a => 
-                        '<a href="' + a.url + '" class="hub-index-row">' +
-                        '<div class="hub-index-meta"><span class="news-tag tag-' + a.category + '">' + (categoryMap[a.category] || a.category) + '</span></div>' +
-                        '<div class="hub-index-info"><h4>' + a.title + '</h4></div>' +
-                        '</a>'
-                    ).join('');
+                const filtered = articleData.filter(a => filter === 'all' || a.category === filter);
+                
+                if (filtered.length === 0) {
+                    listBody.innerHTML = '<div style="padding:40px; color:#94a3b8; text-align:center; font-weight:800;">該当する記事がありません</div>';
+                    return;
                 }
 
-                const nav = section.querySelector('.hub-index-nav');
-                if (nav) {
-                    nav.onclick = function(e) {
-                        const tab = e.target.closest('.hub-index-tab');
-                        if (!tab) return;
-                        e.preventDefault();
-                        this.querySelectorAll('.hub-index-tab').forEach(b => b.classList.remove('active'));
-                    tab.classList.add('active');
-                    render(tab.getAttribute('data-filter'));
+                listBody.innerHTML = filtered.map(a => 
+                    '<a href="' + a.url + '" class="hub-index-row">' +
+                    '<div class="hub-index-meta"><span class="news-tag tag-' + a.category + '">' + (categoryMap[a.category] || a.category) + '</span></div>' +
+                    '<div class="hub-index-info"><h4>' + a.title + '</h4></div>' +
+                    '</a>'
+                ).join('');
+            }
 
-                    // 【物理修復】スクロール制御：リストの開始位置へ視点を戻す
-                    // 1024px環境での視認性を考慮し、少し手前（-100px）で止める
-                    const offset = section.getBoundingClientRect().top + window.pageYOffset - 100;
-                    window.scrollTo({
-                        top: offset,
-                        behavior: 'smooth'
-                    });
-                    };
-                }
+            section.onclick = function(e) {
+                const btn = e.target.closest('.hub-index-tab');
+                if (!btn) return;
+                e.preventDefault();
+                section.querySelectorAll('.hub-index-tab').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                render(btn.getAttribute('data-filter'));
+            };
 
-                render(initialCat);
+            render(initialCat);
 
-            } catch (err) { console.error("Index System Error:", err); }
-        }
+        } catch (err) { console.error("Index System Error:", err); }
+    }
         initSitemapIndex();
     } // initNavigation の閉じカッコ
 
