@@ -813,7 +813,9 @@
     transition-property: transform;
     transition-duration: 0.2s;
     width: 100%;
-    overflow-x: auto; /* 見切れ時の横スクロール許可 */
+    /* 【物理修復】行ごとのスクロール（矢印）の発生を完全に封殺 */
+    overflow-x: hidden;
+    overflow-y: hidden;
     box-sizing: border-box;
 }
 
@@ -845,7 +847,10 @@
     font-size: 1rem;
     font-weight: 800;
     color: var(--primary);
-    white-space: nowrap; /* 1行死守 */
+    white-space: nowrap;
+    /* 【物理修復】長いタイトルは末尾を「...」にして、物理枠を守る */
+    overflow-x: hidden;
+    text-overflow: ellipsis;
 }
 
 /* 4. スマホ版：物理2段構成 */
