@@ -1130,101 +1130,115 @@ if (typeof gtag === 'function') {
         zOver.onclick = function() { zOver.classList.remove('is-active'); document.body.style.overflow = ''; };
     }
 
-/* ============================================================
-       10. リッチSitemap連動型・動的索引生成システム (v20.8.12.Sitemap_Perfect)
-       ------------------------------------------------------------
-       物理整合性：イベント委譲と曖昧タグ検索により、不具合を根絶する
-       ============================================================ */
-    async function initSitemapIndex() {
-        const indexSection = document.getElementById('dynamic-sitemap-index');
-        if (!indexSection) return;
+announceBox.innerHTML = htmlContent;
+            announceBox.classList.remove('hidden');
+        }
 
-        const initialCat = indexSection.dataset.initial || 'all';
-        const categoryMap = {
-            'typing': 'タイピング', 'windows': 'Windows', 'word': 'Word',
-            'excel': 'Excel', 'ai': '生成AI', 'career': '就職・転職', 'column': '現場コラム'
-        };
+        // 9. 画像拡大モーダル
+        var zOver = document.createElement('div');
+        zOver.className = 'image-zoom-overlay';
+        zOver.innerHTML = '<img class="image-zoom-content" src="" alt="拡大画像">';
+        document.body.appendChild(zOver);
+        document.querySelectorAll('.article-image img').forEach(function(img) {
+            img.onclick = function() {
+                zOver.querySelector('img').src = this.src;
+                zOver.classList.add('is-active');
+                document.body.style.overflow = 'hidden';
+            };
+        });
+        zOver.onclick = function() { zOver.classList.remove('is-active'); document.body.style.overflow = ''; };
 
-        try {
-            const response = await fetch('./sitemap.xml');
-            if (!response.ok) throw new Error("Sitemap Load Failed");
-            
-            const text = await response.text();
-            const xmlDoc = new DOMParser().parseFromString(text, "text/xml");
-            const urlNodes = Array.from(xmlDoc.getElementsByTagName("url"));
+        /* ============================================================
+           10. リッチSitemap連動型・動的索引生成システム (v20.8.12.Sitemap_Perfect)
+           ------------------------------------------------------------
+           物理整合性：ドメイン名（dev/本番）を問わず、名前空間(n:)を確実に抽出
+           ============================================================ */
+        async function initSitemapIndex() {
+            const indexSection = document.getElementById('dynamic-sitemap-index');
+            if (!indexSection) return;
 
-            // 1. 名前空間を無視してデータを抽出（より堅牢なロジック）
-            const articleData = urlNodes.map(node => {
-                const loc = node.querySelector("loc")?.textContent || "";
-                const title = node.getElementsByTagNameNS("*", "title")[0]?.textContent || 
-                             node.querySelector("title")?.textContent;
-                const category = node.getElementsByTagNameNS("*", "category")[0]?.textContent || 
-                                node.querySelector("category")?.textContent;
+            const initialCat = indexSection.dataset.initial || 'all';
+            const categoryMap = {
+                'typing': 'タイピング', 'windows': 'Windows', 'word': 'Word',
+                'excel': 'Excel', 'ai': '生成AI', 'career': '就職・転職', 'column': '現場コラム'
+            };
+
+            try {
+                const response = await fetch('./sitemap.xml');
+                if (!response.ok) throw new Error("Sitemap Load Failed");
                 
-                return {
-                    url: loc.split('/').pop(), // ファイル名だけ抽出
-                    title: title ? title.trim() : null,
-                    category: category ? category.trim() : null
-                };
-            }).filter(a => a.title && a.category); // 有効な記事のみ
+                const text = await response.text();
+                const xmlDoc = new DOMParser().parseFromString(text, "text/xml");
+                const urlNodes = Array.from(xmlDoc.getElementsByTagName("url"));
 
-            const listBody = document.getElementById('column-article-grid');
-            const navContainer = indexSection.querySelector('.hub-index-nav');
+                // 名前空間(n:)があっても無くてもタグを確実に取得する物理抽出ロジック
+                const articleData = urlNodes.map(node => {
+                    const locFull = node.getElementsByTagName("loc")[0]?.textContent || "";
+                    // ドメイン名を問わず「最後のファイル名」を取得
+                    const urlPath = locFull.split('/').pop();
 
-            // 2. 描画関数
-            function renderList(filter) {
-                if (!listBody) return;
-                const filtered = articleData.filter(a => filter === 'all' || a.category === filter);
-                
-                if (filtered.length === 0) {
-                    listBody.innerHTML = '<div style="padding:40px; color:#94a3b8; text-align:center; font-weight:800;">該当する記事がありません</div>';
-                    return;
+                    // 名前空間を無視してタグを探す堅牢な関数
+                    const getTag = (baseName) => {
+                        return Array.from(node.childNodes).find(n => 
+                            n.nodeName === baseName || n.nodeName === `n:${baseName}` || n.localName === baseName
+                        )?.textContent;
+                    };
+
+                    const title = getTag("title");
+                    const category = getTag("category");
+
+                    if (title && category && urlPath && urlPath !== "") {
+                        return { url: urlPath, title: title.trim(), category: category.trim() };
+                    }
+                    return null;
+                }).filter(a => a !== null);
+
+                const listBody = document.getElementById('column-article-grid');
+                const tabs = indexSection.querySelectorAll('.hub-index-tab');
+
+                function renderList(filter) {
+                    if (!listBody) return;
+                    listBody.innerHTML = "";
+                    const filtered = articleData.filter(a => filter === 'all' || a.category === filter);
+                    
+                    if (filtered.length === 0) {
+                        listBody.innerHTML = '<div style="padding:40px; color:#94a3b8; text-align:center;">該当する記事がありません</div>';
+                        return;
+                    }
+
+                    listBody.innerHTML = filtered.map(a => `
+                        <a href="${a.url}" class="hub-index-row">
+                            <div class="hub-index-meta">
+                                <span class="news-tag tag-${a.category}">${categoryMap[a.category] || a.category}</span>
+                            </div>
+                            <div class="hub-index-info">
+                                <h4>${a.title}</h4>
+                            </div>
+                        </a>
+                    `).join('');
                 }
 
-                listBody.innerHTML = filtered.map(a => `
-                    <a href="${a.url}" class="hub-index-row">
-                        <div class="hub-index-meta">
-                            <span class="news-tag tag-${a.category}">${categoryMap[a.category] || a.category}</span>
-                        </div>
-                        <div class="hub-index-info">
-                            <h4>${a.title}</h4>
-                        </div>
-                    </a>
-                `).join('');
+                // タブへのクリックイベント一括登録
+                tabs.forEach(tab => {
+                    tab.onclick = function(e) {
+                        e.preventDefault();
+                        tabs.forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+                        renderList(this.getAttribute('data-filter'));
+                    };
+                });
+
+                // 初期表示
+                renderList(initialCat);
+
+            } catch (e) {
+                console.error("Article Index Error:", e);
             }
-
-            // 3. 【重要】イベント委譲（Event Delegation）：親要素でクリックを捕まえる
-            if (navContainer) {
-                navContainer.onclick = function(e) {
-                    const btn = e.target.closest('.hub-index-tab');
-                    if (!btn) return;
-
-                    e.preventDefault();
-                    // 全ボタンの点灯解除
-                    this.querySelectorAll('.hub-index-tab').forEach(b => b.classList.remove('active'));
-                    // 選択ボタンの点灯
-                    btn.classList.add('active');
-                    // フィルタ実行
-                    renderList(btn.getAttribute('data-filter'));
-                };
-            }
-
-            // 4. 初期表示
-            renderList(initialCat);
-
-        } catch (e) {
-            console.error("Article Index Critical Error:", e);
         }
-    }
-
-    // DOMが完全に構築されてから起動（物理安全策）
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initSitemapIndex);
-    } else {
         initSitemapIndex();
     }
-    
-    // DOMの読み込み完了を待って実行
+
+    // 起動シーケンス
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initNavigation);
     } else {
