@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:n="https://miitype.com/schema/sitemap-extension">
-  <!-- 1. 主要エントリー -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- 1. 主要エントリー (優先度 0.8 - 1.0) -->
   <url>
     <loc>https://miitype.com/</loc>
     <lastmod>2026-08-12</lastmod>
@@ -17,7 +17,7 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- 2. カテゴリハブ -->
+  <!-- 2. カテゴリハブ (優先度 0.9) -->
   <url><loc>https://miitype.com/hub-typing.html</loc><lastmod>2026-08-12</lastmod><priority>0.9</priority></url>
   <url><loc>https://miitype.com/hub-windows.html</loc><lastmod>2026-08-12</lastmod><priority>0.9</priority></url>
   <url><loc>https://miitype.com/hub-word.html</loc><lastmod>2026-08-12</lastmod><priority>0.9</priority></url>
@@ -26,149 +26,149 @@
   <url><loc>https://miitype.com/hub-career.html</loc><lastmod>2026-08-12</lastmod><priority>0.9</priority></url>
   <url><loc>https://miitype.com/hub-column.html</loc><lastmod>2026-08-12</lastmod><priority>0.9</priority></url>
 
-  <!-- 3. タイピング記事 -->
+  <!-- 3. 個別記事：タイピング (メタデータ埋め込み) -->
   <url>
     <loc>https://miitype.com/guide-basics.html</loc>
     <lastmod>2026-08-04</lastmod>
     <priority>0.7</priority>
-    <n:title>タイピング（文字入力）の基本</n:title>
-    <n:category>typing</n:category>
+    <title>タイピング（文字入力）の基本</title>
+    <category>typing</category>
   </url>
   <url>
     <loc>https://miitype.com/guide-typing.html</loc>
     <lastmod>2026-08-04</lastmod>
     <priority>0.7</priority>
-    <n:title>タイピング上達法｜練習のコツ</n:title>
-    <n:category>typing</n:category>
+    <title>タイピング上達法｜練習のコツ</title>
+    <category>typing</category>
   </url>
   <url>
     <loc>https://miitype.com/guide-typing-conversion.html</loc>
     <lastmod>2026-08-04</lastmod>
     <priority>0.7</priority>
-    <n:title>通常変換と予測変換の違いとは？</n:title>
-    <n:category>typing</n:category>
+    <title>通常変換と予測変換の違いとは？</title>
+    <category>typing</category>
   </url>
   <url>
     <loc>https://miitype.com/guide-typing-tenkey.html</loc>
     <lastmod>2026-08-12</lastmod>
     <priority>0.8</priority>
-    <n:title>テンキーの使い方｜数字入力の基本</n:title>
-    <n:category>typing</n:category>
+    <title>テンキーの使い方｜数字入力の基本と上達のコツ</title>
+    <category>typing</category>
   </url>
 
-  <!-- 4. Windows記事 -->
+  <!-- 4. 個別記事：Windows -->
   <url>
     <loc>https://miitype.com/guide-windows-basics.html</loc>
     <lastmod>2026-08-04</lastmod>
     <priority>0.8</priority>
-    <n:title>Windowsの基礎｜仕事で困らない基本操作</n:title>
-    <n:category>windows</n:category>
+    <title>Windowsの基礎｜仕事で困らない基本操作</title>
+    <category>windows</category>
   </url>
   <url>
     <loc>https://miitype.com/guide-windows-folder.html</loc>
     <lastmod>2026-08-04</lastmod>
     <priority>0.8</priority>
-    <n:title>ファイルとフォルダの管理術</n:title>
-    <n:category>windows</n:category>
+    <title>ファイルとフォルダの管理術</title>
+    <category>windows</category>
   </url>
   <url>
     <loc>https://miitype.com/guide-pc-selection.html</loc>
     <lastmod>2026-08-04</lastmod>
     <priority>0.8</priority>
-    <n:title>PC選びの基礎｜失敗しない最初の1台</n:title>
-    <n:category>windows</n:category>
+    <title>PC選びの基礎｜失敗しない最初の1台</title>
+    <category>windows</category>
   </url>
 
-  <!-- 5. Word / Excel記事 -->
+  <!-- 5. 個別記事：Word / Excel -->
   <url>
     <loc>https://miitype.com/guide-word-basics.html</loc>
     <lastmod>2026-08-04</lastmod>
     <priority>0.8</priority>
-    <n:title>仕事で困らないためのWord講座</n:title>
-    <n:category>word</n:category>
+    <title>仕事で困らないためのWord講座</title>
+    <category>word</category>
   </url>
   <url>
     <loc>https://miitype.com/guide-word-practice-01.html</loc>
     <lastmod>2026-08-05</lastmod>
     <priority>0.8</priority>
-    <n:title>実践：Wordで作る「社内文書」の整え方</n:title>
-    <n:category>word</n:category>
+    <title>実践：Wordで作る「社内文書」の整え方</title>
+    <category>word</category>
   </url>
   <url>
     <loc>https://miitype.com/guide-excel-basics.html</loc>
     <lastmod>2026-08-04</lastmod>
     <priority>0.8</priority>
-    <n:title>仕事で困らないためのExcel講座</n:title>
-    <n:category>excel</n:category>
+    <title>仕事で困らないためのExcel講座</title>
+    <category>excel</category>
   </url>
 
-  <!-- 6. AI記事 -->
+  <!-- 6. 個別記事：生成AI -->
   <url>
     <loc>https://miitype.com/column-chatgpt-basics.html</loc>
     <lastmod>2026-08-04</lastmod>
     <priority>0.8</priority>
-    <n:title>ChatGPT活用ガイド｜プロンプトの基本</n:title>
-    <n:category>ai</n:category>
+    <title>ChatGPT活用ガイド｜プロンプトの基本</title>
+    <category>ai</category>
   </url>
   <url>
     <loc>https://miitype.com/ai-tools.html</loc>
     <lastmod>2026-08-04</lastmod>
     <priority>0.9</priority>
-    <n:title>パソコン初心者向けAI活用ガイド</n:title>
-    <n:category>ai</n:category>
+    <title>パソコン初心者向けAI活用ガイド</title>
+    <category>ai</category>
   </url>
 
-  <!-- 7. 就職 / 転職 / コラム記事 -->
+  <!-- 7. 個別記事：就職・転職 / 現場コラム -->
   <url>
     <loc>https://miitype.com/column-interview.html</loc>
     <lastmod>2026-08-04</lastmod>
     <priority>0.9</priority>
-    <n:title>採用を勝ち取るタイピングテスト対策</n:title>
-    <n:category>career</n:category>
+    <title>採用を勝ち取るタイピングテスト対策</title>
+    <category>career</category>
   </url>
   <url>
     <loc>https://miitype.com/guide-career-cv.html</loc>
     <lastmod>2026-08-04</lastmod>
     <priority>0.7</priority>
-    <n:title>職務経歴書の作成ポイント（翻訳術）</n:title>
-    <n:category>career</n:category>
+    <title>職務経歴書の作成ポイント（翻訳術）</title>
+    <category>career</category>
   </url>
   <url>
     <loc>https://miitype.com/guide-career-otg.html</loc>
     <lastmod>2026-08-04</lastmod>
     <priority>0.8</priority>
-    <n:title>OTGケーブル活用ガイド｜履歴書の送り方</n:title>
-    <n:category>career</n:category>
+    <title>OTGケーブル活用ガイド｜履歴書の送り方</title>
+    <category>career</category>
   </url>
   <url>
     <loc>https://miitype.com/column-pc-skills.html</loc>
     <lastmod>2026-08-04</lastmod>
     <priority>0.9</priority>
-    <n:title>事務職の現場で本当に求められる3つの力</n:title>
-    <n:category>column</n:category>
+    <title>事務職の現場で本当に求められる3つの力</title>
+    <category>column</category>
   </url>
   <url>
     <loc>https://miitype.com/column-typing-speed.html</loc>
     <lastmod>2026-08-04</lastmod>
     <priority>0.9</priority>
-    <n:title>タイピング速度の落とし穴と評価基準</n:title>
-    <n:category>career</n:category>
+    <title>タイピング速度の落とし穴と評価基準</title>
+    <category>career</category>
   </url>
   <url>
     <loc>https://miitype.com/career.html</loc>
     <lastmod>2026-08-04</lastmod>
     <priority>0.7</priority>
-    <n:title>就職・転職を成功させるステップ</n:title>
-    <n:category>career</n:category>
+    <title>就職・転職を成功させるステップ</title>
+    <category>career</category>
   </url>
 
-  <!-- 8. 固定辞書 / その他 -->
+  <!-- 8. 運営情報・固定ページ -->
   <url>
     <loc>https://miitype.com/glossary.html</loc>
     <lastmod>2026-08-04</lastmod>
     <priority>0.8</priority>
-    <n:title>実務用語辞典｜言葉の壁をなくす</n:title>
-    <n:category>column</n:category>
+    <title>実務用語辞典｜現場の言葉を正しく理解する</title>
+    <category>column</category>
   </url>
   <url><loc>https://miitype.com/about.html</loc><lastmod>2026-08-04</lastmod><priority>0.6</priority></url>
   <url><loc>https://miitype.com/contact.html</loc><lastmod>2026-08-04</lastmod><priority>0.6</priority></url>

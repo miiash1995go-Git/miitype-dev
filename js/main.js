@@ -1149,92 +1149,75 @@ announceBox.innerHTML = htmlContent;
         zOver.onclick = function() { zOver.classList.remove('is-active'); document.body.style.overflow = ''; };
 
         /* ============================================================
-           10. リッチSitemap連動型・動的索引生成システム (v20.8.12.Sitemap_Perfect)
+           10. アルティメット索引生成エンジン (v20.8.12.SitemapMaster)
            ------------------------------------------------------------
-           物理整合性：ドメイン名（dev/本番）を問わず、名前空間(n:)を確実に抽出
+           物理整合性：ブラウザの解析をバイパスし、XML文字列から直接抽出
            ============================================================ */
         async function initSitemapIndex() {
-            const indexSection = document.getElementById('dynamic-sitemap-index');
-            if (!indexSection) return;
+            const section = document.getElementById('dynamic-sitemap-index');
+            if (!section) return;
 
-            const initialCat = indexSection.dataset.initial || 'all';
-            const categoryMap = {
-                'typing': 'タイピング', 'windows': 'Windows', 'word': 'Word',
-                'excel': 'Excel', 'ai': '生成AI', 'career': '就職・転職', 'column': '現場コラム'
-            };
+            const listBody = document.getElementById('column-article-grid');
+            const initialCat = section.dataset.initial || 'all';
+            const categoryMap = {'typing':'タイピング','windows':'Windows','word':'Word','excel':'Excel','ai':'生成AI','career':'就職・転職','column':'現場コラム'};
 
             try {
-                const response = await fetch('./sitemap.xml');
-                if (!response.ok) throw new Error("Sitemap Load Failed");
-                
-                const text = await response.text();
-                const xmlDoc = new DOMParser().parseFromString(text, "text/xml");
-                const urlNodes = Array.from(xmlDoc.getElementsByTagName("url"));
+                const res = await fetch('./sitemap.xml');
+                const rawText = await res.text();
 
-                // 名前空間(n:)があっても無くてもタグを確実に取得する物理抽出ロジック
-                const articleData = urlNodes.map(node => {
-                    const locFull = node.getElementsByTagName("loc")[0]?.textContent || "";
-                    // ドメイン名を問わず「最後のファイル名」を取得
-                    const urlPath = locFull.split('/').pop();
+                const articleData = [];
+                // <url>ブロックごとに情報を抜き出す物理スキャン
+                const urlBlocks = rawText.match(/<url>([\s\S]*?)<\/url>/g);
 
-                    // 名前空間を無視してタグを探す堅牢な関数
-                    const getTag = (baseName) => {
-                        return Array.from(node.childNodes).find(n => 
-                            n.nodeName === baseName || n.nodeName === `n:${baseName}` || n.localName === baseName
-                        )?.textContent;
-                    };
+                if (urlBlocks) {
+                    urlBlocks.forEach(block => {
+                        const loc = block.match(/<loc>(.*?)<\/loc>/)?.[1] || "";
+                        // 名前空間の有無に関わらず抽出できるよう正規表現を最適化
+                        const title = block.match(/<(?:n:)?title>(.*?)<\/(?:n:)?title>/)?.[1];
+                        const category = block.match(/<(?:n:)?category>(.*?)<\/(?:n:)?category>/)?.[1];
 
-                    const title = getTag("title");
-                    const category = getTag("category");
+                        if (title && category && loc) {
+                            articleData.push({
+                                url: loc.split('/').pop(),
+                                title: title.trim(),
+                                category: category.trim()
+                            });
+                        }
+                    });
+                }
 
-                    if (title && category && urlPath && urlPath !== "") {
-                        return { url: urlPath, title: title.trim(), category: category.trim() };
-                    }
-                    return null;
-                }).filter(a => a !== null);
-
-                const listBody = document.getElementById('column-article-grid');
-                const tabs = indexSection.querySelectorAll('.hub-index-tab');
-
-                function renderList(filter) {
+                function render(filter) {
                     if (!listBody) return;
                     listBody.innerHTML = "";
                     const filtered = articleData.filter(a => filter === 'all' || a.category === filter);
                     
                     if (filtered.length === 0) {
-                        listBody.innerHTML = '<div style="padding:40px; color:#94a3b8; text-align:center;">該当する記事がありません</div>';
+                        listBody.innerHTML = '<div style="padding:40px; color:#94a3b8; text-align:center; font-weight:800;">該当する記事がありません</div>';
                         return;
                     }
 
                     listBody.innerHTML = filtered.map(a => `
                         <a href="${a.url}" class="hub-index-row">
-                            <div class="hub-index-meta">
-                                <span class="news-tag tag-${a.category}">${categoryMap[a.category] || a.category}</span>
-                            </div>
-                            <div class="hub-index-info">
-                                <h4>${a.title}</h4>
-                            </div>
+                            <div class="hub-index-meta"><span class="news-tag tag-${a.category}">${categoryMap[a.category] || a.category}</span></div>
+                            <div class="hub-index-info"><h4>${a.title}</h4></div>
                         </a>
                     `).join('');
                 }
 
-                // タブへのクリックイベント一括登録
-                tabs.forEach(tab => {
-                    tab.onclick = function(e) {
-                        e.preventDefault();
-                        tabs.forEach(t => t.classList.remove('active'));
-                        this.classList.add('active');
-                        renderList(this.getAttribute('data-filter'));
-                    };
-                });
+                section.onclick = function(e) {
+                    const btn = e.target.closest('.hub-index-tab');
+                    if (!btn) return;
+                    e.preventDefault();
+                    section.querySelectorAll('.hub-index-tab').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    render(btn.getAttribute('data-filter'));
+                };
 
-                // 初期表示
-                renderList(initialCat);
+                render(initialCat);
 
-            } catch (e) {
-                console.error("Article Index Error:", e);
-            }
+            } catch (err) { console.error("Index System Error:", err); }
         }
+        // 索引システムを起動
         initSitemapIndex();
     }
 

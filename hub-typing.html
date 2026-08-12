@@ -259,13 +259,13 @@
                         </div>
                     </section>
 
-                    <!-- セクション④：すべての記事一覧（絶縁・News型リスト形式） -->
-                    <section class="hub-section" style="margin-bottom: 0px;">
+                    <!-- セクション④：動的索引リスト（Sitemap.xmlより自動生成） -->
+                    <section class="hub-section" id="dynamic-sitemap-index" data-initial="typing" style="margin-bottom: 0px;">
                         <div class="hub-archive-header">
                             <h2 class="section-title">すべての記事一覧</h2>
                         </div>
 
-                        <!-- 8種類タブ：2行4列（main.jsのフィルタと連動） -->
+                        <!-- タブナビゲーション：JavaScriptがこのボタンを認識します -->
                         <div class="hub-index-nav">
                             <button class="hub-index-tab" data-filter="all">すべて</button>
                             <button class="hub-index-tab active" data-filter="typing">タイピング</button>
@@ -277,45 +277,8 @@
                             <button class="hub-index-tab" data-filter="column">現場コラム</button>
                         </div>
 
-                        <!-- 索引リストコンテナ（絶縁済み） -->
-                        <div class="hub-index-list" id="column-article-grid">
-                            <!-- 記事 1 -->
-                            <a href="guide-basics.html" class="hub-index-row" data-category="typing">
-                                <div class="hub-index-meta">
-                                    <span class="news-tag tag-typing">タイピング</span>
-                                </div>
-                                <div class="hub-index-info">
-                                    <h4>タイピング（文字入力）の基本</h4>
-                                </div>
-                            </a>
-                            <!-- 記事 2 -->
-                            <a href="guide-typing.html" class="hub-index-row" data-category="typing">
-                                <div class="hub-index-meta">
-                                    <span class="news-tag tag-typing">タイピング</span>
-                                </div>
-                                <div class="hub-index-info">
-                                    <h4>タイピング上達法｜練習のコツ</h4>
-                                </div>
-                            </a>
-                            <!-- 記事 3 -->
-                            <a href="guide-typing-conversion.html" class="hub-index-row" data-category="typing">
-                                <div class="hub-index-meta">
-                                    <span class="news-tag tag-typing">タイピング</span>
-                                </div>
-                                <div class="hub-index-info">
-                                    <h4>通常変換と予測変換の違いとは？</h4>
-                                </div>
-                            </a>
-                            <!-- 記事 4 -->
-                            <a href="guide-typing-tenkey.html" class="hub-index-row" data-category="typing">
-                                <div class="hub-index-meta">
-                                    <span class="news-tag tag-typing">タイピング</span>
-                                </div>
-                                <div class="hub-index-info">
-                                    <h4>テンキーの使い方｜数字入力の基本</h4>
-                                </div>
-                            </a>
-                        </div>
+                        <!-- リスト本体（JavaScriptがここに出力します） -->
+                        <div class="hub-index-list" id="column-article-grid"></div>
                     </section>
                 </div> <!-- /hub-accent-area：ここで薄緑の背景色が真四角に終わります -->
 
