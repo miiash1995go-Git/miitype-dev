@@ -1194,8 +1194,16 @@ if (typeof gtag === 'function') {
                         if (!tab) return;
                         e.preventDefault();
                         this.querySelectorAll('.hub-index-tab').forEach(b => b.classList.remove('active'));
-                        tab.classList.add('active');
-                        render(tab.getAttribute('data-filter'));
+                    tab.classList.add('active');
+                    render(tab.getAttribute('data-filter'));
+
+                    // 【物理修復】スクロール制御：リストの開始位置へ視点を戻す
+                    // 1024px環境での視認性を考慮し、少し手前（-100px）で止める
+                    const offset = section.getBoundingClientRect().top + window.pageYOffset - 100;
+                    window.scrollTo({
+                        top: offset,
+                        behavior: 'smooth'
+                    });
                     };
                 }
 
