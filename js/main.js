@@ -79,8 +79,9 @@ class TypingApp {
         
         // --- テンキー出題管理用 ---
         this.tenkeyData = null;           // JSONから読み込んだ全カテゴリ
-        this.tenkeyCategoryIndex = 0;    // 現在のカテゴリ位置
-        this.tenkeyQuestionInCatCount = 0; // そのカテゴリで何問目か (0 or 1)
+        this.tenkeyCategoryIndex = 0;    
+        this.tenkeyQuestionInCatCount = 0; 
+        this.lastTenkeyText = "";        // 安全性確保：あらかじめ変数の箱を用意しておく
 
         // 【修正】コンパクト化に伴い、基準数値を微調整
         this.LEFT_PADDING = 40; // 50から40へ
@@ -355,6 +356,7 @@ if (success) {
         this.totalMissedCount = 0;
         this.missMap = {};
         this.lastQuestionIndex = -1;
+        this.lastTenkeyText = "";        // 2周目・3周目のプレイ時に重複回避を確実にリセットする
         this.isTransitioning = false;
         this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         this.nextQuestion();
@@ -588,7 +590,9 @@ if (success) {
 
     logMiss(char) {
         if (!char) return;
-        let c = char === '-' ? 'ー' : char.toUpperCase();
+        // テンキーモード時は記号をそのまま表示、通常時は日本語の慣習（長音）に合わせる
+        let c = char.toUpperCase();
+        if (this.currentCategoryId !== 'tenkey' && char === '-') c = 'ー';
         this.missMap[c] = (this.missMap[c] || 0) + 1;
     }
 
@@ -805,18 +809,20 @@ if (typeof gtag === 'function') {
         if (this.currentCategoryId === 'tenkey') {
             // テンキー配列のレンダリング（Grid制御用にフラットな構造に変更）
             container.classList.add('tenkey-mode');
-            // レイアウト定義：[表示文字, ID名, クラス名]
+            // レイアウト定義：[表示文字, ID名, クラス名, 指色クラス]
             const tkKeys = [
-                ["", "empty", "tk-empty"], ["/", "divide", ""], ["*", "multiply", ""], ["-", "minus", ""],
-                ["7", "7", ""], ["8", "8", ""], ["9", "9", ""], ["+", "plus", "tk-tall"],
-                ["4", "4", ""], ["5", "5", ""], ["6", "6", ""],
-                ["1", "1", ""], ["2", "2", ""], ["3", "3", ""], ["Ent", "enter", "tk-tall"],
-                ["0", "0", "tk-wide"], [".", "decimal", ""]
+                ["", "empty", "tk-empty", ""], ["/", "divide", "", "f-lp"], ["*", "multiply", "", "f-lr"], ["-", "minus", "", "f-lm"],
+                ["7", "7", "", "f-li"], ["8", "8", "", "f-rm"], ["9", "9", "", "f-rr"], ["+", "plus", "tk-tall", "f-rp"],
+                ["4", "4", "", "f-li"], ["5", "5", "", "f-rm"], ["6", "6", "", "f-rr"],
+                ["1", "1", "", "f-li"], ["2", "2", "", "f-rm"], ["3", "3", "", "f-rr"], ["Ent", "enter", "tk-tall", "f-rp"],
+                ["0", "0", "tk-wide", "f-lp"], [".", "decimal", "", "f-lm"]
             ];
             
-            tkKeys.forEach(([label, id, extraClass]) => {
+            tkKeys.forEach(([label, id, extraClass, fingerClass]) => {
                 const kEl = document.createElement('div');
                 kEl.className = `key tk-key ${extraClass}`;
+                // 設定が有効なら指の色を付与
+                if (this.keyboardColorEnabled && fingerClass) kEl.classList.add(fingerClass);
                 kEl.innerText = label;
                 kEl.id = `k-${id}`;
                 container.appendChild(kEl);
