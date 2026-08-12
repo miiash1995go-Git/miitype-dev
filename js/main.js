@@ -1131,9 +1131,9 @@ if (typeof gtag === 'function') {
     }
 
 /* ============================================================
-       10. リッチSitemap連動型・動的索引生成システム (v20.8.12.Ultimate_Final)
+       10. リッチSitemap連動型・動的索引生成システム (v20.8.12.Sitemap_Perfect)
        ------------------------------------------------------------
-       物理整合性：ドメイン名・名前空間の差異を吸収し、確実にフィルタリングする
+       物理整合性：イベント委譲と曖昧タグ検索により、不具合を根絶する
        ============================================================ */
     async function initSitemapIndex() {
         const indexSection = document.getElementById('dynamic-sitemap-index');
@@ -1146,65 +1146,41 @@ if (typeof gtag === 'function') {
         };
 
         try {
-            // Dev環境でも本番でも、その場の sitemap.xml を読み込む
             const response = await fetch('./sitemap.xml');
-            if (!response.ok) throw new Error("Sitemap not found");
+            if (!response.ok) throw new Error("Sitemap Load Failed");
             
             const text = await response.text();
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(text, "text/xml");
-            const urls = xmlDoc.getElementsByTagName("url");
+            const xmlDoc = new DOMParser().parseFromString(text, "text/xml");
+            const urlNodes = Array.from(xmlDoc.getElementsByTagName("url"));
 
-            let articleData = [];
-            for (let i = 0; i < urls.length; i++) {
-                const node = urls[i];
+            // 1. 名前空間を無視してデータを抽出（より堅牢なロジック）
+            const articleData = urlNodes.map(node => {
+                const loc = node.querySelector("loc")?.textContent || "";
+                const title = node.getElementsByTagNameNS("*", "title")[0]?.textContent || 
+                             node.querySelector("title")?.textContent;
+                const category = node.getElementsByTagNameNS("*", "category")[0]?.textContent || 
+                                node.querySelector("category")?.textContent;
                 
-                // 【物理修復】URLの抽出：ドメイン名を問わず「最後のファイル名」を取得
-                const locFull = node.getElementsByTagName("loc")[0]?.textContent || "";
-                const urlPath = locFull.split('/').pop(); 
-                if (!urlPath || urlPath === "") continue; // トップページ等は除外
-
-                // 【物理修復】名前空間(n:)を完全に無視してタグを抽出する堅牢なロジック
-                const findTagContent = (parentNode, baseName) => {
-                    const children = Array.from(parentNode.childNodes);
-                    const found = children.find(child => 
-                        child.nodeName.toLowerCase().endsWith(baseName.toLowerCase())
-                    );
-                    return found ? found.textContent.trim() : null;
+                return {
+                    url: loc.split('/').pop(), // ファイル名だけ抽出
+                    title: title ? title.trim() : null,
+                    category: category ? category.trim() : null
                 };
+            }).filter(a => a.title && a.category); // 有効な記事のみ
 
-                const title = findTagContent(node, "title");
-                const category = findTagContent(node, "category");
-
-                if (title && category) {
-                    articleData.push({
-                        url: urlPath,
-                        title: title,
-                        category: category
-                    });
-                }
-            }
-
-            const tabs = indexSection.querySelectorAll('.hub-index-tab');
             const listBody = document.getElementById('column-article-grid');
+            const navContainer = indexSection.querySelector('.hub-index-nav');
 
-            // リスト描画関数
+            // 2. 描画関数
             function renderList(filter) {
                 if (!listBody) return;
-                
-                // 1. リストを一旦空にする（切り替えの反応を保証）
-                listBody.innerHTML = "";
-                
-                // 2. フィルタリング実行
                 const filtered = articleData.filter(a => filter === 'all' || a.category === filter);
                 
-                // 3. 該当記事がない場合の救済表示
                 if (filtered.length === 0) {
-                    listBody.innerHTML = '<div style="padding:40px; color:#94a3b8; text-align:center; font-weight:800;">このカテゴリの記事は準備中です</div>';
+                    listBody.innerHTML = '<div style="padding:40px; color:#94a3b8; text-align:center; font-weight:800;">該当する記事がありません</div>';
                     return;
                 }
 
-                // 4. HTML生成
                 listBody.innerHTML = filtered.map(a => `
                     <a href="${a.url}" class="hub-index-row">
                         <div class="hub-index-meta">
@@ -1217,28 +1193,36 @@ if (typeof gtag === 'function') {
                 `).join('');
             }
 
-            // 【論理修復】タブのクリックイベント：確実に発火させる
-            tabs.forEach(tab => {
-                tab.onclick = function(e) {
-                    e.preventDefault();
-                    // 他のタブをリセット
-                    tabs.forEach(t => t.classList.remove('active'));
-                    // 自分を点灯
-                    this.classList.add('active');
-                    // データを書き換え
-                    const filterValue = this.getAttribute('data-filter');
-                    renderList(filterValue);
-                };
-            });
+            // 3. 【重要】イベント委譲（Event Delegation）：親要素でクリックを捕まえる
+            if (navContainer) {
+                navContainer.onclick = function(e) {
+                    const btn = e.target.closest('.hub-index-tab');
+                    if (!btn) return;
 
-            // 初回表示の実行
+                    e.preventDefault();
+                    // 全ボタンの点灯解除
+                    this.querySelectorAll('.hub-index-tab').forEach(b => b.classList.remove('active'));
+                    // 選択ボタンの点灯
+                    btn.classList.add('active');
+                    // フィルタ実行
+                    renderList(btn.getAttribute('data-filter'));
+                };
+            }
+
+            // 4. 初期表示
             renderList(initialCat);
 
         } catch (e) {
-            console.error("索引システム致命的エラー:", e);
+            console.error("Article Index Critical Error:", e);
         }
     }
-    initSitemapIndex();
+
+    // DOMが完全に構築されてから起動（物理安全策）
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSitemapIndex);
+    } else {
+        initSitemapIndex();
+    }
     
     // DOMの読み込み完了を待って実行
     if (document.readyState === 'loading') {
