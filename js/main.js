@@ -1130,6 +1130,94 @@ if (typeof gtag === 'function') {
         zOver.onclick = function() { zOver.classList.remove('is-active'); document.body.style.overflow = ''; };
     }
 
+/* ============================================================
+       10. リッチSitemap連動型・動的索引生成システム (v20.8.12.SitemapIndex)
+       ------------------------------------------------------------
+       仕組み：sitemap.xmlを読み込み、n:titleタグなどから索引リストを
+       全自動で組み立てます。
+       ============================================================ */
+    async function initSitemapIndex() {
+        // ① 画面に「索引エリア」があるか探す（なければ何もしない）
+        const indexSection = document.getElementById('dynamic-sitemap-index');
+        if (!indexSection) return;
+
+        // ② ハブページごとに「最初に表示するカテゴリ」を取得（typing等）
+        const initialCat = indexSection.dataset.initial || 'all';
+        const categoryMap = {
+            'typing': 'タイピング', 'windows': 'Windows', 'word': 'Word',
+            'excel': 'Excel', 'ai': '生成AI', 'career': '就職・転職', 'column': '現場コラム'
+        };
+
+        try {
+            // ③ sitemap.xmlを読み込む
+            const response = await fetch('./sitemap.xml');
+            const text = await response.text();
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(text, "text/xml");
+            const urls = xmlDoc.getElementsByTagName("url");
+
+            // ④ サイトマップから記事情報だけを抜き出してリスト化する
+            let articleData = [];
+            for (let i = 0; i < urls.length; i++) {
+                const loc = urls[i].getElementsByTagName("loc")[0]?.textContent;
+                // n:title または title タグを探す
+                const titleEl = urls[i].getElementsByTagName("n:title")[0] || urls[i].getElementsByTagName("title")[0];
+                const categoryEl = urls[i].getElementsByTagName("n:category")[0] || urls[i].getElementsByTagName("category")[0];
+
+                // タイトルとカテゴリが書いてあるものだけ採用
+                if (titleEl && categoryEl) {
+                    articleData.push({
+                        url: loc.replace('https://miitype.com/', ''), // リンク先
+                        title: titleEl.textContent,                   // 記事タイトル
+                        category: categoryEl.textContent              // バッジの種類
+                    });
+                }
+            }
+
+            // ⑤ 表示場所とボタン（タブ）を取得
+            const tabs = indexSection.querySelectorAll('.hub-index-tab');
+            const listBody = document.getElementById('column-article-grid');
+
+            // ⑥ 画面にリストを書き出す「描画関数」
+            function renderList(filter) {
+                if (!listBody) return;
+                // カテゴリで絞り込む
+                const filtered = articleData.filter(a => filter === 'all' || a.category === filter);
+                
+                // HTMLを組み立てて流し込む
+                listBody.innerHTML = filtered.map(a => `
+                    <a href="${a.url}" class="hub-index-row">
+                        <div class="hub-index-meta">
+                            <span class="news-tag tag-${a.category}">${categoryMap[a.category] || a.category}</span>
+                        </div>
+                        <div class="hub-index-info">
+                            <h4>${a.title}</h4>
+                        </div>
+                    </a>
+                `).join('');
+            }
+
+            // ⑦ タブをクリックしたときの動きを設定
+            tabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tabs.forEach(t => t.classList.remove('active')); // 他のボタンを消灯
+                    tab.classList.add('active');                     // 押したボタンを点灯
+                    renderList(tab.dataset.filter);                  // リストを書き換え
+                });
+            });
+
+            // ⑧ 最初の一回目を表示する
+            renderList(initialCat);
+
+        } catch (e) {
+            console.error("Sitemap Indexシステムでエラーが発生しました:", e);
+        }
+    }
+    
+    // プログラムを起動
+    initSitemapIndex();
+    
     // DOMの読み込み完了を待って実行
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initNavigation);

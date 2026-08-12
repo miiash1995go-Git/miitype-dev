@@ -714,13 +714,10 @@
 .hub-roadmap__item--next-windows .hub-roadmap__num { color: #38BDF8 !important; font-weight: 900 !important; }
 
 /* ============================================================
-   [絶縁定義] すべての記事一覧：索引リスト・システム (v20.8.12.Ultimate)
-   - 既存の grid/card とは物理的に無関係に動作
-   - PC: 1行（バッジ + タイトル）
-   - スマホ: 2行（1段目バッジ / 2段目タイトル）
+   [絶縁定義] 動的索引リスト：物理配置ルール (v20.8.12.SitemapLogic)
    ============================================================ */
 
-/* 1. タブナビゲーション：ヘッダー準拠の2行4列グリッド */
+/* 1. タブナビゲーション：ヘッダー準拠の2行4列 */
 .hub-index-nav {
     display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
@@ -729,6 +726,7 @@
     margin-right: 0px;
     margin-bottom: 30px;
     margin-left: 0px;
+    width: 100%;
 }
 
 .hub-index-tab {
@@ -754,16 +752,12 @@
     white-space: nowrap;
 }
 
-.hub-index-tab:hover {
-    background-color: #e2e8f0;
-}
-
 .hub-index-tab.active {
     background-color: var(--primary);
     color: #ffffff;
 }
 
-/* 2. リストコンテナ：News型 */
+/* 2. 索引リストコンテナ */
 .hub-index-list {
     display: flex !important;
     flex-direction: column !important;
@@ -820,7 +814,6 @@
     transform: translateX(8px);
 }
 
-/* リスト内：バッジエリア */
 .hub-index-meta {
     flex-grow: 0;
     flex-shrink: 0;
@@ -828,7 +821,6 @@
     margin-right: 20px;
 }
 
-/* リスト内：タイトルエリア */
 .hub-index-info {
     flex-grow: 1;
     min-width: 0;
@@ -848,7 +840,7 @@
 /* 4. スマホ版：物理2段構成 */
 @media (max-width: 768px) {
     .hub-index-nav {
-        grid-template-columns: repeat(2, 1fr) !important; /* スマホは2列4段 */
+        grid-template-columns: repeat(2, 1fr) !important;
     }
 
     .hub-index-row {
@@ -863,6 +855,6 @@
     }
 
     .hub-index-info h4 {
-        white-space: normal; /* スマホではタイトルを折り返し許可して視認性を確保（指示により横スクロールもコンテナで保持） */
+        white-space: normal;
     }
 }
