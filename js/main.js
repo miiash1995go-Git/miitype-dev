@@ -844,7 +844,6 @@ if (typeof gtag === 'function') {
             tkKeys.forEach(([label, id, extraClass, fingerClass]) => {
                 const kEl = document.createElement('div');
                 kEl.className = `key tk-key ${extraClass}`;
-                // 設定が有効なら指の色を付与
                 if (this.keyboardColorEnabled && fingerClass) kEl.classList.add(fingerClass);
                 kEl.innerText = label;
                 kEl.id = `k-${id}`;
