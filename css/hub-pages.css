@@ -74,11 +74,11 @@
     display: block;
 }
 
-/* --- 3. 「学習を始める」グリッド ＆ カード --- */
+/* --- 3. 「学習を始める」グリッド：2列統治 (v20.8.12.Fixed) --- */
 .hub-priority-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 25px;
     margin-top: 30px;
     margin-right: 0px;
     margin-bottom: 0px;
@@ -86,7 +86,7 @@
 }
 
 .hub-priority-card {
-    background-color: #f8fbfe; /* 背景色を薄く付けて白から分離 */
+    background-color: #f8fbfe;
     padding-top: 35px;
     padding-right: 30px;
     padding-bottom: 30px;
@@ -95,7 +95,7 @@
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    border-top-width: 2px; /* 枠線を太く設定 */
+    border-top-width: 2px;
     border-right-width: 2px;
     border-bottom-width: 2px;
     border-left-width: 2px;
@@ -115,7 +115,7 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.02);
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* カード形式：縦積みを死守 */
 }
 
 .hub-priority-card:hover {
@@ -128,7 +128,7 @@
     box-shadow: 0px 15px 40px rgba(52, 152, 219, 0.12);
 }
 
-/* 【イチオシ（Featured）】強めのオレンジ・赤系枠 */
+/* 【イチオシ（Featured）】 */
 .hub-priority-card--featured {
     background-color: #fffaf5;
     border-top-color: #f39c12;
@@ -164,7 +164,7 @@
 }
 
 .hub-priority-card--featured .hub-priority-card__badge {
-    background-color: #e67e22; /* イチオシ用バッジ色 */
+    background-color: #e67e22;
 }
 
 .hub-priority-card h3 {
@@ -285,7 +285,7 @@
     white-space: nowrap;
 }
 
-/* --- 5. 下部アクセントエリア（薄緑背景）：真四角終了版 (v20.1.13) --- */
+/* --- 5. 下部アクセントエリア（薄緑背景）：2列統治 --- */
 .hub-accent-area {
     background-color: #f0fdf4;
     margin-top: 80px;
@@ -296,7 +296,6 @@
     padding-right: 60px;
     padding-bottom: 60px;
     padding-left: 60px;
-    /* 角丸を物理的に「0px」へ統治し、親の白枠との競合を封殺 */
     border-top-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
     border-bottom-left-radius: 0px !important;
@@ -305,8 +304,7 @@
 
 .hub-popular-grid {
     display: grid;
-    /* 物理崩壊を防ぐため4列から2列（2x2）へ変更 */
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* 人気記事も2列で安定化 */
     gap: 20px;
     margin-top: 25px;
     margin-right: 0px;
@@ -316,7 +314,6 @@
 
 .hub-popular-card {
     background-color: #ffffff;
-    /* 2列化に伴い左右余白を最適化 */
     padding-top: 25px;
     padding-right: 25px;
     padding-bottom: 25px;
@@ -340,6 +337,8 @@
     border-right-color: #e2e8f0;
     border-bottom-color: #e2e8f0;
     border-left-color: #e2e8f0;
+    display: flex;
+    flex-direction: column; /* 人気記事カード：縦積みを死守 */
 }
 
 .hub-popular-card:hover {
@@ -371,7 +370,7 @@
     border-bottom-style: none;
 }
 
-/* --- 6. すべての記事（アーカイブ） --- */
+/* --- 6. すべての記事（絶縁された索引リスト：v20.8.12.Archive） --- */
 .hub-archive-header {
     display: flex;
     flex-direction: row;
@@ -418,7 +417,7 @@
     color: #ffffff;
 }
 
-/* --- 記事一覧：News型リスト形式への刷新 (v20.8.12.List) --- */
+/* ここが新設のリスト専用コンテナ（絶縁済み） */
 .hub-article-list {
     display: flex;
     flex-direction: column;
@@ -446,7 +445,8 @@
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.04);
 }
 
-.hub-article-item {
+/* クラス名を hub-archive-list-item に変更し、カード型と絶縁 */
+.hub-archive-list-item {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -461,28 +461,21 @@
     text-decoration-line: none;
     transition-property: transform;
     transition-duration: 0.2s;
-    transition-timing-function: ease;
 }
 
-.hub-article-item:last-child {
-    border-bottom-style: none;
-}
+.hub-archive-list-item:last-child { border-bottom-style: none; }
+.hub-archive-list-item:hover { transform: translateX(8px); }
 
-.hub-article-item:hover {
-    transform: translateX(8px);
-}
-
-/* リスト内の要素配置 */
-.hub-article-item__meta {
+.hub-archive-list-item__meta {
     display: flex;
     flex-direction: row;
     align-items: center;
     flex-shrink: 0;
-    width: 120px; /* バッジの幅を固定 */
+    width: 120px;
     margin-right: 20px;
 }
 
-.hub-article-item__info {
+.hub-archive-list-item__info {
     flex-grow: 1;
     display: flex;
     flex-direction: row;
@@ -490,53 +483,33 @@
     gap: 15px;
 }
 
-.hub-article-item h4 {
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
+.hub-archive-list-item h4 {
+    margin: 0;
     font-size: 1rem;
     font-weight: 800;
     color: var(--primary);
     white-space: nowrap;
 }
 
-.hub-article-item p {
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
+.hub-archive-list-item p {
+    margin: 0;
     font-size: 0.85rem;
     color: #64748b;
-    line-height: 1.4;
-    /* PCでは説明文を1行に制限 */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-/* スマホ表示：2段組みへの最適化 */
+/* スマホ表示：リスト専用レスポンシブ */
 @media (max-width: 768px) {
-    .hub-article-item {
+    .hub-archive-list-item {
         flex-direction: column;
         align-items: flex-start;
         gap: 8px;
     }
-    .hub-article-item__meta {
-        width: auto;
-        margin-right: 0px;
-    }
-    .hub-article-item__info {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-    }
-    .hub-article-item h4 {
-        white-space: normal;
-    }
-    .hub-article-item p {
-        white-space: normal;
-    }
+    .hub-archive-list-item__meta { width: auto; margin-right: 0px; }
+    .hub-archive-list-item__info { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .hub-archive-list-item h4, .hub-archive-list-item p { white-space: normal; }
 }
 
 /* --- 9. 全ハブ共通：メリット・特徴セクション (v20.1.40 視認性強化版) --- */
