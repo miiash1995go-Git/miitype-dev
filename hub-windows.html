@@ -203,37 +203,22 @@
                         </div>
                     </section>
 
-                    <!-- セクション④：すべての記事一覧 -->
-                    <section class="hub-section" style="margin-bottom: 0px;">
+                    <!-- セクション④：動的索引リスト（Sitemap.xmlより自動生成） -->
+                    <section class="hub-section" id="dynamic-sitemap-index" data-initial="windows" style="margin-bottom: 0px;">
                         <div class="hub-archive-header">
                             <h2 class="section-title">すべての記事一覧</h2>
-                            <div class="hub-tag-nav">
-                                <button class="hub-tag active">すべて</button>
-                            </div>
                         </div>
-                        <div class="hub-article-grid">
-                            <!-- 1枚目のカード -->
-                            <a href="guide-windows-basics.html" class="hub-article-item">
-                                <div class="hub-article-item__info">
-                                    <h4>Windowsの基礎｜仕事で困らない基本操作</h4>
-                                    <p>WordやExcelを学ぶ前の土台作り。エクスプローラー、右クリック、トラブル対処を解説。</p>
-                                </div>
-                            </a>
-                            <!-- 2枚目のカード -->
-                            <a href="guide-windows-folder.html" class="hub-article-item">
-                                <div class="hub-article-item__info">
-                                    <h4>ファイルとフォルダの管理術</h4>
-                                    <p>ドキュメントの活用、整理のルール、日付入りのファイル名の付け方など、現場の基本を解説。</p>
-                                </div>
-                            </a>
-                            <!-- 3枚目のカード -->
-                            <a href="guide-pc-selection.html" class="hub-article-item">
-                                <div class="hub-article-item__info">
-                                    <h4>PC選びの基礎｜初心者でも迷わない最初の1台</h4>
-                                    <p>何を買えばいいか迷っている方へ。スペックの読み方から実務に必要な性能までを紹介。</p>
-                                </div>
-                            </a>
+                        <div class="hub-index-nav">
+                            <button class="hub-index-tab" data-filter="all">すべて</button>
+                            <button class="hub-index-tab" data-filter="typing">タイピング</button>
+                            <button class="hub-index-tab active" data-filter="windows">Windows</button>
+                            <button class="hub-index-tab" data-filter="word">Word</button>
+                            <button class="hub-index-tab" data-filter="excel">Excel</button>
+                            <button class="hub-index-tab" data-filter="ai">生成AI</button>
+                            <button class="hub-index-tab" data-filter="career">就職・転職</button>
+                            <button class="hub-index-tab" data-filter="column">現場コラム</button>
                         </div>
+                        <div class="hub-index-list" id="column-article-grid"></div>
                     </section>
                 </div> <!-- /hub-accent-area：ここで薄緑の背景色が真四角に終わります -->
 
