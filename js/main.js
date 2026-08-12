@@ -1131,9 +1131,9 @@ if (typeof gtag === 'function') {
     }
 
 /* ============================================================
-       10. リッチSitemap連動型・動的索引生成システム (v20.8.12.Ultimate_Fix)
+       10. リッチSitemap連動型・動的索引生成システム (v20.8.12.Ultimate_Final)
        ------------------------------------------------------------
-       物理整合性：ドメイン名に依存せず、名前空間(n:)を確実に抽出する
+       物理整合性：ドメイン名・名前空間の差異を吸収し、確実にフィルタリングする
        ============================================================ */
     async function initSitemapIndex() {
         const indexSection = document.getElementById('dynamic-sitemap-index');
@@ -1146,7 +1146,7 @@ if (typeof gtag === 'function') {
         };
 
         try {
-            // 相対パスで取得。Dev環境でも本番でも「その場」のxmlを読みます
+            // Dev環境でも本番でも、その場の sitemap.xml を読み込む
             const response = await fetch('./sitemap.xml');
             if (!response.ok) throw new Error("Sitemap not found");
             
@@ -1159,19 +1159,22 @@ if (typeof gtag === 'function') {
             for (let i = 0; i < urls.length; i++) {
                 const node = urls[i];
                 
-                // 【物理修復】URLの抽出：ドメイン名(dev/本番)を問わず、最後のファイル名だけ抜き出す
+                // 【物理修復】URLの抽出：ドメイン名を問わず「最後のファイル名」を取得
                 const locFull = node.getElementsByTagName("loc")[0]?.textContent || "";
-                const urlPath = locFull.split('/').pop(); // 最後の「guide-xxx.html」だけを取得
+                const urlPath = locFull.split('/').pop(); 
+                if (!urlPath || urlPath === "") continue; // トップページ等は除外
 
-                // 【物理修復】名前空間（n:）があってもなくても「title」という名前なら取得するヘルパー
-                const getExtTag = (parent, tagName) => {
-                    return Array.from(parent.childNodes).find(n => 
-                        n.nodeName === tagName || n.nodeName === `n:${tagName}` || n.localName === tagName
-                    )?.textContent;
+                // 【物理修復】名前空間(n:)を完全に無視してタグを抽出する堅牢なロジック
+                const findTagContent = (parentNode, baseName) => {
+                    const children = Array.from(parentNode.childNodes);
+                    const found = children.find(child => 
+                        child.nodeName.toLowerCase().endsWith(baseName.toLowerCase())
+                    );
+                    return found ? found.textContent.trim() : null;
                 };
 
-                const title = getExtTag(node, "title");
-                const category = getExtTag(node, "category");
+                const title = findTagContent(node, "title");
+                const category = findTagContent(node, "category");
 
                 if (title && category) {
                     articleData.push({
@@ -1185,17 +1188,23 @@ if (typeof gtag === 'function') {
             const tabs = indexSection.querySelectorAll('.hub-index-tab');
             const listBody = document.getElementById('column-article-grid');
 
+            // リスト描画関数
             function renderList(filter) {
                 if (!listBody) return;
-                listBody.innerHTML = ""; // 一旦クリア
                 
+                // 1. リストを一旦空にする（切り替えの反応を保証）
+                listBody.innerHTML = "";
+                
+                // 2. フィルタリング実行
                 const filtered = articleData.filter(a => filter === 'all' || a.category === filter);
                 
+                // 3. 該当記事がない場合の救済表示
                 if (filtered.length === 0) {
-                    listBody.innerHTML = '<div style="padding:40px; color:#94a3b8; text-align:center;">このカテゴリの記事はまだありません</div>';
+                    listBody.innerHTML = '<div style="padding:40px; color:#94a3b8; text-align:center; font-weight:800;">このカテゴリの記事は準備中です</div>';
                     return;
                 }
 
+                // 4. HTML生成
                 listBody.innerHTML = filtered.map(a => `
                     <a href="${a.url}" class="hub-index-row">
                         <div class="hub-index-meta">
@@ -1208,25 +1217,27 @@ if (typeof gtag === 'function') {
                 `).join('');
             }
 
-            // タブへのクリックイベント登録
+            // 【論理修復】タブのクリックイベント：確実に発火させる
             tabs.forEach(tab => {
-                tab.addEventListener('click', (e) => {
+                tab.onclick = function(e) {
                     e.preventDefault();
+                    // 他のタブをリセット
                     tabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                    renderList(tab.dataset.filter);
-                });
+                    // 自分を点灯
+                    this.classList.add('active');
+                    // データを書き換え
+                    const filterValue = this.getAttribute('data-filter');
+                    renderList(filterValue);
+                };
             });
 
-            // 最初に指定されたカテゴリを表示
+            // 初回表示の実行
             renderList(initialCat);
 
         } catch (e) {
-            console.error("索引システムエラー:", e);
+            console.error("索引システム致命的エラー:", e);
         }
     }
-    
-    // プログラムを起動
     initSitemapIndex();
     
     // DOMの読み込み完了を待って実行
