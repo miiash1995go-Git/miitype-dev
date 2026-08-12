@@ -712,3 +712,157 @@
     border-bottom-color: #e0f2fe !important;
 }
 .hub-roadmap__item--next-windows .hub-roadmap__num { color: #38BDF8 !important; font-weight: 900 !important; }
+
+/* ============================================================
+   [絶縁定義] すべての記事一覧：索引リスト・システム (v20.8.12.Ultimate)
+   - 既存の grid/card とは物理的に無関係に動作
+   - PC: 1行（バッジ + タイトル）
+   - スマホ: 2行（1段目バッジ / 2段目タイトル）
+   ============================================================ */
+
+/* 1. タブナビゲーション：ヘッダー準拠の2行4列グリッド */
+.hub-index-nav {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 10px !important;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+}
+
+.hub-index-tab {
+    background-color: #f1f2f6;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #4b5563;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.hub-index-tab:hover {
+    background-color: #e2e8f0;
+}
+
+.hub-index-tab.active {
+    background-color: var(--primary);
+    color: #ffffff;
+}
+
+/* 2. リストコンテナ：News型 */
+.hub-index-list {
+    display: flex !important;
+    flex-direction: column !important;
+    background-color: #ffffff;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding-top: 10px;
+    padding-right: 25px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #f1f3f5;
+    border-right-color: #f1f3f5;
+    border-bottom-color: #f1f3f5;
+    border-left-color: #f1f3f5;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+/* 3. リスト行：PC版（1行・横スクロール対応） */
+.hub-index-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 16px;
+    padding-right: 0px;
+    padding-bottom: 16px;
+    padding-left: 0px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #f8f9fa;
+    text-decoration-line: none;
+    transition-property: transform;
+    transition-duration: 0.2s;
+    width: 100%;
+    overflow-x: auto; /* 見切れ時の横スクロール許可 */
+    box-sizing: border-box;
+}
+
+.hub-index-row:last-child {
+    border-bottom-style: none;
+}
+
+.hub-index-row:hover {
+    transform: translateX(8px);
+}
+
+/* リスト内：バッジエリア */
+.hub-index-meta {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 110px;
+    margin-right: 20px;
+}
+
+/* リスト内：タイトルエリア */
+.hub-index-info {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.hub-index-info h4 {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--primary);
+    white-space: nowrap; /* 1行死守 */
+}
+
+/* 4. スマホ版：物理2段構成 */
+@media (max-width: 768px) {
+    .hub-index-nav {
+        grid-template-columns: repeat(2, 1fr) !important; /* スマホは2列4段 */
+    }
+
+    .hub-index-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .hub-index-meta {
+        width: auto;
+        margin-right: 0px;
+    }
+
+    .hub-index-info h4 {
+        white-space: normal; /* スマホではタイトルを折り返し許可して視認性を確保（指示により横スクロールもコンテナで保持） */
+    }
+}
