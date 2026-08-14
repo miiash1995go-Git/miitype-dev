@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excelの実務スキル｜売上管理表をスッキリ整える基本ルール | ぱそトレ！</title>
+    <meta name="description" content="Excelで売上管理表を作成する際の実務ルールを解説。SUM関数の効率的な使い方、達成率の計算、セル結合を使わないタイトル配置など、計算ミスを防ぎ誰が見ても正確な表にする手順を現役講師がガイドします。">
+    <link rel="canonical" href="https://miitype.com/guide-excel-practice-01.html">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- 1. アドセンス -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
+
+    <!-- 2. 管理者除外スクリプト -->
+    <script>
+        if (localStorage.getItem('pasotore_admin') === 'true') {
+            window['ga-disable-G-KWS4RPPBVV'] = true;
+            console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
+        }
+    </script>
+     
+    <!-- 3. Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
+</head>
+<body class="portal-page">
+    <div id="app">
+        <!-- 統合ヘッダー -->
+        <header>
+            <div class="header-inner">
+                <a href="./" class="header-logo-link">
+                    <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
+                </a>
+                <nav class="header-nav">
+                    <div class="nav-grid">
+                        <a href="./" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                        <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                        <a href="hub-windows.html" class="nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>Windows</span></a>
+                        <a href="hub-word.html" class="nav-item"><img src="img/icon-word.png" class="nav-icon"><span>Word</span></a>
+                        <a href="hub-excel.html" class="nav-item"><img src="img/icon-excel.png" class="nav-icon"><span>Excel</span></a>
+                        <a href="hub-ai.html" class="nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                        <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                        <a href="hub-column.html" class="nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                    </div>
+                    <button class="mobile-menu-trigger" id="mobile-menu-btn">
+                        <span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="menu-label">メニュー</span>
+                    </button>
+                </nav>
+            </div>
+            <!-- スマホメニュー -->
+            <div class="mobile-nav-overlay" id="mobile-menu-overlay">
+                <button class="menu-close-btn" id="menu-close-btn">×</button>
+                <div class="mobile-nav-grid">
+                    <a href="./" class="mobile-nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                    <a href="hub-typing.html" class="mobile-nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                    <a href="hub-windows.html" class="mobile-nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>Windows</span></a>
+                    <a href="hub-word.html" class="mobile-nav-item"><img src="img/icon-word.png" class="nav-icon"><span>Word</span></a>
+                    <a href="hub-excel.html" class="mobile-nav-item"><img src="img/icon-excel.png" class="nav-icon"><span>Excel</span></a>
+                    <a href="hub-ai.html" class="mobile-nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                    <a href="hub-career.html" class="mobile-nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                    <a href="hub-column.html" class="mobile-nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                </div>
+            </div>
+        </header>
+
+        <main class="portal-main">
+            <article class="static-page">
+                <nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
+
+                <h1 class="page-title">Excelで作る「売上管理表」の整え方</h1>
+                <p class="page-subtitle">～計算ミスを防ぎ、誰が見ても分かる表にする～</p>
+                
+                <div class="content-body">
+                    <p>Excelで仕事をしていると、売上や予算などの数字を表にまとめる機会があります。でも、数字を入力して並べるだけでは、仕事で使いやすい表にはなりません。</p>
+                    <p>今回は、実際の「売上管理表」を作りながら、実務で役立つExcelの使い方を練習しましょう。</p>
+
+                    <div class="instructor-advice">
+                        <b>💡 この記事で学べる実務ポイント</b><br>
+                        ・Excelに正確な「計算」をさせる仕組み作り<br>
+                        ・SUM関数を効率よく使うための範囲選択術<br>
+                        ・達成率の求め方とパーセント表示<br>
+                        ・後々の編集を楽にする「セル結合」を使わない配置
+                    </div>
+
+                    <h2>1．まずは完成した表を見てみよう</h2>
+                    <p>最初に細かい操作を覚える必要はありません。まずは「最終的にどんな表を作るのか」というゴールを見てみましょう。</p>
+
+                    <div class="article-image article-image--window">
+                        <img src="img/Excel/excel-practice01-complete.jpg" alt="完成した売上管理表の見本">
+                        <p class="small-text">▲ 【画像1】完成イメージ：計算と装飾が整ったプロの表です</p>
+                    </div>
+
+                    <p>今回の表には「地域・都道府県・予算・上期売上・下期売上・年間合計・達成率」が入っています。最大のポイントは、単に数字を打ち込むのではなく、<strong>Excelに計算をさせていること</strong>です。</p>
+                    <p>たとえば東京なら、売上の合計（3,860）や予算に対する達成率（110.3％）は、すべてExcelが自動で算出しています。このような「仕組みのある表」に仕上げていきます。</p>
+
+                    <h2>2．準備：まずはデータを入力する</h2>
+                    <p>表を作るときは、いきなり色を付けたり罫線を引いたりしません。まずは、タイピングに集中して表の「中身（データ）」を用意します。</p>
+
+                    <div class="article-image article-image--window">
+                        <img src="img/Excel/excel-practice01-raw.jpg" alt="罫線や計算のない入力直後の生データ">
+                        <p class="small-text">▲ 【画像2】準備したデータ：まずは「数値」として正しく入力します</p>
+                    </div>
+
+                    <div class="info-note-box" style="background-color: #f8f9fa; font-family: 'Roboto Mono', monospace; line-height: 1.6;">
+                        【入力データ（コピー用）】<br>
+                        地域, 都道府県, 予算, 上期売上, 下期売上<br>
+                        関東, 東京, 3500, 1850, 2010<br>
+                        関東, 神奈川, 3000, 1630, 1770<br>
+                        関東, 千葉, 2800, 1410, 1300<br>
+                        関東, 埼玉, 2500, 1095, 1185<br>
+                        近畿, 大阪, 3300, 1750, 1850<br>
+                        近畿, 京都, 3200, 1600, 1785<br>
+                        近畿, 兵庫, 2800, 1325, 1355<br>
+                        近畿, 和歌山, 2300, 1450, 950
+                    </div>
+
+                    <div class="instructor-advice" style="border-left-color: #16a34a; background-color: #f0fdf4;">
+                        <b>💡 初心者の方への重要ルール</b><br>
+                        数字は必ず「3500」のように、数字だけを入力しましょう。「3,500千円」のように文字を混ぜてしまうと、Excelが計算できなくなってしまいます。カンマや単位といった表示は、最後に見た目を整える際に一括で設定するのが効率的です。
+                    </div>
+
+                    <h2>3．今回のポイントを先に確認</h2>
+                    <p>表を完成させるために、特に意識してほしい実務上のポイントは4つです。</p>
+                    <ul>
+                        <li><strong>年間合計は計算式で求める</strong>：上期売上 ＋ 下期売上 をセル番地で指定します。</li>
+                        <li><strong>合計行はSUM関数を使う</strong>：電卓は使わず、範囲を選んでオートSUMを使います。</li>
+                        <li><strong>達成率を計算する</strong>：年間合計 ÷ 予算 で割合を求めます。</li>
+                        <li><strong>タイトルを安易に結合しない</strong>：データの扱いやすさを守るため「選択範囲内で中央」を使います。</li>
+                    </ul>
+
+                    <h2>4．年間合計は「上期＋下期」</h2>
+                    <p>東京の場合、1,850 ＋ 2,010 ＝ 3,860 です。ここで「3860」と直接キーボードで打ってはいけません。年間合計のセルに「＝（上期のセル）＋（下期のセル）」という数式を設定しましょう。</p>
+                    <p>こうしておけば、後から売上の数字が変更されても、合計金額が自動的に更新されます。Excelでは、<strong>「答えを打つ」のではなく「答えを出す仕組みを作る」</strong>と考えます。</p>
+
+                    <h2>5．ここが重要！合計は「まとめて選択」できる</h2>
+                    <p>表の下にある「合計」を出す際、1列ずつSUM関数を入れていませんか？ Excelではもっとスマートな方法があります。</p>
+
+                    <div class="article-image article-image--window">
+                        <img src="img/Excel/excel-practice01-redline.jpg" alt="複数列をまとめてSUM関数で計算する操作の解説図">
+                        <p class="small-text">▲ 【画像3】SUMでまとめて合計する赤入れ図：範囲選択が時短のコツです</p>
+                    </div>
+
+                    <p>今回の表では、合計を出したい範囲（データから空の合計行まで）を**まとめて選択**し、**Σ（オートSUM）**ボタンを押します。すると、上期・下期・年間の3列すべての合計が一瞬で算出されます。</p>
+                    <p>「1列ずつ」から「範囲でまとめて」へ。この視点を持つだけで、実務のスピードは劇的に上がります。</p>
+
+                    <h2>6．達成率を求める</h2>
+                    <p>達成率は「目標（予算）に対して、どれだけ結果を出せたか」を表します。計算方法は <strong>達成率 ＝ 年間合計 ÷ 予算</strong> です。</p>
+                    <p>東京なら 3,860 ÷ 3,500 ＝ 1.1028... となります。これをExcelの機能でパーセント表示（110.3％）に変換します。数字が100%を超えていれば予算達成、下回っていれば未達成、と一目で判断できるようになります。</p>
+
+                    <h2>7．数字の表示を整える</h2>
+                    <p>計算ができたら、見た目を整えます。実務で最も大切なのは「読み間違いをさせないこと」です。</p>
+                    <ul>
+                        <li><strong>桁区切り（カンマ）</strong>：3500 ではなく「3,500」と表示します。</li>
+                        <li><strong>小数点以下の調整</strong>：達成率は「110.3%」のように、四捨五入して桁を揃えます。</li>
+                    </ul>
+                    <p>大切なのは、**セルの「中身」は計算できる数字のまま、見た目だけをプロ仕様に変える**というExcel特有の考え方です。</p>
+
+                    <h2>8．タイトルはセル結合しなくても中央にできる</h2>
+                    <p>表のタイトル「売上管理表」を中央に配置する際、ついつい「セルを結合して中央揃え」を使いがちです。しかし、安易なセル結合は、後の並べ替えやコピーを困難にする原因になります。</p>
+                    <p>実務では、セルの書式設定にある**「選択範囲内で中央」**という機能を使うのがおすすめです。見た目は中央に揃えつつ、セルの構造はバラバラのまま保てるため、非常に「壊れにくい」表になります。</p>
+
+                    <h2>9．罫線や色を付けて「表」を完成させる</h2>
+                    <p>最後に仕上げの装飾を行います。目的は「派手にすること」ではなく、情報の区切りを明確にすることです。</p>
+                    <ul>
+                        <li><strong>見出しの塗りつぶし</strong>：項目名に薄い色を付け、データと区別します。</li>
+                        <li><strong>格子の罫線</strong>：表全体に細い線を引き、合計行の上には二重線を引いて強調します。</li>
+                        <li><strong>配置の調整</strong>：文字は中央、数字は右、と揃えることで視線の動きが安定します。</li>
+                    </ul>
+
+                    <div class="summary-box">
+                        <h2 class="section-title--summary">まとめ｜Excelは「計算してくれる表」にする</h2>
+                        <p>今回の売上管理表を通じて、以下の4点を指に馴染ませましょう。</p>
+                        <ul>
+                            <li><strong>数字は「数値」として入力する</strong>：単位は後から設定するのが鉄則。</li>
+                            <li><strong>合計は範囲選択して一気に算出</strong>：SUM関数をまとめて設定する時短術。</li>
+                            <li><strong>仕組みを作る意識</strong>：数値を変えれば合計や達成率が自動で変わる表にする。</li>
+                            <li><strong>セル結合は慎重に</strong>：データの再利用性を考えた配置を選ぶ。</li>
+                        </ul>
+                        <p>Excelは数字を入力して終わりではありません。<span class="marker-yellow">「人が計算する」から「Excelに計算させる」</span>。この考え方を身につけることが、仕事で信頼されるExcelスキルへの第一歩です。</p>
+                    </div>
+
+                    <!-- 記事末尾ナビゲーション -->
+                    <div class="article-footer-nav">
+                        <p class="article-footer-nav__text">表の仕組みがわかったら、実務用語をタイピングして指に定着させましょう</p>
+                        <div class="summary-nav">
+                            <!-- 1. メインアクション：Excel練習へ -->
+                            <a href="play.html?cat=excel_basic" class="btn-main">Excel用語タイピングへ</a>
+                            <!-- 2. サブアクション：Excelハブへ戻る -->
+                            <a href="hub-excel.html" class="summary-btn">Excelガイドへ戻る</a>
+                            <!-- 3. ホームへ戻る -->
+                            <a href="./" class="summary-btn">ホームへ戻る</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="about.html">運営者情報</a>
+            </div>
+            <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
+        </footer>
+    </div>
+    <a href="#" id="back-to-top" class="back-to-top">↑</a>
+    <script src="js/main.js"></script>
+</body>
+</html>
