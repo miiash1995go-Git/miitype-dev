@@ -31,6 +31,12 @@
   <url><loc>https://miitype.com/guide-excel-basics.html</loc><lastmod>2026-08-04</lastmod><priority>0.8</priority><!-- [INDEX] 仕事で困らないためのExcel講座 | excel --></url>
   <url><loc>https://miitype.com/guide-excel-practice-01.html</loc><lastmod>2026-08-14</lastmod><priority>0.8</priority><!-- [INDEX] 実践：Excelで作る「売上管理表」の整え方 | excel -->
   </url>
+  <url>
+    <loc>https://miitype.com/guide-excel-csv-data.html</loc>
+    <lastmod>2026-08-15</lastmod>
+    <priority>0.8</priority>
+    <!-- [INDEX] Excelの「区切り位置」でデータを分ける方法 | excel -->
+  </url>
 
   <!-- 6. AI記事 -->
   <url><loc>https://miitype.com/column-chatgpt-basics.html</loc><lastmod>2026-08-04</lastmod><priority>0.8</priority><!-- [INDEX] ChatGPT活用ガイド｜プロンプトの基本 | ai --></url>

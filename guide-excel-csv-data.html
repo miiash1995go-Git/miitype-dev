@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excelの「区切り位置」でデータを分ける｜CSVやカンマ区切りを表にする方法 | ぱそトレ！</title>
+    <meta name="description" content="Excelに貼り付けたデータが1列にまとまってしまった時の解決法。カンマやタブで区切られたデータを複数のセルに分ける「区切り位置」機能の使い方を、初心者向けに優しく解説します。">
+    <link rel="canonical" href="https://miitype.com/guide-excel-csv-data.html">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- 1. アドセンス -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
+
+    <!-- 2. 管理者除外スクリプト -->
+    <script>
+        if (localStorage.getItem('pasotore_admin') === 'true') {
+            window['ga-disable-G-KWS4RPPBVV'] = true;
+            console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
+        }
+    </script>
+     
+    <!-- 3. Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
+</head>
+<body class="portal-page">
+    <div id="app">
+        <!-- 統合ヘッダー -->
+        <header>
+            <div class="header-inner">
+                <a href="./" class="header-logo-link">
+                    <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
+                </a>
+                <nav class="header-nav">
+                    <div class="nav-grid">
+                        <a href="./" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                        <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                        <a href="hub-windows.html" class="nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>Windows</span></a>
+                        <a href="hub-word.html" class="nav-item"><img src="img/icon-word.png" class="nav-icon"><span>Word</span></a>
+                        <a href="hub-excel.html" class="nav-item"><img src="img/icon-excel.png" class="nav-icon"><span>Excel</span></a>
+                        <a href="hub-ai.html" class="nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                        <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                        <a href="hub-column.html" class="nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                    </div>
+                    <button class="mobile-menu-trigger" id="mobile-menu-btn">
+                        <span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="menu-label">メニュー</span>
+                    </button>
+                </nav>
+            </div>
+            <!-- スマホメニュー -->
+            <div class="mobile-nav-overlay" id="mobile-menu-overlay">
+                <button class="menu-close-btn" id="menu-close-btn">×</button>
+                <div class="mobile-nav-grid">
+                    <a href="./" class="mobile-nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                    <a href="hub-typing.html" class="mobile-nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                    <a href="hub-windows.html" class="mobile-nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>Windows</span></a>
+                    <a href="hub-word.html" class="mobile-nav-item"><img src="img/icon-word.png" class="nav-icon"><span>Word</span></a>
+                    <a href="hub-excel.html" class="mobile-nav-item"><img src="img/icon-excel.png" class="nav-icon"><span>Excel</span></a>
+                    <a href="hub-ai.html" class="mobile-nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                    <a href="hub-career.html" class="mobile-nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                    <a href="hub-column.html" class="mobile-nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                </div>
+            </div>
+        </header>
+
+        <main class="portal-main">
+            <article class="static-page">
+                <nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
+
+                <h1 class="page-title">Excelの「区切り位置」でデータを分ける</h1>
+                <p class="page-subtitle">～1列にまとまったデータを、正しい表に戻す手順～</p>
+                
+                <div class="content-body">
+                    <p>Excelで仕事をしていると、次のようなデータを扱うことがあります。</p>
+
+<div class="info-note-box" style="background-color: #f8f9fa; font-family: 'Roboto Mono', monospace;">
+東京支店,1500,2500,3500,4100<br>
+大阪支店,5250,2250,2235,1450
+</div>
+
+                    <p>一見すると表のように見えますが、これは<strong>カンマ（,）でデータを区切った文字列</strong>です。このような形式は、CSV（シーエスブイ）ファイルなどでよく使われます。</p>
+                    <p>ところが、このデータをExcelにコピー＆ペーストしたとき、<strong>「あれ？ 全部A列に入ってしまった……」</strong>と困ってしまうことがあります。そんなときに役立つのが、Excelの「区切り位置」という機能です。</p>
+
+                    <h2>「区切り位置」は何をする機能？</h2>
+                    <p>「区切り位置」は、1つのセルにまとまって入っているデータを、指定した文字（カンマやタブなど）を目印にして複数のセルに分ける機能です。</p>
+                    
+                    <p>例えば、A1セルに「東京支店,1500,2500...」と入っていた場合、カンマを区切り文字として指定すれば、自動的にB列、C列……とデータを振り分けてくれます。つまり、<strong>バラバラになってしまったデータを表の形に戻すための機能</strong>です。</p>
+
+                    <h2>仕事ではどんなときに使う？</h2>
+                    <p>特に覚えておきたいのが、<strong>CSV（カンマ区切り）データを扱うとき</strong>です。取引先から送られてきたデータや、社内システムからダウンロードした資料などが、コピー＆ペーストの方法によっては1列にまとまってしまうことがあります。</p>
+                    <p>そんなときに「区切り位置」を知っていれば、手作業で打ち直すことなく、一瞬で綺麗な表に整えることができます。</p>
+
+                    <div class="instructor-advice">
+                        <b>💡 講師のアドバイス：データの「目印」を見つけましょう</b><br>
+                        「区切り位置」を使うコツは、データが何の文字で区切られているかを観察することです。一番多いのは「カンマ（,）」ですが、ときには「スペース」や「タブ」で区切られていることもあります。その「目印」さえ分かれば、Excelが自動で仕分けてくれますよ。
+                    </div>
+
+                    <h2>実際に「区切り位置」を使ってみよう</h2>
+                    <p>以下の手順で、1列に固まったデータを分けてみましょう。</p>
+
+                    <h3>① データが入っているセルを選択する</h3>
+                    <p>まず、分けたいデータが入っている範囲を選択します。複数行ある場合は、その範囲全体を選んでおきます。</p>
+
+                    <h3>② 「区切り位置」を開く</h3>
+                    <p>Excel画面の「データ」タブをクリックし、<strong>「区切り位置」</strong>というボタンをクリックします。</p>
+
+                    <h3>③ データの種類を選択する</h3>
+                    <p>ウィザード（設定画面）が表示されたら、<strong>「コンマやタブなどの区切り文字によってフィールドごとに区切られたデータ」</strong>を選んで「次へ」を押します。</p>
+
+                    <h3>④ 区切り文字を指定する</h3>
+                    <p>今回のデータが何で区切られているかを選びます。カンマ区切りなら<strong>「カンマ」</strong>にチェックを入れます。下のプレビュー画面でデータが縦線で区切られれば成功です。</p>
+
+                    <div class="article-image article-image--window">
+                        <img src="img/Excel/excel-csv-wizard.jpg" alt="Excelの区切り位置ウィザードでカンマを指定している画面">
+                        <p class="small-text">▲プレビューを見ながら、正しく分かれているか確認しましょう</p>
+                    </div>
+
+                    <h3>⑤ 完了して表を確認する</h3>
+                    <p>そのまま「完了」をクリックすれば、1つのセルにまとまっていたデータが列ごとに分かれます。</p>
+
+                    <div class="info-note-box">
+                        <strong>「区切り位置」の基本の流れ：</strong><br>
+                        データを選択 → 「データ」タブ → 「区切り位置」 → 区切り文字を選ぶ → 完了
+                    </div>
+
+                    <h2>カンマ以外でも分けられる</h2>
+                    <p>「区切り位置」はカンマ専用ではありません。タブ、セミコロン、スペース、あるいはハイフン（-）などの記号も指定できます。<strong>「この文字を境目にしてセルを分けたい」</strong>という時にいつでも使える便利な機能です。</p>
+
+                    <h2>ただし、実行前に「右側」を確認しよう</h2>
+                    <p>ここが初心者の方が特に注意したいポイントです。「区切り位置」を実行すると、分割されたデータは元のセルの**「右側」のセル**に順番に入っていきます。</p>
+                    
+                    <div class="instructor-advice" style="border-left-color: #ff4757; background-color: #fffafa;">
+                        <b style="color: #ff4757;">⚠️ 右側のデータ上書きに注意！</b><br>
+                        もし右側のセル（B列やC列など）にすでに別のデータが入っていると、分割されたデータがその上に覆いかぶさり、**元のデータが消えてしまう**ことがあります。実行する前に、右側の列に十分な空きスペースがあるかを確認しておきましょう。
+                    </div>
+
+                    <div class="summary-box">
+                        <h2 class="section-title--summary">まとめ｜困ったときに助けてくれる実務機能</h2>
+                        <p>「区切り位置」は、毎日必ず使う機能ではないかもしれません。しかし、知らないと「データが壊れた！」と焦ってしまう場面を助けてくれる大切な機能です。</p>
+                        <ul>
+                            <li><strong>1列にまとまったデータ</strong>を表に戻せる。</li>
+                            <li><strong>カンマやタブ</strong>など、データの「目印」を指定する。</li>
+                            <li>実行する前に<strong>右側の列が空いているか</strong>確認する。</li>
+                        </ul>
+                        <p>「区切り文字を見つけたら区切り位置を使う」。この判断ができるようになるだけで、Excel作業の幅がぐっと広がります。ぜひ覚えておいてくださいね。</p>
+                    </div>
+
+                    <!-- 記事末尾ナビゲーション -->
+                    <div class="article-footer-nav">
+                        <p class="article-footer-nav__text">Excelの便利な機能を覚えたら、次はタイピングで入力の基礎を固めましょう</p>
+                        <div class="summary-nav">
+                            <a href="play.html?cat=excel_basic" class="btn-main">Excel用語タイピングへ</a>
+                            <a href="hub-excel.html" class="summary-btn">Excelガイドへ戻る</a>
+                            <a href="./" class="summary-btn">ホームへ戻る</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="about.html">運営者情報</a>
+            </div>
+            <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
+        </footer>
+    </div>
+    <a href="#" id="back-to-top" class="back-to-top">↑</a>
+    <script src="js/main.js"></script>
+</body>
+</html>
