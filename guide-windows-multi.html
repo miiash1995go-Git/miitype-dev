@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windowsで画面を並べて作業する方法｜2つのウィンドウを同時に使おう｜ぱそトレ！</title>
+    <meta name="description" content="Wordで文書を作りながらブラウザで調べ物をするなど、2つのウィンドウを左右に並べて効率的に作業する方法を解説。マウス操作や便利なショートカットキー、仕事での活用例を現役講師がガイド。">
+    <link rel="canonical" href="https://miitype.com/guide-windows-multi.html">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- 共通資産 -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
+    <script>
+        if (localStorage.getItem('pasotore_admin') === 'true') {
+            window['ga-disable-G-KWS4RPPBVV'] = true;
+        }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
+</head>
+<body class="portal-page">
+    <div id="app">
+        <header>
+            <div class="header-inner">
+                <a href="./" class="header-logo-link">
+                    <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
+                </a>
+                <nav class="header-nav">
+                    <div class="nav-grid">
+                        <a href="./" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                        <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                        <a href="hub-windows.html" class="nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>Windows</span></a>
+                        <a href="hub-word.html" class="nav-item"><img src="img/icon-word.png" class="nav-icon"><span>Word</span></a>
+                        <a href="hub-excel.html" class="nav-item"><img src="img/icon-excel.png" class="nav-icon"><span>Excel</span></a>
+                        <a href="hub-ai.html" class="nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                        <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                        <a href="hub-column.html" class="nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                    </div>
+                    <button class="mobile-menu-trigger" id="mobile-menu-btn">
+                        <span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="menu-label">メニュー</span>
+                    </button>
+                </nav>
+            </div>
+            <div class="mobile-nav-overlay" id="mobile-menu-overlay">
+                <button class="menu-close-btn" id="menu-close-btn">×</button>
+                <div class="mobile-nav-grid">
+                    <a href="./" class="mobile-nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                    <a href="hub-typing.html" class="mobile-nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                    <a href="hub-windows.html" class="mobile-nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>Windows</span></a>
+                    <a href="hub-word.html" class="mobile-nav-item"><img src="img/icon-word.png" class="nav-icon"><span>Word</span></a>
+                    <a href="hub-excel.html" class="mobile-nav-item"><img src="img/icon-excel.png" class="nav-icon"><span>Excel</span></a>
+                    <a href="hub-ai.html" class="mobile-nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                    <a href="hub-career.html" class="mobile-nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                    <a href="hub-column.html" class="mobile-nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                </div>
+            </div>
+        </header>
+
+        <main class="portal-main">
+            <article class="static-page">
+                <nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
+
+                <h1 class="page-title">Windowsで画面を並べて作業する方法</h1>
+                <p class="page-subtitle">2つのウィンドウを同時に使って、仕事をスムーズに進めよう</p>
+
+                <div class="content-body">
+                    <p>パソコンで仕事をしていると、「Wordで文章を作りながら、インターネットで資料を確認する」「Excelの数字を見ながら、メールを作成する」といった作業をすることがあります。</p>
+                    <p>そんなとき、毎回アプリを閉じたり、タスクバーから一つずつ切り替えたりしていませんか？ 実はWindowsでは、<strong>複数のウィンドウを画面に並べて表示する</strong>ことができます。これは特別な機能ではなく、仕事を効率化するための基本操作です。</p>
+
+                    <!-- 提供画像：導入としての配置 -->
+                    <div class="article-image article-image--window">
+                        <img src="img/Windows/multi-window-work.jpg" alt="ブラウザーとWordを左右に並べて作業しているイメージ図">
+                        <p class="small-text">▲ 資料を見ながら入力を進める「並列作業」が、パソコン仕事の基本です</p>
+                    </div>
+
+                    <h2>「ウィンドウ」って何？</h2>
+                    <p>WindowsでWordやExcel、Webブラウザーなどを開くと、画面の中に四角い枠が表示されます。この一つひとつの画面を、<strong>ウィンドウ</strong>と呼びます。例えば、「Wordを開く」というのは、Wordのウィンドウを表示しているということです。</p>
+
+                    <div class="instructor-advice">
+                        <b>💡 パソコン初心者が陥りやすい「思い込み」</b><br>
+                        初心者の方に意外と多いのが、<strong>「今使っている画面を閉じないと、別の画面は使えない」</strong>と思ってしまうことです。実際には、WordもブラウザーもExcelも、すべて同時に「開きっぱなし」にしておくことができます。
+                    </div>
+
+                    <h2>2つのウィンドウを左右に並べる（マウス操作）</h2>
+                    <p>まずは、最も直感的なマウスを使った方法を覚えましょう。画面の端にウィンドウを「ぶつける」のがコツです。</p>
+
+                    <div class="info-note-box">
+                        <strong class="note-title">マウスでの操作手順：</strong>
+                        <ol>
+                            <li>並べたいウィンドウを開く。</li>
+                            <li>ウィンドウ上部の「タイトルバー（何もない部分）」をマウスでつかむ。</li>
+                            <li>そのまま画面の<strong>「左端」または「右端」</strong>までドラッグする。</li>
+                            <li>画面の半分に枠が表示されたらマウスを離す。</li>
+                            <li>反対側に表示するウィンドウが一覧で出るので、選ぶ。</li>
+                        </ol>
+                    </div>
+
+                    <h2 id="shortcut">ショートカットキーならもっと速い！</h2>
+                    <p>慣れてきたら、キーボードを使った方法にチャレンジしましょう。これが一番速くて確実です。</p>
+                    <p style="text-align: center; font-size: 1.2rem; font-weight: 800; background-color: #f8f9fa; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                        <kbd>Windowsキー</kbd> ＋ <kbd>←</kbd> または <kbd>→</kbd>
+                    </p>
+                    <p>現在使っているウィンドウが、一瞬で画面の左半分または右半分に配置されます。片方を配置すると、自動的にもう片方のウィンドウを選ぶ画面が出るため、一瞬で左右分割が完成します。</p>
+
+                    <h2>ウィンドウの「最大化」と「元のサイズ」</h2>
+                    <p>ウィンドウを並べる際に迷いやすいのが、右上の3つのボタンです。これらを正しく使い分けましょう。</p>
+                    <ul>
+                        <li><strong>「－」最小化：</strong> 画面から消して、タスクバーの中に隠します（アプリは終了しません）。</li>
+                        <li><strong>「□」最大化 / 元のサイズに戻す：</strong> 画面一杯に広げるか、並べられる大きさにするかを切り替えます。</li>
+                        <li><strong>「×」閉じる：</strong> そのウィンドウ（アプリ）を完全に終了します。</li>
+                    </ul>
+
+                    <h2>仕事が楽になる「並び」の組み合わせ</h2>
+                    <p>2つの画面を並べると、視線の移動だけで仕事が進みます。代表的な活用例です。</p>
+                    <ul class="rich-list">
+                        <li><strong>左：ブラウザー ＋ 右：Word：</strong> ネットの情報を参考に、自分の言葉で文章を作成する。</li>
+                        <li><strong>左：Excel ＋ 右：Word：</strong> 表の中の数字を確認しながら、正確な案内文や報告書を作る。</li>
+                        <li><strong>左：PDF資料 ＋ 右：メール：</strong> 添付された資料の中身を見ながら、返信メールを書く。</li>
+                    </ul>
+
+                    <div class="instructor-advice">
+                        <b>💡 講師のアドバイス：画面を「並べる」発想を</b><br>
+                        初心者のうちは「別の画面を見るときは、今の画面を小さくする（最小化）」という操作を繰り返しがちです。しかし、仕事では<strong>「必要な画面を並べて置いておく」</strong>という発想を持つだけで、思考が途切れず、ミスのない作業ができるようになります。
+                    </div>
+
+                    <h2>Windows 11なら「スナップレイアウト」も活用</h2>
+                    <p>最新のWindows 11では、ウィンドウ右上の「□（最大化）」ボタンにマウスをそっと重ねるだけで、複数の配置パターン（2分割、3分割、左右非対称など）が表示されます。使いたい場所をクリックするだけでピタッと配置できるので、非常に便利です。</p>
+
+                    <div class="summary-box">
+                        <h2 class="section-title--summary">まとめ：まずは「2つ」を並べてみよう</h2>
+                        <p>Windowsは1つの画面だけを使い続ける必要はありません。今回覚えた以下の3点を今日から試してみてください。</p>
+                        <ul>
+                            <li><strong>ウィンドウは左右に並べて使える</strong></li>
+                            <li><strong>Windowsキー＋←／→</strong>のショートカットが便利</li>
+                            <li><strong>「何を見ながら作業するか」</strong>を考えて配置を決める</li>
+                        </ul>
+                        <p><span class="marker-yellow">まずは「Wordとブラウザー」の2つを並べることから始めてみましょう。</span>画面を行き来するストレスがなくなり、パソコンを使うのがもっと楽しく、快適になるはずです。</p>
+                    </div>
+
+                    <div class="article-footer-nav">
+                        <p class="article-footer-nav__text">画面の使い方がわかったら、次はタイピングの基本をマスターしましょう</p>
+                        <div class="summary-nav">
+                            <a href="guide-basics.html" class="btn-main">タイピングの基本へ</a>
+                            <a href="hub-windows.html" class="summary-btn">Windowsガイドへ戻る</a>
+                            <a href="./" class="summary-btn">ホームへ戻る</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">プライバシーポリシー</a><a href="contact.html">お問い合わせ</a><a href="about.html">運営者情報</a>
+            </div>
+            <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
+        </footer>
+    </div>
+    <a href="#" id="back-to-top" class="back-to-top">↑</a>
+    <script src="js/main.js"></script>
+</body>
+</html>
