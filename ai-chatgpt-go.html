@@ -26,6 +26,36 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/portal-shared.css">
+    <style>
+        /* スマホ用：メモリ比較マップの縦並び調整 (v20.8.16.Responsive) */
+        @media (max-width: 768px) {
+            .folder-map-container {
+                flex-direction: column !important;
+                align-items: stretch !important;
+            }
+            .folder-map-box {
+                flex-basis: auto !important;
+                width: 100% !important;
+            }
+            .folder-map-connector {
+                width: 100% !important;
+                height: 50px !important;
+            }
+            /* 線の向きを垂直に変更 */
+            .folder-map-connector::before {
+                width: 2px !important;
+                height: 100% !important;
+            }
+            /* 矢印を下に変更 */
+            .folder-map-connector::after {
+                content: "▼" !important;
+                padding-top: 5px !important;
+                padding-right: 0px !important;
+                padding-bottom: 5px !important;
+                padding-left: 0px !important;
+            }
+        }
+    </style>
 </head>
 <body class="portal-page">
     <div id="app">
