@@ -395,8 +395,8 @@ class TypingExam {
     }
 
     calculateRank(chars) {
-        if (chars >= 900) return "Legend";
-        if (chars >= 800) return "Master";
+        if (chars >= 800) return "Legend";
+        if (chars >= 750) return "Master";
         if (chars >= 700) return "SSS";
         if (chars >= 650) return "SS";
         if (chars >= 600) return "S";
@@ -405,13 +405,13 @@ class TypingExam {
         if (chars >= 500) return "A-";
         if (chars >= 460) return "B+";
         if (chars >= 430) return "B";
-        if (chars >= 400) return "B-";
+        if (chars >= 390) return "B-";
         if (chars >= 360) return "C+";
         if (chars >= 330) return "C";
-        if (chars >= 300) return "C-";
-        if (chars >= 250) return "D+";
-        if (chars >= 200) return "D";
-        if (chars >= 150) return "D-";
+        if (chars >= 290) return "C-";
+        if (chars >= 240) return "D+";
+        if (chars >= 190) return "D";
+        if (chars >= 140) return "D-";
         if (chars >= 100) return "E+";
         if (chars >= 50)  return "E";
         return "E-";
