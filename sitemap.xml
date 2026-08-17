@@ -1,70 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- 1. 主要エントリー -->
-  <url><loc>https://miitype.com/</loc><lastmod>2026-08-12</lastmod><priority>1.0</priority></url>
-  <url><loc>https://miitype.com/play.html</loc><lastmod>2026-08-12</lastmod><priority>0.9</priority></url>
-  <url><loc>https://miitype.com/test.html</loc><lastmod>2026-08-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://miitype.com/</loc><lastmod>2026-08-17</lastmod><priority>1.0</priority></url>
+  <url><loc>https://miitype.com/play.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority></url>
+  <url><loc>https://miitype.com/test.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority></url>
 
   <!-- 2. カテゴリハブ -->
-  <url><loc>https://miitype.com/hub-typing.html</loc><lastmod>2026-08-12</lastmod><priority>0.9</priority></url>
-  <url><loc>https://miitype.com/hub-windows.html</loc><lastmod>2026-08-12</lastmod><priority>0.9</priority></url>
-  <url><loc>https://miitype.com/hub-word.html</loc><lastmod>2026-08-12</lastmod><priority>0.9</priority></url>
-  <url><loc>https://miitype.com/hub-excel.html</loc><lastmod>2026-08-12</lastmod><priority>0.9</priority></url>
-  <url><loc>https://miitype.com/hub-ai.html</loc><lastmod>2026-08-12</lastmod><priority>0.9</priority></url>
-  <url><loc>https://miitype.com/hub-career.html</loc><lastmod>2026-08-12</lastmod><priority>0.9</priority></url>
-  <url><loc>https://miitype.com/hub-column.html</loc><lastmod>2026-08-12</lastmod><priority>0.9</priority></url>
+  <url><loc>https://miitype.com/hub-typing.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority></url>
+  <url><loc>https://miitype.com/hub-windows.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority></url>
+  <url><loc>https://miitype.com/hub-word.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority></url>
+  <url><loc>https://miitype.com/hub-excel.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority></url>
+  <url><loc>https://miitype.com/hub-ai.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority></url>
+  <url><loc>https://miitype.com/hub-career.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority></url>
+  <url><loc>https://miitype.com/hub-column.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority></url>
 
   <!-- 3. タイピング記事 -->
-  <url><loc>https://miitype.com/guide-basics.html</loc><lastmod>2026-08-04</lastmod><priority>0.7</priority><!-- [INDEX] タイピング（文字入力）の基本 | typing --></url>
-  <url><loc>https://miitype.com/guide-typing.html</loc><lastmod>2026-08-04</lastmod><priority>0.7</priority><!-- [INDEX] タイピング上達法｜練習のコツ | typing --></url>
-  <url><loc>https://miitype.com/guide-typing-conversion.html</loc><lastmod>2026-08-04</lastmod><priority>0.7</priority><!-- [INDEX] 通常変換と予測変換の違いとは？ | typing --></url>
-  <url><loc>https://miitype.com/guide-typing-tenkey.html</loc><lastmod>2026-08-12</lastmod><priority>0.8</priority><!-- [INDEX] テンキーの使い方｜数字入力の基本と上達のコツ | typing --></url>
+  <url><loc>https://miitype.com/guide-basics.html</loc><lastmod>2026-08-17</lastmod><priority>0.7</priority><!-- [INDEX] タイピングの基本とホームポジション｜FとJの秘密 | typing --></url>
+  <url><loc>https://miitype.com/guide-typing.html</loc><lastmod>2026-08-17</lastmod><priority>0.7</priority><!-- [INDEX] タイピング上達のコツ｜練習のやり方と挫折しない覚え方 | typing --></url>
+  <url><loc>https://miitype.com/guide-typing-conversion.html</loc><lastmod>2026-08-17</lastmod><priority>0.7</priority><!-- [INDEX] 通常変換と予測変換の違い｜英字入力の実務テクニック | typing --></url>
+  <url><loc>https://miitype.com/guide-typing-tenkey.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority><!-- [INDEX] テンキーの使い方｜数字入力の基本と上達のコツ | typing --></url>
 
   <!-- 4. Windows記事 -->
-  <url><loc>https://miitype.com/guide-windows-basics.html</loc><lastmod>2026-08-04</lastmod><priority>0.8</priority><!-- [INDEX] Windowsの基礎｜仕事で困らない基本操作 | windows --></url>
-  <url><loc>https://miitype.com/guide-windows-folder.html</loc><lastmod>2026-08-04</lastmod><priority>0.8</priority><!-- [INDEX] ファイルとフォルダの管理術 | windows --></url>
-  <url><loc>https://miitype.com/guide-pc-selection.html</loc><lastmod>2026-08-04</lastmod><priority>0.8</priority><!-- [INDEX] PC選びの基礎｜失敗しない最初の1台 | windows --></url>
-  <url><loc>https://miitype.com/guide-windows-multi.html</loc><lastmod>2026-08-16</lastmod><priority>0.8</priority><!-- [INDEX] 画面を並べて作業する方法｜2画面操作 | windows --></url>
+  <url><loc>https://miitype.com/guide-windows-basics.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority><!-- [INDEX] Windows11の基本操作と使い方｜初心者が最初に覚えたいこと | windows --></url>
+  <url><loc>https://miitype.com/guide-windows-folder.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority><!-- [INDEX] ファイルとフォルダの整理・管理術｜作った書類をなくさない基本 | windows --></url>
+  <url><loc>https://miitype.com/guide-pc-selection.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority><!-- [INDEX] 失敗しないパソコンの選び方｜事務・学習用に講師が勧めるスペック | windows --></url>
+  <url><loc>https://miitype.com/guide-windows-multi.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority><!-- [INDEX] Windowsで画面を並べて作業する方法｜2画面操作の基本 | windows --></url>
 
   <!-- 5. Word / Excel記事 -->
-  <url><loc>https://miitype.com/guide-word-basics.html</loc><lastmod>2026-08-04</lastmod><priority>0.8</priority><!-- [INDEX] 仕事で困らないためのWord講座 | word --></url>
-  <url><loc>https://miitype.com/guide-word-practice-01.html</loc><lastmod>2026-08-05</lastmod><priority>0.8</priority><!-- [INDEX] 実践：Wordで作る「社内文書」の整え方 | word --></url>
-  <url><loc>https://miitype.com/guide-excel-basics.html</loc><lastmod>2026-08-04</lastmod><priority>0.8</priority><!-- [INDEX] 仕事で困らないためのExcel講座 | excel --></url>
-  <url><loc>https://miitype.com/guide-excel-practice-01.html</loc><lastmod>2026-08-14</lastmod><priority>0.8</priority><!-- [INDEX] 実践：Excelで作る「売上管理表」の整え方 | excel --></url>
-  <url>
-    <loc>https://miitype.com/guide-excel-csv-data.html</loc>
-    <lastmod>2026-08-15</lastmod>
-    <priority>0.8</priority>
-    <!-- [INDEX] Excelの「区切り位置」でデータを分ける方法 | excel -->
-  </url>
-  <url>
-    <loc>https://miitype.com/guide-word-tab-basics.html</loc>
-    <lastmod>2026-08-16</lastmod>
-    <priority>0.7</priority>
-    <!-- [INDEX] WordのTabキーとは？｜文字をきれいにそろえる基本 | word -->
-  </url>
+  <url><loc>https://miitype.com/guide-word-basics.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority><!-- [INDEX] Wordの基本操作・使い方｜仕事で困らない文書作成を学ぶ | word --></url>
+  <url><loc>https://miitype.com/guide-word-practice-01.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority><!-- [INDEX] 実践：Wordで作る「社内文書」の整え方｜配置・強調・表の活用 | word --></url>
+  <url><loc>https://miitype.com/guide-word-tab-basics.html</loc><lastmod>2026-08-17</lastmod><priority>0.7</priority><!-- [INDEX] WordのTabキーとは？｜文字をきれいにそろえる基本 | word --></url>
+  <url><loc>https://miitype.com/guide-excel-basics.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority><!-- [INDEX] Excelの基本操作・使い方｜仕事で使える表作成と計算を学ぶ | excel --></url>
+  <url><loc>https://miitype.com/guide-excel-practice-01.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority><!-- [INDEX] 実践：Excelで作る「売上管理表」の整え方｜計算・集計・達成率 | excel --></url>
+  <url><loc>https://miitype.com/guide-excel-csv-data.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority><!-- [INDEX] Excelの「区切り位置」でデータを分ける方法｜CSVを表にする手順 | excel --></url>
 
   <!-- 6. AI記事 -->
-  <url><loc>https://miitype.com/column-chatgpt-basics.html</loc><lastmod>2026-08-04</lastmod><priority>0.8</priority><!-- [INDEX] ChatGPT活用ガイド｜プロンプトの基本 | ai --></url>
-  <url><loc>https://miitype.com/ai-tools.html</loc><lastmod>2026-08-04</lastmod><priority>0.9</priority><!-- [INDEX] パソコン初心者向けAI活用ガイド | ai --></url>
-  <url><loc>https://miitype.com/ai-chatgpt-go.html</loc><lastmod>2026-08-16</lastmod><priority>0.8</priority><!-- [INDEX] ChatGPT無料版とGoの違いは？ | ai --></url>
+  <url><loc>https://miitype.com/ai-tools.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority><!-- [INDEX] 生成AIの仕事での使い方｜初心者がすぐ使える実践例 | ai --></url>
+  <url><loc>https://miitype.com/column-chatgpt-basics.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority><!-- [INDEX] ChatGPT活用ガイド｜仕事に役立つプロンプトの基本 | ai --></url>
+  <url><loc>https://miitype.com/ai-chatgpt-go.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority><!-- [INDEX] ChatGPT無料版とGoの違いは？｜有料プランのメリットを解説 | ai --></url>
 
   <!-- 7. 就職 / コラム記事 -->
-  <url><loc>https://miitype.com/column-interview.html</loc><lastmod>2026-08-04</lastmod><priority>0.9</priority><!-- [INDEX] 採用を勝ち取るタイピングテスト対策 | career --></url>
-  <url><loc>https://miitype.com/guide-career-cv.html</loc><lastmod>2026-08-04</lastmod><priority>0.7</priority><!-- [INDEX] 職務経歴書の作成ポイント（翻訳術） | career --></url>
-  <url><loc>https://miitype.com/guide-career-otg.html</loc><lastmod>2026-08-04</lastmod><priority>0.8</priority><!-- [INDEX] OTGケーブル活用ガイド｜履歴書の送り方 | career --></url>
-  <url><loc>https://miitype.com/column-typing-speed.html</loc><lastmod>2026-08-16</lastmod><priority>0.9</priority><!-- [INDEX] タイピング速度の目安は何文字？400文字は速い？ | career --></url>
-  <url><loc>https://miitype.com/career.html</loc><lastmod>2026-08-04</lastmod><priority>0.7</priority><!-- [INDEX] 就職・転職を成功させるステップ | career --></url>
-  <url><loc>https://miitype.com/column-pc-skills.html</loc><lastmod>2026-08-04</lastmod><priority>0.8</priority><!-- [INDEX] 事務職の現場で本当に求められる3つの力 | column --></url>
-  <url><loc>https://miitype.com/column-age-typing.html</loc><lastmod>2026-08-16</lastmod><priority>0.8</priority><!-- [INDEX] タイピングに年齢は関係ない｜50代からのタイピング実録 | column --></url>
+  <url><loc>https://miitype.com/column-interview.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority><!-- [INDEX] 面接で行われるタイピングテストとは？｜評価基準と本番対策 | career --></url>
+  <url><loc>https://miitype.com/column-typing-speed.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority><!-- [INDEX] タイピング速度の平均・目安は何文字？｜400文字は速い？ | career --></url>
+  <url><loc>https://miitype.com/career.html</loc><lastmod>2026-08-17</lastmod><priority>0.7</priority><!-- [INDEX] 事務職への就職・転職ガイド｜履歴書に書けるPCスキルの目安 | career --></url>
+  <url><loc>https://miitype.com/guide-career-cv.html</loc><lastmod>2026-08-17</lastmod><priority>0.7</priority><!-- [INDEX] 職務経歴書の作成ポイント｜経験を「仕事の言葉」に言い換えるコツ | career --></url>
+  <url><loc>https://miitype.com/guide-career-otg.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority><!-- [INDEX] 履歴書をスマホから送る方法｜OTGケーブルの使い方と注意点 | career --></url>
+  <url><loc>https://miitype.com/column-pc-skills.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority><!-- [INDEX] 事務職に必要なパソコンスキルとは？｜現場で求められる3つの力 | column --></url>
+  <url><loc>https://miitype.com/column-age-typing.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority><!-- [INDEX] 50代からのタイピング練習｜一本指入力から身につけるコツ | column --></url>
 
   <!-- 8. 固定辞書 -->
-  <url><loc>https://miitype.com/glossary.html</loc><lastmod>2026-08-04</lastmod><priority>0.8</priority><!-- [INDEX] 実務用語辞典｜現場の言葉を正しく理解する | column --></url>
+  <url><loc>https://miitype.com/glossary.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority><!-- [INDEX] 実務用語辞典｜仕事で使うIT・Office・ビジネス用語の意味 | column --></url>
 
-  <!-- 9. 運営情報 (メタデータなし・索引に載せない) -->
-  <url><loc>https://miitype.com/about.html</loc><lastmod>2026-08-04</lastmod><priority>0.6</priority></url>
-  <url><loc>https://miitype.com/contact.html</loc><lastmod>2026-08-04</lastmod><priority>0.6</priority></url>
-  <url><loc>https://miitype.com/privacy.html</loc><lastmod>2026-08-04</lastmod><priority>0.5</priority></url>
-
+  <!-- 9. 運営情報 (索引に載せない) -->
+  <url><loc>https://miitype.com/about.html</loc><lastmod>2026-08-17</lastmod><priority>0.6</priority></url>
+  <url><loc>https://miitype.com/contact.html</loc><lastmod>2026-08-17</lastmod><priority>0.6</priority></url>
+  <url><loc>https://miitype.com/privacy.html</loc><lastmod>2026-08-17</lastmod><priority>0.5</priority></url>
 </urlset>
-
