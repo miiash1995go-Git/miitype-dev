@@ -330,9 +330,10 @@ body.test-body .nav-item {
     margin-left: 0px;
 }
 
-/* 【物理座標の正常化】外枠の余白をリセットし、内箱の開始地点を25pxに固定 (v20.8.20.Final) */
-.test-input-view { padding-left: 0px !important; }
-#test-visual-text { margin-left: 25px; display: block; }
+/* 【物理整合性：完全版】座標計算を狂わせず、1文字目を25px右に強制固定 (v20.8.20.Ultimate) */
+.test-input-view { padding-left: 0px !important; } /* 論理余白をリセット */
+#test-visual-text::before { content: ""; display: inline-block; width: 25px; } /* 物理的な壁を挿入 */
+.test-hidden-field { left: 25px !important; } /* 入力口の初期位置を同期 */
 
 /* ダメージエフェクト（ミス時） */
 .test-input-view.damage-effect {
