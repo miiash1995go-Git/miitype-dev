@@ -330,6 +330,14 @@ body.test-body .nav-item {
     margin-left: 0px;
 }
 
+/* 【物理整合性修復】1問目の開始位置を25px右へ固定 (v20.8.20.Fix) */
+#test-visual-text {
+    padding-left: 25px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 /* ダメージエフェクト（ミス時） */
 .test-input-view.damage-effect {
     background-color: #fff1f2 !important;
