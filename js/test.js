@@ -200,6 +200,8 @@ class TypingExam {
         // IME候補窓の位置同期
         const caret = this.visualText.querySelector('.char-current-caret');
         if (caret && this.realInput) {
+            // ステージ（anchor-stage）が共通の親（offsetParent）となり、
+            // 常に「25px地点からの純粋な相対距離」を取得。これにより文字被りが物理的に消滅する。
             this.realInput.style.left = caret.offsetLeft + 'px';
             this.realInput.style.top = caret.offsetTop + 'px';
             const remainingWidth = 920 - caret.offsetLeft;

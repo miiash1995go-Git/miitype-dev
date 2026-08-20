@@ -262,10 +262,9 @@ body.test-body .nav-item {
     transform: translateY(-55px);
 }
 
-/* 1. 外枠（Frame）：ボーダーと背景のみを担当 */
-.test-input-view {
+/* 1. 外枠：パディングを殺し、中身に一切の干渉をさせない純粋な額縁 */
+.test-input-view-frame {
     background-color: #ffffff;
-    position: relative !important;
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
@@ -278,15 +277,24 @@ body.test-body .nav-item {
     border-right-color: #cbd5e1;
     border-bottom-color: #cbd5e1;
     border-left-color: #cbd5e1;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
     height: 85px !important;
-    padding-left: 0px !important; /* 座標を狂わせる親パディングを完全排除 */
+    padding-top: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 0px !important;
+    padding-left: 0px !important;
+    position: relative !important;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
-/* 2. 独立座標ステージ（Stage）：ここを25px右にずらして「0点」とする */
-.test-typing-stage {
+/* 2. 内舞台：25px右へ平行移動した「座標の起点」。JSはこの中だけを見て計算する */
+.test-typing-anchor-stage {
     position: relative !important;
-    margin-left: 25px; /* ここが「1問目の開始位置」を物理的に決定する */
+    margin-left: 25px; 
     width: calc(100% - 50px);
     height: 100%;
     display: flex;
@@ -294,24 +302,27 @@ body.test-body .nav-item {
     pointer-events: none;
 }
 
-/* 3. 入力口（Real Input）：ステージの左端（25px地点）を0として動く */
+/* 3. 入力口：舞台の左端（＝枠から25px地点）を0として正確に待機 */
 .test-hidden-field {
     position: absolute !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    left: 0px !important; /* ステージ開始位置＝0pxとして待機 */
+    left: 0px !important; 
     opacity: 0;
     z-index: 10;
     pointer-events: auto;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 1.55rem;
 }
 
-/* 4. 可視テキスト（Visual）：ステージの左端から描画 */
+/* 4. 可視テキスト：舞台の0点から描画開始 */
 #test-visual-text {
-    position: static !important; /* staticにすることで孫要素（Caret）の基準をステージまで持ち上げる */
+    position: relative;
     z-index: 5;
     white-space: pre !important;
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 1.55rem;
+    line-height: 1;
 }
 
 /* サンプル（上段）の進捗：薄グレー */

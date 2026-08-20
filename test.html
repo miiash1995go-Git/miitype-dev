@@ -105,13 +105,16 @@
                     </div>
                     
                     <div class="test-typing-label" style="margin-top: 25px;">🖋️ 入力エリア（ここに入力）</div>
-                    <div id="input-view-box" class="test-text-display test-input-view">
-    <!-- 独立した座標ステージ：ここが座標の「0点」になる -->
-    <div class="test-typing-stage">
-        <input type="text" id="test-real-input" class="test-hidden-field" autocomplete="off" autofocus>
-        <div id="test-visual-text"></div>
-    </div>
-</div>
+                    <!-- 外枠：装飾のみを担当 -->
+                    <div id="input-view-box" class="test-input-view-frame">
+                        <!-- 独立座標ステージ：ここが「25px地点」に置かれた新しい0点になる -->
+                        <div class="test-typing-anchor-stage">
+                            <input type="text" id="test-real-input" class="test-hidden-field" autocomplete="off" autofocus>
+                            <!-- テキスト表示専用のレイヤー -->
+                            <div id="test-visual-text"></div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!-- 3. 結果表示画面 -->
