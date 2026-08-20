@@ -205,15 +205,36 @@ body.test-body .nav-item {
 
 .test-text-display {
     background-color: #f8fafc;
-    border: 1px solid #e2e8f0;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #e2e8f0;
+    border-right-color: #e2e8f0;
+    border-bottom-color: #e2e8f0;
+    border-left-color: #e2e8f0;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
     padding-top: 15px;
     padding-right: 25px;
     padding-bottom: 15px;
-    padding-left: 25px !important; /* 25pxに固定 */
+    padding-left: 0px !important; /* 内箱が余白を担当するため、ここは0にします */
+    font-size: 1.55rem;
+    line-height: 1.5;
+    color: #1e293b;
+    /* 物理高を140pxに拡張し、2行収容 ＆ スライド窓として統治 */
     height: 140px;
+    word-break: break-all;
+    white-space: normal;
     box-sizing: border-box;
+    text-align: left;
+    overflow: hidden;
     position: relative;
 }
 
@@ -297,11 +318,10 @@ body.test-body .nav-item {
 .test-hidden-field {
     position: absolute !important;
     top: 0px;
-    left: 0px;
-    margin-left: 25px; /* 重要：JSの計算結果に、このmarginが常に25pxを足してくれます */
+    left: 0px; /* 内箱の左端（＝25px地点）から開始 */
+    margin-left: 0px;
     opacity: 0;
     z-index: 10;
-    width: 90%;
     cursor: text;
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 1.55rem;
