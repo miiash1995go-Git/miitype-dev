@@ -205,8 +205,7 @@ class TypingExam {
         // IME候補窓の位置同期
         const caret = this.visualText.querySelector('.char-current-caret');
         if (caret && this.realInput) {
-            // 計算結果に枠の余白（25px）を足すことで、重なりを物理的に防止します
-            this.realInput.style.left = (caret.offsetLeft + 25) + 'px';
+            this.realInput.style.left = caret.offsetLeft + 'px';
             this.realInput.style.top = caret.offsetTop + 'px';
             const remainingWidth = 920 - caret.offsetLeft;
             this.realInput.style.width = Math.max(remainingWidth, 100) + 'px';
