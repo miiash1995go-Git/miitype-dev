@@ -201,7 +201,7 @@ class TypingExam {
         const caret = this.visualText.querySelector('.char-current-caret');
         if (caret && this.realInput) {
             // ステージ（test-stage-layer）が共通の親（offsetParent）となり、
-            // 常に「物理25px地点＝0」とした純粋な距離を取得・代入。
+            // 常に「物理25px地点＝0」としての純粋な距離を取得・代入。
             this.realInput.style.left = caret.offsetLeft + 'px';
             this.realInput.style.top = caret.offsetTop + 'px';
             const remainingWidth = 920 - caret.offsetLeft;
