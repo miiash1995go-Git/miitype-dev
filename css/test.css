@@ -262,7 +262,7 @@ body.test-body .nav-item {
     transform: translateY(-55px);
 }
 
-/* 1. 外枠：パディングを殺し、中身に一切の干渉をさせない純粋な額縁 */
+/* 1. 外枠：パディングを完全に排除し、物理的な左端（0px）を確定させる */
 .test-input-view-frame {
     background-color: #ffffff;
     border-top-width: 1px;
@@ -291,8 +291,9 @@ body.test-body .nav-item {
     box-sizing: border-box;
 }
 
-/* 2. 内舞台：25px右へ平行移動した「座標の起点」。JSはこの中だけを見て計算する */
-.test-typing-anchor-stage {
+/* 2. 内舞台：HTMLのクラス名(test-stage-layer)と完全同期。
+   ここを25px右へ平行移動した「座標の起点」とする。JSはこの中だけを見て計算する */
+.test-stage-layer {
     position: relative !important;
     margin-left: 25px; 
     width: calc(100% - 50px);
@@ -302,7 +303,7 @@ body.test-body .nav-item {
     pointer-events: none;
 }
 
-/* 3. 入力口：舞台の左端（＝枠から25px地点）を0として正確に待機 */
+/* 3. 入力口：舞台の左端（＝枠から25px地点）を不動の0として正確に待機 */
 .test-hidden-field {
     position: absolute !important;
     top: 50% !important;
@@ -313,11 +314,20 @@ body.test-body .nav-item {
     pointer-events: auto;
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 1.55rem;
+    border-top-style: none !important;
+    border-right-style: none !important;
+    border-bottom-style: none !important;
+    border-left-style: none !important;
+    outline-style: none !important;
+    background-color: transparent;
+    box-shadow: none !important;
 }
 
 /* 4. 可視テキスト：舞台の0点から描画開始 */
 #test-visual-text {
-    position: relative;
+    /* 【最重要】staticに設定。これにより、中のキャレットのoffsetLeftは、
+       一個上の親ではなく、座標の起点である「.test-stage-layer」から計測されるようになる。 */
+    position: static !important;
     z-index: 5;
     white-space: pre !important;
     font-family: 'Noto Sans JP', sans-serif;
@@ -351,36 +361,7 @@ body.test-body .nav-item {
     50% { opacity: 0; }
 }
 
-/* 本物の入力口：変換中のみ可視化。フォントサイズを 1.55rem に同期 */
-.test-hidden-field {
-    position: absolute !important;
-    top: 0px;
-    left: 0px;
-    opacity: 0;
-    z-index: 10;
-    cursor: text;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 1.55rem;
-    line-height: 1.5;
-    color: #1e293b;
-    background-color: transparent;
-    border-top-style: none !important;
-    border-right-style: none !important;
-    border-bottom-style: none !important;
-    border-left-style: none !important;
-    outline-style: none !important;
-    box-shadow: none !important;
-    width: 95%;
-    height: 3rem;
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-}
+/* 重複定義を排除：上記の構造改革版に統合済み */
 
 /* ダメージエフェクト（ミス時） */
 .test-input-view.damage-effect {

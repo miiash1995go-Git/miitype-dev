@@ -105,12 +105,10 @@
                     </div>
                     
                     <div class="test-typing-label" style="margin-top: 25px;">🖋️ 入力エリア（ここに入力）</div>
-                    <!-- 外枠：装飾のみを担当 -->
                     <div id="input-view-box" class="test-input-view-frame">
-                        <!-- 独立座標ステージ：ここが「25px地点」に置かれた新しい0点になる -->
-                        <div class="test-typing-anchor-stage">
+                        <!-- 物理的に25px右へズラした、座標計算専用の「独立ステージ」 -->
+                        <div class="test-stage-layer">
                             <input type="text" id="test-real-input" class="test-hidden-field" autocomplete="off" autofocus>
-                            <!-- テキスト表示専用のレイヤー -->
                             <div id="test-visual-text"></div>
                         </div>
                     </div>
