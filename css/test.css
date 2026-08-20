@@ -279,32 +279,34 @@ body.test-body .nav-item {
     border-bottom-color: #cbd5e1;
     border-left-color: #cbd5e1;
     height: 85px !important;
-    /* 【物理整合性の鍵】共通クラスのpaddingを強制解除し、ここを「絶対的な0点」に設定する。
-       これにより、絶対配置(absolute)の入力欄とJSの計算が完全に一致するようになります。 */
-    padding-left: 0px !important;
+    /* 【聖域遵守】paddingを0に固定し、枠の左端を「絶対的な0点」としてJSに認識させる。
+       これによりJSのoffsetLeft計算と、absolute配置の入力欄の座標が1:1で同期します。 */
+    padding-top: 0px !important;
     padding-right: 0px !important;
+    padding-bottom: 0px !important;
+    padding-left: 0px !important;
     overflow: hidden;
 }
 
-/* 本物の入力口：初期位置（カウントダウン中）のズレを物理的に封殺 */
+#test-visual-text {
+    /* 【物理シフト】margin-leftで25px右へ「平行移動」させる。
+       position: static (初期値) により、この要素は「座標の基準(offsetParent)」になりません。
+       結果として、中のキャレットは「親（枠）の左端」から距離を測るようになり、
+       JSへ最初から「25 + 入力文字幅」という正しい数値を報告し続けます。 */
+    display: inline-block !important;
+    margin-left: 25px !important;
+    position: static !important;
+    white-space: pre !important;
+}
+
 .test-hidden-field {
     position: absolute !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    left: 25px !important; /* JS起動前も25px地点を死守 */
+    /* 初期位置を0に。JSが算出した offsetLeft (25 + α) によって動的に制御されます */
+    left: 0px !important;
     opacity: 0;
     z-index: 10;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 1.55rem;
-    width: calc(100% - 50px);
-}
-
-#test-visual-text {
-    /* 【物理底上げ】親のpaddingに頼らず、自分自身で25pxの開始距離を作る。
-       position: static (初期値) により、中のキャレットの offsetLeft は
-       親の左端（0px）から測って「25」をJSへ報告するようになります。 */
-    padding-left: 25px !important;
-    display: block !important;
 }
 
 /* サンプル（上段）の進捗：薄グレー */
