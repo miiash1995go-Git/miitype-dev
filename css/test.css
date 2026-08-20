@@ -271,21 +271,6 @@ body.test-body .nav-item {
     border-bottom-color: #cbd5e1;
     border-left-color: #cbd5e1;
     height: 85px !important;
-    /* 外枠のパディングを 0 にして内箱に譲る */
-    padding-top: 0px !important;
-    padding-right: 0px !important;
-    padding-bottom: 0px !important;
-    padding-left: 0px !important;
-}
-
-/* 物理的な内箱：ここに25pxの余白を持たせることで座標の基準をずらします */
-.test-input-inner {
-    position: relative !important;
-    width: 100%;
-    height: 100%;
-    padding-top: 15px;
-    padding-left: 25px; /* ここが 25px の正体 */
-    box-sizing: border-box;
 }
 
 /* サンプル（上段）の進捗：薄グレー */
