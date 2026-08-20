@@ -279,20 +279,19 @@ body.test-body .nav-item {
     border-bottom-color: #cbd5e1;
     border-left-color: #cbd5e1;
     height: 85px !important;
-    /* 物理同期：枠のパディングを0にし、中身のmarginで距離を作ることでJSとIME窓の「0点」を一致させる */
+    /* 【物理整合性の鍵】共通クラスのpaddingを強制解除し、ここを「絶対的な0点」に設定する。
+       これにより、絶対配置(absolute)の入力欄とJSの計算が完全に一致するようになります。 */
     padding-left: 0px !important;
     padding-right: 0px !important;
     overflow: hidden;
-    display: flex;
-    align-items: center;
 }
 
-/* 本物の入力口：初期位置を25pxに固定し、JSによる上書き（offsetLeft）を待ち受ける */
+/* 本物の入力口：初期位置（カウントダウン中）のズレを物理的に封殺 */
 .test-hidden-field {
     position: absolute !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    left: 25px !important; /* カウントダウン時の位置を死守 */
+    left: 25px !important; /* JS起動前も25px地点を死守 */
     opacity: 0;
     z-index: 10;
     font-family: 'Noto Sans JP', sans-serif;
@@ -301,13 +300,11 @@ body.test-body .nav-item {
 }
 
 #test-visual-text {
-    /* 【最重要】margin-leftで物理的に25px右へ。
-       かつ、position: static にすることで、中のキャレットの座標基準を「外枠の左端」へ持ち上げる。
-       これにより、JSが取得する offsetLeft が最初から「25」になり、ジャンプが消える。 */
-    margin-left: 25px !important;
-    position: static !important;
-    display: block;
-    width: 100%;
+    /* 【物理底上げ】親のpaddingに頼らず、自分自身で25pxの開始距離を作る。
+       position: static (初期値) により、中のキャレットの offsetLeft は
+       親の左端（0px）から測って「25」をJSへ報告するようになります。 */
+    padding-left: 25px !important;
+    display: block !important;
 }
 
 /* サンプル（上段）の進捗：薄グレー */
