@@ -262,15 +262,56 @@ body.test-body .nav-item {
     transform: translateY(-55px);
 }
 
-/* 下段：入力エリア（ハイブリッド方式：物理レイヤー）：こちらは1行（85px）に固定 */
+/* 1. 外枠（Frame）：ボーダーと背景のみを担当 */
 .test-input-view {
     background-color: #ffffff;
     position: relative !important;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
     border-top-color: #cbd5e1;
     border-right-color: #cbd5e1;
     border-bottom-color: #cbd5e1;
     border-left-color: #cbd5e1;
     height: 85px !important;
+    padding-left: 0px !important; /* 座標を狂わせる親パディングを完全排除 */
+    overflow: hidden;
+}
+
+/* 2. 独立座標ステージ（Stage）：ここを25px右にずらして「0点」とする */
+.test-typing-stage {
+    position: relative !important;
+    margin-left: 25px; /* ここが「1問目の開始位置」を物理的に決定する */
+    width: calc(100% - 50px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+/* 3. 入力口（Real Input）：ステージの左端（25px地点）を0として動く */
+.test-hidden-field {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    left: 0px !important; /* ステージ開始位置＝0pxとして待機 */
+    opacity: 0;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+/* 4. 可視テキスト（Visual）：ステージの左端から描画 */
+#test-visual-text {
+    position: static !important; /* staticにすることで孫要素（Caret）の基準をステージまで持ち上げる */
+    z-index: 5;
+    white-space: pre !important;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 1.55rem;
 }
 
 /* サンプル（上段）の進捗：薄グレー */
