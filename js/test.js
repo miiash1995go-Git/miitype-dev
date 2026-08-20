@@ -115,11 +115,6 @@ class TypingExam {
         `;
         this.sampleBox.innerHTML = getCountdownHtml(count);
         
-        // 1問目開始前にデータをセットし、25pxの地点にカーソルを先行配置する
-        this.currentText = this.pickNextQuestion().kanji;
-        this.nextText = this.pickNextQuestion().kanji;
-        this.updateDisplays(); 
-
         const countdownTimer = setInterval(() => {
             count--;
             if (count > 0) {
