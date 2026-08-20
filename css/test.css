@@ -224,7 +224,7 @@ body.test-body .nav-item {
     padding-top: 15px;
     padding-right: 25px;
     padding-bottom: 15px;
-    padding-left: 25px;
+    padding-left: 25px !important;
     font-size: 1.55rem;
     line-height: 1.5;
     color: #1e293b;
@@ -303,7 +303,6 @@ body.test-body .nav-item {
 .test-hidden-field {
     position: absolute !important;
     top: 0px;
-    left: 0px;
     opacity: 0;
     z-index: 10;
     cursor: text;
@@ -330,10 +329,7 @@ body.test-body .nav-item {
     margin-left: 0px;
 }
 
-/* 【物理整合性：完全版】座標計算を狂わせず、1文字目を25px右に強制固定 (v20.8.20.Ultimate) */
-.test-input-view { padding-left: 0px !important; } /* 論理余白をリセット */
-#test-visual-text::before { content: ""; display: inline-block; width: 25px; } /* 物理的な壁を挿入 */
-.test-hidden-field { left: 25px !important; } /* 入力口の初期位置を同期 */
+
 
 /* ダメージエフェクト（ミス時） */
 .test-input-view.damage-effect {
