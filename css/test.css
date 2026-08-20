@@ -279,20 +279,19 @@ body.test-body .nav-item {
     border-bottom-color: #cbd5e1;
     border-left-color: #cbd5e1;
     height: 85px !important;
-    /* 物理座標の原点を左端（0px）に統一し、絶対配置の入力欄とJSの計算を完全に同期させる */
-    padding-left: 0px !important;
-    padding-right: 0px !important;
+    /* 解決の公式：親にpaddingを持たせ、かつ中の座標系を「隔離」しないことで、
+       JSのoffsetLeftが「枠の左端からの25px」を正しく拾えるようにする */
+    padding-left: 25px !important;
+    padding-right: 25px !important;
     overflow: hidden;
 }
 
 #test-visual-text {
-    /* 文字コンテナをブロック化し、マージンで25px右へ平行移動（底上げ） */
-    display: block !important;
-    margin-left: 25px !important;
-    /* 【最重要】座標の基準（offsetParent）にならないよう static を強制。
-       これにより、中のキャレットの offsetLeft は親の .test-input-view から測られ、
-       最初から「25」という数値をJSへ正確に渡すようになる。 */
-    position: static !important;
+    /* 重要：position: relative を排除。これにより caret.offsetLeft は
+       親の .test-input-view の左端（padding込み）からの距離を正しく返すようになる */
+    display: block;
+    margin-left: 0px;
+    z-index: 5;
 }
 
 /* サンプル（上段）の進捗：薄グレー */
