@@ -304,6 +304,7 @@ body.test-body .nav-item {
     position: absolute !important;
     top: 0px;
     left: 0px;
+    margin-left: 25px; 
     opacity: 0;
     z-index: 10;
     cursor: text;
