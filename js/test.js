@@ -200,11 +200,11 @@ class TypingExam {
         // IME候補窓の位置同期
         const caret = this.visualText.querySelector('.char-current-caret');
         if (caret && this.realInput) {
-            // ステージ（test-stage-layer）が共通の親（offsetParent）となり、
-            // 常に「物理25px地点＝0」としての純粋な距離を取得・代入。
+            // ステージ（test-stage-layer）内の相対座標を取得
             this.realInput.style.left = caret.offsetLeft + 'px';
             this.realInput.style.top = caret.offsetTop + 'px';
-            const remainingWidth = 920 - caret.offsetLeft;
+            // ステージ幅に合わせて、入力欄が右に突き抜けないよう制限
+            const remainingWidth = (this.inputViewBox.offsetWidth - 50) - caret.offsetLeft;
             this.realInput.style.width = Math.max(remainingWidth, 100) + 'px';
         }
     }

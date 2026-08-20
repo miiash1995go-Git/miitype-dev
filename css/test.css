@@ -303,23 +303,24 @@ body.test-body .nav-item {
     pointer-events: none;
 }
 
-/* 3. 入力口：舞台の左端（＝枠から25px地点）を不動の0として正確に待機 */
+/* 3. 入力口：ステージの左端（＝枠から25px地点）を基準に、JSが座標を支配する */
 .test-hidden-field {
     position: absolute !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    left: 0px !important; 
+    /* JSによる座標コントロールを許可するため !important を排除 */
+    left: 0px; 
     opacity: 0;
     z-index: 10;
     pointer-events: auto;
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 1.55rem;
+    background-color: transparent;
     border-top-style: none !important;
     border-right-style: none !important;
     border-bottom-style: none !important;
     border-left-style: none !important;
     outline-style: none !important;
-    background-color: transparent;
     box-shadow: none !important;
 }
 
