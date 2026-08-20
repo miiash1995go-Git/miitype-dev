@@ -279,19 +279,13 @@ body.test-body .nav-item {
     border-bottom-color: #cbd5e1;
     border-left-color: #cbd5e1;
     height: 85px !important;
-    /* 解決の公式：親にpaddingを持たせ、かつ中の座標系を「隔離」しないことで、
-       JSのoffsetLeftが「枠の左端からの25px」を正しく拾えるようにする */
-    padding-left: 25px !important;
-    padding-right: 25px !important;
-    overflow: hidden;
+    /* 聖域遵守：親のpaddingを0に固定し、子のmarginで位置を底上げすることで、
+       JSのoffsetLeft計算に25pxを自然に含ませ、変換窓の座標ズレを物理的に防ぐ */
+    padding-left: 0px !important;
 }
 
 #test-visual-text {
-    /* 重要：position: relative を排除。これにより caret.offsetLeft は
-       親の .test-input-view の左端（padding込み）からの距離を正しく返すようになる */
-    display: block;
-    margin-left: 0px;
-    z-index: 5;
+    margin-left: 25px;
 }
 
 /* サンプル（上段）の進捗：薄グレー */
