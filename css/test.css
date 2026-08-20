@@ -266,11 +266,26 @@ body.test-body .nav-item {
 .test-input-view {
     background-color: #ffffff;
     position: relative !important;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
     border-top-color: #cbd5e1;
     border-right-color: #cbd5e1;
     border-bottom-color: #cbd5e1;
     border-left-color: #cbd5e1;
     height: 85px !important;
+    /* 聖域遵守：親のpaddingを0に固定し、子のmarginで位置を底上げすることで、
+       JSのoffsetLeft計算に25pxを自然に含ませ、変換窓の座標ズレを物理的に防ぐ */
+    padding-left: 0px !important;
+}
+
+#test-visual-text {
+    margin-left: 25px;
 }
 
 /* サンプル（上段）の進捗：薄グレー */
