@@ -106,10 +106,12 @@
                     
                     <div class="test-typing-label" style="margin-top: 25px;">🖋️ 入力エリア（ここに入力）</div>
                     <div id="input-view-box" class="test-text-display test-input-view">
-                        <!-- 物理的な入力口：ボックス内のパディング位置に重ねる -->
-                        <input type="text" id="test-real-input" class="test-hidden-field" autocomplete="off" autofocus>
-                        <!-- テキスト表示専用のレイヤー -->
-                        <div id="test-visual-text"></div>
+                        <div class="test-input-inner">
+                            <!-- 物理的な入力口：ボックス内のパディング位置に重ねる -->
+                            <input type="text" id="test-real-input" class="test-hidden-field" autocomplete="off" autofocus>
+                            <!-- テキスト表示専用のレイヤー -->
+                            <div id="test-visual-text"></div>
+                        </div>
                     </div>
                 </div>
             </section>
