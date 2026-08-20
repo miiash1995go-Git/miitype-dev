@@ -224,7 +224,7 @@ body.test-body .nav-item {
     padding-top: 15px;
     padding-right: 25px;
     padding-bottom: 15px;
-    padding-left: 25px;
+    padding-left: 0px !important; /* 内箱が余白を担当するため、ここは0にします */
     font-size: 1.55rem;
     line-height: 1.5;
     color: #1e293b;
@@ -318,7 +318,8 @@ body.test-body .nav-item {
 .test-hidden-field {
     position: absolute !important;
     top: 0px;
-    left: 0px;
+    left: 0px; /* 内箱の左端（＝25px地点）から開始 */
+    margin-left: 0px;
     opacity: 0;
     z-index: 10;
     cursor: text;

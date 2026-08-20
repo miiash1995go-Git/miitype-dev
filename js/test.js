@@ -200,6 +200,7 @@ class TypingExam {
         // IME候補窓の位置同期
         const caret = this.visualText.querySelector('.char-current-caret');
         if (caret && this.realInput) {
+            // 内箱の中で動くため、純粋な位置計算だけで完璧に同期します
             this.realInput.style.left = caret.offsetLeft + 'px';
             this.realInput.style.top = caret.offsetTop + 'px';
             const remainingWidth = 920 - caret.offsetLeft;
