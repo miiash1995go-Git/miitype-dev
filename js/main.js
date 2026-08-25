@@ -951,17 +951,17 @@ if (typeof gtag === 'function') {
         if (page === "" || page.indexOf('.') === -1) { page = "index.html"; }
 
         // 2. カテゴリ判定マッピング
-        // 優先順位の再編：
-        // 1. まず 'career' を判定。ファイル名に 'mos' や 'reskill' があれば「就職・転職」を確定。
-        // 2. 次に 'column' を判定。'mos' 等を含まないその他の 'column-' 記事はここで「現場コラム」になる。
-        // これにより、既存の「column-age-typing」等は現場コラムのまま維持されます。
+        // 再編ルール：
+        // 1. まず「具体的キーワード」を持つ career と ai を最優先で判定。
+        // 2. 次に通用キーワード「column」を判定。これにより「50代からの〜」は現場コラムを維持。
+        // 3. その他の基本カテゴリを判定する。
         var mapping = {
-            'career':  ['mos', 'reskill', 'career', 'interview', 'cv'],
+            'career':  ['mos', 'reskill', 'typing-speed', 'career', 'interview', 'cv'],
+            'ai':      ['chatgpt', 'ai', 'tools'],
             'column':  ['column'],
             'windows': ['windows', 'pc-selection', 'folder'],
             'word':    ['word'],
             'excel':   ['excel'],
-            'ai':      ['ai', 'chatgpt', 'tools'],
             'typing':  ['typing', 'play', 'basics']
         };
 
