@@ -966,11 +966,11 @@ if (typeof gtag === 'function') {
         };
 
         var names = {
-            'windows': 'Windows基礎',
-            'word':    'Word基礎',
-            'excel':   'Excel基礎',
-            'ai':      '生成AI活用',
-            'typing':  'タイピング練習',
+            'windows': 'Windows',
+            'word':    'Word',
+            'excel':   'Excel',
+            'ai':      '生成AI',
+            'typing':  'タイピング',
             'career':  '就職・転職',
             'column':  '現場コラム'
         };
