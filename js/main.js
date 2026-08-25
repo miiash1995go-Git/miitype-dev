@@ -951,14 +951,11 @@ if (typeof gtag === 'function') {
         if (page === "" || page.indexOf('.') === -1) { page = "index.html"; }
 
         // 2. カテゴリ判定マッピング
-        // 再編ルール：
-        // 1. まず「具体的キーワード」を持つ career と ai を最優先で判定。
-        // 2. 次に通用キーワード「column」を判定。これにより「50代からの〜」は現場コラムを維持。
-        // 3. その他の基本カテゴリを判定する。
+        // 現場コラム(column)のキーワードに 'glossary' を追加し、用語集もコラム配下として統治する。
         var mapping = {
             'career':  ['mos', 'reskill', 'typing-speed', 'career', 'interview', 'cv'],
             'ai':      ['chatgpt', 'ai', 'tools'],
-            'column':  ['column'],
+            'column':  ['column', 'glossary'],
             'windows': ['windows', 'pc-selection', 'folder'],
             'word':    ['word'],
             'excel':   ['excel'],
