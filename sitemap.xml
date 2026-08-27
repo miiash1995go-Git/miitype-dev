@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- 1. 主要エントリー -->
-  <url><loc>https://miitype.com/</loc><lastmod>2026-08-17</lastmod><priority>1.0</priority></url>
-  <url><loc>https://miitype.com/play.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority></url>
-  <url><loc>https://miitype.com/test.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://miitype.com/</loc><lastmod>2026-08-17</lastmod><priority>1.0</priority><!-- [INDEX] ホーム | none --></url>
+  <url><loc>https://miitype.com/play.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority><!-- [INDEX] タイピング練習画面 | typing --></url>
+  <url><loc>https://miitype.com/test.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority><!-- [INDEX] 5分間タイピングテスト | typing --></url>
 
   <!-- 2. カテゴリハブ -->
-  <url><loc>https://miitype.com/hub-typing.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority></url>
-  <url><loc>https://miitype.com/hub-windows.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority></url>
-  <url><loc>https://miitype.com/hub-word.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority></url>
-  <url><loc>https://miitype.com/hub-excel.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority></url>
-  <url><loc>https://miitype.com/hub-ai.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority></url>
-  <url><loc>https://miitype.com/hub-career.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority></url>
-  <url><loc>https://miitype.com/hub-column.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority></url>
+  <url><loc>https://miitype.com/hub-typing.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority><!-- [INDEX] タイピング練習ガイド | typing --></url>
+  <url><loc>https://miitype.com/hub-windows.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority><!-- [INDEX] Windows基本操作ガイド | windows --></url>
+  <url><loc>https://miitype.com/hub-word.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority><!-- [INDEX] Word実務活用ガイド | word --></url>
+  <url><loc>https://miitype.com/hub-excel.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority><!-- [INDEX] Excel実務活用ガイド | excel --></url>
+  <url><loc>https://miitype.com/hub-ai.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority><!-- [INDEX] 生成AI活用ガイド | ai --></url>
+  <url><loc>https://miitype.com/hub-career.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority><!-- [INDEX] 就職・転職支援ガイド | career --></url>
+  <url><loc>https://miitype.com/hub-column.html</loc><lastmod>2026-08-17</lastmod><priority>0.9</priority><!-- [INDEX] 現場コラム・知見集 | column --></url>
 
   <!-- 3. タイピング記事 -->
   <url><loc>https://miitype.com/guide-basics.html</loc><lastmod>2026-08-17</lastmod><priority>0.7</priority><!-- [INDEX] タイピングの基本とホームポジション｜FとJの秘密 | typing --></url>
@@ -54,8 +54,8 @@
   <!-- 8. 固定辞書 -->
   <url><loc>https://miitype.com/glossary.html</loc><lastmod>2026-08-17</lastmod><priority>0.8</priority><!-- [INDEX] 実務用語辞典｜仕事で使うIT・Office・ビジネス用語の意味 | column --></url>
 
-  <!-- 9. 運営情報 (索引に載せない) -->
-  <url><loc>https://miitype.com/about.html</loc><lastmod>2026-08-17</lastmod><priority>0.6</priority></url>
-  <url><loc>https://miitype.com/contact.html</loc><lastmod>2026-08-17</lastmod><priority>0.6</priority></url>
-  <url><loc>https://miitype.com/privacy.html</loc><lastmod>2026-08-17</lastmod><priority>0.5</priority></url>
+  <!-- 9. 運営情報 -->
+  <url><loc>https://miitype.com/about.html</loc><lastmod>2026-08-17</lastmod><priority>0.6</priority><!-- [INDEX] 運営者情報 | none --></url>
+  <url><loc>https://miitype.com/contact.html</loc><lastmod>2026-08-17</lastmod><priority>0.6</priority><!-- [INDEX] お問い合わせ | none --></url>
+  <url><loc>https://miitype.com/privacy.html</loc><lastmod>2026-08-17</lastmod><priority>0.5</priority><!-- [INDEX] プライバシーポリシー | none --></url>
 </urlset>
