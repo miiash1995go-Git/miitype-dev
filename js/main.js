@@ -1199,7 +1199,20 @@ if (typeof gtag === 'function') {
                     // 【物理修復】コメント <!-- [INDEX] タイトル | カテゴリ --> を正規表現で抽出
                     const meta = block.match(/<!--\s*\[INDEX\]\s*(.*?)\s*\|\s*(.*?)\s*-->/);
 
-                    if (loc && meta) {
+                    // 記事リストから除外する「システム・運営・ナビ用ページ」の判定
+                    const urlFilename = loc.split('/').pop() || "index.html";
+                    const isSystemPage = (
+                        urlFilename === "index.html" || 
+                        urlFilename === "play.html" || 
+                        urlFilename === "test.html" || 
+                        urlFilename === "about.html" || 
+                        urlFilename === "contact.html" || 
+                        urlFilename === "privacy.html" || 
+                        urlFilename.startsWith("hub-") || 
+                        urlFilename === ""
+                    );
+
+                    if (loc && meta && !isSystemPage) {
                         articleData.push({
                             url: loc.split('/').pop(), // ファイル名を取得
                             title: meta[1].trim(),
