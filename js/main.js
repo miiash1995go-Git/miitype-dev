@@ -972,48 +972,85 @@ if (typeof gtag === 'function') {
             'column':  '現場コラム'
         };
 
-        // 3. 現在のカテゴリキーを特定
+        // 3. 現在のカテゴリキーを特定（Sitemap.xmlからの抽出を優先）
         var currentCat = "";
-        for (var key in mapping) {
-            var keywords = mapping[key];
-            for (var i = 0; i < keywords.length; i = i + 1) {
-                if (page.indexOf(keywords[i]) !== -1) {
-                    currentCat = key;
-                    break;
-                }
-            }
-            if (currentCat) break;
-        }
 
-        // 4. ヘッダーナビの現在地を点灯（Active化）
-        var links = document.querySelectorAll('.nav-item, .mobile-nav-item');
-        for (var l = 0; l < links.length; l = l + 1) {
-            var item = links[l];
-            var href = (item.getAttribute('href') || "").toLowerCase();
-            item.classList.remove('active');
-            
-            if (currentCat !== "" && href.indexOf(currentCat) !== -1) {
-                item.classList.add('active');
-            } else if (page === 'index.html' && (href === 'index.html' || href === './')) {
-                item.classList.add('active');
-            }
-        }
+        // Sitemapから現在のページのカテゴリを取得する非同期処理
+        async function syncBreadcrumbWithSitemap() {
+            try {
+                const res = await fetch('./sitemap.xml');
+                if (!res.ok) throw new Error();
+                const rawText = await res.text();
+                
+                // 現在のファイル名を取得
+                const currentPageFile = page; 
 
-        // 5. 動的パンくずの生成
-        var bBox = document.getElementById('dynamic-breadcrumb');
-        if (bBox && page !== 'index.html') {
-            var bHtml = '<a href="index.html">ホーム</a>';
-            if (currentCat !== "" && names[currentCat]) {
-                bHtml += '<span class="breadcrumb-separator">＞</span>';
-                if (page.indexOf('hub-') !== -1) {
-                    bHtml += '<span>' + names[currentCat] + '</span>';
+                // Sitemap内の現在のファイルに対応するブロックを抽出
+                const escapedPage = currentPageFile.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp('<url>[\\s\\S]*?<loc>.*?' + escapedPage + '</loc>[\\s\\S]*?<!--\\s*\\[INDEX\\]\\s*.*?\\|\\s*(.*?)\\s*-->[\\s\\S]*?</url>');
+                const match = rawText.match(regex);
+
+                if (match && match[1]) {
+                    currentCat = match[1].trim();
+                    console.log("【ぱそトレ！聖域通信】Sitemapよりカテゴリを確定しました: " + currentCat);
                 } else {
-                    bHtml += '<a href="hub-' + currentCat + '.html">' + names[currentCat] + '</a>';
-                    bHtml += '<span class="breadcrumb-separator">＞</span>';
+                    // Fallback: Sitemapにない場合は従来のキーワード判定
+                    for (var key in mapping) {
+                        var keywords = mapping[key];
+                        for (var i = 0; i < keywords.length; i++) {
+                            if (page.indexOf(keywords[i]) !== -1) {
+                                currentCat = key;
+                                break;
+                            }
+                        }
+                        if (currentCat) break;
+                    }
+                }
+                
+                // 確定したカテゴリでUIを更新
+                applyCategoryUI();
+
+            } catch (e) {
+                console.error("【ぱそトレ！】Sitemap同期失敗。キーワード判定へ移行します。");
+            }
+        }
+
+        // UI更新処理を分離
+        function applyCategoryUI() {
+            // 4. ヘッダーナビの現在地を点灯（Active化）
+            var links = document.querySelectorAll('.nav-item, .mobile-nav-item');
+            for (var l = 0; l < links.length; l = l + 1) {
+                var item = links[l];
+                var href = (item.getAttribute('href') || "").toLowerCase();
+                item.classList.remove('active');
+                
+                if (currentCat !== "" && href.indexOf(currentCat) !== -1) {
+                    item.classList.add('active');
+                } else if (page === 'index.html' && (href === 'index.html' || href === './')) {
+                    item.classList.add('active');
                 }
             }
-            bBox.innerHTML = bHtml;
+
+            // 5. 動的パンくずの生成
+            var bBox = document.getElementById('dynamic-breadcrumb');
+            if (bBox && page !== 'index.html') {
+                var bHtml = '<a href="index.html">ホーム</a>';
+                if (currentCat !== "" && names[currentCat]) {
+                    bHtml += '<span class="breadcrumb-separator">＞</span>';
+                    // 修正：ハブページ自体にいる場合はリンクにしない
+                    if (page === 'hub-' + currentCat + '.html') {
+                        bHtml += '<span>' + names[currentCat] + '</span>';
+                    } else {
+                        bHtml += '<a href="hub-' + currentCat + '.html">' + names[currentCat] + '</a>';
+                        bHtml += '<span class="breadcrumb-separator">＞</span>';
+                    }
+                }
+                bBox.innerHTML = bHtml;
+            }
         }
+
+        // 実行
+        syncBreadcrumbWithSitemap();
 
         // 6. スマホメニュー
         var mBtn = document.getElementById('mobile-menu-btn');
