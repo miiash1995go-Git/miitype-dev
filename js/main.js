@@ -1022,11 +1022,15 @@ if (typeof gtag === 'function') {
             for (var l = 0; l < links.length; l = l + 1) {
                 var item = links[l];
                 var href = (item.getAttribute('href') || "").toLowerCase();
+                var isHomeLink = (href === 'index.html' || href === './' || href === '.');
                 item.classList.remove('active');
                 
-                if (currentCat !== "" && href.indexOf(currentCat) !== -1) {
+                // 1. 指定カテゴリがある場合はそのナビを点灯
+                if (currentCat !== "" && currentCat !== "none" && href.indexOf(currentCat) !== -1) {
                     item.classList.add('active');
-                } else if (page === 'index.html' && (href === 'index.html' || href === './')) {
+                } 
+                // 2. カテゴリが "none" の場合、またはトップページの場合は「ホーム」を点灯
+                else if ((currentCat === "none" || page === 'index.html') && isHomeLink) {
                     item.classList.add('active');
                 }
             }
