@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【Excel】データベースとテーブル｜並べ替えとフィルターで必要なデータを見つける方法｜ぱそトレ！</title>
+    <meta name="description" content="Excelを単なる入力用紙ではなく「情報の倉庫（データベース）」として扱う方法を解説。並べ替え・フィルターの基本から、現場でテーブルが敬遠される理由と使い分けのコツまで、現役講師がガイドします。">
+    <link rel="canonical" href="https://miitype.com/guide-excel-database.html">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
+    <script>
+        if (localStorage.getItem('pasotore_admin') === 'true') {
+            window['ga-disable-G-KWS4RPPBVV'] = true;
+        }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+    <!-- SNS用OGP設定 -->
+    <meta property="og:title" content="【Excel】データベースとテーブル｜並べ替えとフィルターで必要なデータを見つける方法">
+    <meta property="og:description" content="大量のデータから必要な情報を取り出すための「倉庫」の扱い方をマスターしましょう。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://miitype.com/guide-excel-database.html">
+    <meta property="og:image" content="https://miitype.com/img/og-main.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
+</head>
+<body class="portal-page">
+    <div id="app">
+        <header>
+            <div class="header-inner">
+                <a href="./" class="header-logo-link">
+                    <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
+                </a>
+                <nav class="header-nav">
+                    <div class="nav-grid">
+                        <a href="./" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                        <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                        <a href="hub-windows.html" class="nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>Windows</span></a>
+                        <a href="hub-word.html" class="nav-item"><img src="img/icon-word.png" class="nav-icon"><span>Word</span></a>
+                        <a href="hub-excel.html" class="nav-item"><img src="img/icon-excel.png" class="nav-icon"><span>Excel</span></a>
+                        <a href="hub-ai.html" class="nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                        <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                        <a href="hub-column.html" class="nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                    </div>
+                    <button class="mobile-menu-trigger" id="mobile-menu-btn">
+                        <span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="menu-label">メニュー</span>
+                    </button>
+                </nav>
+            </div>
+            <div class="mobile-nav-overlay" id="mobile-menu-overlay">
+                <button class="menu-close-btn" id="menu-close-btn">×</button>
+                <div class="mobile-nav-grid">
+                    <a href="./" class="mobile-nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                    <a href="hub-typing.html" class="mobile-nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                    <a href="hub-windows.html" class="mobile-nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>Windows</span></a>
+                    <a href="hub-word.html" class="mobile-nav-item"><img src="img/icon-word.png" class="nav-icon"><span>Word</span></a>
+                    <a href="hub-excel.html" class="mobile-nav-item"><img src="img/icon-excel.png" class="nav-icon"><span>Excel</span></a>
+                    <a href="hub-ai.html" class="mobile-nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                    <a href="hub-career.html" class="mobile-nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                    <a href="hub-column.html" class="mobile-nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                </div>
+            </div>
+        </header>
+
+        <main class="portal-main">
+            <article class="static-page">
+                <nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
+
+                <h1 class="page-title">Excelで必要なデータをすぐに見つけるには？データベースとテーブルの使い方</h1>
+
+                <div class="content-body">
+                    <h2>仕事のデータは「探す」ことに時間がかかる</h2>
+                    <p>仕事でExcelを使っていると、最初は数行だったリストが、日々の業務を通じて100行、200行と増えていきます。多くなったデータの中から、自分の必要な情報を一つずつ目で探すのは、時間がかかるだけでなく見落としの原因にもなります。</p>
+                    <p>Excelを単に入力するだけの用紙としてではなく、<strong>「必要な情報をいつでも正確に取り出せる倉庫（データベース）」</strong>として扱うコツを確認しましょう。</p>
+
+                    <h2>データベースの基本：名称を知るとExcelがもっとわかる</h2>
+                    <p>Excelをデータベース（情報の倉庫）として扱うとき、まず覚えておきたい2つの言葉があります。この名称を知っているだけで、Excelの仕組みを整理して考えられるようになります。</p>
+
+                    <div class="info-note-box">
+                        <strong class="note-title">データの「単位」を表す言葉：</strong>
+                        <ul>
+                            <li><strong>フィールド（列）：</strong> 「支店名」や「売上金額」など、データの<strong>「項目」</strong>を表します。縦の列のことです。</li>
+                            <li><strong>レコード（行）：</strong> 「〇月〇日の〇〇支店のデータ」という、<strong>「1件分」</strong>のまとまりを表します。横の一行のことです。</li>
+                        </ul>
+                    </div>
+                    <p>「1行につき、1件のデータを正しく入れる」というルールを守ることで、並べ替えやフィルターが正しく機能するようになります。</p>
+
+                    <h2>並べ替え：ルールを決めて順番を整える</h2>
+                    <p>バラバラに並んだデータを一定のルールで並べ直すのが「並べ替え」です。実務では主に以下の2つの目的で使われます。</p>
+                    <ul>
+                        <li><strong>昇順（小さい順）：</strong> 「日付」で並べれば、対応すべき期限が近い順に整理できます。</li>
+                        <li><strong>降順（大きい順）：</strong> 「売上金額」で並べれば、どの項目が重要（優先順位が高い）なのかを即座に把握できます。</li>
+                    </ul>
+
+                    <div class="article-image article-image--window">
+                        <img src="img/Excel/Excel-database01.jpg" alt="データタブの並べ替えとフィルターボタンの場所">
+                        <p class="small-text">▲ [データ]タブにあるボタンから、昇順・降順の切り替えやフィルターの設定が行えます</p>
+                    </div>
+
+                    <div class="instructor-advice">
+                        <b>💡 講師のアドバイス：表の「境界線」をチェックしましょう</b><br>
+                        <p style="margin-top: 10px;">並べ替えをする前に、表のすぐ隣や上に余計なメモがくっついていないか確認してみてください。表が他のデータと離れて「孤立」した状態になっていれば、Excelが範囲を正しく判断できるので、データがバラバラにズレるトラブルを防げますよ。</p>
+                    </div>
+
+                    <h2>フィルター：必要な情報だけを「表示させる」</h2>
+                    <p>膨大なデータの中から、特定の条件に合うものだけを画面に出すのが「フィルター」機能です。ここで知っておいてほしいのは、フィルターは条件に合わない行を削除しているのではなく、一時的に<strong>「隠している」</strong>だけだということです。ボタン一つでいつでも元の状態に戻せるので、安心して操作してください。</p>
+
+                    <h3>数値フィルターで「範囲」を指定する</h3>
+                    <p>単に項目にチェックを入れるだけでなく、「5,000円以上、6,000円以下」といった、より細かい数値の絞り込みも可能です。</p>
+
+                    <div class="article-image article-image--window">
+                        <img src="img/Excel/Excel-database02.jpg" alt="数値フィルターから指定の範囲内を選択する操作">
+                        <p class="small-text">▲ 見出しの▼ボタンから「数値フィルター」→「指定の範囲内」を使うと、数値を自由に絞り込めます</p>
+                    </div>
+
+                    <div class="article-image article-image--window">
+                        <img src="img/Excel/Excel-database03.jpg" alt="抽出条件を指定するダイアログボックス">
+                        <p class="small-text">▲ 「以上」「以下」などの条件を組み合わせてOKを押すだけで、対象のデータが抽出されます</p>
+                    </div>
+
+                    <p>絞り込みが行われると、該当するデータの行番号が青色に変わり、今は全体の一部を表示していることが一目でわかるようになります。</p>
+
+                    <div class="article-image article-image--window">
+                        <img src="img/Excel/Excel-database04.jpg" alt="フィルター実行後の行番号が青くなっている画面">
+                        <p class="small-text">▲ フィルター実行中。条件に一致するデータのみが表示されています</p>
+                    </div>
+
+                    <h2>Excelの「テーブル」は使ったほうがいい？</h2>
+                    <p>データをより便利に管理する仕組みとして「テーブル」という機能があります。非常に強力ですが、実は<strong>「すべての表をテーブルにすればいい」わけではありません。</strong>便利な機能なのに、実際の職場で「普通のセルのまま」が好まれるのには理由があります。</p>
+
+                    <h3>テーブルが敬遠される主な理由</h3>
+                    <ul class="feature-list-vertical">
+                        <li class="feature-item-vertical">
+                            <h4>操作感の違いや自動化への戸惑い</h4>
+                            <p>テーブルにすると列全体がひとまとまりとして扱われます。勝手に色がついたり、数式が列全体に自動コピーされたりするため、不慣れなうちは「普通のセルと違う感じ」に戸惑うことがあります。</p>
+                        </li>
+                        <li class="feature-item-vertical">
+                            <h4>修正の自由度とセル結合の制限</h4>
+                            <p>「この行だけ計算を少し変えたい」といった例外的な操作がしにくかったり、見た目を整えるための「セルの結合」ができなかったりします。そのため、レイアウト重視の書類作成とは相性が良くない側面があります。</p>
+                        </li>
+                    </ul>
+
+                    <p>日本の職場ではExcelを「帳票（紙の書類の再現）」として使う場面も多いため、あえて普通のセル範囲のままで運用されることも多いのです。</p>
+
+                    <h2>「データの目的」でテーブルを使い分ける</h2>
+                    <p>どんなときにテーブルを使うべきか、その判断基準は<strong>「データの目的」</strong>にあります。名簿や売上リストのように、情報をどんどん蓄積していく役割なら、テーブルが最適です。</p>
+
+                    <table class="setup-table">
+                        <thead>
+                            <tr>
+                                <th class="col-item">向いているもの（管理用）</th>
+                                <th>向いていないもの（帳票用）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="row-label">○ 顧客一覧・商品一覧</th>
+                                <td>△ 請求書・見積書</td>
+                            </tr>
+                            <tr>
+                                <th class="row-label">○ 売上データ・名簿</th>
+                                <td>△ 申請書・報告書</td>
+                            </tr>
+                            <tr>
+                                <th class="row-label">○ アンケート・CSVデータ</th>
+                                <td>△ デザイン重視の資料</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h2>テーブルに変換するメリット</h2>
+                    <p>「売上管理表」のようなデータ蓄積用の表は、テーブルにすると管理の手間が抑えられます。</p>
+
+                    <div class="article-image article-image--window">
+                        <img src="img/Excel/Excel-database05.jpg" alt="挿入タブのテーブルボタン">
+                        <p class="small-text">▲ [挿入]タブから「テーブル」を実行すると、表が管理しやすい形式に変換されます</p>
+                    </div>
+
+                    <p>テーブルにすると、自動でフィルターボタンが付き、一行おきに色がつくことで、横に長い表でも見間違いを防ぎやすくなります。また、データが増えても自動で範囲が広がるため、管理がスムーズになります。</p>
+
+                    <div class="article-image article-image--window">
+                        <img src="img/Excel/Excel-database06.jpg" alt="テーブル変換後の見やすい表の完成図">
+                        <p class="small-text">▲ テーブル変換後の表。一行おきに色がつくことで、データが非常に追いやすくなります</p>
+                    </div>
+
+                    <h2>実務の作法：元データを壊さないための心がけ</h2>
+                    <p>データを加工する際に意識したいのが丁寧な仕事の進め方です。</p>
+                    <ul>
+                        <li><strong>「非表示」ではなく「フィルター」を：</strong> 特定の行を隠したい時に、右クリックで「非表示」にするのは避けましょう。後で他の人が見た時に、データが隠れていることに気づかず、計算ミスを招く恐れがあるためです。</li>
+                        <li><strong>バックアップを取る習慣：</strong> 大きな修正の前には、シートをコピーして「予備（バックアップ）」を作っておきましょう。すぐに元に戻せる安心感があれば、作業の正確性も向上します。</li>
+                    </ul>
+
+                    <h2>まとめ</h2>
+                    <p>Excelは、ただ文字や数字を記録するだけのものではありません。溜まったデータの中から、並べ替えやフィルターを使って「今知りたい答え」を取り出す使い方は、Excelの実務で非常によく活用される方法です。</p>
+                    <ul>
+                        <li><strong>データを管理する時</strong>は、管理に強い「テーブル」を活用する。</li>
+                        <li><strong>書類を作る時</strong>は、自由度の高い「普通のセル」で作成する。</li>
+                    </ul>
+                    <p>この使い分けができるようになれば、実務の正確性とスピードは自然と備わっていきます。答えを取り出す道具として、Excelを使いこなしていきましょう。</p>
+
+                    <div class="article-footer-nav">
+                        <p class="article-footer-nav__text">データの扱い方を学んだら、次は指に実務用語を馴染ませましょう</p>
+                        <div class="summary-nav">
+                            <a href="play.html?cat=excel_basic" class="btn-main">Excel用語タイピングへ</a>
+                            <a href="hub-excel.html" class="summary-btn">Excelガイドへ戻る</a>
+                            <a href="./" class="summary-btn">ホームへ戻る</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="about.html">運営者情報</a>
+            </div>
+            <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
+        </footer>
+    </div>
+    <a href="#" id="back-to-top" class="back-to-top">↑</a>
+    <script src="js/main.js"></script>
+</body>
+</html>
