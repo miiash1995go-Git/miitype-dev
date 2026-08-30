@@ -156,36 +156,37 @@
                     <p>どんなときにテーブルを使うべきか、その判断基準は<strong>「データの目的」</strong>にあります。名簿や売上リストのように、情報をどんどん蓄積していく役割なら、テーブルが最適です。</p>
 
                     <!-- 
-                        物理仕様：comparison-grid クラスを使用
-                        PC (1024px) : 2カラム (1fr 1fr)
-                        スマホ (768px): 1カラム (1fr) 
+                        物理仕様：index.htmlと同じ ai-dual-role-box ロジックを使用
+                        PC (1024px) : 左右並列 (flex-basis: 0%)
+                        スマホ (768px): 上下並列 (flex-direction: column) 
                     -->
-                    <div class="comparison-grid" style="margin-top: 30px; margin-bottom: 40px;">
+                    <div class="ai-dual-role-box" style="margin-top: 30px; margin-bottom: 40px; gap: 20px;">
                         
-                        <!-- 1. テーブルが向いているもの（管理用） -->
-                        <div class="comparison-item" style="background-color: #f0fdf4; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-style: solid; border-color: #dcfce7; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; box-sizing: border-box;">
-                            <h4 style="text-align: center; color: #16a34a; font-weight: 900; margin-bottom: 20px; font-size: 1.2rem; border-bottom-style: none; margin-top: 0px;">テーブルが向いているもの</h4>
-                            <ul style="list-style-type: none; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">
-                                <li style="font-weight: 800; color: #374151; border-bottom-width: 1px; border-bottom-style: dashed; border-bottom-color: #dcfce7; padding-bottom: 8px; margin-bottom: 10px; line-height: 1.6;">○ 顧客一覧</li>
-                                <li style="font-weight: 800; color: #374151; border-bottom-width: 1px; border-bottom-style: dashed; border-bottom-color: #dcfce7; padding-bottom: 8px; margin-bottom: 10px; line-height: 1.6;">○ 商品一覧</li>
-                                <li style="font-weight: 800; color: #374151; border-bottom-width: 1px; border-bottom-style: dashed; border-bottom-color: #dcfce7; padding-bottom: 8px; margin-bottom: 10px; line-height: 1.6;">○ 売上データ</li>
-                                <li style="font-weight: 800; color: #374151; border-bottom-width: 1px; border-bottom-style: dashed; border-bottom-color: #dcfce7; padding-bottom: 8px; margin-bottom: 10px; line-height: 1.6;">○ 名簿</li>
-                                <li style="font-weight: 800; color: #374151; border-bottom-width: 1px; border-bottom-style: dashed; border-bottom-color: #dcfce7; padding-bottom: 8px; margin-bottom: 10px; line-height: 1.6;">○ アンケート結果</li>
-                                <li style="font-weight: 800; color: #374151; border-bottom-width: 1px; border-bottom-style: dashed; border-bottom-color: #dcfce7; padding-bottom: 8px; margin-bottom: 0px; line-height: 1.6;">○ CSVから取り込んだデータ</li>
+                        <!-- 1. テーブルが向いているもの（Green / work-sideクラスを流用） -->
+                        <div class="ai-role-side work-side" style="padding-top: 30px; padding-right: 25px; padding-bottom: 30px; padding-left: 25px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-style: solid; box-sizing: border-box;">
+                            <h4 style="border-bottom-style: none !important; margin-bottom: 20px;">テーブルが向いているもの</h4>
+                            <ul style="list-style-type: none; padding-left: 0; margin-left: 0;">
+                                <li style="font-weight: 800; color: #374151; border-bottom: 1px dashed #16a34a; padding-bottom: 8px; margin-bottom: 12px;">○ 顧客一覧</li>
+                                <li style="font-weight: 800; color: #374151; border-bottom: 1px dashed #16a34a; padding-bottom: 8px; margin-bottom: 12px;">○ 商品一覧</li>
+                                <li style="font-weight: 800; color: #374151; border-bottom: 1px dashed #16a34a; padding-bottom: 8px; margin-bottom: 12px;">○ 売上データ</li>
+                                <li style="font-weight: 800; color: #374151; border-bottom: 1px dashed #16a34a; padding-bottom: 8px; margin-bottom: 12px;">○ 名簿</li>
+                                <li style="font-weight: 800; color: #374151; border-bottom: 1px dashed #16a34a; padding-bottom: 8px; margin-bottom: 12px;">○ アンケート結果</li>
+                                <li style="font-weight: 800; color: #374151; padding-bottom: 8px; margin-bottom: 0px;">○ CSVから取り込んだデータ</li>
                             </ul>
                         </div>
 
-                        <!-- 2. テーブルが向いていないもの（帳票用） -->
-                        <div class="comparison-item" style="background-color: #fffaf5; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-style: solid; border-color: #ffedd5; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; box-sizing: border-box;">
-                            <h4 style="text-align: center; color: #e67e22; font-weight: 900; margin-bottom: 20px; font-size: 1.2rem; border-bottom-style: none; margin-top: 0px;">テーブルが向いていないもの</h4>
-                            <ul style="list-style-type: none; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">
-                                <li style="font-weight: 800; color: #374151; border-bottom-width: 1px; border-bottom-style: dashed; border-bottom-color: #ffedd5; padding-bottom: 8px; margin-bottom: 10px; line-height: 1.6;">△ 請求書</li>
-                                <li style="font-weight: 800; color: #374151; border-bottom-width: 1px; border-bottom-style: dashed; border-bottom-color: #ffedd5; padding-bottom: 8px; margin-bottom: 10px; line-height: 1.6;">△ 見積書</li>
-                                <li style="font-weight: 800; color: #374151; border-bottom-width: 1px; border-bottom-style: dashed; border-bottom-color: #ffedd5; padding-bottom: 8px; margin-bottom: 10px; line-height: 1.6;">△ 申請書</li>
-                                <li style="font-weight: 800; color: #374151; border-bottom-width: 1px; border-bottom-style: dashed; border-bottom-color: #ffedd5; padding-bottom: 8px; margin-bottom: 10px; line-height: 1.6;">△ 報告書</li>
-                                <li style="font-weight: 800; color: #374151; border-bottom-width: 1px; border-bottom-style: dashed; border-bottom-color: #ffedd5; padding-bottom: 8px; margin-bottom: 0px; line-height: 1.6;">△ レイアウト重視の資料</li>
+                        <!-- 2. テーブルが向いていないもの（Orange / career-sideクラスを流用） -->
+                        <div class="ai-role-side career-side" style="padding-top: 30px; padding-right: 25px; padding-bottom: 30px; padding-left: 25px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-style: solid; box-sizing: border-box;">
+                            <h4 style="border-bottom-style: none !important; margin-bottom: 20px;">テーブルが向いていないもの</h4>
+                            <ul style="list-style-type: none; padding-left: 0; margin-left: 0;">
+                                <li style="font-weight: 800; color: #374151; border-bottom: 1px dashed #f97316; padding-bottom: 8px; margin-bottom: 12px;">△ 請求書</li>
+                                <li style="font-weight: 800; color: #374151; border-bottom: 1px dashed #f97316; padding-bottom: 8px; margin-bottom: 12px;">△ 見積書</li>
+                                <li style="font-weight: 800; color: #374151; border-bottom: 1px dashed #f97316; padding-bottom: 8px; margin-bottom: 12px;">△ 申請書</li>
+                                <li style="font-weight: 800; color: #374151; border-bottom: 1px dashed #f97316; padding-bottom: 8px; margin-bottom: 12px;">△ 報告書</li>
+                                <li style="font-weight: 800; color: #374151; padding-bottom: 8px; margin-bottom: 0px;">△ レイアウト重視の資料</li>
                             </ul>
                         </div>
+
                     </div>
 
 
