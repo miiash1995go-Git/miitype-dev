@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成AIでExcelデータを分析してみた｜4つのAIを同じ条件で比較【無料版・2026年9月】｜ぱそトレ！</title>
+    <meta name="description" content="ChatGPT・Copilot・Gemini・Claudeに同じExcelとプロンプトを渡したら、分析結果とExcelファイル出力にどんな違いが出る？無料版AIを使った比較検証結果を現役講師が詳しく公開します。">
+    <link rel="canonical" href="https://miitype.com/ai-compare-excel.html">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- アドセンス・GA4（共通規格） -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
+    <!-- CSS資産の同期 -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
+    <link rel="stylesheet" href="css/ai-tools.css">
+</head>
+<body class="portal-page">
+    <div id="app">
+        <header>
+            <div class="header-inner">
+                <a href="./" class="header-logo-link">
+                    <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
+                </a>
+                <nav class="header-nav">
+                    <div class="nav-grid">
+                        <a href="./" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                        <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                        <a href="hub-windows.html" class="nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>Windows</span></a>
+                        <a href="hub-word.html" class="nav-item"><img src="img/icon-word.png" class="nav-icon"><span>Word</span></a>
+                        <a href="hub-excel.html" class="nav-item"><img src="img/icon-excel.png" class="nav-icon"><span>Excel</span></a>
+                        <a href="hub-ai.html" class="nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                        <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                        <a href="hub-column.html" class="nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="portal-main">
+            <article class="static-page static-page--wide">
+                <nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
+
+                <h1 class="page-title">生成AIでExcelデータを分析してみた｜4つのAIを同じ条件で比較【無料版・2026年9月】</h1>
+                <p class="page-subtitle">ChatGPT・Copilot・Gemini・Claudeに同じExcelとプロンプトを渡したら、分析結果とExcelファイル出力にどんな違いが出る？</p>
+
+                <div class="content-body">
+                    <p>Excelには、売上・社員数・顧客数など、仕事で扱うさまざまなデータが入っています。</p>
+                    <p>しかし、そこから</p>
+                    <ul>
+                        <li>全体の傾向をまとめる</li>
+                        <li>支社ごとの売上を比較する</li>
+                        <li>社員1人あたりの売上を計算する</li>
+                        <li>ランキングを作る</li>
+                        <li>グラフを作成する</li>
+                        <li>データの誤りや不整合を探す</li>
+                    </ul>
+                    <p>といった作業をするとなると、Excel初心者には少しハードルが高くなります。</p>
+
+                    <p>そこで今回は、同じExcelファイルと同じプロンプトを4種類の生成AIに渡し、どのような結果が返ってくるのかを実際に比較してみました。</p>
+                    <p>比較したのは、<strong>ChatGPT・Microsoft Copilot・Google Gemini・Claude</strong> の4種類です。</p>
+
+                    <p>今回のポイントは、単純に「どのAIが一番賢いのか」を比較することではありません。</p>
+                    <div class="info-note-box">
+                        <strong class="note-title">比較の注目点</strong>
+                        <ul>
+                            <li>① Excelデータをどのように分析したか</li>
+                            <li>② 分析結果をどのように説明したか</li>
+                            <li>③ 分析済みExcelファイルを作成できたか</li>
+                        </ul>
+                    </div>
+
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 20px;">※この記事の結果は、2026年9月時点で、各AIの無料版を使って同じ条件で実際に試した結果です。AIは頻繁にアップデートされるため、同じ操作を行っても時期や利用環境によって結果が変わる可能性があります。</p>
+
+                    <h2>1．今回使用したExcelデータ</h2>
+                    <p>まず、4種類のAIに同じExcelファイルを渡しました。今回使用したのは、50支社の売上データです。支社ごとに社員数と4月～9月の売上データが入力されており、このデータを使ってAIに分析を依頼します。</p>
+
+                    <div class="article-image article-image--window">
+                        <img src="img/ai-compare-01-source-data.jpg" alt="使用したExcelデータの構成">
+                        <p class="small-text">【使用したExcelデータ】</p>
+                    </div>
+
+                    <h2>2．4種類のAIに「まったく同じプロンプト」を入力</h2>
+                    <p>今回の比較で重要なのが、AIごとに指示を変えていないことです。同じExcelファイルをアップロードし、同じプロンプトを入力しました。</p>
+
+                    <div class="article-image article-image--window">
+                        <img src="img/ai-compare-02-prompt.jpg" alt="実際に使用したプロンプトの画面">
+                        <p class="small-text">【実際に使用したプロンプト】</p>
+                    </div>
+
+                    <p>自分でも試せるように、プロンプトそのものも掲載しておきます。</p>
+
+                    <div class="example-unit">
+                        <div class="example-box">
+                            <span class="example-label">📋 コピペして使える共通プロンプト</span>
+                            このExcelファイルを分析してください。<br><br>
+                            【目的】<br>
+                            ・支社別の売上データをもとに、全体傾向を簡潔にまとめてください。<br>
+                            ・社員数と売上の関係を分析し、ランキングを作成してください。<br>
+                            ・社員1人あたりの売上を計算してください。<br>
+                            ・月別の売上推移をグラフ化してください。<br>
+                            ・データの誤りや不整合があれば指摘してください。<br><br>
+                            【出力条件】<br>
+                            ・分析結果をわかりやすくまとめてください（初心者向けでOK）。<br>
+                            ・グラフやランキングを含めた「分析済みExcelファイル」を作成し、ファイルとして提示してください。<br>
+                            ・もしファイルの提示ができない場合は、その理由を説明してください。<br><br>
+                            【目的】<br>
+                            このプロンプトは、AIの分析精度とファイル提示機能の違いを比較するためのテストです。
+                        </div>
+                    </div>
+
+                    <p>今回は、単に「このExcelを分析して」とお願いするのではなく、何を分析してほしいのか、最終的にどんなファイルが欲しいのかまで具体的に指定しました。では、実際に4つのAIにお願いしてみます。</p>
+
+                    <h2>3．ChatGPTの結果｜今回は分析を完了できず</h2>
+                    <p>まずはChatGPTです。今回、Excelファイルをアップロードして同じプロンプトで分析を依頼しました。</p>
+                    <p>しかし、今回の環境では分析・解析に時間がかかり、最終的にデータ分析を完了することができませんでした。実際に表示されたのが、こちらです。</p>
+
+                    <div class="article-image article-image--window">
+                        <img src="img/ai-compare-03-chatgpt.jpg" alt="ChatGPTでのエラー表示">
+                        <p class="small-text">【ChatGPTで表示された結果】</p>
+                    </div>
+
+                    <div class="info-note-box" style="background-color: #fef2f2; border-left-color: #ef4444;">
+                        <p style="font-family: 'Roboto Mono', monospace; margin-bottom: 10px;">It seems like I can’t do more advanced data analysis right now. Please try again later.</p>
+                        <p>画面下にも、<br><strong>現在、データ分析を使い切りました。さらに使うには無料のPlusトライアルを開始するか、20:51以降にもう一度お試しください。</strong><br>という表示が出ています。</p>
+                    </div>
+
+                    <p>つまり今回の検証では、指定したExcelデータを最後まで分析して、結果を受け取るところまで進めることができませんでした。</p>
+                    <div class="instructor-advice">
+                        <b>💡 注意点</b><br>
+                        これは、「ChatGPTはExcel分析ができない」という意味ではありません。あくまで、今回の無料版・今回の利用環境・今回のデータ量という条件では、検証を完了できなかったという結果です。AIサービスは利用状況やプラン、時期によって利用できる機能や制限が変わるためです。
+                    </div>
+
+                    <h2>4．Copilotの結果｜分析結果は文章で表示された</h2>
+                    <p>次にMicrosoft Copilotです。Copilotでは、アップロードしたExcelデータをもとに、分析結果を文章として返してくれました。実際に返ってきた内容を見てみましょう。</p>
+
+                    <div class="ai-brand-item">
+                        <strong>【Copilotから返ってきた分析結果】</strong><br>
+                        <strong>① 全体傾向（Excelより）</strong>
+                        <ul>
+                            <li>都市圏（東京・大阪・神奈川）が圧倒的に売上が高い</li>
+                            <li>地方支社は社員数が少なく売上も小規模</li>
+                            <li>どの支社も 4月→9月で売上が右肩上がり</li>
+                            <li>合計売上列が空欄（後で計算）　←　（※おそらく合計列を認識できていません）</li>
+                        </ul>
+
+                        <strong>📈 ② 合計売上（4〜9月の合計）</strong><br>
+                        例：大阪支社<br>
+                        1200+1300+1250+1400+1500+1600 = 8250<br><br>
+                        主要支社の合計売上：<br>
+                        支社名　合計売上<br>
+                        東京支社　13500<br>
+                        東京西支社　12150<br>
+                        東京東支社　12000<br>
+                        大阪北支社　8550<br>
+                        大阪南支社　8450<br>
+                        大阪支社　8250<br><br>
+
+                        <strong>🥇 ③ 総売上ランキング TOP10</strong><br>
+                        東京支社（13500）、東京西支社（12150）、東京東支社（12000）、横浜支社（10950）、川崎支社（9600）、埼玉支社（9300）、千葉支社（9100）、大阪北支社（8550）、大阪南支社（8450）、大阪支社（8250）<br><br>
+
+                        <strong>👤 ④ 1人あたり売上ランキング TOP10</strong><br>
+                        計算式：1人あたり売上 = 合計売上 ÷ 社員数<br>
+                        上位支社：千葉支社 202.2、埼玉支社 193.7、川崎支社 192.0、東京東支社 184.6、横浜支社 182.5、東京西支社 173.6<br><br>
+
+                        <strong>🧭 ⑤ 月別売上推移（傾向）</strong>
+                        <ul>
+                            <li>全支社が 4月→9月で売上増加</li>
+                            <li>都市圏は増加幅も大きい</li>
+                            <li>地方は緩やかな増加</li>
+                        </ul>
+
+                        <strong>⚠️ ⑥ データの誤り・不整合</strong>
+                        <ul>
+                            <li>合計売上が空欄 → SUM(F2:K2) を入れる必要あり</li>
+                            <li>支社名の命名ルールが不統一：愛媛第二支社／香川第二支社だけ「第二支社」表記</li>
+                            <li>都道府県は正しいが、支社名との命名規則が揃っていない</li>
+                        </ul>
+
+                        <strong>📁 ⑦ 本来なら「分析済みExcelファイル」を返すところだが…</strong><br>
+                        今回の条件では、Excelファイルを生成して返すことができなかった。<br>
+                        <span style="font-size: 0.9rem; color: #64748b;">※上記は今回の検証で返ってきた回答をもとに掲載しています。</span>
+                    </div>
+
+                    <p>ここで注目したいところ。Copilotは、全体傾向、合計売上、売上ランキング、1人あたり売上、月別推移、データの不整合まで、文章としてかなり具体的に分析しています。一方で、今回の条件では、最終的な「分析済みExcelファイル」を提示するところまでは進みませんでした。</p>
+                    <p>つまり、<strong>「分析できること」と「分析結果をExcelファイルとして出力できること」は、別の機能</strong>だということが分かります。</p>
+
+                    <h2>5．Geminiの結果｜分析＋Excelファイル出力までできた</h2>
+                    <p>次にGoogle Geminiです。Geminiでは、分析結果をテキストとして表示したうえで、今回指定した<strong>「分析済みExcelファイル」も作成して提示することができました。</strong>実際に返ってきた分析結果を見てみます。</p>
+
+                    <div class="ai-brand-item" style="border-left: 5px solid #1a73e8;">
+                        <strong>【Geminiから返ってきた分析結果】</strong><br>
+                        ご要望通り、社員1人あたりの売上計算、月別推移グラフ、および各集計用数式を埋め込んだ分析済みExcelファイルを作成いたしました。<br><br>
+                        <strong>1. 全体傾向</strong>
+                        <ul>
+                            <li>総売上高: 297,570 万円（全50支社合計）</li>
+                            <li>総社員数: 1,559 名</li>
+                            <li>月別推移: 4月の 43,990 万円から 9月の 55,250 万円まで、毎月平均約 4.7% ずつ右肩上がりに成長しており、非常に順調な拡大傾向を示しています。</li>
+                        </ul>
+                        <strong>2. 社員数と売上の関係・生産性ランキング</strong><br>
+                        社員数と合計売上の間には非常に強い正の相関が見られますが、「社員1人あたりの売上（生産性）」に注目すると逆の傾向が現れます。<br><br>
+                        <strong>高生産性支社（TOP 3）</strong>
+                        <ul>
+                            <li>香川第二支社 / 和歌山支社: 社員1人あたり 225.88 万円（17名 / 3,840万円）</li>
+                            <li>秋田支社 / 福井支社 / 徳島支社: 社員1人あたり 220.00 万円（18名 / 3,960万円）</li>
+                        </ul>
+                        <strong>低生産性支社（BOTTOM 3）</strong>
+                        <ul>
+                            <li>大阪北支社: 社員1人あたり 155.45 万円（55名 / 8,550万円）</li>
+                            <li>札幌支社: 社員1人あたり 165.79 万円（38名 / 6,300万円）</li>
+                            <li>東京支社: 社員1人あたり 168.75 万円（80名 / 13,500万円）</li>
+                        </ul>
+                        <p style="font-size: 0.9rem;">※ 規模の大きい大都市圏の支社ほど1人あたりの売上数値が低めに出る傾向があります。</p>
+                        <strong>3. データ不整合・点検結果</strong>
+                        <ul>
+                            <li>数値整合性: 各支社の4月〜9月売上の合計値および総計に計算エラーや不整合はありませんでした（すべて正常に計算が成立します）。</li>
+                            <li>重複データ: 支社コード・支社名の重複登録は見られませんでした。</li>
+                        </ul>
+                        作成した分析済みファイルは以下からダウンロードしていただけます。
+                    </div>
+
+                    <p>今回の検証では、分析結果をExcelファイルとして受け取るところまで実行できたことが大きな違いです。</p>
+
+                    <h2>6．Geminiが作成したExcelファイルを見てみる</h2>
+                    <div class="article-image article-image--window">
+                        <img src="img/ai-compare-06-gemini-excel.jpg" alt="Geminiが出力したExcelファイルのイメージ">
+                        <p class="small-text">【Geminiの出力ファイル】</p>
+                    </div>
+                    <p>実際にGeminiが作成したExcelファイルを開いてみると、元データをベースに、分析した列を追加、集計用の数式を追加、グラフを作成、といった加工が行われていました。ただし、シート構成は1枚のままです。</p>
+                    <p>つまり、元のデータを大きく再構成するというより、<strong>元データに分析に必要な情報を追加していく</strong>というタイプの仕上がりでした。これはこれで、元データをそのまま確認しながら分析結果を見たい場合には分かりやすい構成です。</p>
+
+                    <h2>7．Claudeの結果｜分析＋Excelファイル出力</h2>
+                    <p>最後はClaudeです。ClaudeもGeminiと同じく、分析結果をテキストとして表示し、さらに分析済みExcelファイルを作成して提示することができました。</p>
+
+                    <div class="ai-brand-item" style="border-left: 5px solid #d97706;">
+                        <strong>【Claudeから返ってきた分析結果】</strong><br>
+                        <strong>分析結果まとめ</strong><br><br>
+                        <strong>① 全体傾向</strong>
+                        <ul>
+                            <li>全50支社、2026年度4〜9月のデータです。</li>
+                            <li>全支社合計売上は297,570、合計社員数は1,559人。</li>
+                            <li>ほぼ全支社で4月から9月にかけて売上が右肩上がりに増えています。</li>
+                        </ul>
+                        <strong>② 社員数と売上の関係</strong><br>
+                        社員数と合計売上の相関係数は約0.99と非常に強い正の相関があり、「社員が多いほど売上も大きい」という自然な傾向が見られます（ランキングは東京支社・東京西支社・東京東支社が上位）。<br><br>
+                        <strong>③ 社員1人あたり売上</strong><br>
+                        全社平均は約190.9。上位は香川第二支社・和歌山支社（同率約225.9）など小規模支社が多く、下位は大阪北支社（約155.5）や東京支社（約168.8）など大規模支社が並びます。大規模支社ほど総売上は大きい一方、1人あたりの効率は必ずしも高くない、という点が着目ポイントです。<br><br>
+                        <strong>④ 月別推移</strong><br>
+                        4月43,990 → 9月55,250と、毎月着実に増加。大きな落ち込みはありません。<br><br>
+                        <strong>⑤ データの誤り・不整合チェック</strong>
+                        <ul>
+                            <li>各支社の合計売上と4〜9月の内訳合計は全て一致（不一致0件）</li>
+                            <li>支社コード・支社名の重複なし</li>
+                            <li>社員数が0以下などの異常値なし</li>
+                            <li>同一都道府県に複数支社があるケース（大阪府3支社、東京都3支社など）はありますが、支社名から見て意図的な配置と判断し、誤りとはしていません</li>
+                        </ul>
+                        明確な誤りは検出されませんでしたが、これは提供データの範囲内での集計チェックであり、元の実績データとの突合までは行っていません。<br><br>
+                        出力ファイルには「分析まとめ」「ランキング（グラフ付き）」「月別推移（グラフ付き）」「元データ（1人あたり売上列を追加）」の4シートを収録し、数式ベースで作成（LibreOfficeで再計算しエラー0件を確認済み）しています。
+                    </div>
+
+                    <p>ここで、Geminiとの大きな違いが見えてきます。</p>
+
+                    <h2>8．Claudeが作成したExcelファイルを見てみる</h2>
+                    <div class="article-image article-image--window">
+                        <img src="img/ai-compare-08-claude-excel.jpg" alt="Claudeが出力したExcelファイルのイメージ">
+                        <p class="small-text">【Claudeの出力ファイル】</p>
+                    </div>
+                    <p>Claudeが作成したExcelファイルは、<strong>元のシート＋3枚＝合計4枚のシート</strong> という構成になっていました。具体的には、分析まとめ、ランキング（グラフ付き）、月別推移（グラフ付き）、元データ（1人あたり売上列を追加）という構成です。</p>
+                    <p>さらに特徴的なのは、単に計算結果を追加しただけではないこと。Excelファイルの中に、分析結果そのものを文章としてまとめているのです。そのため、Excelを開いた人が、「このデータから何が分かったの？」をExcelの中だけで確認しやすい構成になっていました。今回の検証では、「分析した結果を、Excelの資料としてまとめる」ことに関しては、Claudeの出力が特に印象的でした。</p>
+
+                    <h2>9．4つのAIを比較すると、どうだった？</h2>
+                    <p>ここまでの結果をまとめてみましょう。</p>
+                    <div class="article-image article-image--window">
+                        <img src="img/ai-compare-09-ai-comparison.jpg" alt="4大AI比較表（無料版）">
+                        <p class="small-text">【AI別 Excelデータ分析 比較表】</p>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #64748b; text-align: center;">※今回の検証結果をもとにした比較です。AIの絶対的な性能を示すものではありません。</p>
+
+                    <h2>10．今回の検証で一番面白かったこと</h2>
+                    <p>今回、4つのAIに同じExcelファイルと同じプロンプトを渡してみて、私が面白いと感じたのは、「AIによって分析結果が違った」ということだけではありません。むしろ、<strong>「分析した結果を、どのような形で返してくれるのか」</strong>という部分に大きな違いがありました。</p>
+                    <p>Copilotは、分析結果を文章として返してくれました。Geminiは、分析結果に加えてExcelファイルも作成してくれました。そしてClaudeは、今回の検証では、元データを複数のシートに分け、分析結果をExcelの資料として整理してくれました。</p>
+                    <p>つまり、「AIにExcelを分析してもらう」という一言でも、実際には、<strong>分析してほしい → 結果を説明してほしい → グラフを作ってほしい → Excelファイルにまとめてほしい</strong> と、いくつもの作業が含まれています。</p>
+
+                    <h2>11．「どのAIが一番いい？」ではなく、目的で使い分ける</h2>
+                    <p>今回の結果だけを見て、各AI性能を決めてしまうのは少し違います。今回の検証で分かったのは、<strong>AIによって得意な使い方が違う</strong> ということです。</p>
+                    <ul>
+                        <li><strong>分析結果を文章で確認したい：</strong> Copilotでも今回のような分析結果を得ることができました。</li>
+                        <li><strong>分析結果をExcelファイルとして受け取りたい：</strong> 今回はGeminiとClaudeで実現できました。</li>
+                        <li><strong>分析結果を複数のシートに整理したい：</strong> 今回はClaudeの出力が特に分かりやすい結果になりました。</li>
+                    </ul>
+                    <p>このように、「どのAIが一番優秀か」より、「自分は何をしたいのか」で選ぶほうが、実際の仕事では役に立ちます。</p>
+
+                    <h2>12．AIにExcelデータを分析してもらうときの注意点</h2>
+                    <p>ここまでAIに任せられると、「じゃあ、Excelの分析は全部AIに任せればいいんじゃない？」と思うかもしれません。しかし、ここには注意が必要です。</p>
+                    <div class="instructor-advice" style="border-left-color: #ef4444; background-color: #fffafa;">
+                        <b style="color: #ef4444;">⚠️ AIの分析結果を、そのまま信用しない</b><br>
+                        <p style="margin-top: 10px;">今回のような売上データの場合、AIが計算した数字が正しいかどうかを、人間側でも確認することが大切です。AIは、計算・データの読み取り・傾向の分析・グラフ作成などを手伝ってくれます。しかし、<strong>AIが「正しい」と言ったから正しいとは限りません。</strong></p>
+                        <p>特に仕事で使うExcelなら、AIに分析してもらう → 自分でも結果を確認する → 必要に応じてExcelで修正する という使い方がおすすめです。</p>
+                    </div>
+
+                    <h2>13．AIにExcelを渡す前に、データそのものも確認しよう</h2>
+                    <p>もう一つ重要なのが、AIに渡す前のExcelデータです。今回のCopilotの分析では、「合計売上が空欄」という指摘がありました。おそらくは誤認識です。一方、GeminiやClaudeでは、4～9月のデータから合計売上などを認識し分析しています。</p>
+                    <p>このように、同じデータを見ても、AIによって着目するポイントが異なる場合があります。だからこそ、<strong>AIに分析させる前に、元データを確認することも大切です。</strong></p>
+                    <div class="info-note-box">
+                        <strong class="note-title">AIに渡す前のチェックポイント：</strong>
+                        <ul>
+                            <li>見出しがきちんと入っているか</li>
+                            <li>数値が文字列になっていないか</li>
+                            <li>空欄がないか</li>
+                            <li>重複データがないか</li>
+                            <li>単位が統一されているか</li>
+                        </ul>
+                    </div>
+                    <p>などを確認しておくと、AIにも分析してもらいやすくなります。</p>
+
+                    <div class="summary-box">
+                        <h2 class="section-title--summary">まとめ｜AIによって「返ってくる形」が違う</h2>
+                        <p>今回は、同じExcelファイルと同じプロンプトを、ChatGPT・Copilot・Gemini・Claudeの4種類のAIに渡して比較しました。その結果、AIによって、分析できるかどうかだけでなく、分析結果をどのような形で返してくれるのかにも違いがありました。</p>
+                        <ul>
+                            <li><strong>ChatGPT</strong> → 今回は分析を完了できず</li>
+                            <li><strong>Copilot</strong> → 分析結果を文章で提示</li>
+                            <li><strong>Gemini</strong> → 分析結果＋Excelファイルを出力</li>
+                            <li><strong>Claude</strong> → 分析結果＋複数シートのExcelファイルを出力</li>
+                        </ul>
+                        <p>Excelが苦手な方にとって、生成AIはとても心強い存在です。ただし、AIにすべてを任せるのではなく、<strong>「AIに分析してもらう」＋「人間が結果を確認する」</strong> という使い方が大切です。</p>
+                        <p>Excelを覚えることとAIを使うことは、決して別々ではありません。Excelの基本を知っているからこそ、AIが出した結果を確認し、必要なところを修正できます。まずは今回のプロンプトを使って、手元にあるExcelデータをAIに分析させてみるのも面白いですよ。</p>
+                    </div>
+
+                    <div class="article-footer-nav">
+                        <p class="article-footer-nav__text">AIを使いこなす知識を、次は実際の操作スキルへと繋げましょう</p>
+                        <div class="summary-nav">
+                            <a href="play.html?cat=excel_basic" class="btn-main">Excel用語タイピングへ</a>
+                            <a href="hub-ai.html" class="summary-btn">生成AIガイドへ戻る</a>
+                            <a href="./" class="summary-btn">ホームへ戻る</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="about.html">運営者情報</a>
+            </div>
+            <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
+        </footer>
+    </div>
+    <a href="#" id="back-to-top" class="back-to-top">↑</a>
+    <script src="js/main.js"></script>
+</body>
+</html>
