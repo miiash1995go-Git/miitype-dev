@@ -530,17 +530,19 @@ body.portal-page .info-note-box ul li:last-child {
     margin-bottom: 0px;
 }
 
-/* --- AI出力・生データ表示用：プレーンボックス (v20.9.03.Plain) --- */
+/* --- AI出力・生データ表示用：プレーンボックス (v20.9.03.Refined) --- */
 body.portal-page .output-plain-box {
-    background-color: #f8fafc;
-    margin-top: 25px;
+    /* 背景を一段階落とし、地の文（白）から明確に分離 */
+    background-color: #f5f7f9;
+    margin-top: 30px;
     margin-right: 0px;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     margin-left: 0px;
-    padding-top: 25px;
-    padding-right: 25px;
-    padding-bottom: 25px;
-    padding-left: 25px;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    /* 四方を囲むが、主張しすぎない細い線 */
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
@@ -553,15 +555,18 @@ body.portal-page .output-plain-box {
     border-right-color: #e2e8f0;
     border-bottom-color: #e2e8f0;
     border-left-color: #e2e8f0;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #334155;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    /* 読ませる「記事」と差別化するためのフォント調整 */
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #475569;
     word-break: break-all;
     display: block;
+    /* わずかな「沈み込み」を表現して資料感を出す */
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.03);
 }
 
 /* ボックス内の見出し的テキストも装飾を抑える */
