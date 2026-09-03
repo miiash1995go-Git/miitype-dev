@@ -530,6 +530,45 @@ body.portal-page .info-note-box ul li:last-child {
     margin-bottom: 0px;
 }
 
+/* --- AI出力・生データ表示用：プレーンボックス (v20.9.03.Plain) --- */
+body.portal-page .output-plain-box {
+    background-color: #f8fafc;
+    margin-top: 25px;
+    margin-right: 0px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+    padding-top: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+    padding-left: 25px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #e2e8f0;
+    border-right-color: #e2e8f0;
+    border-bottom-color: #e2e8f0;
+    border-left-color: #e2e8f0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #334155;
+    word-break: break-all;
+    display: block;
+}
+
+/* ボックス内の見出し的テキストも装飾を抑える */
+.output-plain-box strong {
+    font-weight: 800;
+    color: #1e293b;
+}
 
 body.portal-page .feature-list-vertical {
     display: flex;
