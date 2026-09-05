@@ -199,25 +199,32 @@ body.portal-page .step-content p {
     line-height: 1.5; 
 }
 
-/* --- 5分間テスト攻略記事専用の色分け設定 --- */
-.roadmap-step-item--s1 { background-image: linear-gradient(90deg, #F0F9FF 0%, #FFFFFF 100%) !important; }
-.roadmap-step-item--s1::before { background-color: #38BDF8 !important; }
+/* --- 5分間テスト攻略記事専用：視認性強化版 (v20.9.05.Final) --- */
+/* 全体共通：枠線を2pxに太くし、丸の中を白にする */
+.roadmap-flow .roadmap-step-item {
+    border-width: 2px !important;
+}
+.roadmap-flow .step-number-badge {
+    background-color: #ffffff !important; /* 丸の中を白に変更 */
+    border-width: 1px;
+    border-style: solid;
+    border-color: #eeeeee;
+}
+
+/* 各ステップの色：枠線の色も濃くしてクッキリさせる */
+.roadmap-step-item--s1 { background-image: linear-gradient(90deg, #F0F9FF 0%, #FFFFFF 100%) !important; border-color: #38BDF8 !important; }
 .roadmap-step-item--s1 .num { color: #38BDF8 !important; }
 
-.roadmap-step-item--s2 { background-image: linear-gradient(90deg, #EFF6FF 0%, #FFFFFF 100%) !important; }
-.roadmap-step-item--s2::before { background-color: #2563EB !important; }
+.roadmap-step-item--s2 { background-image: linear-gradient(90deg, #EFF6FF 0%, #FFFFFF 100%) !important; border-color: #2563EB !important; }
 .roadmap-step-item--s2 .num { color: #2563EB !important; }
 
-.roadmap-step-item--s3 { background-image: linear-gradient(90deg, #FFF7ED 0%, #FFFFFF 100%) !important; }
-.roadmap-step-item--s3::before { background-color: #F97316 !important; }
+.roadmap-step-item--s3 { background-image: linear-gradient(90deg, #FFF7ED 0%, #FFFFFF 100%) !important; border-color: #F97316 !important; }
 .roadmap-step-item--s3 .num { color: #F97316 !important; }
 
-.roadmap-step-item--s4 { background-image: linear-gradient(90deg, #F5F3FF 0%, #FFFFFF 100%) !important; }
-.roadmap-step-item--s4::before { background-color: #8B5CF6 !important; }
+.roadmap-step-item--s4 { background-image: linear-gradient(90deg, #F5F3FF 0%, #FFFFFF 100%) !important; border-color: #8B5CF6 !important; }
 .roadmap-step-item--s4 .num { color: #8B5CF6 !important; }
 
-.roadmap-step-item--s5 { background-image: linear-gradient(90deg, #ECFDF5 0%, #FFFFFF 100%) !important; }
-.roadmap-step-item--s5::before { background-color: #16A34A !important; }
+.roadmap-step-item--s5 { background-image: linear-gradient(90deg, #ECFDF5 0%, #FFFFFF 100%) !important; border-color: #16A34A !important; }
 .roadmap-step-item--s5 .num { color: #16A34A !important; }
 
 /* ボタンサイズ */
