@@ -199,8 +199,11 @@ body.portal-page .step-content p {
     line-height: 1.5; 
 }
 
-/* --- 5分間テスト攻略記事専用：ブルー・グラデーション・フロー (v20.9.05.Cohesive) --- */
-.roadmap-flow .roadmap-step-item {
+/* --- 5分間テスト攻略記事専用：完全絶縁型ブルー・フロー (v20.9.05.Isolated) --- */
+/* 他のページに影響を与えないよう、専用クラス (--s1〜--s5) がついている時だけ枠と丸の色を変える */
+
+/* 1. 枠線を2pxにし、丸の中を白にする設定（今回の専用クラスがついている親に対してのみ実行） */
+.roadmap-step-item--s1, .roadmap-step-item--s2, .roadmap-step-item--s3, .roadmap-step-item--s4, .roadmap-step-item--s5 {
     border-top-width: 2px !important;
     border-right-width: 2px !important;
     border-bottom-width: 2px !important;
@@ -208,19 +211,20 @@ body.portal-page .step-content p {
     border-style: solid !important;
 }
 
-.roadmap-flow .step-number-badge {
+.roadmap-step-item--s1 .step-number-badge, .roadmap-step-item--s2 .step-number-badge, .roadmap-step-item--s3 .step-number-badge, .roadmap-step-item--s4 .step-number-badge, .roadmap-step-item--s5 .step-number-badge {
     background-color: #ffffff !important;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-style: solid;
-    border-top-color: #e2e8f0;
-    border-right-color: #e2e8f0;
-    border-bottom-color: #e2e8f0;
-    border-left-color: #e2e8f0;
+    border-top-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 1px !important;
+    border-style: solid !important;
+    border-top-color: #e2e8f0 !important;
+    border-right-color: #e2e8f0 !important;
+    border-bottom-color: #e2e8f0 !important;
+    border-left-color: #e2e8f0 !important;
 }
 
+/* 2. 各STEPの彩色（他ページへの漏れ出しを物理的に封殺） */
 /* STEP1: 準備（非常に薄い水色） */
 .roadmap-step-item--s1 { background-image: linear-gradient(90deg, #F0F9FF 0%, #FFFFFF 100%) !important; border-top-color: #BAE6FD !important; border-right-color: #BAE6FD !important; border-bottom-color: #BAE6FD !important; border-left-color: #BAE6FD !important; }
 .roadmap-step-item--s1::before { background-color: #7DD3FC !important; }
