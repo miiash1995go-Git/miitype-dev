@@ -102,27 +102,34 @@
                     <h1 style="font-size: 1.3rem; margin-top: 0px; margin-bottom: 15px;">練習カテゴリを選択</h1>
                     
                     <div id="category-selector" class="btn-group-container">
+                        <!-- 1. 基礎カテゴリ -->
                         <div class="category-group">
                             <span class="group-label">基礎</span>
                             <button class="btn-category active" data-cat="roman_pure">ローマ字（基本）</button>
                             <button class="btn-category" data-cat="roman_complex">ローマ字（変則）</button>
-                            <button class="btn-category" data-cat="windows">Windows操作</button>
                             <button class="btn-category" data-cat="daily">日常会話</button>
+                            <button class="btn-category" data-cat="windows">Windows</button>
                         </div>
-                        <div class="category-group">
-                            <span class="group-label">Office</span>
-                            <button class="btn-category" data-cat="word_basic">Word基礎</button>
-                            <button class="btn-category" data-cat="word_mos">Word活用</button>
-                            <button class="btn-category" data-cat="excel_basic">Excel基礎</button>
-                            <button class="btn-category" data-cat="excel_mos">Excel活用</button>
+
+                        <!-- 2. チャレンジ（ゲーム）カテゴリ：枠のみ確保 -->
+                        <div class="category-group challenge-group">
+                            <span class="group-label">チャレンジ</span>
+                            <!-- ここに将来、クエスト・スピード・ゼロ・記憶のボタンを配置 -->
+                            <div class="placeholder-area" style="height: 180px; display: flex; align-items: center; justify-content: center; color: #cbd5e1; font-size: 0.8rem; font-weight: 800; border: 2px dashed #f1f3f5; border-radius: 10px; margin-top: 5px;">
+                                Coming Soon...
+                            </div>
                         </div>
+
+                        <!-- 3. 実務カテゴリ -->
                         <div class="category-group">
                             <span class="group-label">実務</span>
-                            <button class="btn-category" data-cat="it_terms">IT用語</button>
-                            <button class="btn-category" data-cat="ai_terms">AI用語</button>
-                            <button class="btn-category" data-cat="business">ビジネス</button>
+                            <button class="btn-category" data-cat="word">Word</button>
+                            <button class="btn-category" data-cat="excel">Excel</button>
+                            <button class="btn-category" data-cat="business_ai">ビジネスAI</button>
                             <button class="btn-category" data-cat="tenkey">テンキー</button>
                         </div>
+
+                        <!-- 4. 実力判定カテゴリ -->
                         <div class="category-group special">
                             <span class="group-label">実力判定</span>
                             <button class="btn-category btn-test" data-cat="test_5min">⏱ 5分間<br>タイピングテスト</button>
