@@ -2254,6 +2254,16 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     margin-left: 0px;
     padding-top: 0px;
     padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #cbd5e1;
+    border-left-style: none;
+    text-align: left;
+}
 
 /* ============================================================
    アイコン付きタイトルボックス（汎用コンポーネント v20.9.12）
