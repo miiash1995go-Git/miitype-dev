@@ -2266,9 +2266,9 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
 }
 
 /* ============================================================
-   アイコン付きタイトルボックス（汎用コンポーネント v20.9.12）
+   アイコン付きタイトルボックス（汎用コンポーネント v20.9.13）
    ============================================================ */
-body.portal-page .content-body .icon-title-box {
+.icon-title-box {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -2301,14 +2301,14 @@ body.portal-page .content-body .icon-title-box {
     box-sizing: border-box;
 }
 
-body.portal-page .content-body .icon-title-box__img {
+.icon-title-box__img {
     width: 55px;
     height: auto;
     flex-shrink: 0;
     display: block;
 }
 
-body.portal-page .content-body .icon-title-box__text {
+.icon-title-box__text {
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
@@ -2329,17 +2329,17 @@ body.portal-page .content-body .icon-title-box__text {
 
 /* スマホ対応 */
 @media (max-width: 768px) {
-    body.portal-page .content-body .icon-title-box {
+    .icon-title-box {
         padding-top: 20px;
         padding-right: 15px;
         padding-bottom: 20px;
         padding-left: 15px;
         gap: 15px;
     }
-    body.portal-page .content-body .icon-title-box__img {
+    .icon-title-box__img {
         width: 45px;
     }
-    body.portal-page .content-body .icon-title-box__text {
+    .icon-title-box__text {
         font-size: 1.25rem;
     }
 }
