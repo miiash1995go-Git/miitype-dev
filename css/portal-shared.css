@@ -2211,10 +2211,11 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
 }
 
 /* ============================================================
-   どこでも使える汎用コンテンツボックス (v20.9.16 枠線なし・アイコン対応)
+   どこでも使える汎用コンテンツボックス (v20.9.17 背景色調整)
    ============================================================ */
 .content-box {
-    background-color: #f8fbfe;
+    /* 背景色をタイトルのボックスと同じしっかりしたブルー系（#eaf3ff）に変更 */
+    background-color: #eaf3ff;
     margin-top: 35px;
     margin-right: 0px;
     margin-bottom: 35px;
@@ -2227,7 +2228,6 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    /* 枠線を完全に削除 */
     border-top-width: 0px;
     border-right-width: 0px;
     border-bottom-width: 0px;
