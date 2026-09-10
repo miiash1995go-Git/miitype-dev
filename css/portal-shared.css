@@ -2211,7 +2211,7 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
 }
 
 /* ============================================================
-   どこでも使える汎用コンテンツボックス (v20.9.10)
+   どこでも使える汎用コンテンツボックス (v20.9.16 枠線なし・アイコン対応)
    ============================================================ */
 .content-box {
     background-color: #f8fbfe;
@@ -2227,24 +2227,25 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    border-top-width: 2px;
-    border-right-width: 2px;
-    border-bottom-width: 2px;
-    border-left-width: 2px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-top-color: #d1e3f8;
-    border-right-color: #d1e3f8;
-    border-bottom-color: #d1e3f8;
-    border-left-color: #d1e3f8;
+    /* 枠線を完全に削除 */
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.03);
     box-sizing: border-box;
     display: block;
 }
 
 .content-box__title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
     font-size: 1.2rem;
     font-weight: 900;
     color: var(--primary);
@@ -2263,6 +2264,13 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     border-bottom-color: #cbd5e1;
     border-left-style: none;
     text-align: left;
+}
+
+.content-box__title-icon {
+    width: 26px;
+    height: auto;
+    flex-shrink: 0;
+    display: block;
 }
 
 /* ============================================================
