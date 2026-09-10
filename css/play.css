@@ -1139,3 +1139,75 @@ body.game-body .summary-btn:hover {
 #keyboard-container.tenkey-mode .keyboard-row {
     display: none !important;
 }
+
+/* ============================================================
+   カテゴリ選択グループ：アクティブ連動カラーチェンジ (v20.9.18)
+   ============================================================ */
+
+/* 1. 基礎：薄い青 */
+.category-group.group-basic:has(.btn-category.active) {
+    background-color: #f0f7ff !important;
+    border-top-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 1px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #b9e6fc !important;
+    border-right-color: #b9e6fc !important;
+    border-bottom-color: #b9e6fc !important;
+    border-left-color: #b9e6fc !important;
+}
+
+/* 2. チャレンジ：薄い黄色（※将来用） */
+.category-group.group-challenge:has(.btn-category.active) {
+    background-color: #fffde7 !important;
+    border-top-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 1px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #ffe8cc !important;
+    border-right-color: #ffe8cc !important;
+    border-bottom-color: #ffe8cc !important;
+    border-left-color: #ffe8cc !important;
+}
+
+/* 3. 実務：薄い緑 */
+.category-group.group-practical:has(.btn-category.active) {
+    background-color: #f0fdf4 !important;
+    border-top-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 1px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #bbf7d0 !important;
+    border-right-color: #bbf7d0 !important;
+    border-bottom-color: #bbf7d0 !important;
+    border-left-color: #bbf7d0 !important;
+}
+
+/* 4. 実力判定：薄い赤（ピンク） */
+.category-group.group-special:has(.btn-category.active) {
+    background-color: #fff1f2 !important;
+    border-top-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 1px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #fecdd3 !important;
+    border-right-color: #fecdd3 !important;
+    border-bottom-color: #fecdd3 !important;
+    border-left-color: #fecdd3 !important;
+}
