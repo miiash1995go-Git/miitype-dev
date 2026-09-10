@@ -2254,3 +2254,82 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     margin-left: 0px;
     padding-top: 0px;
     padding-right: 0px;
+
+    /* ============================================================
+   アイコン付きタイトルボックス（汎用コンポーネント v20.9.11）
+   ============================================================ */
+.icon-title-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    background-color: #f8fbfe;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 35px;
+    margin-left: 0px;
+    padding-top: 25px;
+    padding-right: 30px;
+    padding-bottom: 25px;
+    padding-left: 30px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #d1e3f8;
+    border-right-color: #d1e3f8;
+    border-bottom-color: #d1e3f8;
+    border-left-color: #d1e3f8;
+    box-sizing: border-box;
+}
+
+.icon-title-img {
+    width: 55px;
+    height: auto;
+    flex-shrink: 0;
+    display: block;
+}
+
+.icon-title-text {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #2c3e50;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    line-height: 1.4;
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+    .icon-title-box {
+        padding-top: 20px;
+        padding-right: 15px;
+        padding-bottom: 20px;
+        padding-left: 15px;
+        gap: 15px;
+    }
+    .icon-title-img {
+        width: 45px;
+    }
+    .icon-title-text {
+        font-size: 1.25rem;
+    }
+}
