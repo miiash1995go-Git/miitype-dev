@@ -2266,43 +2266,40 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
 }
 
 /* ============================================================
-   アイコン付きタイトルボックス（汎用コンポーネント v20.9.13）
+   アイコン付きタイトルボックス（汎用コンポーネント v20.9.14）
    ============================================================ */
 .icon-title-box {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     background-color: #f8fbfe;
     margin-top: 0px;
     margin-right: 0px;
-    margin-bottom: 35px;
+    margin-bottom: 20px; /* 下の文章との余白を詰める */
     margin-left: 0px;
-    padding-top: 25px;
-    padding-right: 30px;
-    padding-bottom: 25px;
-    padding-left: 30px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-top-width: 2px;
-    border-right-width: 2px;
-    border-bottom-width: 2px;
-    border-left-width: 2px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-top-color: #d1e3f8;
-    border-right-color: #d1e3f8;
-    border-bottom-color: #d1e3f8;
-    border-left-color: #d1e3f8;
+    padding-top: 12px;   /* 上の余白をコンパクトに */
+    padding-right: 25px;
+    padding-bottom: 12px; /* 下の余白をコンパクトに */
+    padding-left: 25px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    /* 枠線を完全に消去（完全展開ルール遵守） */
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
     box-sizing: border-box;
 }
 
 .icon-title-box__img {
-    width: 55px;
+    width: 48px; /* アイコンサイズも少しスリムに調整 */
     height: auto;
     flex-shrink: 0;
     display: block;
@@ -2313,7 +2310,7 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
-    font-size: 1.5rem;
+    font-size: 1.4rem; /* フォントサイズを少しスッキリさせる */
     font-weight: 900;
     color: #2c3e50;
     border-top-style: none;
@@ -2330,16 +2327,17 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
 /* スマホ対応 */
 @media (max-width: 768px) {
     .icon-title-box {
-        padding-top: 20px;
+        padding-top: 10px;
         padding-right: 15px;
-        padding-bottom: 20px;
+        padding-bottom: 10px;
         padding-left: 15px;
-        gap: 15px;
+        gap: 12px;
+        margin-bottom: 15px;
     }
     .icon-title-box__img {
-        width: 45px;
+        width: 40px;
     }
     .icon-title-box__text {
-        font-size: 1.25rem;
+        font-size: 1.15rem;
     }
 }
