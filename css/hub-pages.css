@@ -888,3 +888,68 @@
         white-space: nowrap; /* スマホでも横スクロール仕様を維持 */
     }
 }
+
+/* ============================================================
+   汎用 4段階ステップボックスシステム (v20.9.18 共有コンポーネント)
+   ============================================================ */
+.hub-step-box {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 35px;
+    margin-left: 0px;
+    padding-top: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
+    padding-left: 40px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    box-sizing: border-box;
+}
+
+.hub-step-box--blue { background-color: #f0f7ff; }
+.hub-step-box--yellow { background-color: #fffde7; }
+.hub-step-box--green { background-color: #f0fdf4; }
+.hub-step-box--red { background-color: #fff1f2; }
+
+.hub-step-badge {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 900;
+    padding-top: 4px;
+    padding-right: 14px;
+    padding-bottom: 4px;
+    padding-left: 14px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 15px;
+    margin-left: 0px;
+    color: #ffffff;
+}
+
+.hub-step-badge--blue { background-color: #2563EB; }
+.hub-step-badge--yellow { background-color: #f59e0b; }
+.hub-step-badge--green { background-color: #16a34a; }
+.hub-step-badge--red { background-color: #ef4444; }
+
+@media (max-width: 768px) {
+    .hub-step-box {
+        padding-top: 25px;
+        padding-right: 20px;
+        padding-bottom: 25px;
+        padding-left: 20px;
+    }
+}
