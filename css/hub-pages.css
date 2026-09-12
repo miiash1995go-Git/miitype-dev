@@ -1159,3 +1159,246 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* ============================================================
+   ガイド付きカリキュラム風セクション＆コンパクトカードシステム (v20.9.21)
+   ============================================================ */
+
+/* セクション全体の薄いブルーグラデーション背景ラッパー */
+.curriculum-section-wrapper {
+    background-image: linear-gradient(135deg, #f4f8fb 0%, #edf4fc 100%);
+    margin-top: 30px;
+    margin-right: 0px;
+    margin-bottom: 50px;
+    margin-left: 0px;
+    padding-top: 40px;
+    padding-right: 35px;
+    padding-bottom: 45px;
+    padding-left: 35px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #e2e8f0;
+    border-right-color: #e2e8f0;
+    border-bottom-color: #e2e8f0;
+    border-left-color: #e2e8f0;
+    box-sizing: border-box;
+}
+
+.curriculum-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px; /* カード同士の間隔を少し詰めてすっきりさせる */
+    margin-top: 25px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.curriculum-card {
+    background-color: #ffffff; /* 完全な白カード */
+    position: relative;
+    padding-top: 18px;  /* 縦幅をコンパクトに圧縮 */
+    padding-right: 20px;
+    padding-bottom: 18px;
+    padding-left: 20px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 6px; /* 左側のアクセントライン */
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #edf2f7; /* 極薄の境界線 */
+    border-right-color: #edf2f7;
+    border-bottom-color: #edf2f7;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.02); /* 極薄の影 */
+    text-decoration-line: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition-property: transform, box-shadow;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+    box-sizing: border-box;
+}
+
+.curriculum-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* カテゴリ別アクセントカラー（左線） */
+.curriculum-card--typing  { border-left-color: #2563EB; }
+.curriculum-card--career  { border-left-color: #F97316; }
+.curriculum-card--word    { border-left-color: #1D4ED8; }
+.curriculum-card--excel   { border-left-color: #16A34A; }
+.curriculum-card--ai      { border-left-color: #14B8A6; }
+.curriculum-card--windows { border-left-color: #38BDF8; }
+.curriculum-card--column  { border-left-color: #8B5CF6; }
+
+/* 背景の巨大ナンバリング文字 (01, 02...) */
+.curriculum-card__num {
+    position: absolute;
+    right: 12px;
+    top: -2px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: #f1f5f9;
+    z-index: 1;
+    pointer-events: none;
+    line-height: 1;
+}
+
+/* カード内ヘッダー（アイコン・バッジ・タイトル） */
+.curriculum-card__header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+    position: relative;
+    z-index: 2;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 8px;
+    margin-left: 0px;
+}
+
+.curriculum-card__icon-wrap {
+    width: 38px;
+    height: 38px;
+    background-color: #f8fbfe;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-style: solid;
+    border-color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.curriculum-card__icon {
+    width: 20px;
+    height: auto;
+    display: block;
+}
+
+.curriculum-card__meta {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.curriculum-card__badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 900;
+    padding-top: 2px;
+    padding-right: 8px;
+    padding-bottom: 2px;
+    padding-left: 8px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 4px;
+    margin-left: 0px;
+}
+
+/* バッジの色分け */
+.curriculum-card--typing  .curriculum-card__badge { background-color: #EFF6FF; color: #2563EB; }
+.curriculum-card--career  .curriculum-card__badge { background-color: #FFF7ED; color: #F97316; }
+.curriculum-card--word    .curriculum-card__badge { background-color: #EEF2FF; color: #1D4ED8; }
+.curriculum-card--excel   .curriculum-card__badge { background-color: #ECFDF5; color: #16A34A; }
+.curriculum-card--ai      .curriculum-card__badge { background-color: #ECFEFF; color: #14B8A6; }
+.curriculum-card--windows .curriculum-card__badge { background-color: #F0F9FF; color: #38BDF8; }
+.curriculum-card--column  .curriculum-card__badge { background-color: #F5F3FF; color: #8B5CF6; }
+
+.curriculum-card__title {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    font-size: 1.05rem;
+    font-weight: 900;
+    color: #2c3e50;
+    line-height: 1.3;
+    border-bottom-style: none !important;
+}
+
+.curriculum-card__desc {
+    font-size: 0.82rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 12px;
+    margin-left: 0px;
+    position: relative;
+    z-index: 2;
+    flex-grow: 1;
+}
+
+.curriculum-card__footer {
+    text-align: right;
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+}
+
+.curriculum-card__link {
+    font-size: 0.8rem;
+    font-weight: 900;
+    text-decoration-line: none;
+    transition-property: transform;
+    transition-duration: 0.2s;
+    display: inline-block;
+}
+
+.curriculum-card--typing  .curriculum-card__link { color: #2563EB; }
+.curriculum-card--career  .curriculum-card__link { color: #F97316; }
+.curriculum-card--word    .curriculum-card__link { color: #1D4ED8; }
+.curriculum-card--excel   .curriculum-card__link { color: #16A34A; }
+.curriculum-card--ai      .curriculum-card__link { color: #14B8A6; }
+.curriculum-card--windows .curriculum-card__link { color: #38BDF8; }
+.curriculum-card--column  .curriculum-card__link { color: #8B5CF6; }
+
+.curriculum-card:hover .curriculum-card__link {
+    transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+    .curriculum-section-wrapper {
+        padding-top: 25px;
+        padding-right: 15px;
+        padding-bottom: 25px;
+        padding-left: 15px;
+    }
+    .curriculum-grid {
+        grid-template-columns: 1fr;
+    }
+}
