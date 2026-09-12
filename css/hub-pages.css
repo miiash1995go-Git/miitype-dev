@@ -1161,10 +1161,10 @@
 }
 
 /* ============================================================
-   ガイド付きカリキュラム風セクション＆コンパクトカードシステム (v20.9.21)
+   ガイド付きカリキュラム風セクション＆コンパクトカードシステム (完全統合版)
    ============================================================ */
 
-/* セクション全体の薄いブルーグラデーション背景ラッパー */
+/* 1. セクション全体の薄いブルーグラデーション背景ラッパー */
 .curriculum-section-wrapper {
     background-image: linear-gradient(135deg, #f4f8fb 0%, #edf4fc 100%);
     margin-top: 30px;
@@ -1194,20 +1194,22 @@
     box-sizing: border-box;
 }
 
+/* 2. 2カラムグリッド配置 */
 .curriculum-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px; /* カード同士の間隔を少し詰めてすっきりさせる */
+    gap: 16px;
     margin-top: 25px;
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
 }
 
+/* 3. コンパクトな白カード本体 */
 .curriculum-card {
-    background-color: #ffffff; /* 完全な白カード */
+    background-color: #ffffff;
     position: relative;
-    padding-top: 18px;  /* 縦幅をコンパクトに圧縮 */
+    padding-top: 18px;
     padding-right: 20px;
     padding-bottom: 18px;
     padding-left: 20px;
@@ -1218,15 +1220,15 @@
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
-    border-left-width: 6px; /* 左側のアクセントライン */
+    border-left-width: 6px;
     border-top-style: solid;
     border-right-style: solid;
     border-bottom-style: solid;
     border-left-style: solid;
-    border-top-color: #edf2f7; /* 極薄の境界線 */
+    border-top-color: #edf2f7;
     border-right-color: #edf2f7;
     border-bottom-color: #edf2f7;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.02); /* 極薄の影 */
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.02);
     text-decoration-line: none;
     color: inherit;
     display: flex;
@@ -1243,7 +1245,7 @@
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.05);
 }
 
-/* カテゴリ別アクセントカラー（左線） */
+/* 4. カテゴリ別アクセントカラー（左線） */
 .curriculum-card--typing  { border-left-color: #2563EB; }
 .curriculum-card--career  { border-left-color: #F97316; }
 .curriculum-card--word    { border-left-color: #1D4ED8; }
@@ -1252,7 +1254,7 @@
 .curriculum-card--windows { border-left-color: #38BDF8; }
 .curriculum-card--column  { border-left-color: #8B5CF6; }
 
-/* 背景の巨大ナンバリング文字 (01, 02...) */
+/* 5. 背景の巨大ナンバリング文字 (01, 02...) */
 .curriculum-card__num {
     position: absolute;
     right: 12px;
@@ -1266,11 +1268,11 @@
     line-height: 1;
 }
 
-/* カード内ヘッダー（アイコン・バッジ・タイトル） */
+/* 6. カード内ヘッダー（アイコン・タイトル） */
 .curriculum-card__header {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     gap: 12px;
     position: relative;
     z-index: 2;
@@ -1311,33 +1313,6 @@
     min-width: 0;
 }
 
-.curriculum-card__badge {
-    display: inline-block;
-    font-size: 0.65rem;
-    font-weight: 900;
-    padding-top: 2px;
-    padding-right: 8px;
-    padding-bottom: 2px;
-    padding-left: 8px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 4px;
-    margin-left: 0px;
-}
-
-/* バッジの色分け */
-.curriculum-card--typing  .curriculum-card__badge { background-color: #EFF6FF; color: #2563EB; }
-.curriculum-card--career  .curriculum-card__badge { background-color: #FFF7ED; color: #F97316; }
-.curriculum-card--word    .curriculum-card__badge { background-color: #EEF2FF; color: #1D4ED8; }
-.curriculum-card--excel   .curriculum-card__badge { background-color: #ECFDF5; color: #16A34A; }
-.curriculum-card--ai      .curriculum-card__badge { background-color: #ECFEFF; color: #14B8A6; }
-.curriculum-card--windows .curriculum-card__badge { background-color: #F0F9FF; color: #38BDF8; }
-.curriculum-card--column  .curriculum-card__badge { background-color: #F5F3FF; color: #8B5CF6; }
-
 .curriculum-card__title {
     margin-top: 0px;
     margin-right: 0px;
@@ -1350,6 +1325,7 @@
     border-bottom-style: none !important;
 }
 
+/* 7. 説明文とフッターリンク */
 .curriculum-card__desc {
     font-size: 0.82rem;
     color: #64748b;
@@ -1391,6 +1367,7 @@
     transform: translateX(4px);
 }
 
+/* スマホ対応 */
 @media (max-width: 768px) {
     .curriculum-section-wrapper {
         padding-top: 25px;
