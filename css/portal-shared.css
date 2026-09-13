@@ -265,33 +265,183 @@ body.portal-page .roadmap-step-item:hover .step-action-btn {
 /* --- 3. プロフィール ＆ 講師アドバイス --- */
 
 body.portal-page .profile-card-horizontal {
-    margin-top: 0px; margin-right: 0px; margin-bottom: 20px; margin-left: 0px;
-    padding-top: 15px; padding-right: 30px; padding-bottom: 15px; padding-left: 30px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 20px;
+    margin-left: 0px;
+    padding-top: 15px;
+    padding-right: 30px;
+    padding-bottom: 15px;
+    padding-left: 30px;
     background-color: #ffffff;
-    border-left: 5px solid #3498db;
-    border-top: 1px solid #eeeeee;
-    border-right: 1px solid #eeeeee;
-    border-bottom: 1px solid #eeeeee;
-    border-radius: 20px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 5px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #eeeeee;
+    border-right-color: #eeeeee;
+    border-bottom-color: #eeeeee;
+    border-left-color: #3498db;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
     box-sizing: border-box;
     display: block;
 }
 
 body.portal-page .profile-card-horizontal h3 {
-    margin-top: 0px; margin-bottom: 5px; font-size: 1.25rem; font-weight: 800; color: #2c3e50; border-bottom: 1px solid #f1f2f6; line-height: 1.3;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 5px;
+    margin-left: 0px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #2c3e50;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: solid;
+    border-bottom-color: #f1f2f6;
+    border-left-style: none;
+    line-height: 1.3;
 }
 
 body.portal-page .instructor-advice {
-    background-color: #fff9e6;
-    border-left: 5px solid #f39c12;
-    padding-top: 22px; padding-right: 30px; padding-bottom: 22px; padding-left: 30px;
-    border-radius: 12px; margin-top: 30px; margin-bottom: 30px;
-    font-size: 0.98rem; line-height: 1.8; color: #333333; box-sizing: border-box;
+    background-color: #f8fafc;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 5px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #e2e8f0;
+    border-right-color: #e2e8f0;
+    border-bottom-color: #e2e8f0;
+    border-left-color: #94a3b8;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    padding-top: 22px;
+    padding-right: 30px;
+    padding-bottom: 22px;
+    padding-left: 30px;
+    margin-top: 30px;
+    margin-right: 0px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+    font-size: 0.98rem;
+    line-height: 1.8;
+    color: #333333;
+    box-sizing: border-box;
 }
+
 body.portal-page .instructor-advice b, 
 body.portal-page .instructor-advice strong {
-    display: inline-block; color: #e67e22; font-weight: 900; margin-bottom: 10px; padding-bottom: 4px; border-bottom: 1px solid rgba(230, 126, 34, 0.25);
+    display: inline-block;
+    font-weight: 900;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 4px;
+    padding-left: 0px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: solid;
+    border-left-style: none;
+}
+
+/* 各カテゴリ別：洗練された薄めパステル・アドバイスボックス */
+body.portal-page .instructor-advice--typing, 
+body.portal-page .instructor-advice--word {
+    background-color: #f0f7ff;
+    border-top-color: #e0f2fe;
+    border-right-color: #e0f2fe;
+    border-bottom-color: #e0f2fe;
+    border-left-color: #93c5fd;
+}
+body.portal-page .instructor-advice--typing b, 
+body.portal-page .instructor-advice--word b {
+    color: #1d4ed8;
+    border-bottom-color: #93c5fd;
+}
+
+body.portal-page .instructor-advice--windows {
+    background-color: #f0f9ff;
+    border-top-color: #e0f2fe;
+    border-right-color: #e0f2fe;
+    border-bottom-color: #e0f2fe;
+    border-left-color: #7dd3fc;
+}
+body.portal-page .instructor-advice--windows b {
+    color: #0284c7;
+    border-bottom-color: #7dd3fc;
+}
+
+body.portal-page .instructor-advice--excel {
+    background-color: #f0fdf4;
+    border-top-color: #dcfce7;
+    border-right-color: #dcfce7;
+    border-bottom-color: #dcfce7;
+    border-left-color: #86efac;
+}
+body.portal-page .instructor-advice--excel b {
+    color: #15803d;
+    border-bottom-color: #86efac;
+}
+
+body.portal-page .instructor-advice--ai {
+    background-color: #ecfeff;
+    border-top-color: #ccfbf1;
+    border-right-color: #ccfbf1;
+    border-bottom-color: #ccfbf1;
+    border-left-color: #5eead4;
+}
+body.portal-page .instructor-advice--ai b {
+    color: #0f766e;
+    border-bottom-color: #5eead4;
+}
+
+body.portal-page .instructor-advice--career {
+    background-color: #fff7ed;
+    border-top-color: #ffedd5;
+    border-right-color: #ffedd5;
+    border-bottom-color: #ffedd5;
+    border-left-color: #fdba74;
+}
+body.portal-page .instructor-advice--career b {
+    color: #c2410c;
+    border-bottom-color: #fdba74;
+}
+
+body.portal-page .instructor-advice--column {
+    background-color: #faf8ff;
+    border-top-color: #f3e8ff;
+    border-right-color: #f3e8ff;
+    border-bottom-color: #f3e8ff;
+    border-left-color: #c4b5fd;
+}
+body.portal-page .instructor-advice--column b {
+    color: #6d28d9;
+    border-bottom-color: #c4b5fd;
 }
 
 /* --- 4. 記事本文エリア装飾 --- */
