@@ -7,6 +7,17 @@
     <meta name="description" content="パソコン操作に自信がない方へ。Windowsの基本からファイル管理、ショートカットキーまで、仕事で困らないための土台を現役講師がわかりやすく解説します。">
     <link rel="canonical" href="https://miitype.com/hub-windows.html">
     <link rel="icon" href="favicon.ico">
+
+    <!-- SNS・note用リンクカード設定（OGP） -->
+    <meta property="og:title" content="Windows基本操作・設定ガイド｜仕事で困らないPCの土台作り｜ぱそトレ！">
+    <meta property="og:description" content="パソコン操作に自信がない方へ。Windowsの基本からファイル管理まで、仕事で困らないための土台を現役講師が解説します。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://miitype.com/hub-windows.html">
+    <meta property="og:image" content="https://miitype.com/img/og-image.png">
+    <meta property="og:site_name" content="ぱそトレ！">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- OGP設定ここまで -->
+
     <!-- Google Fonts 読み込み -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +34,7 @@
         }
     </script>
      
-    <!-- 3. Google tag (gtag.js) -->
+    <!-- 3. Google tag (gtag.js) - GA4同期 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -90,10 +101,8 @@
 
         <main class="portal-main">
             <article class="static-page static-page--wide"><nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
-                <!-- パンくずリスト -->
-                
 
-                <!-- ハブ・ヒーロー：ユーザー目線への強化 -->
+                <!-- ① Windowsとは？（ハブ・ヒーロー ＆ アドバイスボックス） -->
                 <section class="hub-hero">
                     <div class="hub-hero__icon">
                         <img src="img/icon-windows.png" alt="Windows基礎ガイドのアイコン" class="cat-icon-img">
@@ -101,7 +110,7 @@
                     <div class="hub-hero__body">
                         <h1 class="hub-hero__title">Windows基礎ガイド</h1>
                         <p class="hub-hero__description">
-                            パソコン操作に自信がない方へ。Windowsの基本からファイル管理、ショートカットキーまで、仕事で困らないための土台を現役講師がわかりやすく解説します。
+                            Windowsは、WordやExcelのように「これを覚えれば仕事ができる」というものではありません。しかし、パソコンを使って仕事をするなら、基本を知っているだけで困ったときの判断がしやすくなります。
                         </p>
                     </div>
                 </section>
@@ -109,127 +118,254 @@
                 <section class="hub-section">
                     <div class="instructor-advice" style="background-color: #f0f9ff; border-left-color: #38bdf8;">
                         <b style="color: #2c3e50; border-bottom-color: #38bdf8;">💡 Windows（ウィンドウズ）とは？</b><br>
-                        <p style="margin-top: 10px;">Windowsは、パソコンを動かすための最も基本的なソフト（OS）です。WordやExcelを使うための「土台」であり、家で言えば地面や床のような役割を果たしています。</p>
-                        <p>「ファイルをどこに保存したかわからない」「画面が消えてしまった」といった初心者の悩みの多くは、このWindowsの基本操作（ファイル管理やウィンドウ操作）を知るだけで解決します。地味に見える分野ですが、ここを固めることがパソコン上達の最大の近道です。</p>
+                        <p style="margin-top: 10px;">Windowsは、パソコンを動かすための最も基本的なソフト（OS）です。WordやExcelなどを使うための「土台」であり、家で言えば地面や床のような役割を果たしています。</p>
+                        <p>「ファイルを保存する」「複数の画面を使う」「アプリを切り替える」「パソコンの設定を変更する」など、普段の操作の多くにWindowsが関係しています。地味に見える分野ですが、ここを固めることがパソコン上達の最大の近道です。</p>
                     </div>
                 </section>
 
-                <!-- セクション①：学習を始める（ロードマップ順に同期） -->
-<!-- セクション①：学習を始める（実在記事のみ） -->
+                <!-- ② Windowsの「知りたい」が見つかる（カリキュラム風カード仕様：01〜05） -->
+                <div class="curriculum-section-wrapper">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
+                        <h2 class="section-title" style="margin: 0px; border-bottom: none;">Windowsの「知りたい」が見つかる</h2>
+                        <span style="font-size: 0.85rem; color: #64748b; font-weight: 700;">パソコン選びから基本操作・ファイル管理まで、役立つ情報をまとめています。</span>
+                    </div>
+
+                    <div class="curriculum-grid">
+                        
+                        <!-- カード 01 -->
+                        <a href="guide-pc-selection.html" class="curriculum-card curriculum-card--windows">
+                            <span class="curriculum-card__num">01</span>
+                            <div class="curriculum-card__header">
+                                <div class="curriculum-card__icon-wrap">
+                                    <img src="img/icon-windows.png" alt="" class="curriculum-card__icon">
+                                </div>
+                                <div class="curriculum-card__meta">
+                                    <h3 class="curriculum-card__title">失敗しないパソコンの選び方</h3>
+                                </div>
+                            </div>
+                            <div class="curriculum-card__desc">
+                                スペックの読み方から実務に必要な性能の基準まで。納得してパソコンを選ぶための知識。
+                            </div>
+                            <div class="curriculum-card__footer">
+                                <span class="curriculum-card__link">この記事を読む →</span>
+                            </div>
+                        </a>
+
+                        <!-- カード 02 -->
+                        <a href="guide-windows-basics.html" class="curriculum-card curriculum-card--windows">
+                            <span class="curriculum-card__num">02</span>
+                            <div class="curriculum-card__header">
+                                <div class="curriculum-card__icon-wrap">
+                                    <img src="img/icon-windows.png" alt="" class="curriculum-card__icon">
+                                </div>
+                                <div class="curriculum-card__meta">
+                                    <h3 class="curriculum-card__title">Windows11の基本操作と使い方</h3>
+                                </div>
+                            </div>
+                            <div class="curriculum-card__desc">
+                                エクスプローラー、右クリック、画面切り替えなど、毎日のパソコン操作の基本。
+                            </div>
+                            <div class="curriculum-card__footer">
+                                <span class="curriculum-card__link">この記事を読む →</span>
+                            </div>
+                        </a>
+
+                        <!-- カード 03 -->
+                        <a href="guide-windows-folder.html" class="curriculum-card curriculum-card--windows">
+                            <span class="curriculum-card__num">03</span>
+                            <div class="curriculum-card__header">
+                                <div class="curriculum-card__icon-wrap">
+                                    <img src="img/icon-windows.png" alt="" class="curriculum-card__icon">
+                                </div>
+                                <div class="curriculum-card__meta">
+                                    <h3 class="curriculum-card__title">ファイルとフォルダの整理・管理術</h3>
+                                </div>
+                            </div>
+                            <div class="curriculum-card__desc">
+                                作った書類をどこに保存したかわからなくならないための、ファイルとフォルダ管理の基本。
+                            </div>
+                            <div class="curriculum-card__footer">
+                                <span class="curriculum-card__link">この記事を読む →</span>
+                            </div>
+                        </a>
+
+                        <!-- カード 04 -->
+                        <a href="guide-windows-multi.html" class="curriculum-card curriculum-card--windows">
+                            <span class="curriculum-card__num">04</span>
+                            <div class="curriculum-card__header">
+                                <div class="curriculum-card__icon-wrap">
+                                    <img src="img/icon-windows.png" alt="" class="curriculum-card__icon">
+                                </div>
+                                <div class="curriculum-card__meta">
+                                    <h3 class="curriculum-card__title">Windowsで画面を並べて作業する方法</h3>
+                                </div>
+                            </div>
+                            <div class="curriculum-card__desc">
+                                資料を見ながら入力するなど、複数のウィンドウを使った作業の基本。
+                            </div>
+                            <div class="curriculum-card__footer">
+                                <span class="curriculum-card__link">この記事を読む →</span>
+                            </div>
+                        </a>
+
+                        <!-- カード 05 -->
+                        <a href="glossary.html#cat-windows" class="curriculum-card curriculum-card--windows">
+                            <span class="curriculum-card__num">05</span>
+                            <div class="curriculum-card__header">
+                                <div class="curriculum-card__icon-wrap">
+                                    <img src="img/icon-windows.png" alt="" class="curriculum-card__icon">
+                                </div>
+                                <div class="curriculum-card__meta">
+                                    <h3 class="curriculum-card__title">Windows実務用語辞典</h3>
+                                </div>
+                            </div>
+                            <div class="curriculum-card__desc">
+                                エクスプローラー、拡張子など、Windows操作で出てくる用語を確認できる。
+                            </div>
+                            <div class="curriculum-card__footer">
+                                <span class="curriculum-card__link">用語を調べる →</span>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+
+                <!-- ③ Windowsを使うと、仕事や暮らしが少し楽になる（8つの実用BOXコンテンツ） -->
                 <section class="hub-section">
-                    <h2 class="section-title">まずはここから！学習を始める</h2>
-                    <div class="hub-priority-grid">
-                        <!-- カード1：パソコンの選び方（Featured：Step 0） -->
-                        <a href="guide-pc-selection.html" class="hub-priority-card hub-priority-card--featured">
-                            <span class="hub-priority-card__badge">まず最初の一台</span>
-                            <h3>失敗しないパソコンの選び方</h3>
-                            <p>スペックの読み方から実務に必要な性能の基準まで。納得して「相棒」を選ぶための知識です。</p>
-                            <div class="rec-btn-hint">この記事から始める <span>→</span></div>
-                        </a>
-                        <!-- カード2：Windows基本操作（Step 1） -->
-                        <a href="guide-windows-basics.html" class="hub-priority-card">
-                            <span class="hub-priority-card__badge">基本操作</span>
-                            <h3>Windowsの基本操作まとめ</h3>
-                            <p>エクスプローラー、右クリック、画面切り替え。毎日の業務の起点となる操作を習得します。</p>
-                            <div class="rec-btn-hint">この記事から始める <span>→</span></div>
-                        </a>
-                        <!-- カード3：ファイル管理（Step 2：重要度高） -->
-                        <a href="guide-windows-folder.html" class="hub-priority-card">
-                            <span class="hub-priority-card__badge">重要</span>
-                            <h3>ファイルとフォルダの管理術</h3>
-                            <p>「作った書類をなくさない」ための整理のルール。実務で最も差がつく管理のコツを解説します。</p>
-                            <div class="rec-btn-hint">記事を読む <span>→</span></div>
-                        </a>
-                        <!-- 新着カード -->
-                        <a href="guide-windows-multi.html" class="hub-priority-card">
-                            <span class="hub-priority-card__badge">効率化</span>
-                            <h3>画面を左右に並べる方法</h3>
-                            <p>「資料を見ながら入力する」が当たり前に。仕事を劇的に楽にするウィンドウ操作の基本。</p>
-                            <div class="rec-btn-hint">この記事を読む <span>→</span></div>
-                        </a>
-                        <!-- カード4：用語集への導線（Windows用） -->
-                        <a href="glossary.html#cat-windows" class="hub-priority-card">
-                            <span class="hub-priority-card__badge">辞書</span>
-                            <h3>Windows実務用語辞典</h3>
-                            <p>「エクスプローラー」「拡張子」など、Windows操作で出てくる用語の意味をいつでも確認できます。</p>
-                            <div class="rec-btn-hint">用語を調べる <span>→</span></div>
-                        </a>
-                    </div>
-                </section>
+                    <h2 class="section-title">Windowsを使うと、仕事や暮らしが少し楽になる</h2>
+                    <p style="font-size: 1rem; color: #4b5563; line-height: 1.7; margin-top: 5px; margin-bottom: 30px; font-weight: 500;">
+                        ファイルを探したり、複数の画面を使い分けたり、文字をコピーしたり。普段は何気なくやっている操作にも、Windowsの仕組みが関係しています。ここでは、実際の仕事やパソコン操作でよくある場面から、Windowsを知っておくメリットを見ていきます。
+                    </p>
 
-<!-- セクション②：ロードマップ（目次） -->
-                <section class="hub-section">
-                    <h2 class="section-title">Windows習得ロードマップ（目次）</h2>
-                    <div class="hub-roadmap">
-                        <!-- Step 0 -->
-                        <a href="guide-pc-selection.html" class="hub-roadmap__item">
-                            <div class="hub-roadmap__num">Step 0</div>
-                            <div class="hub-roadmap__content">
-                                <h4>自分に合ったパソコンを選ぶ</h4>
-                                <p>事務実務に適した性能の基準を知り、学習の土台を用意します。</p>
-                            </div>
-                            <div class="hub-roadmap__btn">解説へ ＞</div>
-                        </a>
-                        <!-- Step 1 -->
-                        <a href="guide-windows-basics.html" class="hub-roadmap__item">
-                            <div class="hub-roadmap__num">Step 1</div>
-                            <div class="hub-roadmap__content">
-                                <h4>Windowsの基本画面と操作</h4>
-                                <p>デスクトップ、タスクバー。OSの仕組みを正しく理解し、迷いをなくします。</p>
-                            </div>
-                            <div class="hub-roadmap__btn">解説へ ＞</div>
-                        </a>
-                        <!-- Step 2：リンクを今回作成した記事へ更新 -->
-                        <a href="guide-windows-folder.html" class="hub-roadmap__item">
-                            <div class="hub-roadmap__num">Step 2</div>
-                            <div class="hub-roadmap__content">
-                                <h4>ファイルとフォルダの管理</h4>
-                                <p>整理整頓こそが仕事の速さの源です。名前の付け方のルールを学びます。</p>
-                            </div>
-                            <div class="hub-roadmap__btn">解説へ ＞</div>
-                        </a>
-
-                        <!-- Nextステップ -->
-                        <a href="hub-word.html" class="hub-roadmap__item hub-roadmap__item--next">
-                            <div class="hub-roadmap__num">Next</div>
-                            <div class="hub-roadmap__content">
-                                <h4>Wordで実務の文書作成を学ぶ</h4>
-                                <p>PCの土台が整いました！次は事務職のメインツール「Word」の実践に入りましょう。</p>
-                            </div>
-                            <div class="hub-roadmap__btn">Word講座へ ＞</div>
-                        </a>
-                    </div>
-                </section>
-                <!-- 階層化エリア -->
-<!-- 階層化エリア：ここから背景色を変更（薄緑） -->
-                <div class="hub-accent-area">
-                    <!-- セクション③：講師おすすめ記事（実在のみ） -->
-                    <section class="hub-section" style="margin-bottom: 60px;">
-                        <h2 class="section-title">現役講師のおすすめ記事</h2>
-                        <div class="hub-popular-grid">
-                            <a href="guide-windows-basics.html" class="hub-popular-card">
-                                <div class="hub-popular-card__tag">おすすめ</div>
-                                <h4>Windows11の基本操作まとめ</h4>
-                            </a>
-                            <a href="guide-pc-selection.html" class="hub-popular-card">
-                                <div class="hub-popular-card__tag">おすすめ</div>
-                                <h4>初心者向けパソコンの選び方</h4>
-                            </a>
-                            <a href="guide-windows-folder.html" class="hub-popular-card">
-                                <div class="hub-popular-card__tag">重要</div>
-                                <h4>ファイルとフォルダの管理術</h4>
-                            </a>
-                            <a href="guide-windows-multi.html" class="hub-popular-card">
-                                <div class="hub-popular-card__tag">効率化</div>
-                                <h4>画面を左右に並べて使う方法</h4>
-                            </a>
+                    <!-- BOX 01 -->
+                    <div class="content-box">
+                        <h3 class="content-box__title">
+                            <img src="img/minibulb.png" alt="" class="content-box__title-icon">
+                            ファイルが「消えた」と思わなくなる
+                        </h3>
+                        <p>WordやExcelで書類を作って保存したあと、「さっき保存したファイルがない！」となって焦る初心者は少なくありません。</p>
+                        <p>実際には、保存するフォルダを間違えた、ファイル名を違う名前にした、別の場所に保存した、本当に削除してしまったなど、いくつかの可能性があります。</p>
+                        <p>初心者の方は、この違いがまだわからないため、すぐに「ファイルが消えた」と思ってしまいます。</p>
+                        <p>Windowsのファイルやフォルダの仕組みが少しずつわかってくると、「消えたのではなく、別の場所にあるのかもしれない」と考えられるようになります。</p>
+                        <p>ここでは、単にファイル管理の操作を紹介するのではなく、「保存場所を理解することが、困ったときの原因を切り分ける力になる」というところまで説明しています。</p>
+                        <div style="text-align: right; margin-top: 15px;">
+                            <a href="guide-windows-folder.html" style="font-size: 0.85rem; font-weight: 900; color: #38bdf8; text-decoration: none;">詳しくは、こちらの記事で解説しています →</a>
                         </div>
-                    </section>
+                    </div>
 
-                    <!-- セクション④：動的索引リスト（Sitemap.xmlより自動生成） -->
+                    <!-- BOX 02 -->
+                    <div class="content-box">
+                        <h3 class="content-box__title">
+                            <img src="img/minibulb.png" alt="" class="content-box__title-icon">
+                            「×」で閉じるだけがウィンドウ操作ではない
+                        </h3>
+                        <p>Windowsの大きな特徴の一つが、複数のウィンドウを開いて使えることです。</p>
+                        <p>初心者の方は、画面を閉じるときに右上の「×」を押すことが多いです。もちろん、もう使わない画面を閉じること自体は間違いではありません。</p>
+                        <p>また、多数のアプリやウィンドウを開きっぱなしにすれば、パソコンの状態によっては動作に影響する場合もあります。</p>
+                        <p>ただし、「×で閉じる」だけがウィンドウ管理ではありません。</p>
+                        <p>タスクバーから、現在開いているウィンドウを確認して、必要な画面へ戻ることもできます。</p>
+                        <p>たとえば、資料を開いたままWordに戻る。ブラウザを開いたままExcelに切り替える。といった操作です。</p>
+                        <p>初心者にとっては、「画面を閉じた＝作業が終わった」ではないことを理解することが重要です。</p>
+                        <div style="text-align: right; margin-top: 15px;">
+                            <a href="guide-windows-basics.html" style="font-size: 0.85rem; font-weight: 900; color: #38bdf8; text-decoration: none;">詳しくは、こちらの記事で解説しています →</a>
+                        </div>
+                    </div>
+
+                    <!-- BOX 03 -->
+                    <div class="content-box">
+                        <h3 class="content-box__title">
+                            <img src="img/minibulb.png" alt="" class="content-box__title-icon">
+                            資料を見ながら入力できる
+                        </h3>
+                        <p>仕事では、「資料を見ながらWordに入力する」「ブラウザを見ながらExcelに入力する」といった作業がよくあります。</p>
+                        <p>一つの画面だけを最大化して、そのたびに切り替えていると、思った以上に時間がかかります。</p>
+                        <p>Windowsでは、ウィンドウを左右に並べて表示することができます。</p>
+                        <p>この機能を知っているだけでも、「見る画面」と「入力する画面」を同時に扱えるようになります。</p>
+                        <p>ここでは、単に「画面を2つ並べられます」で終わらせず、実務でどのような場面で便利なのかを説明しています。</p>
+                        <div style="text-align: right; margin-top: 15px;">
+                            <a href="guide-windows-multi.html" style="font-size: 0.85rem; font-weight: 900; color: #38bdf8; text-decoration: none;">詳しくは、こちらの記事で解説しています →</a>
+                        </div>
+                    </div>
+
+                    <!-- BOX 04 -->
+                    <div class="content-box">
+                        <h3 class="content-box__title">
+                            <img src="img/minibulb.png" alt="" class="content-box__title-icon">
+                            文字を打ち直さなくてよくなる
+                        </h3>
+                        <p>Windowsを使ううえで、コピー＆ペーストは非常に基本的な操作です。</p>
+                        <p>文章や文字列を一から打ち直すのではなく、「コピー」して「貼り付け」という操作を使うことで、入力の手間を減らせます。</p>
+                        <p>仕事では、メールの文章、Webページの情報、Wordの文章、Excelのデータなど、さまざまな場面で使います。</p>
+                        <p>ただし、「Ctrl+CとCtrl+Vを暗記しましょう」だけにはしないでください。</p>
+                        <p>「同じ情報を何度も入力しない」「必要な情報を移す」という考え方を初心者にもわかるように説明しています。</p>
+                    </div>
+
+                    <!-- BOX 05 -->
+                    <div class="content-box">
+                        <h3 class="content-box__title">
+                            <img src="img/minibulb.png" alt="" class="content-box__title-icon">
+                            そもそも、どんなパソコンを選べばいい？
+                        </h3>
+                        <p>パソコンの入り口として、「パソコン選び」もWindowsを学ぶ前段階として重要です。</p>
+                        <p>実際には、家電量販店でパソコンを見る、ネットショップで価格を比較する、同じように見えるパソコンなのに値段が違う、スペック表を見ても何が重要なのかわからない、今だけでなく将来の用途も考えたい、という場面があります。</p>
+                        <p>ここでは、「高いパソコンを買えばいい」という説明にはしないでください。</p>
+                        <p>CPU、メモリ、ストレージなど、最低限どこを確認すればよいのかを知り、自分の用途に合ったパソコンを選べるようになることが大切、という方向にしています。</p>
+                        <div style="text-align: right; margin-top: 15px;">
+                            <a href="guide-pc-selection.html" style="font-size: 0.85rem; font-weight: 900; color: #38bdf8; text-decoration: none;">詳しくは、こちらの記事で解説しています →</a>
+                        </div>
+                    </div>
+
+                    <!-- BOX 06 -->
+                    <div class="content-box">
+                        <h3 class="content-box__title">
+                            <img src="img/minibulb.png" alt="" class="content-box__title-icon">
+                            ネットにつながらないときも「考える力」が必要
+                        </h3>
+                        <p>インターネットにつながらなくなったとき、初心者はすぐに「パソコンが壊れた」と思ってしまうことがあります。</p>
+                        <p>しかし実際には、一時的な通信トラブル、Wi-Fiの問題、ルーター側の問題、パソコン側の問題、時間を置けば戻るケース、落雷などによる機器の物理的な故障など、原因は一つではありません。</p>
+                        <p>ここで大切なのは、「このボタンを押せば直る」という一つの方法を覚えることではなく、「どこに原因がありそうなのか」を切り分ける考え方です。</p>
+                        <p>Windowsの知識は、このようなトラブル時の判断にもつながります。</p>
+                    </div>
+
+                    <!-- BOX 07 -->
+                    <div class="content-box">
+                        <h3 class="content-box__title">
+                            <img src="img/minibulb.png" alt="" class="content-box__title-icon">
+                            クラウドも「特別なもの」ではない
+                        </h3>
+                        <p>OneDriveなどのクラウドサービスについて、初心者にもわかりやすく説明してください。</p>
+                        <p>「クラウド」という言葉だけを見ると、難しいものに感じる人もいます。</p>
+                        <p>しかし、スマートフォンでiCloudなどを使っている人なら、「データを端末だけに置かず、インターネット上のサービスと連携して管理する」という考え方は、それほど特殊なものではありません。</p>
+                        <p>Windowsでも、ファイルをどこで管理しているのか、同期とは何なのか、クラウドを使うと何が便利なのか、という基本的な考え方を知っておくことが役立ちます。</p>
+                        <p>専門用語を増やしすぎず、初心者がイメージできる説明にしてください。</p>
+                    </div>
+
+                    <!-- BOX 08 -->
+                    <div class="content-box">
+                        <h3 class="content-box__title">
+                            <img src="img/minibulb.png" alt="" class="content-box__title-icon">
+                            自分が使いやすい環境にする
+                        </h3>
+                        <p>Windowsでは、画面の明るさ、音量、表示、文字の大きさ、ユーザーの切り替えなど、自分が使いやすいように環境を調整できます。</p>
+                        <p>こうした設定は、「パソコンに詳しい人だけがやるもの」ではありません。</p>
+                        <p>見づらければ明るさを調整する。音が小さければ音量を変える。文字が見づらければ表示を調整する。というように、自分が使いやすい状態を自分で作ることも、Windowsを使う基本的な力です。</p>
+                        <p>また、パソコンの動作がおかしいときに、再起動や設定確認など、基本的な確認をする考え方にも触れてください。</p>
+                    </div>
+
+                    <!-- Section ③ 締めの文章 -->
+                    <div class="instructor-advice" style="margin-top: 40px; background-color: #f0f9ff; border-left-color: #38bdf8;">
+                        <b style="color: #2c3e50; border-bottom-color: #38bdf8;">💡 Windowsを学ぶ意味について</b><br>
+                        <p style="margin-top: 10px;">Windowsを知るというのは、操作をたくさん暗記することではありません。</p>
+                        <p>ファイルが見つからない。画面を切り替えたい。ネットにつながらない。パソコンを買いたい。そんな場面で、「どうすればいい？」を自分で考えようになることも、Windowsを学ぶ大きな意味です。</p>
+                        <p>WordやExcelを使うときも、その土台にはWindowsがあります。</p>
+                    </div>
+                </section>
+
+                <!-- ④ Windowsの記事一覧（動的索引リスト） -->
+                <div class="hub-accent-area">
                     <section class="hub-section" id="dynamic-sitemap-index" data-initial="windows" style="margin-bottom: 0px;">
                         <div class="hub-archive-header">
-                            <h2 class="section-title">すべての記事一覧</h2>
+                            <h2 class="section-title">Windowsの記事一覧</h2>
                         </div>
                         <div class="hub-index-nav">
                             <button class="hub-index-tab" data-filter="all">すべて</button>
@@ -243,13 +379,14 @@
                         </div>
                         <div class="hub-index-list" id="column-article-grid"></div>
                     </section>
-                </div> <!-- /hub-accent-area：ここで薄緑の背景色が真四角に終わります -->
+                </div>
 
-                <!-- 接続導線：白背景エリア -->
+                <!-- ⑤ 次はWordへ（接続導線） -->
                 <div class="hub-footer-nav">
-                    <p class="hub-footer-nav__text">準備ができたら、Word基礎へ進みましょう</p>
+                    <p class="hub-footer-nav__text">Windowsの基本がわかったら、次はWordで文書作成を学んでみましょう。</p>
                     <div class="summary-nav">
                         <a href="hub-word.html" class="btn-main">Word基礎へ</a>
+                        <a href="hub-typing.html" class="summary-btn">タイピング練習へ</a>
                         <a href="./" class="summary-btn">ホームへ戻る</a>
                     </div>
                 </div>
@@ -265,6 +402,7 @@
             <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
         </footer>
     </div>
+    <!-- ページトップへ戻るボタン -->
     <a href="#" id="back-to-top" class="back-to-top">↑</a>
     <script src="js/main.js"></script>
 </body>
