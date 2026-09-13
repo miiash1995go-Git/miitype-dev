@@ -115,16 +115,15 @@
                     </div>
                 </section>
 
-                <!-- 「Wordの知りたい」が見つかるセクション（カリキュラム風カード仕様） -->
+                <!-- 「Wordの知りたい」が見つかるセクション（横罫線・区切り付き） -->
                 <div class="curriculum-section-wrapper">
                     <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
                         <h2 class="section-title" style="margin: 0px; border-bottom: none;">Wordの「知りたい」が見つかる</h2>
                         <span style="font-size: 0.85rem; color: #64748b; font-weight: 700;">基本講座から実践練習・実務知識まで、役立つ情報をまとめています。</span>
                     </div>
 
-                    <div class="curriculum-grid">
-                        
-                        <!-- カード 01 -->
+                    <!-- 前半：01, 02（基本） -->
+                    <div class="curriculum-grid" style="margin-top: 15px;">
                         <a href="guide-word-basics.html" class="curriculum-card curriculum-card--word">
                             <span class="curriculum-card__num">01</span>
                             <div class="curriculum-card__header">
@@ -143,7 +142,6 @@
                             </div>
                         </a>
 
-                        <!-- カード 02 -->
                         <a href="guide-word-practice-01.html" class="curriculum-card curriculum-card--word">
                             <span class="curriculum-card__num">02</span>
                             <div class="curriculum-card__header">
@@ -161,9 +159,20 @@
                                 <span class="curriculum-card__link">練習記事をみる →</span>
                             </div>
                         </a>
+                    </div>
 
-                        <!-- カード 03 -->
-                        <a href="guide-word-tab-basics.html" class="curriculum-card curriculum-card--word">
+                    <!-- 横罫線と区切り：「もう一歩、Wordを使いこなす」 -->
+                    <div style="display: flex; align-items: center; margin-top: 35px; margin-bottom: 35px;">
+                        <div style="flex-grow: 1; height: 1px; background-color: #cbd5e1;"></div>
+                        <span style="padding-top: 0px; padding-right: 20px; padding-bottom: 0px; padding-left: 20px; font-size: 0.95rem; font-weight: 900; color: #1d4ed8; white-space: nowrap;">
+                            ―― もう一歩、Wordを使いこなす ――
+                        </span>
+                        <div style="flex-grow: 1; height: 1px; background-color: #cbd5e1;"></div>
+                    </div>
+
+                    <!-- 後半：03, 04, 05（一歩踏み込む・少し濃いめの同系色トーン） -->
+                    <div class="curriculum-grid" style="margin-top: 0px;">
+                        <a href="guide-word-tab-basics.html" class="curriculum-card curriculum-card--word" style="background-color: #f8fafc;">
                             <span class="curriculum-card__num">03</span>
                             <div class="curriculum-card__header">
                                 <div class="curriculum-card__icon-wrap">
@@ -181,8 +190,7 @@
                             </div>
                         </a>
 
-                        <!-- カード 04 -->
-                        <a href="guide-word-line-spacing.html" class="curriculum-card curriculum-card--word">
+                        <a href="guide-word-line-spacing.html" class="curriculum-card curriculum-card--word" style="background-color: #f8fafc;">
                             <span class="curriculum-card__num">04</span>
                             <div class="curriculum-card__header">
                                 <div class="curriculum-card__icon-wrap">
@@ -200,8 +208,7 @@
                             </div>
                         </a>
 
-                        <!-- カード 05 -->
-                        <a href="glossary.html#cat-word-b" class="curriculum-card curriculum-card--word">
+                        <a href="glossary.html#cat-word-b" class="curriculum-card curriculum-card--word" style="background-color: #f8fafc; grid-column: span 2;">
                             <span class="curriculum-card__num">05</span>
                             <div class="curriculum-card__header">
                                 <div class="curriculum-card__icon-wrap">
@@ -218,7 +225,6 @@
                                 <span class="curriculum-card__link">用語を調べる →</span>
                             </div>
                         </a>
-
                     </div>
                 </div>
 
