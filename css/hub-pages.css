@@ -1048,7 +1048,7 @@
 .curriculum-card--excel   { border-left-color: #16A34A; }
 .curriculum-card--ai      { border-left-color: #14B8A6; }
 .curriculum-card--windows { border-left-color: #38BDF8; }
-.curriculum-card--column  { border-left-color: #7c3aed; }
+.curriculum-card--column  { border-left-color: #c4b5fd; }
 
 /* 5. 背景の巨大ナンバリング文字 (01, 02...) */
 .curriculum-card__num {
