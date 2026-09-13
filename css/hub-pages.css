@@ -1048,7 +1048,7 @@
 .curriculum-card--excel   { border-left-color: #16A34A; }
 .curriculum-card--ai      { border-left-color: #14B8A6; }
 .curriculum-card--windows { border-left-color: #38BDF8; }
-.curriculum-card--column  { border-left-color: #8B5CF6; }
+.curriculum-card--column  { border-left-color: #7c3aed; }
 
 /* 5. 背景の巨大ナンバリング文字 (01, 02...) */
 .curriculum-card__num {
@@ -1157,7 +1157,7 @@
 .curriculum-card--excel   .curriculum-card__link { color: #16A34A; }
 .curriculum-card--ai      .curriculum-card__link { color: #14B8A6; }
 .curriculum-card--windows .curriculum-card__link { color: #38BDF8; }
-.curriculum-card--column  .curriculum-card__link { color: #8B5CF6; }
+.curriculum-card--column  .curriculum-card__link { color: #7c3aed; }
 
 .curriculum-card:hover .curriculum-card__link {
     transform: translateX(4px);
