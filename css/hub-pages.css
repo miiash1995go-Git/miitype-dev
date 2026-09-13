@@ -1379,3 +1379,17 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* --- ハブページ用 水平線区切り (v20.10.Divider) --- */
+.hub-divider {
+    margin-top: 40px;
+    margin-right: 0px;
+    margin-bottom: 40px;
+    margin-left: 0px;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #e2e8f0;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+}
