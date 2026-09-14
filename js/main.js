@@ -206,6 +206,9 @@ handleResize() {
                 } else if (this.currentCategoryId === 'roman_pure' || this.currentCategoryId === 'roman_complex') {
                     this.targetLimit = 200;
                     this.timeLimitMs = 180000;
+                } else if (this.currentCategoryId === 'speed') {
+                    this.targetLimit = 99999; // 文字数制限なし（時間まで無制限に打てる）
+                    this.timeLimitMs = 120000; // 120秒（2分）
                 } else {
                     this.targetLimit = 320;
                     this.timeLimitMs = 240000;
@@ -364,12 +367,18 @@ if (success) {
 
         // プレイ画面右上の情報表示（オーバーレイ）の制御
         const overlay = document.getElementById('test-info-overlay');
-        if (this.isTestMode) {
+        if (this.isTestMode || this.currentCategoryId === 'speed') {
             if (overlay) overlay.classList.remove('hidden');
             this.testCharactersTyped = 0;
-            this.startTestTimer();
+            // スピードモード時は、表示する文字数を隠して「残り時間」だけに絞る
+            const charCountEl = document.getElementById('test-char-count')?.closest('.test-info-item');
+            if (charCountEl) charCountEl.style.display = (this.currentCategoryId === 'speed') ? 'none' : 'flex';
+            
+            this.startSpeedTimer();
         } else {
             if (overlay) overlay.classList.add('hidden');
+            const charCountEl = document.getElementById('test-char-count')?.closest('.test-info-item');
+            if (charCountEl) charCountEl.style.display = 'flex';
         }
     }
 
@@ -866,6 +875,19 @@ if (typeof gtag === 'function') {
 
     startTestTimer() {
         let timeLeft = 300; // 5分間
+        this.updateTestUI(timeLeft);
+        this.testTimerId = setInterval(() => {
+            timeLeft--;
+            this.updateTestUI(timeLeft);
+            if (timeLeft <= 0) {
+                clearInterval(this.testTimerId);
+                this.endGame();
+            }
+        }, 1000);
+    }
+
+    startSpeedTimer() {
+        let timeLeft = 120; // スピードモードは120秒（2分）
         this.updateTestUI(timeLeft);
         this.testTimerId = setInterval(() => {
             timeLeft--;
