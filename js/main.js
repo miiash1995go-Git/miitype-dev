@@ -370,17 +370,20 @@ if (success) {
         if (this.isTestMode || this.currentCategoryId === 'speed') {
             if (overlay) overlay.classList.remove('hidden');
             this.testCharactersTyped = 0;
-            // スピードモード時は、表示する文字数を隠して「残り時間」だけに絞る
+            // スピードモード時は、入力文字数を隠して残り時間だけにする
             const charCountEl = document.getElementById('test-char-count')?.closest('.test-info-item');
             if (charCountEl) charCountEl.style.display = (this.currentCategoryId === 'speed') ? 'none' : 'flex';
             
-            this.startSpeedTimer();
+            if (this.currentCategoryId === 'speed') {
+                this.startSpeedTimer();
+            } else {
+                this.startTestTimer();
+            }
         } else {
             if (overlay) overlay.classList.add('hidden');
             const charCountEl = document.getElementById('test-char-count')?.closest('.test-info-item');
             if (charCountEl) charCountEl.style.display = 'flex';
         }
-    }
 
     nextQuestion() {
         // 1. 終了判定（テストモード以外）
@@ -626,6 +629,10 @@ if (success) {
         this.isTransitioning = false;
         if (this.testTimerId) clearInterval(this.testTimerId);
         
+        // スピードモードで隠した要素を元に戻す
+        const charCountEl = document.getElementById('test-char-count')?.closest('.test-info-item');
+        if (charCountEl) charCountEl.style.display = 'flex';
+
         // 【最優先】まず暗転を解除し、スクロールをトップに戻して「見える」状態を確保する
         document.body.classList.remove('focus-mode');
         window.scrollTo(0, 0);
