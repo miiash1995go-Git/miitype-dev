@@ -1610,3 +1610,132 @@ body.portal-page .content-body table.setup-table td {
     width: 26px; /* 少しだけ大きくしてバランス調整 */
     height: 26px;
 }
+
+/* --- TOPコンセプトセクション専用・最小限の統治スタイル --- */
+.pasotore-concept-section {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+.pasotore-concept-keyword {
+    margin: 32px 0 38px;
+    padding: 24px 30px;
+    background: #edf5fb;
+    border-left: 5px solid #174a78;
+    border-radius: 0 12px 12px 0;
+}
+.pasotore-concept-keyword small {
+    display: block;
+    color: #174a78;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    margin-bottom: 5px;
+}
+.pasotore-concept-keyword strong {
+    display: block;
+    color: #172f43;
+    font-size: clamp(20px, 2.4vw, 26px);
+    line-height: 1.5;
+}
+.pasotore-concept-example {
+    margin: 38px 0 42px;
+    padding: 30px 32px;
+    background: #fafcfd;
+    border: 1px solid #dce7ee;
+    border-radius: 16px;
+}
+.pasotore-concept-example-label {
+    display: inline-block;
+    margin-bottom: 13px;
+    padding: 3px 12px;
+    border: 1px solid #cbdce8;
+    border-radius: 20px;
+    color: #174a78;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 700;
+}
+.pasotore-concept-example h3 {
+    margin: 0 0 22px;
+    color: #172f43;
+    font-size: 1.25rem;
+    font-weight: 900;
+    line-height: 1.5;
+    border-bottom: none !important;
+}
+.pasotore-concept-stage {
+    position: relative;
+    margin: 0 0 16px;
+    padding: 18px 20px 18px 68px;
+    background: #fff;
+    border: 1px solid #dce7ee;
+    border-radius: 10px;
+}
+.pasotore-concept-stage:last-child { margin-bottom: 0; }
+.pasotore-concept-num {
+    position: absolute; left: 20px; top: 19px;
+    color: #174a78; font-size: 12px; font-weight: 900; font-family: 'Roboto Mono', monospace;
+}
+.pasotore-concept-stage-title {
+    margin-bottom: 5px; color: #172f43; font-weight: 900; font-size: 0.95rem;
+}
+.pasotore-concept-search {
+    display: inline-block;
+    padding: 6px 14px;
+    background: #f1f3f5;
+    border-radius: 6px;
+    color: #344b5c;
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: 'Roboto Mono', monospace;
+}
+.pasotore-concept-prompt {
+    margin-top: 8px;
+    padding: 13px 15px;
+    background: #f5f8fb;
+    border-left: 3px solid #8aa1b3;
+    color: #3e5363;
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+.pasotore-concept-prompt strong { color: #174a78; }
+.pasotore-concept-checks {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;
+}
+.pasotore-concept-check {
+    padding: 5px 12px; border: 1px solid #d5e2ea; border-radius: 20px;
+    background: #fff; color: #425665; font-size: 0.85rem; font-weight: 700;
+}
+.pasotore-concept-flow {
+    display: flex; align-items: stretch; margin: 34px 0 38px;
+    border: 1px solid #dce7ee; border-radius: 10px; overflow: hidden;
+}
+.pasotore-concept-flow-item {
+    flex: 1; padding: 18px 12px; text-align: center; background: #f8fafc;
+}
+.pasotore-concept-flow-item + .pasotore-concept-flow-item { border-left: 1px solid #dce7ee; }
+.pasotore-concept-flow-item strong { display: block; color: #174a78; font-size: 0.95rem; }
+.pasotore-concept-flow-item span { display: block; margin-top: 2px; color: #607487; font-size: 0.75rem; }
+.pasotore-concept-arrow {
+    flex: 0 0 22px; display: flex; align-items: center; justify-content: center;
+    color: #8aa1b3; background: #fff; font-weight: 900;
+}
+.pasotore-concept-conclusion {
+    margin-top: 32px; padding: 24px 28px;
+    background: #edf5fb; border-left: 5px solid #174a78; border-radius: 0 12px 12px 0;
+}
+.pasotore-concept-conclusion strong {
+    display: block; margin-bottom: 7px; color: #172f43; font-size: 1.15rem; line-height: 1.5;
+}
+.pasotore-concept-conclusion p { margin: 0; font-size: 0.95rem; }
+.pasotore-concept-final {
+    margin-top: 36px; padding-top: 28px; border-top: 1px solid #dbe5ec; text-align: center;
+}
+.pasotore-concept-final strong {
+    display: block; color: #174a78; font-size: clamp(20px, 2.4vw, 26px); line-height: 1.5;
+}
+.pasotore-concept-final span { display: block; margin-top: 8px; color: #607487; font-size: 0.95rem; }
+
+@media(max-width:700px){
+  .pasotore-concept-flow { display: grid; grid-template-columns: 1fr 22px 1fr; }
+}
