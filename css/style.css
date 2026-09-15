@@ -1763,9 +1763,11 @@ body.portal-page .content-body table.setup-table td {
       color: #8aa1b3;
       transform: none !important;
       margin: 4px 0;
+      font-size: 0; /* 元の「→」の文字を視覚的に消す */
   }
   .pasotore-concept-arrow::after {
       content: "↓";
+      font-size: 1rem; /* 下向き矢印のサイズを指定 */
       font-weight: 900;
   }
 }
