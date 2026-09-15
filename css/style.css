@@ -1738,14 +1738,34 @@ body.portal-page .content-body table.setup-table td {
 
 @media(max-width:768px){
   .pasotore-concept-flow {
-      flex-direction: column !important;
+      display: block !important;
+      border: none !important;
+      background: transparent !important;
   }
-  .pasotore-concept-arrow {
-      transform: rotate(90deg);
-      height: 25px;
+  .pasotore-concept-flow-item {
+      display: block !important;
+      width: 100% !important;
+      margin-bottom: 8px;
+      border: 1px solid #dce7ee !important;
+      border-radius: 8px;
+      background: #f8fafc !important;
+      padding: 12px !important;
   }
   .pasotore-concept-flow-item + .pasotore-concept-flow-item {
-      border-left: none !important;
-      border-top: 1px solid #dce7ee;
+      border-left: 1px solid #dce7ee !important;
+  }
+  .pasotore-concept-arrow {
+      display: block !important;
+      width: 100% !important;
+      text-align: center;
+      height: 24px;
+      background: transparent !important;
+      color: #8aa1b3;
+      transform: none !important;
+      margin: 4px 0;
+  }
+  .pasotore-concept-arrow::after {
+      content: "↓";
+      font-weight: 900;
   }
 }
