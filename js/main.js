@@ -384,6 +384,7 @@ if (success) {
             const charCountEl = document.getElementById('test-char-count')?.closest('.test-info-item');
             if (charCountEl) charCountEl.style.display = 'flex';
         }
+        }
 
     nextQuestion() {
         // 1. 終了判定（テストモード以外）
