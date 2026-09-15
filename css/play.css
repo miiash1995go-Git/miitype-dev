@@ -1211,3 +1211,33 @@ body.game-body .summary-btn:hover {
     border-bottom-color: #fecdd3 !important;
     border-left-color: #fecdd3 !important;
 }
+
+/* ============================================================
+   汎用プレイ・ステータスバー（将来の拡張モード共通） (v20.10.StatusBar)
+   ============================================================ */
+.play-status-bar {
+    position: absolute;
+    top: -45px;
+    right: 0px;
+    display: flex;
+    gap: 20px;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 800;
+    font-size: 0.95rem;
+    z-index: 100;
+}
+.play-status-bar.hidden {
+    display: none !important;
+}
+.play-status-item {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 5px 15px;
+    border-radius: 6px;
+    border: 1px solid #eeeeee;
+    color: #1e293b;
+}
+#play-timer-val {
+    color: #2563eb;
+    font-size: 1.1rem;
+    font-weight: 900;
+}

@@ -366,25 +366,24 @@ if (success) {
         this.updateLoop();
 
         // プレイ画面右上の情報表示（オーバーレイ）の制御
-        const overlay = document.getElementById('test-info-overlay');
-        if (this.isTestMode || this.currentCategoryId === 'speed') {
-            if (overlay) overlay.classList.remove('hidden');
-            this.testCharactersTyped = 0;
-            // スピードモード時は、入力文字数を隠して残り時間だけにする
-            const charCountEl = document.getElementById('test-char-count')?.closest('.test-info-item');
-            if (charCountEl) charCountEl.style.display = (this.currentCategoryId === 'speed') ? 'none' : 'flex';
-            
-            if (this.currentCategoryId === 'speed') {
-                this.startSpeedTimer();
-            } else {
-                this.startTestTimer();
-            }
-        } else {
-            if (overlay) overlay.classList.add('hidden');
-            const charCountEl = document.getElementById('test-char-count')?.closest('.test-info-item');
-            if (charCountEl) charCountEl.style.display = 'flex';
-        }
-        }
+      const overlay = document.getElementById('test-info-overlay');
+      const statusBar = document.getElementById('play-status-bar');
+      
+      if (this.currentCategoryId === 'speed') {
+          if (statusBar) statusBar.classList.remove('hidden');
+          if (overlay) overlay.classList.add('hidden');
+          this.startSpeedTimer();
+      } else if (this.isTestMode) {
+          if (statusBar) statusBar.classList.add('hidden');
+          if (overlay) overlay.classList.remove('hidden');
+          this.testCharactersTyped = 0;
+          this.startTestTimer();
+      } else {
+          if (statusBar) statusBar.classList.add('hidden');
+          if (overlay) overlay.classList.add('hidden');
+      }
+
+    }
 
     nextQuestion() {
         // 1. 終了判定（テストモード以外）
@@ -895,17 +894,25 @@ if (typeof gtag === 'function') {
     }
 
     startSpeedTimer() {
-        let timeLeft = 120; // スピードモードは120秒（2分）
-        this.updateTestUI(timeLeft);
-        this.testTimerId = setInterval(() => {
-            timeLeft--;
-            this.updateTestUI(timeLeft);
-            if (timeLeft <= 0) {
-                clearInterval(this.testTimerId);
-                this.endGame();
-            }
-        }, 1000);
-    }
+      let timeLeft = 120; // スピードモードは120秒（2分）
+      const updateSpeedUI = (sec) => {
+          const min = Math.floor(sec / 60);
+          const s = sec % 60;
+          const valEl = document.getElementById('play-timer-val');
+          if (valEl) {
+              valEl.innerText = `${min.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+          }
+      };
+      updateSpeedUI(timeLeft);
+      this.testTimerId = setInterval(() => {
+          timeLeft--;
+          updateSpeedUI(timeLeft);
+          if (timeLeft <= 0) {
+              clearInterval(this.testTimerId);
+              this.endGame();
+          }
+      }, 1000);
+  }
 
     updateTestUI(sec) {
         const min = Math.floor(sec / 60);
