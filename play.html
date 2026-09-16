@@ -151,12 +151,17 @@
             </section>
 
             <section id="game-screen" class="screen hidden" style="position: relative;">
-                <!-- 【汎用拡張】今後すべてのモードで共有するステータスバー枠 -->
+                <!-- 【汎用拡張】今後すべてのモードで共有するステータスバー枠（リメイク版） -->
                 <div id="play-status-bar" class="play-status-bar hidden">
-                    <div class="play-status-item play-status-timer">残り時間: <span id="play-timer-val">02:00</span></div>
+                    <div class="play-status-inner" id="play-status-content">
+                        <!-- スピードモード時の残り時間表示（将来はここに他モードの要素も動的挿入可能） -->
+                        <div class="mini-stat-item">
+                            <div class="mini-label">残り時間</div>
+                            <div id="play-timer-val" class="mini-value">02:00</div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- テストモード専用の情報表示（右上に固定） -->
                 <div id="test-info-overlay" class="test-info-overlay hidden">
                     <div class="test-info-item">入力文字数: <span id="test-char-count">0</span></div>
                     <div class="test-info-item">残り時間: <span id="test-timer">05:00</span></div>

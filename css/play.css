@@ -1241,3 +1241,40 @@ body.game-body .summary-btn:hover {
     font-size: 1.1rem;
     font-weight: 900;
 }
+.play-status-bar {
+    position: absolute;
+    top: -32px;
+    right: 25px;
+    background-color: #ffffff;
+    border: 1px solid #14b8a6;
+    border-radius: 12px;
+    padding: 10px 20px;
+    box-shadow: 0px 4px 15px rgba(20, 184, 166, 0.15);
+    z-index: 100;
+}
+.play-status-bar.hidden {
+    display: none !important;
+}
+.play-status-inner {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.play-status-bar .mini-stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+.play-status-bar .mini-label {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #64748b;
+}
+.play-status-bar .mini-value {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #2563eb;
+    line-height: 1.2;
+}
