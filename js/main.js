@@ -77,6 +77,12 @@ class TypingApp {
         this.testTimerId = null;      // タイマー管理用
         this.testCharactersTyped = 0; 
         
+        // --- 「れんぞく」モード管理用 ---
+        this.renzokuMissCount = 0;         // 今回のミス回数（最大5回）
+        this.currentConsecutiveSuccess = 0; // 現在の連続成功数
+        this.maxConsecutiveSuccess = 0;    // プレイ中の最大連続成功数
+        this.hasCurrentQuestionError = false; // 現在の問題でミスしたかフラグ
+        
         // --- テンキー出題管理用 ---
         this.tenkeyData = null;           // JSONから読み込んだ全カテゴリ
         this.tenkeyCategoryIndex = 0;    
@@ -127,6 +133,25 @@ class TypingApp {
         window.addEventListener('resize', () => this.handleResize());
     }
 
+/**
+     * 【将来拡張対応】JST基準で3日周期のインデックス(0, 1, 2)を算出する共通ヘルパー
+     */
+    getDailyFileIndex() {
+        // 日本時間 (JST: UTC+9) の現在時刻を取得
+        const now = new Date();
+        const jstTime = now.getTime() + (now.getTimezoneOffset() * 60000) + (9 * 3600000);
+        const jstDate = new Date(jstTime);
+        
+        // 基準日 (2026-01-01) からの経過日数を計算
+        const baseDate = new Date('2026-01-01T00:00:00+09:00');
+        const diffTime = jstDate.getTime() - baseDate.getTime();
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        
+        // 3日周期 (0, 1, 2) を返す
+        return Math.max(0, diffDays) % 3;
+    }
+
+
     async loadQuestions(categoryId) {
         if (!this.manifest) return false;
         const category = this.manifest.categories.find(c => c.id === categoryId);
@@ -141,7 +166,15 @@ if (category.file === "all") {
                 const results = await Promise.all(fetchTasks);
                 loadedData = results.flatMap(d => d.questions);
             } else {
-                const res = await fetch(`./data/typing/${category.file}`);
+                // 【れんぞくモード対応】JST日替わりで renzoku_01.json 〜 03.json を動的選択
+                let targetFile = category.file;
+                if (categoryId === 'renzoku') {
+                    const dayIdx = this.getDailyFileIndex(); // 0, 1, 2
+                    const fileNumString = String(dayIdx + 1).padStart(2, '0'); // "01", "02", "03"
+                    targetFile = `renzoku_${fileNumString}.json`;
+                }
+
+                const res = await fetch(`./data/typing/${targetFile}`);
                 if (!res.ok) throw new Error("File not found");
                 const data = await res.json();
                 
@@ -296,6 +329,8 @@ if (success) {
             var unitText = "スコア"; 
             if (this.currentCategoryId === 'test_5min') {
                 unitText = "文字";
+            } else if (this.currentCategoryId === 'renzoku') {
+                unitText = "連続";
             }
             
             // 数値と単位に個別のタグを割り当てて視認性を向上
@@ -366,14 +401,33 @@ if (success) {
         this.updateLoop();
 
         // プレイ画面右上の情報表示（オーバーレイ）の制御
-      const overlay = document.getElementById('test-info-overlay');
-      const statusBar = document.getElementById('play-status-bar');
+        const overlay = document.getElementById('test-info-overlay');
+        const statusBar = document.getElementById('play-status-bar');
       
-      if (this.currentCategoryId === 'speed') {
-          if (statusBar) statusBar.classList.remove('hidden');
-          if (overlay) overlay.classList.add('hidden');
-          this.startSpeedTimer();
-      } else if (this.isTestMode) {
+      if (this.currentCategoryId === 'speed' || this.currentCategoryId === 'renzoku') {
+        if (statusBar) statusBar.classList.remove('hidden');
+        if (overlay) overlay.classList.add('hidden');
+        
+        if (this.currentCategoryId === 'renzoku') {
+            // れんぞく用の状態初期化
+            this.renzokuMissCount = 0;
+            this.currentConsecutiveSuccess = 0;
+            this.maxConsecutiveSuccess = 0;
+            this.hasCurrentQuestionError = false;
+            
+            // ステータスバー内のHTMLを「ミス・連続成功」表示用に構築
+            const barInner = document.getElementById('play-status-content') || statusBar;
+            if (barInner) {
+                barInner.innerHTML = `
+                    <div class="mini-stat-item"><span class="mini-label">ミス</span><span id="renzoku-ui-miss" class="mini-value" style="color:#ef4444;">0 / 5</span></div>
+                    <div class="mini-sep" style="height:30px; width:1px; background:#e2e8f0; margin:0 5px;"></div>
+                    <div class="mini-stat-item"><span class="mini-label">連続成功</span><span id="renzoku-ui-streak" class="mini-value" style="color:#16a34a;">0問</span></div>
+                `;
+            }
+        }
+        
+        this.startSpeedTimer();
+    } else if (this.isTestMode) {
           if (statusBar) statusBar.classList.add('hidden');
           if (overlay) overlay.classList.remove('hidden');
           this.testCharactersTyped = 0;
@@ -462,6 +516,24 @@ if (success) {
 
     prepareNextChar() {
         if (this.kanaList.length === 0) {
+            // 【れんぞくモード専用】1問クリア時の連続成功判定
+            if (this.currentCategoryId === 'renzoku') {
+                if (!this.hasCurrentQuestionError) {
+                    // ノーミス成功！
+                    this.currentConsecutiveSuccess++;
+                    this.maxConsecutiveSuccess = Math.max(this.maxConsecutiveSuccess, this.currentConsecutiveSuccess);
+                } else {
+                    // 途中でミスがあったのでリセット
+                    this.currentConsecutiveSuccess = 0;
+                }
+                // 次の問題のためにエラーフラグをリセット
+                this.hasCurrentQuestionError = false;
+
+                // UI更新
+                const streakEl = document.getElementById('renzoku-ui-streak');
+                if (streakEl) streakEl.innerText = `${this.currentConsecutiveSuccess}問`;
+            }
+
             if (this.isTestMode) {
                 // 文を完了した時点で、表示されている「漢字（日本語）」の文字数を加算
                 const kanji = document.getElementById('display-kanji').innerText;
@@ -734,10 +806,29 @@ if (typeof gtag === 'function') {
             document.getElementById('res-miss').innerText = this.totalMissedCount;
             document.getElementById('res-total').innerText = this.totalTypedCount + this.totalMissedCount;
 
+            // 【れんぞくモード専用】結果画面の「入力速度(CPM)」ラベルと数値を「最大連続回数」に差し替え
+            if (this.currentCategoryId === 'renzoku') {
+                const wpmRow = document.getElementById('res-wpm')?.closest('.res-grid-row');
+                if (wpmRow) {
+                    const labelEl = wpmRow.querySelector('.res-label');
+                    if (labelEl) labelEl.innerText = "最大連続回数";
+                }
+                document.getElementById('res-wpm').innerText = this.maxConsecutiveSuccess;
+            } else {
+                // 通常モードのラベル復元
+                const wpmRow = document.getElementById('res-wpm')?.closest('.res-grid-row');
+                if (wpmRow) {
+                    const labelEl = wpmRow.querySelector('.res-label');
+                    if (labelEl) labelEl.innerText = "入力速度(CPM)";
+                }
+            }
+
             if (["Legend", "Master", "SSS", "SS", "S", "A+", "A", "A-"].includes(rank)) resRank.classList.add('sparkle');
 
-            if (!this.bestScores[this.currentCategoryId] || score > this.bestScores[this.currentCategoryId]) {
-                this.bestScores[this.currentCategoryId] = score;
+            // 自己ベスト保存の分岐（れんぞくの場合は最大連続数を保存）
+            const scoreToCompare = (this.currentCategoryId === 'renzoku') ? this.maxConsecutiveSuccess : score;
+            if (!this.bestScores[this.currentCategoryId] || scoreToCompare > this.bestScores[this.currentCategoryId]) {
+                this.bestScores[this.currentCategoryId] = scoreToCompare;
                 localStorage.setItem('pasotore_best', JSON.stringify(this.bestScores));
             }
         }

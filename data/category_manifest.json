@@ -6,6 +6,7 @@
     {"id": "windows", "name": "Windows", "file": "windows.json"},
     {"id": "quest", "name": "クエスト", "file": "quest.json"},
     {"id": "speed", "name": "スピード", "file": "speed.json"},
+    {"id": "renzoku", "name": "れんぞく", "file": "renzoku_01.json"},
     {"id": "zero", "name": "ゼロ", "file": "zero.json"},
     {"id": "memory", "name": "記憶", "file": "memory.json"},
     {"id": "word", "name": "Word", "file": "word_basic.json"},
