@@ -826,6 +826,13 @@ if (typeof gtag === 'function') {
                 resRank.style.fontSize = rank.length > 2 ? "5.5rem" : "8rem";
             }
             
+            // 【演出復活】高ランク（Legend, Masterなど）のときはキラキラエフェクト（sparkle）を付与
+            if (["Legend", "Master", "SSS", "SS", "S", "A+", "A", "A-"].includes(rank)) {
+                if (resRank) resRank.classList.add('sparkle');
+            } else {
+                if (resRank) resRank.classList.remove('sparkle');
+            }
+            
             document.getElementById('res-time').innerText = this.formatTime(performance.now() - this.startTime);
             document.getElementById('res-wpm').innerText = cpm;
             document.getElementById('res-acc').innerText = accNumRaw.toFixed(1);
