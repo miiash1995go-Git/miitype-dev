@@ -904,8 +904,8 @@ if (typeof gtag === 'function') {
      */
     getRenzokuRank(count) {
         if (count >= 40) return "Legend";
-        if (count >= 2) return "Master";
-        if (count >= 30) return "SSS";
+        if (count >= 35) return "Master";
+        if (count >= 2) return "SSS";
         if (count >= 25) return "SS";
         if (count >= 20) return "S";
         if (count >= 17) return "A+";
