@@ -822,8 +822,15 @@ if (typeof gtag === 'function') {
             if (resRank) { 
                 resRank.innerText = rank; 
                 resRank.style.color = "var(--accent)"; 
-                // 文字数に応じてフォントサイズを自動調整（LやMに対応）
-                resRank.style.fontSize = rank.length > 2 ? "5.5rem" : "8rem";
+                
+                // フォントサイズの個別最適化（LegendやMasterは文字数が多いため少しスリムに調整）
+                if (rank === "Legend") {
+                    resRank.style.fontSize = "5.5rem";
+                } else if (rank === "Master") {
+                    resRank.style.fontSize = "5rem";
+                } else {
+                    resRank.style.fontSize = rank.length > 2 ? "5.5rem" : "8rem";
+                }
             }
             
             // 【4段階リッチ演出】ランクに応じて専用のクラスを付与（B+までは通常表示）
