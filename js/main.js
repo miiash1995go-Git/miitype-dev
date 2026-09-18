@@ -903,8 +903,8 @@ if (typeof gtag === 'function') {
      * 【れんぞくモード専用】最大連続成功回数のみでランクを判定する（新基準）
      */
     getRenzokuRank(count) {
-        if (count >= 2) return "Legend";
-        if (count >= 35) return "Master";
+        if (count >= 40) return "Legend";
+        if (count >= 2) return "Master";
         if (count >= 30) return "SSS";
         if (count >= 25) return "SS";
         if (count >= 20) return "S";
