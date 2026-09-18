@@ -641,6 +641,23 @@ if (success) {
                 this.totalMissedCount++;
                 this.logMiss(this.guideRemainRomaji[0]);
                 if(this.soundEnabled) this.playSound(200, 0.1);
+                
+                // 【れんぞくモード専用】ミス処理
+                if (this.currentCategoryId === 'renzoku') {
+                    this.renzokuMissCount++;
+                    this.hasCurrentQuestionError = true;
+                    
+                    // 画面上のミス表示を更新
+                    const missEl = document.getElementById('renzoku-ui-miss');
+                    if (missEl) missEl.innerText = `${this.renzokuMissCount} / 5`;
+                    
+                    // 5回ミスでゲーム終了（リザルトへ）
+                    if (this.renzokuMissCount >= 5) {
+                        this.endGame();
+                        return;
+                    }
+                }
+
                 const container = document.getElementById('typing-container');
                 if (container) {
                     container.classList.add('damage-effect');
