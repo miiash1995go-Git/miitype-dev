@@ -440,6 +440,11 @@ if (success) {
     }
 
     nextQuestion() {
+        // 【れんぞくモード対策】次の新しい問題が始まったら、エラーフラグを確実にリセット
+        if (this.currentCategoryId === 'renzoku') {
+            this.hasCurrentQuestionError = false;
+        }
+
         // 1. 終了判定（テストモード以外）
         if (!this.isTestMode) {
             const elapsed = performance.now() - this.startTime;
