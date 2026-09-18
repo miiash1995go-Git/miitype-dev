@@ -1310,14 +1310,40 @@ body.game-body .summary-btn:hover {
     filter: drop-shadow(0px 2px 10px rgba(52, 211, 153, 0.5));
 }
 
-/* 段階4: Legend - 最高峰シャンパンゴールド・シマーアニメーション */
-#result-rank.rank-tier-legend {
+/* ============================================================
+   全モード共通：高ランク (Legend / Master) の見切れ完全解消スタイル
+   ============================================================ */
+#result-rank:not(:empty) {
+    display: inline-block !important;
+    padding: 0 10px !important;
+    overflow: visible !important;
+}
+
+/* 文字数が多い「Legend」「Master」は全モード共通でフォントサイズを最適化して見切れを根絶 */
+#result-rank:is(:not([style*="font-size"])) {
+    /* JSや他で制御されていない場合の安全網 */
+}
+
+/* CSSの属性やテキスト内容、または付与されたクラスに応じた共通制御 */
+#result-rank.rank-tier-legend,
+#result-rank.sparkle {
+    font-size: 4.8rem !important;
     background: linear-gradient(135deg, #d97706 0%, #fbbf24 25%, #fef3c7 50%, #fbbf24 75%, #b45309 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: rank-shimmer 2.5s linear infinite;
-    filter: drop-shadow(0px 3px 12px rgba(251, 191, 36, 0.6));
+    filter: drop-shadow(0px 2px 8px rgba(251, 191, 36, 0.5));
+}
+
+#result-rank.rank-tier-master {
+    font-size: 4.8rem !important;
+    background: linear-gradient(135deg, #059669 0%, #34d399 50%, #6ee7b7 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rank-shimmer 4s linear infinite;
+    filter: drop-shadow(0px 2px 10px rgba(52, 211, 153, 0.5));
 }
 
 @keyframes rank-shimmer {
