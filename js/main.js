@@ -826,11 +826,19 @@ if (typeof gtag === 'function') {
                 resRank.style.fontSize = rank.length > 2 ? "5.5rem" : "8rem";
             }
             
-            // 【演出復活】高ランク（Legend, Masterなど）のときはキラキラエフェクト（sparkle）を付与
-            if (["Legend", "Master", "SSS", "SS", "S", "A+", "A", "A-"].includes(rank)) {
-                if (resRank) resRank.classList.add('sparkle');
-            } else {
-                if (resRank) resRank.classList.remove('sparkle');
+            // 【4段階リッチ演出】ランクに応じて専用のクラスを付与（B+までは通常表示）
+            if (resRank) {
+                resRank.classList.remove('sparkle', 'rank-tier-a', 'rank-tier-s', 'rank-tier-master', 'rank-tier-legend');
+                
+                if (["A-", "A", "A+"].includes(rank)) {
+                    resRank.classList.add('rank-tier-a');
+                } else if (["S", "SS", "SSS"].includes(rank)) {
+                    resRank.classList.add('rank-tier-s');
+                } else if (rank === "Master") {
+                    resRank.classList.add('rank-tier-master');
+                } else if (rank === "Legend") {
+                    resRank.classList.add('rank-tier-legend');
+                }
             }
             
             document.getElementById('res-time').innerText = this.formatTime(performance.now() - this.startTime);
@@ -888,7 +896,7 @@ if (typeof gtag === 'function') {
      * 【れんぞくモード専用】最大連続成功回数のみでランクを判定する（新基準）
      */
     getRenzokuRank(count) {
-        if (count >= 4) return "Legend";
+        if (count >= 2) return "Legend";
         if (count >= 35) return "Master";
         if (count >= 30) return "SSS";
         if (count >= 25) return "SS";

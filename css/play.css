@@ -1279,3 +1279,48 @@ body.game-body .summary-btn:hover {
     color: #2563eb;
     line-height: 1.2;
 }
+
+/* ============================================================
+   ランク別 4段階リッチグラデーション＆発光エフェクト (v20.10.RankTier)
+   ============================================================ */
+
+/* 段階1: A帯 (A-, A, A+) - 爽やかなネオンシアン・ブルーグラデーション */
+#result-rank.rank-tier-a {
+    background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0px 2px 6px rgba(56, 189, 248, 0.3));
+}
+
+/* 段階2: S帯 (S, SS, SSS) - 鮮やかなパープル・マゼンタグラデーション */
+#result-rank.rank-tier-s {
+    background: linear-gradient(135deg, #7c3aed 0%, #c084fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0px 2px 8px rgba(192, 132, 252, 0.4));
+}
+
+/* 段階3: Master - 深みのあるエメラルド・ミントグラデーション */
+#result-rank.rank-tier-master {
+    background: linear-gradient(135deg, #059669 0%, #34d399 50%, #6ee7b7 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rank-shimmer 4s linear infinite;
+    filter: drop-shadow(0px 2px 10px rgba(52, 211, 153, 0.5));
+}
+
+/* 段階4: Legend - 最高峰シャンパンゴールド・シマーアニメーション */
+#result-rank.rank-tier-legend {
+    background: linear-gradient(135deg, #d97706 0%, #fbbf24 25%, #fef3c7 50%, #fbbf24 75%, #b45309 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rank-shimmer 2.5s linear infinite;
+    filter: drop-shadow(0px 3px 12px rgba(251, 191, 36, 0.6));
+}
+
+@keyframes rank-shimmer {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
