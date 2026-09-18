@@ -656,13 +656,17 @@ body.game-body #keyboard-container {
     align-items: center;
 }
 
-#result-rank {
+#result-rank{
     font-size: 5.5rem !important;
     font-weight: 900;
     color: var(--accent);
     line-height: 1;
     letter-spacing: -2px;
     margin: 0 !important;
+    display: inline-block !important;
+    padding: 0 15px 10px 15px !important;
+    transform: translateY(-4px) !important;
+    overflow: visible !important;
 }
 
 #result-rank.is-aborted {
