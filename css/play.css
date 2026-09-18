@@ -657,13 +657,13 @@ body.game-body #keyboard-container {
 }
 
 #result-rank{
-    font-size: 5.0rem !important; /* 少しだけサイズを調整して余裕を持たせる */
+    font-size: 4.2rem !important; /* 確実に枠内に収まる安全なサイズに調整 */
     font-weight: 900;
     color: var(--accent);
-    line-height: 1.3;               /* 行高を広げてgのしっぽの空間を確保 */
+    line-height: 1.2;
     letter-spacing: -1px;
-    margin: 0 !important;
-    padding: 5px 0 !important;      /* 上下にわずかな空間を持たせる */
+    margin: 0 0 10px 0 !important; /* 下部に物理的なマージンを設けて「判定ランク」との距離を確保 */
+    padding: 0 !important;
 }
 
 #result-rank.is-aborted {
