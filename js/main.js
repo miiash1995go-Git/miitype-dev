@@ -878,14 +878,14 @@ if (typeof gtag === 'function') {
 /* --- main.js：getRankメソッドを以下に差し替え（ユーザー指定基準） --- */
 
     /**
-     * 【れんぞくモード専用】最大連続成功回数のみでランクを判定する
+     * 【れんぞくモード専用】最大連続成功回数のみでランクを判定する（新基準）
      */
     getRenzokuRank(count) {
-        if (count >= 27) return "Legend";
-        if (count >= 25) return "Master";
-        if (count >= 23) return "SSS";
-        if (count >= 21) return "SS";
-        if (count >= 19) return "S";
+        if (count >= 4) return "Legend";
+        if (count >= 35) return "Master";
+        if (count >= 30) return "SSS";
+        if (count >= 25) return "SS";
+        if (count >= 20) return "S";
         if (count >= 17) return "A+";
         if (count >= 15) return "A";
         if (count >= 13) return "A-";
