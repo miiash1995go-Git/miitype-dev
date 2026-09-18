@@ -829,7 +829,7 @@ if (typeof gtag === 'function') {
                 } else if (rank === "Master") {
                     resRank.style.fontSize = "5rem";
                 } else {
-                    resRank.style.fontSize = rank.length > 2 ? "7.5rem" : "8rem";
+                    resRank.style.fontSize = rank.length > 2 ? "5.5rem" : "6rem";
                 }
             }
             
