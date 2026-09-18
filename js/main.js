@@ -906,11 +906,11 @@ if (typeof gtag === 'function') {
         if (count >= 40) return "Legend";
         if (count >= 35) return "Master";
         if (count >= 30) return "SSS";
-        if (count >= 2) return "SS";
+        if (count >= 25) return "SS";
         if (count >= 20) return "S";
         if (count >= 17) return "A+";
         if (count >= 15) return "A";
-        if (count >= 13) return "A-";
+        if (count >= 2) return "A-";
         if (count >= 11) return "B+";
         if (count === 10) return "B";
         if (count === 9)  return "B-";
