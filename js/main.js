@@ -763,7 +763,11 @@ if (success) {
             
             // 【究極修正】採点アルゴリズム：3乗から2乗へ（マイルド化）
             const score = Math.floor(cpm * (Math.max(0, accNumRaw)/100)**2);
-            const rank = this.getRank(score);
+            
+            // 【れんぞくモード判定】通常モードはスコア基準、れんぞくは最大連続成功数基準
+            const rank = (this.currentCategoryId === 'renzoku') 
+                ? this.getRenzokuRank(this.maxConsecutiveSuccess) 
+                : this.getRank(score);
             
             if (resScore) resScore.innerText = score; 
 
@@ -835,7 +839,7 @@ if (typeof gtag === 'function') {
                     const labelEl = wpmRow.querySelector('.res-label');
                     if (labelEl) labelEl.innerText = "最大連続回数";
                 }
-                document.getElementById('res-wpm').innerText = this.maxConsecutiveSuccess;
+                document.getElementById('res-wpm').innerText = this.maxConsecutiveSuccess + "問";
             } else {
                 // 通常モードのラベル復元
                 const wpmRow = document.getElementById('res-wpm')?.closest('.res-grid-row');
@@ -872,6 +876,32 @@ if (typeof gtag === 'function') {
     }
 
 /* --- main.js：getRankメソッドを以下に差し替え（ユーザー指定基準） --- */
+
+    /**
+     * 【れんぞくモード専用】最大連続成功回数のみでランクを判定する
+     */
+    getRenzokuRank(count) {
+        if (count >= 27) return "Legend";
+        if (count >= 25) return "Master";
+        if (count >= 23) return "SSS";
+        if (count >= 21) return "SS";
+        if (count >= 19) return "S";
+        if (count >= 17) return "A+";
+        if (count >= 15) return "A";
+        if (count >= 13) return "A-";
+        if (count >= 11) return "B+";
+        if (count === 10) return "B";
+        if (count === 9)  return "B-";
+        if (count === 8)  return "C+";
+        if (count === 7)  return "C";
+        if (count === 6)  return "C-";
+        if (count === 5)  return "D+";
+        if (count === 4)  return "D";
+        if (count === 3)  return "D-";
+        if (count === 2)  return "E+";
+        if (count === 1)  return "E";
+        return "E-";
+    }
 
     /**
      * getRank: カテゴリに応じて「ものさし」を切り替える
