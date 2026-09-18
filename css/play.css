@@ -1236,6 +1236,7 @@ body.game-body .summary-btn:hover {
     border: 1px solid #eeeeee;
     color: #1e293b;
 }
+
 #play-timer-val {
     color: #2563eb;
     font-size: 1.1rem;
