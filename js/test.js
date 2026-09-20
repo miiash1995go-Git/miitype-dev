@@ -376,7 +376,8 @@ class TypingExam {
             document.getElementById('res-cpm').innerText = "---";
             document.getElementById('res-comment').innerText = ""; 
         } else {
-            const accuracy = this.totalChars > 0 ? (100 - (this.missCount / this.totalChars * 100)).toFixed(1) : "0.0";
+            const totalAttempts = this.totalChars + this.missCount;
+            const accuracy = totalAttempts > 0 ? ((this.totalChars / totalAttempts) * 100).toFixed(1) : "100.0";
             const cpm = Math.floor(this.totalChars / 5);
             const rank = this.calculateRank(this.totalChars);
 
