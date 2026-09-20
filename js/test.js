@@ -67,7 +67,24 @@ class TypingExam {
         });
 
         try {
-            const res = await fetch('./data/typing/test_5min.json');
+            // 【JST基準の3日周期インデックス算出】（0, 1, 2）
+            const now = new Date();
+            const jstTime = now.getTime() + (now.getTimezoneOffset() * 60000) + (9 * 3600000);
+            const jstDate = new Date(jstTime);
+            const baseDate = new Date('2026-01-01T00:00:00+09:00');
+            const diffTime = jstDate.getTime() - baseDate.getTime();
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const dayIdx = Math.max(0, diffDays) % 3; // 0, 1, 2
+
+            // ファイル名の動的組み立て（0番目は test_5min.json、1番目は _02、2番目は _03）
+            let targetFile = 'test_5min.json';
+            if (dayIdx === 1) {
+                targetFile = 'test_5min_02.json';
+            } else if (dayIdx === 2) {
+                targetFile = 'test_5min_03.json';
+            }
+
+            const res = await fetch(`./data/typing/${targetFile}`);
             const data = await res.json();
             this.questionPool = data.categories;
             
