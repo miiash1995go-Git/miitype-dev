@@ -293,7 +293,9 @@ class TypingExam {
                 this.inputContent += char;
                 matchedAny = true;
             } else {
-                this.missCount++;
+                // 【ミス数の拡張】途中で不一致になった場合、その今回一括入力（コミット）された残りの文字数（または全体）をミスとして一網打尽に加算する
+                const errorLength = committedStr.length - i;
+                this.missCount += (errorLength > 0 ? errorLength : 1);
                 hasError = true;
                 break;
             }
