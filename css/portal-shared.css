@@ -2502,7 +2502,7 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
 
 /* --- ページタイトル装飾：厳格・広余白モデル (v20.9.21.Final_v2) --- */
 .page-title-gradient {
-  font-size: clamp(2.4rem, 5vw, 3.2rem);
+  font-size: clamp(2.8rem, 5vw, 4.0rem);
   font-weight: 900;
   color: #1e293b;
   text-align: left;
