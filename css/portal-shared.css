@@ -2500,16 +2500,19 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     }
 }
 
-/* --- ページタイトル装飾：インパクトグラデーション (v20.9.21.Fixed) --- */
+/* --- ページタイトル装飾：厳格な上下ラインモデル (v20.9.21.Final) --- */
 .page-title-gradient {
   font-size: clamp(2.0rem, 4vw, 2.8rem);
   font-weight: 900;
   color: #1e293b;
   text-align: left;
-  /* 上下 2.0em、左右 1.5em の大胆な余白で「読ませる」意思表示 */
-  padding: 2.0em 1.5em; 
+  /* 上下余白を贅沢に確保 */
+  padding: 3.5em 1.5em; 
   background: linear-gradient(90deg, #e0f2fe 0%, #ffffff 100%);
-  border-radius: 0; /* 角丸を削除し、厳格な四角へ */
-  margin-bottom: 50px; /* 下部余白を拡大し、本文との距離を確保 */
-  border-left: 8px solid #3498db; /* 左側に強固なラインを入れ、視覚的な重みを追加 */
+  border-radius: 0;
+  margin-bottom: 60px;
+  /* 上下に濃い目の太い枠線を配置 */
+  border-top: 4px solid #1e293b;
+  border-bottom: 4px solid #1e293b;
+  border-left: none;
 }
