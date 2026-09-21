@@ -2514,3 +2514,27 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     }
 }
 
+/* --- 厳格・重厚なグラデーションスタイル（新規追加） --- */
+.page-title-gradient {
+  font-size: clamp(2.4rem, 5vw, 3.2rem);
+  font-weight: 900;
+  color: #1e293b;
+  text-align: left;
+  padding: 60px 24px 20px 24px; /* 下のpaddingを調整 */
+  background: linear-gradient(90deg, #e0f2fe 0%, #ffffff 100%);
+  border-radius: 0;
+  margin-bottom: 60px;
+  border-top: 4px solid #334155;
+  border-bottom: 4px solid #334155;
+  border-left: none;
+}
+
+/* サブタイトルをタイトル内に包含させる */
+.page-subtitle-gradient {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #475569;
+  padding: 0 0 60px 0; /* 下にしっかり余白を取る */
+  line-height: 1.5;
+}
