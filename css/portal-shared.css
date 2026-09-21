@@ -61,31 +61,31 @@ body.portal-page article.static-page.static-page--wide {
     line-height: 1.6;
 }
 
-/* --- ページタイトル装飾：厳格・適正余白モデル (v20.9.21.Refined) --- */
+/* --- ページタイトル装飾：重厚な左揃えタイトル (v20.9.21.Final_v3) --- */
 .page-title-gradient {
-  font-size: clamp(1.8rem, 3vw, 2.4rem); /* 少しスリムに */
+  font-size: clamp(2.0rem, 4vw, 2.8rem);
   font-weight: 900;
   color: #1e293b;
   text-align: left;
-  /* 上下 1.2em 左右 1em に圧縮し、無駄な余白を排除 */
-  padding: 1.2em 1em; 
+  padding: 1.5em 1.2em; 
   background: linear-gradient(90deg, #e0f2fe 0%, #ffffff 100%);
   border-radius: 0;
-  margin-bottom: 30px; /* 本文との距離を詰めました */
-  /* 上下に適度な厚みのラインを配置 */
-  border-top: 3px solid #334155;
-  border-bottom: 3px solid #334155;
-  border-left: none;
+  margin-bottom: 0px; /* サブタイトルと密着させる */
+  border-top: none;
+  border-bottom: none;
 }
 
-/* --- サブタイトル（厳格スタイル用） --- */
+/* --- サブタイトル装飾：右揃え・逆グラデーション (v20.9.21.Final_v3) --- */
 .page-subtitle-gradient {
-    display: block;
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: #475569;
-    margin: -30px 0 60px 24px; /* タイトルとの距離を調整 */
-    line-height: 1.5;
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0f172a; /* よりハッキリとした濃い色 */
+  text-align: right; /* 右揃え */
+  padding: 1.5em 1.2em 3em 1.2em;
+  /* 右から白へ向かう逆グラデーション */
+  background: linear-gradient(90deg, #ffffff 0%, #e0f2fe 100%);
+  margin-bottom: 50px;
 }
 
 /* --- 2. 学習ロードマップ & 現場コラム共通カード仕様 --- */
