@@ -41,35 +41,49 @@ body.portal-page article.static-page.static-page--wide {
     max-width: 1000px;
 }
 
-/* ページタイトル(H1)とサブタイトルの階層設計 */
-body.portal-page article.static-page h1.page-title {
-    margin-top: 20px; 
-    margin-right: 0px;
-    margin-bottom: 15px;
-    margin-left: 0px;
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
+/* --- ページタイトル（標準）--- */
+.page-title {
+    margin: 20px 0 15px 0;
+    padding: 0;
     font-size: 1.7rem; 
     font-weight: 900;
     line-height: 1.2;
+    color: #2c3e50;
 }
 
-body.portal-page article.static-page .page-subtitle {
+/* --- サブタイトル（標準） --- */
+.page-subtitle {
     display: block;
     font-size: 1.15rem;
     font-weight: 500;
     color: #64748b;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 45px;
-    margin-left: 0px;
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
+    margin: 0 0 45px 0;
     line-height: 1.6;
+}
+
+/* --- 厳格・重厚なグラデーションスタイル（新規追加） --- */
+.page-title-gradient {
+    font-size: clamp(2.4rem, 5vw, 3.2rem);
+    font-weight: 900;
+    color: #1e293b;
+    text-align: left;
+    padding: 60px 24px;
+    background: linear-gradient(90deg, #e0f2fe 0%, #ffffff 100%);
+    border-radius: 0;
+    margin: 40px 0 60px 0;
+    border-top: 4px solid #334155;
+    border-bottom: 4px solid #334155;
+    border-left: none;
+}
+
+/* --- サブタイトル（厳格スタイル用） --- */
+.page-subtitle-gradient {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #475569;
+    margin: -30px 0 60px 24px; /* タイトルとの距離を調整 */
+    line-height: 1.5;
 }
 
 /* --- 2. 学習ロードマップ & 現場コラム共通カード仕様 --- */
@@ -2500,22 +2514,3 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     }
 }
 
-/* --- ページタイトル装飾：厳格・広余白モデル (v20.9.21.Final_v2) --- */
-.page-title-gradient {
-  font-size: clamp(2.8rem, 5vw, 4.0rem);
-  font-weight: 900;
-  color: #1e293b;
-  text-align: left;
-  /* paddingを固定値のpxにして、どんな状況でも十分な余白を確保 */
-  padding-top: 60px;
-  padding-right: 24px;
-  padding-bottom: 60px;
-  padding-left: 24px;
-  background: linear-gradient(90deg, #e0f2fe 0%, #ffffff 100%);
-  border-radius: 0;
-  margin-bottom: 60px;
-  /* グラデーション背景のトーンに合わせた濃い目の青線 */
-  border-top: 4px solid #334155;
-  border-bottom: 4px solid #334155;
-  border-left: none;
-}
