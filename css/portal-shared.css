@@ -2500,16 +2500,16 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     }
 }
 
-/* --- ページタイトル装飾：インパクトグラデーション (v20.9.21.Update) --- */
+/* --- ページタイトル装飾：インパクトグラデーション (v20.9.21.Fixed) --- */
 .page-title-gradient {
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-size: clamp(2.0rem, 4vw, 2.8rem);
   font-weight: 900;
-  color: #2c3e50; /* 濃紺で引き締める */
-  text-align: left; /* 左揃えへ */
-  padding: 1.2em 1em; /* 上下の余白と左右のインデント */
-  /* 左側（#e0f2fe）から右へ白く抜けるグラデーション。文字の視認性を考慮 */
-  background: linear-gradient(90deg, #e0f2fe 0%, #ffffff 85%);
-  border-radius: 6px;
-  border-bottom: none; /* 下線を削除 */
-  margin-bottom: 30px;
+  color: #1e293b;
+  text-align: left;
+  /* 上下 2.0em、左右 1.5em の大胆な余白で「読ませる」意思表示 */
+  padding: 2.0em 1.5em; 
+  background: linear-gradient(90deg, #e0f2fe 0%, #ffffff 100%);
+  border-radius: 0; /* 角丸を削除し、厳格な四角へ */
+  margin-bottom: 50px; /* 下部余白を拡大し、本文との距離を確保 */
+  border-left: 8px solid #3498db; /* 左側に強固なラインを入れ、視覚的な重みを追加 */
 }
