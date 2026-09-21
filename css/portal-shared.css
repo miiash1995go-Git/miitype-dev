@@ -2499,3 +2499,16 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
         font-size: 1.15rem;
     }
 }
+
+/* --- ページタイトル装飾：インパクトグラデーション (v20.9.21.Gradient) --- */
+.page-title-gradient {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700;
+  color: #0a2540;
+  text-align: center;
+  padding: 1em 0;
+  background: linear-gradient(90deg, #e0f2fe 0%, #ffffff 50%, #e0f2fe 100%);
+  border-radius: 6px;
+  border-bottom: 2px solid #38bdf8;
+  margin-bottom: 40px;
+}
