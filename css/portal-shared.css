@@ -61,33 +61,30 @@ body.portal-page article.static-page.static-page--wide {
     line-height: 1.6;
 }
 
-/* --- ページタイトル装飾：独立・厳格上下ラインモデル (v20.9.21.Final_v6) --- */
+/* --- ページタイトル装飾：独立・厳格上下ラインモデル (v20.9.21.Final_v7) --- */
 .page-title-gradient {
-  font-size: clamp(2.4rem, 5vw, 3.2rem);
+  font-size: clamp(1.8rem, 4vw, 2.4rem); /* 少しサイズを落としました */
   font-weight: 900;
   color: #1e293b;
   text-align: left;
-  /* タイトル専用の上下余白 */
   padding: 40px 24px; 
   background: linear-gradient(90deg, #e0f2fe 0%, #ffffff 100%);
-  margin-bottom: 30px;
-  /* 上下に枠線 */
+  border-radius: 0;
+  margin-bottom: 0px; /* サブタイトルに密着させるため0 */
   border-top: 4px solid #334155;
   border-bottom: 4px solid #334155;
 }
 
 .page-subtitle-gradient {
   display: block;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: #0f172a;
   text-align: right;
-  /* サブタイトル専用の上下余白（タイトルとは別個に管理） */
-  padding: 20px 24px;
+  padding: 15px 24px 40px 24px; /* 上余白を削り、下余白のみ確保 */
   background: linear-gradient(90deg, #ffffff 0%, #e0f2fe 100%);
-  margin-bottom: 50px;
-  /* 枠線なし */
-  border-bottom: none;
+  margin-top: -10px; /* タイトルとさらに密着 */
+  margin-bottom: 40px;
 }
 
 /* --- 2. 学習ロードマップ & 現場コラム共通カード仕様 --- */
