@@ -2576,3 +2576,74 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
     }
 }
 
+/* 【検索開始点】 */
+body.portal-page .marker-yellow {
+    background-image: linear-gradient(transparent 60%, #ffff7f 60%);
+    padding-top: 0px;
+    padding-right: 2px;
+    padding-bottom: 0px;
+    padding-left: 2px;
+}
+
+/* 【置換ブロック】FAQエリアの背景・左揃え・パディングを完璧に統治するスタイル */
+body.portal-page article.static-page .content-body .faq-container,
+body.portal-page .faq-container,
+.faq-container {
+    background-color: #f8fbfe !important;
+    border: 1px solid #d1e3f8 !important;
+    border-radius: 20px !important;
+    padding: 35px 40px !important;
+    margin-top: 35px !important;
+    margin-bottom: 40px !important;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.03) !important;
+    box-sizing: border-box !important;
+}
+
+body.portal-page .faq-item { 
+    display: flex !important; 
+    flex-direction: column !important; 
+    align-items: flex-start !important; 
+    text-align: left !important;
+    padding-top: 25px !important; 
+    padding-right: 0px !important;
+    padding-bottom: 25px !important; 
+    padding-left: 0px !important; 
+    border-bottom: 1px solid #e2e8f0 !important; 
+}
+
+body.portal-page .faq-item:last-child {
+    border-bottom: none !important;
+    padding-bottom: 0px !important;
+}
+
+body.portal-page .faq-item:first-child {
+    padding-top: 0px !important;
+}
+
+body.portal-page .faq-q { 
+    font-weight: 900 !important; 
+    color: var(--accent) !important; 
+    margin-top: 0px !important;
+    margin-bottom: 12px !important; 
+    font-size: 1.15rem !important; 
+    text-align: left !important;
+    display: block !important;
+}
+
+body.portal-page .faq-a { 
+    color: #4b5563 !important; 
+    line-height: 1.8 !important; 
+    padding-left: 15px !important; 
+    border-left: 4px solid var(--accent) !important; 
+    text-align: left !important;
+    margin: 0px !important;
+    font-size: 1rem !important;
+}
+
+/* 【着地点】 */
+body.portal-page .info-note-box {
+    margin-top: 35px;
+    margin-right: 0px;
+    margin-bottom: 35px;
+    margin-left: 0px;
+}
