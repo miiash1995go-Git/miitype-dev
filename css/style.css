@@ -7,7 +7,7 @@
 
 /* --- 11行目付近：色の基準値を更新 --- */
 :root {
-    --primary: #2c3e50;
+    --primary: #111827; /* サイト全体の基本文字色をシャープな黒へ変更 */
     --primary-hover: #34495e;
     --accent: #3498db;
     --accent-hover: #2980b9;
