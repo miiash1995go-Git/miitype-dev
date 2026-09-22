@@ -10,7 +10,9 @@
 /* --- 1. 記事共通：基本コンテナ --- */
 
 /* --- 記事本文のベースフォント規格（全ページ共通統治） --- */
-body.portal-page article.static-page .content-body p {
+body.portal-page article.static-page .content-body p,
+body.portal-page article.static-page > p,
+body.portal-page article.static-page .hub-section p {
     font-size: 1.1rem;
     font-weight: 400;
     color: #111827;
@@ -19,7 +21,9 @@ body.portal-page article.static-page .content-body p {
 }
 
 @media (max-width: 768px) {
-    body.portal-page article.static-page .content-body p {
+    body.portal-page article.static-page .content-body p,
+    body.portal-page article.static-page > p,
+    body.portal-page article.static-page .hub-section p {
         font-size: 0.98rem !important;
     }
 }
