@@ -30,7 +30,21 @@
     <link rel="stylesheet" href="css/portal-shared.css">
     <link rel="stylesheet" href="css/test.css">
 </head>
+
 <body class="test-body">
+    <!-- スマホ・小画面でのアクセス制限オーバーレイ（768px以下・スマホ専用） -->
+    <div class="mobile-restriction-overlay" id="mobile-restriction-overlay">
+        <div class="restriction-card">
+            <h2>PC環境での学習を推奨</h2>
+            <p>本サイトのタイピングテストは、パソコンでの学習を前提としています。<br><br>
+            スマートフォンでは正確な計測ができないため、PC環境での学習を推奨しています。</p>
+            <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; margin-top: 20px;">
+                <a href="javascript:history.back()" class="btn-main" style="width: 100%; max-width: 240px; padding: 12px 0; font-size: 1rem; box-shadow: none; background-color: #2563EB; text-decoration: none; display: flex; align-items: center; justify-content: center;">元のページへ</a>
+                <a href="./" style="color: #64748b; font-size: 0.9rem; text-decoration: underline;">ホームへ戻る</a>
+            </div>
+        </div>
+    </div>
+
     <div id="app">
         <!-- サイト共通ヘッダー -->
         <header>

@@ -781,7 +781,7 @@ body.game-body #keyboard-container {
 }
 
 /* 1024px以下での制限発動 */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
     body.game-body .mobile-restriction-overlay { display: flex; }
     body.game-body #app { display: none !important; }
 }
