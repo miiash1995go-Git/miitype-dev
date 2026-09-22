@@ -38,14 +38,15 @@
     <link rel="stylesheet" href="css/hub-pages.css">
 
 <style>
-        /* hub-word.html 専用の一時テストスタイル */
+        /* hub-word.html 専用のレスポンシブ文字サイズテスト */
         body.portal-page article.static-page .content-body p {
-            font-size: 1.1rem !important; /* 文字サイズを約17.6pxに拡大 */
+            /* PCでは1.1rem、スマホなど画面が狭いときは1rem（または1.02rem）に自動調整 */
+            font-size: clamp(1rem, 1.2vw + 0.8rem, 1.1rem) !important;
             font-weight: 400;
             color: #2c3e50;
-            letter-spacing: 0.02em; /* 文字間を少しだけ広げて読みやすく */
+            letter-spacing: 0.02em;
         }
-</style>
+    </style>
 
 </head>
 <body class="portal-page">
