@@ -2616,9 +2616,7 @@ body.portal-page .faq-list {
 }
 
 body.portal-page .faq-list-item {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: block;
     text-align: left;
     padding-bottom: 24px;
     border-bottom: 1px dashed #cbd5e1;
@@ -2631,26 +2629,27 @@ body.portal-page .faq-list-item:last-child {
 
 /* 質問（Q）の行 */
 body.portal-page .faq-q {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
+    position: relative;
+    padding-left: 40px;
     font-weight: 900;
     color: #1e293b;
     font-size: 1.1rem;
     margin-top: 0px;
     margin-right: 0px;
-    margin-bottom: 0px;
+    margin-bottom: 8px;
     margin-left: 0px;
     line-height: 1.5;
 }
 
-/* 質問の「Q」バッジ */
+/* 質問の「Q」バッジ（絶対配置で左端に固定） */
 body.portal-page .faq-q::before {
     content: "Q";
-    display: inline-flex;
+    position: absolute;
+    left: 0px;
+    top: -2px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
     width: 28px;
     height: 28px;
     background-color: var(--accent);
@@ -2663,9 +2662,8 @@ body.portal-page .faq-q::before {
 
 /* 回答（A）の行 */
 body.portal-page .faq-a {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
+    position: relative;
+    padding-left: 40px;
     font-size: 1rem;
     color: #334155;
     margin-top: 0px;
@@ -2675,13 +2673,15 @@ body.portal-page .faq-a {
     line-height: 1.8;
 }
 
-/* 回答の「A」バッジ */
+/* 回答の「A」バッジ（絶対配置で左端に固定） */
 body.portal-page .faq-a::before {
     content: "A";
-    display: inline-flex;
+    position: absolute;
+    left: 0px;
+    top: -2px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
     width: 28px;
     height: 28px;
     background-color: #64748b;
