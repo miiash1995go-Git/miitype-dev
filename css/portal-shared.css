@@ -436,6 +436,7 @@ body.game-body .instructor-advice b {
     font-size: 1.15rem;
 }
 
+
 /* 通常の太字（<strong>等）には下線をつけないための保護ルール */
 body.portal-page .instructor-advice p strong,
 body.portal-page .instructor-advice p b {
