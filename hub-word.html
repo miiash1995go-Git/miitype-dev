@@ -38,19 +38,20 @@
     <link rel="stylesheet" href="css/hub-pages.css">
 
 <style>
-    /* hub-word.html 専用：確実なレスポンシブ文字サイズ調整 */
+    /* hub-word.html 専用：文字サイズと「真っ黒」へのカラー調整テスト */
     body.portal-page article.static-page .content-body p {
-        /* デフォルト（PCサイズ）はゆったり大きめの 1.1rem */
         font-size: 1.1rem !important;
         font-weight: 400;
-        color: #2c3e50;
+        /* 紺色（#2c3e50）から、より引き締まった通常の黒（#111827 または #000000）に変更 */
+        color: #111827 !important; 
         letter-spacing: 0.02em;
     }
 
-    /* スマホ画面（768px以下）のときだけ、文字サイズをスッキリさせる */
+    /* スマホ画面（768px以下）のとき */
     @media (max-width: 768px) {
         body.portal-page article.static-page .content-body p {
-            font-size: 0.98rem !important; /* または 1rem */
+            font-size: 0.98rem !important;
+            color: #111827 !important;
         }
     }
 </style>
