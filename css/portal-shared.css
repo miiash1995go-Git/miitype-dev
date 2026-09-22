@@ -2672,6 +2672,8 @@ body.portal-page .faq-a {
     margin-bottom: 0px;
     margin-left: 0px;
     line-height: 1.8;
+    border-left: none !important; /* 万が一の線を完全に封殺 */
+    background: transparent !important;
 }
 
 /* 回答の「A」バッジ（絶対配置で左端に固定） */
