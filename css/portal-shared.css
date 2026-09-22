@@ -2580,7 +2580,7 @@ body.portal-page .news-sep { display: inline-block !important; margin-right: 12p
    FAQ専用ボックスシステム (v20.10.FAQ)
    ============================================================ */
 body.portal-page article.static-page .content-body .faq-box {
-    background-color: #f8fbfe;
+    background-color: #ffffff;
     margin-top: 35px;
     margin-right: 0px;
     margin-bottom: 35px;
@@ -2607,6 +2607,7 @@ body.portal-page article.static-page .content-body .faq-box {
     border-left-color: var(--accent);
     box-sizing: border-box;
     display: block;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.03);
 }
 
 body.portal-page .faq-list {
