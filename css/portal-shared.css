@@ -449,76 +449,76 @@ body.portal-page .instructor-advice p b {
 /* 各カテゴリ別：洗練された薄めパステル・アドバイスボックス */
 body.portal-page .instructor-advice--typing, 
 body.portal-page .instructor-advice--word {
-    background-color: #f0f7ff;
-    border-top-color: #e0f2fe;
-    border-right-color: #e0f2fe;
-    border-bottom-color: #e0f2fe;
-    border-left-color: #93c5fd;
+    background-color: #f0f7ff !important;
+    border-top-color: #e0f2fe !important;
+    border-right-color: #e0f2fe !important;
+    border-bottom-color: #e0f2fe !important;
+    border-left-color: #93c5fd !important;
 }
 body.portal-page .instructor-advice--typing b, 
 body.portal-page .instructor-advice--word b {
-    color: #1d4ed8;
-    border-bottom-color: #93c5fd;
+    color: #1d4ed8 !important;
+    border-bottom-color: #93c5fd !important;
 }
 
 body.portal-page .instructor-advice--windows {
-    background-color: #f0f9ff;
-    border-top-color: #e0f2fe;
-    border-right-color: #e0f2fe;
-    border-bottom-color: #e0f2fe;
-    border-left-color: #7dd3fc;
+    background-color: #f0f9ff !important;
+    border-top-color: #e0f2fe !important;
+    border-right-color: #e0f2fe !important;
+    border-bottom-color: #e0f2fe !important;
+    border-left-color: #7dd3fc !important;
 }
 body.portal-page .instructor-advice--windows b {
-    color: #0284c7;
-    border-bottom-color: #7dd3fc;
+    color: #0284c7 !important;
+    border-bottom-color: #7dd3fc !important;
 }
 
 body.portal-page .instructor-advice--excel {
-    background-color: #f0fdf4;
-    border-top-color: #dcfce7;
-    border-right-color: #dcfce7;
-    border-bottom-color: #dcfce7;
-    border-left-color: #86efac;
+    background-color: #f0fdf4 !important;
+    border-top-color: #dcfce7 !important;
+    border-right-color: #dcfce7 !important;
+    border-bottom-color: #dcfce7 !important;
+    border-left-color: #86efac !important;
 }
 body.portal-page .instructor-advice--excel b {
-    color: #15803d;
-    border-bottom-color: #86efac;
+    color: #15803d !important;
+    border-bottom-color: #86efac !important;
 }
 
 body.portal-page .instructor-advice--ai {
-    background-color: #ecfeff;
-    border-top-color: #ccfbf1;
-    border-right-color: #ccfbf1;
-    border-bottom-color: #ccfbf1;
-    border-left-color: #5eead4;
+    background-color: #ecfeff !important;
+    border-top-color: #ccfbf1 !important;
+    border-right-color: #ccfbf1 !important;
+    border-bottom-color: #ccfbf1 !important;
+    border-left-color: #5eead4 !important;
 }
 body.portal-page .instructor-advice--ai b {
-    color: #0f766e;
-    border-bottom-color: #5eead4;
+    color: #0f766e !important;
+    border-bottom-color: #5eead4 !important;
 }
 
 body.portal-page .instructor-advice--career {
-    background-color: #fff7ed;
-    border-top-color: #ffedd5;
-    border-right-color: #ffedd5;
-    border-bottom-color: #ffedd5;
-    border-left-color: #fdba74;
+    background-color: #fff7ed !important;
+    border-top-color: #ffedd5 !important;
+    border-right-color: #ffedd5 !important;
+    border-bottom-color: #ffedd5 !important;
+    border-left-color: #fdba74 !important;
 }
 body.portal-page .instructor-advice--career b {
-    color: #c2410c;
-    border-bottom-color: #fdba74;
+    color: #c2410c !important;
+    border-bottom-color: #fdba74 !important;
 }
 
 body.portal-page .instructor-advice--column {
-    background-color: #faf8ff;
-    border-top-color: #f3e8ff;
-    border-right-color: #f3e8ff;
-    border-bottom-color: #f3e8ff;
-    border-left-color: #c4b5fd;
+    background-color: #faf8ff !important;
+    border-top-color: #f3e8ff !important;
+    border-right-color: #f3e8ff !important;
+    border-bottom-color: #f3e8ff !important;
+    border-left-color: #c4b5fd !important;
 }
 body.portal-page .instructor-advice--column b {
-    color: #6d28d9;
-    border-bottom-color: #c4b5fd;
+    color: #6d28d9 !important;
+    border-bottom-color: #c4b5fd !important;
 }
 
 /* --- 4. 記事本文エリア装飾 --- */
