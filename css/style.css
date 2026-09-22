@@ -258,33 +258,31 @@ body.portal-page #app {
         width: 100% !important;
         margin-top: 0px !important;
         margin-bottom: 20px !important;
-        padding-right: 0px !important; /* 内側スクロールのため0に */
-        padding-left: 0px !important;  /* 内側スクロールのため0に */
+        padding-right: 0px !important; 
+        padding-left: 0px !important;  
         border-top-left-radius: 0px !important;
         border-top-right-radius: 0px !important;
         border-bottom-right-radius: 0px !important;
         border-bottom-left-radius: 0px !important;
         border-right-style: none !important;
         border-left-style: none !important;
-        /* カード全体で横スクロールを受け止める */
         overflow-x: auto !important;
         overflow-y: hidden !important;
         -webkit-overflow-scrolling: touch;
     }
 
-    /* スクロールバーを非表示 */
     .new-article-announce::-webkit-scrollbar {
         display: none !important;
     }
 
+    /* 【追加・変更】行のパディングを狭め、スマホで縦にデカく見える現象を根絶 */
     .announce-row {
-        /* 個別のスクロール設定を廃止し、親に従う */
         overflow: visible !important;
-        padding-top: 15px !important;
-        padding-bottom: 15px !important;
-        padding-right: 15px !important;
-        padding-left: 15px !important;
-        width: max-content !important; /* テキストの長さに合わせて幅を広げる */
+        padding-top: 8px !important;    /* 15pxから8pxへ大幅に圧縮 */
+        padding-bottom: 8px !important; /* 15pxから8pxへ大幅に圧縮 */
+        padding-right: 12px !important;
+        padding-left: 12px !important;
+        width: max-content !important; 
         min-width: 100% !important;
     }
 
@@ -292,18 +290,21 @@ body.portal-page #app {
         white-space: nowrap !important;
         display: flex !important;
         align-items: center !important;
-        /* スマホでリンクが青くならないよう強制上書き */
         color: #2c3e50 !important;
         text-decoration: none !important;
+        font-size: 0.85rem !important; /* 文字も少しコンパクトにして収まりを良くする */
     }
 
     .new-badge-label, .new-badge-spacer {
-        width: 48px !important;
-        margin-right: 10px !important;
+        width: 42px !important;        /* バッジの幅も少し縮小 */
+        height: 20px !important;       /* 高さを抑える */
+        font-size: 0.65rem !important;
+        margin-right: 8px !important;
     }
 
     .announce-date {
-        margin-right: 10px !important;
+        margin-right: 8px !important;
+        font-size: 0.78rem !important; /* 日付のサイズを調整 */
     }
 }
 
