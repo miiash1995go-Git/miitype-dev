@@ -1278,19 +1278,38 @@ body.portal-page .breadcrumb a {
     font-weight: 900;
 }
 
-/* --- 11. スマホ表示：余白の完全最適化 --- */
-
 @media (max-width: 768px) {
-    body.portal-page #app {
-        width: 100% !important;
-        margin-top: 0px !important;
-        margin-right: auto !important;
-        margin-bottom: 0px !important;
-        margin-left: auto !important;
-        padding-top: 0px !important;
-        padding-right: 0px !important;
-        padding-bottom: 0px !important;
-        padding-left: 0px !important;
+    /* --- 本家Newsリストのスマホ用コンパクト化統治 --- */
+    body.portal-page .news-list {
+        padding-top: 5px !important;
+        padding-right: 12px !important;
+        padding-bottom: 5px !important;
+        padding-left: 12px !important;
+    }
+
+    body.portal-page .news-item {
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        gap: 6px !important;
+    }
+
+    body.portal-page .news-meta {
+        gap: 6px !important;
+    }
+
+    .news-date {
+        font-size: 0.78rem !important;
+    }
+
+    body.portal-page .news-tag {
+        font-size: 0.65rem !important;
+        padding: 2px 6px !important;
+        min-width: 65px !important;
+        width: 65px !important;
+    }
+
+    .news-text {
+        font-size: 0.85rem !important;
     }
     
     body.portal-page article.static-page {
