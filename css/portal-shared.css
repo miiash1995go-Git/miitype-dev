@@ -67,7 +67,7 @@ body.portal-page article.static-page.static-page--wide {
   font-weight: 900;
   color: #1e293b;
   text-align: left;
-  padding: 30px 24px; /* 上下を30pxに統一 */
+  padding: 20px 24px; /* 上下を20pxに統一 */
   background: linear-gradient(90deg, #e0f2fe 0%, #ffffff 100%);
   border-radius: 0;
   margin-bottom: 0px;
@@ -81,8 +81,8 @@ body.portal-page article.static-page.static-page--wide {
   font-weight: 800;
   color: #0f172a;
   text-align: right;
-  /* 上下を同じ20pxに統一。これにより背景帯が綺麗に整う */
-  padding: 20px 24px 20px 24px; 
+  /* 上下を同じ10pxに統一。これにより背景帯が綺麗に整う */
+  padding: 10px 24px ; 
   background: linear-gradient(90deg, #ffffff 0%, #e0f2fe 100%);
   margin-bottom: 40px;
   border-bottom: none;
