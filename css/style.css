@@ -541,11 +541,11 @@ main {
     min-height: 0;
 }
 
-/* --- 全ページ共通のボタンデザイン（立体・高級感ブラッシュアップ版） --- */
+/* --- 全ページ共通のボタンデザイン（スリム立体・ブラッシュアップ版） --- */
 .btn-main { 
     background-color: #1e293b !important; 
     color: #ffffff !important; 
-    background-image: linear-gradient(180deg, #334155 0%, #1e293b 100%) !important; /* わずかなグラデーションで立体感をプラス */
+    background-image: linear-gradient(180deg, #334155 0%, #1e293b 100%) !important;
     border-top-style: solid;
     border-right-style: solid;
     border-bottom-style: solid;
@@ -554,11 +554,11 @@ main {
     border-right-width: 1px;
     border-bottom-width: 1px;
     border-left-width: 1px;
-    border-top-color: #475569;   /* 上端にうっすら明るい光（ハイライト）を置いて立体的に見せる */
+    border-top-color: #475569;   
     border-right-color: #0f172a;
     border-bottom-color: #0f172a;
     border-left-color: #0f172a;
-    padding-top: 14px !important;  /* 少し上下の厚みを持たせる */
+    padding-top: 12px !important;  /* 高さを元のスリムな12pxに戻す */
     padding-right: 50px !important; 
     padding-bottom: 12px !important; 
     padding-left: 50px !important; 
@@ -569,8 +569,7 @@ main {
     border-bottom-left-radius: 40px;
     cursor: pointer; 
     font-weight: 800; 
-    /* 下部の厚みを少し深くし、さらに周囲にフワッとしたシャドウを添えて「浮き上がり感」を出す */
-    box-shadow: 0px 6px 0px #0f172a, 0px 10px 20px rgba(15, 23, 42, 0.2) !important; 
+    box-shadow: 0px 4px 0px #0f172a, 0px 8px 15px rgba(15, 23, 42, 0.15) !important; /* 厚みをスリム化しつつ浮遊感を保持 */
     transition-property: transform, box-shadow, background-color;
     transition-duration: 0.15s;
     transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -578,19 +577,19 @@ main {
     display: inline-block; 
 }
 
-/* ホバー時（マウスを乗せたとき）：少し浮き上がる */
+/* ホバー時（マウスを乗せたとき） */
 .btn-main:hover:not(:disabled) { 
-    background-color: #2563eb !important; /* ホバー時は鮮やかな青に変化させて「反応していること」をアピール */
+    background-color: #2563eb !important; 
     background-image: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%) !important;
     border-top-color: #60a5fa;
-    transform: translateY(-3px) !important; /* 上にフワッと浮く */
-    box-shadow: 0px 9px 0px #1e40af, 0px 15px 25px rgba(37, 99, 235, 0.3) !important; 
+    transform: translateY(-2px) !important; 
+    box-shadow: 0px 6px 0px #1e40af, 0px 12px 20px rgba(37, 99, 235, 0.25) !important; 
 }
 
-/* アクティブ時（クリックして押し込んだ瞬間）：シャドウが縮んで「押し込まれた感」を演出 */
+/* アクティブ時（クリックした瞬間） */
 .btn-main:active:not(:disabled) { 
-    transform: translateY(3px) !important; /* 下にストンと沈む */
-    box-shadow: 0px 2px 0px #1e40af, 0px 5px 10px rgba(37, 99, 235, 0.2) !important; 
+    transform: translateY(2px) !important; 
+    box-shadow: 0px 2px 0px #1e40af, 0px 4px 8px rgba(37, 99, 235, 0.15) !important; 
 }
 
 
