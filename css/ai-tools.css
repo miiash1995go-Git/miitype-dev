@@ -283,8 +283,27 @@ body.portal-page article.static-page .content-body .ai-summary-container h3.summ
 /* 4. プロンプト例文セクション */
 .example-unit { margin-bottom: 40px; }
 .example-box {
-    background: #2c3e50; color: white; padding-top: 30px; padding-right: 30px; padding-bottom: 30px; padding-left: 30px;
-    border-radius: 15px; position: relative; font-family: 'Roboto Mono', monospace; line-height: 1.8;
+    background: #2c3e50; 
+    color: #ffffff !important; 
+    padding-top: 30px; 
+    padding-right: 30px; 
+    padding-bottom: 30px; 
+    padding-left: 30px;
+    border-radius: 15px; 
+    position: relative; 
+    font-family: 'Roboto Mono', monospace; 
+    line-height: 1.8;
+}
+
+/* 【重要】共通Pタグ規格による視認性消失を防ぐための例外・保護ルール */
+body.portal-page article.static-page .content-body .example-box p {
+    color: #ffffff !important;
+    font-family: 'Roboto Mono', monospace !important;
+    font-size: 0.9rem !important;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
 }
 .example-label {
     position: absolute; top: -12px; left: 20px; background: var(--accent);
