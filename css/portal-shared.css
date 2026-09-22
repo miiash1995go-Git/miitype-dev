@@ -61,13 +61,13 @@ body.portal-page article.static-page.static-page--wide {
     line-height: 1.6;
 }
 
-/* --- ページタイトル装飾：厳格・上下線・コンパクトモデル (v20.9.21.Final_v9) --- */
+/* --- ページタイトル装飾：上下ライン・均等余白モデル (v20.9.22.Fixed) --- */
 .page-title-gradient {
-  font-size: clamp(1.6rem, 3vw, 2.2rem); /* サイズを一段階小さく */
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-weight: 900;
   color: #1e293b;
   text-align: left;
-  padding: 25px 24px; /* 余白を縮小 */
+  padding: 30px 24px; /* 上下を30pxに統一 */
   background: linear-gradient(90deg, #e0f2fe 0%, #ffffff 100%);
   border-radius: 0;
   margin-bottom: 0px;
@@ -77,11 +77,12 @@ body.portal-page article.static-page.static-page--wide {
 
 .page-subtitle-gradient {
   display: block;
-  font-size: 1.1rem; /* サブタイトルも少し控えめに */
+  font-size: 1.1rem;
   font-weight: 800;
   color: #0f172a;
   text-align: right;
-  padding: 10px 24px 20px 24px; /* 下余白を20pxに絞ってコンパクトに */
+  /* 上下を同じ20pxに統一。これにより背景帯が綺麗に整う */
+  padding: 20px 24px 20px 24px; 
   background: linear-gradient(90deg, #ffffff 0%, #e0f2fe 100%);
   margin-bottom: 40px;
   border-bottom: none;
