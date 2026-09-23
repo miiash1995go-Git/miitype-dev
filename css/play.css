@@ -273,11 +273,11 @@ body.focus-mode #app {
     border-right-color: #0f172a !important;
     border-bottom-color: #0f172a !important;
     border-left-color: #0f172a !important;
-    padding-top: 9px !important;   /* スリムな余白に同期 */
+    padding-top: 9px !important;   
     padding-right: 45px !important; 
     padding-bottom: 9px !important; 
     padding-left: 45px !important; 
-    font-size: 1.05rem !important; 
+    font-size: 1.1rem !important; /* フォントサイズを他と同じ 1.1rem に復元 */
     border-top-left-radius: 30px !important;
     border-top-right-radius: 30px !important;
     border-bottom-right-radius: 30px !important;
@@ -297,16 +297,16 @@ body.focus-mode #app {
 }
 
 #start-btn:hover {
-    background-color: #34495e !important;
-    transform: translate(-50%, calc(-50% - 2px)) !important;
-    box-shadow: 0px 6px 0px #1a252f !important;
+    background-color: #2563eb !important; 
+    background-image: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%) !important;
+    border-top-color: #60a5fa !important;
+    transform: translate(-50%, calc(-50% - 2px)) !important; 
+    box-shadow: 0px 5px 0px #1e40af, 0px 10px 18px rgba(37, 99, 235, 0.2) !important;
 }
 
-/* ハブページのaタグ同様、指が触れた瞬間にストンと落ちる設定 */
 #start-btn:active {
-    transform: translate(-50%, calc(-50% + 3px)) !important;
-    box-shadow: 0px 1px 0px #1a252f !important;
-    transition-property: none !important;
+    transform: translate(-50%, calc(-50% + 2px)) !important;
+    box-shadow: 0px 2px 0px #1e40af, 0px 3px 6px rgba(37, 99, 235, 0.1) !important;
 }
 
 /* 無効化状態の擬似定義（ボタンが押されている最中などの連打防止用） */
