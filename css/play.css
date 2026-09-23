@@ -1162,21 +1162,21 @@ body.game-body .summary-btn:hover {
    カテゴリ選択グループ：アクティブ連動カラーチェンジ (v20.9.18)
    ============================================================ */
 
-/* 1. 基礎：薄い青 */
+/* 1. 基礎：薄い青 ＆ 選択中の濃い枠線 */
 .category-group.group-basic:has(.btn-category.active) {
     background-color: #f0f7ff !important;
-    border-top-width: 1px !important;
-    border-right-width: 1px !important;
-    border-bottom-width: 1px !important;
-    border-left-width: 1px !important;
+    border-top-width: 2px !important;
+    border-right-width: 2px !important;
+    border-bottom-width: 2px !important;
+    border-left-width: 2px !important;
     border-top-style: solid !important;
     border-right-style: solid !important;
     border-bottom-style: solid !important;
     border-left-style: solid !important;
-    border-top-color: #b9e6fc !important;
-    border-right-color: #b9e6fc !important;
-    border-bottom-color: #b9e6fc !important;
-    border-left-color: #b9e6fc !important;
+    border-top-color: #3498db !important; /* 選択中は鮮やかな青の枠線に変化 */
+    border-right-color: #3498db !important;
+    border-bottom-color: #3498db !important;
+    border-left-color: #3498db !important;
 }
 
 /* 2. チャレンジ：薄い黄色（※将来用） */
