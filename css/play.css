@@ -119,8 +119,8 @@ body.focus-mode #app {
     border-top-right-radius: 15px !important;
     border-bottom-right-radius: 15px !important;
     border-bottom-left-radius: 15px !important;
-    /* BOX自体の枠線を少し濃くして輪郭をはっきりさせる */
-    border: 1.5px solid #cbd5e1 !important;
+    /* BOX自体の枠線を濃くして輪郭をはっきりさせる */
+    border: 2px solid #94a3b8 !important;
     position: relative !important;
     z-index: 5 !important;
 }
