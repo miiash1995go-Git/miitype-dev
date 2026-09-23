@@ -55,7 +55,7 @@ body.focus-mode #app {
    ============================================================ */
 .card {
     background-color: #ffffff !important;
-    padding-top: 20px !important;
+    padding-top: 22px !important; /* タイトル分の上余白を詰める */
     padding-right: 30px !important;
     padding-bottom: 25px !important;
     padding-left: 30px !important;
