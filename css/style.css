@@ -21,14 +21,20 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
-/* --- 19行目付近：bodyの背景色を適用 --- */
+/* --- 19行目付近：bodyの背景色・フォント設定を完全統治 --- */
 body { 
-    margin: 0; padding: 0; font-family: 'Noto Sans JP', sans-serif; 
-    /* 変数(--bg)を使用し、全ページを落ち着いたトーンへ */
+    margin: 0; 
+    padding: 0; 
+    /* どの端末で見てもニュースサイトのように美しく表示されるプロ仕様の指定 */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "BIZ UDPGothic", "Meiryo", "游ゴシック", YuGothic, sans-serif !important; 
     background-color: var(--bg); 
     color: var(--primary); 
-    line-height: 1.6; min-height: 100vh; width: 100vw; 
-    display: flex; flex-direction: column; overflow-x: hidden; 
+    line-height: 1.6; 
+    min-height: 100vh; 
+    width: 100vw; 
+    display: flex; 
+    flex-direction: column; 
+    overflow-x: hidden; 
 }
 
 /* ポータルページ（読みもの）の背景は必ず白に */
