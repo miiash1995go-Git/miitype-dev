@@ -81,7 +81,17 @@ body.focus-mode #app {
     pointer-events: auto !important;
 }
 
-/* --- 1. カテゴリ選択エリア：4カラム等幅統治 --- */
+/* --- 0. 「練習カテゴリを選択」タイトルの視認性強化 --- */
+.card > h1 {
+    font-size: 1.4rem !important;
+    font-weight: 900 !important;
+    color: #1e293b !important;
+    letter-spacing: 0.03em;
+    margin-top: 0px !important;
+    margin-bottom: 20px !important;
+}
+
+/* --- 1. カテゴリ選択エリア：4カラム等幅統治 ＆ 枠線強化 --- */
 .btn-group-container {
     display: flex !important;
     flex-direction: row !important;
@@ -100,48 +110,43 @@ body.focus-mode #app {
     display: flex !important;
     flex-direction: column !important;
     gap: 6px !important;
-    padding-top: 10px !important;
+    padding-top: 12px !important;
     padding-right: 10px !important;
-    padding-bottom: 10px !important;
+    padding-bottom: 12px !important;
     padding-left: 10px !important;
     background-color: #f8f9fa !important;
     border-top-left-radius: 15px !important;
     border-top-right-radius: 15px !important;
     border-bottom-right-radius: 15px !important;
     border-bottom-left-radius: 15px !important;
-    border-top-width: 1px !important;
-    border-top-style: solid !important;
-    border-top-color: #eeeeee !important;
-    border-right-width: 1px !important;
-    border-right-style: solid !important;
-    border-right-color: #eeeeee !important;
-    border-bottom-width: 1px !important;
-    border-bottom-style: solid !important;
-    border-bottom-color: #eeeeee !important;
-    border-left-width: 1px !important;
-    border-left-style: solid !important;
-    border-left-color: #eeeeee !important;
+    /* BOX自体の枠線を少し濃くして輪郭をはっきりさせる */
+    border: 1.5px solid #cbd5e1 !important;
     position: relative !important;
     z-index: 5 !important;
 }
 
-/* --- 2. ボタン共通デザイン ＆ クリック保証 --- */
+/* 「基礎」「チャレンジ」「実務」「実力判定」のグループ見出しをハッキリさせる */
+.category-group .group-label,
+.group-label {
+    font-size: 0.9rem !important;
+    font-weight: 900 !important;
+    color: #334155 !important;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+    display: block;
+    text-align: center;
+}
+
+/* --- 2. ボタン共通デザイン ＆ 枠線の視認性強化 --- */
 .btn-category {
     width: 100% !important;
     background-color: #ffffff;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-style: solid;
-    border-color: #dddddd;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    /* ボタンの枠線を濃くしてキリッとさせる */
+    border: 1.5px solid #cbd5e1 !important;
+    border-radius: 10px;
     font-weight: 800;
     font-size: 0.85rem;
-    color: #2c3e50;
+    color: #1e293b !important; /* 文字色を濃くしてハッキリ見せる */
     display: flex;
     align-items: center;
     justify-content: center;
