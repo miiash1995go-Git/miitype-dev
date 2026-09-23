@@ -1115,46 +1115,44 @@ body.game-body .summary-btn:hover {
     font-weight: 900 !important;
     color: #0f172a !important;     
     letter-spacing: 0.08em;
-    margin-bottom: 4px !important; 
+    margin-bottom: 4px !important; /* 余白を詰めてスリム化 */
     display: block;
     text-align: center;
-    border-bottom: none !important; 
-    padding-bottom: 0px !important; 
+    border-bottom: none !important; /* 謎の下線を完全に排除 */
+    padding-bottom: 0px !important; /* 余計なパディングを排除して高さを詰める */
 }
 
 /* ============================================================
-   カテゴリ選択グループ：アクティブ連動カラーチェンジ (完全確実版)
+   カテゴリ選択グループ：アクティブ連動カラーチェンジ (v20.9.18改)
    ============================================================ */
 
-/* 選択中のグループ（CSSの判定 ＋ JSによる付与クラスの両方で確実にキャッチ） */
+/* 1. 選択中のグループ枠線をしっかり濃く固定 */
 .category-group.group-active,
-.category-group.is-active-group,
-.category-group:has(.btn-category.active) {
-    border: 2.5px solid #0f172a !important; /* 漆黒に近い太い枠線で選択中を強烈にアピール */
-    box-shadow: 0px 6px 18px rgba(15, 23, 42, 0.12) !important; /* しっかりとした影で浮き上がらせる */
+.category-group.group-basic:has(.btn-category.active),
+.category-group.group-challenge:has(.btn-category.active),
+.category-group.group-practical:has(.btn-category.active),
+.category-group.group-special:has(.btn-category.active) {
+    border: 2px solid #1e293b !important; /* 選択中は枠線を濃い黒紺にして際立たせる */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.06) !important;
 }
 
-/* 1. 基礎（選択中）：薄い青背景 */
-.category-group.group-basic:has(.btn-category.active),
-.category-group.group-basic.is-active-group {
+/* 1. 基礎：薄い青 */
+.category-group.group-basic:has(.btn-category.active) {
     background-color: #f0f7ff !important;
 }
 
-/* 2. チャレンジ（選択中）：薄い黄色背景 */
-.category-group.group-challenge:has(.btn-category.active),
-.category-group.group-challenge.is-active-group {
+/* 2. チャレンジ：薄い黄色 */
+.category-group.group-challenge:has(.btn-category.active) {
     background-color: #fffde7 !important;
 }
 
-/* 3. 実務（選択中）：薄い緑背景 */
-.category-group.group-practical:has(.btn-category.active),
-.category-group.group-practical.is-active-group {
+/* 3. 実務：薄い緑 */
+.category-group.group-practical:has(.btn-category.active) {
     background-color: #f0fdf4 !important;
 }
 
-/* 4. 実力判定（選択中）：薄い赤背景 */
-.category-group.group-special:has(.btn-category.active),
-.category-group.group-special.is-active-group {
+/* 4. 実力判定：薄い赤（ピンク） */
+.category-group.group-special:has(.btn-category.active) {
     background-color: #fff1f2 !important;
 }
 

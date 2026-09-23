@@ -228,19 +228,8 @@ handleResize() {
     setupEventListeners() {
         document.querySelectorAll('.btn-category').forEach(btn => {
             btn.addEventListener('click', () => {
-                // すべてのボタンから active を外し、すべてのグループから is-active-group を外す
                 document.querySelectorAll('.btn-category').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.category-group').forEach(g => g.classList.remove('is-active-group'));
-                
-                // クリックされたボタンに active を付与
                 btn.classList.add('active');
-                
-                // クリックされたボタンの親である .category-group を特定して is-active-group を付与
-                const parentGroup = btn.closest('.category-group');
-                if (parentGroup) {
-                    parentGroup.classList.add('is-active-group');
-                }
-
                 this.currentCategoryId = btn.dataset.cat;
 
                 // カテゴリ別の制限設定
