@@ -1318,3 +1318,55 @@ body.game-body .summary-btn:hover {
     0% { background-position: 0% center; }
     100% { background-position: 200% center; }
 }
+
+/* ============================================================
+   カテゴリカード上部ヘッダー帯システム (v20.10.HeaderBand)
+   ============================================================ */
+.category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    margin: -12px -10px 10px -10px; /* 親のパディングを相殺してBOXの端まで色を伸ばす */
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    box-sizing: border-box;
+}
+
+.group-main-title {
+    font-size: 1.15rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+}
+
+.group-sub-title {
+    font-size: 0.65rem;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: right;
+    opacity: 0.85;
+}
+
+/* 1. 基礎：ブルー系 */
+.group-basic .category-header {
+    background-color: #3b82f6;
+    color: #ffffff;
+}
+
+/* 2. チャレンジ：イエロー・オレンジ系 */
+.group-challenge .category-header {
+    background-color: #f59e0b;
+    color: #ffffff;
+}
+
+/* 3. 実務：グリーン系 */
+.group-practical .category-header {
+    background-color: #10b981;
+    color: #ffffff;
+}
+
+/* 4. 実力判定：パープル系 */
+.group-special .category-header {
+    background-color: #8b5cf6;
+    color: #ffffff;
+}
