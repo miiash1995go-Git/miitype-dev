@@ -109,44 +109,47 @@ body.focus-mode #app {
     flex: 1 !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 6px !important;
-    padding-top: 12px !important;
-    padding-right: 10px !important;
-    padding-bottom: 12px !important;
-    padding-left: 10px !important;
+    gap: 8px !important;
+    padding-top: 15px !important;
+    padding-right: 12px !important;
+    padding-bottom: 15px !important;
+    padding-left: 12px !important;
     background-color: #f8f9fa !important;
-    border-top-left-radius: 15px !important;
-    border-top-right-radius: 15px !important;
-    border-bottom-right-radius: 15px !important;
-    border-bottom-left-radius: 15px !important;
-    /* BOX自体の枠線を少し濃くして輪郭をはっきりさせる */
-    border: 1.5px solid #cbd5e1 !important;
+    border-top-left-radius: 16px !important;
+    border-top-right-radius: 16px !important;
+    border-bottom-right-radius: 16px !important;
+    border-bottom-left-radius: 16px !important;
+    /* BOXの枠線を濃いグレー(#64748b)にして輪郭をハッキリさせる */
+    border: 2px solid #64748b !important;
     position: relative !important;
     z-index: 5 !important;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.02);
 }
 
-/* 「基礎」「チャレンジ」「実務」「実力判定」のグループ見出しをハッキリさせる */
+/* 4つのカテゴリ名（基礎・チャレンジ・実務・実力判定）を大きくハッキリさせる */
 .category-group .group-label,
 .group-label {
-    font-size: 0.9rem !important;
+    font-size: 1.15rem !important; /* 文字サイズを大きく拡大 */
     font-weight: 900 !important;
-    color: #334155 !important;
-    letter-spacing: 0.05em;
-    margin-bottom: 4px;
+    color: #0f172a !important;     /* 限りなく黒に近い濃紺で視認性を最大化 */
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
     display: block;
     text-align: center;
+    border-bottom: 2px solid #cbd5e1; /* 下に区切り線を引いて「これがカテゴリ名だ」と強く主張させる */
+    padding-bottom: 6px;
 }
 
 /* --- 2. ボタン共通デザイン ＆ 枠線の視認性強化 --- */
 .btn-category {
     width: 100% !important;
     background-color: #ffffff;
-    /* ボタンの枠線を濃くしてキリッとさせる */
-    border: 1.5px solid #cbd5e1 !important;
+    /* 各ボタンの枠線も濃くしてキリッとさせる */
+    border: 1.5px solid #94a3b8 !important;
     border-radius: 10px;
     font-weight: 800;
     font-size: 0.85rem;
-    color: #1e293b !important; /* 文字色を濃くしてハッキリ見せる */
+    color: #1e293b !important; 
     display: flex;
     align-items: center;
     justify-content: center;
