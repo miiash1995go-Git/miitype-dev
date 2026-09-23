@@ -119,19 +119,8 @@ body.focus-mode #app {
     border-top-right-radius: 15px !important;
     border-bottom-right-radius: 15px !important;
     border-bottom-left-radius: 15px !important;
-    /* サイズは変えず、枠線の太さ（2.5px）と色（#64748b）だけを調整 */
-    border-top-width: 2.5px !important;
-    border-right-width: 2.5px !important;
-    border-bottom-width: 2.5px !important;
-    border-left-width: 2.5px !important;
-    border-top-style: solid !important;
-    border-right-style: solid !important;
-    border-bottom-style: solid !important;
-    border-left-style: solid !important;
-    border-top-color: #64748b !important;
-    border-right-color: #64748b !important;
-    border-bottom-color: #64748b !important;
-    border-left-color: #64748b !important;
+    /* BOX自体の枠線を少し濃くして輪郭をはっきりさせる */
+    border: 1.5px solid #cbd5e1 !important;
     position: relative !important;
     z-index: 5 !important;
 }
