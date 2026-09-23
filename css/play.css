@@ -1108,6 +1108,55 @@ body.game-body .summary-btn:hover {
     border-left-color: #eeeeee;
 }
 
+/* 4つのカテゴリ名（基礎・チャレンジ・実務・実力判定）を大きくハッキリさせる（下線なし・スリム版） */
+.category-group .group-label,
+.group-label {
+    font-size: 1.1rem !important; 
+    font-weight: 900 !important;
+    color: #0f172a !important;     
+    letter-spacing: 0.08em;
+    margin-bottom: 4px !important; /* 余白を詰めてスリム化 */
+    display: block;
+    text-align: center;
+    border-bottom: none !important; /* 謎の下線を完全に排除 */
+    padding-bottom: 0px !important; /* 余計なパディングを排除して高さを詰める */
+}
+
+/* ============================================================
+   カテゴリ選択グループ：アクティブ連動カラーチェンジ (v20.9.18改)
+   ============================================================ */
+
+/* 1. 選択中のグループ枠線をしっかり濃く固定 */
+.category-group.group-active,
+.category-group.group-basic:has(.btn-category.active),
+.category-group.group-challenge:has(.btn-category.active),
+.category-group.group-practical:has(.btn-category.active),
+.category-group.group-special:has(.btn-category.active) {
+    border: 2px solid #1e293b !important; /* 選択中は枠線を濃い黒紺にして際立たせる */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* 1. 基礎：薄い青 */
+.category-group.group-basic:has(.btn-category.active) {
+    background-color: #f0f7ff !important;
+}
+
+/* 2. チャレンジ：薄い黄色 */
+.category-group.group-challenge:has(.btn-category.active) {
+    background-color: #fffde7 !important;
+}
+
+/* 3. 実務：薄い緑 */
+.category-group.group-practical:has(.btn-category.active) {
+    background-color: #f0fdf4 !important;
+}
+
+/* 4. 実力判定：薄い赤（ピンク） */
+.category-group.group-special:has(.btn-category.active) {
+    background-color: #fff1f2 !important;
+}
+
+
 /* ============================================================
    テンキー専用レイアウト (v20.8.10.Compact)
    ============================================================ */
