@@ -125,6 +125,13 @@ class TypingApp {
             if (targetCat) {
                 const targetBtn = document.querySelector(`.btn-category[data-cat="${targetCat}"]`);
                 if (targetBtn) { targetBtn.click(); }
+            } else {
+                // 初期状態で active がついているボタンの親グループにも初回から枠線を適用
+                const initialActiveBtn = document.querySelector('.btn-category.active');
+                if (initialActiveBtn) {
+                    const parentGroup = initialActiveBtn.closest('.category-group');
+                    if (parentGroup) parentGroup.classList.add('is-active-group');
+                }
             }
         } catch (e) {
             console.error("Critical Initialization Failure:", e); 
