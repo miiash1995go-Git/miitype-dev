@@ -14,7 +14,7 @@ body.test-body {
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
-    font-family: "BIZ UDGothic", "游ゴシック", YuGothic, "Meiryo", "Hiragino Kaku Gothic ProN", "Hiragino Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-family: 'Noto Sans JP', sans-serif !important;
     color: #1e293b;
     line-height: 1.6;
     overflow-x: hidden;
@@ -312,7 +312,7 @@ body.test-body .nav-item {
     opacity: 0;
     z-index: 10;
     pointer-events: auto;
-    font-family: "BIZ UDGothic", "游ゴシック", YuGothic, "Meiryo", "Hiragino Kaku Gothic ProN", "Hiragino Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-family: 'Noto Sans JP', sans-serif !important;
     font-size: 1.55rem;    background-color: transparent;
     border-top-style: none !important;
     border-right-style: none !important;
@@ -327,7 +327,7 @@ body.test-body .nav-item {
     position: static !important;
     z-index: 5;
     white-space: pre !important;
-    font-family: "BIZ UDGothic", "游ゴシック", YuGothic, "Meiryo", "Hiragino Kaku Gothic ProN", "Hiragino Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-family: 'Noto Sans JP', sans-serif !important;
     font-size: 1.55rem;
     line-height: 1;
 }
