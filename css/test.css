@@ -324,12 +324,10 @@ body.test-body .nav-item {
 
 /* 4. 可視テキスト：舞台の0点から描画開始 */
 #test-visual-text {
-    /* 【最重要】staticに設定。これにより、中のキャレットのoffsetLeftは、
-       一個上の親ではなく、座標の起点である「.test-stage-layer」から計測されるようになる。 */
     position: static !important;
     z-index: 5;
     white-space: pre !important;
-    font-family: 'Noto Sans JP', sans-serif;
+    font-family: "BIZ UDPGothic", "游ゴシック", YuGothic, "Meiryo", "Hiragino Kaku Gothic ProN", "Hiragino Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     font-size: 1.55rem;
     line-height: 1;
 }
