@@ -119,18 +119,8 @@ body.focus-mode #app {
     border-top-right-radius: 15px !important;
     border-bottom-right-radius: 15px !important;
     border-bottom-left-radius: 15px !important;
-    border-top-width: 2px !important;
-    border-top-style: solid !important;
-    border-top-color: #94a3b8 !important;
-    border-right-width: 2px !important;
-    border-right-style: solid !important;
-    border-right-color: #94a3b8 !important;
-    border-bottom-width: 2px !important;
-    border-bottom-style: solid !important;
-    border-bottom-color: #94a3b8 !important;
-    border-left-width: 2px !important;
-    border-left-style: solid !important;
-    border-left-color: #94a3b8 !important;
+    /* BOX自体の枠線を少し濃くして輪郭をはっきりさせる */
+    border: 1.5px solid #cbd5e1 !important;
     position: relative !important;
     z-index: 5 !important;
 }
@@ -1101,18 +1091,15 @@ body.game-body .summary-btn:hover {
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
-    border-top-width: 2px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
     border-top-style: solid;
-    border-top-color: #94a3b8;
-    border-right-width: 2px;
     border-right-style: solid;
-    border-right-color: #94a3b8;
-    border-bottom-width: 2px;
     border-bottom-style: solid;
-    border-bottom-color: #94a3b8;
-    border-left-width: 2px;
     border-left-style: solid;
-    border-left-color: #94a3b8;
+    border-top-color: #eeeeee;
     border-right-color: #eeeeee;
     border-bottom-color: #eeeeee;
     border-left-color: #eeeeee;
