@@ -224,38 +224,49 @@ body.focus-mode #app {
 }
 
 .compact-best {
-    flex: 0 0 200px !important;
+    flex: 0 0 auto !important; /* 固定幅を解除し、内容に美しくフィットさせる */
     text-align: left !important;
-    background-color: #f8f9fa !important;
-    padding-top: 10px;
-    padding-right: 20px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-    border: 1px solid #eeeeee;
-    display: flex;
-    align-items: center;
+    /* 上質な光沢を感じさせる微かなグラデーションとプレミアムな薄いゴールド/ブルーの枠線 */
+    background: linear-gradient(135deg, #ffffff 0%, #fef3c7 100%) !important;
+    padding-top: 8px !important;
+    padding-right: 18px !important;
+    padding-bottom: 8px !important;
+    padding-left: 16px !important;
+    border-top-left-radius: 30px !important;
+    border-top-right-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+    border-bottom-left-radius: 30px !important;
+    border: 1.5px solid #f59e0b !important; /* プレミアムなゴールド/オレンジ系の上品な枠線 */
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    box-shadow: 0px 3px 10px rgba(245, 158, 11, 0.1) !important;
 }
+
 .best-label {
-    font-size: 0.75rem;
-    color: #7f8c8d;
-    font-weight: 800;
-    margin-right: 8px;
+    font-size: 0.7rem !important;
+    color: #b45309 !important; /* ゴールドに馴染む深みのあるブラウン・オレンジ系 */
+    font-weight: 800 !important;
+    letter-spacing: 0.05em;
+    margin-right: 2px !important;
 }
+
 .best-value {
-    font-size: 1.2rem;
-    color: #3498db;
-    font-weight: 900;
+    font-family: 'Roboto Mono', monospace !important; /* スコア専用のシャープな数字フォント */
+    font-size: 1.35rem !important; /* 数字をより大きく主役に */
+    color: #d97706 !important;     /* プレミアム感のあるリッチなゴールド/オレンジ */
+    font-weight: 900 !important;
+    letter-spacing: -0.02em;
+    line-height: 1 !important;
 }
-/* 単位専用：数値より小さく、落ち着いたグレーに設定 */
+
+/* 単位専用：数値より小さく、落ち着いたトーンに設定 */
 .best-unit {
-    font-size: 0.85rem;
-    color: #94a3b8;
-    font-weight: 800;
-    margin-left: 4px;
+    font-size: 0.75rem !important;
+    color: #b45309 !important;
+    font-weight: 800 !important;
+    margin-left: 1px !important;
+    opacity: 0.8;
 }
 
 #start-btn {
