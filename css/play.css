@@ -1416,15 +1416,3 @@ body.game-body .summary-btn:hover {
     0% { background-position: 0% center; }
     100% { background-position: 200% center; }
 }
-
-/* ============================================================
-   【最終統治】選択中カテゴリグループの枠線・強制ハイライト
-   ============================================================ */
-body.game-body .category-group.group-active,
-body.game-body .category-group.is-active-group,
-body.game-body .category-group:has(.btn-category.active) {
-    border: 3px solid #0f172a !important; /* 迷いなく選択中と分かる漆黒の太い枠線 */
-    box-shadow: 0px 8px 20px rgba(15, 23, 42, 0.15) !important;
-    transform: translateY(-2px); /* わずかに浮かび上がらせる */
-    transition: all 0.2s ease;
-}
