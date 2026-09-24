@@ -683,6 +683,7 @@ body.game-body #keyboard-container {
 }
 
 #result-rank{
+    font-family: 'Noto Sans JP', sans-serif !important;
     font-size: 3.6rem;
     font-weight: 900;
     color: var(--accent);
@@ -1306,6 +1307,7 @@ body.game-body .summary-btn:hover {
 
 /* 段階4: Legend - 最高峰シャンパンゴールド・シマーアニメーション */
 #result-rank.rank-tier-legend {
+    font-family: 'Noto Sans JP', sans-serif !important;
     font-size: 4.8rem;
     background: linear-gradient(135deg, #d97706 0%, #fbbf24 25%, #fef3c7 50%, #fbbf24 75%, #b45309 100%);
     background-size: 200% auto;
@@ -1316,6 +1318,7 @@ body.game-body .summary-btn:hover {
 }
 
 #result-rank.rank-tier-master {
+    font-family: 'Noto Sans JP', sans-serif !important;
     font-size: 4.8rem;
     background: linear-gradient(135deg, #059669 0%, #34d399 50%, #6ee7b7 100%);
     background-size: 200% auto;
