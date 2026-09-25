@@ -2731,3 +2731,85 @@ body.portal-page .info-note-box {
     margin-bottom: 35px;
     margin-left: 0px;
 }
+
+/* ============================================================
+   ミニテーブル（フレックス・カードリスト）構造 (v20.11.FlexTable)
+   - スマホの幅に収まり、縦長にならない小規模な表・一覧に最適
+   ============================================================ */
+.flex-table-box {
+    margin-top: 25px;
+    margin-bottom: 30px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #e2e8f0;
+    border-right-color: #e2e8f0;
+    border-bottom-color: #e2e8f0;
+    border-left-color: #e2e8f0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.02);
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.flex-table-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #f8f9fa;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #e2e8f0;
+    font-weight: 900;
+    color: #2c3e50;
+    font-size: 0.95rem;
+}
+
+.flex-table-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #f1f2f6;
+    font-size: 0.95rem;
+}
+
+.flex-table-row:last-child {
+    border-bottom-style: none;
+}
+
+.flex-table-col {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+    text-align: center;
+    padding-top: 14px;
+    padding-right: 10px;
+    padding-bottom: 14px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.flex-table-col--primary {
+    font-weight: bold;
+    color: #2c3e50;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: #f1f2f6;
+}
+
+.flex-table-header .flex-table-col--primary {
+    border-right-color: #e2e8f0;
+}
