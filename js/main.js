@@ -76,6 +76,15 @@ class TypingApp {
         this.isTestMode = false;      // 5分間テストモード判定フラグ
         this.testTimerId = null;      // タイマー管理用
         this.testCharactersTyped = 0; 
+
+        // --- 「きおく」モード専用管理変数 ---
+        this.memoryCurrentLevel = 1;
+        this.memoryUnlockedLevel = 1;
+        this.memoryConsecutiveCorrect = 0;
+        this.memoryLevelsConfig = null;
+        this.memoryFadeTimeouts = [];
+        this.memoryCurrentQuestionObj = null;
+        this.memoryActiveFile = null;     // ゲーム開始時に固定されるJSONファイル名 
         
         // --- 「れんぞく」モード管理用 ---
         this.renzokuMissCount = 0;         // 今回のミス回数（最大5回）
@@ -172,6 +181,11 @@ if (category.file === "all") {
                     const dayIdx = this.getDailyFileIndex(); // 0, 1, 2
                     const fileNumString = String(dayIdx + 1).padStart(2, '0'); // "01", "02", "03"
                     targetFile = `renzoku_${fileNumString}.json`;
+                } else if (categoryId === 'memory') {
+                    const dayIdx = this.getDailyFileIndex(); // 0, 1, 2
+                    const fileNumString = String(dayIdx + 1).padStart(2, '0'); // "01", "02", "03"
+                    targetFile = `pasotore_memory_${fileNumString}.json`;
+                    this.memoryActiveFile = targetFile; // ゲーム中はこのファイルを固定
                 }
 
                 const res = await fetch(`./data/typing/${targetFile}`);
@@ -184,6 +198,12 @@ if (category.file === "all") {
                     loadedData = data.categories[0].items; // 初期候補として最初のカテゴリを入れる
                     this.tenkeyCategoryIndex = 0;
                     this.tenkeyQuestionInCatCount = 0;
+                } else if (categoryId === 'memory') {
+                    this.memoryLevelsConfig = data.levels;
+                    loadedData = data.questions;
+                    this.memoryCurrentLevel = 1;
+                    this.memoryUnlockedLevel = 1;
+                    this.memoryConsecutiveCorrect = 0;
                 } else {
                     loadedData = data.questions;
                 }
@@ -489,6 +509,40 @@ if (success) {
             }
             this.prepareNextChar();
 
+        } else if (this.currentCategoryId === 'memory') {
+            // 4. 「きおく」専用の出題・フェード制御ロジック
+            this.clearMemoryTimers();
+
+            // 解き終わった前回のタイマー等をクリアし、現在解放されているレベル以下の問題に絞る
+            const availableQuestions = this.currentQuestions.filter(q => q.level <= this.memoryUnlockedLevel);
+            if (availableQuestions.length === 0) return;
+
+            let nextQ;
+            do {
+                nextQ = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+            } while (availableQuestions.length > 1 && nextQ.id === this.lastMemoryQuestionId);
+
+            this.lastMemoryQuestionId = nextQ.id;
+            this.memoryCurrentQuestionObj = nextQ;
+
+            this.kanaList = this.splitKana(nextQ.kana);
+            this.typedFullRomaji = ""; 
+            this.currentRomajiStr = "";
+
+            const kanjiEl = document.getElementById('display-kanji');
+            const kanaEl = document.getElementById('display-kana');
+
+            // JSONの mask 配列を使用してブロック単位（span）で描画
+            if (kanjiEl) {
+                kanjiEl.innerHTML = nextQ.mask.map((blockText, idx) => 
+                    `<span class="memory-mask-block" id="mem-block-${idx}" style="opacity: 1;">${blockText}</span>`
+                ).join('');
+            }
+            if (kanaEl) kanaEl.innerText = nextQ.kana;
+
+            this.prepareNextChar();
+            this.startMemoryFadeSequence(nextQ);
+
         } else {
             // 3. 通常のタイピングロジック
             if (!this.currentQuestions || this.currentQuestions.length === 0) return;
@@ -521,6 +575,26 @@ if (success) {
 
     prepareNextChar() {
         if (this.kanaList.length === 0) {
+            this.clearMemoryTimers();
+
+            // 【きおくモード専用】1問クリア時の連続正解・レベルアップ判定
+            if (this.currentCategoryId === 'memory') {
+                this.memoryConsecutiveCorrect++;
+                
+                // 5問連続正解でレベル解放（最大Lv.3）
+                if (this.memoryConsecutiveCorrect >= 5 && this.memoryUnlockedLevel < 3) {
+                    this.memoryUnlockedLevel++;
+                    this.memoryCurrentLevel = this.memoryUnlockedLevel;
+                    this.memoryConsecutiveCorrect = 0;
+                }
+
+                // UI更新
+                const levelEl = document.getElementById('memory-ui-level');
+                const streakEl = document.getElementById('memory-ui-streak');
+                if (levelEl) levelEl.innerText = `Lv.${this.memoryUnlockedLevel}`;
+                if (streakEl) streakEl.innerText = `${this.memoryConsecutiveCorrect} / 5`;
+            }
+
             // 【れんぞくモード専用】1問クリア時の連続成功判定
             if (this.currentCategoryId === 'renzoku') {
                 if (!this.hasCurrentQuestionError) {
@@ -647,6 +721,13 @@ if (success) {
                 this.logMiss(this.guideRemainRomaji[0]);
                 if(this.soundEnabled) this.playSound(200, 0.1);
                 
+                // 【きおくモード専用】ミス処理
+                if (this.currentCategoryId === 'memory') {
+                    this.memoryConsecutiveCorrect = 0;
+                    const streakEl = document.getElementById('memory-ui-streak');
+                    if (streakEl) streakEl.innerText = `${this.memoryConsecutiveCorrect} / 5`;
+                }
+
                 // 【れんぞくモード専用】ミス処理
                 if (this.currentCategoryId === 'renzoku') {
                     this.renzokuMissCount++;
@@ -880,6 +961,53 @@ if (typeof gtag === 'function') {
                 localStorage.setItem('pasotore_best', JSON.stringify(this.bestScores));
             }
         }
+
+    // --- 【ここから追加】「きおく」専用のフェード制御・タイマー補助関数 ---
+    clearMemoryTimers() {
+        if (this.memoryFadeTimeouts) {
+            this.memoryFadeTimeouts.forEach(t => clearTimeout(t));
+            this.memoryFadeTimeouts = [];
+        }
+    }
+
+    startMemoryFadeSequence(q) {
+        // 現在の問題のレベルに応じたフェード設定を取得
+        const levelConfig = this.memoryLevelsConfig ? this.memoryLevelsConfig.find(l => l.level === q.level) : null;
+        const fadeSec = levelConfig ? levelConfig.block_fade_seconds : 5;
+        const intervalSec = levelConfig ? levelConfig.interval_after_block_seconds : 0.5;
+
+        let cumulativeDelay = 0;
+        q.mask.forEach((_, idx) => {
+            // 指定秒数をかけて徐々に薄くする（CSS transitionを使用）
+            const t1 = setTimeout(() => {
+                if (this.state !== "PLAYING") return;
+                const blockEl = document.getElementById(`mem-block-${idx}`);
+                if (blockEl) {
+                    blockEl.style.transition = `opacity ${fadeSec}s linear`;
+                    blockEl.style.opacity = '0';
+                }
+            }, cumulativeDelay * 1000);
+            this.memoryFadeTimeouts.push(t1);
+
+            cumulativeDelay += fadeSec;
+
+            // 最後のブロックでなければ 0.5秒待機、最後のブロックなら完全消去後のゲームオーバー判定
+            if (idx < q.mask.length - 1) {
+                cumulativeDelay += intervalSec;
+            } else {
+                const tFail = setTimeout(() => {
+                    if (this.state !== "PLAYING") return;
+                    // すべて消えた瞬間に入力未完了ならゲームオーバー
+                    if (this.kanaList && this.kanaList.length > 0) {
+                        if (this.soundEnabled) this.playSound(200, 0.1);
+                        this.endGame();
+                    }
+                }, cumulativeDelay * 1000);
+                this.memoryFadeTimeouts.push(tFail);
+            }
+        });
+    }
+    // --- 【ここまで追加】 ---
 
         const sorted = Object.entries(this.missMap).sort((a,b)=>b[1]-a[1]);
         const missListEl = document.getElementById('miss-detail-list');
