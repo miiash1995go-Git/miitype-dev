@@ -510,10 +510,17 @@ if (success) {
             this.prepareNextChar();
 
         } else if (this.currentCategoryId === 'memory') {
-            // 4. 「きおく」専用の出題・フェード制御ロジック
-            this.clearMemoryTimers();
+        // 4. 「きおく」専用の出題・フェード制御ロジック
+        this.clearMemoryTimers();
 
-            const availableQuestions = this.currentQuestions.filter(q => q.level <= this.memoryUnlockedLevel);
+        const elapsedSec = (performance.now() - this.startTime) / 1000;
+        if (elapsedSec >= 120) {
+            this.memoryUnlockedLevel = 3;
+        } else if (elapsedSec >= 60) {
+            this.memoryUnlockedLevel = 2;
+        }
+
+        const availableQuestions = this.currentQuestions.filter(q => q.level <= this.memoryUnlockedLevel);
             if (availableQuestions.length === 0) return;
 
             let nextQ;
