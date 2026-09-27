@@ -1021,6 +1021,14 @@ if (typeof gtag === 'function') {
         return `${m}分${s}秒${p}`;
     }
 
+    // --- 「きおく」専用のフェード制御・タイマー補助関数（クラス直下へ正しく配置） ---
+    clearMemoryTimers() {
+        if (this.memoryFadeTimeouts) {
+            this.memoryFadeTimeouts.forEach(t => clearTimeout(t));
+            this.memoryFadeTimeouts = [];
+        }
+    }
+
     startMemoryFadeSequence(q) {
         const targetLevel = this.memoryUnlockedLevel;
         const levelConfig = this.memoryLevelsConfig ? this.memoryLevelsConfig.find(l => l.level === targetLevel) : null;
