@@ -962,53 +962,6 @@ if (typeof gtag === 'function') {
             }
         }
 
-    // --- 【ここから追加】「きおく」専用のフェード制御・タイマー補助関数 ---
-    clearMemoryTimers() {
-        if (this.memoryFadeTimeouts) {
-            this.memoryFadeTimeouts.forEach(t => clearTimeout(t));
-            this.memoryFadeTimeouts = [];
-        }
-    }
-
-    startMemoryFadeSequence(q) {
-        // 現在の問題のレベルに応じたフェード設定を取得
-        const levelConfig = this.memoryLevelsConfig ? this.memoryLevelsConfig.find(l => l.level === q.level) : null;
-        const fadeSec = levelConfig ? levelConfig.block_fade_seconds : 5;
-        const intervalSec = levelConfig ? levelConfig.interval_after_block_seconds : 0.5;
-
-        let cumulativeDelay = 0;
-        q.mask.forEach((_, idx) => {
-            // 指定秒数をかけて徐々に薄くする（CSS transitionを使用）
-            const t1 = setTimeout(() => {
-                if (this.state !== "PLAYING") return;
-                const blockEl = document.getElementById(`mem-block-${idx}`);
-                if (blockEl) {
-                    blockEl.style.transition = `opacity ${fadeSec}s linear`;
-                    blockEl.style.opacity = '0';
-                }
-            }, cumulativeDelay * 1000);
-            this.memoryFadeTimeouts.push(t1);
-
-            cumulativeDelay += fadeSec;
-
-            // 最後のブロックでなければ 0.5秒待機、最後のブロックなら完全消去後のゲームオーバー判定
-            if (idx < q.mask.length - 1) {
-                cumulativeDelay += intervalSec;
-            } else {
-                const tFail = setTimeout(() => {
-                    if (this.state !== "PLAYING") return;
-                    // すべて消えた瞬間に入力未完了ならゲームオーバー
-                    if (this.kanaList && this.kanaList.length > 0) {
-                        if (this.soundEnabled) this.playSound(200, 0.1);
-                        this.endGame();
-                    }
-                }, cumulativeDelay * 1000);
-                this.memoryFadeTimeouts.push(tFail);
-            }
-        });
-    }
-    // --- 【ここまで追加】 ---
-
         const sorted = Object.entries(this.missMap).sort((a,b)=>b[1]-a[1]);
         const missListEl = document.getElementById('miss-detail-list');
         if (missListEl) {
@@ -1023,6 +976,48 @@ if (typeof gtag === 'function') {
         if (isNaN(ms) || ms < 0) return "---";
         const m = Math.floor(ms/60000); const s = Math.floor((ms%60000)/1000); const p = Math.floor((ms%1000)/10);
         return `${m}分${s}秒${p}`;
+    }
+
+    // --- 「きおく」専用のフェード制御・タイマー補助関数（クラス直下へ正しく配置） ---
+    clearMemoryTimers() {
+        if (this.memoryFadeTimeouts) {
+            this.memoryFadeTimeouts.forEach(t => clearTimeout(t));
+            this.memoryFadeTimeouts = [];
+        }
+    }
+
+    startMemoryFadeSequence(q) {
+        const levelConfig = this.memoryLevelsConfig ? this.memoryLevelsConfig.find(l => l.level === q.level) : null;
+        const fadeSec = levelConfig ? levelConfig.block_fade_seconds : 5;
+        const intervalSec = levelConfig ? levelConfig.interval_after_block_seconds : 0.5;
+
+        let cumulativeDelay = 0;
+        q.mask.forEach((_, idx) => {
+            const t1 = setTimeout(() => {
+                if (this.state !== "PLAYING") return;
+                const blockEl = document.getElementById(`mem-block-${idx}`);
+                if (blockEl) {
+                    blockEl.style.transition = `opacity ${fadeSec}s linear`;
+                    blockEl.style.opacity = '0';
+                }
+            }, cumulativeDelay * 1000);
+            this.memoryFadeTimeouts.push(t1);
+
+            cumulativeDelay += fadeSec;
+
+            if (idx < q.mask.length - 1) {
+                cumulativeDelay += intervalSec;
+            } else {
+                const tFail = setTimeout(() => {
+                    if (this.state !== "PLAYING") return;
+                    if (this.kanaList && this.kanaList.length > 0) {
+                        if (this.soundEnabled) this.playSound(200, 0.1);
+                        this.endGame();
+                    }
+                }, cumulativeDelay * 1000);
+                this.memoryFadeTimeouts.push(tFail);
+            }
+        });
     }
 
 /* --- main.js：getRankメソッドを以下に差し替え（ユーザー指定基準） --- */
