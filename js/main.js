@@ -1054,13 +1054,14 @@ if (typeof gtag === 'function') {
             if (idx < q.mask.length - 1) {
                 cumulativeDelay += intervalSec;
             } else {
+                // 最後のブロックが消え始める（＝文字が見えなくなる）と同時に即座にゲームオーバーにする
                 const tFail = setTimeout(() => {
                     if (this.state !== "PLAYING") return;
                     if (this.kanaList && this.kanaList.length > 0) {
                         if (this.soundEnabled) this.playSound(200, 0.1);
                         this.endGame();
                     }
-                }, cumulativeDelay * 1000);
+                }, (cumulativeDelay - fadeSec) * 1000);
                 this.memoryFadeTimeouts.push(tFail);
             }
         });
