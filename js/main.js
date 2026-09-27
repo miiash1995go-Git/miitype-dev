@@ -569,18 +569,28 @@ if (success) {
                 ).join('');
             }
 
-            // 2. ひらがなブロック描画
+            // 2. ひらがなブロック描画（maskの個数分、文字数比率で綺麗に分割して同期させる）
             if (kanaEl) {
                 kanaEl.innerHTML = kanaBlocks.map((bText, idx) => 
                     `<span id="mem-kana-${idx}" style="opacity: 1;">${bText}</span>`
                 ).join('');
             }
 
-            // 3. ローマ字ブロック描画
-            if (romajiEl) {
-                romajiEl.innerHTML = romajiBlocks.map((bText, idx) => 
-                    `<span id="mem-romaji-${idx}" style="opacity: 1; margin-right: 4px;">${bText}</span>`
-                ).join('');
+            // 3. ローマ字ブロック描画（既存の romaji-content の中にブロックを配置し、上書きを防止）
+            const romajiContainer = document.getElementById('display-romaji');
+            if (romajiContainer) {
+                const fullRomaji = romajiBlocks.join('');
+                // 各ブロックの文字数に応じてローマ字文字列も綺麗にスライスして配置
+                let romajiSliceIdx = 0;
+                let romajiChunkHtml = '';
+                nextQ.mask.forEach((mText, idx) => {
+                    const ratio = mText.length / totalKanjiLen;
+                    const len = (idx === nextQ.mask.length - 1) ? (fullRomaji.length - romajiSliceIdx) : Math.round(fullRomaji.length * ratio);
+                    const chunk = fullRomaji.substring(romajiSliceIdx, romajiSliceIdx + len);
+                    romajiSliceIdx += len;
+                    romajiChunkHtml += `<span id="mem-romaji-${idx}" style="opacity: 1; margin-right: 4px; display: inline-block;">${chunk}</span>`;
+                });
+                romajiContainer.innerHTML = romajiChunkHtml;
             }
 
             this.prepareNextChar();
@@ -688,6 +698,25 @@ if (success) {
         if (this.state !== "PLAYING") return;
         const el = document.getElementById('display-romaji');
         if (!el) return;
+
+        // 「きおく」モードのときはローマ字表示ウィンドウの自動上書きを行わず、ブロックフェードを維持する
+        if (this.currentCategoryId === 'memory') {
+            let best = this.pendingRomajiOptions.find(o => o.startsWith(this.currentRomajiStr)) || this.pendingRomajiOptions[0];
+            let future = "";
+            let tempKana = [...this.kanaList];
+            while(tempKana.length > 0) {
+                let k = tempKana.shift();
+                if (k === 'っ' && tempKana.length > 0) {
+                    let nk = tempKana[0];
+                    let nr = ROMAJI_TABLE[nk] ? ROMAJI_TABLE[nk][0] : nk;
+                    future += nr[0];
+                } else { future += (ROMAJI_TABLE[k] ? ROMAJI_TABLE[k][0] : k); }
+            }
+            this.guideRemainRomaji = best.substring(this.currentRomajiStr.length) + future;
+            const nextChar = this.guideRemainRomaji[0] || "";
+            if (!this.isTransitioning) { this.highlightKey(nextChar); }
+            return; // ここで早期リターンすることで、きおくモードのローマ字ブロックが消えないようにする
+        }
 
         let best = this.pendingRomajiOptions.find(o => o.startsWith(this.currentRomajiStr)) || this.pendingRomajiOptions[0];
         let future = "";
