@@ -1035,7 +1035,9 @@ if (typeof gtag === 'function') {
         }
 
         let cumulativeDelay = 0;
+        let lastBlockStart = 0;
         q.mask.forEach((_, idx) => {
+            lastBlockStart = cumulativeDelay; // 最後のブロックが消え始める時間を保持
             const t1 = setTimeout(() => {
                 if (this.state !== "PLAYING") return;
                 // 漢字とひらがなの対応するブロックを同時にフェードアウト
@@ -1054,14 +1056,15 @@ if (typeof gtag === 'function') {
             if (idx < q.mask.length - 1) {
                 cumulativeDelay += intervalSec;
             } else {
-                // すべてのブロックが完全に消え切る正確な時間に設定
+                // 最後のブロックが「完全に消え切る瞬間（開始時間 ＋ フェード時間）」にゲームオーバー判定を同期
+                const exactCompleteTimeMs = (lastBlockStart + fadeSec) * 1000;
                 const tFail = setTimeout(() => {
                     if (this.state !== "PLAYING") return;
                     if (this.kanaList && this.kanaList.length > 0) {
                         if (this.soundEnabled) this.playSound(200, 0.1);
                         this.endGame();
                     }
-                }, cumulativeDelay * 1000);
+                }, exactCompleteTimeMs);
                 this.memoryFadeTimeouts.push(tFail);
             }
         });
