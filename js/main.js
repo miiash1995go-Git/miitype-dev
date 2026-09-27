@@ -513,6 +513,13 @@ if (success) {
             // 4. 「きおく」専用の出題・フェード制御ロジック
             this.clearMemoryTimers();
 
+            // 前回のフェード状態を完全にリセット
+            const romajiContentEl = document.querySelector('.romaji-content');
+            if (romajiContentEl) {
+                romajiContentEl.style.transition = 'none';
+                romajiContentEl.style.opacity = '1';
+            }
+
             const availableQuestions = this.currentQuestions.filter(q => q.level <= this.memoryUnlockedLevel);
             if (availableQuestions.length === 0) return;
 
@@ -698,25 +705,6 @@ if (success) {
         if (this.state !== "PLAYING") return;
         const el = document.getElementById('display-romaji');
         if (!el) return;
-
-        // 「きおく」モードのときはローマ字表示ウィンドウの自動上書きを行わず、ブロックフェードを維持する
-        if (this.currentCategoryId === 'memory') {
-            let best = this.pendingRomajiOptions.find(o => o.startsWith(this.currentRomajiStr)) || this.pendingRomajiOptions[0];
-            let future = "";
-            let tempKana = [...this.kanaList];
-            while(tempKana.length > 0) {
-                let k = tempKana.shift();
-                if (k === 'っ' && tempKana.length > 0) {
-                    let nk = tempKana[0];
-                    let nr = ROMAJI_TABLE[nk] ? ROMAJI_TABLE[nk][0] : nk;
-                    future += nr[0];
-                } else { future += (ROMAJI_TABLE[k] ? ROMAJI_TABLE[k][0] : k); }
-            }
-            this.guideRemainRomaji = best.substring(this.currentRomajiStr.length) + future;
-            const nextChar = this.guideRemainRomaji[0] || "";
-            if (!this.isTransitioning) { this.highlightKey(nextChar); }
-            return; // ここで早期リターンすることで、きおくモードのローマ字ブロックが消えないようにする
-        }
 
         let best = this.pendingRomajiOptions.find(o => o.startsWith(this.currentRomajiStr)) || this.pendingRomajiOptions[0];
         let future = "";
@@ -1063,12 +1051,24 @@ if (typeof gtag === 'function') {
         const fadeSec = levelConfig ? levelConfig.block_fade_seconds : 5;
         const intervalSec = levelConfig ? levelConfig.interval_after_block_seconds : 0.5;
 
+        // ローマ字欄全体をスムーズにフェードさせるためのトータル時間を計算
+        const totalDuration = (fadeSec * q.mask.length) + (intervalSec * (q.mask.length - 1));
+        const romajiContentEl = document.querySelector('.romaji-content');
+        if (romajiContentEl) {
+            const tRomaji = setTimeout(() => {
+                if (this.state !== "PLAYING") return;
+                romajiContentEl.style.transition = `opacity ${totalDuration}s linear`;
+                romajiContentEl.style.opacity = '0';
+            }, 50); // 開始直後にフェード開始
+            this.memoryFadeTimeouts.push(tRomaji);
+        }
+
         let cumulativeDelay = 0;
         q.mask.forEach((_, idx) => {
             const t1 = setTimeout(() => {
                 if (this.state !== "PLAYING") return;
-                // 漢字、ひらがな、ローマ字の対応するブロックを同時にフェードアウト
-                ['kanji', 'kana', 'romaji'].forEach(type => {
+                // 漢字とひらがなの対応するブロックを同時にフェードアウト
+                ['kanji', 'kana'].forEach(type => {
                     const el = document.getElementById(`mem-${type}-${idx}`);
                     if (el) {
                         el.style.transition = `opacity ${fadeSec}s linear`;
