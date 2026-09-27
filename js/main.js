@@ -1012,7 +1012,8 @@ if (typeof gtag === 'function') {
 
     // --- 「きおく」専用のフェード制御・タイマー補助関数（クラス直下へ正しく配置） ---
     clearMemoryTimers() {
-        if (this.memoryFadeTimeouts) {
+        if (this.memoryFadeTimeouts && this.memoryFadeTimeouts.length > 0) {
+            console.log("【デバッグ】タイマーがクリアされました。数:", this.memoryFadeTimeouts.length);
             this.memoryFadeTimeouts.forEach(t => clearTimeout(t));
             this.memoryFadeTimeouts = [];
         }
@@ -1058,19 +1059,28 @@ if (typeof gtag === 'function') {
             if (idx < q.mask.length - 1) {
                 cumulativeDelay += intervalSec;
             } else {
-                // 現在のセッションIDを保持
-                const currentSessionId = this.memorySessionId;
-                // すべてのブロックが完全に消え切る正確な時間に設定
-                const tFail = setTimeout(() => {
-                    // 状態チェックに加え、すでに次の問題に進んでいたら（セッションが変わっていたら）絶対に発火させない
-                    if (this.state !== "PLAYING" || this.memorySessionId !== currentSessionId) return;
-                    if (this.kanaList && this.kanaList.length > 0) {
-                        if (this.soundEnabled) this.playSound(200, 0.1);
-                        this.endGame();
-                    }
-                }, cumulativeDelay * 1000);
-                this.memoryFadeTimeouts.push(tFail);
+        // 現在のセッションIDを保持
+        const currentSessionId = this.memorySessionId;
+        console.log("【デバッグ】tFailセット。発火予定(秒):", cumulativeDelay, "現在時刻:", (performance.now() - this.startTime) / 1000);
+        
+        // すべてのブロックが完全に消え切る正確な時間に設定
+        const tFail = setTimeout(() => {
+            console.log("【デバッグ】tFail発火！ state:", this.state, "session一致:", (this.memorySessionId === currentSessionId), "残り文字数:", this.kanaList ? this.kanaList.length : 0);
+            
+            // 状態チェックに加え、すでに次の問題に進んでいたら（セッションが変わっていたら）絶対に発火させない
+            if (this.state !== "PLAYING" || this.memorySessionId !== currentSessionId) {
+                console.log("【デバッグ】tFailがガードで弾かれました。");
+                return;
             }
+            if (this.kanaList && this.kanaList.length > 0) {
+                if (this.soundEnabled) this.playSound(200, 0.1);
+                this.endGame();
+            } else {
+                console.log("【デバッグ】tFailは発火しましたがkanaListが空のため終了しません。");
+            }
+        }, cumulativeDelay * 1000);
+        this.memoryFadeTimeouts.push(tFail);
+    }
         });
     }
 
