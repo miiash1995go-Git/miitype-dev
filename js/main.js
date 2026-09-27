@@ -85,6 +85,7 @@ class TypingApp {
         this.memoryFadeTimeouts = [];
         this.memoryCurrentQuestionObj = null;
         this.memoryActiveFile = null;     // ゲーム開始時に固定されるJSONファイル名 
+        this.memorySessionId = 0;         // 誤爆防止用の問題セッションID 
         
         // --- 「れんぞく」モード管理用 ---
         this.renzokuMissCount = 0;         // 今回のミス回数（最大5回）
@@ -510,8 +511,9 @@ if (success) {
             this.prepareNextChar();
 
         } else if (this.currentCategoryId === 'memory') {
-        // 4. 「きおく」専用の出題・フェード制御ロジック
-        this.clearMemoryTimers();
+            // 4. 「きおく」専用の出題・フェード制御ロジック
+            this.clearMemoryTimers();
+            this.memorySessionId++; // 新しい問題が始まったため、古いタイマーの誤爆を完全に無効化
 
         const elapsedSec = (performance.now() - this.startTime) / 1000;
         if (elapsedSec >= 120) {
@@ -1056,15 +1058,17 @@ if (typeof gtag === 'function') {
             if (idx < q.mask.length - 1) {
                 cumulativeDelay += intervalSec;
             } else {
-                // 最後のブロックが「完全に消え切る瞬間（開始時間 ＋ フェード時間）」にゲームオーバー判定を同期
-                const exactCompleteTimeMs = (lastBlockStart + fadeSec) * 1000;
+                // 現在のセッションIDを保持
+                const currentSessionId = this.memorySessionId;
+                // すべてのブロックが完全に消え切る正確な時間に設定
                 const tFail = setTimeout(() => {
-                    if (this.state !== "PLAYING") return;
+                    // 状態チェックに加え、すでに次の問題に進んでいたら（セッションが変わっていたら）絶対に発火させない
+                    if (this.state !== "PLAYING" || this.memorySessionId !== currentSessionId) return;
                     if (this.kanaList && this.kanaList.length > 0) {
                         if (this.soundEnabled) this.playSound(200, 0.1);
                         this.endGame();
                     }
-                }, exactCompleteTimeMs);
+                }, cumulativeDelay * 1000);
                 this.memoryFadeTimeouts.push(tFail);
             }
         });
