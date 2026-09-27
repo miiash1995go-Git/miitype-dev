@@ -539,10 +539,8 @@ if (success) {
             const kanaEl = document.getElementById('display-kana');
             const romajiEl = document.getElementById('display-romaji');
 
-            // ひらがな（kana）とローマ字を mask ブロックの比率に合わせて分割
+            // ひらがな（kana）とローマ字を mask ブロックの構造に合わせて正確に分配
             const morae = this.splitKana(nextQ.kana);
-            const totalKanjiLen = nextQ.mask.reduce((sum, m) => sum + m.length, 0);
-            
             let moraIdx = 0;
             const kanaBlocks = [];
             const romajiBlocks = [];
@@ -552,9 +550,9 @@ if (success) {
                 if (idx === nextQ.mask.length - 1) {
                     targetMoraCount = morae.length - moraIdx;
                 } else {
-                    const ratio = mText.length / totalKanjiLen;
-                    targetMoraCount = Math.round(morae.length * ratio);
-                    targetMoraCount = Math.max(1, Math.min(targetMoraCount, morae.length - moraIdx - (nextQ.mask.length - 1 - idx)));
+                    // 漢字の文字数ウェイトに合わせつつ、最低1モーラは必ず確保して分配
+                    const weight = mText.length;
+                    targetMoraCount = Math.max(1, Math.min(weight, morae.length - moraIdx - (nextQ.mask.length - 1 - idx)));
                 }
                 const blockMorae = morae.slice(moraIdx, moraIdx + targetMoraCount);
                 moraIdx += targetMoraCount;
