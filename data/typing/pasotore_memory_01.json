@@ -1,0 +1,346 @@
+{
+  "game": {
+    "name": "きおく",
+    "max_level": 3,
+    "level_up_condition": "同じレベルで5問連続正解すると次のレベルを解放",
+    "same_question_consecutive": false,
+    "end_conditions": {
+      "no_input_seconds": 120,
+      "max_total_typed": 300,
+      "max_game_seconds": 240
+    }
+  },
+  "levels": [
+    {
+      "level": 1,
+      "max_japanese_chars": 6,
+      "mask_block_count": {
+        "min": 1,
+        "max": 2
+      },
+      "block_fade_seconds": 5,
+      "interval_after_block_seconds": 0.5
+    },
+    {
+      "level": 2,
+      "max_japanese_chars": 10,
+      "mask_block_count": {
+        "min": 2,
+        "max": 3
+      },
+      "block_fade_seconds": 4,
+      "interval_after_block_seconds": 0.5
+    },
+    {
+      "level": 3,
+      "max_japanese_chars": 18,
+      "mask_block_count": {
+        "min": 3,
+        "max": 4
+      },
+      "block_fade_seconds": 3,
+      "interval_after_block_seconds": 0.5
+    }
+  ],
+  "questions": [
+    {
+      "id": "memory_01",
+      "level": 1,
+      "kanji": "春の風",
+      "kana": "はるのかぜ",
+      "mask": [
+        "春の",
+        "風"
+      ]
+    },
+    {
+      "id": "memory_02",
+      "level": 1,
+      "kanji": "雨の音",
+      "kana": "あめのおと",
+      "mask": [
+        "雨の",
+        "音"
+      ]
+    },
+    {
+      "id": "memory_03",
+      "level": 1,
+      "kanji": "青い空",
+      "kana": "あおいそら",
+      "mask": [
+        "青い",
+        "空"
+      ]
+    },
+    {
+      "id": "memory_04",
+      "level": 1,
+      "kanji": "夏の海",
+      "kana": "なつのうみ",
+      "mask": [
+        "夏の",
+        "海"
+      ]
+    },
+    {
+      "id": "memory_05",
+      "level": 1,
+      "kanji": "秋の月",
+      "kana": "あきのつき",
+      "mask": [
+        "秋の",
+        "月"
+      ]
+    },
+    {
+      "id": "memory_06",
+      "level": 1,
+      "kanji": "冬の朝",
+      "kana": "ふゆのあさ",
+      "mask": [
+        "冬の",
+        "朝"
+      ]
+    },
+    {
+      "id": "memory_07",
+      "level": 1,
+      "kanji": "雨上がり",
+      "kana": "あめあがり",
+      "mask": [
+        "雨上がり"
+      ]
+    },
+    {
+      "id": "memory_08",
+      "level": 1,
+      "kanji": "朝の海",
+      "kana": "あさのうみ",
+      "mask": [
+        "朝の",
+        "海"
+      ]
+    },
+    {
+      "id": "memory_09",
+      "level": 1,
+      "kanji": "星を見る",
+      "kana": "ほしをみる",
+      "mask": [
+        "星を",
+        "見る"
+      ]
+    },
+    {
+      "id": "memory_10",
+      "level": 1,
+      "kanji": "山の道",
+      "kana": "やまのみち",
+      "mask": [
+        "山の",
+        "道"
+      ]
+    },
+    {
+      "id": "memory_11",
+      "level": 2,
+      "kanji": "今日は雨です",
+      "kana": "きょうはあめです",
+      "mask": [
+        "今日は",
+        "雨です"
+      ]
+    },
+    {
+      "id": "memory_12",
+      "level": 2,
+      "kanji": "明日は晴れ",
+      "kana": "あしたははれ",
+      "mask": [
+        "明日は",
+        "晴れ"
+      ]
+    },
+    {
+      "id": "memory_13",
+      "level": 2,
+      "kanji": "空に虹が出た",
+      "kana": "そらににじがでた",
+      "mask": [
+        "空に虹が",
+        "出た"
+      ]
+    },
+    {
+      "id": "memory_14",
+      "level": 2,
+      "kanji": "学校へ行く",
+      "kana": "がっこうへいく",
+      "mask": [
+        "学校へ",
+        "行く"
+      ]
+    },
+    {
+      "id": "memory_15",
+      "level": 2,
+      "kanji": "教室は静か",
+      "kana": "きょうしつはしずか",
+      "mask": [
+        "教室は",
+        "静か"
+      ]
+    },
+    {
+      "id": "memory_16",
+      "level": 2,
+      "kanji": "休み時間",
+      "kana": "やすみじかん",
+      "mask": [
+        "休み",
+        "時間"
+      ]
+    },
+    {
+      "id": "memory_17",
+      "level": 2,
+      "kanji": "駅に着いた",
+      "kana": "えきについた",
+      "mask": [
+        "駅に",
+        "着いた"
+      ]
+    },
+    {
+      "id": "memory_18",
+      "level": 2,
+      "kanji": "海で泳いだ",
+      "kana": "うみでおよいだ",
+      "mask": [
+        "海で",
+        "泳いだ"
+      ]
+    },
+    {
+      "id": "memory_19",
+      "level": 2,
+      "kanji": "山を歩いた",
+      "kana": "やまをあるいた",
+      "mask": [
+        "山を",
+        "歩いた"
+      ]
+    },
+    {
+      "id": "memory_20",
+      "level": 2,
+      "kanji": "朝の体操",
+      "kana": "あさのたいそう",
+      "mask": [
+        "朝の",
+        "体操"
+      ]
+    },
+    {
+      "id": "memory_21",
+      "level": 3,
+      "kanji": "朝から強い風が吹いている",
+      "kana": "あさからつよいかぜがふいている",
+      "mask": [
+        "朝から強い風が",
+        "吹いている"
+      ]
+    },
+    {
+      "id": "memory_22",
+      "level": 3,
+      "kanji": "遠くに大きな雲が見える",
+      "kana": "とおくにおおきなくもがみえる",
+      "mask": [
+        "遠くに大きな雲が",
+        "見える"
+      ]
+    },
+    {
+      "id": "memory_23",
+      "level": 3,
+      "kanji": "学校の帰りに本屋へ寄った",
+      "kana": "がっこうのかえりにほんやへよった",
+      "mask": [
+        "学校の帰りに",
+        "本屋へ寄った"
+      ]
+    },
+    {
+      "id": "memory_24",
+      "level": 3,
+      "kanji": "体育の時間に長く走った",
+      "kana": "たいいくのじかんにながくはしった",
+      "mask": [
+        "体育の時間に",
+        "長く走った"
+      ]
+    },
+    {
+      "id": "memory_25",
+      "level": 3,
+      "kanji": "夏休みに家族で海へ行った",
+      "kana": "なつやすみにかぞくでうみへいった",
+      "mask": [
+        "夏休みに家族で",
+        "海へ行った"
+      ]
+    },
+    {
+      "id": "memory_26",
+      "level": 3,
+      "kanji": "秋の公園は落ち葉でいっぱい",
+      "kana": "あきのこうえんはおちばでいっぱい",
+      "mask": [
+        "秋の公園は",
+        "落ち葉でいっぱい"
+      ]
+    },
+    {
+      "id": "memory_27",
+      "level": 3,
+      "kanji": "冬の朝は空気が冷たい",
+      "kana": "ふゆのあさはくうきがつめたい",
+      "mask": [
+        "冬の朝は",
+        "空気が冷たい"
+      ]
+    },
+    {
+      "id": "memory_28",
+      "level": 3,
+      "kanji": "旅行の朝に駅へ早く着いた",
+      "kana": "りょこうのあさにえきへはやくついた",
+      "mask": [
+        "旅行の朝に",
+        "駅へ早く着いた"
+      ]
+    },
+    {
+      "id": "memory_29",
+      "level": 3,
+      "kanji": "試合の前に友達と走った",
+      "kana": "しあいのまえにともだちとはしった",
+      "mask": [
+        "試合の前に",
+        "友達と走った"
+      ]
+    },
+    {
+      "id": "memory_30",
+      "level": 3,
+      "kanji": "明日の会議の資料を用意した",
+      "kana": "あしたのかいぎのしりょうをよういした",
+      "mask": [
+        "明日の会議の",
+        "資料を用意した"
+      ]
+    }
+  ]
+}

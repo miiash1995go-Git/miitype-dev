@@ -1,0 +1,347 @@
+{
+  "game": {
+    "name": "きおく",
+    "max_level": 3,
+    "level_up_condition": "同じレベルで5問連続正解すると次のレベルを解放",
+    "same_question_consecutive": false,
+    "end_conditions": {
+      "no_input_seconds": 120,
+      "max_total_typed": 300,
+      "max_game_seconds": 240
+    }
+  },
+  "levels": [
+    {
+      "level": 1,
+      "max_japanese_chars": 6,
+      "mask_block_count": {
+        "min": 1,
+        "max": 2
+      },
+      "block_fade_seconds": 5,
+      "interval_after_block_seconds": 0.5
+    },
+    {
+      "level": 2,
+      "max_japanese_chars": 10,
+      "mask_block_count": {
+        "min": 2,
+        "max": 3
+      },
+      "block_fade_seconds": 4,
+      "interval_after_block_seconds": 0.5
+    },
+    {
+      "level": 3,
+      "max_japanese_chars": 18,
+      "mask_block_count": {
+        "min": 3,
+        "max": 4
+      },
+      "block_fade_seconds": 3,
+      "interval_after_block_seconds": 0.5
+    }
+  ],
+  "questions": [
+    {
+      "id": "memory_01",
+      "level": 1,
+      "kanji": "青いペン",
+      "kana": "あおいぺん",
+      "mask": [
+        "青い",
+        "ペン"
+      ]
+    },
+    {
+      "id": "memory_02",
+      "level": 1,
+      "kanji": "赤いボール",
+      "kana": "あかいぼーる",
+      "mask": [
+        "赤い",
+        "ボール"
+      ]
+    },
+    {
+      "id": "memory_03",
+      "level": 1,
+      "kanji": "白いシャツ",
+      "kana": "しろいしゃつ",
+      "mask": [
+        "白い",
+        "シャツ"
+      ]
+    },
+    {
+      "id": "memory_04",
+      "level": 1,
+      "kanji": "青いバス",
+      "kana": "あおいばす",
+      "mask": [
+        "青い",
+        "バス"
+      ]
+    },
+    {
+      "id": "memory_05",
+      "level": 1,
+      "kanji": "小さなパン",
+      "kana": "ちいさなぱん",
+      "mask": [
+        "小さな",
+        "パン"
+      ]
+    },
+    {
+      "id": "memory_06",
+      "level": 1,
+      "kanji": "赤いカサ",
+      "kana": "あかいかさ",
+      "mask": [
+        "赤い",
+        "カサ"
+      ]
+    },
+    {
+      "id": "memory_07",
+      "level": 1,
+      "kanji": "夏のプール",
+      "kana": "なつのぷーる",
+      "mask": [
+        "夏の",
+        "プール"
+      ]
+    },
+    {
+      "id": "memory_08",
+      "level": 1,
+      "kanji": "駅とバス",
+      "kana": "えきとばす",
+      "mask": [
+        "駅と",
+        "バス"
+      ]
+    },
+    {
+      "id": "memory_09",
+      "level": 1,
+      "kanji": "青いソラ",
+      "kana": "あおいそら",
+      "mask": [
+        "青い",
+        "ソラ"
+      ]
+    },
+    {
+      "id": "memory_10",
+      "level": 1,
+      "kanji": "朝のパン",
+      "kana": "あさのぱん",
+      "mask": [
+        "朝の",
+        "パン"
+      ]
+    },
+    {
+      "id": "memory_11",
+      "level": 2,
+      "kanji": "公園でボールを投げた",
+      "kana": "こうえんでぼーるをなげた",
+      "mask": [
+        "公園でボールを",
+        "投げた"
+      ]
+    },
+    {
+      "id": "memory_12",
+      "level": 2,
+      "kanji": "学校のプールで泳いだ",
+      "kana": "がっこうのぷーるでおよいだ",
+      "mask": [
+        "学校のプールで",
+        "泳いだ"
+      ]
+    },
+    {
+      "id": "memory_13",
+      "level": 2,
+      "kanji": "旅行のバスが来た",
+      "kana": "りょこうのばすがきた",
+      "mask": [
+        "旅行のバスが",
+        "来た"
+      ]
+    },
+    {
+      "id": "memory_14",
+      "level": 2,
+      "kanji": "空に白いヒコウキ",
+      "kana": "そらにしろいひこうき",
+      "mask": [
+        "空に白い",
+        "ヒコウキ"
+      ]
+    },
+    {
+      "id": "memory_15",
+      "level": 2,
+      "kanji": "赤いシャツを着る",
+      "kana": "あかいしゃつをきる",
+      "mask": [
+        "赤いシャツを",
+        "着る"
+      ]
+    },
+    {
+      "id": "memory_16",
+      "level": 2,
+      "kanji": "朝のテレビを見る",
+      "kana": "あさのてれびをみる",
+      "mask": [
+        "朝のテレビを",
+        "見る"
+      ]
+    },
+    {
+      "id": "memory_17",
+      "level": 2,
+      "kanji": "山でキャンプをした",
+      "kana": "やまできゃんぷをした",
+      "mask": [
+        "山でキャンプを",
+        "した"
+      ]
+    },
+    {
+      "id": "memory_18",
+      "level": 2,
+      "kanji": "海でサーフィンを見る",
+      "kana": "うみでさーふぃんをみる",
+      "mask": [
+        "海でサーフィンを",
+        "見る"
+      ]
+    },
+    {
+      "id": "memory_19",
+      "level": 2,
+      "kanji": "公園でラジオを聞く",
+      "kana": "こうえんでらじおをきく",
+      "mask": [
+        "公園でラジオを",
+        "聞く"
+      ]
+    },
+    {
+      "id": "memory_20",
+      "level": 2,
+      "kanji": "駅でチケットを買う",
+      "kana": "えきでちけっとをかう",
+      "mask": [
+        "駅でチケットを",
+        "買う"
+      ]
+    },
+    {
+      "id": "memory_21",
+      "level": 3,
+      "kanji": "夏休みに家族でプールへ行った",
+      "kana": "なつやすみにかぞくでぷーるへいった",
+      "mask": [
+        "夏休みに家族で",
+        "プールへ行った"
+      ]
+    },
+    {
+      "id": "memory_22",
+      "level": 3,
+      "kanji": "駅のホームから電車が見えた",
+      "kana": "えきのほーむからでんしゃがみえた",
+      "mask": [
+        "駅のホームから",
+        "電車が見えた"
+      ]
+    },
+    {
+      "id": "memory_23",
+      "level": 3,
+      "kanji": "山のキャンプで星を見た",
+      "kana": "やまのきゃんぷでほしをみた",
+      "mask": [
+        "山のキャンプで",
+        "星を見た"
+      ]
+    },
+    {
+      "id": "memory_24",
+      "level": 3,
+      "kanji": "学校のグラウンドを走った",
+      "kana": "がっこうのぐらうんどをはしった",
+      "mask": [
+        "学校のグラウンドを",
+        "走った"
+      ]
+    },
+    {
+      "id": "memory_25",
+      "level": 3,
+      "kanji": "海の近くでバーベキューをした",
+      "kana": "うみのちかくでばーべきゅーをした",
+      "mask": [
+        "海の近くで",
+        "バーベキューをした"
+      ]
+    },
+    {
+      "id": "memory_26",
+      "level": 3,
+      "kanji": "旅行先でホテルから海を見た",
+      "kana": "りょこうさきでほてるからうみをみた",
+      "mask": [
+        "旅行先でホテルから",
+        "海を見た"
+      ]
+    },
+    {
+      "id": "memory_27",
+      "level": 3,
+      "kanji": "体育館でバスケットの練習をした",
+      "kana": "たいいくかんでばすけっとのれんしゅうをした",
+      "mask": [
+        "体育館でバスケットの",
+        "練習をした"
+      ]
+    },
+    {
+      "id": "memory_28",
+      "level": 3,
+      "kanji": "公園でキャッチボールを楽しんだ",
+      "kana": "こうえんできゃっちぼーるをたのしんだ",
+      "mask": [
+        "公園でキャッチボールを",
+        "楽しんだ"
+      ]
+    },
+    {
+      "id": "memory_29",
+      "level": 3,
+      "kanji": "朝のニュースで天気を見た",
+      "kana": "あさのにゅーすでてんきをみた",
+      "mask": [
+        "朝のニュースで",
+        "天気を見た"
+      ]
+    },
+    {
+      "id": "memory_30",
+      "level": 3,
+      "kanji": "会議の前にパソコンを起動した",
+      "kana": "かいぎのまえにぱそこんをきどうした",
+      "mask": [
+        "会議の前に",
+        "パソコンを起動した"
+      ]
+    }
+  ]
+}

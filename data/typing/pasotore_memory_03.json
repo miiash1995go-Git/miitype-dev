@@ -1,0 +1,347 @@
+{
+  "game": {
+    "name": "きおく",
+    "max_level": 3,
+    "level_up_condition": "同じレベルで5問連続正解すると次のレベルを解放",
+    "same_question_consecutive": false,
+    "end_conditions": {
+      "no_input_seconds": 120,
+      "max_total_typed": 300,
+      "max_game_seconds": 240
+    }
+  },
+  "levels": [
+    {
+      "level": 1,
+      "max_japanese_chars": 6,
+      "mask_block_count": {
+        "min": 1,
+        "max": 2
+      },
+      "block_fade_seconds": 5,
+      "interval_after_block_seconds": 0.5
+    },
+    {
+      "level": 2,
+      "max_japanese_chars": 10,
+      "mask_block_count": {
+        "min": 2,
+        "max": 3
+      },
+      "block_fade_seconds": 4,
+      "interval_after_block_seconds": 0.5
+    },
+    {
+      "level": 3,
+      "max_japanese_chars": 18,
+      "mask_block_count": {
+        "min": 3,
+        "max": 4
+      },
+      "block_fade_seconds": 3,
+      "interval_after_block_seconds": 0.5
+    }
+  ],
+  "questions": [
+    {
+      "id": "memory_01",
+      "level": 1,
+      "kanji": "あおいボール",
+      "kana": "あおいぼーる",
+      "mask": [
+        "あおい",
+        "ボール"
+      ]
+    },
+    {
+      "id": "memory_02",
+      "level": 1,
+      "kanji": "白いパン",
+      "kana": "しろいぱん",
+      "mask": [
+        "白い",
+        "パン"
+      ]
+    },
+    {
+      "id": "memory_03",
+      "level": 1,
+      "kanji": "あさのテレビ",
+      "kana": "あさのてれび",
+      "mask": [
+        "あさの",
+        "テレビ"
+      ]
+    },
+    {
+      "id": "memory_04",
+      "level": 1,
+      "kanji": "夏のプール",
+      "kana": "なつのぷーる",
+      "mask": [
+        "夏の",
+        "プール"
+      ]
+    },
+    {
+      "id": "memory_05",
+      "level": 1,
+      "kanji": "あめの音",
+      "kana": "あめのおと",
+      "mask": [
+        "あめの",
+        "音"
+      ]
+    },
+    {
+      "id": "memory_06",
+      "level": 1,
+      "kanji": "赤いシャツ",
+      "kana": "あかいしゃつ",
+      "mask": [
+        "赤い",
+        "シャツ"
+      ]
+    },
+    {
+      "id": "memory_07",
+      "level": 1,
+      "kanji": "やまの道",
+      "kana": "やまのみち",
+      "mask": [
+        "やまの",
+        "道"
+      ]
+    },
+    {
+      "id": "memory_08",
+      "level": 1,
+      "kanji": "青いペン",
+      "kana": "あおいぺん",
+      "mask": [
+        "青い",
+        "ペン"
+      ]
+    },
+    {
+      "id": "memory_09",
+      "level": 1,
+      "kanji": "ひるのソラ",
+      "kana": "ひるのそら",
+      "mask": [
+        "ひるの",
+        "ソラ"
+      ]
+    },
+    {
+      "id": "memory_10",
+      "level": 1,
+      "kanji": "冬のスキー",
+      "kana": "ふゆのすきー",
+      "mask": [
+        "冬の",
+        "スキー"
+      ]
+    },
+    {
+      "id": "memory_11",
+      "level": 2,
+      "kanji": "あさは青空",
+      "kana": "あさはあおぞら",
+      "mask": [
+        "あさは",
+        "青空"
+      ]
+    },
+    {
+      "id": "memory_12",
+      "level": 2,
+      "kanji": "公園でボールを投げる",
+      "kana": "こうえんでぼーるをなげる",
+      "mask": [
+        "公園でボールを",
+        "投げる"
+      ]
+    },
+    {
+      "id": "memory_13",
+      "level": 2,
+      "kanji": "学校へ行く道",
+      "kana": "がっこうへいくみち",
+      "mask": [
+        "学校へ行く",
+        "道"
+      ]
+    },
+    {
+      "id": "memory_14",
+      "level": 2,
+      "kanji": "あめのあとに虹が出た",
+      "kana": "あめのあとににじがでた",
+      "mask": [
+        "あめのあとに",
+        "虹が出た"
+      ]
+    },
+    {
+      "id": "memory_15",
+      "level": 2,
+      "kanji": "海でサーフィンを見る",
+      "kana": "うみでさーふぃんをみる",
+      "mask": [
+        "海でサーフィンを",
+        "見る"
+      ]
+    },
+    {
+      "id": "memory_16",
+      "level": 2,
+      "kanji": "夏の夜に星を見る",
+      "kana": "なつのよるにほしをみる",
+      "mask": [
+        "夏の夜に",
+        "星を見る"
+      ]
+    },
+    {
+      "id": "memory_17",
+      "level": 2,
+      "kanji": "赤いカサを持つ",
+      "kana": "あかいかさをもつ",
+      "mask": [
+        "赤いカサを",
+        "持つ"
+      ]
+    },
+    {
+      "id": "memory_18",
+      "level": 2,
+      "kanji": "駅でバスを待つ",
+      "kana": "えきでばすをまつ",
+      "mask": [
+        "駅でバスを",
+        "待つ"
+      ]
+    },
+    {
+      "id": "memory_19",
+      "level": 2,
+      "kanji": "山でキャンプをした",
+      "kana": "やまできゃんぷをした",
+      "mask": [
+        "山でキャンプを",
+        "した"
+      ]
+    },
+    {
+      "id": "memory_20",
+      "level": 2,
+      "kanji": "朝のランニング",
+      "kana": "あさのらんにんぐ",
+      "mask": [
+        "朝の",
+        "ランニング"
+      ]
+    },
+    {
+      "id": "memory_21",
+      "level": 3,
+      "kanji": "あさから強い風が吹いている",
+      "kana": "あさからつよいかぜがふいている",
+      "mask": [
+        "あさから強い風が",
+        "吹いている"
+      ]
+    },
+    {
+      "id": "memory_22",
+      "level": 3,
+      "kanji": "学校のプールで長く泳いだ",
+      "kana": "がっこうのぷーるでながくおよいだ",
+      "mask": [
+        "学校のプールで",
+        "長く泳いだ"
+      ]
+    },
+    {
+      "id": "memory_23",
+      "level": 3,
+      "kanji": "夏休みに家族で海へ行った",
+      "kana": "なつやすみにかぞくでうみへいった",
+      "mask": [
+        "夏休みに家族で",
+        "海へ行った"
+      ]
+    },
+    {
+      "id": "memory_24",
+      "level": 3,
+      "kanji": "旅行の朝に駅へ早く着いた",
+      "kana": "りょこうのあさにえきへはやくついた",
+      "mask": [
+        "旅行の朝に",
+        "駅へ早く着いた"
+      ]
+    },
+    {
+      "id": "memory_25",
+      "level": 3,
+      "kanji": "冬の朝は空気がつめたい",
+      "kana": "ふゆのあさはくうきがつめたい",
+      "mask": [
+        "冬の朝は",
+        "空気がつめたい"
+      ]
+    },
+    {
+      "id": "memory_26",
+      "level": 3,
+      "kanji": "公園でキャッチボールをした",
+      "kana": "こうえんできゃっちぼーるをした",
+      "mask": [
+        "公園でキャッチボールを",
+        "した"
+      ]
+    },
+    {
+      "id": "memory_27",
+      "level": 3,
+      "kanji": "秋の公園でどんぐりを拾った",
+      "kana": "あきのこうえんでどんぐりをひろった",
+      "mask": [
+        "秋の公園で",
+        "どんぐりを拾った"
+      ]
+    },
+    {
+      "id": "memory_28",
+      "level": 3,
+      "kanji": "朝のニュースで天気を見た",
+      "kana": "あさのにゅーすでてんきをみた",
+      "mask": [
+        "朝のニュースで",
+        "天気を見た"
+      ]
+    },
+    {
+      "id": "memory_29",
+      "level": 3,
+      "kanji": "体育の時間にリレーを走った",
+      "kana": "たいいくのじかんにりれーをはしった",
+      "mask": [
+        "体育の時間に",
+        "リレーを走った"
+      ]
+    },
+    {
+      "id": "memory_30",
+      "level": 3,
+      "kanji": "明日の会議の資料を用意した",
+      "kana": "あしたのかいぎのしりょうをよういした",
+      "mask": [
+        "明日の会議の",
+        "資料を用意した"
+      ]
+    }
+  ]
+}
