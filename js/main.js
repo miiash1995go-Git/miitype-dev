@@ -1054,14 +1054,16 @@ if (typeof gtag === 'function') {
             if (idx < q.mask.length - 1) {
                 cumulativeDelay += intervalSec;
             } else {
-                // 最後のブロックが消え始める（＝文字が見えなくなる）と同時に即座にゲームオーバーにする
+                // すべてのブロックが完全に消え切る正確な時間を算出（累積遅延 ＋ 最後のフェード時間）
+                const totalFadeTimeMs = (cumulativeDelay + fadeSec) * 1000;
                 const tFail = setTimeout(() => {
                     if (this.state !== "PLAYING") return;
+                    // まだ入力が完了していない場合はゲームオーバー
                     if (this.kanaList && this.kanaList.length > 0) {
                         if (this.soundEnabled) this.playSound(200, 0.1);
                         this.endGame();
                     }
-                }, (cumulativeDelay - fadeSec) * 1000);
+                }, totalFadeTimeMs);
                 this.memoryFadeTimeouts.push(tFail);
             }
         });
