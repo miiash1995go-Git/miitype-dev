@@ -513,13 +513,6 @@ if (success) {
             // 4. 「きおく」専用の出題・フェード制御ロジック
             this.clearMemoryTimers();
 
-            // 前回のフェード状態を完全にリセット
-            const romajiContentEl = document.querySelector('.romaji-content');
-            if (romajiContentEl) {
-                romajiContentEl.style.transition = 'none';
-                romajiContentEl.style.opacity = '1';
-            }
-
             const availableQuestions = this.currentQuestions.filter(q => q.level <= this.memoryUnlockedLevel);
             if (availableQuestions.length === 0) return;
 
