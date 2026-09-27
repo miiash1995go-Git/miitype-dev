@@ -583,12 +583,11 @@ if (success) {
                 ).join('');
             }
 
-            // 3. ローマ字ブロック描画（ひらがな同様に romajiBlocks を個別の span ブロックとして配置）
-            const romajiContainer = document.getElementById('display-romaji');
-            if (romajiContainer) {
-                romajiContainer.innerHTML = romajiBlocks.map((bText, idx) => 
-                    `<span id="mem-romaji-${idx}" style="opacity: 1; margin-right: 4px; display: inline-block;">${bText}</span>`
-                ).join('');
+            // 3. ローマ字欄のリセット（次問開始時に不透明度を確実に1に戻す）
+            const romajiContentEl = document.querySelector('.romaji-content');
+            if (romajiContentEl) {
+                romajiContentEl.style.transition = 'none';
+                romajiContentEl.style.opacity = '1';
             }
 
             this.prepareNextChar();
@@ -1042,12 +1041,24 @@ if (typeof gtag === 'function') {
         const fadeSec = levelConfig ? levelConfig.block_fade_seconds : 5;
         const intervalSec = levelConfig ? levelConfig.interval_after_block_seconds : 0.5;
 
+        // ローマ字欄全体を問題全体の進行に合わせてスムーズにフェードアウトさせる
+        const totalDuration = (fadeSec * q.mask.length) + (intervalSec * (q.mask.length - 1));
+        const romajiContentEl = document.querySelector('.romaji-content');
+        if (romajiContentEl) {
+            const tRomaji = setTimeout(() => {
+                if (this.state !== "PLAYING") return;
+                romajiContentEl.style.transition = `opacity ${totalDuration}s linear`;
+                romajiContentEl.style.opacity = '0';
+            }, 50);
+            this.memoryFadeTimeouts.push(tRomaji);
+        }
+
         let cumulativeDelay = 0;
         q.mask.forEach((_, idx) => {
             const t1 = setTimeout(() => {
                 if (this.state !== "PLAYING") return;
-                // 漢字、ひらがな、ローマ字のすべての対応するブロックを同時にフェードアウト
-                ['kanji', 'kana', 'romaji'].forEach(type => {
+                // 漢字とひらがなの対応するブロックを同時にフェードアウト
+                ['kanji', 'kana'].forEach(type => {
                     const el = document.getElementById(`mem-${type}-${idx}`);
                     if (el) {
                         el.style.transition = `opacity ${fadeSec}s linear`;
