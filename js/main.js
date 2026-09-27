@@ -539,32 +539,14 @@ if (success) {
             const kanaEl = document.getElementById('display-kana');
             const romajiEl = document.getElementById('display-romaji');
 
-            // ひらがな（kana）とローマ字を mask ブロックの構造に合わせて正確に分配
-            const morae = this.splitKana(nextQ.kana);
-            let moraIdx = 0;
-            const kanaBlocks = [];
-            const romajiBlocks = [];
-
-            nextQ.mask.forEach((mText, idx) => {
-                let targetMoraCount;
-                if (idx === nextQ.mask.length - 1) {
-                    targetMoraCount = morae.length - moraIdx;
-                } else {
-                    // 漢字の文字数ウェイトに合わせつつ、最低1モーラは必ず確保して分配
-                    const weight = mText.length;
-                    targetMoraCount = Math.max(1, Math.min(weight, morae.length - moraIdx - (nextQ.mask.length - 1 - idx)));
-                }
-                const blockMorae = morae.slice(moraIdx, moraIdx + targetMoraCount);
-                moraIdx += targetMoraCount;
-
-                const bKana = blockMorae.join('');
-                kanaBlocks.push(bKana);
-
-                const bRomaji = blockMorae.map(m => {
+            // 新仕様：kana_mask を直接利用してブロックを完全に同期
+            const kanaBlocks = nextQ.kana_mask || [nextQ.kana];
+            const romajiBlocks = kanaBlocks.map(bKana => {
+                const morae = this.splitKana(bKana);
+                return morae.map(m => {
                     const opts = ROMAJI_TABLE[m] || [m];
                     return opts[0].toUpperCase();
                 }).join('');
-                romajiBlocks.push(bRomaji);
             });
 
             // 1. 漢字ブロック描画
