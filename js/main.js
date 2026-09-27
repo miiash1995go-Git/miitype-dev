@@ -583,21 +583,12 @@ if (success) {
                 ).join('');
             }
 
-            // 3. ローマ字ブロック描画（既存の romaji-content の中にブロックを配置し、上書きを防止）
+            // 3. ローマ字ブロック描画（ひらがな同様に romajiBlocks を個別の span ブロックとして配置）
             const romajiContainer = document.getElementById('display-romaji');
             if (romajiContainer) {
-                const fullRomaji = romajiBlocks.join('');
-                // 各ブロックの文字数に応じてローマ字文字列も綺麗にスライスして配置
-                let romajiSliceIdx = 0;
-                let romajiChunkHtml = '';
-                nextQ.mask.forEach((mText, idx) => {
-                    const ratio = mText.length / totalKanjiLen;
-                    const len = (idx === nextQ.mask.length - 1) ? (fullRomaji.length - romajiSliceIdx) : Math.round(fullRomaji.length * ratio);
-                    const chunk = fullRomaji.substring(romajiSliceIdx, romajiSliceIdx + len);
-                    romajiSliceIdx += len;
-                    romajiChunkHtml += `<span id="mem-romaji-${idx}" style="opacity: 1; margin-right: 4px; display: inline-block;">${chunk}</span>`;
-                });
-                romajiContainer.innerHTML = romajiChunkHtml;
+                romajiContainer.innerHTML = romajiBlocks.map((bText, idx) => 
+                    `<span id="mem-romaji-${idx}" style="opacity: 1; margin-right: 4px; display: inline-block;">${bText}</span>`
+                ).join('');
             }
 
             this.prepareNextChar();
@@ -1051,24 +1042,12 @@ if (typeof gtag === 'function') {
         const fadeSec = levelConfig ? levelConfig.block_fade_seconds : 5;
         const intervalSec = levelConfig ? levelConfig.interval_after_block_seconds : 0.5;
 
-        // ローマ字欄全体をスムーズにフェードさせるためのトータル時間を計算
-        const totalDuration = (fadeSec * q.mask.length) + (intervalSec * (q.mask.length - 1));
-        const romajiContentEl = document.querySelector('.romaji-content');
-        if (romajiContentEl) {
-            const tRomaji = setTimeout(() => {
-                if (this.state !== "PLAYING") return;
-                romajiContentEl.style.transition = `opacity ${totalDuration}s linear`;
-                romajiContentEl.style.opacity = '0';
-            }, 50); // 開始直後にフェード開始
-            this.memoryFadeTimeouts.push(tRomaji);
-        }
-
         let cumulativeDelay = 0;
         q.mask.forEach((_, idx) => {
             const t1 = setTimeout(() => {
                 if (this.state !== "PLAYING") return;
-                // 漢字とひらがなの対応するブロックを同時にフェードアウト
-                ['kanji', 'kana'].forEach(type => {
+                // 漢字、ひらがな、ローマ字のすべての対応するブロックを同時にフェードアウト
+                ['kanji', 'kana', 'romaji'].forEach(type => {
                     const el = document.getElementById(`mem-${type}-${idx}`);
                     if (el) {
                         el.style.transition = `opacity ${fadeSec}s linear`;
