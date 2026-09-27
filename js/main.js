@@ -1014,6 +1014,7 @@ if (typeof gtag === 'function') {
     clearMemoryTimers() {
         if (this.memoryFadeTimeouts && this.memoryFadeTimeouts.length > 0) {
             console.log("【デバッグ】タイマーがクリアされました。数:", this.memoryFadeTimeouts.length);
+            console.trace("【デバッグ】clearMemoryTimersの呼び出し元トレース"); // ← どこから呼ばれたかを表示
             this.memoryFadeTimeouts.forEach(t => clearTimeout(t));
             this.memoryFadeTimeouts = [];
         }
