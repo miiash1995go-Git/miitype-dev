@@ -8,8 +8,6 @@
     {"id": "speed", "name": "スピード", "file": "speed.json"},
     {"id": "renzoku", "name": "れんぞく", "file": "renzoku_01.json"},
     {"id": "memory", "name": "きおく", "file": "pasotore_memory_01.json"},
-    {"id": "zero", "name": "ゼロ", "file": "zero.json"},
-    {"id": "memory", "name": "記憶", "file": "memory.json"},
     {"id": "word", "name": "Word", "file": "word_basic.json"},
     {"id": "excel", "name": "Excel", "file": "excel_basic.json"},
     {"id": "business_ai", "name": "ビジネスAI", "file": "ai_terms.json"},
