@@ -1004,6 +1004,28 @@ if (typeof gtag === 'function') {
         }
     }
 
+    playSound(freq, duration) {
+        if (!this.soundEnabled || !this.audioCtx) return;
+        try {
+            if (this.audioCtx.state === 'suspended') {
+                this.audioCtx.resume();
+            }
+            const osc = this.audioCtx.createOscillator();
+            const gain = this.audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.value = freq;
+            osc.connect(gain);
+            gain.connect(this.audioCtx.destination);
+            const now = this.audioCtx.currentTime;
+            gain.gain.setValueAtTime(0.1, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+            osc.start(now);
+            osc.stop(now + duration);
+        } catch (e) {
+            console.error("Audio Playback Error:", e);
+        }
+    }
+
     formatTime(ms) {
         if (isNaN(ms) || ms < 0) return "---";
         const m = Math.floor(ms/60000); const s = Math.floor((ms%60000)/1000); const p = Math.floor((ms%1000)/10);
