@@ -849,7 +849,11 @@ body.game-body #keyboard-container {
     }
     body.game-body .restriction-card {
         max-width: none !important;
-        width: 100% !important;
+        width: calc(100% - 30px) !important; /* 左右に15pxずつの余白を確保し、見切れを防止 */
+        margin-top: 0px !important;
+        margin-right: auto !important;
+        margin-bottom: 0px !important;
+        margin-left: auto !important;
         padding-top: 18px !important;
         padding-right: 20px !important;
         padding-bottom: 18px !important;
