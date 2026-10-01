@@ -922,6 +922,26 @@ body.game-body #keyboard-container {
         padding-left: 15px !important;
         margin-top: 0px !important;
     }
+
+    /* play.html 内の static-page（解説記事コンテナ）のスマホ用パディングを他のページと完全同期 */
+    body.game-body article.static-page {
+        padding-top: 25px !important;
+        padding-right: 15px !important;
+        padding-bottom: 45px !important;
+        padding-left: 15px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-top: 15px !important;
+        margin-right: 0px !important;
+        margin-bottom: 30px !important;
+        margin-left: 0px !important;
+        border-top-left-radius: 0px !important;
+        border-top-right-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
+        border-bottom-left-radius: 0px !important;
+        box-shadow: none !important;
+        box-sizing: border-box !important;
+    }
 }
 
 /* ============================================================
