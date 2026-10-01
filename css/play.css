@@ -876,16 +876,27 @@ body.game-body #keyboard-container {
     /* ボタンや不要なリンクは非表示にし、テキストで理由をしっかり伝える */
     body.game-body .restriction-card > div { display: none !important; }
     
-    /* ゲーム画面・スタート画面・結果画面のコンテナのみ非表示にする */
+    /* スタート画面、ゲーム画面、結果画面、および内部のカードや余白を完全に非表示にする */
     body.game-body #start-screen,
     body.game-body #game-screen,
-    body.game-body #result-screen { 
+    body.game-body #result-screen,
+    body.game-body .card { 
         display: none !important; 
+        margin-top: 0px !important;
+        margin-right: 0px !important;
+        margin-bottom: 0px !important;
+        margin-left: 0px !important;
+        padding-top: 0px !important;
+        padding-right: 0px !important;
+        padding-bottom: 0px !important;
+        padding-left: 0px !important;
+        height: 0px !important;
+        overflow: hidden !important;
     }
     
     /* 解説ラッパーの上余白をスマホ用に整え、案内ボックスのすぐ下に綺麗に繋げる */
     body.game-body .game-description-wrapper {
-        padding-top: 20px !important;
+        padding-top: 15px !important;
         padding-right: 0px !important;
         padding-bottom: 40px !important;
         padding-left: 0px !important;
