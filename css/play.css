@@ -807,12 +807,26 @@ body.game-body #keyboard-container {
     box-shadow: 0 10px 40px rgba(0,0,0,0.1); max-width: 450px; width: 90%; text-align: center;
 }
 
-/* スマホ・小画面での表示切替（理由の案内ボックスを表示しつつ、ゲーム本体だけを隠して記事につなげる） */
+/* スマホ・小画面での表示切替（ゲーム画面やタイピング空間の余白を完全に消し、他の記事ページと同じレイアウトにする） */
 @media (max-width: 768px) {
     body.game-body {
         background-color: #f1f3f5 !important;
     }
-    /* 案内ボックスを画面上部に自然なブロックとして表示する */
+    
+    /* #app やメインエリアのタイピング用レイアウト・余白をリセット */
+    body.game-body #app {
+        position: static !important;
+        transform: none !important;
+        margin-top: 0px !important;
+        margin-right: auto !important;
+        margin-bottom: 0px !important;
+        margin-left: auto !important;
+        width: 100% !important;
+        max-width: 1000px !important;
+        display: block !important;
+    }
+
+    /* 案内ボックスをヘッダーの直下に自然なブロックとして配置する */
     body.game-body .mobile-restriction-overlay {
         display: block !important;
         position: static !important;
@@ -839,11 +853,11 @@ body.game-body #keyboard-container {
         border-bottom-right-radius: 16px !important;
         border-bottom-left-radius: 16px !important;
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05) !important;
-        background-color: #fffbeb !important; /* 温かみのある注意喚起カラー */
+        background-color: #fffbeb !important;
         border-top-width: 1px !important;
         border-right-width: 1px !important;
         border-bottom-width: 1px !important;
-        border-left-width: 6px !important; /* 左側にアクセントの太線 */
+        border-left-width: 6px !important;
         border-top-style: solid !important;
         border-right-style: solid !important;
         border-bottom-style: solid !important;
@@ -873,10 +887,9 @@ body.game-body #keyboard-container {
         margin-bottom: 0px !important; 
         margin-left: 0px !important; 
     }
-    /* ボタンや不要なリンクは非表示にし、テキストで理由をしっかり伝える */
     body.game-body .restriction-card > div { display: none !important; }
     
-    /* スタート画面、ゲーム画面、結果画面、および内部のカードや余白を完全に非表示にする */
+    /* タイピングのスタート画面・ゲーム画面・結果画面・カードの残骸を完全に消去して高さを詰める */
     body.game-body #start-screen,
     body.game-body #game-screen,
     body.game-body #result-screen,
@@ -897,9 +910,54 @@ body.game-body #keyboard-container {
     /* 解説ラッパーの上余白をスマホ用に整え、案内ボックスのすぐ下に綺麗に繋げる */
     body.game-body .game-description-wrapper {
         padding-top: 15px !important;
-        padding-right: 0px !important;
+        padding-right: 15px !important;
         padding-bottom: 40px !important;
-        padding-left: 0px !important;
+        padding-left: 15px !important;
+        margin-top: 0px !important;
+    }
+
+    /* ほかのページ（portal-page）同様のスマホ最適化を game-body でも完全同期 */
+    body.game-body .game-info-section {
+        width: 100% !important;
+        padding-top: 30px !important;
+        padding-right: 15px !important;
+        padding-bottom: 30px !important;
+        padding-left: 15px !important;
+        border-top-left-radius: 0px !important;
+        border-top-right-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
+        border-bottom-left-radius: 0px !important;
+        box-shadow: none !important;
+    }
+    
+    body.game-body .game-info-section ul {
+        padding-top: 0px !important;
+        padding-right: 0px !important;
+        padding-bottom: 0px !important;
+        padding-left: 20px !important;
+        margin-top: 15px !important;
+        margin-right: 0px !important;
+        margin-bottom: 15px !important;
+        margin-left: 0px !important;
+    }
+
+    body.game-body .game-info-section ul li {
+        margin-top: 0px !important;
+        margin-right: 0px !important;
+        margin-bottom: 15px !important;
+        margin-left: 0px !important;
+        line-height: 1.7 !important;
+    }
+
+    body.game-body .instructor-advice {
+        padding-top: 20px !important;
+        padding-right: 15px !important;
+        padding-bottom: 20px !important;
+        padding-left: 15px !important;
+        margin-top: 30px !important;
+        margin-right: 0px !important;
+        margin-bottom: 30px !important;
+        margin-left: 0px !important;
     }
 }
 
