@@ -807,13 +807,12 @@ body.game-body #keyboard-container {
     box-shadow: 0 10px 40px rgba(0,0,0,0.1); max-width: 450px; width: 90%; text-align: center;
 }
 
-/* スマホ・小画面での表示切替（ゲーム画面や白箱の残骸を完全に消し、PC推奨案内と解説記事を美しく並べる） */
+/* スマホ・小画面での表示切替（灰色背景・ゲーム用の空間・高さの残骸を完全に根絶する） */
 @media (max-width: 768px) {
     body.game-body {
         background-color: #f1f3f5 !important;
     }
     
-    /* #app のレイアウトを通常のポータルページと同じドキュメントフローにする */
     body.game-body #app {
         position: static !important;
         transform: none !important;
@@ -824,6 +823,13 @@ body.game-body #keyboard-container {
         width: 100% !important;
         max-width: 1000px !important;
         display: block !important;
+        min-height: auto !important;
+    }
+
+    body.game-body main {
+        display: block !important;
+        height: auto !important;
+        min-height: auto !important;
     }
 
     /* 案内ボックスをヘッダーの直下に自然なブロックとして配置する */
@@ -889,11 +895,12 @@ body.game-body #keyboard-container {
     }
     body.game-body .restriction-card > div { display: none !important; }
     
-    /* タイピングのスタート画面・ゲーム画面・結果画面、および白いカードの残骸を完全に消去して高さを詰める */
+    /* スタート画面、ゲーム画面、結果画面、カード、および広告用空スペースの残骸を完全に消去する */
     body.game-body #start-screen,
     body.game-body #game-screen,
     body.game-body #result-screen,
-    body.game-body .card { 
+    body.game-body .card,
+    body.game-body main > div[style*="height: 120px"] { 
         display: none !important; 
         margin-top: 0px !important;
         margin-right: 0px !important;
@@ -907,7 +914,7 @@ body.game-body #keyboard-container {
         overflow: hidden !important;
     }
     
-    /* 解説エリアの上余白をスマホ用に整え、他の記事と同じように自然に繋げる */
+    /* 解説エリアの上余白をスマホ用に整え、ヘッダーや案内ボックスのすぐ下に綺麗に繋げる */
     body.game-body .game-description-wrapper {
         padding-top: 15px !important;
         padding-right: 15px !important;
