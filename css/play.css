@@ -894,10 +894,48 @@ body.game-body #keyboard-container {
         line-height: 1.6 !important;
         margin-top: 0px !important; 
         margin-right: 0px !important; 
-        margin-bottom: 0px !important; 
+        margin-bottom: 10px !important; 
         margin-left: 0px !important; 
     }
-    body.game-body .restriction-card > div { display: none !important; }
+    
+    /* 戻るボタンエリアをスマホ用に綺麗に配置・整形する */
+    body.game-body .restriction-card > div {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+        margin-top: 15px !important;
+        margin-right: 0px !important;
+        margin-bottom: 0px !important;
+        margin-left: 0px !important;
+    }
+    body.game-body .restriction-card a.btn-main {
+        width: 100% !important;
+        max-width: 240px !important;
+        padding-top: 10px !important;
+        padding-right: 0px !important;
+        padding-bottom: 10px !important;
+        padding-left: 0px !important;
+        font-size: 0.9rem !important;
+        box-shadow: none !important;
+        background-color: #2563EB !important;
+        text-decoration-line: none !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-top-left-radius: 30px !important;
+        border-top-right-radius: 30px !important;
+        border-bottom-right-radius: 30px !important;
+        border-bottom-left-radius: 30px !important;
+        color: #ffffff !important;
+        font-weight: 800 !important;
+    }
+    body.game-body .restriction-card a:not(.btn-main) {
+        color: #64748b !important;
+        font-size: 0.85rem !important;
+        text-decoration-line: underline !important;
+        font-weight: 700 !important;
+    }
     
     /* スタート画面、ゲーム画面、結果画面、カード、および広告用空スペースの残骸を完全に消去する */
     body.game-body #start-screen,
