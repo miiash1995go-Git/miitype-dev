@@ -807,13 +807,13 @@ body.game-body #keyboard-container {
     box-shadow: 0 10px 40px rgba(0,0,0,0.1); max-width: 450px; width: 90%; text-align: center;
 }
 
-/* スマホ・小画面での表示切替（ゲーム画面やタイピング空間の余白を完全に消し、他の記事ページと同じレイアウトにする） */
+/* スマホ・小画面での表示切替（ゲーム画面や白箱の残骸を完全に消し、PC推奨案内と解説記事を美しく並べる） */
 @media (max-width: 768px) {
     body.game-body {
         background-color: #f1f3f5 !important;
     }
     
-    /* #app やメインエリアのタイピング用レイアウト・余白をリセット */
+    /* #app のレイアウトを通常のポータルページと同じドキュメントフローにする */
     body.game-body #app {
         position: static !important;
         transform: none !important;
@@ -889,7 +889,7 @@ body.game-body #keyboard-container {
     }
     body.game-body .restriction-card > div { display: none !important; }
     
-    /* タイピングのスタート画面・ゲーム画面・結果画面・カードの残骸を完全に消去して高さを詰める */
+    /* タイピングのスタート画面・ゲーム画面・結果画面、および白いカードの残骸を完全に消去して高さを詰める */
     body.game-body #start-screen,
     body.game-body #game-screen,
     body.game-body #result-screen,
@@ -907,57 +907,13 @@ body.game-body #keyboard-container {
         overflow: hidden !important;
     }
     
-    /* 解説ラッパーの上余白をスマホ用に整え、案内ボックスのすぐ下に綺麗に繋げる */
+    /* 解説エリアの上余白をスマホ用に整え、他の記事と同じように自然に繋げる */
     body.game-body .game-description-wrapper {
         padding-top: 15px !important;
         padding-right: 15px !important;
         padding-bottom: 40px !important;
         padding-left: 15px !important;
         margin-top: 0px !important;
-    }
-
-    /* ほかのページ（portal-page）同様のスマホ最適化を game-body でも完全同期 */
-    body.game-body .game-info-section {
-        width: 100% !important;
-        padding-top: 30px !important;
-        padding-right: 15px !important;
-        padding-bottom: 30px !important;
-        padding-left: 15px !important;
-        border-top-left-radius: 0px !important;
-        border-top-right-radius: 0px !important;
-        border-bottom-right-radius: 0px !important;
-        border-bottom-left-radius: 0px !important;
-        box-shadow: none !important;
-    }
-    
-    body.game-body .game-info-section ul {
-        padding-top: 0px !important;
-        padding-right: 0px !important;
-        padding-bottom: 0px !important;
-        padding-left: 20px !important;
-        margin-top: 15px !important;
-        margin-right: 0px !important;
-        margin-bottom: 15px !important;
-        margin-left: 0px !important;
-    }
-
-    body.game-body .game-info-section ul li {
-        margin-top: 0px !important;
-        margin-right: 0px !important;
-        margin-bottom: 15px !important;
-        margin-left: 0px !important;
-        line-height: 1.7 !important;
-    }
-
-    body.game-body .instructor-advice {
-        padding-top: 20px !important;
-        padding-right: 15px !important;
-        padding-bottom: 20px !important;
-        padding-left: 15px !important;
-        margin-top: 30px !important;
-        margin-right: 0px !important;
-        margin-bottom: 30px !important;
-        margin-left: 0px !important;
     }
 }
 
