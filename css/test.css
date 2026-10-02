@@ -680,18 +680,17 @@ body.test-body footer p {
     text-align: center;
 }
 
-/* PC版：テストエリアと下部解説記事の間にたっぷりとした余白を確保する */
+/* PC版：テストカードと下部解説記事の間に十分な余白を確保する */
 body.test-body article.static-page {
     margin-top: 180px !important;
 }
 
-/* スマホ・小画面での表示切替（ヘッダー・背景の統一、見切れ解消、解説記事の美化） */
+/* スマホ・小画面のとき（768px以下） */
 @media (max-width: 768px) {
+    /* 1. 背景とヘッダーを他のページと同じ白ベースにする */
     body.test-body {
         background-color: #f1f3f5 !important;
     }
-    
-    /* ヘッダーの背景もスマホでは白ベースの自然な見た目に合わせる */
     body.test-body header {
         background-color: #ffffff !important;
         border-bottom-width: 1px !important;
@@ -699,50 +698,25 @@ body.test-body article.static-page {
         border-bottom-color: #e2e8f0 !important;
     }
 
+    /* 2. PC推奨の案内ボックスをヘッダーの下に綺麗に表示する */
     body.test-body .mobile-restriction-overlay {
         display: block !important;
         position: static !important;
         height: auto !important;
-        margin-top: 15px !important;
-        margin-right: 15px !important;
-        margin-bottom: 0px !important;
-        margin-left: 15px !important;
-        padding-top: 0px !important;
-        padding-right: 0px !important;
-        padding-bottom: 0px !important;
-        padding-left: 0px !important;
+        margin: 15px 15px 0px 15px !important;
+        padding: 0px !important;
         background-color: transparent !important;
     }
-    
     body.test-body .restriction-card {
         max-width: none !important;
-        width: 100% !important; /* calcではなく100%にし、外側のmargin-right/leftで完全に収める */
-        margin-top: 0px !important;
-        margin-right: 0px !important;
-        margin-bottom: 0px !important;
-        margin-left: 0px !important;
-        padding-top: 18px !important;
-        padding-right: 20px !important;
-        padding-bottom: 18px !important;
-        padding-left: 20px !important;
-        border-top-left-radius: 16px !important;
-        border-top-right-radius: 16px !important;
-        border-bottom-right-radius: 16px !important;
-        border-bottom-left-radius: 16px !important;
+        width: 100% !important;
+        margin: 0px !important;
+        padding: 18px 20px !important;
+        border-radius: 16px !important;
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05) !important;
         background-color: #fffbeb !important;
-        border-top-width: 1px !important;
-        border-right-width: 1px !important;
-        border-bottom-width: 1px !important;
-        border-left-width: 6px !important;
-        border-top-style: solid !important;
-        border-right-style: solid !important;
-        border-bottom-style: solid !important;
-        border-left-style: solid !important;
-        border-top-color: #fde68a !important;
-        border-right-color: #fde68a !important;
-        border-bottom-color: #fde68a !important;
-        border-left-color: #f59e0b !important;
+        border: 1px solid #fde68a !important;
+        border-left: 6px solid #f59e0b !important;
         box-sizing: border-box !important;
         text-align: left !important;
     }
@@ -750,59 +724,43 @@ body.test-body article.static-page {
         font-size: 1.05rem !important; 
         font-weight: 900 !important;
         color: #d97706 !important;
-        margin-top: 0px !important; 
-        margin-right: 0px !important; 
-        margin-bottom: 8px !important; 
-        margin-left: 0px !important; 
+        margin: 0px 0px 8px 0px !important; 
     }
     body.test-body .restriction-card p { 
         font-size: 0.85rem !important; 
         color: #475569 !important;
         line-height: 1.6 !important;
-        margin-top: 0px !important; 
-        margin-right: 0px !important; 
-        margin-bottom: 10px !important; 
-        margin-left: 0px !important; 
+        margin: 0px 0px 10px 0px !important; 
     }
     body.test-body .restriction-card > div {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         gap: 10px !important;
-        margin-top: 15px !important;
-        margin-right: 0px !important;
-        margin-bottom: 0px !important;
-        margin-left: 0px !important;
+        margin: 15px 0px 0px 0px !important;
     }
     body.test-body .restriction-card a.btn-main {
         width: 100% !important;
         max-width: 240px !important;
-        padding-top: 10px !important;
-        padding-right: 0px !important;
-        padding-bottom: 10px !important;
-        padding-left: 0px !important;
+        padding: 10px 0px !important;
         font-size: 0.9rem !important;
-        box-shadow: none !important;
         background-color: #2563EB !important;
-        text-decoration-line: none !important;
+        text-decoration: none !important;
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
-        border-top-left-radius: 30px !important;
-        border-top-right-radius: 30px !important;
-        border-bottom-right-radius: 30px !important;
-        border-bottom-left-radius: 30px !important;
+        border-radius: 30px !important;
         color: #ffffff !important;
         font-weight: 800 !important;
     }
     body.test-body .restriction-card a:not(.btn-main) {
         color: #64748b !important;
         font-size: 0.85rem !important;
-        text-decoration-line: underline !important;
+        text-decoration: underline !important;
         font-weight: 700 !important;
     }
     
-    /* テスト関連画面を完全に非表示にし、余白を詰める */
+    /* 3. スマホ時はテスト本編の画面を完全に消して高さを詰める */
     body.test-body #start-screen,
     body.test-body #game-screen,
     body.test-body #result-screen { 
@@ -811,107 +769,13 @@ body.test-body article.static-page {
         overflow: hidden !important;
     }
     
-    /* スマホ時の static-page 余白同期 */
+    /* 4. 下部の解説記事（static-page）のスマホ用余白を他のページと完全同期 */
     body.test-body article.static-page {
-        padding-top: 25px !important;
-        padding-right: 15px !important;
-        padding-bottom: 45px !important;
-        padding-left: 15px !important;
+        padding: 25px 15px 45px 15px !important;
         width: 100% !important;
         max-width: 100% !important;
-        margin-top: 15px !important;
-        margin-right: 0px !important;
-        margin-bottom: 30px !important;
-        margin-left: 0px !important;
-        border-top-left-radius: 0px !important;
-        border-top-right-radius: 0px !important;
-        border-bottom-right-radius: 0px !important;
-        border-bottom-left-radius: 0px !important;
-        box-shadow: none !important;
-        box-sizing: border-box !important;
-    }
-}
-    body.test-body .restriction-card h2 { 
-        font-size: 1.05rem !important; 
-        font-weight: 900 !important;
-        color: #d97706 !important;
-        margin-top: 0px !important; 
-        margin-right: 0px !important; 
-        margin-bottom: 8px !important; 
-        margin-left: 0px !important; 
-    }
-    body.test-body .restriction-card p { 
-        font-size: 0.85rem !important; 
-        color: #475569 !important;
-        line-height: 1.6 !important;
-        margin-top: 0px !important; 
-        margin-right: 0px !important; 
-        margin-bottom: 10px !important; 
-        margin-left: 0px !important; 
-    }
-    body.test-body .restriction-card > div {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 10px !important;
-        margin-top: 15px !important;
-        margin-right: 0px !important;
-        margin-bottom: 0px !important;
-        margin-left: 0px !important;
-    }
-    body.test-body .restriction-card a.btn-main {
-        width: 100% !important;
-        max-width: 240px !important;
-        padding-top: 10px !important;
-        padding-right: 0px !important;
-        padding-bottom: 10px !important;
-        padding-left: 0px !important;
-        font-size: 0.9rem !important;
-        box-shadow: none !important;
-        background-color: #2563EB !important;
-        text-decoration-line: none !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        border-top-left-radius: 30px !important;
-        border-top-right-radius: 30px !important;
-        border-bottom-right-radius: 30px !important;
-        border-bottom-left-radius: 30px !important;
-        color: #ffffff !important;
-        font-weight: 800 !important;
-    }
-    body.test-body .restriction-card a:not(.btn-main) {
-        color: #64748b !important;
-        font-size: 0.85rem !important;
-        text-decoration-line: underline !important;
-        font-weight: 700 !important;
-    }
-    
-    /* テスト関連画面を完全に非表示にし、余白を詰める */
-    body.test-body #start-screen,
-    body.test-body #game-screen,
-    body.test-body #result-screen { 
-        display: none !important; 
-        height: 0px !important;
-        overflow: hidden !important;
-    }
-    
-    /* スマホ時の static-page 余白同期 */
-    body.test-body article.static-page {
-        padding-top: 25px !important;
-        padding-right: 15px !important;
-        padding-bottom: 45px !important;
-        padding-left: 15px !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        margin-top: 15px !important;
-        margin-right: 0px !important;
-        margin-bottom: 30px !important;
-        margin-left: 0px !important;
-        border-top-left-radius: 0px !important;
-        border-top-right-radius: 0px !important;
-        border-bottom-right-radius: 0px !important;
-        border-bottom-left-radius: 0px !important;
+        margin: 15px 0px 30px 0px !important;
+        border-radius: 0px !important;
         box-shadow: none !important;
         box-sizing: border-box !important;
     }
