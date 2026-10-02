@@ -28,6 +28,11 @@ body.game-body main {
     padding-bottom: 25px !important;
 }
 
+/* PC版：タイピングエリア（カード等）と下部解説記事の間にたっぷりとした余白を確保する */
+body.game-body article.static-page {
+    margin-top: 180px !important;
+}
+
 /* 練習開始時の背景沈み込み・スライド演出 */
 body.focus-mode {
     background-color: #4e5d6c !important;
