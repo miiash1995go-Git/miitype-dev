@@ -685,11 +685,20 @@ body.test-body article.static-page {
     margin-top: 180px !important;
 }
 
-/* スマホ・小画面での表示切替（テスト本編を隠し、案内ボックスと解説記事を美しく繋げる） */
+/* スマホ・小画面での表示切替（ヘッダー・背景の統一、見切れ解消、解説記事の美化） */
 @media (max-width: 768px) {
     body.test-body {
         background-color: #f1f3f5 !important;
     }
+    
+    /* ヘッダーの背景もスマホでは白ベースの自然な見た目に合わせる */
+    body.test-body header {
+        background-color: #ffffff !important;
+        border-bottom-width: 1px !important;
+        border-bottom-style: solid !important;
+        border-bottom-color: #e2e8f0 !important;
+    }
+
     body.test-body .mobile-restriction-overlay {
         display: block !important;
         position: static !important;
@@ -704,13 +713,14 @@ body.test-body article.static-page {
         padding-left: 0px !important;
         background-color: transparent !important;
     }
+    
     body.test-body .restriction-card {
         max-width: none !important;
-        width: calc(100% - 30px) !important;
+        width: 100% !important; /* calcではなく100%にし、外側のmargin-right/leftで完全に収める */
         margin-top: 0px !important;
-        margin-right: auto !important;
+        margin-right: 0px !important;
         margin-bottom: 0px !important;
-        margin-left: auto !important;
+        margin-left: 0px !important;
         padding-top: 18px !important;
         padding-right: 20px !important;
         padding-bottom: 18px !important;
@@ -736,6 +746,91 @@ body.test-body article.static-page {
         box-sizing: border-box !important;
         text-align: left !important;
     }
+    body.test-body .restriction-card h2 { 
+        font-size: 1.05rem !important; 
+        font-weight: 900 !important;
+        color: #d97706 !important;
+        margin-top: 0px !important; 
+        margin-right: 0px !important; 
+        margin-bottom: 8px !important; 
+        margin-left: 0px !important; 
+    }
+    body.test-body .restriction-card p { 
+        font-size: 0.85rem !important; 
+        color: #475569 !important;
+        line-height: 1.6 !important;
+        margin-top: 0px !important; 
+        margin-right: 0px !important; 
+        margin-bottom: 10px !important; 
+        margin-left: 0px !important; 
+    }
+    body.test-body .restriction-card > div {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+        margin-top: 15px !important;
+        margin-right: 0px !important;
+        margin-bottom: 0px !important;
+        margin-left: 0px !important;
+    }
+    body.test-body .restriction-card a.btn-main {
+        width: 100% !important;
+        max-width: 240px !important;
+        padding-top: 10px !important;
+        padding-right: 0px !important;
+        padding-bottom: 10px !important;
+        padding-left: 0px !important;
+        font-size: 0.9rem !important;
+        box-shadow: none !important;
+        background-color: #2563EB !important;
+        text-decoration-line: none !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-top-left-radius: 30px !important;
+        border-top-right-radius: 30px !important;
+        border-bottom-right-radius: 30px !important;
+        border-bottom-left-radius: 30px !important;
+        color: #ffffff !important;
+        font-weight: 800 !important;
+    }
+    body.test-body .restriction-card a:not(.btn-main) {
+        color: #64748b !important;
+        font-size: 0.85rem !important;
+        text-decoration-line: underline !important;
+        font-weight: 700 !important;
+    }
+    
+    /* テスト関連画面を完全に非表示にし、余白を詰める */
+    body.test-body #start-screen,
+    body.test-body #game-screen,
+    body.test-body #result-screen { 
+        display: none !important; 
+        height: 0px !important;
+        overflow: hidden !important;
+    }
+    
+    /* スマホ時の static-page 余白同期 */
+    body.test-body article.static-page {
+        padding-top: 25px !important;
+        padding-right: 15px !important;
+        padding-bottom: 45px !important;
+        padding-left: 15px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-top: 15px !important;
+        margin-right: 0px !important;
+        margin-bottom: 30px !important;
+        margin-left: 0px !important;
+        border-top-left-radius: 0px !important;
+        border-top-right-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
+        border-bottom-left-radius: 0px !important;
+        box-shadow: none !important;
+        box-sizing: border-box !important;
+    }
+}
     body.test-body .restriction-card h2 { 
         font-size: 1.05rem !important; 
         font-weight: 900 !important;
