@@ -769,14 +769,40 @@ body.test-body article.static-page {
         overflow: hidden !important;
     }
     
-    /* 4. 下部の解説記事（static-page）のスマホ用余白を他のページと完全同期 */
+/* スマホ時の static-page および解説コンテンツの完全統治 */
     body.test-body article.static-page {
-        padding: 25px 15px 45px 15px !important;
+        padding-top: 25px !important;
+        padding-right: 15px !important;
+        padding-bottom: 45px !important;
+        padding-left: 15px !important;
         width: 100% !important;
         max-width: 100% !important;
-        margin: 15px 0px 30px 0px !important;
-        border-radius: 0px !important;
+        margin-top: 15px !important;
+        margin-right: 0px !important;
+        margin-bottom: 30px !important;
+        margin-left: 0px !important;
+        border-top-left-radius: 0px !important;
+        border-top-right-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
+        border-bottom-left-radius: 0px !important;
         box-shadow: none !important;
         box-sizing: border-box !important;
+    }
+    body.test-body .content-body {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    body.test-body .content-box,
+    body.test-body .instructor-advice,
+    body.test-body .info-note-box {
+        padding-top: 20px !important;
+        padding-right: 15px !important;
+        padding-bottom: 20px !important;
+        padding-left: 15px !important;
+        box-sizing: border-box !important;
+        max-width: 100% !important;
+    }
+    body.test-body .category-info-grid {
+        grid-template-columns: 1fr !important;
     }
 }
