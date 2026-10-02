@@ -42,7 +42,7 @@
                     <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
                 </a>
 
-                <!-- 右：ナビ（4x2グリッドを維持） -->
+                <!-- 右：ナビ（他のページと同じハンバーガー付き構造に統一） -->
                 <nav class="header-nav">
                     <div class="nav-grid">
                         <a href="./" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
@@ -54,7 +54,28 @@
                         <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
                         <a href="hub-column.html" class="nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
                     </div>
+                    <button class="mobile-menu-trigger" id="mobile-menu-btn">
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="menu-label">メニュー</span>
+                    </button>
                 </nav>
+            </div>
+
+            <!-- スマホ全画面メニュー本体 -->
+            <div class="mobile-nav-overlay" id="mobile-menu-overlay">
+                <button class="menu-close-btn" id="menu-close-btn">×</button>
+                <div class="mobile-nav-grid">
+                    <a href="./" class="mobile-nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                    <a href="hub-typing.html" class="mobile-nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                    <a href="hub-windows.html" class="mobile-nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>Windows</span></a>
+                    <a href="hub-word.html" class="mobile-nav-item"><img src="img/icon-word.png" class="nav-icon"><span>Word</span></a>
+                    <a href="hub-excel.html" class="mobile-nav-item"><img src="img/icon-excel.png" class="nav-icon"><span>Excel</span></a>
+                    <a href="hub-ai.html" class="mobile-nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                    <a href="hub-career.html" class="mobile-nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                    <a href="hub-column.html" class="mobile-nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                </div>
             </div>
         </header>
 
@@ -167,9 +188,10 @@
                 </div>
             </section>
 
-            <!-- 専門家による詳細解説セクション（現役講師の語り口版） -->
-            <article class="static-page" style="max-width: 1000px; margin-top: 50px; margin-bottom: 80px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: #e2e8f0; border-right-color: #e2e8f0; border-bottom-color: #e2e8f0; border-left-color: #e2e8f0; box-shadow: none;">
-                <div class="content-body" style="text-align: left;">
+            <!-- 専門家による詳細解説セクション（他の記事と同じ純粋な static-page 構造に統一） -->
+            <article class="static-page">
+                <nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
+                <div class="content-body">
                     
                     <!-- メインタイトル：アイコン付きボックス -->
                     <div class="icon-title-box">
