@@ -584,8 +584,7 @@ body.portal-page .instructor-advice--column b {
 
 /* --- 4. 記事本文エリア装飾 --- */
 
-body.portal-page .content-body h2,
-body.portal-page article.static-page .hub-section h2:not(.hub-section-title):not(.section-title) {
+body.portal-page .content-body h2, {
     display: block;
     position: relative;
     font-family: 'Noto Sans JP', sans-serif;
@@ -610,8 +609,7 @@ body.portal-page article.static-page .hub-section h2:not(.hub-section-title):not
 }
 
 /* 左側の縦棒：行数に合わせて自動で伸びるように改善 (v20.7.24.Auto) */
-body.portal-page .content-body h2::before,
-body.portal-page article.static-page .hub-section h2:not(.hub-section-title)::before {
+body.portal-page .content-body h2::before, {
     content: "";
     position: absolute;
     display: block;
@@ -630,8 +628,7 @@ body.portal-page article.static-page .hub-section h2:not(.hub-section-title)::be
 }
 
 /* 下側の水平線：復元 */
-body.portal-page .content-body h2::after,
-body.portal-page article.static-page .hub-section h2:not(.hub-section-title)::after {
+body.portal-page .content-body h2::after, {
     content: "";
     position: absolute;
     display: block;
