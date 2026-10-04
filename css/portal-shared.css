@@ -2873,3 +2873,59 @@ body.portal-page .info-note-box {
 .flex-table-header .flex-table-col--primary {
     border-right-color: #e2e8f0;
 }
+
+/* --- PCスキルハブ専用：テーマカラーセクションボックス ＆ カッコいい見出し --- */
+.section-color-box {
+    margin-top: 40px !important;
+    margin-right: 0px !important;
+    margin-bottom: 45px !important;
+    margin-left: 0px !important;
+    padding-top: 35px !important;
+    padding-right: 40px !important;
+    padding-bottom: 35px !important;
+    padding-left: 40px !important;
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+    box-sizing: border-box !important;
+    display: block !important;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.03) !important;
+}
+
+.section-color-box--windows { background-color: #f0f9ff !important; }
+.section-color-box--word    { background-color: #f0f7ff !important; }
+.section-color-box--excel   { background-color: #f0fdf4 !important; }
+
+.hub-section-title {
+    font-size: 1.45rem !important;
+    font-weight: 900 !important;
+    color: #1e293b !important;
+    padding-top: 14px !important;
+    padding-right: 20px !important;
+    padding-bottom: 14px !important;
+    padding-left: 20px !important;
+    background-image: linear-gradient(90deg, #f1f5f9 0%, #ffffff 100%) !important;
+    border-top-width: 0px !important;
+    border-right-width: 0px !important;
+    border-bottom-width: 0px !important;
+    border-left-width: 6px !important;
+    border-top-style: none !important;
+    border-right-style: none !important;
+    border-bottom-style: none !important;
+    border-left-style: solid !important;
+    border-left-color: #334155 !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 12px !important;
+    border-bottom-right-radius: 12px !important;
+    border-bottom-left-radius: 0px !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 25px !important;
+    margin-left: 0px !important;
+}
+
+.hub-section-title--windows { border-left-color: #38BDF8 !important; background-image: linear-gradient(90deg, #e0f2fe 0%, #ffffff 100%) !important; }
+.hub-section-title--word    { border-left-color: #1D4ED8 !important; background-image: linear-gradient(90deg, #dbeafe 0%, #ffffff 100%) !important; }
+.hub-section-title--excel   { border-left-color: #16A34A !important; background-image: linear-gradient(90deg, #dcfce7 0%, #ffffff 100%) !important; }
+
