@@ -1354,23 +1354,19 @@ if (typeof gtag === 'function') {
         // 2. カテゴリ判定マッピング
         // 現場コラム(column)のキーワードに 'glossary' を追加し、用語集もコラム配下として統治する。
         var mapping = {
-            'career':  ['mos', 'reskill', 'typing-speed', 'career', 'interview', 'cv'],
-            'ai':      ['chatgpt', 'ai', 'tools'],
-            'column':  ['column', 'glossary'],
-            'windows': ['windows', 'pc-selection', 'folder'],
-            'word':    ['word'],
-            'excel':   ['excel'],
-            'typing':  ['typing', 'play', 'basics']
+            'career':   ['mos', 'reskill', 'typing-speed', 'career', 'interview', 'cv'],
+            'ai':       ['chatgpt', 'ai', 'tools'],
+            'column':   ['column', 'glossary'],
+            'pcskills': ['pcskills', 'hub-pcskills', 'windows', 'word', 'excel', 'pc-selection', 'folder', 'multi', 'practice', 'tab', 'line-spacing'],
+            'typing':   ['typing', 'play', 'basics']
         };
 
         var names = {
-            'windows': 'Windows',
-            'word':    'Word',
-            'excel':   'Excel',
-            'ai':      '生成AI',
-            'typing':  'タイピング',
-            'career':  '就職・転職',
-            'column':  '現場コラム'
+            'pcskills': 'PCスキル',
+            'ai':       '生成AI',
+            'typing':   'タイピング',
+            'career':   '就職・転職',
+            'column':   '現場コラム'
         };
 
         // 3. 現在のカテゴリキーを特定（Sitemap.xmlからの抽出を優先）
