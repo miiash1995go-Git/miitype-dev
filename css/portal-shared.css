@@ -585,7 +585,7 @@ body.portal-page .instructor-advice--column b {
 /* --- 4. 記事本文エリア装飾 --- */
 
 body.portal-page .content-body h2,
-body.portal-page article.static-page .hub-section h2:not(.hub-section-title) {
+body.portal-page article.static-page .hub-section h2:not(.hub-section-title):not(.section-title) {
     display: block;
     position: relative;
     font-family: 'Noto Sans JP', sans-serif;
