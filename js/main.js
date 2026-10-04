@@ -1624,7 +1624,14 @@ if (typeof gtag === 'function') {
                 listBody.innerHTML = "";
                 listBody.scrollTop = 0;
 
-                const filtered = articleData.filter(a => filter === 'all' || a.category === filter);
+                let filtered = [];
+                if (filter === 'all') {
+                    filtered = articleData;
+                } else if (filter === 'pcskills') {
+                    filtered = articleData.filter(a => a.category === 'windows' || a.category === 'word' || a.category === 'excel');
+                } else {
+                    filtered = articleData.filter(a => a.category === filter);
+                }
                 
                 if (filtered.length === 0) {
                     listBody.innerHTML = '<div style="padding:40px; color:#94a3b8; text-align:center; font-weight:800;">該当する記事がありません</div>';
