@@ -585,7 +585,7 @@ body.portal-page .instructor-advice--column b {
 /* --- 4. 記事本文エリア装飾 --- */
 
 body.portal-page .content-body h2,
-body.portal-page article.static-page .hub-section h2 {
+body.portal-page article.static-page .hub-section h2:not(.hub-section-title) {
     display: block;
     position: relative;
     font-family: 'Noto Sans JP', sans-serif;
@@ -611,7 +611,7 @@ body.portal-page article.static-page .hub-section h2 {
 
 /* 左側の縦棒：行数に合わせて自動で伸びるように改善 (v20.7.24.Auto) */
 body.portal-page .content-body h2::before,
-body.portal-page article.static-page .hub-section h2::before {
+body.portal-page article.static-page .hub-section h2:not(.hub-section-title)::before {
     content: "";
     position: absolute;
     display: block;
@@ -631,7 +631,7 @@ body.portal-page article.static-page .hub-section h2::before {
 
 /* 下側の水平線：復元 */
 body.portal-page .content-body h2::after,
-body.portal-page article.static-page .hub-section h2::after {
+body.portal-page article.static-page .hub-section h2:not(.hub-section-title)::after {
     content: "";
     position: absolute;
     display: block;
@@ -2906,6 +2906,21 @@ body.portal-page .info-note-box {
         padding-right: 15px !important;
         padding-bottom: 25px !important;
         padding-left: 15px !important;
+    }
+    .section-color-box ul {
+        padding-top: 0px !important;
+        padding-right: 0px !important;
+        padding-bottom: 0px !important;
+        padding-left: 15px !important;
+        margin-top: 10px !important;
+        margin-right: 0px !important;
+        margin-bottom: 10px !important;
+        margin-left: 0px !important;
+    }
+    .section-color-box li {
+        font-size: 0.92rem !important;
+        line-height: 1.6 !important;
+        margin-bottom: 8px !important;
     }
 }
 
