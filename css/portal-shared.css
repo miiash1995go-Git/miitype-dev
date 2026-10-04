@@ -1465,7 +1465,8 @@ body.portal-page .breadcrumb a {
         width: 100% !important;
     }
 
-    body.portal-page .content-body h2 {
+    body.portal-page .content-body h2,
+    body.portal-page article.static-page .hub-section h2:not(.hub-section-title):not(.section-title):not(.section-title--summary) {
         font-size: 1.4rem !important;
         margin-top: 45px !important;
         margin-bottom: 20px !important;
