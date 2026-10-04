@@ -487,6 +487,65 @@ body.portal-page .instructor-advice--excel b {
     border-bottom-color: #86efac !important;
 }
 
+/* --- PCスキルハブ専用アドバイスボックス --- */
+body.portal-page .instructor-advice--pcskills {
+    background-color: #f0fdf4 !important;
+    border-top-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 6px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #dcfce7 !important;
+    border-right-color: #dcfce7 !important;
+    border-bottom-color: #dcfce7 !important;
+    border-left-color: #16a34a !important;
+    border-top-left-radius: 16px !important;
+    border-top-right-radius: 16px !important;
+    border-bottom-right-radius: 16px !important;
+    border-bottom-left-radius: 16px !important;
+    padding-top: 25px !important;
+    padding-right: 35px !important;
+    padding-bottom: 25px !important;
+    padding-left: 35px !important;
+    margin-top: 35px !important;
+    margin-right: 0px !important;
+    margin-bottom: 35px !important;
+    margin-left: 0px !important;
+    font-size: 1.05rem !important;
+    line-height: 1.8 !important;
+    color: #1e293b !important;
+    box-sizing: border-box !important;
+}
+
+body.portal-page .instructor-advice--pcskills b,
+body.portal-page .instructor-advice--pcskills strong {
+    display: inline-block !important;
+    font-weight: 900 !important;
+    color: #15803d !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 12px !important;
+    margin-left: 0px !important;
+    padding-top: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 4px !important;
+    padding-left: 0px !important;
+    border-top-width: 0px !important;
+    border-right-width: 0px !important;
+    border-bottom-width: 2px !important;
+    border-left-width: 0px !important;
+    border-top-style: none !important;
+    border-right-style: none !important;
+    border-bottom-style: solid !important;
+    border-bottom-color: rgba(22, 163, 74, 0.3) !important;
+    border-left-style: none !important;
+    font-size: 1.15rem !important;
+}
+
+
 body.portal-page .instructor-advice--ai {
     background-color: #ecfeff !important;
     border-top-color: #ccfbf1 !important;
