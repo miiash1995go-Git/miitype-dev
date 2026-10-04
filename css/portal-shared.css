@@ -584,7 +584,8 @@ body.portal-page .instructor-advice--column b {
 
 /* --- 4. 記事本文エリア装飾 --- */
 
-body.portal-page .content-body h2 {
+body.portal-page .content-body h2,
+body.portal-page article.static-page .hub-section h2 {
     display: block;
     position: relative;
     font-family: 'Noto Sans JP', sans-serif;
@@ -609,7 +610,8 @@ body.portal-page .content-body h2 {
 }
 
 /* 左側の縦棒：行数に合わせて自動で伸びるように改善 (v20.7.24.Auto) */
-body.portal-page .content-body h2::before {
+body.portal-page .content-body h2::before,
+body.portal-page article.static-page .hub-section h2::before {
     content: "";
     position: absolute;
     display: block;
@@ -628,7 +630,8 @@ body.portal-page .content-body h2::before {
 }
 
 /* 下側の水平線：復元 */
-body.portal-page .content-body h2::after {
+body.portal-page .content-body h2::after,
+body.portal-page article.static-page .hub-section h2::after {
     content: "";
     position: absolute;
     display: block;
@@ -2896,6 +2899,15 @@ body.portal-page .info-note-box {
 .section-color-box--windows { background-color: #f0f9ff !important; }
 .section-color-box--word    { background-color: #f0f7ff !important; }
 .section-color-box--excel   { background-color: #f0fdf4 !important; }
+
+@media (max-width: 768px) {
+    .section-color-box {
+        padding-top: 25px !important;
+        padding-right: 15px !important;
+        padding-bottom: 25px !important;
+        padding-left: 15px !important;
+    }
+}
 
 .hub-section-title {
     font-size: 1.45rem !important;
