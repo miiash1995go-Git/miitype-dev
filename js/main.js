@@ -1582,7 +1582,7 @@ if (typeof gtag === 'function') {
 
         const listBody = document.getElementById('column-article-grid');
         const initialCat = section.dataset.initial || 'all';
-        const categoryMap = {'typing':'タイピング','windows':'Windows','word':'Word','excel':'Excel','ai':'生成AI','career':'就職・転職','column':'現場コラム'};
+        const categoryMap = {'typing':'タイピング','pcskills':'PCスキル','ai':'生成AI','career':'就職・転職','column':'現場コラム'};
 
         try {
             // Sitemapを単なるテキストファイルとして読み込む

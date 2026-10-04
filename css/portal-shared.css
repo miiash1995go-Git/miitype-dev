@@ -1926,10 +1926,11 @@ body.portal-page .news-tag {
 /* ============================================================
    カテゴリ別カラー（v20.7.19 新配色パレット同期版）
    ============================================================ */
-.tag-typing  { background-color: #EFF6FF !important; color: #2563EB !important; }
-.tag-windows { background-color: #F0F9FF !important; color: #38BDF8 !important; }
-.tag-word    { background-color: #EEF2FF !important; color: #1D4ED8 !important; }
-.tag-excel   { background-color: #ECFDF5 !important; color: #16A34A !important; }
+.tag-typing   { background-color: #EFF6FF !important; color: #2563EB !important; }
+.tag-pcskills { background-color: #ECFDF5 !important; color: #16A34A !important; }
+.tag-windows  { background-color: #F0F9FF !important; color: #38BDF8 !important; }
+.tag-word     { background-color: #EEF2FF !important; color: #1D4ED8 !important; }
+.tag-excel    { background-color: #ECFDF5 !important; color: #16A34A !important; }
 .tag-ai      { background-color: #ECFEFF !important; color: #14B8A6 !important; }
 .tag-career  { background-color: #FFF7ED !important; color: #F97316 !important; }
 .tag-column  { background-color: #F5F3FF !important; color: #8B5CF6 !important; }
