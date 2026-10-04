@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCスキル｜Windows・Word・Excelを仕事で使えるようにする｜ぱそトレ！</title>
+    <meta name="description" content="パソコン初心者向けにWindows・Word・Excelの基本と実務での活用法を解説。機能を覚えるだけではなく、仕事でどう使うかという視点からPCスキルを身につけます。">
+    <link rel="canonical" href="https://miitype.com/hub-pcskills.html">
+    <link rel="icon" href="favicon.ico">
+    <!-- Google Fonts 読み込み -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- 1. アドセンス（全ページ共通規格） -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
+
+    <!-- 2. 管理者除外スクリプト -->
+    <script>
+        if (localStorage.getItem('pasotore_admin') === 'true') {
+            window['ga-disable-G-KWS4RPPBVV'] = true;
+            console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
+        }
+    </script>
+     
+    <!-- 3. Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
+    <!-- 4. CSS資産（正典） -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
+    <link rel="stylesheet" href="css/hub-pages.css">
+</head>
+<body class="portal-page">
+    <div id="app">
+        <!-- 統合ヘッダー：固定8カテゴリ構成 -->
+        <header>
+            <div class="header-inner">
+                <!-- 左：ロゴ（バッジ込み） -->
+                <a href="./" class="header-logo-link">
+                    <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
+                </a>
+
+                <!-- 右：ナビ -->
+                <nav class="header-nav">
+                    <div class="nav-grid">
+                        <!-- 上段 -->
+                        <a href="./" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                        <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                        <a href="hub-windows.html" class="nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>Windows</span></a>
+                        <a href="hub-word.html" class="nav-item"><img src="img/icon-word.png" class="nav-icon"><span>Word</span></a>
+                        <!-- 下段 -->
+                        <a href="hub-excel.html" class="nav-item"><img src="img/icon-excel.png" class="nav-icon"><span>Excel</span></a>
+                        <a href="hub-ai.html" class="nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                        <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                        <a href="hub-column.html" class="nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                    </div>
+
+                    <!-- スマホ用メニューボタン：ハンバーガー ＋ メニューラベル -->
+                    <button class="mobile-menu-trigger" id="mobile-menu-btn">
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="menu-label">メニュー</span>
+                    </button>
+                </nav>
+            </div>
+
+            <!-- スマホ全画面メニュー本体：初期状態はCSSで非表示 -->
+            <div class="mobile-nav-overlay" id="mobile-menu-overlay">
+                <button class="menu-close-btn" id="menu-close-btn">×</button>
+                <div class="mobile-nav-grid">
+                    <a href="./" class="mobile-nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                    <a href="hub-typing.html" class="mobile-nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                    <a href="hub-windows.html" class="mobile-nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>Windows</span></a>
+                    <a href="hub-word.html" class="mobile-nav-item"><img src="img/icon-word.png" class="nav-icon"><span>Word</span></a>
+                    <a href="hub-excel.html" class="mobile-nav-item"><img src="img/icon-excel.png" class="nav-icon"><span>Excel</span></a>
+                    <a href="hub-ai.html" class="mobile-nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                    <a href="hub-career.html" class="mobile-nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                    <a href="hub-column.html" class="mobile-nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                </div>
+            </div>
+        </header>
+
+        <main class="portal-main">
+            <article class="static-page static-page--wide"><nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
+
+                <!-- ハブ・ヒーロー -->
+                <section class="hub-hero">
+                    <div class="hub-hero__icon">
+                        <img src="img/icon-word.png" alt="PCスキルのアイコン" class="cat-icon-img">
+                    </div>
+                    <div class="hub-hero__body">
+                        <h1 class="hub-hero__title">PCスキル｜Windows・Word・Excelを仕事で使えるようにする</h1>
+                        <p class="hub-hero__description">
+                            パソコンを操作するための基本から、仕事でよく使う文書作成や表計算の方法まで。実務で役立つPCスキルの土台を、一つずつ身につけていきましょう。
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 1. 冒頭 -->
+                <section class="hub-section">
+                    <div class="instructor-advice instructor-advice--word">
+                        <b style="color: #2c3e50; border-bottom-color: #3498db;">💡 パソコンを仕事で使うなら</b><br>
+                        <p style="margin-top: 10px;">パソコンを仕事で使うなら、すべての機能を最初から覚える必要はありません。</p>
+                        <p style="margin-top: 10px;">まずは、パソコンを操作するための基本を知ること。</p>
+                        <p style="margin-top: 10px;">そして、仕事でよく使う文書作成や表計算の方法を少しずつ身につけていくことが大切です。</p>
+                        <p style="margin-top: 10px;">ぱそトレ！では、パソコンを使う土台となる「Windows」、文書を作るための「Word」、数字やデータを扱う「Excel」を、仕事で役立つPCスキルとしてまとめています。</p>
+                        <p style="margin-top: 10px;">「パソコンを使ったことはあるけれど、仕事で使うとなると不安」という方も、まずは自分が必要なところから始めてみてください。</p>
+                    </div>
+                </section>
+
+                <!-- 2. PCスキルとは -->
+                <section class="hub-section">
+                    <h2>PCスキルは、ソフトの名前を覚えることではありません</h2>
+                    <p>パソコン初心者の方からすると、「Windows」「Word」「Excel」は、それぞれ別々に覚えるものに見えるかもしれません。</p>
+                    <p>Windowsはパソコンを動かすもの。</p>
+                    <p>Wordは文章を作るもの。</p>
+                    <p>Excelは表を作るもの。</p>
+                    <p>もちろん、それぞれの役割はあります。</p>
+                    <p>ただ、仕事でパソコンを使うようになると、この3つを完全に切り離して使うことは、あまりありません。</p>
+                    <p>Windowsでファイルを保存し、そのファイルをWordやExcelで開く。</p>
+                    <p>Excelで整理した数字を確認しながら、Wordで資料を作る。</p>
+                    <p>作った資料をフォルダに整理して、必要な人に渡す。</p>
+                    <p>このように考えると、PCスキルは「Wordの機能を何個知っているか」「Excelの関数を何個覚えているか」だけではありません。</p>
+                    <p>パソコンを使って、目的の作業を進められること。</p>
+                    <p>これも、仕事で求められるPCスキルの一つです。</p>
+                    <p>ぱそトレ！では、単に機能を暗記するのではなく、「仕事で使うなら、どこを知っておくと困りにくいか」という視点を大切にしています。</p>
+                </section>
+
+                <!-- 3. 初心者がつまずくポイント -->
+                <section class="hub-section">
+                    <h2>初心者がつまずくのは、操作そのものだけではありません</h2>
+                    <p>パソコンの操作を覚えている途中では、「クリックする場所が分からない」というつまずきだけでなく、</p>
+                    <p>「このファイルはどこに保存されている？」</p>
+                    <p>「この画面は閉じても大丈夫？」</p>
+                    <p>「Wordで作ったファイルをどこに置けばいい？」</p>
+                    <p>「Excelで入力した数字をどう整理すればいい？」</p>
+                    <p>といった疑問も出てきます。</p>
+                    <p>実際の仕事では、操作方法だけを聞かれるとは限りません。</p>
+                    <p>「昨日作った資料を開いてください」</p>
+                    <p>「このデータをまとめてください」</p>
+                    <p>「前回のファイルをコピーして使ってください」</p>
+                    <p>といった指示を受けることがあります。</p>
+                    <p>そのとき必要なのは、特定のボタンの場所だけではありません。</p>
+                    <p>ファイル、フォルダ、アプリ、保存場所、データといった、パソコンを使うための基本的な考え方です。</p>
+                    <p>Windowsを学ぶことは、こうした「パソコンそのものを扱う力」を身につけることでもあります。</p>
+                    <p>そして、その土台があると、WordやExcelを学ぶときにも「操作だけを覚える」という状態から一歩進みやすくなります。</p>
+                </section>
+
+                <!-- 4. PCスキルを身につける3つの領域 -->
+                <section class="hub-section">
+                    <h2>PCスキルを身につける3つの領域</h2>
+                    <p>ぱそトレ！では、PCスキルを以下の3つの領域に分けて解説しています。</p>
+                </section>
+
+                <!-- 5. Windows -->
+                <section class="hub-section">
+                    <h2>01 Windows｜パソコンを操作する土台</h2>
+                    <p>Windowsは、WordやExcelのように「これを覚えれば仕事ができる」というものではありません。</p>
+                    <p>しかし、パソコンを使って仕事をするなら、基本を知っているだけで困ったときの判断がしやすくなります。</p>
+                    <p>ファイルを保存する、複数の画面を使う、アプリを切り替える、パソコンの設定を変更する。</p>
+                    <p>普段何気なく行っている操作にもWindowsが関係しています。</p>
+                    <p>Windowsの操作をたくさん暗記することではなく、困ったときに「どこを確認すればいいか」を考えられるようになることを大切にします。</p>
+
+                    <h3 style="font-size: 1.2rem; font-weight: 800; color: #2c3e50; margin-top: 30px; margin-bottom: 15px; border-bottom: none;">まずは、ファイルとフォルダを怖がらない</h3>
+                    <p>初心者の方がパソコンを使い始めたとき、「保存したはずのファイルが見つからない」ということは珍しくありません。</p>
+                    <p>ファイル名だけを覚えるのではなく、「どこに保存したのか」「どのフォルダに入っているのか」を意識するだけでも、パソコンの扱いやすさは変わります。</p>
+                    <p>仕事で使うパソコンでは、作ったファイルが増えていきます。</p>
+                    <p>そのため、Windowsの基本操作では、単にクリックや入力を覚えるだけでなく、ファイルやフォルダを整理する考え方も大切です。</p>
+
+                    <!-- Windows記事への導線 -->
+                    <div class="content-box" style="margin-top: 30px; margin-bottom: 30px;">
+                        <h4 style="font-size: 1.05rem; font-weight: 900; color: #2c3e50; margin-top: 0px; margin-bottom: 15px;">Windowsの代表的な記事</h4>
+                        <ul style="padding-left: 20px; margin: 0; line-height: 1.8;">
+                            <li style="margin-bottom: 10px;"><a href="guide-windows-basics.html" style="color: #38bdf8; font-weight: 800; text-decoration: none;">Windows11の基本操作と使い方</a><br><span style="font-size: 0.85rem; color: #64748b;">エクスプローラー、右クリック、画面切り替えなど、毎日のパソコン操作の基本。</span></li>
+                            <li style="margin-bottom: 10px;"><a href="guide-windows-folder.html" style="color: #38bdf8; font-weight: 800; text-decoration: none;">ファイルとフォルダの整理・管理術</a><br><span style="font-size: 0.85rem; color: #64748b;">作った書類をどこに保存したかわからなくならないための、ファイルとフォルダ管理の基本。</span></li>
+                            <li style="margin-bottom: 0px;"><a href="guide-windows-multi.html" style="color: #38bdf8; font-weight: 800; text-decoration: none;">Windowsで画面を並べて作業する方法</a><br><span style="font-size: 0.85rem; color: #64748b;">資料を見ながら入力するなど、複数のウィンドウを使った作業の基本。</span></li>
+                        </ul>
+                        <div style="text-align: right; margin-top: 20px;">
+                            <a href="#dynamic-sitemap-index" data-target-filter="windows" class="pcskills-section-link" style="font-size: 0.9rem; font-weight: 900; color: #38bdf8; text-decoration: none; cursor: pointer;">→ Windowsの記事をすべて見る</a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. Word -->
+                <section class="hub-section">
+                    <h2>02 Word｜仕事で使う文書を作る</h2>
+                    <p>Wordは、文字を入力するだけではなく、相手に伝わりやすい文書を作るためのソフトです。</p>
+                    <p>仕事では、履歴書や職務経歴書、社内文書、マニュアルなど、読みやすさや整ったレイアウトが求められる文書を作る場面があります。</p>
+                    <p>すべての機能を最初から覚える必要はありません。</p>
+                    <p>「こんなことができる」と知っておくことで、必要になったときに調べることができます。</p>
+
+                    <h3 style="font-size: 1.2rem; font-weight: 800; color: #2c3e50; margin-top: 30px; margin-bottom: 15px; border-bottom: none;">「文字を入力できる」から「読みやすい文書を作れる」へ</h3>
+                    <p>Wordを使い始めたばかりの頃は、文字を入力できれば十分だと思うかもしれません。</p>
+                    <p>しかし仕事で文書を作る場合、入力した文字が正しいだけではなく、読み手が内容を追いやすいことも大切です。</p>
+                    <p>見出し、段落、余白、文字の位置などを整えることで、同じ内容でも読みやすさは変わります。</p>
+                    <p>特に初心者の文書では、スペースを何度も入力して文字の位置を合わせたり、改行を繰り返して見た目を整えたりすることがあります。</p>
+                    <p>そうした方法だけに頼らず、Wordに用意されている機能を使って文書を整えることも、仕事で使うWordの大切なスキルです。</p>
+
+                    <!-- Word記事への導線 -->
+                    <div class="content-box" style="margin-top: 30px; margin-bottom: 30px;">
+                        <h4 style="font-size: 1.05rem; font-weight: 900; color: #2c3e50; margin-top: 0px; margin-bottom: 15px;">Wordの代表的な記事</h4>
+                        <ul style="padding-left: 20px; margin: 0; line-height: 1.8;">
+                            <li style="margin-bottom: 10px;"><a href="guide-word-basics.html" style="color: #1d4ed8; font-weight: 800; text-decoration: none;">Wordの基本操作・使い方</a><br><span style="font-size: 0.85rem; color: #64748b;">仕事で困らない文書作成を学ぶための基本講座。</span></li>
+                            <li style="margin-bottom: 10px;"><a href="guide-word-practice-01.html" style="color: #1d4ed8; font-weight: 800; text-decoration: none;">実践：Wordで作る「社内文書」の整え方</a><br><span style="font-size: 0.85rem; color: #64748b;">配置・強調・表の活用など、実務で役立つ共通ルール。</span></li>
+                            <li style="margin-bottom: 0px;"><a href="guide-word-tab-basics.html" style="color: #1d4ed8; font-weight: 800; text-decoration: none;">WordのTabキーとは？</a><br><span style="font-size: 0.85rem; color: #64748b;">文字をきれいにそろえる基本とスペース連打卒業の実務テクニック。</span></li>
+                        </ul>
+                        <div style="text-align: right; margin-top: 20px;">
+                            <a href="#dynamic-sitemap-index" data-target-filter="word" class="pcskills-section-link" style="font-size: 0.9rem; font-weight: 900; color: #1d4ed8; text-decoration: none; cursor: pointer;">→ Wordの記事をすべて見る</a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 7. Excel -->
+                <section class="hub-section">
+                    <h2>03 Excel｜数字やデータを扱う</h2>
+                    <p>Excelは、数字やデータを整理し、計算し、扱いやすくするための表計算ソフトです。</p>
+                    <p>仕事では、売上の集計、顧客や商品の一覧、データの整理など、数字や情報を扱う場面で活用されています。</p>
+                    <p>最初から難しい機能を覚える必要はありません。</p>
+                    <p>セルへの入力から始めて、計算、表の作成、データの整理へと、一つずつできることを増やしていきます。</p>
+
+                    <h3 style="font-size: 1.2rem; font-weight: 800; color: #2c3e50; margin-top: 30px; margin-bottom: 15px; border-bottom: none;">「表を作る」だけで終わらせない</h3>
+                    <p>Excelを初めて使うと、「きれいな表を作ること」が目的になりがちです。</p>
+                    <p>もちろん、見やすい表を作ることは大切です。</p>
+                    <p>ただ、仕事でExcelを使うなら、その表を使って何をしたいのかを考えることも重要です。</p>
+                    <p>数字を合計する。</p>
+                    <p>データを並べ替える。</p>
+                    <p>必要な情報を分ける。</p>
+                    <p>同じ形式のデータを整理する。</p>
+                    <p>Excelは、こうした作業を助けてくれる道具です。</p>
+                    <p>そのため、Excelを学ぶときも、機能を一つずつ暗記するより、「この作業をExcelでどう楽にできるか」という視点を持つことを大切にします。</p>
+
+                    <!-- Excel記事への導線 -->
+                    <div class="content-box" style="margin-top: 30px; margin-bottom: 30px;">
+                        <h4 style="font-size: 1.05rem; font-weight: 900; color: #2c3e50; margin-top: 0px; margin-bottom: 15px;">Excelの代表的な記事</h4>
+                        <ul style="padding-left: 20px; margin: 0; line-height: 1.8;">
+                            <li style="margin-bottom: 10px;"><a href="guide-excel-basics.html" style="color: #16a34a; font-weight: 800; text-decoration: none;">Excelの基本操作・使い方</a><br><span style="font-size: 0.85rem; color: #64748b;">仕事で使える表作成と計算を学ぶための基本講座。</span></li>
+                            <li style="margin-bottom: 10px;"><a href="guide-excel-practice-01.html" style="color: #16a34a; font-weight: 800; text-decoration: none;">実践：Excelで作る「売上管理表」の整え方</a><br><span style="font-size: 0.85rem; color: #64748b;">計算・集計・達成率など実務に直結する表作り。</span></li>
+                            <li style="margin-bottom: 0px;"><a href="guide-excel-csv-data.html" style="color: #16a34a; font-weight: 800; text-decoration: none;">Excelの「区切り位置」でデータを分ける方法</a><br><span style="font-size: 0.85rem; color: #64748b;">CSVやカンマ区切りのデータを表にする手順解説。</span></li>
+                        </ul>
+                        <div style="text-align: right; margin-top: 20px;">
+                            <a href="#dynamic-sitemap-index" data-target-filter="excel" class="pcskills-section-link" style="font-size: 0.9rem; font-weight: 900; color: #16a34a; text-decoration: none; cursor: pointer;">→ Excelの記事をすべて見る</a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 8. Windows・Word・Excelは仕事の中でつながっている -->
+                <section class="hub-section">
+                    <h2>Windows・Word・Excelは、仕事の中でつながっている</h2>
+                    <p>たとえば、会社から受け取ったExcelのデータを確認し、必要な情報を整理する。</p>
+                    <p>その内容をもとにWordで資料を作る。</p>
+                    <p>作成した資料を決められたフォルダに保存する。</p>
+                    <p>この一連の作業には、Windows・Excel・Wordが関係しています。</p>
+                    <p>それぞれを別々の「パソコン講座」として考えることもできますが、仕事の現場では一つの作業の中で組み合わせて使うことがあります。</p>
+                    <p>だからこそ、ぱそトレ！では、この3つを「PCスキル」という一つのテーマの中で扱います。</p>
+                    <p>一つのソフトを完璧に使えるようになってから次へ進む必要はありません。</p>
+                    <p>必要な作業に合わせてWindows、Word、Excelを行き来しながら、少しずつ「できること」を増やしていく。</p>
+                    <p>それが、実際の仕事で役立つPCスキルにつながります。</p>
+                </section>
+
+                <!-- 9. 全部覚える必要はない -->
+                <section class="hub-section">
+                    <h2>PCスキルは、全部覚える必要はありません</h2>
+                    <p>WordにもExcelにも、たくさんの機能があります。</p>
+                    <p>Windowsにも、普段使わない設定や機能がたくさんあります。</p>
+                    <p>それらをすべて暗記してから仕事を始める必要はありません。</p>
+                    <p>むしろ、仕事で必要になったときに、</p>
+                    <p>「こういうことをしたい」</p>
+                    <p>「以前どこかで見た機能だった」</p>
+                    <p>「このキーワードで調べればよさそう」</p>
+                    <p>と考えられることの方が大切な場面もあります。</p>
+                    <p>パソコンを使っていると、分からないことは必ず出てきます。</p>
+                    <p>そこで「分からないからできない」で終わらず、「何を調べれば解決できるだろう」と考えられる。</p>
+                    <p>これも、PCスキルの一つです。</p>
+                    <p>ぱそトレ！では、最初から完璧を目指すのではなく、実際に使いながら少しずつできることを増やしていくことを大切にしています。</p>
+                </section>
+
+                <!-- 10. PCスキルを仕事につなげる -->
+                <section class="hub-section">
+                    <h2>PCスキルを仕事で活かす</h2>
+                    <p>PCスキルを身につける目的は、パソコンに詳しくなることだけではありません。</p>
+                    <p>仕事で資料を作る。</p>
+                    <p>必要なデータを整理する。</p>
+                    <p>ファイルを管理する。</p>
+                    <p>相手に分かりやすい形で情報をまとめる。</p>
+                    <p>こうした仕事をスムーズに進めるために、PCスキルがあります。</p>
+                    <p>最初からすべてできる必要はありません。</p>
+                    <p>Windowsの基本操作を覚え、WordやExcelでできることを一つずつ増やしていく。</p>
+                    <p>そして、分からないことが出てきたら調べて解決する。</p>
+                    <p>その積み重ねが、「パソコンを使ったことがある」から「仕事でパソコンを使える」への変化につながっていきます。</p>
+                </section>
+
+                <!-- 11. 記事一覧（動的索引リスト：6カテゴリ対応版） -->
+                <div class="hub-accent-area">
+                    <section class="hub-section" id="dynamic-sitemap-index" data-initial="pcskills" style="margin-bottom: 0px;">
+                        <div class="hub-archive-header">
+                            <h2 class="section-title">記事一覧</h2>
+                        </div>
+                        <div class="hub-index-nav">
+                            <button class="hub-index-tab" data-filter="all">すべて</button>
+                            <button class="hub-index-tab" data-filter="typing">タイピング</button>
+                            <button class="hub-index-tab active" data-filter="pcskills">PCスキル</button>
+                            <button class="hub-index-tab" data-filter="ai">生成AI</button>
+                            <button class="hub-index-tab" data-filter="career">就職・転職</button>
+                            <button class="hub-index-tab" data-filter="column">現場コラム</button>
+                        </div>
+                        <div class="hub-index-list" id="column-article-grid"></div>
+                    </section>
+                </div>
+
+                <!-- 接続導線 -->
+                <div class="hub-footer-nav">
+                    <p class="hub-footer-nav__text">PCスキルの基本がわかったら、次は生成AIを活用して業務をさらに効率化しましょう</p>
+                    <div class="summary-nav">
+                        <a href="hub-ai.html" class="btn-main">生成AI活用へ</a>
+                        <a href="hub-typing.html" class="summary-btn">タイピング練習へ</a>
+                        <a href="./" class="summary-btn">ホームに戻る</a>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="about.html">運営者情報</a>
+            </div>
+            <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
+        </footer>
+    </div>
+    <!-- ページトップへ戻るボタン -->
+    <a href="#" id="back-to-top" class="back-to-top">↑</a>
+    <script src="js/main.js"></script>
+
+    <!-- hub-pcskills専用：6タブ構造 ＆ PCスキル（windows/word/excel統合）対応インデックススクリプト -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            async function initPcskillsIndex() {
+                const section = document.getElementById('dynamic-sitemap-index');
+                if (!section) return;
+
+                const listBody = document.getElementById('column-article-grid');
+                const initialCat = section.dataset.initial || 'pcskills';
+                const categoryMap = {
+                    'typing': 'タイピング',
+                    'windows': 'Windows',
+                    'word': 'Word',
+                    'excel': 'Excel',
+                    'ai': '生成AI',
+                    'career': '就職・転職',
+                    'column': '現場コラム',
+                    'pcskills': 'PCスキル'
+                };
+
+                try {
+                    const res = await fetch('./sitemap.xml');
+                    if (!res.ok) throw new Error("Sitemap Load Failed");
+                    const rawText = await res.text();
+
+                    const articleData = [];
+                    const urlBlocks = rawText.match(/<url>([\s\S]*?)<\/url>/g);
+
+                    if (urlBlocks) {
+                        urlBlocks.forEach(block => {
+                            const loc = block.match(/<loc>(.*?)<\/loc>/)?.[1] || "";
+                            const meta = block.match(/<!--\s*\[INDEX\]\s*(.*?)\s*\|\s*(.*?)\s*-->/);
+
+                            const urlFilename = loc.split('/').pop() || "index.html";
+                            const isSystemPage = (
+                                urlFilename === "index.html" || 
+                                urlFilename === "play.html" || 
+                                urlFilename === "test.html" || 
+                                urlFilename === "about.html" || 
+                                urlFilename === "contact.html" || 
+                                urlFilename === "privacy.html" || 
+                                urlFilename.startsWith("hub-") || 
+                                urlFilename === ""
+                            );
+
+                            if (loc && meta && !isSystemPage) {
+                                articleData.push({
+                                    url: urlFilename,
+                                    title: meta[1].trim(),
+                                    category: meta[2].trim() // windows, word, excel, typing, ai, career, column 等
+                                });
+                            }
+                        });
+                    }
+
+                    function render(filter, subFilter = null) {
+                        if (!listBody) return;
+                        listBody.innerHTML = "";
+                        listBody.scrollTop = 0;
+
+                        let filtered = [];
+                        if (filter === 'all') {
+                            filtered = articleData;
+                        } else if (filter === 'pcskills') {
+                            // PCスキルの場合は windows, word, excel の記事をすべて含める
+                            filtered = articleData.filter(a => {
+                                if (subFilter) {
+                                    return a.category === subFilter;
+                                }
+                                return a.category === 'windows' || a.category === 'word' || a.category === 'excel';
+                            });
+                        } else {
+                            filtered = articleData.filter(a => a.category === filter);
+                        }
+
+                        if (filtered.length === 0) {
+                            listBody.innerHTML = '<div style="padding:40px; color:#94a3b8; text-align:center; font-weight:800;">該当する記事がありません</div>';
+                            return;
+                        }
+
+                        listBody.innerHTML = filtered.map(a => {
+                            // 表示用タグ名（windows, word, excel はすべて「PCスキル」または個別のタグ名で表示。ここでは統一感のため categoryMap を使用、または pcskills なら個別のサブカテゴリ名）
+                            let displayCat = a.category;
+                            if (displayCat === 'windows' || displayCat === 'word' || displayCat === 'excel') {
+                                displayCat = displayCat; // タグのクラスに利用
+                            }
+                            return '<a href="' + a.url + '" class="hub-index-row">' +
+                                   '<div class="hub-index-meta"><span class="news-tag tag-' + displayCat + '">' + (categoryMap[displayCat] || displayCat) + '</span></div>' +
+                                   '<div class="hub-index-info"><h4>' + a.title + '</h4></div>' +
+                                   '</a>';
+                        }).join('');
+                    }
+
+                    // タブクリックイベント
+                    section.onclick = function(e) {
+                        const btn = e.target.closest('.hub-index-tab');
+                        if (!btn) return;
+                        e.preventDefault();
+                        section.querySelectorAll('.hub-index-tab').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        render(btn.getAttribute('data-filter'));
+                    };
+
+                    // 各セクションからのリンク（「→ Windowsの記事をすべて見る」等）の連動ハンドラ
+                    document.querySelectorAll('.pcskills-section-link').forEach(link => {
+                        link.onclick = function(e) {
+                            e.preventDefault();
+                            const targetSubCat = this.getAttribute('data-target-filter'); // windows, word, excel
+                            
+                            // 1. タブを「PCスキル」にアクティブ化
+                            section.querySelectorAll('.hub-index-tab').forEach(b => {
+                                if (b.getAttribute('data-filter') === 'pcskills') {
+                                    b.classList.add('active');
+                                } else {
+                                    b.classList.remove('active');
+                                }
+                            });
+
+                            // 2. 該当サブカテゴリに絞り込んで描画
+                            render('pcskills', targetSubCat);
+
+                            // 3. 記事一覧エリアへスムーズスクロール
+                            const targetEl = document.getElementById('dynamic-sitemap-index');
+                            if (targetEl) {
+                                const offset = targetEl.getBoundingClientRect().top + window.pageYOffset - 100;
+                                window.scrollTo({
+                                    top: offset,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        };
+                    });
+
+                    // 初期描画
+                    render(initialCat);
+
+                } catch (err) { console.error("Index System Error:", err); }
+            }
+            initPcskillsIndex();
+        });
+    </script>
+</body>
+</html>
