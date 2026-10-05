@@ -7,9 +7,7 @@
 
   <!-- 2. カテゴリハブ -->
   <url><loc>https://miitype.com/hub-typing.html</loc><lastmod>2026-10-04</lastmod><priority>0.9</priority><!-- [INDEX] タイピング練習ガイド | typing --></url>
-  <url><loc>https://miitype.com/hub-windows.html</loc><lastmod>2026-10-04</lastmod><priority>0.9</priority><!-- [INDEX] Windows基本操作ガイド | windows --></url>
-  <url><loc>https://miitype.com/hub-word.html</loc><lastmod>2026-10-04</lastmod><priority>0.9</priority><!-- [INDEX] Word実務活用ガイド | word --></url>
-  <url><loc>https://miitype.com/hub-excel.html</loc><lastmod>2026-10-04</lastmod><priority>0.9</priority><!-- [INDEX] Excel実務活用ガイド | excel --></url>
+  <url><loc>https://miitype.com/hub-pcskills.html</loc><lastmod>2026-10-05</lastmod><priority>0.9</priority><!-- [INDEX] PCスキル基礎・実務ガイド | pcskills --></url>
   <url><loc>https://miitype.com/hub-ai.html</loc><lastmod>2026-10-04</lastmod><priority>0.9</priority><!-- [INDEX] 生成AI活用ガイド | ai --></url>
   <url><loc>https://miitype.com/hub-career.html</loc><lastmod>2026-10-04</lastmod><priority>0.9</priority><!-- [INDEX] 就職・転職支援ガイド | career --></url>
   <url><loc>https://miitype.com/hub-column.html</loc><lastmod>2026-10-04</lastmod><priority>0.9</priority><!-- [INDEX] 現場コラム・知見集 | column --></url>

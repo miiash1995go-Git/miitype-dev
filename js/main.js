@@ -1414,6 +1414,12 @@ if (typeof gtag === 'function') {
 
         // UI更新処理を分離
         function applyCategoryUI() {
+            // 現在のカテゴリが windows, word, excel の場合は親ハブである pcskills にマッピング
+            var navCat = currentCat;
+            if (currentCat === 'windows' || currentCat === 'word' || currentCat === 'excel') {
+                navCat = 'pcskills';
+            }
+
             // 4. ヘッダーナビの現在地を点灯（Active化）
             var links = document.querySelectorAll('.nav-item, .mobile-nav-item');
             for (var l = 0; l < links.length; l = l + 1) {
@@ -1423,27 +1429,25 @@ if (typeof gtag === 'function') {
                 item.classList.remove('active');
                 
                 // 1. 指定カテゴリがある場合はそのナビを点灯
-                if (currentCat !== "" && currentCat !== "none" && href.indexOf(currentCat) !== -1) {
+                if (navCat !== "" && navCat !== "none" && href.indexOf(navCat) !== -1) {
                     item.classList.add('active');
                 } 
                 // 2. カテゴリが "none" の場合、またはトップページの場合は「ホーム」を点灯
-                else if ((currentCat === "none" || page === 'index.html') && isHomeLink) {
+                else if ((navCat === "none" || page === 'index.html') && isHomeLink) {
                     item.classList.add('active');
                 }
             }
 
-            // 5. 動的パンくずの生成
+            // 5. 動的パンくずの生成（ハブ名までで停止）
             var bBox = document.getElementById('dynamic-breadcrumb');
             if (bBox && page !== 'index.html') {
                 var bHtml = '<a href="index.html">ホーム</a>';
-                if (currentCat !== "" && names[currentCat]) {
+                if (navCat !== "" && names[navCat]) {
                     bHtml += '<span class="breadcrumb-separator">＞</span>';
-                    // 修正：ハブページ自体にいる場合はリンクにしない
-                    if (page === 'hub-' + currentCat + '.html') {
-                        bHtml += '<span>' + names[currentCat] + '</span>';
+                    if (page === 'hub-' + navCat + '.html') {
+                        bHtml += '<span>' + names[navCat] + '</span>';
                     } else {
-                        bHtml += '<a href="hub-' + currentCat + '.html">' + names[currentCat] + '</a>';
-                        bHtml += '<span class="breadcrumb-separator">＞</span>';
+                        bHtml += '<a href="hub-' + navCat + '.html">' + names[navCat] + '</a>';
                     }
                 }
                 bBox.innerHTML = bHtml;
