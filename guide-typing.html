@@ -2,59 +2,57 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ぱそトレ式タイピング　上達のコツ｜練習のやり方と挫折しない覚え方｜ぱそトレ！</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="タイピングの基礎から実務の応用知識まで、一歩ずつステップアップするための学習ガイド記事をまとめています。現役講師が教える効率的な練習法や、用語解説でPC操作の『わからない』を解消しましょう。">
-<link rel="canonical" href="https://miitype.com/guide-typing.html">
-<meta property="og:type" content="article">
-<meta property="og:title" content="学習ガイド｜パソコンスキル習得のためのロードマップ｜ぱそトレ！">
-<link rel="icon" href="favicon.ico">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700"
-     crossorigin="anonymous"></script>
-<!-- 管理者除外スクリプト：ここから追加 -->
-<script>
-    if (localStorage.getItem('pasotore_admin') === 'true') {
-        // あなたのGA4測定ID「G-KWS4RPPBVV」を指定して無効化
-        window['ga-disable-G-KWS4RPPBVV'] = true;
-        console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
-    }
-</script>
-<!-- 管理者除外スクリプト：ここまで -->
-    
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-KWS4RPPBVV');
-</script>
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/portal-shared.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タイピング上達のコツ｜ホームポジションの基本と挫折しない練習法｜ぱそトレ！</title>
+    <meta name="description" content="タイピング上達のコツを現役パソコン講師が解説。FとJの突起、ホームポジションの覚え方、正確さ優先の練習法、AI時代にタイピングが必要な理由まで網羅した完全ガイドです。">
+    <link rel="canonical" href="https://miitype.com/guide-typing.html">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- 1. アドセンス（自動広告：全ページ共通規格） -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
+
+    <!-- 2. 管理者除外スクリプト（最優先実行） -->
+    <script>
+        if (localStorage.getItem('pasotore_admin') === 'true') {
+            window['ga-disable-G-KWS4RPPBVV'] = true;
+            console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
+        }
+    </script>
+
+    <!-- 3. Google tag (gtag.js) - GA4 測定ID：G-KWS4RPPBVV -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
+    <!-- 4. CSS資産 -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
 </head>
+
 <body class="portal-page">
     <div id="app">
+        <!-- 統合ヘッダー -->
         <header>
             <div class="header-inner">
-                <!-- 左：ロゴ（バッジ込み） -->
                 <a href="./" class="header-logo-link">
                     <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
                 </a>
-
-                <!-- 右：ナビ -->
                 <nav class="header-nav">
                     <div class="nav-grid">
-                        <!-- 上段3つ -->
                         <a href="./" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
-                        <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                        <a href="hub-typing.html" class="nav-item active"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
                         <a href="hub-pcskills.html" class="nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>PCスキル</span></a>
-                        <!-- 下段3つ -->
                         <a href="hub-ai.html" class="nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
                         <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
                         <a href="hub-column.html" class="nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
                     </div>
-
-                    <!-- スマホ用メニューボタン：ハンバーガー ＋ メニューラベル -->
                     <button class="mobile-menu-trigger" id="mobile-menu-btn">
                         <span class="hamburger-bar"></span>
                         <span class="hamburger-bar"></span>
@@ -63,13 +61,11 @@
                     </button>
                 </nav>
             </div>
-
-            <!-- スマホ全画面メニュー本体：初期状態はCSSで非表示 -->
             <div class="mobile-nav-overlay" id="mobile-menu-overlay">
                 <button class="menu-close-btn" id="menu-close-btn">×</button>
                 <div class="mobile-nav-grid">
                     <a href="./" class="mobile-nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
-                    <a href="hub-typing.html" class="mobile-nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                    <a href="hub-typing.html" class="mobile-nav-item active"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
                     <a href="hub-pcskills.html" class="mobile-nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>PCスキル</span></a>
                     <a href="hub-ai.html" class="mobile-nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
                     <a href="hub-career.html" class="mobile-nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
@@ -81,93 +77,274 @@
         <main class="portal-main">
             <article class="static-page">
                 <nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
-
-                <h1 class="page-title">タイピング上達法</h1>
-                <p class="page-subtitle">現役講師が教える、挫折せずに最短で上達するための練習のコツ</p>
+                <h1 class="page-title">タイピング上達のコツ｜ホームポジションの基本と挫折しない練習法</h1>
+                <p class="page-subtitle">初心者からタッチタイピングを身につけるための完全ガイド</p>
 
                 <div class="content-body">
-                    <p>「キーボードを一切見ないで打つなんて、自分には絶対に無理だ！」</p>
-                    <p>講習の現場で、初心者の方が最初におっしゃる言葉です。しかし、そう思ってしまうのは、目の前にある無数のボタンを「すべて一度に覚えなければならない」と思い込んでいるからです。実は、実務で使う日本語を打つために、<strong>あなたが覚えるべきキーは驚くほど少ない</strong>のです。</p>
-
-                    <h2>タッチタイピングは『16文字』でいい</h2>
-                    <p>キーボードのアルファベットは全部で26文字ありますが、日本語を打つ際にほとんど使わないキーが4つあります。それが <kbd>Q</kbd> <kbd>X</kbd> <kbd>C</kbd> <kbd>L</kbd> です。これを除いた22文字が、私たちが日常で使う実質的な全アルファベットです。</p>
-                    <p>さらに、もっと楽に考えてみましょう。ホームポジション（基本の位置）に指を置いたとき、あなたの指はすでに <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> <kbd>F</kbd> と <kbd>J</kbd> <kbd>K</kbd> の上に乗っています（<kbd>L</kbd> は使わないので除外します）。つまり、この6文字は「最初から場所を知っている」キーなのです。</p>
-                    
-                    <div class="info-note-box">
-                        <strong class="note-title">「自分にもできる」の最終計算式</strong>
-                        <ul>
-                            <li><strong>26文字（全体） ー 4文字（使わない） ＝ 22文字</strong></li>
-                            <li>そこから、指を置いている 6文字（家にあるキー）を除くと……</li>
-                            <li style="font-size: 1.2rem; color: #e67e22;"><strong>指を一歩動かして打つキーは、たった『16文字』だけ！</strong></li>
-                        </ul>
-                    </div>
-
-                    <p>たった16箇所の行き先を覚えるだけ。そう聞くと、さらに希望が見えてきませんか？</p>
-
-                    <h3>ホームポジションは「指の帰る家」</h3>
-                    <p>私たちは、指を常に置いておく場所（ホームポジション）を、<span class="marker-yellow">「指の帰る家」</span>と呼んでいます。タッチタイピングとは、暗闇を歩くような作業ではありません。</p>
-                    <p>家（ホーム）からたった一歩、指を外に出して「近所をお散歩」させる。用事が済んだら、すぐに家（ホーム）へ帰る。難しく考える必要はありません。まずは、この「日本語で使う22文字」だけを、見ずに打てる練習から始めてみましょう。</p>
+                    <p>パソコンを使うなら、まず身につけたいのが「文字を入力する力」です。</p>
+                    <p>メールを書くときも、ChatGPTに質問するときも、仕事で資料を作るときも、キーボードから文字を入力する場面はたくさんあります。</p>
+                    <p>その基本となるのが<strong>タッチタイピング</strong>です。</p>
+                    <p>タッチタイピングとは、キーボードを見ずに、指の位置を意識して文字を入力する方法です。</p>
+                    <p>以前は「ブラインドタッチ」と呼ばれることもありました。</p>
+                    <p>「自分には無理かもしれない」</p>
+                    <p>「指がたくさんあって、どこを動かせばいいかわからない」</p>
+                    <p>そう感じる初心者の方も多いと思います。</p>
+                    <p>でも、安心してください。</p>
+                    <p>実は、タイピングで最初に覚えるべきキーは、思っているよりもずっと少ないのです。</p>
+                    <p>最初から速く打つ必要はありません。</p>
+                    <p>まずは正しい指の位置と、キーボードの基本を知ること。</p>
+                    <p>そこから少しずつ、自分の指に覚えさせていきましょう。</p>
 
                     <div class="instructor-advice">
-                        <b>💡 講師のアドバイス：迷いを消す「固定ルール」</b><br>
-                        タイピングが遅い原因のほとんどは、指の動きの遅さではなく「次にどの指でどのキーを叩くか迷う時間」にあります。その迷いを消すための「ぱそトレ！式」をマスターしましょう。
+                        <b>💡 「タッチタイピング」を目指す理由</b><br>
+                        タッチタイピングができるようになると、キーボードを見ずに文字を入力できるようになります。これは単に「速く打てる」というだけではありません。<br>
+                        <strong>画面を見ながら、考えることと文字入力を同時に進められる。</strong><br>
+                        ここが大きなポイントです。仕事では、文章を考えながら入力したり、資料を見ながらデータを入力したりします。そのとき、キーボードを見るために何度も視線を下げていると、思っている以上に時間を使います。タイピングでは、まず「速さ」よりも<strong>正しい型を知ること</strong>。これが上達への近道です。
                     </div>
 
-                    <h2>1. ぱそトレ！式ホームポジション</h2>
-                    <p>家（ホーム）を安定させるために、ぱそトレ！では以下の3点を軸にします。特に「左側の壁」を意識するのがコツです。</p>
-                    
-                    <div class="info-note-box">
-                        <strong class="note-title">「A・F・J」の3点固定ルール</strong>
-                        <ul>
-                            <li><strong><kbd>F</kbd> と <kbd>J</kbd>：</strong> 左右の人差し指を突起に添える（基本中の基本）</li>
-                            <li><strong><kbd>A</kbd> に左手小指を固定：</strong> これがぱそトレ！独自のポイントです。左端の基準を常に触っておくことで、左手の迷いを根絶します。</li>
-                            <li><strong><kbd>Z</kbd> も左手小指で：</strong> 小指を <kbd>A</kbd> に置くことで、打ちにくい <kbd>Z</kbd> もスムーズにカバーできます。</li>
-                        </ul>
+                    <h2>実は覚えるキーは「22文字」だけでいい</h2>
+                    <p>キーボードにはたくさんの文字が並んでいます。</p>
+                    <p>アルファベットの <kbd>A</kbd> から <kbd>Z</kbd> まで、全部で26文字あります。</p>
+                    <p>でも、ローマ字入力でよく使う基本の文字を考えてみると、実は使わないものも結構あります。</p>
+                    <p>たとえば、<kbd>Q</kbd>、<kbd>X</kbd>、<kbd>C</kbd>、<kbd>L</kbd> などは、日常的な日本語のローマ字入力ではそれほど頻繁には使いません。</p>
+                    <p>そうやって整理していくと、タイピングの基礎で本当に意識したいキーは、両手であわせて<strong>約22文字程度</strong>に絞られます。</p>
+                    <p>「26文字も覚えなきゃいけないんだ」と思うと気が遠くなりますが、「22文字ならできそう」と思いませんか？</p>
+                    <p>たとえば、キック（KIKKU）やシャッフル（SHAFFURU）のように、拗音や促音の入力方法を理解することで素早く日本語ローマ字が打てるようになります。</p>
+                    <p>まずはこの基本のキーから、指を慣らしていけばいいのです。</p>
+
+                    <h2>1. FとJにある小さな突起の秘密</h2>
+                    <p>キーボードの <kbd>F</kbd> と <kbd>J</kbd> を触ってみてください。</p>
+                    <p>小さな突起があるのがわかると思います。</p>
+                    <p>これは、キーボードを見なくても指の位置を確認できるようにするための目印です。</p>
+                    <p>左右の人差し指を <kbd>F</kbd> と <kbd>J</kbd> に置けば、そこを基準にして他の指の位置も決められます。</p>
+                    <p>実は、タッチタイピングに慣れている人でも、この突起を使っています。</p>
+                    <p>「キーボードを見ない」というのは、何も手がかりがない状態で打つということではありません。</p>
+                    <p><strong>指先の感覚を使って、自分の位置を確認する。</strong></p>
+                    <p>これもタッチタイピングの基本です。</p>
+
+                    <h2>2. ホームポジションと指の担当（指の帰る家）</h2>
+                    <p>タッチタイピングでは、指を置く基本位置があります。</p>
+                    <p>これを<strong>ホームポジション</strong>と呼びます。</p>
+                    <p>ホームポジションは、いわば<span class="marker-yellow"><strong>「指の帰る家」</strong></span>です。</p>
+                    <p>どこかのキーを打つために指を動かしても、打ち終わったら必ずこのホームポジションに戻ってくる。</p>
+                    <p>これができるようになると、キーボードの上で迷子にならなくなります。</p>
+                    <p>タッチタイピングは、暗闇を歩くような作業ではありません。</p>
+                    <p>家（ホーム）からたった一歩、指を外に出して「近所をお散歩」させる。用事が済んだら、すぐに家（ホーム）へ帰る。難しく考える必要はありません。</p>
+                    <p>左手は <kbd>A</kbd>、<kbd>S</kbd>、<kbd>D</kbd>、<kbd>F</kbd>。</p>
+                    <p>右手は <kbd>J</kbd>、<kbd>K</kbd>、<kbd>L</kbd>、<kbd>;</kbd>。</p>
+                    <p>そして、それぞれの指には担当するキーがあります。</p>
+
+                    <h3>ぱそトレ！式ホームポジション（A・F・J 3点固定）</h3>
+                    <p>一般的な解説では「両手をホームポジションに置く」とだけ言われますが、初心者の方はそれだと指が浮いてしまったり、どこに戻ればいいか分からなくなったりします。</p>
+                    <p>そこで、ぱそトレ！では<strong>「A・F・J 3点固定」</strong>という意識をおすすめしています。</p>
+                    <p>左手の小指を <kbd>A</kbd>、人差し指を <kbd>F</kbd>、そして右の人差し指を <kbd>J</kbd> にそっと置く。</p>
+                    <p>この3つのポイントを最初に押さえるだけで、両手の位置がピタッと安定します。</p>
+
+                    <!-- ぱそトレ！式ホームポジション画像 -->
+                    <div class="article-image article-image--window">
+                        <img src="img/Typing/pasotore-typing-posi.jpg" alt="ぱそトレ！式ホームポジション（A・F・J 3点固定）の解説図">
+                        <p style="color: #7f8c8d; font-size: 0.85rem; margin-top: 10px;">▲ ぱそトレ！式：A・F・J 3点固定のホームポジション</p>
                     </div>
 
-                    <h2>2. すぐに打たない「記憶の練習法」</h2>
+                    <p>そして、それぞれの指がどのキーを担当するのかを示したのが、次の指別担当カラーガイドです。</p>
+
+                    <!-- 指別担当カラー画像 -->
+                    <div class="article-image article-image--window">
+                        <img src="img/keyboard-guide.svg" alt="指別担当カラーのキーボードガイド（ぱそトレ！式）">
+                        <p style="color: #7f8c8d; font-size: 0.85rem; margin-top: 10px;">▲ ぱそトレ！式：指別担当カラーガイド</p>
+                    </div>
+
+                    <p><strong>「このキーは、どの指で押すのか？」</strong></p>
+                    <p>最初はこれを確認しながら練習してみてください。</p>
+                    <p>指の担当を決めておくことで、キーを探す時間が少なくなり、指が自然に動くようになっていきます。</p>
+
+                    <h2>3. 上達の鉄則は「正確さ ＞ 速さ」</h2>
+                    <p>タイピング練習を始めると、どうしても速さが気になります。</p>
+                    <p>でも、最初から速く打とうとする必要はありません。</p>
+                    <p><strong>正確に打てるようになってから、速さを伸ばす。</strong></p>
+                    <p>この順番が大切です。</p>
+                    <p>間違えた指使いのまま速く打つ練習を続けると、その動き自体が指に身についてしまいます。</p>
+                    <p>まずはゆっくりでいい。</p>
+                    <p>正しい指で、正確に入力する。</p>
+                    <p>その繰り返しが、あとから速さにつながっていきます。</p>
+
+                    <h2>4. すぐに打たない「記憶の練習法」</h2>
+                    <p>タイピングがなかなか上達しないと感じるとき、つい　「とにかく数をこなそう」　と焦ってしまいがちです。</p>
+                    <p>でも、ただキーを叩くだけでは、指の形や動かし方が間違えたまま癖になってしまうこともあります。</p>
+                    <p>そこで試してほしいのが、<strong>すぐにキーを叩かない「記憶の練習法」</strong>です。</p>
                     <p>ここが上達のスピードを分ける最大のポイントです。画面に文章が表示された瞬間、<span class="marker-yellow">焦ってすぐに1文字目を打つのをやめてみましょう。</span></p>
-                    
+
                     <h3>文章を「自分の言葉」に落とし込む</h3>
-                    <p>まずは表示された単語や短い文章を、**「頭の中で読み切る（覚える）」**ところまで一呼吸置きます。内容を理解してから打ち始めることで、以下の変化が起こります。</p>
-                    
+                    <p>まずは表示された単語や短い文章を、<strong>「頭の中で読み切る（覚える）」</strong>ところまで一呼吸置きます。内容を理解してから打ち始めることで、以下の変化が起こります。</p>
+
                     <ul>
                         <li><strong>「文字」ではなく「言葉」として打てる：</strong> 1文字ずつ追いかける「書き写し」の状態から脱却できます。</li>
                         <li><strong>思考のスピードで入力できる：</strong> 自分の内側から出た言葉を打つのと同じ感覚になり、流れるような打鍵が可能になります。</li>
                         <li><strong>ミスが減る：</strong> 先の展開が頭に入っているため、指が次に備える余裕が生まれます。</li>
                     </ul>
 
-                    <h2>3. 負担を減らす「薬指」の活用術</h2>
+                    <h2>5. 負担を減らす「薬指」の活用術</h2>
                     <p>キーボードの右上にある <kbd>P</kbd> や <kbd>-</kbd>（ハイフン）は、一般的には小指で打つと教わります。しかし、初心者が無理に伸ばすとホームポジションが崩れ、手首を痛める原因になります。</p>
                     <p>ぱそトレ！では、<strong>右手薬指</strong>を積極的に使うことを推奨しています。<span class="marker-yellow">人差し指を <kbd>J</kbd> に残したまま薬指を斜め上に伸ばす</span>ことで、基本位置を崩さずに、安全かつ正確に打鍵できます。</p>
 
+                    <!-- 薬指・リラックスした手の画像 -->
                     <div class="article-image article-image--window">
                         <img src="img/typing-home-position.jpg" alt="リラックスした正しいホームポジションのイメージ">
-                        <p class="image-caption">▲ 手首を浮かさず、リラックスして「指の長さ」を活かしましょう</p>
+                        <p style="color: #7f8c8d; font-size: 0.85rem; margin-top: 10px;">▲ 手首を浮かさず、リラックスして「指の長さ」を活かしましょう</p>
                     </div>
 
-                <!-- まとめセクション -->
+                    <h2>6. 自己流は本当にダメ？基本と応用の境界</h2>
+                    <p>ここは少し誤解してほしくないところです。</p>
+                    <p><strong>自己流がダメ、ということではありません。</strong></p>
+                    <p>ぱそトレ！でも、「このキーを押すときは、この指のほうが打ちやすい」といった、実際の入力に合わせた方法を紹介することもあります。</p>
+                    <p>人間の手や指の形は、一人ひとり違います。</p>
+                    <p>だから、基本を身につけたあとに、</p>
+                    <p>「自分の場合は、こっちのほうが打ちやすい」</p>
+                    <p>「この動きに変えたほうがスムーズだ」</p>
+                    <p>と工夫することは、悪いことではありません。</p>
+                    <p>むしろ、それは<strong>基本を知ったうえでの応用</strong>です。</p>
+
+                    <h3>基本と応用の境界</h3>
+                    <p>私がタイピングを教えるときに大切だと思っているのが、</p>
+                    <p><strong>「基本と応用の境界を知ること」</strong></p>
+                    <p>です。</p>
+                    <p>基本とは、みんなが知っているベースとなる知識です。</p>
+                    <p>ホームポジションや指の担当など、</p>
+                    <p>「タイピングなら、まずこれを知っておこう」</p>
+                    <p>という共通の土台があります。</p>
+                    <p>これを知っておくと、</p>
+                    <p>「なぜ、この指で押すのか？」</p>
+                    <p>「なぜ、この位置から始めるのか？」</p>
+                    <p>という理由も見えてきます。</p>
+                    <p>そして、誰かとタイピングについて話すときにも、</p>
+                    <p>「ここまでは基本的なことなんだ」</p>
+                    <p>という共通認識を持ちやすくなります。</p>
+                    <p>タイピングについての「常識」がわかってくるわけです。</p>
+                    <p>一方、応用は、その基本を知ったうえでの改良や改善です。</p>
+                    <p>手や指の形が一人ひとり違うように、</p>
+                    <p>「もっとこうしたら打ちやすい」</p>
+                    <p>「この動きなら自分はスムーズに入力できる」</p>
+                    <p>という工夫が出てきます。</p>
+                    <p>そして、<strong>基本を知ったうえでの自己流</strong>なら、私は問題ないと考えています。</p>
+                    <p>問題なのは、基本を知らないまま、</p>
+                    <p>「自分が打ちやすいから」</p>
+                    <p>という理由だけで自由に打ち続けてしまうことです。</p>
+                    <p>それでは、タイピングが上達していく途中で壁にぶつかることがあります。</p>
+                    <p>ある程度までは打てても、そこから先に伸びにくくなる。</p>
+                    <p>だからこそ、まず基本を知る。</p>
+                    <p>そのうえで、自分に合った方法を探していく。</p>
+                    <p>これが、ぱそトレ！が考えるタイピングの学び方です。</p>
+
+                    <h2>7. 私も最初は我流だった</h2>
+                    <p>ここで、少し私自身の話をします。</p>
+                    <p>私はパソコンインストラクターを始める前まで、文字入力は我流でした。</p>
+                    <p>キーボードも何度も見ながら打っていました。</p>
+                    <p>当時は、それで特に困っていなかったんです。</p>
+                    <p>ところが、仕事で資料を作るようになり、</p>
+                    <p>「この期限までに資料を完成させる」</p>
+                    <p>という場面が増えてきました。</p>
+                    <p>さらに、タイピングスキルを人に教える立場になりました。</p>
+                    <p>そのとき、</p>
+                    <p><strong>「自分ができていないことを、人に教えることはできない」</strong></p>
+                    <p>と思ったんです。</p>
+                    <p>そこで、当時「ブラインドタッチ」と呼ばれていたスキルを、本当の基礎から学び直しました。</p>
+                    <p>正直、最初は今までのほうが楽に感じることもありました。</p>
+                    <p>でも、続けていくうちに、キーボードを見なくても指が動くようになってきた。</p>
+                    <p>そして今振り返ると、</p>
+                    <p><strong>あのとき、本当にやっておいてよかったと思えるスキルです。</strong></p>
+
+                    <h2>8. キーボードを見ながら打つのはダメ？</h2>
+                    <p>これも、ダメということではありません。</p>
+                    <p>趣味で使うだけなら、時間をかけて入力しても問題ないでしょう。</p>
+                    <p>仕事でも、時間に余裕があるなら困らないかもしれません。</p>
+                    <p>ただ、仕事には期限があります。</p>
+                    <p>資料を作りながら、別の資料を確認する。</p>
+                    <p>データを見ながら入力する。</p>
+                    <p>文章を考えながら文字を打つ。</p>
+                    <p>こうした作業をしていると、</p>
+                    <p>「画面を見る」</p>
+                    <p>「資料を見る」</p>
+                    <p>「キーボードを見る」</p>
+                    <p>と、目線がいろいろな場所に動きます。</p>
+                    <p>そして、人間は同時にたくさんのことを処理しようとすると、当然疲れます。</p>
+                    <p>考えることや行動することに使える力も、少しずつ削られていきます。</p>
+                    <p>だからこそ、タイピングスキルを身につける。</p>
+                    <p><strong>「文字を打つ」という作業に使う時間と労力を減らしていく。</strong></p>
+                    <p>これだけでも、仕事の負担は変わってきます。</p>
+                    <p>今までキーボードを見ながら入力していた時間が減れば、その分、自分の時間を別のことに使えるようになります。</p>
+
+                    <h2>9. AI時代だからこそタイピングは必要</h2>
+                    <p>「AIがもっと進化したら、キーボードで文字を打つ必要はなくなるのでは？」</p>
+                    <p>そう思う人もいるかもしれません。</p>
+                    <p>たしかに、AIとのやり取りでは音声入力がどんどん便利になっています。</p>
+                    <p>話しかけるだけでAIに質問できたり、文章を作ってもらったりすることも、これからさらに増えていくでしょう。</p>
+                    <p>ただ、<span class="marker-yellow"><strong>仕事の現場で、いつでも声を出してAIを使えるとは限りません。</strong></span></p>
+                    <p>周りに人がいる。</p>
+                    <p>会議中である。</p>
+                    <p>共有スペースで仕事をしている。</p>
+                    <p>静かに作業しなければならない。</p>
+                    <p>そんな場面では、声ではなくキーボードから入力するほうが自然です。</p>
+                    <p>そもそも、AIを使うために必要なのは「声」ではありません。</p>
+                    <p><span class="marker-yellow"><strong>自分の考えをAIに伝えることです。</strong></span></p>
+                    <p>「こういう資料を作りたい」</p>
+                    <p>「このデータから問題点を見つけてほしい」</p>
+                    <p>「この文章をわかりやすく直してほしい」</p>
+                    <p>「この仕事を効率化する方法を考えてほしい」</p>
+                    <p>AIを仕事で活用するほど、こうした<strong>自分の考えや指示をAIに伝える場面</strong>は増えていきます。</p>
+                    <p>そのとき、キーボードで自分の言葉をすぐに入力できることは、大きな武器になります。</p>
+                    <p>AIに何をしてもらうかを考えるのは人間。</p>
+                    <p>それをAIに伝えるのも人間です。</p>
+                    <p>だから私は、タイピングを「昔からあるパソコンの基本スキル」だけではなく、<span class="marker-yellow"><strong>AI時代にも役立つポータブルスキル</strong></span>だと考えています。</p>
+                    <p>ポータブルスキルというのは、会社や環境が変わっても使えるスキルのこと。</p>
+                    <p>パソコンが変わっても、職場が変わっても、仕事の内容が変わっても、</p>
+                    <p><span class="marker-yellow"><strong>「自分の考えを文字にして伝える力」</strong></span></p>
+                    <p>は持っていくことができます。</p>
+                    <p>AIが発展すればするほど、AIに任せられる作業は増えていくでしょう。</p>
+                    <p>だからこそ、人間側には、</p>
+                    <p>「何をしたいのか」</p>
+                    <p>「何を伝えたいのか」</p>
+                    <p>を整理して伝える力が必要になります。</p>
+                    <p>そのための基本的な道具のひとつが、今のところキーボードです。</p>
+                    <p>タイピングは、AIに仕事を奪われないためのスキルというより、</p>
+                    <p><span class="marker-yellow"><strong>AIを自分の仕事に活かすためのスキル。</strong></span></p>
+                    <p>私は、これからのタイピングをそう考えています。</p>
+
+                    <!-- まとめセクション -->
                     <div class="summary-box">
-                        <h2 class="section-title--summary">上達のためのチェックリスト</h2>
+                        <h2 class="section-title--summary">今回のまとめ</h2>
+                        <p>タイピングの基本で、まず覚えておきたいのはこの5つです。</p>
                         <ul>
-<li><kbd>Q・X・C・L</kbd> を後回しにすれば、移動して打つキーはたった16文字</li>
-                            <li><kbd>A</kbd> に左手小指を置き、左側の基準を安定させる</li>
-                            <li>文章が表示されたら、まず内容を頭に入れてから打ち始める</li>
-                            <li><kbd>P</kbd> や <kbd>-</kbd> は、無理に小指を使わず薬指を活用する</li>
+                            <li><strong>FとJの突起を使って指の位置を確認する</strong></li>
+                            <li><strong>ホームポジションと指の担当を知る</strong></li>
+                            <li><strong>速さよりも、まず正確さを大切にする</strong></li>
+                            <li><strong>すぐに打たず、文章を頭に入れてから打ち始める</strong></li>
+                            <li><strong><kbd>P</kbd> や <kbd>-</kbd> は、無理に小指を伸ばさず右手薬指で応用もOK</strong></li>
                         </ul>
+                        <p>そして、もうひとつ覚えておいてほしいことがあります。</p>
+                        <p><strong>自己流が悪いわけではありません。</strong>基本を知ったうえで、自分に合うように工夫する。それは立派な「応用」です。</p>
+                        <p>だからこそ、まずは基本を知るところから始めてみてください。</p>
+                        <p>タッチタイピングは、決して難しい特別なスキルではありません。少しずつ練習すれば、指は覚えていきます。</p>
+                        <p>ぜひ、この機会に練習を始めてみてください。</p>
+                        <p>ぱそトレ！の記事を読んでいくと、これまで知らなかったタイピングの知識や、実際の入力で役立つ考え方も見えてきます。</p>
+                        <p><strong>タイピングに、ぜひ希望を持ってください。</strong></p>
+                        <p>基本を知る。練習する。そして、自分に合う方法へと工夫していく。それが、タイピングを長く使えるスキルにしていく道だと思っています。</p>
                     </div>
 
                     <div class="next-step-guide">
                         タッチタイピングは「お散歩」と同じです。家（ホーム）から一歩ずつ、自信を広げていきましょう。
                     </div>
 
-<!-- === ページ末尾ナビ：学習ガイド用標準セット === -->
-<div class="summary-nav">
-    <a href="play.html" class="btn-main">タイピング練習へ</a>
-    <a href="hub-typing.html" class="summary-btn">タイピングガイドへ</a>
-    <a href="./" class="summary-btn">ホームへ戻る</a>
-</div>
-            </section>
+                    <!-- === 記事末尾ナビ === -->
+                    <div class="article-footer-nav">
+                        <p class="article-footer-nav__text">基本がわかったら、実際にタイピング練習を始めてみましょう</p>
+                        <div class="summary-nav">
+                            <a href="play.html" class="btn-main">タイピング練習へ</a>
+                            <a href="hub-typing.html" class="summary-btn">タイピングガイドへ</a>
+                            <a href="./" class="summary-btn">ホームに戻る</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
         </main>
 
         <footer>
@@ -179,8 +356,10 @@
             <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
         </footer>
     </div>
-        <!-- ページトップへ戻るボタン (v19.9.203 統一規格) -->
+
+    <!-- ページトップへ戻るボタン -->
     <a href="#" id="back-to-top" class="back-to-top">↑</a>
+
     <script src="js/main.js"></script>
 </body>
 </html>
