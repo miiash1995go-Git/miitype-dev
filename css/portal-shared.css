@@ -3077,7 +3077,7 @@ body.portal-page article.static-page .hub-article-h2::after {
     max-width: 960px !important;
     margin-top: 0px !important;
     margin-right: auto !important;
-    margin-bottom: 60px !important; /* 0pxから60pxへ広げてゆとりを確保 */
+    margin-bottom: 120px !important; /* 0pxから60pxへ広げてゆとりを確保 */
     margin-left: auto !important;
     text-align: left !important;
 }
