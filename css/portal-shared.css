@@ -3050,30 +3050,74 @@ body.portal-page article.static-page .hub-article-h2::after {
     background-image: linear-gradient(90deg, #3498db 0%, #d9ecff 100%);
 }
 
-/* --- なぜ、ぱそトレ！を作ったのかセクション専用クラス (v20.11.StorySection) --- */
-.section-story {
-    margin-top: 40px !important;
-    margin-right: 0px !important;
-    margin-bottom: 0px !important;
-    margin-left: 0px !important;
-}
-
-.story-card {
-    max-width: 960px !important;
-    text-align: left !important;
+/* --- なぜ、ぱそトレ！を作ったのかセクション専用デザイン (v20.11.StoryRedesign) --- */
+.story-section-box {
+    background-color: #f4f8fb !important;
+    border-top-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 1px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #e2e8f0 !important;
+    border-right-color: #e2e8f0 !important;
+    border-bottom-color: #e2e8f0 !important;
+    border-left-color: #e2e8f0 !important;
+    border-top-left-radius: 30px !important;
+    border-top-right-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+    border-bottom-left-radius: 30px !important;
     padding-top: 50px !important;
     padding-right: 60px !important;
     padding-bottom: 50px !important;
     padding-left: 60px !important;
+    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.03) !important;
+    max-width: 960px !important;
+    margin-top: 0px !important;
+    margin-right: auto !important;
+    margin-bottom: 0px !important;
+    margin-left: auto !important;
+    text-align: left !important;
 }
 
-.story-card h2 {
-    font-size: 1.6rem !important;
+.story-header {
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 35px !important;
+    margin-left: 0px !important;
+    text-align: center !important;
+}
+
+.story-tag {
+    display: inline-block !important;
+    font-size: 0.75rem !important;
+    font-weight: 900 !important;
+    color: #2563eb !important;
+    background-color: #e0f2fe !important;
+    padding-top: 4px !important;
+    padding-right: 14px !important;
+    padding-bottom: 4px !important;
+    padding-left: 14px !important;
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 12px !important;
+    margin-left: 0px !important;
+    letter-spacing: 0.05em !important;
+}
+
+.story-section-box h2 {
+    font-size: 1.8rem !important;
     font-weight: 900 !important;
     color: #1e293b !important;
     margin-top: 0px !important;
     margin-right: 0px !important;
-    margin-bottom: 30px !important;
+    margin-bottom: 0px !important;
     margin-left: 0px !important;
     border-top-width: 0px !important;
     border-right-width: 0px !important;
@@ -3091,14 +3135,14 @@ body.portal-page article.static-page .hub-article-h2::after {
 
 .story-body {
     font-size: 1.05rem !important;
-    line-height: 1.9 !important;
-    color: #111827 !important;
+    line-height: 1.85 !important;
+    color: #1e293b !important;
 }
 
 .story-body p {
     margin-top: 0px !important;
     margin-right: 0px !important;
-    margin-bottom: 25px !important;
+    margin-bottom: 24px !important;
     margin-left: 0px !important;
 }
 
@@ -3106,4 +3150,163 @@ body.portal-page article.static-page .hub-article-h2::after {
     margin-bottom: 0px !important;
 }
 
-/* --- カラーボックス内小見出し：ゆったり余白・極太モデル (v20.11.BoxH3) --- */
+/* 1つ目の強調：問いかけの引用ブロック */
+.story-quote {
+    background-color: #ffffff !important;
+    border-top-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 5px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #e2e8f0 !important;
+    border-right-color: #e2e8f0 !important;
+    border-bottom-color: #e2e8f0 !important;
+    border-left-color: #3498db !important;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+    padding-top: 18px !important;
+    padding-right: 25px !important;
+    padding-bottom: 18px !important;
+    padding-left: 25px !important;
+    margin-top: 25px !important;
+    margin-right: 0px !important;
+    margin-bottom: 25px !important;
+    margin-left: 0px !important;
+    font-weight: 800 !important;
+    color: #1e293b !important;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.02) !important;
+}
+
+/* 2つ目の強調：ファイル管理の重要ポイントコールアウト */
+.story-callout {
+    background-color: #fffbeb !important;
+    border-top-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 6px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #fde68a !important;
+    border-right-color: #fde68a !important;
+    border-bottom-color: #fde68a !important;
+    border-left-color: #f59e0b !important;
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+    border-bottom-right-radius: 12px !important;
+    border-bottom-left-radius: 12px !important;
+    padding-top: 20px !important;
+    padding-right: 25px !important;
+    padding-bottom: 20px !important;
+    padding-left: 25px !important;
+    margin-top: 25px !important;
+    margin-right: 0px !important;
+    margin-bottom: 25px !important;
+    margin-left: 0px !important;
+    font-weight: 900 !important;
+    color: #92400e !important;
+    box-shadow: 0px 4px 12px rgba(245, 158, 11, 0.05) !important;
+}
+
+/* 3行の整理されたリスト（ファイル管理の項目） */
+.story-checklist {
+    list-style-type: none !important;
+    background-color: #ffffff !important;
+    border-top-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 1px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #e2e8f0 !important;
+    border-right-color: #e2e8f0 !important;
+    border-bottom-color: #e2e8f0 !important;
+    border-left-color: #e2e8f0 !important;
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+    border-bottom-right-radius: 12px !important;
+    border-bottom-left-radius: 12px !important;
+    padding-top: 15px !important;
+    padding-right: 25px !important;
+    padding-bottom: 15px !important;
+    padding-left: 25px !important;
+    margin-top: 15px !important;
+    margin-right: 0px !important;
+    margin-bottom: 25px !important;
+    margin-left: 0px !important;
+}
+
+.story-checklist li {
+    position: relative !important;
+    padding-top: 8px !important;
+    padding-right: 0px !important;
+    padding-bottom: 8px !important;
+    padding-left: 25px !important;
+    font-weight: 800 !important;
+    color: #334155 !important;
+    border-bottom-width: 1px !important;
+    border-bottom-style: dashed !important;
+    border-bottom-color: #f1f5f9 !important;
+}
+
+.story-checklist li:last-child {
+    border-bottom-style: none !important;
+}
+
+.story-checklist li::before {
+    content: "✓" !important;
+    position: absolute !important;
+    left: 0px !important;
+    top: 8px !important;
+    color: #3498db !important;
+    font-weight: 900 !important;
+}
+
+/* 3つ目の強調：自分で試す行動のアクセントボックス */
+.story-action-accent {
+    background-color: #f0fdf4 !important;
+    border-top-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 6px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #dcfce7 !important;
+    border-right-color: #dcfce7 !important;
+    border-bottom-color: #dcfce7 !important;
+    border-left-color: #16a34a !important;
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+    border-bottom-right-radius: 12px !important;
+    border-bottom-left-radius: 12px !important;
+    padding-top: 18px !important;
+    padding-right: 25px !important;
+    padding-bottom: 18px !important;
+    padding-left: 25px !important;
+    margin-top: 25px !important;
+    margin-right: 0px !important;
+    margin-bottom: 25px !important;
+    margin-left: 0px !important;
+    font-weight: 900 !important;
+    color: #166534 !important;
+    box-shadow: 0px 4px 12px rgba(22, 163, 74, 0.05) !important;
+}
+
+@media (max-width: 768px) {
+    .story-section-box {
+        padding-top: 30px !important;
+        padding-right: 20px !important;
+        padding-bottom: 30px !important;
+        padding-left: 20px !important;
+    }
+}
