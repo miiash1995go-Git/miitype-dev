@@ -3049,3 +3049,61 @@ body.portal-page article.static-page .hub-article-h2::after {
     background-color: #3498db;
     background-image: linear-gradient(90deg, #3498db 0%, #d9ecff 100%);
 }
+
+/* --- なぜ、ぱそトレ！を作ったのかセクション専用クラス (v20.11.StorySection) --- */
+.section-story {
+    margin-top: 40px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: 0px !important;
+}
+
+.story-card {
+    max-width: 960px !important;
+    text-align: left !important;
+    padding-top: 50px !important;
+    padding-right: 60px !important;
+    padding-bottom: 50px !important;
+    padding-left: 60px !important;
+}
+
+.story-card h2 {
+    font-size: 1.6rem !important;
+    font-weight: 900 !important;
+    color: #1e293b !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 30px !important;
+    margin-left: 0px !important;
+    border-top-width: 0px !important;
+    border-right-width: 0px !important;
+    border-bottom-width: 0px !important;
+    border-left-width: 0px !important;
+    border-top-style: none !important;
+    border-right-style: none !important;
+    border-bottom-style: none !important;
+    border-left-style: none !important;
+    padding-top: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 0px !important;
+    padding-left: 0px !important;
+}
+
+.story-body {
+    font-size: 1.05rem !important;
+    line-height: 1.9 !important;
+    color: #111827 !important;
+}
+
+.story-body p {
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 25px !important;
+    margin-left: 0px !important;
+}
+
+.story-body p:last-child {
+    margin-bottom: 0px !important;
+}
+
+/* --- カラーボックス内小見出し：ゆったり余白・極太モデル (v20.11.BoxH3) --- */
