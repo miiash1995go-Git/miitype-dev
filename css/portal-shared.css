@@ -412,43 +412,46 @@ body.game-body .instructor-advice {
 }
 
 /* ボックス内のタイトル（bタグ・strongタグ） */
-body.portal-page .instructor-advice b,
-body.portal-page .instructor-advice strong,
-body.game-body .instructor-advice b {
-    display: inline-block;
-    font-weight: 900;
-    color: #d97706 !important; /* タイトルは落ち着いたオレンジに */
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 12px;
-    margin-left: 0px;
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 4px;
-    padding-left: 0px;
-    border-top-width: 0px;
-    border-right-width: 0px;
-    border-bottom-width: 2px; /* タイトル下のみ線を表示 */
-    border-left-width: 0px;
-    border-top-style: none;
-    border-right-style: none;
-    border-bottom-style: solid;
-    border-bottom-color: rgba(245, 158, 11, 0.3);
-    border-left-style: none;
-    font-size: 1.15rem;
+/* インストラクターアドバイスBOXの「タイトル（先頭のb/strong）」のスタイル */
+body.portal-page .instructor-advice > b:first-child,
+body.portal-page .instructor-advice > strong:first-child,
+body.portal-page .instructor-advice b:first-of-type,
+body.game-body .instructor-advice > b:first-child {
+    display: inline-block !important;
+    font-weight: 900 !important;
+    color: #d97706 !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 12px !important;
+    margin-left: 0px !important;
+    padding-top: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 4px !important;
+    padding-left: 0px !important;
+    border-top-width: 0px !important;
+    border-right-width: 0px !important;
+    border-bottom-width: 2px !important;
+    border-left-width: 0px !important;
+    border-top-style: none !important;
+    border-right-style: none !important;
+    border-bottom-style: solid !important;
+    border-bottom-color: rgba(245, 158, 11, 0.3) !important;
+    border-left-style: none !important;
+    font-size: 1.15rem !important;
 }
 
-/* インストラクターアドバイスBOX内の本文側にある強調（strong / b / marker-yellow）の下線を完全に封殺し、スッキリさせる統治 */
-body.portal-page .instructor-advice p strong,
+/* インストラクターアドバイスBOX内の「本文（2番目以降やpの中のb/strong）」には下線を一切つけず、スッキリさせる */
 body.portal-page .instructor-advice p b,
-body.portal-page .instructor-advice span.marker-yellow,
-body.portal-page .instructor-advice strong.marker-yellow {
-    background-image: none !important;
+body.portal-page .instructor-advice p strong,
+body.portal-page .instructor-advice li b,
+body.portal-page .instructor-advice li strong {
     border-bottom: none !important;
+    background-image: none !important;
     text-decoration: none !important;
-    font-weight: 800 !important;
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
     color: #1e293b !important;
-    padding: 0px !important;
+    font-weight: 800 !important;
 }
 
 
