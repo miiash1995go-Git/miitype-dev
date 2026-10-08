@@ -1036,6 +1036,32 @@ body.portal-page .content-body table th {
     text-align: left;
 }
 
+/* ============================================================
+   Excel風 格子状セルテーブル（独立専用クラス） (v20.11.ExcelGrid)
+   ============================================================ */
+body.portal-page .content-body table.excel-table {
+    border-collapse: collapse !important;
+    border: 2px solid #94a3b8 !important; /* 表の外枠をしっかりめのグレーに */
+    background-color: #ffffff !important;
+    box-shadow: none !important;
+    border-radius: 0px !important;
+}
+
+body.portal-page .content-body table.excel-table th,
+body.portal-page .content-body table.excel-table td {
+    border: 1px solid #cbd5e1 !important; /* セルごとの格子線（Excelのグリッド線風） */
+    padding-top: 10px !important;
+    padding-right: 14px !important;
+    padding-bottom: 10px !important;
+    padding-left: 14px !important;
+}
+
+body.portal-page .content-body table.excel-table th {
+    background-color: #f1f5f9 !important;
+    color: #1e293b !important;
+    font-weight: 900 !important;
+}
+
 body.portal-page .content-body table td {
     padding-top: 16px;
     padding-right: 20px;
