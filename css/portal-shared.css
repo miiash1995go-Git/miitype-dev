@@ -433,9 +433,22 @@ body.game-body .instructor-advice b {
     border-top-style: none;
     border-right-style: none;
     border-bottom-style: solid;
-    border-bottom-color: rgba(245, 158, 11, 0.3); /* 謎の下線を排除し、タイトル下線のみにする */
+    border-bottom-color: rgba(245, 158, 11, 0.3);
     border-left-style: none;
     font-size: 1.15rem;
+}
+
+/* インストラクターアドバイスBOX内の本文側にある強調（strong / b / marker-yellow）の下線を完全に封殺し、スッキリさせる統治 */
+body.portal-page .instructor-advice p strong,
+body.portal-page .instructor-advice p b,
+body.portal-page .instructor-advice span.marker-yellow,
+body.portal-page .instructor-advice strong.marker-yellow {
+    background-image: none !important;
+    border-bottom: none !important;
+    text-decoration: none !important;
+    font-weight: 800 !important;
+    color: #1e293b !important;
+    padding: 0px !important;
 }
 
 
