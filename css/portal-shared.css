@@ -1462,6 +1462,30 @@ body.portal-page .breadcrumb a {
 }
 
 @media (max-width: 768px) {
+    /* --- フォルダ階層マップ・メモリー比較のスマホ用縦並び統治 --- */
+    .folder-map-container {
+        flex-direction: column !important;
+        gap: 0px !important;
+    }
+    .folder-map-connector {
+        width: 100% !important;
+        height: 40px !important;
+    }
+    .folder-map-connector::before {
+        width: 2px !important;
+        height: 100% !important;
+        top: 0px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+    .folder-map-connector::after {
+        content: "▼" !important;
+        padding-top: 5px !important;
+        padding-right: 0px !important;
+        padding-bottom: 5px !important;
+        padding-left: 0px !important;
+    }
+
     /* --- 本家Newsリストのスマホ用コンパクト化統治 --- */
     body.portal-page .news-list {
         padding-top: 5px !important;
