@@ -1399,17 +1399,37 @@ footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
 /* テーブル全体の基本設定 */
 body.portal-page .content-body table.setup-table {
     width: 100%;
-    table-layout: fixed; /* 列幅を固定してガタつきを防止 */
+    table-layout: auto;
     border-collapse: separate;
     margin-top: 30px;
+    margin-right: 0px;
     margin-bottom: 30px;
+    margin-left: 0px;
 }
 
 /* ヘッダーの設定 */
 body.portal-page .content-body table.setup-table th.col-item {
-    width: 140px; /* 左列の幅をしっかり確保 */
-    background-color: #f1f5f9;
+    width: 130px;
+    background-color: #e2e8f0;
     text-align: center;
+}
+
+/* 左側の項目名ラベル（tbody内のth） */
+body.portal-page .content-body table.setup-table th.row-label {
+    width: 130px;
+    background-color: #f1f5f9;
+    color: var(--primary);
+    font-weight: 900;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 15px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: #cbd5e1;
+    line-height: 1.4;
 }
 
 /* 左側の項目名ラベル（tbody内のth） */
