@@ -1487,7 +1487,19 @@ body.portal-page .breadcrumb a {
         width: auto !important;
         min-width: 0px !important;
         display: inline-block !important;
+        margin-top: 0px !important;
+        margin-right: 0px !important;
+        margin-bottom: 0px !important;
+        margin-left: 0px !important;
     }
+    .news-date {
+        font-size: 0.78rem !important;
+        margin-top: 0px !important;
+        margin-right: 0px !important;
+        margin-bottom: 0px !important;
+        margin-left: 0px !important;
+    }
+    
     body.portal-page .news-text {
         white-space: normal !important;
         display: inline !important;
