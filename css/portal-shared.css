@@ -1479,6 +1479,15 @@ body.portal-page .breadcrumb a {
         margin-bottom: 0px !important;
         margin-left: 0px !important;
     }
+    body.portal-page .news-tag {
+        text-align: left !important;
+        padding-top: 3px !important;
+        padding-right: 6px !important;
+        padding-bottom: 3px !important;
+        padding-left: 6px !important;
+        width: auto !important;
+        min-width: 0px !important;
+    }
 
     body.portal-page .news-text {
         white-space: normal !important;
