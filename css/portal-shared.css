@@ -1452,14 +1452,13 @@ body.portal-page .breadcrumb a {
         padding-right: 0px !important;
         padding-bottom: 10px !important;
         padding-left: 0px !important;
-        gap: 10px !important;
+        gap: 12px !important;
     }
-
     body.portal-page .news-meta {
         flex-basis: 0% !important;
         flex-grow: 0 !important;
         flex-shrink: 0 !important;
-        width: 110px !important;
+        width: auto !important;
         flex-direction: column !important;
         align-items: flex-start !important;
         margin-top: 0px !important;
@@ -1468,7 +1467,6 @@ body.portal-page .breadcrumb a {
         margin-left: 0px !important;
         gap: 4px !important;
     }
-
     body.portal-page .news-content {
         flex-basis: 0% !important;
         flex-grow: 1 !important;
@@ -1481,21 +1479,20 @@ body.portal-page .breadcrumb a {
     }
     body.portal-page .news-tag {
         text-align: left !important;
-        padding-top: 3px !important;
+        padding-top: 2px !important;
         padding-right: 6px !important;
-        padding-bottom: 3px !important;
+        padding-bottom: 2px !important;
         padding-left: 6px !important;
         width: auto !important;
         min-width: 0px !important;
+        display: inline-block !important;
     }
-
     body.portal-page .news-text {
         white-space: normal !important;
         display: inline !important;
         font-size: 0.85rem !important;
         line-height: 1.5 !important;
     }
-
     body.portal-page .news-text .news-sep {
         display: none !important;
     }
