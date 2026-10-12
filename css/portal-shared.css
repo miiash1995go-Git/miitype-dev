@@ -1455,11 +1455,17 @@ body.portal-page .breadcrumb a {
     body.portal-page .news-meta {
         width: 100% !important;
         margin-right: 0px !important;
+        justify-content: flex-start !important;
+        display: flex !important;
     }
     body.portal-page .news-content {
         width: 100% !important;
         margin-left: 0px !important;
     }
+    body.portal-page .news-text .news-sep {
+        display: none !important;
+    }
+    
     body.portal-page .news-sep {
         display: none !important;
     }
