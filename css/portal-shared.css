@@ -1478,6 +1478,7 @@ body.portal-page .breadcrumb a {
         margin-left: 0px !important;
     }
     body.portal-page .news-tag {
+        font-size: 0.65rem !important;
         text-align: left !important;
         padding-top: 2px !important;
         padding-right: 6px !important;
@@ -1499,13 +1500,6 @@ body.portal-page .breadcrumb a {
 
     .news-date {
         font-size: 0.78rem !important;
-    }
-
-    body.portal-page .news-tag {
-        font-size: 0.65rem !important;
-        padding: 2px 6px !important;
-        min-width: 65px !important;
-        width: 65px !important;
     }
 
     .news-text {
