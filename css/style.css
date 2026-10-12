@@ -355,7 +355,7 @@ body.portal-page #app {
         font-size: 0.85rem !important;
         width: 100% !important;
     }
-}
+
 
     .new-badge-label, .new-badge-spacer {
         width: 42px !important;        /* バッジの幅も少し縮小 */
