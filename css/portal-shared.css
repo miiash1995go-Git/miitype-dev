@@ -1436,7 +1436,7 @@ body.portal-page .breadcrumb a {
         padding-left: 0px !important;
     }
 
-    /* --- 本家Newsリストのスマホ用コンパクト化統治（2行構成対応） --- */
+    /* --- 本家Newsリストのスマホ用コンパクト化統治（2行・2カラム構成） --- */
     body.portal-page .news-list {
         padding-top: 5px !important;
         padding-right: 12px !important;
@@ -1445,33 +1445,50 @@ body.portal-page .breadcrumb a {
     }
 
     body.portal-page .news-item {
-        flex-direction: column !important;
+        flex-direction: row !important;
         align-items: flex-start !important;
-        min-width: 0 !important;
+        min-width: 0px !important;
         padding-top: 10px !important;
+        padding-right: 0px !important;
         padding-bottom: 10px !important;
-        gap: 6px !important;
-    }
-    body.portal-page .news-meta {
-        width: 100% !important;
-        margin-right: 0px !important;
-        justify-content: flex-start !important;
-        display: flex !important;
-    }
-    body.portal-page .news-content {
-        width: 100% !important;
-        margin-left: 0px !important;
-    }
-    body.portal-page .news-text .news-sep {
-        display: none !important;
-    }
-    
-    body.portal-page .news-sep {
-        display: none !important;
+        padding-left: 0px !important;
+        gap: 10px !important;
     }
 
     body.portal-page .news-meta {
-        gap: 6px !important;
+        flex-basis: 0% !important;
+        flex-grow: 0 !important;
+        flex-shrink: 0 !important;
+        width: 110px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        margin-top: 0px !important;
+        margin-right: 0px !important;
+        margin-bottom: 0px !important;
+        margin-left: 0px !important;
+        gap: 4px !important;
+    }
+
+    body.portal-page .news-content {
+        flex-basis: 0% !important;
+        flex-grow: 1 !important;
+        flex-shrink: 1 !important;
+        min-width: 0px !important;
+        margin-top: 0px !important;
+        margin-right: 0px !important;
+        margin-bottom: 0px !important;
+        margin-left: 0px !important;
+    }
+
+    body.portal-page .news-text {
+        white-space: normal !important;
+        display: inline !important;
+        font-size: 0.85rem !important;
+        line-height: 1.5 !important;
+    }
+
+    body.portal-page .news-text .news-sep {
+        display: none !important;
     }
 
     .news-date {
