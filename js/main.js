@@ -1522,14 +1522,14 @@ if (typeof gtag === 'function') {
             });
         }
 
-        // 8. News 最新2件の自動転記ロジック（v20.8.11：日付・白抜き対応）
+        // 8. News 最新1件の自動転記ロジック
         var announceBox = document.getElementById('new-article-announce');
         var newsItems = document.querySelectorAll('.news-scroll-container .news-item');
         
         if (announceBox && newsItems.length > 0) {
             var htmlContent = '';
-            // 最大2件分ループ
-            for (var i = 0; i < Math.min(newsItems.length, 2); i++) {
+            // 最新1件のみ表示
+            for (var i = 0; i < Math.min(newsItems.length, 1); i++) {
                 var item = newsItems[i];
                 var dateStr = item.querySelector('.news-date').textContent;
                 var newsLink = item.querySelector('.news-text');
