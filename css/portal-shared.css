@@ -1436,7 +1436,7 @@ body.portal-page .breadcrumb a {
         padding-left: 0px !important;
     }
 
-    /* --- 本家Newsリストのスマホ用コンパクト化統治 --- */
+    /* --- 本家Newsリストのスマホ用コンパクト化統治（2行構成対応） --- */
     body.portal-page .news-list {
         padding-top: 5px !important;
         padding-right: 12px !important;
@@ -1445,9 +1445,23 @@ body.portal-page .breadcrumb a {
     }
 
     body.portal-page .news-item {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        min-width: 0 !important;
         padding-top: 10px !important;
         padding-bottom: 10px !important;
         gap: 6px !important;
+    }
+    body.portal-page .news-meta {
+        width: 100% !important;
+        margin-right: 0px !important;
+    }
+    body.portal-page .news-content {
+        width: 100% !important;
+        margin-left: 0px !important;
+    }
+    body.portal-page .news-sep {
+        display: none !important;
     }
 
     body.portal-page .news-meta {
