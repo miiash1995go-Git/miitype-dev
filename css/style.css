@@ -316,42 +316,46 @@ body.portal-page #app {
         width: 100% !important;
         margin-top: 0px !important;
         margin-bottom: 20px !important;
-        padding-right: 0px !important; 
-        padding-left: 0px !important;  
+        padding-top: 0px !important;
+        padding-right: 0px !important;
+        padding-bottom: 0px !important;
+        padding-left: 0px !important;
         border-top-left-radius: 0px !important;
         border-top-right-radius: 0px !important;
         border-bottom-right-radius: 0px !important;
         border-bottom-left-radius: 0px !important;
         border-right-style: none !important;
         border-left-style: none !important;
-        overflow-x: auto !important;
-        overflow-y: hidden !important;
-        -webkit-overflow-scrolling: touch;
+        overflow-x: visible !important;
+        overflow-y: visible !important;
     }
 
     .new-article-announce::-webkit-scrollbar {
         display: none !important;
     }
 
-    /* 【追加・変更】行のパディングを狭め、スマホで縦にデカく見える現象を根絶 */
     .announce-row {
         overflow: visible !important;
-        padding-top: 8px !important;    /* 15pxから8pxへ大幅に圧縮 */
-        padding-bottom: 8px !important; /* 15pxから8pxへ大幅に圧縮 */
+        padding-top: 10px !important;
         padding-right: 12px !important;
+        padding-bottom: 10px !important;
         padding-left: 12px !important;
-        width: max-content !important; 
-        min-width: 100% !important;
+        width: 100% !important;
+        min-width: 0px !important;
     }
 
     .announce-row a {
-        white-space: nowrap !important;
+        white-space: normal !important;
         display: flex !important;
-        align-items: center !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 4px !important;
         color: #2c3e50 !important;
-        text-decoration: none !important;
-        font-size: 0.85rem !important; /* 文字も少しコンパクトにして収まりを良くする */
+        text-decoration-line: none !important;
+        font-size: 0.85rem !important;
+        width: 100% !important;
     }
+}
 
     .new-badge-label, .new-badge-spacer {
         width: 42px !important;        /* バッジの幅も少し縮小 */
