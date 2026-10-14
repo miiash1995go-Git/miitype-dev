@@ -1411,6 +1411,29 @@ body.portal-page .breadcrumb a {
     font-weight: 900;
 }
 
+/* --- 記事更新日自動表示のスタイル (v20.13.UpdateDate) --- */
+.article-update-date {
+    text-align: right;
+    font-size: 0.85rem;
+    color: #64748b;
+    font-weight: 700;
+    margin-top: 5px;
+    margin-right: 0px;
+    margin-bottom: 25px;
+    margin-left: 0px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .article-update-date {
+        font-size: 0.8rem;
+        margin-top: 4px;
+        margin-right: 0px;
+        margin-bottom: 20px;
+        margin-left: 0px;
+    }
+}
+
 @media (max-width: 768px) {
     /* --- フォルダ階層マップ・メモリー比較のスマホ用縦並び統治 --- */
     .folder-map-container {

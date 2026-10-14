@@ -1571,6 +1571,72 @@ if (typeof gtag === 'function') {
         });
         zOver.onclick = function() { zOver.classList.remove('is-active'); document.body.style.overflow = ''; };
 
+// 11. 記事の更新日自動表示機能 (v20.13.UpdateDate)
+        async function initArticleUpdateDate() {
+            var titleEl = document.querySelector('.page-title');
+            var subTitleEl = document.querySelector('.page-subtitle');
+            if (!titleEl || !subTitleEl) return;
+
+            var url = window.location.href.toLowerCase();
+            var page = url.substring(url.lastIndexOf('/') + 1).split('?')[0].split('#')[0];
+            if (page === "" || page.indexOf('.') === -1) { page = "index.html"; }
+
+            var excludePages = ['index.html', 'play.html', 'test.html', 'privacy.html', 'about.html', 'contact.html'];
+            if (excludePages.includes(page) || page.startsWith('hub-')) {
+                return;
+            }
+
+            try {
+                const res = await fetch('./sitemap.xml');
+                if (!res.ok) return;
+                const rawText = await res.text();
+
+                var currentHref = window.location.href.split('?')[0].split('#')[0].replace(/\/$/, "");
+
+                const urlBlocks = rawText.match(/<url>([\s\S]*?)<\/url>/g);
+                if (!urlBlocks) return;
+
+                var lastmodDate = null;
+                for (var i = 0; i < urlBlocks.length; i++) {
+                    var block = urlBlocks[i];
+                    var locMatch = block.match(/<loc>(.*?)<\/loc>/);
+                    if (locMatch && locMatch[1]) {
+                        var loc = locMatch[1].trim().split('?')[0].split('#')[0].replace(/\/$/, "");
+                        if (loc === currentHref) {
+                            var lastmodMatch = block.match(/<lastmod>(.*?)<\/lastmod>/);
+                            if (lastmodMatch && lastmodMatch[1]) {
+                                lastmodDate = lastmodMatch[1].trim();
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (!lastmodDate) return;
+
+                var dateParts = lastmodDate.split('-');
+                if (dateParts.length !== 3) return;
+                var year = parseInt(dateParts[0], 10);
+                var month = parseInt(dateParts[1], 10);
+                var day = parseInt(dateParts[2], 10);
+                if (isNaN(year) || isNaN(month) || isNaN(day)) return;
+
+                var formattedDate = year + "年" + month + "月" + day + "日";
+
+                if (document.querySelector('.article-update-date')) return;
+
+                var dateEl = document.createElement('p');
+                dateEl.className = 'article-update-date';
+                dateEl.textContent = '更新日：' + formattedDate;
+                
+                subTitleEl.parentNode.insertBefore(dateEl, subTitleEl.nextSibling);
+
+            } catch (err) {
+                console.error("【ぱそトレ！】更新日の取得に失敗しました。", err);
+            }
+        }
+
+
         /* ============================================================
            10. アルティメット索引生成エンジン (v20.8.12.Complete_Fix)
            ------------------------------------------------------------
@@ -1663,6 +1729,7 @@ if (typeof gtag === 'function') {
 
         } catch (err) { console.error("Index System Error:", err); }
     }
+        initArticleUpdateDate();
         initSitemapIndex();
     } // initNavigation の閉じカッコ
 
