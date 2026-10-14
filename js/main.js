@@ -1571,7 +1571,7 @@ if (typeof gtag === 'function') {
         });
         zOver.onclick = function() { zOver.classList.remove('is-active'); document.body.style.overflow = ''; };
 
-// 11. 記事の更新日自動表示機能 (v20.13.UpdateDate)
+// 11. 記事の更新日自動表示機能 (v20.13.UpdateDate.Robust)
         async function initArticleUpdateDate() {
             var titleEl = document.querySelector('.page-title');
             var subTitleEl = document.querySelector('.page-subtitle');
@@ -1591,7 +1591,12 @@ if (typeof gtag === 'function') {
                 if (!res.ok) return;
                 const rawText = await res.text();
 
-                var currentHref = window.location.href.split('?')[0].split('#')[0].replace(/\/$/, "");
+                // 環境（ローカル、本番、プレビュー）を問わず一致させるためファイル名で照合
+                var currentPath = window.location.pathname;
+                var currentPageFile = currentPath.substring(currentPath.lastIndexOf('/') + 1).split('?')[0].split('#')[0];
+                if (currentPageFile === "" || currentPageFile.indexOf('.') === -1) {
+                    currentPageFile = page;
+                }
 
                 const urlBlocks = rawText.match(/<url>([\s\S]*?)<\/url>/g);
                 if (!urlBlocks) return;
@@ -1601,8 +1606,10 @@ if (typeof gtag === 'function') {
                     var block = urlBlocks[i];
                     var locMatch = block.match(/<loc>(.*?)<\/loc>/);
                     if (locMatch && locMatch[1]) {
-                        var loc = locMatch[1].trim().split('?')[0].split('#')[0].replace(/\/$/, "");
-                        if (loc === currentHref) {
+                        var loc = locMatch[1].trim();
+                        var locFile = loc.substring(loc.lastIndexOf('/') + 1).split('?')[0].split('#')[0];
+                        
+                        if (locFile === currentPageFile) {
                             var lastmodMatch = block.match(/<lastmod>(.*?)<\/lastmod>/);
                             if (lastmodMatch && lastmodMatch[1]) {
                                 lastmodDate = lastmodMatch[1].trim();
