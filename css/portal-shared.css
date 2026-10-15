@@ -1418,12 +1418,12 @@ body.portal-page .breadcrumb a {
 
 .article-update-date {
     text-align: right;
-    font-size: 0.85rem;
-    color: #64748b;
-    font-weight: 700;
-    margin-top: 0px;
+    font-size: 0.78rem;
+    color: #94a3b8;
+    font-weight: 500;
+    margin-top: 2px;
     margin-right: 0px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     margin-left: 0px;
     box-sizing: border-box;
 }
