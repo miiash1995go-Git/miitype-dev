@@ -8,30 +8,34 @@
     <link rel="canonical" href="https://miitype.com/guide-pc-selection.html">
     <link rel="icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
-<!-- 管理者除外スクリプト：ここから追加 -->
-<script>
-    if (localStorage.getItem('pasotore_admin') === 'true') {
-        // あなたのGA4測定ID「G-KWS4RPPBVV」を指定して無効化
-        window['ga-disable-G-KWS4RPPBVV'] = true;
-        console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
-    }
-</script>
-<!-- 管理者除外スクリプト：ここまで -->
     
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-KWS4RPPBVV');
-</script>
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/portal-shared.css">
+    <!-- 1. アドセンス（全ページ共通規格） -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
+
+    <!-- 2. 管理者除外スクリプト -->
+    <script>
+        if (localStorage.getItem('pasotore_admin') === 'true') {
+            window['ga-disable-G-KWS4RPPBVV'] = true;
+            console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
+        }
+    </script>
+     
+    <!-- 3. Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
+    <!-- 4. CSS資産（正典） -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
 </head>
 <body class="portal-page">
-<div id="app">
+    <div id="app">
+        <!-- 統合ヘッダー -->
         <header>
             <div class="header-inner">
                 <!-- 左：ロゴ（バッジ込み） -->
@@ -43,13 +47,13 @@ window.dataLayer = window.dataLayer || [];
                 <nav class="header-nav">
                     <div class="nav-grid">
                         <!-- 上段3つ -->
-                        <a href="./" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
-                        <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
-                        <a href="hub-pcskills.html" class="nav-item active"><img src="img/icon-windows.png" class="nav-icon"><span>PCスキル</span></a>
+                        <a href="./" class="nav-item"><img src="img/icon-home.png" class="nav-icon" alt=""><span>ホーム</span></a>
+                        <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon" alt=""><span>タイピング</span></a>
+                        <a href="hub-pcskills.html" class="nav-item active"><img src="img/icon-windows.png" class="nav-icon" alt=""><span>PCスキル</span></a>
                         <!-- 下段3つ -->
-                        <a href="hub-ai.html" class="nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
-                        <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
-                        <a href="hub-column.html" class="nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                        <a href="hub-ai.html" class="nav-item"><img src="img/icon-ai.png" class="nav-icon" alt=""><span>生成AI</span></a>
+                        <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon" alt=""><span>就職・転職</span></a>
+                        <a href="hub-column.html" class="nav-item"><img src="img/icon-genba.png" class="nav-icon" alt=""><span>現場コラム</span></a>
                     </div>
 
                     <!-- スマホ用メニューボタン：ハンバーガー ＋ メニューラベル -->
@@ -66,211 +70,502 @@ window.dataLayer = window.dataLayer || [];
             <div class="mobile-nav-overlay" id="mobile-menu-overlay">
                 <button class="menu-close-btn" id="menu-close-btn">×</button>
                 <div class="mobile-nav-grid">
-                    <a href="./" class="mobile-nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
-                    <a href="hub-typing.html" class="mobile-nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
-                    <a href="hub-pcskills.html" class="mobile-nav-item active"><img src="img/icon-windows.png" class="nav-icon"><span>PCスキル</span></a>
-                    <a href="hub-ai.html" class="mobile-nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
-                    <a href="hub-career.html" class="mobile-nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
-                    <a href="hub-column.html" class="mobile-nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                    <a href="./" class="mobile-nav-item"><img src="img/icon-home.png" class="nav-icon" alt=""><span>ホーム</span></a>
+                    <a href="hub-typing.html" class="mobile-nav-item"><img src="img/icon-typing.png" class="nav-icon" alt=""><span>タイピング</span></a>
+                    <a href="hub-pcskills.html" class="mobile-nav-item active"><img src="img/icon-windows.png" class="nav-icon" alt=""><span>PCスキル</span></a>
+                    <a href="hub-ai.html" class="mobile-nav-item"><img src="img/icon-ai.png" class="nav-icon" alt=""><span>生成AI</span></a>
+                    <a href="hub-career.html" class="mobile-nav-item"><img src="img/icon-career.png" class="nav-icon" alt=""><span>就職・転職</span></a>
+                    <a href="hub-column.html" class="mobile-nav-item"><img src="img/icon-genba.png" class="nav-icon" alt=""><span>現場コラム</span></a>
                 </div>
             </div>
         </header>
 
         <main class="portal-main">
-            <article class="static-page"><nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
-                <!-- パンくずリスト：PCスキルハブを親に設定 -->
-                
+            <article class="static-page">
+                <nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
 
-                <h1 class="page-title">パソコン選びの決定版</h1>
+                <h1 class="page-title">初心者向け パソコンの選び方ガイド</h1>
                 <p class="page-subtitle">最初の1台で失敗しないための選び方ガイド</p>
 
                 <div class="content-body">
-                    <!-- 講師のアドバイス：最新の黄色い箱（instructor-advice）へ変更 -->
+                    <!-- 講師のアドバイス -->
                     <div class="instructor-advice">
-                        <b>💡 講師のアドバイス：パソコン選びは「相棒」探し</b><br>
-                        パソコン選びは、これから学習を始める方にとって最初の大きな壁ですよね。高すぎるものは不要ですが、安すぎて動かないものを買ってしまうのも禁物。事務仕事や学習で「これなら安心」と言える基準を、講師の視点からまとめました。あなたにとっての「良い相棒」を一緒に探していきましょう！
+                        <b>💡 講師のアドバイス：パソコン選びは「相棒」探し</b>
+                        <p style="margin-top: 10px;">パソコン選びは、これから学習を始める方にとって最初の大きな壁ですよね。</p>
+                        <p>高すぎるものは不要ですが、安すぎて動かないものを買ってしまうのも禁物です。</p>
+                        <p>事務仕事や学習で「これなら安心」と言える基準を、講師の視点からまとめました。</p>
+                        <p>あなたにとっての「良い相棒」を一緒に探していきましょう！</p>
                     </div>
 
-                    <!-- 補足情報：標準の青い箱（info-note-box）へ修正 -->
+                    <!-- 補足情報（重複する更新日テキストを削除し、基準日のみに整理） -->
                     <div class="info-note-box">
-                        <strong class="note-title">※2026年10月時点の情報です</strong>
-                        <p>パソコンの性能（スペック）や価格の相場は日々変動しています。ここで紹介している内容は、2026年10月時点での一般的な基準です。最新の情報を踏まえて選ぶための参考にしてください。</p>
+                        <strong class="note-title">情報の基準日：2026年10月</strong>
+                        <p>パソコンの性能（スペック）や価格の相場は日々変動しています。</p>
+                        <p>ここで紹介している内容は、基準日時点の一般的な目安です。</p>
+                        <p>Windows 11の対応状況など、購入の可否に関わる点は、Microsoftの公式情報で必ず最新の内容を確認してください。</p>
                     </div>
 
-                        <!-- 4. セクション1（重複していた黄色いアドバイス枠を削除し、スッキリさせました） -->
-                        <section class="section-content">
-                            <h2 class="section-title">パソコンは学習の土台</h2>
-                            <p>
-                                「ぱそトレ！」では、タイピングから始まり、WordやExcel、そして最新のAI活用まで、順を追ってスキルを身につけていきます。これらの学習を支える<b>「土台」</b>となるのが、あなたの手元にあるパソコンです。
+                    <section class="section-content">
+                        <h2 class="section-title">パソコンは学習の土台</h2>
+                        <p>「ぱそトレ！」では、タイピングから始まり、WordやExcel、そして最新のAI活用まで、順を追ってスキルを身につけていきます。</p>
+                        <p>これらの学習を支える<b>「土台」</b>となるのが、あなたの手元にあるパソコンです。</p>
+                    </section>
+
+                    <!-- 2. 新品・未使用品・展示品・中古品 -->
+                    <section class="section-content">
+                        <h2>新品・未使用品・展示品・中古品の違いを知ろう</h2>
+                        <div style="overflow-x:auto;">
+                            <table class="comparison-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9rem;">
+                                <tr style="background: var(--primary); color: white;">
+                                    <th style="padding: 12px; border: 1px solid #ddd;">種類</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd;">特徴</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd;">安心感</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd;">価格</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">新品</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">誰も使っていない最新の状態。メーカー保証も万全。</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; color: #e74c3c;">◎ 最高</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">高め</td>
+                                </tr>
+                                <tr style="background: #fafafa;">
+                                    <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">未使用品</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">開封済み・店頭在庫などで、使われていない商品。保証の有無は店による。</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; color: #e67e22;">○ 高い</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">中程度</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">展示品</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">店頭で触れられていた商品。小傷や使用感がある場合も。</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; color: #e67e22;">○ 店による</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">中程度</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">中古品</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">以前に誰かが使っていたもの。型落ちだが安い。</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; color: #7f8c8d;">△ お店による</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; color: #27ae60; font-weight: bold;">安い</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <p style="font-size: 0.85rem; color: #777;">※「未使用品」「展示品」などの呼び方や状態の基準は、販売店によって異なります。商品ページの説明と、保証・返品条件を確認しましょう。</p>
+                    </section>
+
+                    <section class="section-content">
+                        <h2>いまのパソコン市場と、買い方の考え方</h2>
+                        <p>パソコンの価格は、時期や販売店、機種によって大きく変わります。</p>
+                        <p>ただし、「安いから」という理由だけで選ぶと、必要な条件を満たしていなかったり、保証がなかったりして後悔することがあります。</p>
+                        <p>まずは必要な条件を決め、そのうえで新品・未使用品・展示品・中古品の中から予算に合うものを探すのが、失敗しない順番です。</p>
+                        
+                        <h3>保証があるメリット</h3>
+                        <p>パソコンは精密機械なので、買ってすぐの初期不良や、使い始めてからの不具合が起こることがあります。</p>
+                        <p>保証があれば、無償で修理や交換を受けられる場合があり、学習中に突然使えなくなる不安を減らせます。</p>
+                        <ul>
+                            <li><b>新品：</b>メーカー保証が付くのが一般的（1年が多い）。</li>
+                            <li><b>未使用品・展示品・中古品：</b>保証の有無や期間は販売店によって違います。「保証なし」「バッテリーは保証対象外」というお店もあるので、購入前に必ず確認しましょう。</li>
+                            <li><b>落として壊した・水をこぼした：</b>通常の保証では対象外になることが多く、別途「破損保証」などが必要な場合があります。</li>
+                        </ul>
+
+                        <h3>中古パソコンで起こりやすいトラブル</h3>
+                        <p>中古は価格が魅力ですが、前の持ち主の使い方によって状態に差があります。</p>
+                        <p>初心者の方は、特に次の3つを意識してください。</p>
+                        <div style="overflow-x:auto;">
+                            <table class="comparison-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.85rem;">
+                                <tr>
+                                    <th style="padding: 10px; border: 1px solid #ddd; background: #f1f2f6; text-align: left;">場所</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd; background: #f1f2f6; text-align: left;">起こりやすい状態</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd; background: #f1f2f6; text-align: left;">購入前の確認</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">バッテリー</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">長く使われていると劣化し、満充電しても短時間でなくなる。コンセントにつないだ状態でしか使えないこともある。</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">バッテリーの状態や持ち時間の目安を表示しているか。バッテリーが保証対象かどうか。</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">キーボード</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">一部のキーが反応しない、押し込みが浅い、同じ文字が二重に入力される、キートップの文字が消えている。</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">商品説明に「キーボード動作確認済み」とあるか。タイピング学習用なら特に重要。</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">画面（液晶）</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">ドット欠け（小さな黒点・光る点）、画面の黒ずみ、シミ、ひび、画面の端の浮き。</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">実物の写真が載っているか。「液晶の欠け・ムラ」の記載があるか。返品できるか。</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <p>ほかにも、ヒンジ（画面の開閉部分）のゆるみ、USB端子の接触不良、ACアダプターの欠品などが問題になることがあります。</p>
+                        <p>写真付きで状態を細かく書いているお店や、返品・保証の条件がはっきりしているお店を選ぶと安心です。</p>
+                        
+                        <div class="instructor-advice">
+                            <b>💡 講師のアドバイス：中古を選ぶなら「状態」「保証」「Office」の3点セットで確認</b>
+                            <p style="margin-top: 10px;">安いからと個人間取引で選ぶと、トラブル時に相談先がないこともあります。</p>
+                            <p>初めての1台なら、保証付きの新品・未使用品・展示品、または保証と返品条件が明確なお店の中古品が安心です。</p>
+                        </div>
+                    </section>
+
+                    <!-- 3. Microsoft Office -->
+                    <section class="section-content">
+                        <h2>Microsoft Officeの種類と注意点</h2>
+                        <div style="overflow-x:auto;">
+                            <table class="comparison-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.85rem;">
+                                <tr style="background: #f1f2f6;">
+                                    <th style="padding: 10px; border: 1px solid #ddd;">種類</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd;">製品名</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd;">形式</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd;">メリット</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">サブスク版</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">Microsoft 365</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">月額・年額制</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">常に最新版。スマホや複数のPCで利用可。</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">買い切り版</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">Office 2024</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">一度きりの支払い</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">追加費用なし。最新の固定版として使い続けられる。</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div style="background: #fff9f9; border: 1px solid #ff4757; padding: 20px; border-radius: 10px; margin: 25px 0;">
+                            <h4 style="color: #ff4757; margin-top: 0;">💬 中古パソコンを検討中の方へ</h4>
+                            <p style="font-size: 0.9rem; margin-bottom: 0;">
+                                中古パソコンに付属するOfficeの中には、ライセンス形態が不明なものや、再インストール時に利用できなくなるものもあります。購入前に、正規ライセンスかどうかや再インストールの可否を販売店に確認しておくと安心です。
                             </p>
-                        </section>
-
-                <!-- 2. 新品・新古品・中古品 -->
-                <section class="section-content">
-                    <h2>新品・新古品・中古品の違いを知ろう</h2>
-                    <table class="comparison-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9rem;">
-                        <tr style="background: var(--primary); color: white;">
-                            <th style="padding: 12px; border: 1px solid #ddd;">種類</th>
-                            <th style="padding: 12px; border: 1px solid #ddd;">特徴</th>
-                            <th style="padding: 12px; border: 1px solid #ddd;">安心感</th>
-                            <th style="padding: 12px; border: 1px solid #ddd;">価格</th>
-                        </tr>
-                        <tr>
-                            <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">新品</td>
-                            <td style="padding: 12px; border: 1px solid #ddd;">誰も使っていない最新の状態。メーカー保証も万全。</td>
-                            <td style="padding: 12px; border: 1px solid #ddd; color: #e74c3c;">◎ 最高</td>
-                            <td style="padding: 12px; border: 1px solid #ddd;">高め</td>
-                        </tr>
-                        <tr style="background: #fafafa;">
-                            <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">新古品</td>
-                            <td style="padding: 12px; border: 1px solid #ddd;">展示品や未使用品。新品に近い状態。</td>
-                            <td style="padding: 12px; border: 1px solid #ddd; color: #e67e22;">○ 高い</td>
-                            <td style="padding: 12px; border: 1px solid #ddd;">中程度</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">中古品</td>
-                            <td style="padding: 12px; border: 1px solid #ddd;">以前に誰かが使っていたもの。型落ちだが安い。</td>
-                            <td style="padding: 12px; border: 1px solid #ddd; color: #7f8c8d;">△ お店による</td>
-                            <td style="padding: 12px; border: 1px solid #ddd; color: #27ae60; font-weight: bold;">安い</td>
-                        </tr>
-                    </table>
-                </section>
-
-                <!-- 3. Microsoft Office -->
-                <section class="section-content">
-                    <h2>Microsoft Officeの種類と注意点</h2>
-                    <table class="comparison-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.85rem;">
-                        <tr style="background: #f1f2f6;">
-                            <th style="padding: 10px; border: 1px solid #ddd;">種類</th>
-                            <th style="padding: 10px; border: 1px solid #ddd;">製品名</th>
-                            <th style="padding: 10px; border: 1px solid #ddd;">形式</th>
-                            <th style="padding: 10px; border: 1px solid #ddd;">メリット</th>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">サブスク版</td>
-                            <td style="padding: 10px; border: 1px solid #ddd;">Microsoft 365</td>
-                            <td style="padding: 10px; border: 1px solid #ddd;">月額・年額制</td>
-                            <td style="padding: 10px; border: 1px solid #ddd;">常に最新版。スマホや複数のPCで利用可。</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">買い切り版</td>
-                            <td style="padding: 10px; border: 1px solid #ddd;">Office 2024</td>
-                            <td style="padding: 10px; border: 1px solid #ddd;">一度きりの支払い</td>
-                            <td style="padding: 10px; border: 1px solid #ddd;">追加費用なし。最新の固定版として使い続けられる。</td>
-                        </tr>
-                    </table>
-
-                    <div style="background: #fff9f9; border: 1px solid #ff4757; padding: 20px; border-radius: 10px; margin: 25px 0;">
-                        <h4 style="color: #ff4757; margin-top: 0;">💬 中古パソコンを検討中の方へ</h4>
-                        <p style="font-size: 0.9rem; margin-bottom: 0;">
-                            中古パソコンに付属するOfficeの中には、ライセンス形態が不明なものや、再インストール時に利用できなくなるものもあります。購入前に、正規ライセンスかどうかや再インストールの可否を販売店に確認しておくと安心です。
-                        </p>
-                    </div>
-                </section>
-
-                <!-- 4. 3大スペック -->
-                <section class="section-content">
-                    <h2>失敗しないための「3大ポイント」</h2>
-                    
-                    <h3>① CPU（パソコンの頭脳）</h3>
-                    <p>CPUは、パソコンの性能を左右する大切な部品です。迷ったら、<b>「Core i3」または「Core i5」の第8世代以降</b>と書かれているものを選びましょう。</p>
-                    <p>最近のパソコンであれば、WordやExcelの学習、インターネット、動画視聴、AI活用など、一般的な用途には十分な性能があります。高性能な「Core i7」などもありますが、初心者の方が最初の1台として使うなら、i3やi5で十分です。</p>
-<div class="instructor-advice">
-    💡 講師のアドバイス：<b>ポイント</b><br>
-    「第8世代以降」を目安にすれば、最新のWindows 11に対応したモデルが多く、将来的に長く安心して使いやすいパソコンを選べます。
-</div>
-                    <h3>② メモリ（作業机の広さ）</h3>
-                    <table style="width: 100%; max-width: 450px; margin: 15px 0; font-size: 0.9rem;">
-                        <tr><th style="text-align: left; padding: 8px; border-bottom: 2px solid #eee;">容量</th><th style="text-align: left; padding: 8px; border-bottom: 2px solid #eee;">おすすめ度</th></tr>
-                        <tr><td style="padding: 8px;">8GB</td><td style="padding: 8px; color: #e67e22; font-weight: bold;">◎ 標準的。WordやExcelも普通に動く。</td></tr>
-                        <tr><td style="padding: 8px;">16GB</td><td style="padding: 8px; color: #27ae60; font-weight: bold;">◎ 理想的。AI活用や複数の作業もサクサク。</td></tr>
-                    </table>
-
-                    <h3>③ ストレージ（データの読み書き）</h3>
-                    <p>必ず <b>「SSD（エス・エス・ディー）」</b> と書いてあるものを選んでください。HDDに比べて起動がかなり速くなります。</p>
-                    <p>容量は<b>256GB以上</b>をおすすめします。写真やファイルをたくさん保存したり、長く使ったりする予定なら、512GBあるとより安心です。</p>
-                </section>
-
-                <!-- 5. ノートPCとデスクトップ -->
-                <section class="section-content">
-                    <h2>ノートパソコンとデスクトップ、どちらを選ぶ？</h2>
-<div class="pc-type-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">                        <div style="background: #fafafa; padding: 20px; border-radius: 15px;">
-                            <h4 style="margin-top: 0; color: var(--primary);">ノートパソコン</h4>
-                            <ul style="font-size: 0.9rem; padding-left: 20px;">
-                                <li>持ち運びができる</li>
-                                <li>場所を取らない</li>
-                                <li><b>初心者におすすめ</b></li>
-                            </ul>
                         </div>
-                        <div style="background: #fafafa; padding: 20px; border-radius: 15px;">
-                            <h4 style="margin-top: 0; color: var(--primary);">デスクトップ</h4>
-                            <ul style="font-size: 0.9rem; padding-left: 20px;">
-                                <li>画面が大きく作業しやすい</li>
-                                <li>自宅でじっくり使う人向き</li>
-                                <li>拡張（改造）がしやすい</li>
-                            </ul>
+                        
+                        <h3>「Officeが付いている」と「追加費用がいらない」は別のこと</h3>
+                        <ul>
+                            <li><b>製品名を確認する：</b>「Office付き」とだけ書かれていても、買い切り版（Office 2024など）なのか、サブスク（Microsoft 365）なのか分からないことがあります。販売ページで製品名を確認しましょう。</li>
+                            <li><b>期間限定の場合がある：</b>一部のOffice搭載PCには、Microsoft 365 Personalの無料期間が付くものがあります。無料期間のあとも使い続けるには、費用がかかる場合があります。（<a href="https://support.microsoft.com/ja-jp/office/bc5293ea-7067-47b3-944c-524b1d1a5d43" target="_blank" rel="noopener">PCに搭載されたOfficeをセットアップする（Microsoftサポート）</a>）</li>
+                            <li><b>Web版で足りる場合もある：</b>Microsoftアカウントがあれば、機能が限られたWeb版のWord・Excelも使えます。基本的な練習ならこれで足りることもありますが、デスクトップ版の機能や、資格対策の模擬試験ソフトを使う場合は、対応するOffice環境が必要です。</li>
+                            <li><b>自分のアカウントで認証できるか：</b>購入後、自分のMicrosoftアカウントで正規に認証でき、再インストール時もそのアカウントから利用できるかを確認しましょう。</li>
+                        </ul>
+                    </section>
+
+                    <!-- 4. 3大スペック -->
+                    <section class="section-content">
+                        <h2>失敗しないための「3大ポイント」</h2>
+                        <p>パソコンの性能は、主に「CPU」「メモリ」「ストレージ」の3つで決まります。</p>
+                        <p>まずはこの3つだけ見れば、大きな失敗はほぼ防げます。</p>
+
+                        <h3>① CPU（パソコンの頭脳）</h3>
+                        <p>CPUは、パソコンの計算や処理をする「頭脳」です。</p>
+                        <p>Intel（Core i3・i5など）やAMD（Ryzen）といったメーカーのものがよく使われています。</p>
+                        <p>事務やWord・Excelの学習が目的なら、高性能すぎるCPUは必要ありません。</p>
+                        
+                        <div class="instructor-advice">
+                            <b>💡 講師のアドバイス：CPUは「第8世代以降」と覚えよう</b>
+                            <p style="margin-top: 10px;">「世代」とは、CPUが新しく作り替えられた回数のことです（例：Core i5-8250Uなら第8世代）。</p>
+                            <p>世代や型番の見方が難しいと感じても、細かな違いをすべて理解する必要はありません。</p>
+                            <p>まずは「第8世代以降」というキーワードを覚えておけば大丈夫です。</p>
                         </div>
-                    </div>
-<div class="instructor-advice">
-    💡 講師のアドバイス：<b>迷ったら15.6インチのノートPC</b><br>
-    迷ったら、15.6インチ前後の画面サイズを持つ「Windowsノートパソコン」がおすすめです。画面が見やすく、かつ家の中で場所を選ばず練習できます。
-</div>
-                    <p style="font-size: 0.85rem; color: #777; margin-top: 15px;">
-                        ※WordやExcelの学習、資格取得などをしっかり行うなら、Windowsパソコンがおすすめです（Chromebookは学習用には少し工夫が必要な場合があります）。
-                    </p>
-                </section>
+                        
+                        <p>ただし、「第8世代以降」は初心者向けの実践的な目安であり、Windows 11の正式な対応条件とは別のものです。</p>
+                        <p>第8世代以降であれば必ず対応する、という意味ではありません。</p>
+                        <p>購入前に、候補のパソコンがWindows 11に対応しているかを、<a href="https://www.microsoft.com/ja-jp/windows/windows-11-specifications" target="_blank" rel="noopener">Windows 11 の仕様とシステム要件（Microsoft）</a>などの公式情報やメーカーの製品情報で確認しましょう。</p>
+                        <p>中古品は、販売店にも確認すると安心です。</p>
+                        <p style="font-size: 0.9rem;">※「NVIDIA（GeForce）」はCPUではなく、映像処理用のグラフィックス（GPU）です。事務・学習用には必要ありません。また、スマホに近い設計の「Arm系」CPU（Snapdragonなど）を搭載したモデルは、ソフトや模擬試験ソフトが動かない場合があるため、教材の動作環境を確認してください。</p>
 
-                <!-- 6. テンキー -->
-                <section class="section-content">
-                    <h2>テンキーは必要？</h2>
-                    <p>キーボードの右側にある数字キー（テンキー）の有無は、あなたの目指す方向で決めましょう。</p>
-                    <ul>
-                        <li><b>テンキーあり：</b> 事務職、経理、Excelのデータ入力を中心にしたい人向き。</li>
-                        <li><b>テンキーなし：</b> 外出先で使いたい人、コンパクトさを重視する人向き。</li>
-                    </ul>
-                </section>
+                        <h4>インターネット環境と更新プログラムについて</h4>
+                        <p>Windowsは、セキュリティを保つために、インターネットに接続して更新プログラムを適用することが大切です。</p>
+                        <p>更新は自動で行われる設定のことが多く、難しく考える必要はありません。</p>
+                        <p>ただし、購入後にインターネットに接続できる環境（自宅のWi-Fiなど）があるかは、事前に確認しておきましょう。</p>
+                        <p>また、OSのサポートが終了すると、更新を受けられなくなります。</p>
+                        <p>中古品では、OSの種類にも注意しましょう（Windows 10は2025年10月14日にサポートが終了しています。<a href="https://www.microsoft.com/ja-jp/area/atlife/article-windows10-portal-eos" target="_blank" rel="noopener">Microsoft：Windows 10 サポート終了について</a>）。</p>
 
-                <!-- 7. 消耗品 -->
-                <section class="section-content">
-                    <h2>パソコンは「消耗品」だと考えよう</h2>
-                    <p>
-                        パソコンはスマートフォンと同じで、永久に使えるものではありません。一般的には<b>4年〜8年程度</b>使われることが多く、ソフトウェアの進化やWindowsのサポート終了などをきっかけに買い替える人も少なくありません。
-                    </p>
-                    <p>部品が故障していなくても、「動きが遅くて今のソフトが使いにくい」と感じる時期がいつかはやってきます。だからこそ、最初にしっかりした性能を選んでおくことが、長く使い続けるコツです。</p>
-                </section>
-
-                <!-- 現役講師のおすすめ（囲み枠） -->
-                <section class="section-content" style="margin-top: 50px;">
-                    <div style="background: linear-gradient(135deg, #f4f8fb 0%, #eef2f6 100%); padding: 35px; border-radius: 30px; border: 2px solid var(--accent); position: relative;">
-                        <span style="position: absolute; top: -15px; left: 30px; background: var(--accent); color: white; padding: 5px 20px; border-radius: 20px; font-weight: bold; font-size: 0.9rem;">現役講師のおすすめ</span>
-                        <p style="font-size: 0.95rem; line-height: 1.8; margin-bottom: 20px;">
-                            迷ったら、次の条件を目安に選べば大きな失敗は少なく、タイピング練習からWord・Excel、AI活用まで長く安心して使えます。
-                        </p>
-                        <table style="width: 100%; line-height: 2.2; font-size: 1rem;">
-                            <tr><td style="font-weight: bold; width: 35%;">OS</td><td>Windows 11</td></tr>
-                            <tr><td style="font-weight: bold;">CPU</td><td>Core i3 または i5（第8世代以降）</td></tr>
-                            <tr><td style="font-weight: bold;">メモリ</td><td>8GB以上（理想は16GB）</td></tr>
-                            <tr><td style="font-weight: bold;">ストレージ</td><td>SSD 256GB以上（理想は512GB）</td></tr>
-                            <tr><td style="font-weight: bold;">Office</td><td>Microsoft製の正規Office</td></tr>
-                            <tr><td style="font-weight: bold;">タイプ</td><td>15.6インチ前後のノートパソコン</td></tr>
-                            <tr><td style="font-weight: bold;">保証</td><td>あり（理想は1年保証）</td></tr>
+                        <h3>② メモリ（作業机の広さ）</h3>
+                        <p>メモリは、作業する机の広さにたとえられます。</p>
+                        <p>広いほど、複数のソフトを同時に開いても動きが重くなりにくくなります。</p>
+                        <table style="width: 100%; max-width: 600px; margin: 15px 0; font-size: 0.9rem;">
+                            <tr><th style="text-align: left; padding: 8px; border-bottom: 2px solid #eee;">容量</th><th style="text-align: left; padding: 8px; border-bottom: 2px solid #eee;">目安</th></tr>
+                            <tr><td style="padding: 8px;">4GB</td><td style="padding: 8px; color: #e74c3c; font-weight: bold;">× 避けたい。Windows 11では動作が重くなりやすい。</td></tr>
+                            <tr><td style="padding: 8px;">8GB</td><td style="padding: 8px; color: #e67e22; font-weight: bold;">○ 入門用。タイピング練習や文書作成が中心なら使える。同時に開くアプリやファイルが増えると重くなることもある。</td></tr>
+                            <tr><td style="padding: 8px;">16GB</td><td style="padding: 8px; color: #27ae60; font-weight: bold;">◎ 複数のアプリやブラウザのタブを開いて作業しても、余裕を持ちやすい。</td></tr>
                         </table>
-                    </div>
-                </section>
-<!-- 7. まとめセクション：箱の中に入れ、スタイルを強制発動 (v19.9.185) -->
-                <div class="summary-box">
-                    <h2 class="section-title--summary">まとめ｜最初の一歩は「環境」を整えること</h2>
-                    <p style="font-size: 1.1rem; line-height: 1.8;">
-                        パソコンは、あなたの可能性を広げる最も重要な「道具」です。今回ご紹介したスペックを基準に選べば、事務実務や最新のAI活用で困ることはまずありません。
-                    </p>
-                    <p style="font-size: 1.1rem; line-height: 1.8;">
-                        <span class="marker-yellow">これからの実務を支える確かな一台を手に入れたら、いよいよ基本の練習に入りましょう。</span>昨日までの「無理だ」という思い込みが、今日から「できる」という自信に変わるはずです。
-                    </p>
-                </div>
-                    
-</div>
+                        <p>本格的な動画編集や、パソコン上でAIモデルを動かす「ローカルAI」などは、さらに高い性能が必要になる場合があります。</p>
+                        
+                        <div class="instructor-advice">
+                            <b>💡 講師のアドバイス：メモリは「あとから増やせない」ノートPCが多い</b>
+                            <p style="margin-top: 10px;">最近の薄型ノートは、メモリが基板に直接付いていて増設できないものが増えています。</p>
+                            <p>「あとで足せばいい」と考えず、買うときに決めましょう。</p>
+                            <p>新品の16GBが予算に合わない場合は、状態のよい未使用品・展示品や中古品の16GBも選択肢になります。</p>
+                        </div>
 
-                <!-- 記事末尾の共通ナビ資産：ファイル管理誘導へ同期 (v20.7.26.Next) -->
+                        <h3>③ ストレージ（データの保存場所）</h3>
+                        <p>必ず <b>「SSD（エス・エス・ディー）」</b> と書いてあるものを選んでください。</p>
+                        <p>HDDに比べて、起動やファイルの読み込みがかなり速くなります。</p>
+                        <ul>
+                            <li><b>容量：</b>256GB以上が目安。ただしWindowsの更新やソフトの追加で、空きは意外と減っていきます。写真やファイルを保存したり長く使うなら512GBが安心です。</li>
+                            <li><b>避けたいもの：</b>「HDDのみ」のモデル、および容量が小さい「eMMC（イー・エム・エム・シー）」搭載モデル。動作が遅く、容量も少ないため、学習用にはおすすめできません。</li>
+                        </ul>
+                        
+                        <h4>外付けストレージ（USBメモリ・外付けSSD）はどう使う？</h4>
+                        <p>外付けは、本体の容量不足をカバーするものではなく、<b>データのバックアップや持ち運び用</b>として考えましょう。</p>
+                        <p>パソコンが故障しても、練習した作成ファイルを守れます。</p>
+                        <p>USBメモリは手軽ですが、紛失や故障もあるため、大切なデータはクラウド保存と併用すると安心です。</p>
+                        
+                        <h4>接続端子（ポート）も確認しよう</h4>
+                        <p>マウス、USBメモリ、外付けテンキー、外部モニターなどを使う予定がある人は、必要な端子があるか確認しましょう。</p>
+                        <ul>
+                            <li><b>USB-A：</b>マウス、USBメモリなど。</li>
+                            <li><b>USB-C：</b>充電、外付けSSD、各種周辺機器など。</li>
+                            <li><b>HDMI：</b>外部モニターやプロジェクターにつなぐとき。</li>
+                        </ul>
+                        <p>薄型のノートは端子が少ないことがあります。</p>
+                        <p>足りない場合は変換アダプターで補えますが、費用と手間がかかります。</p>
+                    </section>
+
+                    <!-- 5. ノートPCとデスクトップ -->
+                    <section class="section-content">
+                        <h2>ノートパソコンとデスクトップ、どちらを選ぶ？</h2>
+                        <div class="pc-type-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+                            <div style="background: #fafafa; padding: 20px; border-radius: 15px;">
+                                <h4 style="margin-top: 0; color: var(--primary);">ノートパソコン</h4>
+                                <ul style="font-size: 0.9rem; padding-left: 20px;">
+                                    <li>持ち運びができる</li>
+                                    <li>場所を取らない</li>
+                                    <li><b>初心者におすすめ</b></li>
+                                </ul>
+                            </div>
+                            <div style="background: #fafafa; padding: 20px; border-radius: 15px;">
+                                <h4 style="margin-top: 0; color: var(--primary);">デスクトップ</h4>
+                                <ul style="font-size: 0.9rem; padding-left: 20px;">
+                                    <li>画面が大きく作業しやすい</li>
+                                    <li>自宅でじっくり使う人向き</li>
+                                    <li>拡張（改造）がしやすい</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="instructor-advice">
+                            <b>💡 講師のアドバイス：迷ったら15.6インチのノートPC</b>
+                            <p style="margin-top: 10px;">迷ったら、15.6インチ前後の画面サイズを持つ「Windowsノートパソコン」がおすすめです。</p>
+                            <p>画面が見やすく、かつ家の中で場所を選ばず練習できます。</p>
+                        </div>
+                        
+                        <p style="font-size: 0.85rem; color: #777; margin-top: 15px;">
+                            ※WordやExcelの学習、資格取得などをしっかり行うなら、Windowsパソコンがおすすめです（Chromebookは学習用には少し工夫が必要な場合があります）。
+                        </p>
+                        
+                        <h3>画面は「サイズ」だけでなく「解像度」も確認</h3>
+                        <p>WordやExcelを学ぶなら、文字の見やすさや、表を表示できる広さも大切です。</p>
+                        <p>解像度が低い画面は、Excelで一度に見える範囲が狭くなります。</p>
+                        <p>目安として、<b>フルHD（1920×1080）以上</b>と書かれたものを選ぶと、作業しやすくなります。</p>
+                    </section>
+
+                    <section class="section-content">
+                        <h2>Chromebookとは？Windowsパソコンとの違い</h2>
+                        <p>お店では、Windowsパソコンの近くに「Chromebook（クロームブック）」が並んでいることがあります。</p>
+                        <p>見た目はふつうのノートパソコンですが、<b>OS（パソコンの基本ソフト）がWindowsではなく「ChromeOS（クロームOS）」</b>という別のものです。</p>
+                        <p>ここを知らずに買ってしまう初心者の方が少なくありません。</p>
+                        
+                        <div style="overflow-x:auto;">
+                            <table class="comparison-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.85rem;">
+                                <tr>
+                                    <th style="padding: 10px; border: 1px solid #ddd; background: #f1f2f6; text-align: left;"></th>
+                                    <th style="padding: 10px; border: 1px solid #ddd; background: #f1f2f6; text-align: left;">Windowsパソコン</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd; background: #f1f2f6; text-align: left;">Chromebook（ChromeOS）</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">OS</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">Windows 11</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">ChromeOS</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">主な使い方</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">Word・Excelなどのインストール型ソフトが使える</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">ブラウザ（インターネット）中心。ソフトはアプリやWeb版を使う</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">Office</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">Microsoft Office（デスクトップ版）を入れられる</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">基本的にデスクトップ版Officeは入れられず、Web版やスマホ版アプリで代用</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">価格・軽さ</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">機種によって幅広い</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">比較的安価で軽量なモデルが多い</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">学習・資格向き</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">◎ WordやExcelの学習、MOS対策にも向く</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">△ 学習内容によっては不便。購入前に要確認</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div style="background: #fff9f9; border: 1px solid #ff4757; padding: 20px; border-radius: 10px; margin: 25px 0;">
+                            <h4 style="color: #ff4757; margin-top: 0;">⚠ MOSなどの模擬試験は、Windowsでないと動かないことがあります</h4>
+                            <p style="font-size: 0.9rem; margin-bottom: 0;">MOS（マイクロソフト オフィス スペシャリスト）をはじめ、資格試験の模擬試験プログラムは、Windows用のソフトとして作られていることが多く、ChromebookやMacでは正常に動作しないことがあります。購入前に、使いたい教材や模擬試験ソフトの「動作環境」（対応OS）を必ず確認してください。</p>
+                        </div>
+                    </section>
+
+                    <!-- 6. テンキー -->
+                    <section class="section-content">
+                        <h2>テンキーは必要？仕事の種類で考える</h2>
+                        <p>キーボードの右側にある数字キー（テンキー）は、数字を大量に入力する仕事で効率が大きく変わります。</p>
+                        <p>ノートパソコンでは、<b>15.6インチ前後はテンキー付きが多く、13〜14インチ前後はテンキーなしが多い</b>傾向があります。</p>
+                        
+                        <div style="overflow-x:auto;">
+                            <table class="comparison-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.85rem;">
+                                <tr>
+                                    <th style="padding: 10px; border: 1px solid #ddd; background: #f1f2f6; text-align: left;">目指す仕事の例</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd; background: #f1f2f6; text-align: left;">数字入力の多さ</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd; background: #f1f2f6; text-align: left;">テンキー</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">経理・会計、データ入力、受発注・請求書処理</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">とても多い</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">あり（ほぼ必須）</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">一般事務、営業事務</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">ときどき多い（Excel入力・集計）</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">あり がおすすめ</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">営業・企画・接客、文章作成中心</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">少ない</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">なしでもOK</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">在宅ワーク・外出先での作業が中心</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">少ない〜普通</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">持ち運びやすさ優先。必要なら外付けテンキーで補える</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <p style="font-size: 0.85rem; color: #777;">※あくまで目安です。職場のパソコン環境によっても変わります。テンキーなしのノートPCでも、USB接続の外付けテンキーを後から追加できます。</p>
+                    </section>
+
+                    <section class="section-content">
+                        <h2>持ち運ぶなら「重さ」と「守り方」も大切</h2>
+                        <p>図書館やカフェ、学校などへ持ち運ぶ予定がある人は、スペックだけでなく<b>重さ</b>を必ず確認しましょう。</p>
+                        <p>毎日持ち歩くと、数百グラムの差がとても大きく感じられます。</p>
+                        
+                        <div style="overflow-x:auto;">
+                            <table class="comparison-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.85rem;">
+                                <tr>
+                                    <th style="padding: 10px; border: 1px solid #ddd; background: #f1f2f6; text-align: left;">重さの目安</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd; background: #f1f2f6; text-align: left;">向いている使い方</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">約1.0kg前後まで</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">毎日のように持ち歩く人。移動距離が長い人。</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">約1.0〜1.5kg</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">週に数回持ち運ぶ人。通学・通勤が短めの人。</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">約1.7kg以上（15.6インチに多い）</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">自宅や職場など、ほぼ同じ場所で使う人。</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <ul>
+                            <li><b>ACアダプターも重さに入る：</b>外出先で充電するなら、本体にアダプターを足した重さで考えます。</li>
+                            <li><b>バッテリー駆動時間：</b>カタログの数値は、実際の使い方より長めになることが多く、中古では劣化もあります。</li>
+                            <li><b>移動中の守り方：</b>クッション性のあるPCケースを使い、リュックの背中側のポケットに入れると安心です。画面側に力がかかると破損しやすいので、重い荷物と一緒に押しつぶさないようにしましょう。電源を切るか、スリープにしてから持ち運ぶのも基本です。</li>
+                        </ul>
+                    </section>
+
+                    <!-- 7. 消耗品 -->
+                    <section class="section-content">
+                        <h2>パソコンは「消耗品」だと考えよう</h2>
+                        <p>パソコンはスマートフォンと同じで、永久に使えるものではありません。</p>
+                        <p>一般的には<b>4年〜8年程度</b>使われることが多く、ソフトウェアの進化やWindowsのサポート終了などをきっかけに買い替える人も少なくありません。</p>
+                        <p>部品が故障していなくても、「動きが遅くて今のソフトが使いにくい」と感じる時期がいつかはやってきます。</p>
+                        <p>だからこそ、最初にしっかりした性能を選んでおくことが、長く使い続けるコツです。</p>
+                    </section>
+
+                    <section class="section-content">
+                        <h2>購入前チェックリスト</h2>
+                        <p>ここまでの内容を、購入前に確認するためのリストです。</p>
+                        <ul>
+                            <li>OSはWindows 11か（ChromeOSではないか）。Windows 11への対応を公式情報で確認したか</li>
+                            <li>CPUは「第8世代以降」を目安にしているか</li>
+                            <li>メモリは8GB以上か（4GBは避ける）</li>
+                            <li>ストレージはSSD 256GB以上か（HDDのみ、容量の小さいeMMCは避ける）</li>
+                            <li>Officeの製品名と、自分のアカウントでの認証方法を確認したか</li>
+                            <li>使いたい教材・模擬試験ソフトの動作環境に対応しているか</li>
+                            <li>画面はフルHD以上か。必要な接続端子（USB-A、USB-C、HDMIなど）があるか</li>
+                            <li>テンキーの有無、重さ・バッテリー駆動時間は、使い方に合っているか</li>
+                            <li>保証期間と範囲、返品条件を確認したか（中古は、バッテリー・キーボード・液晶の状態も）</li>
+                            <li>自宅などで、インターネットに接続できる環境があるか（オンライン講座や面接を考えているなら、カメラ・マイクも）</li>
+                        </ul>
+                    </section>
+
+                    <section class="section-content">
+                        <h2>予算が限られるときの考え方</h2>
+                        <p>具体的な価格は変動するため、ここでは「何を優先するか」を整理します。</p>
+                        
+                        <div style="overflow-x:auto;">
+                            <table class="comparison-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.85rem;">
+                                <tr>
+                                    <th style="padding: 10px; border: 1px solid #ddd; background: #f1f2f6; text-align: left;">優先度</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd; background: #f1f2f6; text-align: left;">条件の例</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">妥協してはいけない</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">Windows 11（Chromebookではない）、SSD、メモリ8GB以上、使えるOffice環境、保証または返品条件</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">余裕があればお金をかける</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">メモリ16GB、SSD 512GB、軽さ・バッテリー（持ち運ぶ場合）</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">妥協してもよい</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">画面サイズ、デザイン、テンキー（外付けで補える）、重さ（自宅専用の場合）</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <p>本体のほかに、Office（付属しない場合）、マウス、PCケース、バックアップ用のUSBメモリや外付けSSD、外付けテンキー、延長保証などの費用がかかることもあります。</p>
+                        <p>購入前に、あわせて予算に入れておきましょう。</p>
+                    </section>
+
+                    <section class="section-content">
+                        <h2>なぜ、この条件をすすめるのか</h2>
+                        <p>パソコン学習で一番避けたいのは、「操作が分からないのか、パソコンが重いだけなのか」が初心者には判断できなくなることです。</p>
+                        <p>動作が遅い、固まる、ソフトが動かないといった問題があると、練習そのものが続かなくなりがちです。</p>
+                        <p>ぱそトレ！では、タイピングやWord・Excelの反復練習が気持ちよく続けられる環境を優先して、条件をまとめています。</p>
+                    </section>
+
+                    <!-- 現役講師のおすすめ（囲み枠） -->
+                    <section class="section-content" style="margin-top: 50px;">
+                        <div style="background: linear-gradient(135deg, #f4f8fb 0%, #eef2f6 100%); padding: 35px; border-radius: 30px; border: 2px solid var(--accent); position: relative;">
+                            <span style="position: absolute; top: -15px; left: 30px; background: var(--accent); color: white; padding: 5px 20px; border-radius: 20px; font-weight: bold; font-size: 0.9rem;">現役講師のおすすめ</span>
+                            <p style="font-size: 0.95rem; line-height: 1.8; margin-bottom: 20px;">
+                                迷ったら、次の条件を目安に選べば大きな失敗は少なく、タイピング練習やWord・Excelの学習を長く安心して続けられます。
+                            </p>
+                            <table style="width: 100%; line-height: 2.2; font-size: 1rem;">
+                                <tr><td style="font-weight: bold; width: 35%;">OS</td><td>Windows 11</td></tr>
+                                <tr style="border-top: 1px solid #dce7ee; border-bottom: 1px solid #dce7ee;"><td style="font-weight: bold;">CPU</td><td>第8世代以降が目安（Windows 11への対応は公式情報で確認）</td></tr>
+                                <tr><td style="font-weight: bold;">メモリ</td><td>8GB以上（理想は16GB）</td></tr>
+                                <tr style="border-top: 1px solid #dce7ee; border-bottom: 1px solid #dce7ee;"><td style="font-weight: bold;">ストレージ</td><td>SSD 256GB以上（理想は512GB）</td></tr>
+                                <tr><td style="font-weight: bold;">Office</td><td>Office付属（製品名と認証方法を確認）</td></tr>
+                                <tr style="border-top: 1px solid #dce7ee; border-bottom: 1px solid #dce7ee;"><td style="font-weight: bold;">TPO</td><td>15.6インチ前後のノートパソコン</td></tr>
+                                <tr><td style="font-weight: bold;">保証</td><td>あり（理想は1年保証。中古は範囲も確認）</td></tr>
+                            </table>
+                        </div>
+                    </section>
+                    
+                    <!-- まとめセクション -->
+                    <div class="summary-box">
+                        <h2 class="section-title--summary">まとめ｜最初の一歩は「環境」を整えること</h2>
+                        <p style="font-size: 1.1rem; line-height: 1.8;">
+                            パソコンは、あなたの可能性を広げる最も重要な「道具」です。今回ご紹介した条件を基準に選べば、スペック面で大きく困る場面は少なくなるはずです。
+                        </p>
+                        <p style="font-size: 1.1rem; line-height: 1.8;">
+                            <span class="marker-yellow">これからの実務を支える確かな一台を手に入れたら、いよいよ基本の練習に入りましょう。</span>昨日までの「無理だ」という思い込みが、今日から「できる」という自信に変わるはずです。
+                        </p>
+                    </div>
+
+                    <!-- 記事末尾の共通ナビ資産 -->
                     <div class="article-footer-nav">
                         <p class="article-footer-nav__text">Windowsの操作に慣れたら、次は「ファイルとフォルダの管理」を学びましょう</p>
                         <div class="summary-nav">
@@ -282,23 +577,23 @@ window.dataLayer = window.dataLayer || [];
                             <a href="./" class="summary-btn">ホームへ戻る</a>
                         </div>
                     </div>
-
-            </div> <!-- content-body 終了 -->
-        </article> <!-- article 終了 -->
-    </main>
+                </div> <!-- .content-body 終了 -->
+            </article> <!-- article 終了 -->
+        </main>
 
         <footer>
-            <!-- 既存のフッター内容 -->
             <div class="footer-links">
-                <a href="privacy.html">プライバシーポリシー</a><a href="contact.html">お問い合わせ</a><a href="about.html">運営者情報</a>
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="about.html">運営者情報</a>
             </div>
             <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
         </footer>
     </div>
 
-    <!-- ページトップへ戻るボタン (v19.9.203 統一規格) -->
+    <!-- ページトップへ戻るボタン -->
     <a href="#" id="back-to-top" class="back-to-top">↑</a>
-    <!-- 共通ロジック：スクロール制御と共通UI用 -->
+    <!-- 共通ロジック -->
     <script src="js/main.js"></script>
 </body>
 </html>
