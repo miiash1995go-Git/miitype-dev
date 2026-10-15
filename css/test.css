@@ -88,7 +88,7 @@ body.test-body .nav-item {
 /* --- 3. ミニステータス（カード内右上に固定） --- */
 .test-mini-status {
     position: absolute;
-    top: 25px; /* ラベルの高さに合わせる */
+    top: 12px; /* カードのパディング縮小に伴い、位置を上方へ引き上げ */
     right: 40px; /* カードの右余白に合わせる */
     display: flex;
     flex-direction: row;
