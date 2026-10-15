@@ -67,21 +67,23 @@ class TypingExam {
         });
 
         try {
-            // 【JST基準の3日周期インデックス算出】（0, 1, 2）
+            // 【JST基準の4日周期インデックス算出】（0, 1, 2, 3）
             const now = new Date();
             const jstTime = now.getTime() + (now.getTimezoneOffset() * 60000) + (9 * 3600000);
             const jstDate = new Date(jstTime);
             const baseDate = new Date('2026-01-01T00:00:00+09:00');
             const diffTime = jstDate.getTime() - baseDate.getTime();
             const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-            const dayIdx = Math.max(0, diffDays) % 3; // 0, 1, 2
+            const dayIdx = Math.max(0, diffDays) % 4; // 0, 1, 2, 3
 
-            // ファイル名の動的組み立て（0番目は test_5min.json、1番目は _02、2番目は _03）
+            // ファイル名の動的組み立て（0: test_5min.json, 1: _02, 2: _03, 3: _04）
             let targetFile = 'test_5min.json';
             if (dayIdx === 1) {
                 targetFile = 'test_5min_02.json';
             } else if (dayIdx === 2) {
                 targetFile = 'test_5min_03.json';
+            } else if (dayIdx === 3) {
+                targetFile = 'test_5min_04.json';
             }
 
             const res = await fetch(`./data/typing/${targetFile}`);
