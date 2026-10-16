@@ -3,37 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>プロンプトの基本と実践例｜AIへの頼み方・就職活動での活用法｜ぱそトレ！</title>
-    <meta name="description" content="プロンプトとは何か、AIに伝わりやすい頼み方を初心者向けに解説。職務経歴書の作成補助や企業研究、経験の言い換えなど、就職・転職活動で役立つ指示の具体例を紹介します。">
+    <title>ChatGPT初心者ガイド｜プロンプトの基本・プロジェクト・チャット整理｜ぱそトレ！</title>
+    <meta name="description" content="プロンプトとは何か、AIとの壁打ち、プロジェクト機能、チャットの整理（名前変更・ピン留め・アーカイブ）まで、現役講師がChatGPT初心者向けに解説。就職・転職活動やメール作成など、便利な使い方の事例も紹介します。">
     <link rel="canonical" href="https://miitype.com/column-chatgpt-basics.html">
     <link rel="icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700"
-     crossorigin="anonymous"></script>
-<!-- 管理者除外スクリプト：ここから追加 -->
-<script>
-    if (localStorage.getItem('pasotore_admin') === 'true') {
-        // あなたのGA4測定ID「G-KWS4RPPBVV」を指定して無効化
-        window['ga-disable-G-KWS4RPPBVV'] = true;
-        console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
-    }
+    
+    <!-- 1. アドセンス（全ページ共通規格） -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
 
-</script>
-<!-- 管理者除外スクリプト：ここまで -->
+    <!-- 2. 管理者除外スクリプト -->
+    <script>
+        if (localStorage.getItem('pasotore_admin') === 'true') {
+            window['ga-disable-G-KWS4RPPBVV'] = true;
+            console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
+        }
+    </script>
      
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-KWS4RPPBVV');
-</script>
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/portal-shared.css">
+    <!-- 3. Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
+    <!-- 4. CSS資産（正典） -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
 </head>
 <body class="portal-page">
     <div id="app">
+        <!-- 統合ヘッダー -->
         <header>
             <div class="header-inner">
                 <!-- 左：ロゴ（バッジ込み） -->
@@ -79,97 +81,325 @@
         </header>
 
         <main class="portal-main">
-            <article class="static-page"><nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
+            <article class="static-page">
+                <nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
                 
-                <h1 class="page-title">生成AI　プロンプトの基本</h1>
-                <p class="page-subtitle">AIへの「頼み方」を知るだけで、使いやすさが変わります</p>
+                <h1 class="page-title">ChatGPT初心者ガイド｜プロンプトの基本と使い方</h1>
+                <p class="page-subtitle">プロンプト・壁打ち・プロジェクトまで、講師が初心者向けに解説します</p>
 
                 <div class="content-body">
-                <h2>「なんかうまく使えていない気がする」の正体</h2>
-                <p>ChatGPTを試してみたけれど、返ってくる答えがなんとなく的外れだったり、思っていたのと違う内容が出てきて困った……そんな経験はありませんか？</p>
-                <p>じつは、AIの使いやすさは「何を聞くか」よりも、<strong>「どう頼むか」</strong>で大きく変わります。AIへの指示文のことを<strong>「プロンプト（prompt）」</strong>と呼びます。プロンプトの書き方には、少しだけコツがあります。難しい技術の話ではありません。「相手に伝わるように話す」というごく自然な感覚で理解できます。</p>
-                <p>この記事では、事務職を目指す方や、パソコン初心者の方に向けて、プロンプトの基本と「就職活動で本当に役立つ活用術」を講師目線でご紹介します。</p>
+                    <h2>「なんかうまく使えていない気がする」の正体</h2>
+                    <p>ChatGPTを試してみたけれど、返ってくる答えがなんとなく的外れだったり、思っていたのと違う内容が出てきて困った……そんな経験はありませんか？</p>
+                    <p>じつは、AIの使いやすさは「何を聞くか」よりも、<strong>「どう頼むか」</strong>で大きく変わります。</p>
+                    <p>AIへの指示文のことを<strong>「プロンプト（prompt）」</strong>と呼びます。</p>
+                    <p>プロンプトの書き方には、少しだけコツがあります。</p>
+                    <p>難しい技術の話ではありません。</p>
+                    <p>「相手に伝わるように話す」というごく自然な感覚で理解できます。</p>
+                    <p>この記事では、事務職を目指す方やパソコン初心者の方に向けて、プロンプトの基本、就職活動での使い方、考えを深める「壁打ち」、そして<strong>知っておくと毎日の使い勝手が変わる「プロジェクト」とチャットの整理方法</strong>を、講師の目線でご紹介します。</p>
+                    <p>ChatGPTの基本的な使い方そのものは<a href="hub-ai.html">生成AIガイド</a>でも解説していますので、ここでは「授業で実際によく聞かれること」を中心にお話しします。</p>
 
-                <div class="point-box" style="background:#eef9ff; padding: 25px; border-radius: 15px; border-left: 5px solid #3498db; margin: 30px 0;">
-                    <h3 style="margin-top:0; color:#2980b9;">💡 プロンプトって何？</h3>
-                    <p>「プロンプト」とは、ChatGPTなどのAIに送る<strong>入力文（指示・質問）</strong>のことです。たとえば、チャット画面に「メールの書き方を教えて」と打ち込んだなら、その一文がプロンプトです。</p>
-                    <p>これは、<strong>新しいアルバイトスタッフに仕事を頼むときのイメージ</strong>に似ています。「これやっといて」より「〇〇の件で、△△を□□までに」と伝えた方が、ずっと思い通りに動いてくれますよね。</p>
-                </div>
+                    <div class="point-box" style="background:#eef9ff; padding: 25px; border-radius: 15px; border-left: 5px solid #3498db; margin: 30px 0;">
+                        <h3 style="margin-top:0; color:#2980b9;">💡 プロンプトって何？</h3>
+                        <p>「プロンプト」とは、ChatGPTなどのAIに送る<strong>入力文（指示・質問）</strong>のことです。</p>
+                        <p>たとえば、チャット画面に「メールの書き方を教えて」と打ち込んだなら、その一文がプロンプトです。</p>
+                        <p>これは、<strong>新しいアルバイトスタッフに仕事を頼むときのイメージ</strong>に似ています。</p>
+                        <p>「これやっといて」より「〇〇の件で、△△を□□までに」と伝えた方が、ずっと思い通りに動いてくれますよね。</p>
+                    </div>
 
-                <h2>プロンプトの基本3ステップ</h2>
-                <p>まずは次の3つの要素を意識するだけで、AIの反応がぐっと変わります。</p>
+                    <div class="instructor-advice">
+                        <b>💡 講師のアドバイス：「正解のプロンプト」はありません</b>
+                        <p style="margin-top: 10px;">書店やネットでは「このプロンプトを使えばうまくいく！」といった型が紹介されていますが、初心者の方が最初から覚える必要はあまりないと私は考えています。</p>
+                        <p>授業で見ていると、AIをうまく使える人は、型を暗記した人ではなく、<b>「ちょっと違うな」「どういうこと？」と思ったら、そのまま追加で頼み直せる人</b>です。</p>
+                        <p>AIは一回で完璧に答えるものではなく、会話しながら形にしていく相手だと思ってください。</p>
+                    </div>
 
-                <h3>① 「何をしてほしいか」を最初に書く</h3>
-                <p>AIへの指示は、最初に「動詞」から始めると伝わりやすくなります。「書いてください」「教えてください」「まとめてください」など、何をしてほしいかを先に示すのがポイントです。</p>
+                    <h2>プロンプトの基本3ステップ</h2>
+                    <p>まずは次の3つの要素を意識するだけで、AIの反応がぐっと変わります。</p>
 
-                <h3>② 「状況・背景」を添える</h3>
-                <p>AIは、あなたの状況を何も知りません。だから、「誰が」「どんな場面で」使うのかを添えると、ぐっと的確な答えが返ってくるようになります。</p>
+                    <h3>① 「何をしてほしいか」を最初に書く</h3>
+                    <p>AIへの指示は、最初に「動詞」から始めると伝わりやすくなります。</p>
+                    <p>「書いてください」「教えてください」「まとめてください」など、何をしてほしいかを先に示すのがポイントです。</p>
 
-                <h3>③ 「出力の形」を指定する</h3>
-                <p>「300文字以内で」「箇条書きで」「表形式で」「中学生でもわかるように」など、答えの形式や量を指定すると、使いやすい回答が得やすくなります。</p>
+                    <h3>② 「状況・背景」を添える</h3>
+                    <p>AIは、あなたの状況を何も知りません。</p>
+                    <p>だから、「誰が」「どんな場面で」使うのかを添えると、ぐっと的確な答えが返ってくるようになります。</p>
 
-                <hr style="margin: 40px 0; border: none; border-top: 1px solid #eee;">
+                    <h3>③ 「出力の形」を指定する</h3>
+                    <p>「300文字以内で」「箇条書きで」「表形式で」「中学生でもわかるように」など、答えの形式や量を指定すると、使いやすい回答が得やすくなります。</p>
 
-                <h2>【実践】就職・転職活動で差がつく活用術</h2>
-                <p>単なる調べ物だけでなく、AIを「自分専用のキャリア形成のパートナー」として使う具体的な方法を3つご紹介します。</p>
+                    <div class="instructor-advice">
+                        <b>💡 講師のアドバイス：短くてもまず送ってみる</b>
+                        <p style="margin-top: 10px;">3つの要素を全部そろえようとして、手が止まってしまう方をよく見かけます。</p>
+                        <p>ここだけの話ですが、最初は一言でも構いません。</p>
+                        <p>返ってきた答えを見てから「もう少し短く」「会社に出す文章として」と足していく方が、結果的に早くて、AIの癖もつかめます。</p>
+                    </div>
 
-                <h3>1. 職務経歴を「思い出したい」とき</h3>
-                <p>「職務経歴書を作りたいけれど、数年前の仕事の詳細をはっきり覚えていない……」というときこそAIの出番です。会社名と職種さえ伝えれば、AIが一般的な業務内容を「予測」して書き出してくれます。</p>
+                    <hr style="margin: 40px 0; border: none; border-top: 1px solid #eee;">
 
-                <div class="example-box" style="background:#2c3e50; color:white; padding:25px; border-radius:15px; margin: 20px 0;">
-                    <div style="font-weight:bold; color:var(--accent); margin-bottom:10px;">📄 そのまま使える例文</div>
-                    「私は以前、<strong>アパレルショップの販売員として3年間</strong>働いていました。事務職へ転職するために職務経歴書を作りたいのですが、当時の詳しい業務内容を忘れてしまいました。一般的に、<strong>アパレル販売員が担当する業務を箇条書きで5つほど</strong>書き出してください。また、それらを事務職で活かせる強みとして言い換えてください。」
-                </div>
-                <div class="instructor-advice" style="background:#fdf6e3; padding:15px; border-radius:10px; border:1px solid #eee; font-size:0.9rem;">
-                    <strong>💡 講師のアドバイス：</strong> AIが出したリストを見て「あ、そういえば在庫管理もやってたな！」と思い出すきっかけになります。0から考えるより、ずっと楽に書類が作れますよ。
-                </div>
+                    <h2>【実践】就職・転職活動で差がつく活用術</h2>
+                    <p>単なる調べ物だけでなく、AIを「自分専用のキャリア形成のパートナー」として使う具体的な方法を3つご紹介します。</p>
 
-                <h3>2. 転職先の会社を「深く知りたい」とき</h3>
-                <p>面接対策として、応募先の会社について調べるのは必須です。しかし、企業のホームページを隅々まで読むのは大変ですよね。AIに「分析」を手伝ってもらいましょう。</p>
+                    <h3>1. 職務経歴を「思い出したい」とき</h3>
+                    <p>「職務経歴書を作りたいけれど、数年前の仕事の詳細をはっきり覚えていない……」というときこそAIの出番です。</p>
+                    <p>会社名と職種を伝えれば、AIが<b>一般的な業務の例</b>を書き出してくれます。</p>
+                    <p>そのリストから、自分が実際に担当した仕事を選び出していくことで、記憶をたどる手がかりになります。</p>
 
-                <div class="example-box" style="background:#2c3e50; color:white; padding:25px; border-radius:15px; margin: 20px 0;">
-                    <div style="font-weight:bold; color:var(--accent); margin-bottom:10px;">🔍 企業研究の頼み方</div>
-                    「私は今、<strong>[会社名]</strong> という企業の事務職に応募しようと考えています。この会社の事業内容や特徴を調べて、<strong>『この会社が求めていそうな人物像』</strong>を3つ予想してください。また、未経験の私が面接でアピールすべきポイントを提案してください。」
-                </div>
-                <div class="instructor-advice" style="background:#fdf6e3; padding:15px; border-radius:10px; border:1px solid #eee; font-size:0.9rem;">
-                    <strong>💡 講師のアドバイス：</strong> 最新の情報を調べるには、Microsoftの <strong>Copilot（コパイロット）</strong> や Googleの <strong>Gemini（ジェミニ）</strong> を使うのがおすすめです。ネット上の最新情報を元に回答してくれます。
-                </div>
+                    <div class="example-box" style="background:#2c3e50; color:white; padding:25px; border-radius:15px; margin: 20px 0;">
+                        <div style="font-weight:bold; color:var(--accent); margin-bottom:10px;">📄 そのまま使える例文</div>
+                        「私は以前、<strong>アパレルショップの販売員として3年間</strong>働いていました。<br>事務職へ転職するために職務経歴書を作りたいのですが、当時の詳しい業務内容を忘れてしまいました。<br>一般的に、<strong>アパレル販売員が担当する業務の例を箇条書きで5つほど</strong>書き出してください。<br>私が実際にやっていた仕事を思い出すための材料にしたいので、あくまで例として挙げてください。」
+                    </div>
+                    <div class="instructor-advice" style="background:#fdf6e3; padding:15px; border-radius:10px; border:1px solid #eee; font-size:0.9rem;">
+                        <strong>💡 講師のアドバイス：</strong> 
+                        <p style="margin-top: 5px;">AIが出したリストを見て「あ、そういえば在庫管理もやってたな！」と思い出すきっかけになります。</p>
+                        <p>ポイントは、<b>リストの中から「自分が実際にやったこと」だけを選ぶ</b>ことです。</p>
+                        <p>AIが挙げた業務をそのまま経験として書いてしまうと、面接で詳しく聞かれたときに答えられなくなります。</p>
+                        <p>思い出すための材料として使い、最終的には自分の言葉で書いてください。</p>
+                    </div>
 
-                <h3>3. 自分の経験を「ビジネス用語」にしたいとき</h3>
-                <p>「居酒屋で注文を取っていた」という経験も、AIに頼めば「優先順位を判断し、正確に情報を処理するスキル」という事務職向けの言葉に変換してくれます。</p>
+                    <h3>2. 転職先の会社を「深く知りたい」とき</h3>
+                    <p>面接対策として、応募先の会社について調べるのは必須です。</p>
+                    <p>しかし、企業のホームページを隅々まで読むのは大変ですよね。</p>
+                    <p>AIに「分析」を手伝ってもらいましょう。</p>
 
-                <div class="example-box" style="background:#2c3e50; color:white; padding:25px; border-radius:15px; margin: 20px 0;">
-                    <div style="font-weight:bold; color:var(--accent); margin-bottom:10px;">✨ 言い換えの魔法</div>
-                    「私は飲食店でホールスタッフをしていました。忙しい時間帯に、お客様の注文を間違えずに通し、料理を運ぶ順番を常に考えて行動していました。この経験を、<strong>事務職の採用担当者に響くような『正確性』や『効率性』を強調した文章</strong>に直してください。」
-                </div>
+                    <div class="example-box" style="background:#2c3e50; color:white; padding:25px; border-radius:15px; margin: 20px 0;">
+                        <div style="font-weight:bold; color:var(--accent); margin-bottom:10px;">🔍 企業研究の頼み方</div>
+                        「私は今、<strong>[会社名]</strong> という企業の事務職に応募しようと考えています。<br>この会社の事業内容や特徴を調べて、<strong>『この会社が求めていそうな人物像』</strong>を3つ予想してください。<br>また、未経験の私が面接でアピールすべきポイントを提案してください。」
+                    </div>
+                    <div class="instructor-advice" style="background:#fdf6e3; padding:15px; border-radius:10px; border:1px solid #eee; font-size:0.9rem;">
+                        <strong>💡 講師のアドバイス：</strong> 
+                        <p style="margin-top: 5px;">最新の情報を調べたいときは、ネット検索に対応した機能を使うか、Microsoftの <strong>Copilot（コパイロット）</strong> や Googleの <strong>Gemini（ジェミニ）</strong> も試してみてください。</p>
+                        <p>ただし、どのAIでも<b>事業内容や数字は、最後に会社の公式サイトで確認する</b>習慣をつけましょう。</p>
+                        <p>AIは、もっともらしい間違いを自信ありげに答えることがあります。</p>
+                    </div>
 
-                <h2>プロンプト上達の鍵は「タイピング力」</h2>
-                <p>ここまで読んで気づいた方もいるかもしれませんが、プロンプトは<strong>自分でキーボードを使って文章を打ち込む作業</strong>です。</p>
-                <p>「もっと詳しく教えて」「この部分を直して」「別のパターンも出して」……AIとのやりとり（試行錯誤）を重ねるほど、タイピングの量は増えていきます。タイピングが速い人は、AIに対して次々と新しい指示を出せるため、短時間で理想の答えにたどり着けます。</p>
-                <p><strong>AIを「使いこなす力」は、タイピングという基礎スキルの上に積み上がります。</strong>キーボードに慣れることが、AI活用の土台になるのです。</p>
+                    <h3>3. 自分の経験を「ビジネス用語」にしたいとき</h3>
+                    <p>「居酒屋で注文を取っていた」という経験も、AIに頼めば「優先順位を判断し、正確に情報を処理するスキル」という事務職向けの言葉に変換してくれます。</p>
 
-<!-- 7. まとめセクション：最新の規格へ再同期 (v20.7.26.Column) -->
-                <div class="summary-box">
-                    <h2 class="section-title--summary">まとめ｜プロンプトは「伝え方」の練習</h2>
-                    <p>ChatGPTを上手に使いこなすコツは、AIの性能よりも「プロンプトの伝え方」にあります。まずは以下の3点を意識してみましょう。</p>
+                    <div class="example-box" style="background:#2c3e50; color:white; padding:25px; border-radius:15px; margin: 20px 0;">
+                        <div style="font-weight:bold; color:var(--accent); margin-bottom:10px;">✨ 言い換えの魔法</div>
+                        「私は飲食店でホールスタッフをしていました。<br>忙しい時間帯に、お客様の注文を間違えずに通し、料理を運ぶ順番を常に考えて行動していました。<br>この経験を、<strong>事務職の採用担当者に響くような『正確性』や『効率性』を強調した文章</strong>に直してください。」
+                    </div>
+
+                    <h2>こんなとき便利です｜ChatGPTの身近な使い方</h2>
+                    <p>就職活動以外にも、ふだんのパソコン作業で「これは助かる」という場面はたくさんあります。</p>
+                    <p>授業でも、受講生のみなさんから「試して良かった」と聞くことが多かった使い方を例に挙げます。</p>
+
+                    <h3>① メールの下書きを頼む</h3>
+                    <p>「上司に有給休暇の相談をするメールを、丁寧で短めに書いてください」と頼むだけで、件名から結びまで整った下書きが出てきます。</p>
+                    <p>ゼロから考えるのが苦手な方ほど、効果を実感しやすい使い方です。文字数を短め　と指定することもポイントです。</p>
+                    <p>送る前に、宛名や日付が自分の状況に合っているかは必ず目で確認しましょう。</p>
+
+                    <h3>② 難しい文書を「やさしく」してもらう</h3>
+                    <p>手続きの案内文や、専門用語の多い説明文を貼り付けて「中学生でもわかるように3行で説明してください」と頼む使い方です。</p>
+                    <p>読む前の下ごしらえとして便利です。</p>
+                    <p>なお、名前や住所、会社の機密などの個人情報は貼り付けないようにしてください。</p>
+
+                    <h3>③ Excelの関数がわからないとき</h3>
+                    <p>「A列に月間売上、B列に売上目標があります。目標達成したら達成と自動でC列に出す方法を、Excel初心者向けに教えてください」のように、やりたいことを日本語で伝えると、関数と手順を示してくれます。</p>
+                    <p>ネット検索で記事を何件も開くよりも、状況に合わせて答えてくれるのが強みです。</p>
+
+                    <h3>④ 面接の練習相手になってもらう</h3>
+                    <p>「事務職の面接官として、私に質問をひとつずつしてください。答えたら、良かった点と改善点を教えてください」と頼むと、一人でも練習ができます。</p>
+                    <p>人に話すのは恥ずかしい、という方にも向いています。</p>
+
+                    <h3>⑤ 考えがまとまらないときは「壁打ち」</h3>
+                    <p>「次に何を勉強すればいいのか分からない」「転職するか迷っている」といったもやもやは、そのまま文章にしてAIに送ってみる使い方もできます。</p>
+                    <p>これは「壁打ち」と呼ばれる使い方で、次のセクションで詳しく紹介します。</p>
+
+                    <h2>AIとの壁打ち｜アイデア出しと考えの整理</h2>
+                    <p>ここまでは「AIに何かを作ってもらう」使い方でしたが、私が初心者の方に一番試してほしいのは、<strong>考えを深めるための相手として使う方法</strong>です。</p>
+
+                    <h3>そもそも「壁打ち」とは？</h3>
+                    <p>壁打ちとは、もともとテニスなどで、壁に向かってボールを打ち返しながら練習することに由来する言葉です。</p>
+                    <p>ビジネスでは、自分の考えを誰かに話し、返ってきた反応を受けながら考えを深めていくことを指します。</p>
+                    <p>AIとの壁打ちでは、完成した質問や、はっきりした結論を用意する必要はありません。</p>
                     <ul>
-                        <li><strong>具体的に頼む：</strong> 「何を」「どのように」してほしいか動詞で伝える</li>
-                        <li><strong>状況を添える：</strong> 誰が、どんな場面で使う文章なのか背景を教える</li>
-                        <li><strong>形を指定する：</strong> 文字数や「箇条書きで」など、出力の形式を決める</li>
+                        <li>まだ漠然としているアイデアを言葉にする</li>
+                        <li>AIから質問や別の視点をもらう</li>
+                        <li>自分の考えを整理し、足りない点に気づく</li>
+                        <li>選択肢を比べて、次に何をするか考える</li>
                     </ul>
-                    <p>最初から完璧を目指す必要はありません。タイピングを練習しながら、何度も「追加で頼む」「言い換える」を繰り返すことで、AIとの距離はぐっと縮まります。</p>
-                </div>
+                    <p>つまり、AIに正解を教えてもらうのではなく、<b>対話を通じて自分の考えを深める</b>使い方です。</p>
 
-                <!-- === 記事末尾ナビ：最新の article-footer-nav 統治仕様 === -->
-                <div class="article-footer-nav">
-                    <p class="article-footer-nav__text">キーボードから紡ぐ確かな言葉が、これからの実務の可能性をより大きく広げます</p>
-                    <div class="summary-nav">
-                        <!-- 1. メインアクション：タイピング -->
-                        <a href="play.html" class="btn-main">タイピング練習へ</a>
-                        <!-- 2. カテゴリトップ：生成AIハブ -->
-                        <a href="hub-ai.html" class="summary-btn">生成AIガイドへ</a>
-                        <!-- 3. ホーム：最新の表記「へ戻る」を適用 -->
-                        <a href="./" class="summary-btn">ホームへ戻る</a>
+                    <h3>壁打ちのメリット</h3>
+                    <ul>
+                        <li><strong>考え始める負担が減る：</strong> 白紙を前に悩む代わりに、思いついたことから話し始められます。</li>
+                        <li><strong>アイデアが広がる：</strong> 自分だけでは思いつかなかった案や切り口に出会えます。</li>
+                        <li><strong>頭の中が整理される：</strong> 複数の悩みを分類し、優先順位をつけやすくなります。</li>
+                        <li><strong>見落としに気づける：</strong> 別の立場からの質問や、反対の意見をもらえます。</li>
+                        <li><strong>何度でも試せる：</strong> 相手の都合を気にせず、言い直したり考え直したりできます。</li>
+                    </ul>
+                    <p>時間の面でも、30分ひとりで悩む代わりに、AIに案を出してもらい、比べながら考えることで、考え始めるまでの時間を減らせる可能性があります。</p>
+                    <p>ただし、必ず早くなるわけではありません。</p>
+                    <p>AIの回答を確認したり、間違いを直したりする時間も必要です。</p>
+
+                    <h3>実際にやってみよう｜4ステップ</h3>
+                    <p>たとえば「事務職への転職を考えているけれど、何から始めればいいか分からない」という場面で考えてみます。</p>
+                    <p>最初から完璧なプロンプトは必要ありません。</p>
+
+                    <p><b>STEP 1　思いついたことを、そのまま話す</b></p>
+                    <div class="example-box" style="background:#2c3e50; color:white; padding:25px; border-radius:15px; margin: 20px 0;">
+                        「事務職への転職を考えています。ただ、何から始めればいいのか、まだはっきりしていません。」
+                    </div>
+
+                    <p><b>STEP 2　AIに質問や案を出してもらう</b></p>
+                    <div class="example-box" style="background:#2c3e50; color:white; padding:25px; border-radius:15px; margin: 20px 0;">
+                        「状況を整理するために、まず私に質問を3つしてください。私の回答を見ながら、一緒に考えたいです。」
+                    </div>
+
+                    <p><b>STEP 3　返答を見て、さらに考える</b></p>
+                    <div class="example-box" style="background:#2c3e50; color:white; padding:25px; border-radius:15px; margin: 20px 0;">
+                        「その案はいいですね。ただ、仕事をしながらだと難しそうです。もっと小さく始められる方法はありませんか？」
+                    </div>
+
+                    <p><b>STEP 4　考えをまとめる</b></p>
+                    <div class="example-box" style="background:#2c3e50; color:white; padding:25px; border-radius:15px; margin: 20px 0;">
+                        「ここまでの話を整理して、私が最初に取り組むことを、優先順位の高い順に3つにまとめてください。」
+                    </div>
+
+                    <p>この流れは、<strong>最初の一言 → AIの返答 → 追加の質問 → 考えの整理</strong>です。</p>
+                    <p>この繰り返しそのものが、壁打ちの実践になります。</p>
+                    <p>最後に整理を頼むことで、次にやることがはっきりします。</p>
+
+                    <h3>目的によって、頼み方を変える</h3>
+                    <p>同じ壁打ちでも、目的によってAIへの頼み方は変わります。</p>
+                    <p>雑談をするだけではない、というのがポイントです。</p>
+                    <ul>
+                        <li><strong>アイデア出し：</strong> 「できるだけ多くの案を出してください」</li>
+                        <li><strong>思考の整理：</strong> 「私の発言を分類して、要点をまとめてください」</li>
+                        <li><strong>問題の発見：</strong> 「見落としている点や、反対の意見を挙げてください」</li>
+                        <li><strong>意思決定：</strong> 「選択肢ごとのメリットとデメリットを比べてください」</li>
+                        <li><strong>行動につなげる：</strong> 「話し合った内容を、具体的な手順にしてください」</li>
+                    </ul>
+
+                    <h3>AIに「質問してもらう」</h3>
+                    <p>初心者の方にぜひ知ってほしいのが、AIに答えを出させるのではなく、<b>こちらの考えを引き出す役</b>を任せる方法です。</p>
+                    <p>転職先を考えるとき、勉強方法を決めるとき、仕事の進め方に迷ったときなど、幅広く使えます。</p>
+                    <div class="example-box" style="background:#2c3e50; color:white; padding:25px; border-radius:15px; margin: 20px 0;">
+                        <div style="font-weight:bold; color:var(--accent); margin-bottom:10px;">🗣 そのまま使える例文</div>
+                        「私の考えを整理するために、コーチのような役割で対話してください。<br>すぐに結論を出さず、私の回答に合わせて<strong>質問をひとつずつ</strong>してください。<br>十分に情報が集まったら、考えを整理してまとめてください。」
+                    </div>
+
+                    <h3>壁打ちのときの注意点</h3>
+                    <p>AIは、こちらの意見に同意するような返答をすることがあります。</p>
+                    <p>気分よく話せても、それが正しい判断とは限りません。</p>
+                    <p>次のような指示を加えると、検討を深めやすくなります。</p>
+                    <ul>
+                        <li>私の考えに問題があれば、遠慮せず指摘してください。</li>
+                        <li>別の立場から見た意見も挙げてください。</li>
+                        <li>事実と推測を分けて説明してください。</li>
+                        <li>情報が足りない場合は、無理に結論を出さず質問してください。</li>
+                    </ul>
+                    <p>就職・転職、契約、お金、法律など、重要な判断では、AIの回答だけで決めず、信頼できる情報源も確認してください。</p>
+
+                    <div class="instructor-advice">
+                        <b>💡 講師のアドバイス：壁打ちは「正解をもらう場」ではありません</b>
+                        <p style="margin-top: 10px;">私が壁打ちをおすすめする理由は、答えをもらえるからではなく、<b>自分の考えを言葉にする練習になる</b>からです。</p>
+                        <p>打ち込みながら「あれ、自分はこう考えていたのか」と気づく場面は少なくありません。</p>
+                        <p>AIが出した案に同調するより、「自分はどう思うか」を最後に必ず確認する。</p>
+                        <p>そこまでを一セットにして使ってみてください。</p>
+                    </div>
+
+                    <h2>プロジェクトを使うと、繰り返し説明する手間を減らせます</h2>
+                    <p>ChatGPTを使い続けていると、「毎回、自分の状況を最初から説明するのが面倒だな」と感じる場面が出てきます。</p>
+                    <p>そんなときに役立つのが、<strong>「プロジェクト」</strong>という機能です。</p>
+
+                    <div class="point-box" style="background:#eef9ff; padding: 25px; border-radius: 15px; border-left: 5px solid #3498db; margin: 30px 0;">
+                        <h3 style="margin-top:0; color:#2980b9;">💡 プロジェクトって何？</h3>
+                        <p>プロジェクトとは、<strong>テーマごとにチャットや資料をひとまとめにしておける「専用のフォルダ」</strong>のようなものです。</p>
+                        <p>そこに「このテーマでは、こういう前提で答えてほしい」という指示や、参考にしたいファイルを入れておくことができます。</p>
+                        <p>パソコンの「フォルダ」と、「仕事の引き継ぎ書」を合わせたイメージです。</p>
+                    </div>
+
+                    <h3>どう便利なのか</h3>
+                    <p>たとえば「転職活動」というプロジェクトを作り、指示欄に「私は事務職を希望する30代です。文章は、です・ます調でお願いします」と書いておきます。</p>
+                    <p>さらに、作りかけの職務経歴書のファイルを入れておけば、そのプロジェクト内で新しくチャットを始めるときに、共通の前提や資料を毎回説明する手間を減らせます。</p>
+                    <p><b>前提をまとめて渡しておける</b>のが、プロジェクトの一番のメリットです。</p>
+                    <p>ただし、指示や資料の内容が常にすべて反映されるとは限りません。</p>
+                    <p>大事な条件は、チャットの中でも一言添えると確実です。</p>
+                    <p>また、履歴書づくり、企業研究、面接練習といった関連するチャットが同じ場所にまとまるので、あとから見返すときにも迷いません。</p>
+
+                    <div class="example-box" style="background:#2c3e50; color:white; padding:25px; border-radius:15px; margin: 20px 0;">
+                        <div style="font-weight:bold; color:var(--accent); margin-bottom:10px;">📁 プロジェクトの指示欄に書く例</div>
+                        「私は事務職への転職を目指しています。<br>前職は<strong>アパレル販売</strong>です。<br>このプロジェクトでは、履歴書や職務経歴書、面接対策について相談します。<br>回答は、<strong>です・ます調で、初心者にもわかる言葉</strong>でお願いします。<br>わからない点があれば、先に質問してください。」
+                    </div>
+
+                    <div class="instructor-advice">
+                        <b>💡 講師のアドバイス：プロジェクトは「目的ごと」に、増やしすぎない</b>
+                        <p style="margin-top: 10px;">ここだけの話ですが、プロジェクトを大量に作って、かえって探せなくなる方もいます。</p>
+                        <p>私のおすすめは、「転職活動」「パソコン学習」「家計・暮らし」など、<b>長く続くテーマを2〜3個だけ</b>作ることです。</p>
+                        <p>一回きりの質問なら、普通のチャットで十分です。</p>
+                    </div>
+
+                    <div class="info-note-box">
+                        <strong class="note-title">※機能や画面は変わることがあります</strong>
+                        <p>プロジェクトなどの機能は、利用できる範囲や名称、表示場所がプランやアップデートによって変わることがあります。</p>
+                        <p>お使いの画面にない場合は、ChatGPTの公式ヘルプで最新の情報を確認してください。</p>
+                    </div>
+
+                    <h2>古いチャットの整理｜名前変更・ピン留め・アーカイブ</h2>
+                    <p>ChatGPTは、質問するたびにチャットが一覧に増えていきます。</p>
+                    <p>しばらく使うと、「あの質問、どこにあったっけ？」と探すことになりがちです。</p>
+                    <p>ここで知っておくと便利な整理方法を3つ紹介します。</p>
+                    <p>多くの場合、チャット一覧にある各チャットの横のメニュー（「…」など）から操作できます。</p>
+
+                    <h3>① 名前を変更する</h3>
+                    <p>チャットの名前は自動でつきますが、似たような名前が並ぶと区別しにくくなります。</p>
+                    <p>「職務経歴書_アパレル版」のように、自分が見て分かる名前に変えておくと、あとから探しやすくなります。</p>
+
+                    <h3>② ピン留めする</h3>
+                    <p>よく使うチャットは、ピン留めして一覧の上のほうに固定しておけます。</p>
+                    <p>「メール文面の作り方」のように、何度も開き直す定番のチャットに向いています。</p>
+
+                    <h3>③ アーカイブに入れる</h3>
+                    <p>もう使わないけれど、削除するのは少し不安というチャットは、アーカイブに入れて一覧から片づけておけます。</p>
+                    <p>削除と違い、あとから見返せるのが特徴です。</p>
+
+                    <div class="instructor-advice">
+                        <b>💡 講師のアドバイス：基本は「消さずにアーカイブ」</b>
+                        <p style="margin-top: 10px;">パソコンの整理と同じで、いらなそうに見えて、数か月後に「あの回答をもう一度見たい」となることはよくあります。</p>
+                        <p>私は、迷ったら削除せずアーカイブに入れる方法をおすすめしています。</p>
+                        <p>ファイルとフォルダの整理が苦手な方ほど、チャットも散らかりやすいので、最初のうちから名前をつける習慣をつけておくと楽になります。</p>
+                    </div>
+
+                    <h2>最後に確認したい、2つの注意点</h2>
+                    <ul>
+                        <li><strong>個人情報や機密は入力しない：</strong> 氏名、住所、電話番号、会社の内部資料などは、そのまま貼り付けないようにしましょう。「A社」「担当者」などに置き換えるだけで安心して使えます。</li>
+                        <li><strong>答えは「下書き」として扱う：</strong> AIの回答には、事実と違う内容が混ざることがあります。特に日付、数字、会社情報、法律に関わることは、公式の情報で確認してから使ってください。</li>
+                    </ul>
+
+                    <h2>プロンプト上達の鍵は「タイピング力」</h2>
+                    <p>ここまで読んで気づいた方もいるかもしれませんが、プロンプトは<strong>自分でキーボードを使って文章を打ち込む作業</strong>です。</p>
+                    <p>「もっと詳しく教えて」「この部分を直して」「別のパターンも出して」……AIとのやりとり（試行錯誤）を重ねるほど、タイピングの量は増えていきます。</p>
+                    <p>タイピングに慣れておくと、思いついたことをすぐ入力でき、追加の質問や修正も重ねやすくなります。</p>
+                    <p>回答の質は指示の内容や確認の仕方にも左右されますが、入力が負担になりにくいぶん、試行錯誤を続けやすくなります。</p>
+                    <p><strong>AIを「使いこなす力」は、タイピングという基礎スキルの上に積み上がります。</strong></p>
+                    <p>キーボードに慣れることが、AI活用の土台になるのです。</p>
+
+                    <div class="summary-box">
+                        <h2 class="section-title--summary">まとめ｜プロンプトは「伝え方」の練習</h2>
+                        <p>ChatGPTを上手に使いこなすコツは、AIの性能よりも「プロンプトの伝え方」にあります。</p>
+                        <p>まずは以下の点を意識してみましょう。</p>
+                        <ul>
+                            <li><strong>具体的に頼む：</strong> 「何を」「どのように」してほしいか動詞で伝える</li>
+                            <li><strong>状況を添える：</strong> 誰が、どんな場面で使う文章なのか背景を教える</li>
+                            <li><strong>形を指定する：</strong> 文字数や「箇条書きで」など、出力の形式を決める</li>
+                            <li><strong>壁打ちに使う：</strong> 考えがまとまらない段階から対話し、最後は自分で判断する</li>
+                            <li><strong>プロジェクトを活用する：</strong> 続けるテーマは、共通の前提や資料をまとめておく</li>
+                            <li><strong>チャットを整理する：</strong> 名前変更・ピン留め・アーカイブで、探す手間を減らす</li>
+                        </ul>
+                        <p>最初から完璧を目指す必要はありません。</p>
+                        <p>タイピングを練習しながら、何度も「追加で頼む」「言い換える」を繰り返すことで、AIとの距離はぐっと縮まります。</p>
+                        <p>まずは気軽に、身近な相談相手として使ってみてください。</p>
+                    </div>
+
+                    <div class="article-footer-nav">
+                        <p class="article-footer-nav__text">キーボードから紡ぐ確かな言葉が、これからの実務の可能性をより大きく広げます</p>
+                        <div class="summary-nav">
+                            <a href="play.html" class="btn-main">タイピング練習へ</a>
+                            <a href="hub-ai.html" class="summary-btn">生成AIガイドへ</a>
+                            <a href="./" class="summary-btn">ホームへ戻る</a>
+                        </div>
                     </div>
                 </div>
             </article>
@@ -184,10 +414,7 @@
             <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
         </footer>
     </div>
-        <!-- ページトップへ戻るボタン (v19.9.203 統一規格) -->
     <a href="#" id="back-to-top" class="back-to-top">↑</a>
-
-    <!-- 共通ロジックの読み込み -->
     <script src="js/main.js"></script>
 </body>
 </html>
