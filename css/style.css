@@ -1844,6 +1844,12 @@ body.portal-page .content-body table.setup-table td {
 .pasotore-concept-final span { display: block; margin-top: 8px; color: #607487; font-size: 0.95rem; }
 
 @media(max-width:768px){
+  .pasotore-concept-example {
+      padding-top: 20px !important;
+      padding-right: 15px !important;
+      padding-bottom: 20px !important;
+      padding-left: 15px !important;
+  }
   .pasotore-concept-stage {
       padding-left: 20px !important; /* スマホでは左パディングを狭める */
       padding-top: 45px !important;  /* 番号を上に置くための空間を確保 */
