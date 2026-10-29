@@ -1528,8 +1528,8 @@ if (typeof gtag === 'function') {
         
         if (announceBox && newsItems.length > 0) {
             var htmlContent = '';
-            // 最新1件のみ表示
-            for (var i = 0; i < Math.min(newsItems.length, 1); i++) {
+            // 最新3件（最新1件＋過去2件）を表示
+            for (var i = 0; i < Math.min(newsItems.length, 2); i++) {
                 var item = newsItems[i];
                 var dateStr = item.querySelector('.news-date').textContent;
                 var newsLink = item.querySelector('.news-text');
