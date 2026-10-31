@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>パソコン初心者が買ったら最初にやること｜ネット接続とWindows Update｜ぱそトレ！</title>
+    <meta name="description" content="パソコン初心者が購入後にまずやるべき「インターネット接続」と「Windows Update」の理由と手順を現役講師が解説。自宅に回線がない場合のテザリングの方法や初期設定の注意点も紹介します。">
+    <link rel="canonical" href="https://miitype.com/guide-windows-first-steps.html">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+
+    <!-- 1. アドセンス（全ページ共通規格） -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
+
+    <!-- 2. 管理者除外スクリプト -->
+    <script>
+        if (localStorage.getItem('pasotore_admin') === 'true') {
+            window['ga-disable-G-KWS4RPPBVV'] = true;
+            console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
+        }
+    </script>
+     
+    <!-- 3. Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
+    <!-- 4. CSS資産（正典） -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
+</head>
+<body class="portal-page">
+    <div id="app">
+        <!-- 統合ヘッダー -->
+        <header>
+            <div class="header-inner">
+                <!-- 左：ロゴ（バッジ込み） -->
+                <a href="./" class="header-logo-link">
+                    <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
+                </a>
+
+                <!-- 右：ナビ -->
+                <nav class="header-nav">
+                    <div class="nav-grid">
+                        <!-- 上段3つ -->
+                        <a href="./" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                        <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                        <a href="hub-pcskills.html" class="nav-item active"><img src="img/icon-windows.png" class="nav-icon"><span>PCスキル</span></a>
+                        <!-- 下段3つ -->
+                        <a href="hub-ai.html" class="nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                        <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                        <a href="hub-column.html" class="nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                    </div>
+
+                    <!-- スマホ用メニューボタン：ハンバーガー ＋ メニューラベル -->
+                    <button class="mobile-menu-trigger" id="mobile-menu-btn">
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="menu-label">メニュー</span>
+                    </button>
+                </nav>
+            </div>
+
+            <!-- スマホ全画面メニュー本体：初期状態はCSSで非表示 -->
+            <div class="mobile-nav-overlay" id="mobile-menu-overlay">
+                <button class="mobile-menu-btn-close" id="menu-close-btn">×</button>
+                <div class="mobile-nav-grid">
+                    <a href="./" class="mobile-nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                    <a href="hub-typing.html" class="mobile-nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                    <a href="hub-pcskills.html" class="mobile-nav-item active"><img src="img/icon-windows.png" class="nav-icon"><span>PCスキル</span></a>
+                    <a href="hub-ai.html" class="mobile-nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                    <a href="hub-career.html" class="mobile-nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                    <a href="hub-column.html" class="mobile-nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                </div>
+            </div>
+        </header>
+
+        <main class="portal-main">
+            <article class="static-page">
+                <nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
+
+                <h1 class="page-title">パソコン初心者が買ったら最初にやること｜ネット接続とWindows Update</h1>
+                <p class="page-subtitle">購入後にまず確認しておきたい2つの大切なポイント</p>
+
+                <div class="content-body">
+                    <p>パソコンを買ったあと、「まず何をすればいいの？」と迷う方は少なくありません。</p>
+                    <p>パソコン初心者が購入後にまず確認しておきたいのは、次の2つです。</p>
+                    <ol>
+                        <li>インターネットに接続する</li>
+                        <li>Windows Updateを確認する</li>
+                    </ol>
+                    <p>初回セットアップなど、必要な設定はありますが、まずはこの2つを意識しておきましょう。</p>
+                    <p>WordやExcelの練習は、そのあとで大丈夫です。</p>
+                    <p>この記事では、パソコン講師として初心者の方を見てきた経験をもとに、この2つが大切な理由と具体的なやり方を説明します。</p>
+                    <p>自宅に回線がない場合の方法も紹介します。</p>
+
+                    <h2>パソコンを買ったら最初にやることは「ネット接続」と「更新」</h2>
+                    <p>パソコンは、電源を入れればすべての準備が整うわけではありません。</p>
+                    <p>今のパソコンは、インターネットにつないで使うことを前提にした機能がたくさんあります。</p>
+                    <p>そのため、最初に次の2つを整えておくと、あとがとても楽になります。</p>
+                    <ul>
+                        <li>インターネットに接続できる環境をつくる</li>
+                        <li>Windows Updateを確認し、更新できる状態にしておく</li>
+                    </ul>
+                    <p>この2つが整えば、使い始めるための土台ができます。</p>
+
+                    <h2>パソコン初心者が最初にインターネット接続をする理由</h2>
+                    <p>私はこれまで、受講中に新しいパソコンを購入される方を何人も見てきました。</p>
+                    <p>その中に、「パソコンを買ったけれど、まだインターネットにはつないでいません」とおっしゃる方がいました。</p>
+                    <p>インターネットに接続しなくても使える機能はあるので、それ自体が間違いというわけではありません。</p>
+                    <p>ただ、つないでいないと困る場面は意外と多くあります。</p>
+                    <ul>
+                        <li>操作方法やトラブルの解決方法を調べられない</li>
+                        <li>メーカーの公式サイトで説明書やサポート情報を確認できない</li>
+                        <li>Windows Updateで更新プログラムを受け取れない</li>
+                        <li>ソフトウェアによっては、認証や初回設定でインターネット接続が必要になる</li>
+                    </ul>
+                    <p>初心者にとって特に大きいのは、困ったときに自分で調べられることです。</p>
+                    <p>パソコンを使っていると、見慣れないメッセージが出たり、操作がわからなくなったりします。</p>
+                    <p>そのときにメーカーやMicrosoftの公式情報を確認できれば、自力で解決できることが増えます。</p>
+                    <p>なお、Windows 11では、初回セットアップの際にインターネット接続やMicrosoftアカウントでのサインインを求められる場合があります。</p>
+                    <p>画面の案内に従って進めていきましょう。</p>
+
+                    <h2>パソコンをWi-Fiにつなぐ方法（Windows 11）</h2>
+                    <p>自宅にWi-Fiがある場合は、次の手順で接続できます。</p>
+                    <ol>
+                        <li>画面右下の、Wi-Fiやスピーカーのアイコンをクリックする</li>
+                        <li>表示された画面で、Wi-Fiの横にある「＞」をクリックする</li>
+                        <li>自宅のWi-Fiの名前（SSID）を選び、「接続」をクリックする</li>
+                        <li>パスワード（セキュリティキー）を入力する</li>
+                    </ol>
+                    <p>SSIDとパスワードは、多くの場合、Wi-Fiルータ本体に貼られたシールに書かれています。</p>
+                    <p>有線LANケーブルでつなぐ方法もあります。</p>
+
+                    <h2>Windows Updateとは？やらないとどうなる？</h2>
+                    <p>Windows Updateとは、Windowsの不具合を直したり、セキュリティ上の弱点に対応したりするための更新プログラムを、取得して適用する仕組みです。</p>
+                    <p>更新をせずに使い続けると、すでに見つかっている弱点が残ったままになる可能性があります。</p>
+                    <p>買ったばかりのパソコンでも、出荷から時間がたっていれば、その間に新しい更新が出ていることがあります。</p>
+                    <p>そのため、購入後に一度確認しておくことが大切です。</p>
+
+                    <h3>Windows Updateのやり方（Windows 11）</h3>
+                    <ol>
+                        <li>画面下の「スタート」ボタンをクリックする</li>
+                        <li>「設定」を開く</li>
+                        <li>左側のメニューから「Windows Update」を選ぶ</li>
+                        <li>「更新プログラムのチェック」をクリックする</li>
+                    </ol>
+                    <p>更新が見つかったら、画面の案内に従って進めます。</p>
+                    <p>更新には時間がかかったり、再起動が必要になったりします。</p>
+                    <p>作業中のファイルは事前に保存しておきましょう。</p>
+                    <p>更新の途中で電源を切らないこと、ノートパソコンの場合は電源アダプタをつないでおくことも大切です。</p>
+                    <p>更新は一度やれば終わりではありません。</p>
+                    <p>その後も定期的に提供されるので、インターネットにつながる状態を保ち、ときどき確認する習慣をつけましょう。</p>
+                    <p>通知が出て面倒でも、長く止めたままにするのはおすすめできません。</p>
+                    <p>時間に余裕があるときにまとめて実行すれば十分です。</p>
+                    <p>詳しくは、<a href="https://support.microsoft.com/ja-jp/windows/windows-update-%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6-8a903416-6f45-0718-f5c7-375e92dddeb2" target="_blank" rel="noopener noreferrer">Microsoftの公式案内</a>も参考にしてください。</p>
+
+                    <h3>Windows 10を使っている場合</h3>
+                    <p>Windows 10は、2025年10月にサポートが終了しています。</p>
+                    <p>中古のパソコンや古いパソコンを使っている場合は、Windows 11へ移行できるかどうか、<a href="https://www.microsoft.com/ja-jp/windows/end-of-support" target="_blank" rel="noopener noreferrer">Microsoftの公式案内</a>で確認してください。</p>
+                    <p>この記事の手順は、Windows 11を前提にしています。</p>
+
+                    <h2>自宅にインターネット回線がない場合は「テザリング」</h2>
+                    <p>「自宅に回線がないから、パソコンをネットにつなげられない」という方もいると思います。</p>
+                    <p>その場合は、スマートフォンのテザリングという方法があります。</p>
+                    <p>テザリングとは、スマートフォンの通信を使って、パソコンをインターネットにつなぐ機能です。</p>
+                    <p>スマートフォンを、パソコン用の小さなWi-Fiルータとして使うイメージです。</p>
+                    <p>以前教えていた方の中にも、自宅に固定回線を引かず、テザリングでパソコンを使っていた方がいました。</p>
+                    <p>データ通信量に余裕のある契約で、Webサイトの閲覧、操作方法の確認、<a href="play.html">タイピング練習</a>などをしていました。</p>
+
+                    <h3>テザリングのやり方</h3>
+                    <ol>
+                        <li>スマートフォンの設定で、テザリング（インターネット共有）をオンにする</li>
+                        <li>パソコンのWi-Fi一覧から、スマートフォンの名前を選ぶ</li>
+                        <li>スマートフォンに表示されたパスワードを入力する</li>
+                    </ol>
+                    <p>機種や契約によって名称や手順が異なります。</p>
+                    <p>詳しくは、契約している携帯電話会社の公式案内を確認してください。</p>
+
+                    <h3>テザリングで気をつけたい通信量</h3>
+                    <p>テザリングでは、パソコンで使った通信量もスマートフォンの通信量として消費されます。</p>
+                    <p>Webサイトの閲覧や文字中心の確認は通信量が少なめですが、動画の視聴や大きなファイルのダウンロードは多くなりやすいです。</p>
+                    <p>特に注意したいのがWindows Updateです。</p>
+                    <p>更新の内容によっては、まとまった通信量を使います。</p>
+                    <p>スマートフォンの契約によっては、テザリングで利用できるデータ通信量に制限が設けられている場合もあります。</p>
+                    <p>契約のデータ容量に加え、テザリングの制限や追加料金の有無も、事前に確認しておきましょう。</p>
+                    <p>データ容量に余裕がないときは、Windows UpdateはWi-Fi環境で実行するのがおすすめです。</p>
+                    <p>Windowsには「<a href="https://support.microsoft.com/ja-jp/help/17452" target="_blank" rel="noopener noreferrer">従量制課金接続</a>」という設定があり、通信量に制限がある回線で一部の通信を抑えられます。</p>
+                    <p>ただし、すべての通信が止まるわけではなく、通信量を完全に管理できるものでもありません。</p>
+                    <p>パソコンを頻繁に使う場合や、大きな更新が多い場合は、自宅にWi-Fi環境を用意したほうが快適です。</p>
+                    <p>テザリングは、固定回線がないときの選択肢のひとつとして覚えておいてください。</p>
+
+                    <h2>初期設定は、一度に全部やらなくて大丈夫</h2>
+                    <p>初回起動時には、Microsoftアカウントへのサインイン、OneDrive、バックアップなど、聞き慣れない言葉がたくさん出てきます。</p>
+                    <p>最初からすべてを理解する必要はありません。</p>
+                    <p>簡単に整理すると、次のとおりです。</p>
+                    <ul>
+                        <li>Microsoftアカウントは、Microsoftのサービスを使うためのアカウント</li>
+                        <li>OneDriveは、ファイルをインターネット上に保存したり、複数の端末で同期したりできるサービス</li>
+                    </ul>
+                    <p>この2つは別のものです。</p>
+                    <p>必要になったときに少しずつ覚えれば十分なので、まずはネット接続とWindows Updateを優先してください。</p>
+
+                    <h2>安全に使うために、あわせて意識したいこと</h2>
+                    <p>Windows Updateだけで、すべての危険を防げるわけではありません。</p>
+                    <p>次の点も意識しておきましょう。</p>
+                    <ul>
+                        <li>不審なメールの添付ファイルやリンクを開かない</li>
+                        <li>出所のわからないソフトウェアをインストールしない</li>
+                        <li>パスワードを使い回さない</li>
+                        <li>大切なファイルは、必要に応じてバックアップを取る</li>
+                    </ul>
+                    <p>Windowsには、Microsoft Defenderなどのセキュリティ機能が標準で入っています。</p>
+                    <p>別のセキュリティソフトを入れるかどうかは、目的や契約内容を確認して判断してください。</p>
+                    <p>よくわからないまま、複数入れる必要はありません。</p>
+                    <p>また、ネット上の情報がすべて正しいとは限りません。</p>
+                    <p>調べるときは、まずパソコンメーカーやMicrosoftの公式情報を確認する習慣をつけると安心です。</p>
+
+                    <!-- パソコン初心者によくある質問（FAQボックス構造） -->
+                    <div class="faq-box">
+                        <div class="faq-list">
+                            <div class="faq-list-item">
+                                <p class="faq-q">買ったばかりのパソコンでも、Windows Updateは必要ですか？</p>
+                                <p class="faq-a">はい。出荷後に新しい更新が出ていることがあるので、購入後に一度確認しましょう。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">インターネットにつながなくても、WordやExcelは使えますか？</p>
+                                <p class="faq-a">使える場合もありますが、ライセンスや認証の方法によっては、初回にインターネット接続が必要です。利用しているソフトの案内を確認してください。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">自宅にWi-Fiがなくても大丈夫ですか？</p>
+                                <p class="faq-a">スマートフォンのテザリングで接続できます。通信量には注意が必要です。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- まとめセクション -->
+                    <div class="summary-box">
+                        <h2 class="section-title--summary">まとめ｜まずは「ネット接続」と「Windows Update」から</h2>
+                        <p>パソコンを買ったら、まず確認しておきたいのは次の2つです。</p>
+                        <ol>
+                            <li>インターネットに接続できる環境を整える</li>
+                            <li>Windows Updateを確認し、更新できる状態にしておく</li>
+                        </ol>
+                        <p>WordやExcelの練習、タイピング、仕事で必要な操作は、そのあとで大丈夫です。</p>
+                        <p>パソコンは、すべてを覚えてから使うものではなく、使いながら少しずつ覚えていくものです。</p>
+                        <p>「買ったけれど、何から始めればいいかわからない」という方は、まずこの2つから始めてみてください。</p>
+                        <p>準備ができたら、<a href="play.html">タイピング練習</a>から始めるのもおすすめです。</p>
+                    </div>
+
+                    <div class="article-footer-nav">
+                        <p class="article-footer-nav__text">パソコンの基本設定ができたら、次のステップへ進みましょう</p>
+                        <div class="summary-nav">
+                            <a href="play.html" class="btn-main">タイピング練習へ</a>
+                            <a href="hub-pcskills.html" class="summary-btn">PCスキルガイドへ戻る</a>
+                            <a href="./" class="summary-btn">ホームに戻る</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="about.html">運営者情報</a>
+            </div>
+            <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
+        </footer>
+    </div>
+    <a href="#" id="back-to-top" class="back-to-top">↑</a>
+    <script src="js/main.js"></script>
+</body>
+</html>
