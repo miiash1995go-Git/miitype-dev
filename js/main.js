@@ -176,9 +176,18 @@ if (category.file === "all") {
                 const results = await Promise.all(fetchTasks);
                 loadedData = results.flatMap(d => d.questions);
             } else {
-                // 【れんぞくモード対応】JST日替わりで renzoku_01.json 〜 03.json を動的選択
+                // 【JST日替わりローテーション対応】
                 let targetFile = category.file;
-                if (categoryId === 'renzoku') {
+                if (categoryId === 'daily') {
+                    const dayIdx = this.getDailyFileIndex(); // 0, 1, 2
+                    if (dayIdx === 1) {
+                        targetFile = 'daily_02.json';
+                    } else if (dayIdx === 2) {
+                        targetFile = 'daily_03.json';
+                    } else {
+                        targetFile = 'daily.json';
+                    }
+                } else if (categoryId === 'renzoku') {
                     const dayIdx = this.getDailyFileIndex(); // 0, 1, 2
                     const fileNumString = String(dayIdx + 1).padStart(2, '0'); // "01", "02", "03"
                     targetFile = `renzoku_${fileNumString}.json`;
