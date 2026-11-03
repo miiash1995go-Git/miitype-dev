@@ -1966,3 +1966,24 @@ body.portal-page .content-body table.setup-table td {
         display: none !important;
     }
 }
+
+/* --- トップページ：メインコンセプト見出し (h1) --- */
+.index-concept-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    line-height: 1.4;
+    color: var(--primary);
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 25px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    display: block;
+}
