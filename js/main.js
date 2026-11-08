@@ -1705,13 +1705,13 @@ if (typeof gtag === 'function') {
                 });
             }
 
-            // カテゴリ定義マッピングの補完（windows/word/excelをPCスキルへ統一）
+            // カテゴリ定義マッピング（Windows/Word/Excelは個別バッジ・固有カラーを維持）
             const categoryMap = {
                 'typing': 'タイピング',
                 'pcskills': 'PCスキル',
-                'windows': 'PCスキル',
-                'word': 'PCスキル',
-                'excel': 'PCスキル',
+                'windows': 'Windows',
+                'word': 'Word',
+                'excel': 'Excel',
                 'ai': '生成AI',
                 'career': '就職・転職',
                 'column': '現場コラム'
