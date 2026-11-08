@@ -618,8 +618,40 @@
                 </div>
             </section>
 
+            <hr class="section-divider">
+
+            <!-- ⑩ 記事一覧セクション（Sitemap連動・タイトル検索完備） -->
+            <section class="section-container" id="dynamic-sitemap-index" data-initial="all">
+                <div class="static-page index-archive-card">
+                    <h2 class="index-archive-title">ぱそトレ！の記事一覧</h2>
+                    <p class="index-archive-desc">タイピング・パソコン操作・生成AI・就職や転職に役立つ記事をまとめています。知りたいことや気になるテーマから、記事を探してみてください。</p>
+
+                    <!-- 検索ボックス -->
+                    <div class="index-search-box">
+                        <span class="index-search-icon">🔍</span>
+                        <input type="text" id="article-search-input" class="index-search-input" placeholder="記事タイトルから検索（例：タイピングテスト、Excel、面接対策）" autocomplete="off">
+                    </div>
+
+                    <!-- カテゴリ切り替えタブ -->
+                    <div class="index-archive-nav">
+                        <button class="hub-index-tab active" data-filter="all">すべて</button>
+                        <button class="hub-index-tab" data-filter="typing">タイピング</button>
+                        <button class="hub-index-tab" data-filter="pcskills">PCスキル</button>
+                        <button class="hub-index-tab" data-filter="ai">生成AI</button>
+                        <button class="hub-index-tab" data-filter="career">就職・転職</button>
+                        <button class="hub-index-tab" data-filter="column">現場コラム</button>
+                    </div>
+
+                    <!-- 記事一覧リスト本体（main.jsから動的描画） -->
+                    <div class="index-archive-list" id="column-article-grid"></div>
+
+                    <!-- 注記 -->
+                    <p class="index-archive-note">※表示例。実際にはsitemap.xmlの記事情報を自動取得</p>
+                </div>
+            </section>
+
         </main>
-<hr class="section-divider">
+        <hr class="section-divider">
 
 
         <!-- 共通フッター -->

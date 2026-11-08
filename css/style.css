@@ -1987,3 +1987,348 @@ body.portal-page .content-body table.setup-table td {
     border-left-style: none;
     display: block;
 }
+
+/* ============================================================
+   トップページ：記事一覧セクション（v20.14.IndexArchive）
+   ============================================================ */
+
+/* 1. 外枠カード */
+.index-archive-card {
+    max-width: 1000px !important;
+    margin-top: 0px !important;
+    margin-right: auto !important;
+    margin-bottom: 50px !important;
+    margin-left: auto !important;
+    padding-top: 45px !important;
+    padding-right: 45px !important;
+    padding-bottom: 40px !important;
+    padding-left: 45px !important;
+    border-top-left-radius: 25px !important;
+    border-top-right-radius: 25px !important;
+    border-bottom-right-radius: 25px !important;
+    border-bottom-left-radius: 25px !important;
+    border-top-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 1px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #e2e8f0 !important;
+    border-right-color: #e2e8f0 !important;
+    border-bottom-color: #e2e8f0 !important;
+    border-left-color: #e2e8f0 !important;
+    background-color: #ffffff !important;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.04) !important;
+    box-sizing: border-box !important;
+}
+
+/* 2. 見出しと説明文 */
+.index-archive-title {
+    font-size: 1.6rem !important;
+    font-weight: 900 !important;
+    color: #1e293b !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 12px !important;
+    margin-left: 0px !important;
+    padding-top: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 0px !important;
+    padding-left: 0px !important;
+    border-top-style: none !important;
+    border-right-style: none !important;
+    border-bottom-style: none !important;
+    border-left-style: none !important;
+    line-height: 1.3 !important;
+    display: block !important;
+}
+
+.index-archive-desc {
+    font-size: 0.95rem !important;
+    color: #64748b !important;
+    line-height: 1.7 !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 25px !important;
+    margin-left: 0px !important;
+}
+
+/* 3. 検索バーラッパー */
+.index-search-box {
+    position: relative !important;
+    width: 100% !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 20px !important;
+    margin-left: 0px !important;
+    box-sizing: border-box !important;
+}
+
+.index-search-icon {
+    position: absolute !important;
+    left: 16px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    font-size: 1rem !important;
+    color: #94a3b8 !important;
+    pointer-events: none !important;
+    line-height: 1 !important;
+}
+
+.index-search-input {
+    width: 100% !important;
+    padding-top: 14px !important;
+    padding-right: 18px !important;
+    padding-bottom: 14px !important;
+    padding-left: 46px !important;
+    border-top-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 1px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #cbd5e1 !important;
+    border-right-color: #cbd5e1 !important;
+    border-bottom-color: #cbd5e1 !important;
+    border-left-color: #cbd5e1 !important;
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+    border-bottom-right-radius: 12px !important;
+    border-bottom-left-radius: 12px !important;
+    background-color: #ffffff !important;
+    font-size: 0.95rem !important;
+    color: #1e293b !important;
+    box-sizing: border-box !important;
+    outline-style: none !important;
+    transition-property: border-color, box-shadow !important;
+    transition-duration: 0.2s !important;
+}
+
+.index-search-input:focus {
+    border-top-color: #2563eb !important;
+    border-right-color: #2563eb !important;
+    border-bottom-color: #2563eb !important;
+    border-left-color: #2563eb !important;
+    box-shadow: 0px 0px 0px 3px rgba(37, 99, 235, 0.12) !important;
+}
+
+/* 4. カテゴリ切り替えタブ */
+.index-archive-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 25px !important;
+    margin-left: 0px !important;
+}
+
+.index-archive-nav .hub-index-tab {
+    background-color: #ffffff !important;
+    border-top-width: 1px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 1px !important;
+    border-left-width: 1px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #cbd5e1 !important;
+    border-right-color: #cbd5e1 !important;
+    border-bottom-color: #cbd5e1 !important;
+    border-left-color: #cbd5e1 !important;
+    padding-top: 6px !important;
+    padding-right: 16px !important;
+    padding-bottom: 6px !important;
+    padding-left: 16px !important;
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+    font-size: 0.85rem !important;
+    font-weight: 800 !important;
+    color: #4b5563 !important;
+    cursor: pointer !important;
+    transition-property: background-color, color, border-color !important;
+    transition-duration: 0.2s !important;
+}
+
+.index-archive-nav .hub-index-tab:hover {
+    background-color: #f8fafc !important;
+    border-top-color: #94a3b8 !important;
+    border-right-color: #94a3b8 !important;
+    border-bottom-color: #94a3b8 !important;
+    border-left-color: #94a3b8 !important;
+}
+
+.index-archive-nav .hub-index-tab.active {
+    background-color: #0077ff !important;
+    border-top-color: #0077ff !important;
+    border-right-color: #0077ff !important;
+    border-bottom-color: #0077ff !important;
+    border-left-color: #0077ff !important;
+    color: #ffffff !important;
+}
+
+/* 5. 記事リストコンテナ */
+.index-archive-list {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: 0px !important;
+}
+
+/* 記事行 */
+.index-archive-card .hub-index-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding-top: 18px !important;
+    padding-right: 10px !important;
+    padding-bottom: 18px !important;
+    padding-left: 10px !important;
+    border-top-style: none !important;
+    border-right-style: none !important;
+    border-bottom-width: 1px !important;
+    border-bottom-style: solid !important;
+    border-bottom-color: #f1f5f9 !important;
+    border-left-style: none !important;
+    text-decoration-line: none !important;
+    transition-property: background-color, transform !important;
+    transition-duration: 0.2s !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.index-archive-card .hub-index-row:last-child {
+    border-bottom-style: none !important;
+}
+
+.index-archive-card .hub-index-row:hover {
+    background-color: #f8fafc !important;
+    transform: translateX(4px) !important;
+}
+
+/* メタ（バッジ部分） */
+.index-archive-card .hub-index-meta {
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+    width: 95px !important;
+    margin-right: 20px !important;
+}
+
+/* 記事情報（タイトル） */
+.index-archive-card .hub-index-info {
+    flex-grow: 1 !important;
+    min-width: 0px !important;
+    overflow-x: hidden !important;
+}
+
+.index-archive-card .hub-index-info h4 {
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: 0px !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    color: #1e293b !important;
+    line-height: 1.5 !important;
+    white-space: normal !important;
+}
+
+.index-archive-card .hub-index-row:hover .hub-index-info h4 {
+    color: #2563eb !important;
+}
+
+/* 右端矢印 */
+.hub-index-arrow {
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+    margin-left: 15px !important;
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+    color: #cbd5e1 !important;
+    line-height: 1 !important;
+    transition-property: color, transform !important;
+    transition-duration: 0.2s !important;
+}
+
+.index-archive-card .hub-index-row:hover .hub-index-arrow {
+    color: #2563eb !important;
+    transform: translateX(3px) !important;
+}
+
+/* 注記 */
+.index-archive-note {
+    font-size: 0.8rem !important;
+    color: #94a3b8 !important;
+    text-align: center !important;
+    margin-top: 30px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: 0px !important;
+}
+
+/* 6. レスポンシブ（スマホ対応） */
+@media (max-width: 768px) {
+    .index-archive-card {
+        padding-top: 30px !important;
+        padding-right: 18px !important;
+        padding-bottom: 25px !important;
+        padding-left: 18px !important;
+        border-top-left-radius: 16px !important;
+        border-top-right-radius: 16px !important;
+        border-bottom-right-radius: 16px !important;
+        border-bottom-left-radius: 16px !important;
+    }
+
+    .index-archive-title {
+        font-size: 1.35rem !important;
+    }
+
+    .index-archive-card .hub-index-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        padding-top: 14px !important;
+        padding-bottom: 14px !important;
+        position: relative !important;
+    }
+
+    .index-archive-card .hub-index-meta {
+        width: auto !important;
+        margin-right: 0px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .index-archive-card .hub-index-info {
+        width: 100% !important;
+        padding-right: 25px !important;
+        box-sizing: border-box !important;
+    }
+
+    .index-archive-card .hub-index-info h4 {
+        font-size: 0.95rem !important;
+    }
+
+    .index-archive-card .hub-index-arrow {
+        position: absolute !important;
+        right: 8px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        margin-left: 0px !important;
+    }
+
+    .index-archive-card .hub-index-row:hover .hub-index-arrow {
+        transform: translateY(-50%) translateX(2px) !important;
+    }
+}

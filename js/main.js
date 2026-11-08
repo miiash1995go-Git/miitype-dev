@@ -1705,18 +1705,39 @@ if (typeof gtag === 'function') {
                 });
             }
 
-            function render(filter) {
+            // カテゴリ定義マッピングの補完（windows/word/excelをPCスキルへ統一）
+            const categoryMap = {
+                'typing': 'タイピング',
+                'pcskills': 'PCスキル',
+                'windows': 'PCスキル',
+                'word': 'PCスキル',
+                'excel': 'PCスキル',
+                'ai': '生成AI',
+                'career': '就職・転職',
+                'column': '現場コラム'
+            };
+
+            let currentFilter = initialCat;
+            let currentSearchQuery = '';
+            const searchInput = section.querySelector('#article-search-input');
+
+            function render() {
                 if (!listBody) return;
                 listBody.innerHTML = "";
                 listBody.scrollTop = 0;
 
-                let filtered = [];
-                if (filter === 'all') {
-                    filtered = articleData;
-                } else if (filter === 'pcskills') {
-                    filtered = articleData.filter(a => a.category === 'windows' || a.category === 'word' || a.category === 'excel');
-                } else {
-                    filtered = articleData.filter(a => a.category === filter);
+                let filtered = articleData;
+
+                // 1. カテゴリ絞り込み
+                if (currentFilter === 'pcskills') {
+                    filtered = filtered.filter(a => a.category === 'windows' || a.category === 'word' || a.category === 'excel' || a.category === 'pcskills');
+                } else if (currentFilter !== 'all') {
+                    filtered = filtered.filter(a => a.category === currentFilter);
+                }
+
+                // 2. タイトル検索絞り込み（大文字・小文字不問・前後空白除去）
+                if (currentSearchQuery) {
+                    filtered = filtered.filter(a => a.title.toLowerCase().indexOf(currentSearchQuery) !== -1);
                 }
                 
                 if (filtered.length === 0) {
@@ -1728,6 +1749,7 @@ if (typeof gtag === 'function') {
                     '<a href="' + a.url + '" class="hub-index-row">' +
                     '<div class="hub-index-meta"><span class="news-tag tag-' + a.category + '">' + (categoryMap[a.category] || a.category) + '</span></div>' +
                     '<div class="hub-index-info"><h4>' + a.title + '</h4></div>' +
+                    '<span class="hub-index-arrow">›</span>' +
                     '</a>'
                 ).join('');
             }
@@ -1738,10 +1760,19 @@ if (typeof gtag === 'function') {
                 e.preventDefault();
                 section.querySelectorAll('.hub-index-tab').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                render(btn.getAttribute('data-filter'));
+                currentFilter = btn.getAttribute('data-filter') || 'all';
+                render();
             };
 
-            render(initialCat);
+            // トップページ用：検索入力欄が存在する場合のみイベントリスナーを安全に接続
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    currentSearchQuery = this.value.trim().toLowerCase();
+                    render();
+                });
+            }
+
+            render();
 
         } catch (err) { console.error("Index System Error:", err); }
     }
