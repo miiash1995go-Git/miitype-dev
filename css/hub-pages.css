@@ -1328,10 +1328,6 @@ html {
     line-height: 1.3;
 }
 
-.hub-jump-card__name--yellow {
-    color: #d97706;
-}
-
 /* 一言説明 */
 .hub-jump-card__desc {
     font-size: 0.78rem;
