@@ -264,10 +264,10 @@ handleResize() {
 
                 // カテゴリ別の制限設定
                 if (this.currentCategoryId === 'tenkey') {
-                    this.targetLimit = 250; // テンキーは250文字へ拡張
-                    this.timeLimitMs = 150000; // 150秒（2分30秒）制限
+                    this.targetLimit = 230; // テンキーは230文字へ拡張
+                    this.timeLimitMs = 180000; // 180秒制限
                 } else if (this.currentCategoryId === 'roman_pure' || this.currentCategoryId === 'roman_complex') {
-                    this.targetLimit = 250;
+                    this.targetLimit = 230;
                     this.timeLimitMs = 180000;
                 } else if (this.currentCategoryId === 'speed') {
                     this.targetLimit = 99999; // 文字数制限なし（時間まで無制限に打てる）
