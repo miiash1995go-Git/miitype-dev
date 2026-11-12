@@ -731,18 +731,57 @@ body .back-to-top:hover {
     border: none !important;
 }
 
+/* --- 共通フッター：画面全幅・白バー仕様 (v20.14.FooterFullWidth) --- */
 footer { 
-    width: 100%;
     background-color: #ffffff;
-    padding: 40px 0; 
+    width: 100vw;
+    margin-top: 0px;
+    margin-right: calc(50% - 50vw);
+    margin-bottom: 0px;
+    margin-left: calc(50% - 50vw);
+    padding-top: 40px;
+    padding-right: 0px;
+    padding-bottom: 40px;
+    padding-left: 0px;
     text-align: center;
-    border-top: none;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #e2e8f0;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    box-sizing: border-box;
 }
 
-.footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 3px; width: 100%; }
-.footer-links a { color: var(--primary); text-decoration: none; font-size: 0.8rem; }
-.footer-links a:hover { color: var(--accent); }
-footer p { font-size: 0.75rem; color: #7f8c8d; margin: 2px 0 0 0; }
+.footer-links { 
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 3px;
+    margin-left: 0px;
+    width: 100%; 
+}
+
+.footer-links a { 
+    color: var(--primary); 
+    text-decoration: none; 
+    font-size: 0.8rem; 
+}
+
+.footer-links a:hover { 
+    color: var(--accent); 
+}
+
+footer p { 
+    font-size: 0.75rem; 
+    color: #7f8c8d; 
+    margin-top: 2px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
 
 /* --- 学習ポータル用追加定義 (v19.9.12) --- */
 
