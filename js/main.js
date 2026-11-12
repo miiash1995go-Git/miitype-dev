@@ -264,16 +264,16 @@ handleResize() {
 
                 // カテゴリ別の制限設定
                 if (this.currentCategoryId === 'tenkey') {
-                    this.targetLimit = 200; // テンキーは200文字
-                    this.timeLimitMs = 180000;
+                    this.targetLimit = 250; // テンキーは250文字へ拡張
+                    this.timeLimitMs = 150000; // 150秒（2分30秒）制限
                 } else if (this.currentCategoryId === 'roman_pure' || this.currentCategoryId === 'roman_complex') {
-                    this.targetLimit = 200;
+                    this.targetLimit = 250;
                     this.timeLimitMs = 180000;
                 } else if (this.currentCategoryId === 'speed') {
                     this.targetLimit = 99999; // 文字数制限なし（時間まで無制限に打てる）
                     this.timeLimitMs = 120000; // 120秒（2分）
                 } else {
-                    this.targetLimit = 320;
+                    this.targetLimit = 350;
                     this.timeLimitMs = 240000;
                 }
 
@@ -883,11 +883,12 @@ if (success) {
             const cpm = Math.floor(this.totalTypedCount / (sec / 60)) || 0;
             const accNumRaw = (this.totalTypedCount > 0) ? ((this.totalTypedCount - this.totalMissedCount) / this.totalTypedCount) * 100 : 0;
             
-            // 【究極修正】採点アルゴリズム：3乗から2乗へ（マイルド化）
-            const score = Math.floor(cpm * (Math.max(0, accNumRaw)/100)**2);
+            // 【採点アルゴリズム】テンキーは正確性重視のため3乗、その他はマイルドな2乗
+            const accPower = (this.currentCategoryId === 'tenkey') ? 3 : 2;
+            const score = Math.floor(cpm * (Math.max(0, accNumRaw)/100)**accPower);
             
             // 【れんぞくモード判定】通常モードはスコア基準、れんぞくは最大連続成功数基準
-            const rank = (this.currentCategoryId === 'renzoku') 
+            const rank = (this.currentCategoryId === 'renzoku')
                 ? this.getRenzokuRank(this.maxConsecutiveSuccess) 
                 : this.getRank(score);
             
