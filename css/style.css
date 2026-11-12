@@ -384,11 +384,11 @@ body.portal-page #app {
     .index-hero { width: 100%; margin-bottom: 20px; }
 }
 
-/* --- 統合ヘッダー：画面全幅・白バー仕様 (portal-page限定絶縁版) --- */
+/* --- 統合ヘッダー：画面全幅・白バー仕様 (天井吸着・最上部隙間ゼロ版) --- */
 body.portal-page header {
     background-color: #ffffff;
     width: 100vw;
-    margin-top: 0px;
+    margin-top: -10px;
     margin-right: calc(50% - 50vw);
     margin-bottom: 25px;
     margin-left: calc(50% - 50vw);
