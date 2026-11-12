@@ -2176,7 +2176,7 @@ body.portal-page .content-body table.setup-table td {
     color: #ffffff !important;
 }
 
-/* 5. 記事リストコンテナ */
+/* 5. 記事リストコンテナ（10件インナースクロール仕様） */
 .index-archive-list {
     display: flex !important;
     flex-direction: column !important;
@@ -2185,6 +2185,30 @@ body.portal-page .content-body table.setup-table td {
     margin-right: 0px !important;
     margin-bottom: 0px !important;
     margin-left: 0px !important;
+    padding-top: 0px !important;
+    padding-right: 6px !important;
+    padding-bottom: 0px !important;
+    padding-left: 0px !important;
+    max-height: 620px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: #cbd5e1 transparent !important;
+    box-sizing: border-box !important;
+}
+
+/* スクロールバー装飾（Webkit系） */
+.index-archive-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.index-archive-list::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 /* 記事行 */
@@ -2294,6 +2318,11 @@ body.portal-page .content-body table.setup-table td {
 
     .index-archive-title {
         font-size: 1.35rem !important;
+    }
+
+    .index-archive-list {
+        max-height: 480px !important;
+        padding-right: 2px !important;
     }
 
     .index-archive-card .hub-index-row {
