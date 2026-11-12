@@ -560,18 +560,20 @@ body.game-body #keyboard-container {
     border-bottom-width: 1px !important;
 }
 
-/* 指別パステルカラー */
-.key[class*="f-"] { color: #57606f; }
-.key.f-lp { background-color: #ffdce0; }
-.key.f-lr { background-color: #fff3d6; }
-.key.f-lm { background-color: #e2f9e1; }
-.key.f-li { background-color: #e2e9ff; } /* 左人差し指：青 */
-.key.f-ri { background-color: #f0e1ff; } /* 右人差し指：紫 */
-.key.f-rm { background-color: #e2f9e1; }
-.key.f-rr { background-color: #fff3d6; }
-.key.f-rp { background-color: #ffdce0; }
-/* 右手親指用：濃いめのパステルブルー (v20.8.12.Blue) */
-.key.f-rt { background-color: #a2d2ff; }
+/* 指別パステルカラー（ノートPC白飛び防止・高コントラスト視認性強化版） */
+.key[class*="f-"] { 
+    color: #1e293b; 
+    font-weight: 800;
+}
+.key.f-lp { background-color: #fecdd3; } /* 小指：コーラルピンク */
+.key.f-lr { background-color: #fde68a; } /* 薬指：アンバーイエロー */
+.key.f-lm { background-color: #bbf7d0; } /* 中指：フレッシュミント */
+.key.f-li { background-color: #bfdbfe; } /* 左人差し指：スカイブルー */
+.key.f-ri { background-color: #e9d5ff; } /* 右人差し指：ラベンダーパープル */
+.key.f-rm { background-color: #bbf7d0; } /* 右中指：フレッシュミント */
+.key.f-rr { background-color: #fde68a; } /* 右薬指：アンバーイエロー */
+.key.f-rp { background-color: #fecdd3; } /* 右小指：コーラルピンク */
+.key.f-rt { background-color: #93c5fd; } /* 親指：明瞭なオーシャンブルー */
 
 /* 結果画面コンテナ：360pxへ圧縮し、少し上に引き上げる */
 .result-container {
@@ -1313,16 +1315,25 @@ body.game-body .summary-btn:hover {
     justify-content: center;
 }
 
-/* 共通キー設定の初期化 */
+/* 共通キー設定の初期化（数字コントラスト・境界輪郭強化版） */
 #keyboard-container.tenkey-mode .tk-key {
     width: 100% !important;
     height: 100% !important;
-    margin: 0 !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: 0px !important;
     display: flex !important;
     align-items: center;
     justify-content: center;
     box-sizing: border-box !important;
-    font-size: 0.85rem !important; /* 文字サイズを通常キーに合わせる */
+    font-size: 0.9rem !important;
+    font-weight: 900 !important;
+    color: #0f172a !important;
+    border-top-color: #cbd5e1 !important;
+    border-right-color: #cbd5e1 !important;
+    border-bottom-color: #94a3b8 !important;
+    border-left-color: #cbd5e1 !important;
 }
 
 /* 特殊キーの結合（スパン）定義 */
