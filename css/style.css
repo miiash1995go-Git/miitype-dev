@@ -384,17 +384,39 @@ body.portal-page #app {
     .index-hero { width: 100%; margin-bottom: 20px; }
 }
 
+/* --- 統合ヘッダー：アイスブルー帯 ＆ 境界統治 (v20.14.HeaderIceBlue) --- */
+header {
+    background-color: #f0f7ff;
+    width: 100%;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #d1e3f8;
+    border-left-style: none;
+    box-shadow: 0px 2px 10px rgba(52, 152, 219, 0.06);
+    box-sizing: border-box;
+}
+
 /* 共通インナー：常に横並びを絶対死守 */
 .header-inner {
     max-width: 1024px;
+    margin-top: 0px;
     margin-right: auto;
+    margin-bottom: 0px;
     margin-left: auto;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-between;
     padding-top: 10px;
+    padding-right: 15px;
     padding-bottom: 10px;
+    padding-left: 15px;
     box-sizing: border-box;
 }
 
