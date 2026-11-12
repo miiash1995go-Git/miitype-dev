@@ -384,8 +384,8 @@ body.portal-page #app {
     .index-hero { width: 100%; margin-bottom: 20px; }
 }
 
-/* --- 統合ヘッダー：画面全幅・白バー仕様 (v20.14.HeaderFullWidthWhite) --- */
-header {
+/* --- 統合ヘッダー：画面全幅・白バー仕様 (portal-page限定絶縁版) --- */
+body.portal-page header {
     background-color: #ffffff;
     width: 100vw;
     margin-top: 0px;
@@ -731,8 +731,8 @@ body .back-to-top:hover {
     border: none !important;
 }
 
-/* --- 共通フッター：画面全幅・白バー仕様 (v20.14.FooterFullWidth) --- */
-footer { 
+/* --- 共通フッター：画面全幅・白バー仕様 (portal-page限定絶縁版) --- */
+body.portal-page footer { 
     background-color: #ffffff;
     width: 100vw;
     margin-top: 0px;
