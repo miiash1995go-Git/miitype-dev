@@ -360,7 +360,7 @@ if (success) {
             if (this.currentCategoryId === 'test_5min') {
                 unitText = "文字";
             } else if (this.currentCategoryId === 'renzoku') {
-                unitText = "連続";
+                unitText = "問クリア";
             }
             
             // 数値と単位に個別のタグを割り当てて視認性を向上
