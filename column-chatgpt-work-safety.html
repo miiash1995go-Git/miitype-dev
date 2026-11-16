@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仕事でChatGPTを使っても大丈夫？会社のルールと情報漏洩を防ぐ注意点｜ぱそトレ！</title>
+    <meta name="description" content="仕事でChatGPTを使っても大丈夫？会社のルール確認、入力してはいけない情報、データ管理設定、会社にバレる条件など、初心者が安心して生成AIを活用するための注意点を現役パソコン講師が解説します。">
+    <link rel="canonical" href="https://miitype.com/column-chatgpt-work-safety.html">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- 1. アドセンス（全ページ共通規格） -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
+
+    <!-- 2. 管理者除外スクリプト -->
+    <script>
+        if (localStorage.getItem('pasotore_admin') === 'true') {
+            window['ga-disable-G-KWS4RPPBVV'] = true;
+            console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
+        }
+    </script>
+     
+    <!-- 3. Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
+    <!-- 4. CSS資産（正典） -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
+    <link rel="stylesheet" href="css/hub-pages.css">
+</head>
+<body class="portal-page">
+    <div id="app">
+        <!-- 統合ハブ対応ヘッダー -->
+        <header>
+            <div class="header-inner">
+                <!-- 左：ロゴ（バッジ込み） -->
+                <a href="./" class="header-logo-link">
+                    <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
+                </a>
+
+                <!-- 右：ナビ -->
+                <nav class="header-nav">
+                    <div class="nav-grid">
+                        <!-- 上段3つ -->
+                        <a href="./" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                        <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                        <a href="hub-pcskills.html" class="nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>PCスキル</span></a>
+                        <!-- 下段3つ -->
+                        <a href="hub-ai.html" class="nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                        <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                        <a href="hub-column.html" class="nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                    </div>
+
+                    <!-- スマホ用メニューボタン：ハンバーガー ＋ メニューラベル -->
+                    <button class="mobile-menu-trigger" id="mobile-menu-btn">
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="menu-label">メニュー</span>
+                    </button>
+                </nav>
+            </div>
+
+            <!-- スマホ全画面メニュー本体：初期状態はCSSで非表示 -->
+            <div class="mobile-nav-overlay" id="mobile-menu-overlay">
+                <button class="menu-close-btn" id="menu-close-btn">×</button>
+                <div class="mobile-nav-grid">
+                    <a href="./" class="mobile-nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                    <a href="hub-typing.html" class="mobile-nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                    <a href="hub-pcskills.html" class="mobile-nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>PCスキル</span></a>
+                    <a href="hub-ai.html" class="mobile-nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                    <a href="hub-career.html" class="mobile-nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                    <a href="hub-column.html" class="mobile-nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                </div>
+            </div>
+        </header>
+
+        <main class="portal-main">
+            <article class="static-page">
+                <nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
+
+                <h1 class="page-title">仕事でChatGPTを使っても大丈夫？</h1>
+                <p class="page-subtitle">会社のルール確認と情報漏洩を防ぐための注意点</p>
+
+                <div class="content-body">
+                    <p>「ChatGPT、仕事で使ってみたいけど……」</p>
+                    <p>そう思っていても、なかなか使い始められない方はいると思います。</p>
+                    <p>便利そうなのは分かる。</p>
+                    <p>でも、仕事で使うとなると、少し心配になりますよね。</p>
+                    <p>「会社に黙って使って、怒られないだろうか」</p>
+                    <p>「使っていることが会社にバレたら、どうなるんだろう」</p>
+                    <p>「仕事の内容を入力したら、外に漏れたりしないだろうか」</p>
+                    <p>こうした不安は、もっともです。</p>
+                    <p>会社によってルールは違いますし、仕事の情報を扱う以上、慎重になるのは当然です。</p>
+                    <p>一方で、生成AIは少しずつ仕事の現場にも取り入れられています。</p>
+                    <p>文章の作成や資料の整理、情報の確認など、使い方によっては業務の負担を減らすこともできます。</p>
+                    <p>せっかく便利な道具があるのに、何となく怖いという理由だけで使わないのも、少しもったいない話です。</p>
+                    <p>大切なのは、いきなり使い始めることではありません。</p>
+                    <p>まずは、何を確認すればよいのかを知ることです。</p>
+                    <p>この記事では、仕事でChatGPTを使う前に確認しておきたいことを3つに分けて説明します。</p>
+                    <p>後半では、会社に利用が分かるケースや、最初に試しやすい使い方も紹介します。</p>
+
+                    <h2>1．最初に確認するのは、会社のルール</h2>
+                    <p>最初に確認するのは、ChatGPTの使い方ではありません。</p>
+                    <p>自分の会社に、生成AIを利用するためのルールがあるかどうかです。</p>
+                    <p>就業規則や情報セキュリティに関する社内の決まりの中に、「生成AI」「ChatGPT」といった項目が設けられている会社もあります。</p>
+                    <p>一方で、会社によっては、まだ生成AIの利用ルールが明確に決まっていない場合もあります。</p>
+                    <p>ただし、ルールが見当たらないからといって、自由に使ってよいとは限りません。</p>
+                    <p>判断に迷う場合は、上司やシステム担当者に確認しておきましょう。</p>
+                    <p>確認するときは、次の順番で進めると分かりやすいです。</p>
+                    <ol>
+                        <li>就業規則や社内の決まりに、生成AIに関する項目がないか探す</li>
+                        <li>分からなければ、上司やパソコン・システムの担当者に聞く</li>
+                        <li>聞くときは「何に使いたいか」を具体的に伝える</li>
+                    </ol>
+                    <p>特に3つ目が大切です。</p>
+                    <p>「ChatGPTを使ってもいいですか」とだけ聞かれても、会社側も判断に困ることがあります。</p>
+                    <p>例えば、「メールの下書きを作るために使いたい」「長い文章を要約するために使いたい」といったように、用途を具体的に伝えると話が進みやすくなります。</p>
+                    <p>聞き方の例を挙げておきます。</p>
+
+                    <div class="content-box">
+                        <p style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">
+                            業務でChatGPTを使いたいのですが、社内で決まりはありますか。使うとしたら、メールの下書きや文章の要約などに利用したいと考えています。個人情報や社外秘の内容は入力しないつもりです。
+                        </p>
+                    </div>
+
+                    <p>ここまで伝えれば、会社側も「何を、どのように使いたいのか」が分かるので判断しやすくなります。</p>
+                    <p>許可をもらうためだけではありません。</p>
+                    <p>後になって「知らなかった」と困らないためにも、最初に確認しておくことが大切です。</p>
+
+                    <h3>実際に仕事でAIを使っている人の声</h3>
+                    <p>パソコンの学習をしている方の中にも、実際に職場で生成AIを使っている人がいます。</p>
+                    <p>話を聞いてみると、使い方はさまざまです。</p>
+
+                    <div class="info-note-box">
+                        <p>・「上司に許可を取れたので使ってみたら、読みやすい文章を作ることができた」</p>
+                        <p>・「会社のアカウントで使うことになっていた。人に読んでもらえる資料を作ってもらえたことに驚いた」</p>
+                        <p>・「社外秘の情報を入力してはいけないことを知った。質問の仕方によって回答がはっきり変わるのがおもしろい」</p>
+                        <p style="margin-bottom: 0px;">・「うちの会社ではMicrosoftのCopilotを使っている。会社から利用するように指示されている」</p>
+                    </div>
+
+                    <p>このように、会社によって使っているAIも、利用の仕方も違います。</p>
+                    <p>ChatGPTだけが生成AIではありません。</p>
+                    <p>会社によってはMicrosoft Copilotなど、別のサービスを指定している場合もあります。</p>
+                    <p><span class="marker-yellow">大事なのは、個人で好きなサービスを選んで使うことではなく、会社が認めている環境やルールに合わせて利用することです。</span></p>
+
+                    <h2>2．入れてはいけない情報を分ける</h2>
+                    <p>会社のルールと並んで大切なのが、「何を入力するか」という線引きです。</p>
+                    <p>ChatGPTは、質問した内容をもとに回答を作ってくれます。</p>
+                    <p>仕事の相談にも使えますが、入力する情報には注意が必要です。</p>
+                    <p>例えば、次のような情報は入力を避けるべきものです。</p>
+                    <ul>
+                        <li>お客様や取引先の名前、住所、電話番号など、個人が分かる情報</li>
+                        <li>売上や契約金額など、社外に公開されていない数字</li>
+                        <li>まだ発表されていない商品・企画・人事の情報</li>
+                        <li>パスワードやログインに使う情報</li>
+                        <li>会社の内部資料や、社外秘として扱われている内容</li>
+                    </ul>
+                    <p>こうした情報を含まない相談なら、始めやすいものも多くあります。</p>
+                    <p>例えば、自分で書いた文章の言い換えや、一般的なメールの書き方、仕事で使う言葉の意味を調べるといった使い方です。</p>
+                    <p>どうしても仕事の内容に触れる相談をしたい場合は、会社名や個人名を伏せる、数字を大まかな表現に変える、といった工夫で、直接特定できる情報を減らすことはできます。</p>
+                    <p>ただし、それだけで安全になるわけではありません。</p>
+
+                    <h3>入力内容を比べてみよう</h3>
+                    <p>例えば、取引先への納期遅延のお詫びメールを作りたい場合です。</p>
+
+                    <div class="naming-comparison">
+                        <div class="naming-card naming-card--bad">
+                            <span class="naming-badge">避けたい</span>
+                            <div class="naming-content">
+                                <span class="naming-example">山田商事の田中様あてに、納期遅延のお詫びメールを書いてください。契約金額は850万円で、納品予定日は11月25日です。</span>
+                            </div>
+                        </div>
+                        <div class="naming-card naming-card--good">
+                            <span class="naming-badge">始めやすい</span>
+                            <div class="naming-content">
+                                <span class="naming-example">取引先あてに、納期が遅れるときのお詫びメールの型を教えてください。相手に失礼のない丁寧な文章にしてください。</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>聞きたいことは同じでも、実名や具体的な金額などを入力するかどうかで、情報の扱いは大きく変わります。</p>
+                    <p>まずはメールの型だけを作ってもらい、具体的な会社名や日付などは、自分の手元で当てはめればよいのです。</p>
+                    <p>ただし、ここで一つ注意しておきたいことがあります。</p>
+                    <p><span class="marker-yellow"><strong>名前を伏せれば、何でも入力してよいわけではありません。</strong></span></p>
+                    <p>例えば、会社独自の新商品に関する企画や、まだ発表されていない人事情報などは、会社名や個人名を消しても機密情報であることに変わりはありません。</p>
+                    <p>また、名前がなくても、地域や時期、数字などの組み合わせから、会社や個人が推測できてしまう場合もあります。</p>
+                    <p>会社のルールで入力してはいけないとされている情報は、名前を伏せたり、数字を変えたりしても入力しないでください。</p>
+                    <p>匿名化する工夫は、あくまで「入力してよい範囲の中で、個人や会社を特定できる情報を減らすための方法」です。</p>
+                    <p>線引きに迷ったら、「この内容を社外の人に見せても大丈夫か」と考えてみてください。</p>
+                    <p>少しでも判断に迷う内容なら、その部分は入力せず、一般的な質問に置き換えるほうが安心です。</p>
+
+                    <h2>3．ChatGPT側の設定も、1つ確認しておく</h2>
+                    <p>3つ目は、ChatGPT側の設定です。</p>
+                    <p>確認するのは、「設定」の「データコントロール」にある<strong>「モデル改善に協力する」</strong>という設定項目です。</p>
+                    <p>この項目には、「チャットをモデルの学習に使用するかどうかを設定」という説明があります。</p>
+
+                    <div class="instructor-advice instructor-advice--ai">
+                        <b>💡 設定の最新仕様（2026年11月16日時点）</b><br>
+                        <p style="margin-top: 10px;">「モデル改善に協力する」という項目の中に、「すべての人のためにモデルを改善する」という設定があり、オン・オフを切り替える形になっています。</p>
+                        <p style="margin-bottom: 0px;">これは、自分の会話の内容を、ChatGPTのモデル改善に利用するかどうかを選ぶ設定です。</p>
+                    </div>
+
+                    <p>無料版・Plus・Proなどの個人向けプランでは、この設定が初期状態でオンになっています。</p>
+                    <p>オフにすると、その後の会話はモデルの改善に使われなくなります。</p>
+                    <p>なお、設定をオフにしても、会話の履歴自体は残ります。</p>
+
+                    <h3>設定の確認方法</h3>
+                    <p>パソコンのブラウザから利用している場合は、次の順番で確認できます。</p>
+                    <ol>
+                        <li>ChatGPTのアカウントメニューを開く</li>
+                        <li>「設定」を選ぶ</li>
+                        <li>「データコントロール」を開く</li>
+                        <li>「モデル改善に協力する」の項目を確認する</li>
+                        <li>「すべての人のためにモデルを改善する」のオン・オフを確認する</li>
+                    </ol>
+                    <p>スマートフォンのアプリでも、基本的には「設定」から「データコントロール」を開いて確認します。</p>
+                    <p>設定の名称や場所は、サービスのアップデートで変更されることがあります。</p>
+                    <p>画面に同じ項目が見つからない場合は、OpenAIの公式ヘルプで最新の手順を確認してください。</p>
+                    <p>・OpenAI公式ヘルプ：<a href="https://help.openai.com/ja-jp/articles/7730893-data-controls-in-chatgpt" target="_blank" rel="noopener noreferrer">ChatGPT のデータ管理</a></p>
+                    <p>ここで、誤解しないでほしいことがあります。</p>
+                    <p><span class="marker-yellow"><strong>この設定をオフにしても、「会社の機密情報を入力してよい」ということにはなりません。</strong></span></p>
+                    <p>この設定で変更できるのは、会話がモデルの改善に使われるかどうかです。</p>
+                    <p>入力した内容がOpenAI側で処理されること自体がなくなるわけではありません。</p>
+                    <p>会社のルールが優先されることも変わりません。</p>
+                    <p>設定を確認することと、入力してはいけない情報を理解すること。</p>
+                    <p>この2つは別々に押さえておきましょう。</p>
+
+                    <h2>4．「バレるかどうか」は、使う環境で決まる</h2>
+                    <p>仕事でChatGPTを使うとき、不安の中でも特に気になるのが「会社にバレるのか」ということではないでしょうか。</p>
+                    <p>これは、どのような環境で使っているかによって違います。</p>
+                    <p>大きく3つに分けて考えてみましょう。</p>
+
+                    <h3>① 個人のスマホ・自宅のパソコンで、個人のアカウントを使う場合</h3>
+                    <p>自分のスマートフォンや自宅のパソコンから、個人のアカウントでChatGPTを利用している場合、その会話が会社に自動的に通知されるような仕組みは、一般的にはありません。</p>
+                    <p>ただし、これは「仕事の情報を何でも入力してよい」という意味ではありません。</p>
+                    <p>個人のスマートフォンや自宅のパソコンを使っていても、会社の情報を外部サービスに入力してよいかどうかは、会社のルールに従う必要があります。</p>
+
+                    <h3>② 会社のパソコンや、会社のネットワークから使う場合</h3>
+                    <p>会社から貸与されたパソコンや、会社のネットワークを利用している場合は、少し事情が違います。</p>
+                    <p>会社の端末やネットワークは、会社の管理対象になっていることがあります。</p>
+                    <p>どのようなサービスを利用したか、どのような通信が行われたかなどを、会社側が確認できる環境もあります。</p>
+                    <p>個人のChatGPTアカウントを使っていても、会社のパソコンやネットワークを利用しているなら、個人のスマートフォンで使う場合と同じとは考えないほうがよいでしょう。</p>
+
+                    <h3>③ 会社から提供されたアカウントを使う場合</h3>
+                    <p>会社からChatGPTなどの法人向けアカウントが提供されている場合です。</p>
+                    <p>この場合は、会社の管理者が利用状況を確認できる設定になっていることがあります。</p>
+                    <p>会社の業務で使うことを前提に用意された環境なので、会社のルールや利用方法に従って使うことが基本です。</p>
+                    <p>会社によっては、ChatGPTではなくMicrosoft Copilotなど、別の生成AIサービスを指定していることもあります。</p>
+                    <p>このように、「会社にバレるかどうか」は、単純にChatGPTを使ったかどうかだけでは判断できません。</p>
+                    <p>どの端末を使っているのか、どのアカウントを使っているのか、会社のネットワークを利用しているのか。</p>
+                    <p>こうした条件によって違ってきます。</p>
+                    <p>だからこそ、仕事で利用する場合は、最初に会社のルールを確認しておくことが大切なのです。</p>
+
+                    <h2>5．最初に試すなら、機密に触れない使い方から</h2>
+                    <p>会社のルールや入力してはいけない情報が分かったら、いよいよChatGPTを使ってみましょう。</p>
+                    <p>ただし、最初から仕事の重要な資料を作ろうとする必要はありません。</p>
+                    <p>まずは、失敗しても困らないことから試してみるのがおすすめです。</p>
+                    <p>例えば、次のような使い方があります。</p>
+                    <ul>
+                        <li>自分で書いた文章を、丁寧な言い方に直してもらう</li>
+                        <li>長い案内文を、短く要約してもらう</li>
+                        <li>メールの下書きを作ってもらう</li>
+                        <li>分からない言葉や、Excelの関数の意味を聞いてみる</li>
+                    </ul>
+                    <p>こうした使い方なら、仕事の機密情報を持ち込まずに、AIが得意なことや苦手なことを知ることができます。</p>
+                    <p>例えば、メールの下書きなら、</p>
+
+                    <div class="content-box">
+                        <p style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;">
+                            「目上の取引先に、会議の日程変更をお願いするメールを作ってください。失礼のない丁寧な文章にしてください」
+                        </p>
+                    </div>
+
+                    <p>このように条件を伝えるだけでも、メールの型を作ってくれます。</p>
+                    <p>具体的な会社名や相手の名前、日時などは入力せず、作ってもらった文章に自分の手元で当てはめていけばよいのです。</p>
+
+                    <h3>まずは趣味や日常の調べものから使ってみる</h3>
+                    <p>仕事で使うことを考えると、少し構えてしまうかもしれません。</p>
+                    <p>そんなときは、まず自分の趣味や日常生活の中で使ってみるのもよい方法です。</p>
+                    <p>インターネットで検索するような感覚で、気になることを質問してみましょう。</p>
+                    <p>例えば、料理のレシピを聞いてみます。</p>
+
+                    <div class="content-box">
+                        <p>冷蔵庫に、じゃがいも2個、にんじん1本、たまご4個があります。</p>
+                        <p style="margin-bottom: 0px;">この材料を使って、短時間で作れて手間のかからない料理のレシピを手短に教えてください。</p>
+                    </div>
+
+                    <p>これだけでも、ChatGPTは条件に合った料理をいくつか提案してくれます。</p>
+                    <p>さらに、</p>
+                    <p>「洗い物を少なくしたい」</p>
+                    <p>「10分程度で作れるものがいい」</p>
+                    <p>「子どもでも食べやすい味付けにして」</p>
+                    <p>といった条件を追加すれば、回答も変わります。</p>
+                    <p>このように、質問に条件を加えたり、回答を見て追加で質問したりすることができます。</p>
+                    <p>最初から上手な質問を考える必要はありません。</p>
+                    <p>使っているうちに、「こう伝えると、欲しい答えに近づくんだな」という感覚が分かってきます。</p>
+                    <p>普段の調べものから少しずつ慣れていくと、仕事で使うときにも役立ちます。</p>
+
+                    <h2>6．AIの答えは、そのまま使わない</h2>
+                    <p>最後に、仕事でAIを使うときに忘れてはいけないことがあります。</p>
+                    <p><span class="marker-yellow"><strong>それは、AIが作った答えを、そのまま正しいと思い込まないことです。</strong></span></p>
+                    <p>ChatGPTは自然な文章で回答してくれます。</p>
+                    <p>説明も分かりやすく、まるで詳しい人に教えてもらっているように感じることがあります。</p>
+                    <p>しかし、回答の中に間違いが混ざることもあります。</p>
+                    <p>例えば、文章の流れは自然なのに、数字や日付が違っていたり、実在しない情報をもっともらしく説明したりすることがあります。</p>
+                    <p>特に仕事で使う場合は、次の3つを確認する習慣をつけておきましょう。</p>
+
+                    <div class="content-box">
+                        <p>・<strong>数字：</strong>金額や数量、割合などに間違いがないか</p>
+                        <p>・<strong>名前：</strong>会社名や人名、商品名などが正しいか</p>
+                        <p style="margin-bottom: 0px;">・<strong>日付：</strong>曜日や期限、予定日などが正しいか</p>
+                    </div>
+
+                    <p>文章の言い回しや構成を考えるのは、AIが得意なことの一つです。</p>
+                    <p>一方で、その内容が本当に正しいかどうかは、自分で確認する必要があります。</p>
+                    <p>AIにすべて任せるのではなく、下書きや相談相手として使う。</p>
+                    <p>そして最後は自分の目で確認する。</p>
+                    <p>この役割分担を忘れなければ、AIは仕事を助けてくれる心強い道具になります。</p>
+
+                    <!-- よくある質問（FAQボックス） -->
+                    <h2>よくある質問</h2>
+                    <div class="faq-box">
+                        <div class="faq-list">
+                            <div class="faq-list-item">
+                                <p class="faq-q">ChatGPTを仕事で使ったら、会社にバレますか？</p>
+                                <p class="faq-a">使う環境によって違います。個人のスマートフォンや自宅のパソコンから個人アカウントで利用する場合と、会社のパソコンやネットワーク、会社から提供されたアカウントを利用する場合では条件が異なります。詳しくは本文の「4．『バレるかどうか』は、使う環境で決まる」を確認してください。大切なのは、会社のルールに沿って利用することです。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">ChatGPTは無料版でも仕事に使えますか？</p>
+                                <p class="faq-a">文章の下書きや要約、一般的な調べものなどを試すのであれば、無料版でも使い始めることができます。ただし、会社で業務利用する場合は、無料版か有料版かにかかわらず、会社のルールを確認してください。データコントロールの設定も、使い始める前に確認しておきましょう。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">会社に生成AIの利用ルールがない場合は、どうすればいいですか？</p>
+                                <p class="faq-a">ルールが見当たらない場合は、上司やシステム担当者に確認するのが基本です。確認が取れるまでは、仕事の個人情報や社外秘の情報を入力しないようにしましょう。用途を具体的に伝えると、会社側も判断しやすくなります。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">AIに作ってもらった文章を、そのまま仕事で使ってもいいですか？</p>
+                                <p class="faq-a">そのまま使うのは避けましょう。文章が自然でも、数字や固有名詞などに間違いが含まれている場合があります。内容を確認したうえで、自分の言葉に整えてから使うことが大切です。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- まとめセクション -->
+                    <div class="summary-box">
+                        <h2 class="section-title--summary">まとめ</h2>
+                        <p>仕事でChatGPTを使ってみたいと思ったら、まずは次の3つを確認しましょう。</p>
+                        <ul>
+                            <li>会社に生成AIの利用ルールがあるか</li>
+                            <li>個人情報や社外秘など、入力してはいけない情報は何か</li>
+                            <li>ChatGPT側のデータコントロール設定はどうなっているか</li>
+                        </ul>
+                        <p>そして、使い始めるときは、いきなり重要な仕事に利用する必要はありません。</p>
+                        <p>まずは趣味や日常の調べものから試して、質問の仕方や回答の特徴に慣れていきましょう。</p>
+                        <p>仕事で利用するときは、会社のルールを守り、入力する情報に気をつけること。</p>
+                        <p>そして、AIの回答をそのまま信用せず、最後は自分で確認すること。</p>
+                        <p>便利な道具だからこそ、使い方を知っておくことが大切です。</p>
+                        <p>不安が残るうちは、無理に使う必要はありません。</p>
+                        <p style="margin-bottom: 0px;">確認できたところから、少しずつ試してみてください。</p>
+                    </div>
+
+                    <!-- この記事について -->
+                    <div class="info-note-box" style="margin-top: 40px; margin-bottom: 10px;">
+                        <strong class="note-title">この記事について</strong>
+                        <p>この記事は、パソコンスクールのインストラクターとして、就職を目指す方や働き始めた方を指導する中で、実際に聞くことの多い不安や、受講生から聞いた職場での利用経験をもとに作成しました。</p>
+                        <p>生成AIの設定や各社の利用ルールは変更されることがあります。実際に業務で利用する際は、勤務先の決まりと各サービスの公式案内を確認してください。</p>
+                        <p>運営者については<a href="about.html">運営者情報</a>をご覧ください。</p>
+                    </div>
+
+                    <!-- 記事末尾ナビゲーション -->
+                    <div class="summary-nav" style="margin-top: 40px;">
+                        <a href="column-chatgpt-basics.html" class="btn-main">ChatGPTの基本</a>
+                        <a href="hub-ai.html" class="summary-btn">生成AIガイドへ</a>
+                        <a href="./" class="summary-btn">ホームへ戻る</a>
+                    </div>
+
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="about.html">運営者情報</a>
+            </div>
+            <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
+        </footer>
+    </div>
+    <a href="#" id="back-to-top" class="back-to-top">↑</a>
+    <script src="js/main.js"></script>
+</body>
+</html>
