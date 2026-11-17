@@ -860,15 +860,16 @@ if (success) {
         
         const resScore = document.getElementById('res-score');
         const resRank = document.getElementById('result-rank');
-        
+
         // 2行タイトルの自動セット
         const groupMap = {'roman_pure':'基礎','roman_complex':'基礎','daily':'基礎','windows':'基礎','speed':'チャレンジ','renzoku':'チャレンジ','memory':'チャレンジ','quest':'チャレンジ','word':'実務','excel':'実務','business_ai':'実務','tenkey':'実務','test_5min':'実力判定','total_test':'実力判定'};
         const resCatName = document.getElementById('result-cat-name');
         const resContentName = document.getElementById('result-content-name');
         if (resCatName) resCatName.innerText = groupMap[this.currentCategoryId] || 'タイピング練習';
         if (resContentName) resContentName.innerText = this.manifest?.categories.find(c => c.id === this.currentCategoryId)?.name || this.currentCategoryId;
-        
+
         if(reason === "abort") {
+            if(resContentName) resContentName.innerText += "（中断）";
             if(resRank) {
                 resRank.innerText = "評価不可";
                 resRank.style.color = "#95a5a6";
@@ -883,8 +884,7 @@ if (success) {
             document.getElementById('res-miss').innerText = "0";
             document.getElementById('res-total').innerText = "0";
         } else {
-            if(resultTitle) resultTitle.innerText = "練習結果";
-            if(resRank) resRank.classList.remove('is-aborted'); // ★追加：中止クラスを消す
+            if(resRank) resRank.classList.remove('is-aborted');
             const sec = (performance.now() - this.startTime) / 1000;
             const cpm = Math.floor(this.totalTypedCount / (sec / 60)) || 0;
             const accNumRaw = (this.totalTypedCount > 0) ? ((this.totalTypedCount - this.totalMissedCount) / this.totalTypedCount) * 100 : 0;
