@@ -675,10 +675,51 @@ body.game-body #keyboard-container {
     height: 100% !important;
 }
 
-#result-title {
-    font-size: 1.3rem !important;
-    margin: 0 !important;
-    color: var(--primary);
+/* 結果画面タイトル2行表示統治 */
+.result-title-group {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 240px !important;
+    margin-top: 0px !important;
+    margin-right: auto !important;
+    margin-bottom: 0px !important;
+    margin-left: auto !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+}
+
+.result-cat-name {
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    color: #64748b !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 3px !important;
+    margin-left: 0px !important;
+    width: 100% !important;
+    white-space: nowrap !important;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.result-content-name {
+    font-size: 1.2rem !important;
+    font-weight: 900 !important;
+    color: #1e293b !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: 0px !important;
+    width: 100% !important;
+    white-space: nowrap !important;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+    text-overflow: ellipsis !important;
+    letter-spacing: -0.02em !important;
 }
 
 .rank-main-box {
@@ -716,10 +757,87 @@ body.game-body #keyboard-container {
     font-weight: 800;
 }
 
+/* ボタン2分割横並び配置（元の幅・高さを完全死守） */
 .result-action-area {
-    width: 100%;
-    text-align: center;
-    padding-bottom: 5px;
+    width: 100% !important;
+    text-align: center !important;
+    padding-top: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 5px !important;
+    padding-left: 0px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    box-sizing: border-box !important;
+}
+
+/* 左：もう一度ボタン（ネイビー） */
+.result-btn-retry {
+    width: 98px !important;
+    height: 38px !important;
+    min-width: 0px !important;
+    padding-top: 8px !important;
+    padding-right: 0px !important;
+    padding-bottom: 8px !important;
+    padding-left: 0px !important;
+    font-size: 0.85rem !important;
+    font-weight: 800 !important;
+    white-space: nowrap !important;
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+}
+
+/* 右：練習選択へボタン（白地＋ネイビー枠） */
+.result-btn-select {
+    width: 98px !important;
+    height: 38px !important;
+    min-width: 0px !important;
+    padding-top: 8px !important;
+    padding-right: 0px !important;
+    padding-bottom: 8px !important;
+    padding-left: 0px !important;
+    font-size: 0.85rem !important;
+    font-weight: 800 !important;
+    white-space: nowrap !important;
+    color: #1e293b !important;
+    background-color: #ffffff !important;
+    border-top-width: 1.5px !important;
+    border-right-width: 1.5px !important;
+    border-bottom-width: 1.5px !important;
+    border-left-width: 1.5px !important;
+    border-top-style: solid !important;
+    border-right-style: solid !important;
+    border-bottom-style: solid !important;
+    border-left-style: solid !important;
+    border-top-color: #1e293b !important;
+    border-right-color: #1e293b !important;
+    border-bottom-color: #1e293b !important;
+    border-left-color: #1e293b !important;
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+    cursor: pointer !important;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition-property: background-color, transform !important;
+    transition-duration: 0.15s !important;
+    box-sizing: border-box !important;
+}
+
+.result-btn-select:hover {
+    background-color: #f1f5f9 !important;
+    transform: translateY(-1px) !important;
 }
 
 /* 統計数値エリア */

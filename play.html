@@ -186,13 +186,17 @@
                         <div class="result-content-wrapper">
                             <!-- 左部：上・中・下に分離して配置 -->
                             <div class="rank-display-area">
-                                <h2 id="result-title">練習結果</h2>
+                                <div class="result-title-group" id="result-title-group">
+                                    <div id="result-cat-name" class="result-cat-name">練習カテゴリ</div>
+                                    <div id="result-content-name" class="result-content-name">練習結果</div>
+                                </div>
                                 <div class="rank-main-box">
                                     <div id="result-rank">-</div>
                                     <p>判定ランク</p>
                                 </div>
                                 <div class="result-action-area">
-                                    <button onclick="location.reload()" class="btn-main">もう一度挑戦</button>
+                                    <button id="btn-retry" class="btn-main result-btn-retry">もう一度</button>
+                                    <button id="btn-to-select" class="result-btn-select">練習選択へ</button>
                                 </div>
                             </div>
                             

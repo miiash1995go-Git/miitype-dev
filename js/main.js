@@ -328,6 +328,10 @@ if (success) {
             });
         }
 
+        // 結果画面のボタン
+        document.getElementById('btn-retry')?.addEventListener('click', () => this.restartPractice());
+        document.getElementById('btn-to-select')?.addEventListener('click', () => location.reload());
+
         window.addEventListener('keydown', (e) => {
             const isSpace = (e.key === " " || e.key === "Spacebar");
             const isEsc = (e.key === "Escape" || e.key === "Esc");
@@ -856,10 +860,15 @@ if (success) {
         
         const resScore = document.getElementById('res-score');
         const resRank = document.getElementById('result-rank');
-        const resultTitle = document.getElementById('result-title');
+        
+        // 2行タイトルの自動セット
+        const groupMap = {'roman_pure':'基礎','roman_complex':'基礎','daily':'基礎','windows':'基礎','speed':'チャレンジ','renzoku':'チャレンジ','memory':'チャレンジ','quest':'チャレンジ','word':'実務','excel':'実務','business_ai':'実務','tenkey':'実務','test_5min':'実力判定','total_test':'実力判定'};
+        const resCatName = document.getElementById('result-cat-name');
+        const resContentName = document.getElementById('result-content-name');
+        if (resCatName) resCatName.innerText = groupMap[this.currentCategoryId] || 'タイピング練習';
+        if (resContentName) resContentName.innerText = this.manifest?.categories.find(c => c.id === this.currentCategoryId)?.name || this.currentCategoryId;
         
         if(reason === "abort") {
-            if(resultTitle) resultTitle.innerText = "練習中止";
             if(resRank) {
                 resRank.innerText = "評価不可";
                 resRank.style.color = "#95a5a6";
@@ -1341,6 +1350,20 @@ if (typeof gtag === 'function') {
             "E": "大丈夫、ここから始まります。まずはローマ字の基本から、ゆっくり一緒に歩みましょう！"
         };
         return comments[rank] || "お疲れ様でした！次回の挑戦も応援しています。";
+    }
+
+    /**
+     * 同じカテゴリで即座に再挑戦する処理（全数値を完全初期化）
+     */
+    async restartPractice() {
+        document.getElementById('result-screen')?.classList.add('hidden');
+        if (this.testTimerId) clearInterval(this.testTimerId);
+        this.state = "START";
+        this.isTransitioning = false;
+        const success = await this.loadQuestions(this.currentCategoryId);
+        if (success) {
+            this.prepareReady();
+        }
     }
 } // ← 【重要】消えていたこの「クラスを閉じるカッコ」が全ての不具合の原因でした
 
