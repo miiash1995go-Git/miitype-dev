@@ -380,6 +380,18 @@ if (success) {
         document.body.classList.add('focus-mode');
         document.getElementById('start-screen').classList.add('hidden');
         document.getElementById('game-screen').classList.remove('hidden');
+
+        // 前回のステータス表示（ミス数・タイマー等）を確実に非表示＆「0」リセット
+        const statusBar = document.getElementById('play-status-bar');
+        if (statusBar) statusBar.classList.add('hidden');
+        const overlay = document.getElementById('test-info-overlay');
+        if (overlay) overlay.classList.add('hidden');
+
+        const missEl = document.getElementById('renzoku-ui-miss');
+        if (missEl) missEl.innerText = "0 / 5";
+        const streakEl = document.getElementById('renzoku-ui-streak');
+        if (streakEl) streakEl.innerText = "0問";
+
         const container = document.getElementById('typing-container');
         if (container) {
             container.innerHTML = `
@@ -1358,6 +1370,13 @@ if (typeof gtag === 'function') {
     async restartPractice() {
         document.getElementById('result-screen')?.classList.add('hidden');
         if (this.testTimerId) clearInterval(this.testTimerId);
+
+        // れんぞくモード等の内部カウントを確実に0クリア
+        this.renzokuMissCount = 0;
+        this.currentConsecutiveSuccess = 0;
+        this.maxConsecutiveSuccess = 0;
+        this.hasCurrentQuestionError = false;
+
         this.state = "START";
         this.isTransitioning = false;
         const success = await this.loadQuestions(this.currentCategoryId);
