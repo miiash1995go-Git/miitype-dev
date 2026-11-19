@@ -775,14 +775,14 @@ body.game-body #keyboard-container {
 
 /* 左：もう一度ボタン（ネイビー） */
 .result-btn-retry {
-    width: 98px !important;
-    height: 38px !important;
+    width: 115px !important;
+    height: 40px !important;
     min-width: 0px !important;
     padding-top: 8px !important;
     padding-right: 0px !important;
     padding-bottom: 8px !important;
     padding-left: 0px !important;
-    font-size: 0.85rem !important;
+    font-size: 0.9rem !important;
     font-weight: 800 !important;
     white-space: nowrap !important;
     border-top-left-radius: 20px !important;
@@ -797,14 +797,14 @@ body.game-body #keyboard-container {
 
 /* 右：練習選択へボタン（白地＋ネイビー枠） */
 .result-btn-select {
-    width: 98px !important;
-    height: 38px !important;
+    width: 115px !important;
+    height: 40px !important;
     min-width: 0px !important;
     padding-top: 8px !important;
     padding-right: 0px !important;
     padding-bottom: 8px !important;
     padding-left: 0px !important;
-    font-size: 0.85rem !important;
+    font-size: 0.9rem !important;
     font-weight: 800 !important;
     white-space: nowrap !important;
     color: #1e293b !important;
