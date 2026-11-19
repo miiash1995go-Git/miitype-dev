@@ -910,7 +910,13 @@ if (success) {
                 ? this.getRenzokuRank(this.maxConsecutiveSuccess) 
                 : this.getRank(score);
             
-            if (resScore) resScore.innerText = score; 
+            // 【スコア計算の分岐】れんぞくモード時は1問＝20点ベース（10問で約200点）にスケール調整
+            let finalScore = score;
+            if (this.currentCategoryId === 'renzoku') {
+                finalScore = Math.floor(this.maxConsecutiveSuccess * 20 * (Math.max(0, accNumRaw) / 100));
+            }
+
+            if (resScore) resScore.innerText = finalScore;
 
             // テストモード時はリザルト画面の情報を書き換える
             if (this.isTestMode) {
