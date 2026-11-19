@@ -955,7 +955,7 @@ if (typeof gtag === 'function') {
                 // [最終完全版] 全スタッツをGA4へ送信
                 gtag('event', 'typing_complete', {
                     'timestamp': new Date().getTime(),
-                    'score': score,                   /* スコア */
+                    'score': finalScore,              /* スコア（調整済みスコアを送信） */
                     'rank': rank,                     /* 判定ランク (A, S, Legend等) */
                     'category_name': categoryName,    /* カテゴリ名 */
                     'cpm': cpm,                       /* 打鍵速度 */
