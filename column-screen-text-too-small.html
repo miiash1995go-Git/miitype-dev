@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>パソコンの文字が小さいときの対処法｜Windows 11で文字・画面を大きくする｜ぱそトレ！</title>
+    <meta name="description" content="パソコンの文字が小さくて読みにくいときの対処法を、現役パソコン講師が解説。Windows 11のテキストサイズや表示倍率、ブラウザ・Word・Excelの拡大方法、画面の明るさや拡大鏡の使い方まで紹介します。">
+    <link rel="canonical" href="https://miitype.com/column-screen-text-too-small.html">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- アドセンス -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
+
+    <!-- 管理者除外スクリプト -->
+    <script>
+        if (localStorage.getItem('pasotore_admin') === 'true') {
+            window['ga-disable-G-KWS4RPPBVV'] = true;
+            console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
+        }
+    </script>
+     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
+</head>
+<body class="portal-page">
+    <div id="app">
+        <!-- 統合ヘッダー -->
+        <header>
+            <div class="header-inner">
+                <a href="./" class="header-logo-link">
+                    <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
+                </a>
+                <nav class="header-nav">
+                    <div class="nav-grid">
+                        <a href="./" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                        <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                        <a href="hub-pcskills.html" class="nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>PCスキル</span></a>
+                        <a href="hub-ai.html" class="nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                        <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                        <a href="hub-column.html" class="nav-item active"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                    </div>
+                    <button class="mobile-menu-trigger" id="mobile-menu-btn">
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="menu-label">メニュー</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="mobile-nav-overlay" id="mobile-menu-overlay">
+                <button class="mobile-close-btn" id="menu-close-btn">×</button>
+                <div class="mobile-nav-grid">
+                    <a href="./" class="mobile-nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                    <a href="hub-typing.html" class="mobile-nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                    <a href="hub-pcskills.html" class="mobile-nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>PCスキル</span></a>
+                    <a href="hub-ai.html" class="mobile-nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                    <a href="hub-career.html" class="mobile-nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                    <a href="hub-column.html" class="mobile-nav-item active"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                </div>
+            </div>
+        </header>
+
+        <main class="portal-main">
+            <article class="static-page">
+                <nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
+
+                <h1 class="page-title">パソコンの文字が小さいときの対処法</h1>
+                <p class="page-subtitle">見づらいのは、目のせいだけじゃありません。設定で変えられます</p>
+
+                <div class="content-body">
+                    <p>「文字が小さいんです」</p>
+                    <p>教室で、よく聞く一言です。</p>
+                    <p>言い出すまで我慢している方も多く、年齢を問わず、ノートパソコンの小さい画面では誰でも見づらくなります。</p>
+                    <p>見づらいのは、目のせいだけではありません。</p>
+                    <p>買ったときのままの設定で使っていることが、意外と多いのです。</p>
+                    <p>パソコンを買ったばかりの方は、<a href="guide-windows-first-steps.html">パソコン買ったら最初にやること</a>とあわせて、見やすさも最初に整えておくと後の作業が楽になります。</p>
+                    <p>この記事では、画面の文字を大きくする3つの方法を、試す順番に紹介します。</p>
+                    <p>設定を開かずその場で大きくする方法、文字だけ大きくする方法、画面全体を大きくする方法です。</p>
+                    <p>どれも、元に戻す方法までセットで覚えられます。</p>
+
+                    <div class="instructor-advice instructor-advice--column">
+                        <b>💡 講師のアドバイス：「見づらい」は、恥ずかしいことじゃありません</b><br>
+                        <p style="margin-top: 10px;">教室でも、言ってくれたほうが講師は教えやすいです。</p>
+                        <p>我慢して目を細めるより、まず設定を変えてみてください。</p>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <h2>まず、自分の「見づらい」はどれか</h2>
+                    <p>「見づらい」にも種類があります。</p>
+                    <p>当てはまるものから試すと、遠回りしません。</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>困りごと</th>
+                                <th>試す方法</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>今見ているページや文書だけ、小さくて読めない</td>
+                                <td>方法1（その場で大きくする）</td>
+                            </tr>
+                            <tr>
+                                <td>メニューやボタンの文字まで、いつも小さい</td>
+                                <td>方法2（テキストサイズ）</td>
+                            </tr>
+                            <tr>
+                                <td>画面の全部が小さく感じる</td>
+                                <td>方法3（表示倍率）</td>
+                            </tr>
+                            <tr>
+                                <td>文字は読めるのに、暗い・まぶしくて疲れる</td>
+                                <td>明るさの調整</td>
+                            </tr>
+                            <tr>
+                                <td>夜になると画面がまぶしい</td>
+                                <td>夜間モード</td>
+                            </tr>
+                            <tr>
+                                <td>住所や金額など、一か所だけ大きく読みたい</td>
+                                <td>拡大鏡</td>
+                            </tr>
+                            <tr>
+                                <td>マウスの矢印をよく見失う</td>
+                                <td>矢印の大きさと色</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p>どれか一つで解決しないときは、組み合わせても大丈夫です。</p>
+                    <p>たとえば表示倍率を125％にして、ブラウザだけさらに拡大する、という使い方もよくあります。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>方法1　今見ている画面だけ、すぐ大きくする</h2>
+                    <p>まず試してほしいのが、設定を開かなくても、その場で大きくする方法です。</p>
+                    <p>見ている画面だけに効くので、気軽に試せて、すぐ元に戻せます。</p>
+
+                    <h3>Word・Excelの場合</h3>
+                    <p>画面の右下にあるズームスライダーを動かすか、[表示]タブの[ズーム]から倍率を選びます。</p>
+                    <p>こちらも <kbd>Ctrl</kbd> キー＋ホイールで変えられます。</p>
+                    <p>老眼だと、小さい文字を追い続けるのは本当にしんどいです。</p>
+                    <p>私も老眼なので、WordやExcelでは右下のズームをよく使っています。</p>
+                    <p>見やすい大きさまで上げてしまうのが、いちばん手っ取り早い方法です。</p>
+                    <p>大事な区別がひとつあります。</p>
+                    <p>この方法で変わるのは<strong>画面の見え方だけ</strong>です。</p>
+                    <p>文書の文字そのものの大きさ（フォントサイズ）や、印刷したときの大きさは変わりません。</p>
+                    <p>文書の文字を大きくしたいときは、<a href="guide-word-basics.html">Word基本操作</a>のフォントサイズの話が別にあります。</p>
+
+                    <h3>Microsoft Edgeでの拡大方法</h3>
+                    <p><kbd>Ctrl</kbd> キーを押しながら <kbd>＋</kbd> キーで拡大、<kbd>－</kbd> キーで縮小、<kbd>0</kbd> キーで元の大きさに戻ります。</p>
+                    <p><kbd>Ctrl</kbd> キーを押しながらマウスのホイールを回しても変えられます。</p>
+                    <p>キーが苦手な場合は、画面右上の[設定とその他]（…）を開くと、[ズーム]の＋と－があります。</p>
+                    <p>Edgeは、サイトごとに拡大率を覚えてくれるので、よく見るサイトは一度大きくしておけば、次からはそのままの大きさで開きます。</p>
+
+                    <h3>Google Chromeでの拡大方法</h3>
+                    <p>Chromeも、操作はEdgeとほぼ同じです。</p>
+                    <p><kbd>Ctrl</kbd> キーを押しながら <kbd>＋</kbd> キーで拡大、<kbd>－</kbd> キーで縮小、<kbd>0</kbd> キーで元に戻ります。</p>
+                    <p><kbd>Ctrl</kbd> キー＋マウスのホイールでも変えられます。</p>
+                    <p>メニューから変える場合は、画面右上の[︙]を開いて、[ズーム]の＋と－を押します。</p>
+                    <p>Chromeも、サイトごとに拡大率を記憶します。</p>
+                    <p>よく見るサイトは、一度見やすい大きさにしておくと便利です。</p>
+
+                    <div class="info-note-box">
+                        <strong class="note-title">こんな場面で</strong>
+                        <p>以前、就職先を探していた受講生のお話です。</p>
+                        <p>求人サイトを見ながら仕事を探していたのですが、募集要項の文字が小さく、画面に顔を近づけて読んでいました。</p>
+                        <p>「ちょっと文字が小さくて、見づらいですね」</p>
+                        <p>そこで、画面を拡大する方法をお伝えしました。</p>
+                        <p>キーボードの Ctrl キーを押しながら、マウスのホイールを動かすだけです。</p>
+                        <p>すると、画面の文字が大きくなり、求人情報がずいぶん読みやすくなりました。</p>
+                        <p>「あっ、こんなに大きくできるんですね！」</p>
+                        <p>少し驚いた様子で、さっそく募集要項を確認されていました。</p>
+                        <p>求人情報には、仕事内容や勤務時間、応募条件など、確認しておきたい情報がたくさんあります。</p>
+                        <p>文字が小さいからといって、必要な情報を読み飛ばしてしまうのは避けたいところです。</p>
+                        <p>その後は、ご自身で文字の大きさを調整しながら求人を探されていました。</p>
+                        <p>後日、「これを知っているだけで、ずいぶん楽になりました」とお話しされていたのが印象に残っています。</p>
+                        <p>パソコンのスキルというと、WordやExcelで書類を作ることを思い浮かべるかもしれません。</p>
+                        <p><strong>でも、自分が困っていることを解決する操作も、大切なパソコンスキルです。</strong></p>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <h2>方法2　文字だけ大きくする（テキストサイズ）</h2>
+                    <p>「文字だけ大きくしたい」ときの、最初の一手です。</p>
+                    <p>開く場所は、[設定]→[アクセシビリティ]→[テキスト サイズ]です。</p>
+                    <p>スライダーを右へ動かして[適用]を押すと、タイトルバーやメニュー、アイコンの文字が大きくなります。</p>
+                    <p>この方法は、画面全体の表示倍率を変えずに文字を大きくできるのが特徴です。</p>
+                    <p>ただし、アプリによって反映のされ方が異なる場合があります。</p>
+                    <p>なお、設定画面の表記はWindowsのバージョンで変わる場合があります。</p>
+                    <p>「テキスト サイズ」「文字サイズ」のように表記が揺れることもあるので、近い名前の項目を探してみてください。</p>
+
+                    <div class="instructor-advice instructor-advice--column">
+                        <b>💡 講師のアドバイス：まず文字だけ大きくしてみてください</b><br>
+                        <p style="margin-top: 10px;">画面全体を変える前に、ここから試すと戻しやすいです。</p>
+                        <p>それでも足りないときは、次の方法3に進みます。</p>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <h2>方法3　画面全体を大きくする（表示倍率）</h2>
+                    <p>文字だけでは足りないときは、画面全体を大きくします。</p>
+                    <p>開く場所は、[設定]→[システム]→[ディスプレイ]→[拡大縮小]です。</p>
+                    <p>100%・125%・150%・175%などから選ぶと、文字もアイコンも画面全体が大きくなります。</p>
+                    <p>画面に合った選択肢が並び、「推奨」と表示されるものもあります。</p>
+                    <p>方法2との使い分けは、こうです。</p>
+                    <p>文字だけ読みにくいなら方法2、アイコンも小さくて押しにくいなら方法3。</p>
+                    <p>大きくしすぎたと感じたら、同じ場所から一段下げれば元に戻せます。</p>
+                    <p>選択肢の並びは、画面の大きさや解像度で変わります。</p>
+                    <p>カスタムの倍率は無理に使わなくて大丈夫です。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>画面の明るさも、見づらさの原因になる</h2>
+                    <p>文字の大きさを変えても見づらいときは、画面の明るさが合っていないことがあります。</p>
+                    <p>暗すぎると文字が読みにくく、明るすぎると目が疲れます。</p>
+                    <p>明るさも、設定で変えられます。</p>
+
+                    <h3>Windows 11の設定から変える</h3>
+                    <p>[設定]→[システム]→[ディスプレイ]を開くと、[明るさ]のスライダーがあります。</p>
+                    <p>右に動かすと明るく、左に動かすと暗くなります。</p>
+                    <p>すぐに変えたいときは、タスクバーの右側にあるネットワークや音量のアイコンを押して出る画面（クイック設定）にも、同じ明るさのスライダーがあります。</p>
+
+                    <h3>ノートパソコンは、キーボードからも変えられる</h3>
+                    <p>ノートパソコンでは、キーボードに太陽のマークが付いた明るさ調整のキーがある機種が多く、そこからも変えられます。</p>
+                    <p><kbd>Fn</kbd> キーと一緒に押す機種もあるので、キーのマークを見て試してみてください。</p>
+                    <p>キーの位置や押し方は、メーカーや機種で違います。</p>
+                    <p>なお、外付けのモニター（ディスプレイ）では、Windowsのスライダーが表示されないことがあります。</p>
+                    <p>その場合は、モニター側のボタンで明るさを調整してください。</p>
+
+                    <div class="instructor-advice instructor-advice--column">
+                        <b>💡 講師のアドバイス：明るさは「一番明るくすればいい」わけではありません</b><br>
+                        <p style="margin-top: 10px;">部屋の明るさに合わせて、文字が読みやすく、まぶしくないところに合わせるのが目安です。</p>
+                        <p>夕方と昼間では、ちょうどいい明るさも変わります。</p>
+                    </div>
+
+                    <p>私自身も、年齢を重ねてから画面の明るさや文字の大きさを気にするようになりました。</p>
+                    <p>以前は気にならなかった明るさでも、今はまぶしく感じることがあります。</p>
+                    <p>部屋の明るさや時間帯によっても、見やすい設定は変わります。</p>
+                    <p>パソコンを使うときは、いつも同じ設定で我慢するのではなく、そのときの環境に合わせて調整する習慣をつけておきたいですね。</p>
+
+                    <h3>夜、画面がまぶしいときは「夜間モード」</h3>
+                    <p>夜になると画面が青白くまぶしく感じる場合は、夜間モードも試してみてください。</p>
+                    <p>画面の色味を暖かいほうへ寄せる機能で、[設定]→[システム]→[ディスプレイ]にある[夜間モード]をオンにします。</p>
+                    <p>同じ画面で、色の強さも調整できます。</p>
+                    <p>写真の色を正確に見たい作業のときは、色味が変わって見えるので、夜間モードは切っておいてください。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>画面の角度と、目との距離も見やすさを左右する</h2>
+                    <p>設定を変えても見づらいときは、画面そのものの置き方も見直してみてください。</p>
+                    <p>ノートパソコンは画面が低く、角度も手前になりがちで、知らないうちに下を向き続ける姿勢になります。</p>
+                    <p>目安は、画面までの距離が腕一本分くらい、目線が少し下向きになる高さです。</p>
+                    <p>ノートパソコンの下に本や台を置いて画面を少し上げるだけでも、首と目の負担が変わります。</p>
+                    <p>外付けのキーボードがあると、画面を離しても手元で打てるので、なお楽になります。</p>
+                    <p>角度も同じで、窓からの光が画面に映り込むと、文字が極端に読みにくくなります。</p>
+                    <p>画面の角度を少し変える、座る位置をずらす、といった物理的な調整で解決することも少なくありません。</p>
+                    <p>設定の前に、まず映り込みがないか確かめてみてください。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>マウスの矢印を見失うとき</h2>
+                    <p>文字が読めるようになっても、マウスの矢印（ポインター）がどこにあるか分からなくて、作業が止まることがあります。</p>
+                    <p>これもよくあることです。</p>
+                    <p>[設定]→[アクセシビリティ]→[マウス ポインターとタッチ]で、矢印の大きさ（1〜15）と色を変えられます。</p>
+                    <p>色は白・黒・反転・自分の好きな色から選べます。</p>
+                    <p>矢印を少し大きくして、色を変えるだけでも、見失う回数はだいぶ減ります。</p>
+                    <p>画面の各部の名前が分からなくなったときは、<a href="guide-windows-basics.html">Windowsの基本操作</a>もあわせてどうぞ。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>Windowsの機能「拡大鏡」で、一部だけ大きく見る</h2>
+                    <p>上の3つの方法でも足りないとき、画面の一部だけを大きく見たいときは、拡大鏡が使えます。</p>
+                    <p><kbd>Windows</kbd> キーを押しながら <kbd>＋</kbd> キーで拡大鏡を開き、<kbd>Windows</kbd> キー＋ <kbd>－</kbd> キーで縮小、<kbd>Windows</kbd> キー＋ <kbd>Esc</kbd> キーで閉じます。</p>
+                    <p>拡大鏡は、普段使いの設定ではなく、一時的に見るためのものです。</p>
+                    <p>「ここの細かい数字だけ確認したい」というときに思い出してください。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>職場のパソコンで見づらいときは</h2>
+                    <p>職場のパソコンは、勝手に設定を変えないでください。</p>
+                    <p>まず上司や担当の人に、「文字を大きくしてもいいですか」と聞くのが先です。</p>
+                    <p>自分のパソコンと職場のパソコンで、画面の見え方が違うのは普通のことです。</p>
+                    <p>家で覚えた設定が、職場でそのまま使えるとは限りません。</p>
+                    <p>共有のパソコンでは、使い終わったら元に戻す気配りも添えておくと安心です。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>設定を元に戻したいとき</h2>
+                    <p>変えてみて合わなかったら、元に戻せばいいだけです。</p>
+                    <p>この記事で紹介した設定の戻し方を、まとめておきます。</p>
+                    <ul>
+                        <li>ブラウザの拡大：<kbd>Ctrl</kbd> キー＋ <kbd>0</kbd> キーで標準の大きさに戻る。Word・Excelは右下のズームを100％に戻す</li>
+                        <li>テキストサイズ：[設定]→[アクセシビリティ]→[テキスト サイズ]で、スライダーを一番左（100％）に戻す</li>
+                        <li>表示倍率：[設定]→[システム]→[ディスプレイ]で、変更前の倍率（「推奨」と表示されていた倍率など）に戻す</li>
+                        <li>明るさ：[設定]→[システム]→[ディスプレイ]の[明るさ]スライダーを、見やすい位置に戻す</li>
+                        <li>夜間モード：[設定]→[システム]→[ディスプレイ]で[夜間モード]をオフにする</li>
+                        <li>拡大鏡：<kbd>Windows</kbd> キー＋ <kbd>Esc</kbd> キーで終了する</li>
+                    </ul>
+                    <p>今回紹介した設定は、基本的に変更した場所から元に戻せます。</p>
+                    <p>合わなければ戻せるので、安心して試してください。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>よくある質問</h2>
+
+                    <div class="faq-box">
+                        <div class="faq-list">
+                            <div class="faq-list-item">
+                                <p class="faq-q">大きくしすぎて、元に戻せなくなったら？</p>
+                                <p class="faq-a">同じ設定の場所から戻せます。ブラウザならCtrlキー＋0キーで元の大きさに戻ります。設定で変えたものは、変えた場所と同じ画面で戻す、と覚えておいてください。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">文字を大きくしたら、画面に入りき라なくなった</p>
+                                <p class="faq-a">表示倍率を一段下げるか、画面全体ではなく「文字だけ大きくする」方法2に戻してみてください。表示できる範囲と見やすさの、ちょうどいいところを探す感じです。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">画面が暗い・まぶしくて見づらいときは？</p>
+                                <p class="faq-a">明るさを調整してみてください。[設定]→[システム]→[ディスプレイ]の[明るさ]スライダーか、タスクバー右側のクイック設定から変えられます。ノートパソコンなら、太陽のマークのキーでも調整できます。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">テキストサイズを変えたのに、一部のアプリで変わらない</p>
+                                <p class="faq-a">アプリによっては、開き直すまで反映されないことがあります。いったんアプリを閉じて、もう一度開いてみてください。それでも変わらないアプリは、アプリ側に文字の大きさの設定がある場合があります。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">表示倍率を変えたら、サインアウトを求められた</p>
+                                <p class="faq-a">倍率の変え方によっては、サインアウト（もう一度サインインすること）が必要な場合があります。作業中のファイルは先に保存してから、画面の案内どおりに進めてください。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">印刷したら、文字が小さいままだった</p>
+                                <p class="faq-a">表示倍率やズームは、画面の見え方だけの話で、印刷には影響しません。印刷される文字の大きさは、Word・Excelのフォントサイズで決まります。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="summary-box">
+                        <h2 class="section-title--summary">まとめ｜見づらさは、設定で変えられる</h2>
+                        <ul>
+                            <li><strong>今見ている画面だけ大きくしたい：</strong> Ctrlキー＋マウスホイール、またはブラウザのズーム機能</li>
+                            <li><strong>文字だけ大きくしたい：</strong> [設定]→[アクセシビリティ]→[テキスト サイズ]</li>
+                            <li><strong>画面全体を大きくしたい：</strong> [設定]→[システム]→[ディスプレイ]→[拡大縮小]</li>
+                            <li><strong>暗い・まぶしいと感じる：</strong> 画面の明るさや夜間モードを調整</li>
+                            <li><strong>細かい部分だけ見たい：</strong> Windowsの拡大鏡</li>
+                        </ul>
+                        <p>文字が読めなければ、WordもExcelもメールも進みません。</p>
+                        <p><strong>見やすさは、パソコン操作の土台です。</strong></p>
+                        <p>我慢する前に、まずは自分に合った設定を試してみてください。</p>
+                    </div>
+
+                    <h2>この記事について</h2>
+                    <p>この記事は、パソコンスクールのインストラクターとして、就職を目指す方や働き始めた方を指導する中で、受講生から聞いた話と、Microsoftの公式情報をもとに作成しました。</p>
+                    <p>参考にした情報と確認日：Microsoft サポート「テキストとアプリを大きくする」「Microsoft Edge のキーボード ショートカット」「Windows でテキストのサイズを変更する」（2026年11月21日確認）、Microsoft サポート「Windows でディスプレイの明るさと色を変更する」と Google Chrome ヘルプ「テキスト、画像、動画のサイズを変更する」（2026年11月22日確認）。</p>
+                    <p>設定の名称や場所は、Windowsのバージョンで変わる場合があります。</p>
+                    <p>最新の情報は、公式の案内で確かめてください。</p>
+                    <p>運営者情報は<a href="about.html">運営者情報</a>のページをご覧ください。</p>
+
+                    <div class="article-footer-nav">
+                        <p class="article-footer-nav__text">見やすくなったら、基本操作から少しずつ進めていきましょう</p>
+                        <div class="summary-nav">
+                            <a href="guide-windows-basics.html" class="btn-main">Windowsの基本操作へ</a>
+                            <a href="hub-column.html" class="summary-btn">現場コラムへ</a>
+                            <a href="./" class="summary-btn">ホームへ戻る</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="about.html">運営者情報</a>
+            </div>
+            <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
+        </footer>
+    </div>
+    <a href="#" id="back-to-top" class="back-to-top">↑</a>
+    <script src="js/main.js"></script>
+</body>
+</html>
