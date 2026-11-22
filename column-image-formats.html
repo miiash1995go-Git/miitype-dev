@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画像の形式はどれを選ぶ？｜JPEGとPNGの違いと使い分け｜ぱそトレ！</title>
+    <meta name="description" content="写真を送ったら「この形式は対応していません」と言われた。開けない画像がある。現役パソコン講師が、JPEGとPNGの使い分けと、ペイントで形式を変える方法を、応募や仕事の場面に合わせて紹介します。">
+    <link rel="canonical" href="https://miitype.com/column-image-formats.html">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- アドセンス -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
+
+    <!-- 管理者除外スクリプト -->
+    <script>
+        if (localStorage.getItem('pasotore_admin') === 'true') {
+            window['ga-disable-G-KWS4RPPBVV'] = true;
+            console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
+        }
+    </script>
+     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
+</head>
+<body class="portal-page">
+    <div id="app">
+        <!-- 統合ヘッダー -->
+        <header>
+            <div class="header-inner">
+                <a href="./" class="header-logo-link">
+                    <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
+                </a>
+                <nav class="header-nav">
+                    <div class="nav-grid">
+                        <a href="./" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                        <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                        <a href="hub-pcskills.html" class="nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>PCスキル</span></a>
+                        <a href="hub-ai.html" class="nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                        <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                        <a href="hub-column.html" class="nav-item active"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                    </div>
+                    <button class="mobile-menu-trigger" id="mobile-menu-btn">
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="menu-label">メニュー</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="mobile-nav-overlay" id="mobile-menu-overlay">
+                <button class="menu-close-btn" id="menu-close-btn">×</button>
+                <div class="mobile-nav-grid">
+                    <a href="./" class="mobile-nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                    <a href="hub-typing.html" class="mobile-nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                    <a href="hub-pcskills.html" class="mobile-nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>PCスキル</span></a>
+                    <a href="hub-ai.html" class="mobile-nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                    <a href="hub-career.html" class="mobile-nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                    <a href="hub-column.html" class="mobile-nav-item active"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                </div>
+            </div>
+        </header>
+
+        <main class="portal-main">
+            <article class="static-page">
+                <nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
+
+                <h1 class="page-title">JPEGとPNG、どっちで保存する？画像形式の使い分け</h1>
+                <p class="page-subtitle">「送れない」「開けない」は、形式を変えれば大体解決します</p>
+
+                <div class="content-body">
+                    <p>「写真を送ろうとしたら、形式が違うと言われてしまって」</p>
+                    <p>教室で、ときどき聞く相談です。</p>
+                    <p>写真も画像も、パソコンの中では「ファイル」ですが、実は種類（形式）がいくつかあって、送り先によっては「この形式は受け付けられません」と止められてしまいます。</p>
+                    <p>逆に、ネットで保存した画像が開けなかったり、Wordに貼れなかったりするのも、だいたい形式が原因です。</p>
+                    <p>形式の名前はたくさんありますが、初心者がまず覚えるのは2つで足ります。</p>
+                    <p>JPEGとPNGです。</p>
+                    <p>この記事では、JPEGとPNGの使い分けと、Windowsの標準機能だけで形式を変える方法を紹介します。</p>
+                    <p>専用のソフトは要りません。</p>
+
+                    <div class="instructor-advice instructor-advice--column">
+                        <b>💡 講師のアドバイス</b><br>
+                        <p style="margin-top: 10px;"><strong>迷ったら、JPEGにしておけば大体大丈夫です。</strong></p>
+                        <p>写真を送る場面では、まずこれが合言葉です。</p>
+                        <p>PNGが要る場面は、この記事の早見表で確認できます。</p>
+                    </div>
+
+                    <div class="info-note-box">
+                        <strong class="note-title">こんな場面で</strong>
+                        <p>以前、受講生の方が、スマホで撮った自分の写真を履歴書に使おうとして、教室で止まってしまったことがあります。</p>
+                        <p>自宅のパソコンでは写真を選べたのに、教室のパソコンでは、写真のファイルが一覧に出てこない。</p>
+                        <p>「同じ写真なのに、なんでですか」</p>
+                        <p>形式を見ると、HEICになっていました。</p>
+                        <p>iPhoneで撮ると、初期設定ではこの形式で保存されます。</p>
+                        <p>開けるパソコンと、開けないパソコンがある形式です。</p>
+                        <p>その場は、JPEGに変換してから履歴書に貼り直して、事なきを得ました。</p>
+                        <p>「自分のパソコンで開けたから、大丈夫だと思っていました」</p>
+                        <p>提出する書類は、相手のパソコンで開くものです。</p>
+                        <p>送る用の写真はJPEGにしておく。</p>
+                        <p>そのひと手間を知っているかどうかが、応募の現場では効いてきます。</p>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <h2>そもそも「画像の形式」とは</h2>
+                    <p>画像の形式は、ファイル名の後ろに付いている「.jpg」や「.png」という部分で見分けます。</p>
+                    <p>この後ろの部分を拡張子（かくちょうし）と言います。</p>
+                    <p>拡張子が見えない場合は、エクスプローラー（フォルダを開いた画面）の[表示]から[ファイル名拡張子]にチェックを入れると表示されます。</p>
+                    <p>画面の各部の名前が分からなくなったときは、<a href="guide-windows-basics.html">Windowsの基本操作</a>もあわせてどうぞ。</p>
+                    
+                    <div class="article-image article-image--window">
+                        <img src="img/Column/column-image-formats-extension.jpg" alt="エクスプローラーで拡張子（.jpgや.png）が表示されたファイル名">
+                        <p class="small-text">▲ ファイル名の後ろの .jpg や .png が、その画像の形式です</p>
+                    </div>
+
+                    <p>形式によって、写真向き・図向きといった得意分野と、ファイルの大きさが変わります。</p>
+                    <p>だから「送れない」「開けない」が起きるのです。</p>
+                    <p>ファイルとフォルダの整理の基本は、<a href="guide-windows-folder.html">ファイルとフォルダの管理</a>で紹介しています。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>早見表：用途で選ぶ</h2>
+                    <p>細かい違いの前に、用途で覚えるのが早いです。</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>用途</th>
+                                <th>形式</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="#convert">写真をメールやフォームで送る</a></td>
+                                <td>JPEG（.jpg）</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#work">履歴書・応募書類の証明写真</a></td>
+                                <td>JPEG（指定がある場合は指定どおり）</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#screenshot">画面のスクリーンショット</a></td>
+                                <td>PNG（.png）</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#diff">図・表・ロゴなどの画像</a></td>
+                                <td>PNG（.png）</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#convert">「この形式は対応していません」と言われた</a></td>
+                                <td>JPEGに変える</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#heic">iPhoneの写真が開けない・選べない（HEIC）</a></td>
+                                <td>JPEGに変える</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#webp">ネットで保存したら開けない画像だった</a></td>
+                                <td>JPEGかPNGに保存し直す</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p>スクリーンショットがPNGなのは、Windowsの切り取りツール（Snipping Tool）がPNGで保存するからです。</p>
+                    <p>そのまま送っても問題ありません。</p>
+
+                    <hr class="section-divider">
+
+                    <h2 id="diff">JPEGとPNGの違い</h2>
+
+                    <h3>JPEGは、写真向き</h3>
+                    <p>写真のように色の変化が多い画像が得意で、ファイルの大きさが小さくなります。</p>
+                    <p>メールで送ったり、フォームに上げたりする写真は、JPEGが基本です。</p>
+                    <p>弱点は、保存し直すたびに少しずつ画質が落ちることです。</p>
+                    <p>元の写真は残しておいて、送る用のコピーを作って変換するのがおすすめです。</p>
+
+                    <h3>PNGは、文字や図向き</h3>
+                    <p>スクリーンショットや図のように、文字や線が入った画像でも、にじまずくっきり保存できます。</p>
+                    <p>保存し直しても画質は落ちません。</p>
+                    <p>弱点は、写真をPNGにすると、ファイルがとても大きくなることです。</p>
+                    <p>写真をメールで送るときにPNGのままだと、大きすぎて送れないことがあります。</p>
+
+                    <h3>ほかの形式も、たまに見かけます</h3>
+                    <p>GIF（ジフ）は、短いアニメーションの画像で使われる形式です。</p>
+                    <p>自分で作ることはあまりありませんが、ネットで見かける動く画像は、だいたいこれです。</p>
+                    <p>BMP（ビットマップ）は、昔からある形式で、画質はいいのですがファイルが非常に大きくなります。</p>
+                    <p>仕事で「BMPで」と指定されたときだけ、ペイントの[名前を付けて保存]で選べば大丈夫です。</p>
+                    <p>どちらも、普段の使い分けに入れる必要はありません。</p>
+                    <p>「JPEGとPNG以外もある」ことだけ知っていれば十分です。</p>
+
+                    <div class="info-note-box">
+                        <strong class="note-title">覚え方は、これで十分です</strong>
+                        <p>写真はJPEG、画面や図はPNG。送るときに迷ったらJPEG。</p>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <h2 id="convert">形式を変える方法（ペイントでできます）</h2>
+                    <p>形式を変えるのに、特別なソフトは要りません。</p>
+                    <p>Windowsに最初から入っている「ペイント」でできます。</p>
+                    <ol>
+                        <li>画像ファイルを右クリックして、[プログラムから開く]→[ペイント]を選びます（ペイントを起動して、画像をドラッグしても開けます）</li>
+                        <li>ペイントで画像が開いたら、[ファイル]→[名前を付けて保存]を選びます</li>
+                        <li>JPEG画像かPNG画像を選んで、保存先とファイル名を決めて保存します</li>
+                    </ol>
+                    
+                    <div class="article-image article-image--window">
+                        <img src="img/Column/column-image-formats-paint.jpg" alt="ペイントの「名前を付けて保存」からJPEG画像を選ぶ画面">
+                        <p class="small-text">▲ ペイントの[ファイル]→[名前を付けて保存]で、JPEG画像かPNG画像を選びます</p>
+                    </div>
+
+                    <p>元の画像はそのまま残ります。</p>
+                    <p>変換した新しいファイルが別にできるので、間違えてもやり直せます。</p>
+                    <p>たとえば、PNGのスクリーンショットをJPEGで送りたいときは、ペイントで開いて[名前を付けて保存]→[JPEG画像]を選ぶだけです。</p>
+                    <p>保存先は、デスクトップやドキュメントなど、後で見つけやすい場所にしてください。</p>
+                    <p>ファイル名も「画面」や「写真」のような元の名前のままだと、変換前と見分けがつきにくくなります。</p>
+                    <p>「〇〇_JPEG」のように、変換したことが分かる名前を付けておくと、送り間違いが減ります。</p>
+                    <p>なお、メニューの名前や場所は、Windowsやアプリのバージョンで変わる場合があります。</p>
+                    <p>近い名前の項目を探してみてください。</p>
+
+                    <hr class="section-divider">
+
+                    <h2 id="screenshot">スクリーンショットを送るときのコツ</h2>
+                    <p>仕事の連絡で「画面の写真を送ってください」と言われたら、スクリーンショットを撮って送るのが基本です。</p>
+                    <p>形式はPNGのままで問題ありません。</p>
+                    <p>ただ、画面全体をそのまま撮ると、文字が小さくて相手が読めないことがあります。</p>
+                    <p>切り取りツール（Snipping Tool）で、見せたい範囲だけを指定して撮ると、相手にも読みやすくなります。</p>
+                    <p>もう一つ、送る前の注意です。</p>
+                    <p>スクリーンショットには、別のウィンドウや個人の情報が写り込むことがあります。</p>
+                    <p>メールアドレスや名前、他の資料が写っていないか、送る前に一度見直してください。</p>
+                    <p>形式と同じくらい、現場で大事な確認です。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>困りごと別：よくある3つ</h2>
+
+                    <h3 id="webp">ネットで保存した画像が開けない・Wordに貼れない</h3>
+                    <p>ブラウザで画像を保存すると、「WebP（ウェッピー）」という形式で保存されることがあります。</p>
+                    <p>比較的新しい形式で、開けるアプリと開けないアプリがあるため、Wordに貼れない、画像ビューアーで開けない、といったことが起きます。</p>
+                    <p>対処は、この記事の変換方法そのままです。</p>
+                    <p>ペイントで開いて、JPEGかPNGで保存し直せば、普通の画像として使えるようになります。</p>
+                    <p>新しいWordではそのまま貼れる場合もありますが、困ったら保存し直しが確実です。</p>
+                    <p>なお、環境によってはペイントでWebPを開けないこともあります。</p>
+                    <p>その場合は、画像をブラウザで開いて表示し、切り取りツール（Snipping Tool）で撮り直して保存する方法もあります。</p>
+
+                    <h3>写真が大きくて、メールで送れない</h3>
+                    <p>写真のファイルが大きすぎると、メールに添付できないことがあります。</p>
+                    <p>まず確認したいのは形式です。</p>
+                    <p>PNGになっていたら、JPEGに変えるだけでかなり小さくなります。</p>
+                    <p>それでも大きいときは、ペイントの[サイズ変更]で、割合を小さく（たとえば50％）してから保存する方法もあります。</p>
+                    <p>元の写真は残して、送る用に小さくしたコピーを作るのが基本です。</p>
+
+                    <h3>iPhoneの写真（HEIC）が開けない・選べない</h3>
+                    <p>iPhoneの写真の形式「HEIC」は、パソコンによって開ける・開けないが分かれる、少し特殊な形式です。</p>
+                    <p><a href="#heic">次の節「HEICは、開けるパソコンと開けないパソコンがある」</a>で、まとめて説明します。</p>
+
+                    <hr class="section-divider">
+
+                    <h2 id="heic">HEICは、開けるパソコンと開けないパソコンがある</h2>
+                    <p>iPhoneで撮った写真は、初期設定では「HEIC（ヘイク）」という形式で保存されます。</p>
+                    <p>写真の容量が小さくなる、比較的新しい形式です。</p>
+                    <p>この形式のややこしいところは、パソコンの環境によって、開ける・開けないが分かれることです。</p>
+                    <p>HEICを読むための部品（拡張機能）が入っているパソコンでは、写真を表示したり、Wordにそのまま挿入したりできます。</p>
+                    <p>入っていないパソコンでは、挿入の画面で写真が選べなかったり、貼っても表示されなかったりします。</p>
+                    <p>実際、この記事を作るときに講師のパソコン（Word 2021）で試すと、HEICの写真はそのまま挿入できました。</p>
+                    <p>でも、それは「そのパソコンでは開けた」というだけの話です。</p>
+                    <p>同じ履歴書を、別のパソコンで開いたら写真が出ない、ということが起こり得ます。</p>
+
+                    <h3>だから、提出する写真はJPEGにしておく</h3>
+                    <p>応募フォームでは、HEICを受け付けず、JPEGを指定されることがよくあります。</p>
+                    <p>履歴書のような提出書類も、相手のパソコンで確実に開けることが大事です。</p>
+                    <p>実務の結論はシンプルです。</p>
+                    <p><strong>送る用・提出用の写真は、先にJPEGに変換しておく。</strong></p>
+                    <p>方法は、環境に合わせて3つあります。</p>
+                    <ol>
+                        <li>HEICが開けるパソコンなら、ペイントで開いてJPEGで保存し直す</li>
+                        <li>開けないパソコンなら、iPhoneの転送設定（[設定]→[アプリ]→[写真]→[MacまたはPCに転送]を「自動」。古いiOSでは[設定]→[写真]の中）にして、ケーブルで取り込むと、JPEGで届くことがあります</li>
+                        <li>今後撮る写真は、iPhone側で[設定]→[カメラ]→[フォーマット]を「互換性優先」にすると、最初からJPEGで撮れます</li>
+                    </ol>
+
+                    <hr class="section-divider">
+
+                    <h2>写真を送る前に確認する3つ</h2>
+                    <p>形式を変えたら、送る前にこの3つだけ確認してください。</p>
+                    <p>送信エラーで戻ってくる手間が、だいぶ減ります。</p>
+                    <ol>
+                        <li><strong>形式</strong>：ファイル名の後ろが、指定どおり（多くは .jpg）になっているか</li>
+                        <li><strong>大きさ</strong>：ファイルの大きさが、指定の上限（〇MBまで）を超えていないか。右クリック→[プロパティ]で確認できます</li>
+                        <li><strong>中身</strong>：変換したファイルを一度開いて、正しい写真・画像かどうか確かめる。似た名前のファイルを送り間違える事故は、現場でもよくあります</li>
+                    </ol>
+                    <p>特に3つ目は大事です。</p>
+                    <p>変換すると似た名前のファイルが増えるので、送る前に開いて確認する癖をつけてください。</p>
+
+                    <hr class="section-divider">
+
+                    <h2 id="work">仕事・応募では「指定」を先に確認する</h2>
+                    <p>応募フォームや履歴書の写真では、形式や大きさが指定されていることがよくあります。</p>
+                    <p>「JPEG形式、〇MBまで」のように書かれているので、送る前に必ず確認してください。</p>
+                    <p>指定と違う形式で送ると、受け付けられなかったり、写真が表示されなかったりします。</p>
+                    <p>逆に、指定がJPEGなら、この記事の方法で変換してから送れば大丈夫です。</p>
+                    <p>証明写真のデータも、多くはJPEGで用意します。</p>
+                    <p>写真店や証明写真機でデータを受け取ったときは、形式と大きさを確認して、応募先の指定に合っているか見てから送ってください。</p>
+                    <p>指定と違う場合は、この記事の方法で変換できます。</p>
+                    <p>仕事の現場でも同じで、資料の画像を「PNGでください」「JPEGで送って」と言われることがあります。</p>
+                    <p>言われた形式で保存し直せる、というだけで、現場では十分に役立つスキルです。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>よくある質問</h2>
+
+                    <div class="faq-box">
+                        <div class="faq-list">
+                            <div class="faq-list-item">
+                                <p class="faq-q">拡張子が表示されなくて、形式が分からない</p>
+                                <p class="faq-a">エクスプローラーの[表示]から[ファイル名拡張子]にチェックを入れると、ファイル名の後ろに.jpg や.png が表示されます。それでも分からない場合は、ファイルを右クリックして[プロパティ]を開くと、ファイルの種類が確認できます。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">写真をPNGで送ったら、重いと言われた</p>
+                                <p class="faq-a">写真はPNGだと大きくなりがちです。ペイントで開いて、JPEGで保存し直してから送り直してください。画質は、画面で見る分にはほとんど分からない程度しか変わりません。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">変換したのに、フォームで受け付けてもらえない</p>
+                                <p class="faq-a">形式が合っていても、ファイルの大きさが上限を超えていると受け付けられません。[プロパティ]で大きさを確認して、上限を超えている場合は、ペイントの[サイズ変更]で小さくしてから保存し直してください。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">JPEGに変換したら、画質が落ちた気がする</p>
+                                <p class="faq-a">JPEGは、保存するたびに少しずつ劣化する形式です。編集を繰り返す作業では、元の画像（PNGや元の写真）を残しておいて、最後に送る用だけJPEGにするのがおすすめです。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="summary-box">
+                        <h2 class="section-title--summary">まとめ｜迷ったらJPEG、画面や図はPNG</h2>
+                        <ul>
+                            <li>画像の形式は、ファイル名の後ろの.jpg や.png で見分ける</li>
+                            <li>写真を送るならJPEG。スクリーンショットや図はPNG</li>
+                            <li>「対応していません」と言われたら、JPEGに変える</li>
+                            <li>形式の変換は、ペイントの[名前を付けて保存]でできる。元の画像は残る</li>
+                            <li>開けない画像（WebP・HEIC）も、JPEGかPNGに保存し直せば使える</li>
+                            <li>応募や仕事では、送る前に形式の指定を確認する</li>
+                        </ul>
+                        <p>形式で止まるのは、操作が分からないからではなく、形式の存在を知らなかっただけ、ということがほとんどです。</p>
+                        <p>知っていれば、その場で変えて送れます。</p>
+                    </div>
+
+                    <h2>この記事について</h2>
+                    <p>この記事は、パソコンスクールのインストラクターとして、就職を目指す方や働き始めた方を指導する中で、受講生から聞いた話と、Microsoft・Appleの公式情報をもとに作成しました。</p>
+                    <p>参考にした情報と確認日（2026年11月22日）：Apple サポート「HEIF/HEIC形式のメディアについて」、Microsoft サポート（ペイント・Snipping Toolの案内）。</p>
+                    <p>メニューや設定の名称は、Windowsやアプリのバージョンで変わる場合があります。</p>
+                    <p>最新の情報は、公式の案内で確かめてください。</p>
+                    <p>運営者情報は<a href="about.html">運営者情報</a>のページをご覧ください。</p>
+
+                    <div class="article-footer-nav">
+                        <p class="article-footer-nav__text">ファイルの整理もあわせて覚えると、写真や書類で迷わなくなります</p>
+                        <div class="summary-nav">
+                            <a href="guide-windows-folder.html" class="btn-main">ファイルとフォルダの管理へ</a>
+                            <a href="hub-column.html" class="summary-btn">現場コラムへ</a>
+                            <a href="./" class="summary-btn">ホームへ戻る</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="about.html">運営者情報</a>
+            </div>
+            <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
+        </footer>
+    </div>
+    <a href="#" id="back-to-top" class="back-to-top">↑</a>
+    <script src="js/main.js"></script>
+</body>
+</html>

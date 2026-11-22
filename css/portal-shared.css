@@ -3410,3 +3410,15 @@ body.portal-page article.static-page .hub-article-h2::after {
         padding-left: 20px !important;
     }
 }
+
+/* --- 画像キャプション用：スモールテキスト定義 (v20.15.Fix) --- */
+.small-text {
+    font-size: 0.85rem !important;
+    color: #64748b !important;
+    text-align: center !important;
+    margin-top: 8px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: 0px !important;
+    line-height: 1.4 !important;
+}
