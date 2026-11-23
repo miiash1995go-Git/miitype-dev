@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- 1. 主要エントリー -->
-  <url><loc>https://miitype.com/</loc><lastmod>2026-11-22</lastmod><priority>1.0</priority><!-- [INDEX] ホーム | none --></url>
+  <url><loc>https://miitype.com/</loc><lastmod>2026-11-23</lastmod><priority>1.0</priority><!-- [INDEX] ホーム | none --></url>
   <url><loc>https://miitype.com/play.html</loc><lastmod>2026-11-13</lastmod><priority>0.9</priority><!-- [INDEX] タイピング練習画面 | typing --></url>
   <url><loc>https://miitype.com/test.html</loc><lastmod>2026-10-22</lastmod><priority>0.8</priority><!-- [INDEX] 5分間タイピングテスト | typing --></url>
 
@@ -9,7 +9,7 @@
   <url><loc>https://miitype.com/hub-typing.html</loc><lastmod>2026-11-12</lastmod><priority>0.9</priority><!-- [INDEX] タイピング練習ガイド | typing --></url>
   <url><loc>https://miitype.com/hub-pcskills.html</loc><lastmod>2026-10-05</lastmod><priority>0.9</priority><!-- [INDEX] PCスキル基礎・実務ガイド | pcskills --></url>
   <url><loc>https://miitype.com/hub-ai.html</loc><lastmod>2026-10-11</lastmod><priority>0.9</priority><!-- [INDEX] 生成AI活用ガイド | ai --></url>
-  <url><loc>https://miitype.com/hub-career.html</loc><lastmod>2026-11-17</lastmod><priority>0.9</priority><!-- [INDEX] 就職・転職支援ガイド | career --></url>
+  <url><loc>https://miitype.com/hub-career.html</loc><lastmod>2026-11-23</lastmod><priority>0.9</priority><!-- [INDEX] 就職・転職支援ガイド | career --></url>
   <url><loc>https://miitype.com/hub-column.html</loc><lastmod>2026-11-22</lastmod><priority>0.9</priority><!-- [INDEX] 現場コラム・知見集 | column --></url>
 
   <!-- 3. タイピング記事 -->
@@ -44,12 +44,15 @@
   <url><loc>https://miitype.com/column-interview.html</loc><lastmod>2026-10-24</lastmod><priority>0.9</priority><!-- [INDEX] 面接で行われるタイピングテストとは？｜評価基準と本番対策 | career --></url>
   <url><loc>https://miitype.com/guide-career-cv.html</loc><lastmod>2026-10-04</lastmod><priority>0.7</priority><!-- [INDEX] 職務経歴書の作成ポイント｜経験を「仕事の言葉」に言い換えるコツ | career --></url>
   <url><loc>https://miitype.com/guide-career-otg.html</loc><lastmod>2026-10-13</lastmod><priority>0.8</priority><!-- [INDEX] 履歴書をスマホから送る方法｜OTGケーブルの使い方と注意点 | career --></url>
+  <url><loc>https://miitype.com/guide-career-resume.html</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority><!-- [INDEX] 履歴書をパソコンで作る全手順｜テンプレート入手からPDF提出まで | career --></url>
+  
   <url><loc>https://miitype.com/column-reskilling.html</loc><lastmod>2026-08-23</lastmod><priority>0.8</priority><!-- [INDEX] 就職 そして リスキリング｜仕事で役立つスキルを身につけ続ける | career --></url>
   <url><loc>https://miitype.com/column-mos365.html</loc><lastmod>2026-10-10</lastmod><priority>0.8</priority><!-- [INDEX] Microsoft 365とOfficeの違い・MOS 365の試験と有効期間 | career --></url>
   <url><loc>https://miitype.com/column-pc-skills.html</loc><lastmod>2026-10-09</lastmod><priority>0.8</priority><!-- [INDEX] 事務職に必要なPCスキルとは？｜履歴書と職務経歴書の書き方 | career --></url>
   <url><loc>https://miitype.com/column-typing-test-basics.html</loc><lastmod>2026-10-25</lastmod><priority>0.8</priority><!-- [INDEX] タイピングテストとは？種類・時間・合格の目安を現役講師が解説 | career --></url>
   <url><loc>https://miitype.com/column-haken-typing-test.html</loc><lastmod>2026-11-02</lastmod><priority>0.8</priority><!-- [INDEX] 派遣登録のタイピングテストとは？受ける前の準備と考え方 | career --></url>
   <url><loc>https://miitype.com/column-data-entry-typing-test.html</loc><lastmod>2026-11-17</lastmod><priority>0.8</priority><!-- [INDEX] データ入力のタイピングテストとは？適性検査の中身と本番対策 | career --></url>
+
 
   <url><loc>https://miitype.com/column-age-typing.html</loc><lastmod>2026-10-04</lastmod><priority>0.8</priority><!-- [INDEX] 50代からのタイピング練習｜一本指入力から身につけるコツ | column --></url>
   <url><loc>https://miitype.com/column-pc-learning.html</loc><lastmod>2026-10-14</lastmod><priority>0.8</priority><!-- [INDEX] パソコン初心者の覚え方｜操作を「できる」に変える3つのポイント | column --></url>
