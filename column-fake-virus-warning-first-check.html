@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「ウイルスに感染しました」と出たら電話しない｜閉じ方と対処｜ぱそトレ！</title>
+    <meta name="description" content="「ウイルスに感染しました」と警告音つきで出ても、電話しないでください。ほとんどの場合パソコンは感染していません。偽警告の見分け方、Escキーでの閉じ方、電話してしまった時の対処を現役パソコン講師が解説。">
+    <link rel="canonical" href="https://miitype.com/column-fake-virus-warning-first-check.html">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- アドセンス -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
+
+    <!-- 管理者除外スクリプト -->
+    <script>
+        if (localStorage.getItem('pasotore_admin') === 'true') {
+            window['ga-disable-G-KWS4RPPBVV'] = true;
+            console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
+        }
+    </script>
+     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
+</head>
+<body class="portal-page">
+    <div id="app">
+        <!-- 統合ヘッダー -->
+        <header>
+            <div class="header-inner">
+                <a href="./" class="header-logo-link">
+                    <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
+                </a>
+                <nav class="header-nav">
+                    <div class="nav-grid">
+                        <a href="./" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                        <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                        <a href="hub-pcskills.html" class="nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>PCスキル</span></a>
+                        <a href="hub-ai.html" class="nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                        <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                        <a href="hub-column.html" class="nav-item active"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                    </div>
+                    <button class="mobile-menu-trigger" id="mobile-menu-btn">
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="menu-label">メニュー</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="mobile-nav-overlay" id="mobile-menu-overlay">
+                <button class="menu-close-btn" id="menu-close-btn">×</button>
+                <div class="mobile-nav-grid">
+                    <a href="./" class="mobile-nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                    <a href="hub-typing.html" class="mobile-nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                    <a href="hub-pcskills.html" class="mobile-nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>PCスキル</span></a>
+                    <a href="hub-ai.html" class="mobile-nav-item"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                    <a href="hub-career.html" class="mobile-nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                    <a href="hub-column.html" class="mobile-nav-item active"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                </div>
+            </div>
+        </header>
+
+        <main class="portal-main">
+            <article class="static-page">
+                <nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
+
+                <h1 class="page-title">「ウイルスに感染しました」と出たら｜閉じ方と対処</h1>
+                <p class="page-subtitle">電話番号が書いてあれば偽物？　電話してしまった時の対処も解説</p>
+
+                <div class="content-body">
+                    <p>ネットを見ていたら、突然画面いっぱいに「ウイルスに感染しました」と出ました。</p>
+                    <p>音が鳴りやみません。</p>
+                    <p>「今すぐ電話してください」と書いてあります。</p>
+                    <p>慌てるのは当然です。</p>
+                    <p>でも、その場で電話だけはしないでください。</p>
+                    <p>この手の警告は、ほとんどが偽物です。</p>
+                    <p>パソコンが本当に感染したのではなく、電話をかけさせるために表示されている画面です。</p>
+                    <p>この記事では、偽物かどうかの見分け方、画面の閉じ方、電話してしまったときの対処を、順番に解説します。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>まず押さえること：電話番号が書いてある警告は、まず偽物だと疑う</h2>
+                    <p>本物のMicrosoftの警告やエラーメッセージに、電話番号が書かれることはありません。</p>
+                    <p>これはMicrosoftが公式に案内していることです。</p>
+                    <p>Microsoftのサポートが、ギフトカードやビットコインで料金を請求することはありません。</p>
+                    <p>サポートの担当者が、社員証を見せて身分を証明することもありません。</p>
+                    <p><span class="marker-yellow">つまり、「電話してください」と番号が書いてある時点で、偽物のサインです。</span></p>
+                    <p>本物かどうかを、その場で見極める必要はありません。</p>
+                    <p>まず番号の有無で判断してください。</p>
+                    <p>本当に感染が疑われる場合に知らせるのは、Windowsの標準機能であるMicrosoft Defenderです。</p>
+                    <p>ブラウザの画面いっぱいに、電話番号つきで表示される形ではありません。</p>
+                    
+                    <div class="article-image article-image--window">
+                        <img src="img/Column/column-fake-virus-warning-screen.jpg" alt="偽のセキュリティ警告画面の例（IPAの体験サイトより）">
+                        <p class="small-text">▲ 偽のセキュリティ警告画面の例（IPAの体験サイトより）</p>
+                    </div>
+
+                    <div class="instructor-advice instructor-advice--column">
+                        <b>💡 講師のアドバイス：電話番号が書いてある警告は、まず偽物</b><br>
+                        <p style="margin-top: 10px;">授業でも、受講生の方が「ウイルスに感染しましたって出たんですけど」と、慌てて画面を見せてくることがあります。</p>
+                        <p>私が最初に見るのは、警告の内容ではなく、電話番号が書いてあるかどうかです。</p>
+                        <p>番号があれば、その場で「これは偽物だよ」と言えます。</p>
+                        <p><strong>電話番号が書いてある警告は、まず偽物。</strong></p>
+                        <p>これだけ覚えておいてください。</p>
+                    </div>
+
+                    <div class="info-note-box">
+                        <strong class="note-title">偽物だと疑う3つのサイン</strong>
+                        <ul>
+                            <li>電話番号が書いてある</li>
+                            <li>音や声で「今すぐ」と急かしてくる</li>
+                            <li>画面いっぱいに表示されて、閉じる場所が見つからない</li>
+                        </ul>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <h2>授業中での実話</h2>
+                    <p>私が担当してきた授業中でも、実はこの偽感染は過去何度もありました。</p>
+                    <p>タイピングの授業で、ぱそトレ！以外のサイトももちろん使ったりするのですが、あるサイトで、間違えてなんらかのバナー広告を押してしまったようで、「すいません、なんか画面が変なんです」と。</p>
+                    <p>見てみると、大量の警告ウィンドウが出ていました。</p>
+                    <p>まずEscキーを長押ししてみましたが、右上に[✕]ボタンは出ませんでした。</p>
+                    <p>次にタスクマネージャーから、ブラウザを強制終了しました。</p>
+                    <p>それでもまだ画面に残っていたので、Windowsを再起動しました。</p>
+                    <p>再起動後は無事元通りです。</p>
+                    <p>でも、知らない人からすると、本当に感染したのか！？と思いますよね。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>まずすること：電話しない・クリックしない・閉じるだけ</h2>
+                    <p>判断の順番は、3つだけです。</p>
+                    <p>1つ目、<strong>電話しない</strong>こと。</p>
+                    <p>被害は、電話をかけて、相手の指示に従ったところから始まります。</p>
+                    <p><span class="marker-yellow">電話をかけなければ、被害は発生しません。</span></p>
+                    <p>国の情報セキュリティの専門機関である、情報処理推進機構（IPA）の案内でも、はっきり書かれていることです。</p>
+                    <p>2つ目、<strong>画面のボタンは押さない</strong>こと。</p>
+                    <p>「閉じる」「キャンセル」と書いてあっても、それは相手が用意したボタンです。</p>
+                    <p>押すと全画面表示が強くなったり、別の画面に進んだりすることがあります。</p>
+                    <p>3つ目、音がうるさいときは、<strong>先にパソコンの音量を下げる</strong>こと。</p>
+                    <p>音は、慌てさせるための仕掛けです。</p>
+                    <p>音が小さくなれば、落ち着いて閉じる操作ができます。</p>
+
+                    <div class="info-note-box">
+                        <strong class="note-title">警告文の例</strong>
+                        <p>「このPCへのアクセスはブロックされました」</p>
+                        <p>「トロイの木馬（Trojan）に感染しました」</p>
+                        <p>Microsoftが例として挙げている文面です。</p>
+                        <p>どれも、電話をかけさせるための決まり文句です。</p>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <h2>「ウイルスに感染しました」画面の閉じ方（Esc長押し・タスクマネージャー）</h2>
+                    <p>閉じ方は2つあります。</p>
+                    <p>まず方法1を試して、ダメなら方法2に進んでください。</p>
+                    
+                    <h3>方法1：Escキーの長押しで、全画面を解除する</h3>
+                    <p>1. キーボードの <kbd>Esc</kbd> キーを、3秒ほど長押しします。</p>
+                    <p>2. 全画面表示が解除されて、画面の上にバーが出ます。</p>
+                    <p>3. ブラウザの右上の [✕] をクリックして、タブ（またはブラウザ）を閉じます。</p>
+                    
+                    <h3>方法2：タスクマネージャーで、ブラウザを終了する</h3>
+                    <p>1. <kbd>Ctrl</kbd> と <kbd>Alt</kbd> と <kbd>Del</kbd> を、同時に押します。</p>
+                    <p>2. 出てきた画面で、[タスクマネージャー]を選びます。</p>
+                    <p>3. 一覧から、使っていたブラウザ（EdgeやChrome）を選びます。</p>
+                    <p>4. [タスクの終了]をクリックします。</p>
+                    <p>それでも閉じられないときは、<kbd>Ctrl</kbd> ＋ <kbd>Alt</kbd> ＋ <kbd>Del</kbd> の画面で、右下の電源アイコンから<strong>再起動</strong>を選んでください。</p>
+                    <p>再起動すれば、警告の画面は消えます。</p>
+                    <p>タスクマネージャーの詳しい使い方は、<a href="guide-windows-basics.html">Windowsの基本操作の記事</a>で解説しています。</p>
+                    <p>閉じたあと、ブラウザを開き直したときに「ページを復元しますか」と出たら、<strong>復元しないで</strong>ください。</p>
+                    <p>同じ警告の画面が戻ってくることがあります。</p>
+                    
+                    <h3>閉じたあと、心配なときは</h3>
+                    <p>「本当に感染していないか」が気になる場合は、Microsoft Defenderのスキャンを自分で実行して確かめられます（手順はWindows 11の場合です）。</p>
+                    <p>1. スタートボタンを押して、[設定]を開きます。</p>
+                    <p>2. 左側の[プライバシーとセキュリティ]を選びます。</p>
+                    <p>3. [Windows セキュリティ]をクリックします。</p>
+                    <p>4. [ウイルスと脅威の防止]を開きます。</p>
+                    <p>5. [クイック スキャン]をクリックします。</p>
+                    
+                    <div class="article-image article-image--window">
+                        <img src="img/Column/column-fake-virus-warning-defender.jpg" alt="Windows セキュリティの「ウイルスと脅威の防止」画面（クイック スキャンのボタン）">
+                        <p class="small-text">▲ Windows セキュリティの画面からクイック スキャンを実行できます</p>
+                    </div>
+
+                    <p>結果に「脅威は見つかりませんでした」と出れば、一安心です。</p>
+                    <p>誰かに言われてではなく、自分で開いた画面で確かめるのがポイントです。</p>
+                    <p>閉じる操作に慣れておきたい方は、IPAの <a href="https://www.ipa.go.jp/security/anshin/measures/fakealert.html" target="_blank" rel="noopener">「偽セキュリティ警告（サポート詐欺）対策特集ページ」</a> で、偽の警告画面を使った練習ができます（パソコン専用です。練習でも音が出るので、音量に注意してください）。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>電話してしまった・ソフトを入れてしまったとき</h2>
+                    <p>電話をしてしまっても、そこで止まれば被害は広がりません。</p>
+                    <p>自分を責めなくて大丈夫です。</p>
+                    <p>順番に対処しましょう。</p>
+                    
+                    <h3>電話しただけ・話しただけの場合</h3>
+                    <p>相手の指示には従わないでください。</p>
+                    <p>お金は払いません。</p>
+                    <p>あとから電話がかかってきても、出ないようにして、<strong>着信拒否</strong>にしておきます。</p>
+                    <p>念のため、ブラウザの履歴も消しておくと安心です。</p>
+                    <p>警告のページに戻ってしまう心配がなくなります。</p>
+                    
+                    <h3>ソフトを入れた・遠隔操作を許した場合</h3>
+                    <p>入れたソフトは、<strong>アンインストール</strong>してください。</p>
+                    <p>どのソフトか分からない場合は、Windowsの「システムの復元」で、入れる前の状態に戻す方法があります。</p>
+                    <p>それもできない場合は、初期化が確実です（IPAの案内）。</p>
+                    <p>大事なファイルは、先にUSBメモリなどへ移しておいてください。</p>
+                    
+                    <h3>お金を払った・銀行やカードの情報を伝えた場合</h3>
+                    <p>すぐに<strong>警察と、銀行・カード会社へ連絡</strong>してください。</p>
+                    <p>ネットバンキングを開かせられた場合は、パスワードの変更と、身に覚えのない取引がないかの確認も必要です。</p>
+                    <p>職場のパソコンで起きた場合は、自分で判断せず、会社の担当者や管理者に連絡してください。</p>
+
+                    <div class="info-note-box">
+                        <strong class="note-title">困ったときの相談先</strong>
+                        <ul>
+                            <li>IPA 情報セキュリティ安心相談窓口：03-5978-7509（平日10:00〜12:00、13:30〜17:00）</li>
+                            <li>消費者ホットライン：188（近くの消費生活センターにつながります）</li>
+                            <li>警察相談専用電話：#9110</li>
+                        </ul>
+                        <p>一人で抱えず、まず相談してください。</p>
+                    </div>
+
+                    <div class="instructor-advice instructor-advice--column">
+                        <b>💡 講師のアドバイス：電話してしまったことを隠さないで</b><br>
+                        <p style="margin-top: 10px;">電話してしまったことを、恥ずかしくて誰にも言えない、という方がいます。</p>
+                        <p>でも、そこで黙ってしまうと、相手の思うつぼです。</p>
+                        <p><strong>電話してしまっても、そこで止まれば被害は広がりません。</strong></p>
+                        <p>家族や先生、相談窓口に話すことが、そのまま対処の第一歩になります。</p>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <h2>画面の右下から警告が繰り返し出るとき</h2>
+                    <p>ブラウザを閉じたのに、画面の右下から同じような警告が繰り返し出ることがあります。</p>
+                    <p>これは、ブラウザの「通知」を許可してしまったことが原因のことがあります。</p>
+                    <p>警告のサイトに通知を許可すると、ブラウザを閉じていても、通知の形で警告が出続けます。</p>
+                    <p>対処は、<strong>通知の許可を取り消す</strong>ことです。</p>
+                    <p>Edgeの場合は、次の順番です。</p>
+                    <p>1. Edgeの右上の […] をクリックして、[設定]を開きます。</p>
+                    <p>2. [Cookieとサイトのアクセス許可]を選びます。</p>
+                    <p>3. [通知]を選びます。</p>
+                    <p>4. 「許可」の一覧から、覚えのないサイトを探して、右の […] から[削除]を選びます。</p>
+                    <p>メニューや設定の名称は、ブラウザのバージョンで変わる場合があります。</p>
+                    <p>Chrome（パソコン）の場合は、[設定]から[プライバシーとセキュリティ]、[サイトの設定]、[通知]と進み、「許可」の一覧から、覚えのないサイトを削除します。</p>
+                    <p>出てきた警告そのものは、クリックしないでください。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>なぜだまされてしまうのか（手口の流れ）</h2>
+                    <p>仕組みを知っておくと、次に出ても慌てにくくなります。</p>
+                    <p>流れは決まっています。</p>
+                    <p>1. 広告や検索結果をクリックすると、偽の警告画面が出る。</p>
+                    <p>2. 音と文面で急かして、書いてある番号に電話をかけさせる。</p>
+                    <p>3. 電話口で「サポート」を名乗り、遠隔操作のソフトを入れさせる。</p>
+                    <p>4. 「サポートプラン」などの名目で、数万円から10万円程度の支払いを求める。</p>
+                    <p>5. 支払いは、ギフトカードを買わせて番号を聞き出す、ネットバンキングを開かせる、といった形で進む。</p>
+                    <p>IPAの相談窓口には、この手口の相談が2023年度に過去最高の件数、寄せられました。</p>
+                    <p>特別な人だけが狙われるのではありません。</p>
+                    <p><span class="marker-yellow">分かれ目は、電話をかけるかどうか、ただ1つです。</span></p>
+                    <p>そこを止めれば、この流れは始まりません。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>スマホで出た場合も、やることは同じ</h2>
+                    <p>スマホ（iPhone・Android）のブラウザでも、同じ偽の警告が出ることがあります。</p>
+                    <p>国民生活センターにも、スマホでの相談が寄せられています。</p>
+                    <p>やることは、パソコンと同じです。</p>
+                    <p>電話しない。画面のボタンは押さない。</p>
+                    <p>閉じ方は、ブラウザのタブを閉じます。</p>
+                    <p>それで消えなければ、ブラウザのアプリ自体を終了してください。</p>
+                    <p>IPAの練習ページはパソコン専用なので、スマホでは使えません。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>よくある質問</h2>
+                    <div class="faq-box">
+                        <div class="faq-list">
+                            <div class="faq-list-item">
+                                <p class="faq-q">本当にウイルスに感染していないのですか</p>
+                                <p class="faq-a">電話番号つきの全画面警告は、偽物の可能性が非常に高いと、国の専門機関（IPA）も案内しています。心配な場合は、画面を閉じたあとで、Microsoft Defenderのスキャンを自分で実行して確かめるのが確実です。パソコンの基本の安全確認は、<a href="guide-windows-first-steps.html">パソコンを買ったら最初にやることの記事</a>にまとめています。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">閉じたあと、パソコンはそのまま使っていいですか</p>
+                                <p class="faq-a">電話もクリックもしていなければ、そのまま使って問題ありません。ブラウザを開き直したときに「ページを復元しますか」と出たら、復元しないでください。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">電話してしまったけど、何も入れていないし、払ってもいない。大丈夫ですか</p>
+                                <p class="faq-a">その段階なら、被害は出ていないことがほとんどです。相手の指示には従わず、今後かかってきても出ないようにしてください。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">画面が消えなくて、どのキーも効かないときは</p>
+                                <p class="faq-a"><kbd>Ctrl</kbd> ＋ <kbd>Alt</kbd> ＋ <kbd>Del</kbd> も効かない場合は、最後の手段として、電源ボタンを長押しして切ってから、入れ直してください。保存していない文書や作業は消えてしまうので、本当に最後の手段にしてください。警告の画面自体は、再起動で消えます。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">家族のパソコンに同じ警告が出たら、どう伝えればいいですか</p>
+                                <p class="faq-a">「電話番号が書いてあったら偽物。電話しないで、Escキーの長押しで閉じて」。まずこの2つだけ伝えてください。詳しい対処は、この記事を一緒に見ながらで大丈夫です。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">セキュリティソフトを入れれば防げますか</p>
+                                <p class="faq-a">偽の警告は、ウイルス感染ではなく、ブラウザに表示される画面です。そのため、ソフトを入れても完全には防げません。Windowsには<strong>Microsoft Defenderが標準で入っています</strong>。この警告への対策として、有料ソフトを買う必要はありません。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <div class="summary-box">
+                        <h2 class="section-title--summary">まとめ｜電話しない・押さない・閉じるだけ</h2>
+                        <ul>
+                            <li>電話番号が書いてある警告は、まず偽物だと疑う</li>
+                            <li><strong>電話をかけなければ、被害は発生しない</strong></li>
+                            <li>画面のボタンは押さない。音は先に下げる</li>
+                            <li>閉じ方は、Escキーの長押しで右上の [✕]。ダメならタスクマネージャーでブラウザを終了</li>
+                            <li>電話してしまったら、指示に従わず、お金は払わない。ソフトを入れたらアンインストールかシステムの復元。払ったら警察と銀行・カード会社へ</li>
+                            <li>右下から繰り返し出る警告は、ブラウザの通知の許可を取り消す</li>
+                        </ul>
+                    </div>
+                    <p>警告の画面は怖く見えますが、分かれ目は1つだけです。</p>
+                    <p>電話をかける前に、一度止まる。</p>
+                    <p>それだけで防げます。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>この記事について</h2>
+                    <p>この記事は、パソコンスクールのインストラクターとして、就職を目指す方を指導する中で、受講生が同じ警告に慌てる場面をもとに、IPAとMicrosoftの公式情報を確認して作成しました。</p>
+                    <p>参考にした情報と確認日（2026年11月25日）：情報処理推進機構（IPA）「<a href="https://www.ipa.go.jp/security/anshin/attention/2024/mgdayori20241119.html" target="_blank" rel="noopener">パソコンに偽のウイルス感染警告を表示させるサポート詐欺に注意</a>」（2024年11月19日公開・2025年4月3日更新）、Microsoft News Center Japan「<a href="https://news.microsoft.com/ja-jp/2021/01/29/210129-information/" target="_blank" rel="noopener">マイクロソフトのサポートを装った詐欺にご注意ください</a>」（2021年1月29日）、国民生活センター「<a href="https://www.kokusen.go.jp/news/data/n-20220224_2.html" target="_blank" rel="noopener">そのセキュリティ警告画面・警告音は偽物です！「サポート詐欺」にご注意！！</a>」（2022年2月24日）。</p>
+                    <p>警告の文面や手口は変わることがあります。</p>
+                    <p>最新の情報は、IPAやMicrosoftの公式の案内で確かめてください。</p>
+                    <p>運営者情報は<a href="about.html">運営者情報</a>のページをご覧ください。</p>
+
+                    <div class="article-footer-nav">
+                        <p class="article-footer-nav__text">セキュリティの基本も、あわせて確認しておくと安心です</p>
+                        <div class="summary-nav">
+                            <a href="guide-windows-first-steps.html" class="btn-main">買ったら最初にやることへ</a>
+                            <a href="hub-column.html" class="summary-btn">現場コラムへ</a>
+                            <a href="./" class="summary-btn">ホームへ戻る</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="about.html">運営者情報</a>
+            </div>
+            <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
+        </footer>
+    </div>
+    <a href="#" id="back-to-top" class="back-to-top">↑</a>
+    <script src="js/main.js"></script>
+</body>
+</html>
