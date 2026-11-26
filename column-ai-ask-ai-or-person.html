@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>パソコンで困ったとき、AIに聞くか人に聞くか｜ぱそトレ！</title>
+    <meta name="description" content="パソコンで困ったとき、AIに聞けばいいのか、人に聞くべきなのか。操作の手順はAIに聞けて、職場のルールはAIは知りません。聞く先の分け方を現役パソコン講師が解説します。">
+    <link rel="canonical" href="https://miitype.com/column-ai-ask-ai-or-person.html">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- アドセンス -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
+
+    <!-- 管理者除外スクリプト -->
+    <script>
+        if (localStorage.getItem('pasotore_admin') === 'true') {
+            window['ga-disable-G-KWS4RPPBVV'] = true;
+            console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
+        }
+    </script>
+     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
+</head>
+<body class="portal-page">
+    <div id="app">
+        <!-- 統合ヘッダー -->
+        <header>
+            <div class="header-inner">
+                <a href="./" class="header-logo-link">
+                    <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
+                </a>
+                <nav class="header-nav">
+                    <div class="nav-grid">
+                        <a href="./" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                        <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                        <a href="hub-pcskills.html" class="nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>PCスキル</span></a>
+                        <a href="hub-ai.html" class="nav-item active"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                        <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                        <a href="hub-column.html" class="nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                    </div>
+                    <button class="mobile-menu-trigger" id="mobile-menu-btn">
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="menu-label">メニュー</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="mobile-nav-overlay" id="mobile-menu-overlay">
+                <button class="menu-close-btn" id="menu-close-btn">×</button>
+                <div class="mobile-nav-grid">
+                    <a href="./" class="mobile-nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                    <a href="hub-typing.html" class="mobile-nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                    <a href="hub-pcskills.html" class="mobile-nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>PCスキル</span></a>
+                    <a href="hub-ai.html" class="mobile-nav-item active"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                    <a href="hub-career.html" class="mobile-nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                    <a href="hub-column.html" class="mobile-nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                </div>
+            </div>
+        </header>
+
+        <main class="portal-main">
+            <article class="static-page">
+                <nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
+
+                <h1 class="page-title">パソコンで困ったとき、AIに聞くか人に聞くか</h1>
+                <p class="page-subtitle">操作の手順はAI、職場のルールは人</p>
+
+                <div class="content-body">
+                    <p>パソコンを使っていて、手が止まることがあります。</p>
+                    <p>操作のやり方が分からない。</p>
+                    <p>画面に出ている言葉の意味が分からない。</p>
+                    <p>このやり方で合っているのか、自信がない。</p>
+                    <p>そんなとき、今はAIに聞く、という選択肢があります。</p>
+                    <p>ただ、場面によっては、こんなことも起きます。</p>
+                    <p>AIに聞けばすぐ分かることを、授業の日まで持ち越してしまった。</p>
+                    <p>職場のやり方をAIに聞いて、もっともらしい答えをもらったけれど、本当に合っているのか分からない。</p>
+                    <p>でも、AIに聞けば何でも解決するわけではありません。</p>
+                    <p>職場のルールや、提出先の決まりは、AIは知らないからです。</p>
+                    <p>逆に、操作の手順のようなことは、先生や先輩に聞くより、AIに聞いたほうが早く進むことも多いです。</p>
+                    <p>大事なのは、困ったときに</p>
+                    <p><strong>「これはAIに聞くこと」</strong></p>
+                    <p><strong>「これは人に聞くこと」</strong></p>
+                    <p>と分けることです。</p>
+                    <p>そして、AIを使うかどうか自体は、人それぞれです。</p>
+                    <p>使わない人を否定する話ではありません。</p>
+                    <p>分け方を知っておくと、使う場面では迷わずに済みます。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>「困った」にも、種類がある</h2>
+                    <p>ひと口に「困った」と言っても、中身は場面で違います。</p>
+                    <p><strong>仕事で困った</strong>：書類の作り方、メールの書き方、職場でのやり方。</p>
+                    <p><strong>学習で困った</strong>：操作の覚え方、言葉の意味、練習の進め方。</p>
+                    <p><strong>転職で困った</strong>：履歴書の書き方、面接で聞かれること、応募先の決まり。</p>
+                    <p>種類が違うと、聞く先も変わります。</p>
+                    <p>仕事の困りごとは、職場のルールに触れるものが多めです。</p>
+                    <p>学習の困りごとは、操作の手順が中心です。</p>
+                    <p>転職の困りごとは、その両方が混ざります。</p>
+                    <p>まず、ネットで調べることと、AIに聞くことの違いから見ていきます。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>ネットで調べるのと、AIに聞くのと、何が違うのか</h2>
+                    <p>普通のネット検索は、この流れです。</p>
+                    <p style="margin-left: 1.5em; margin-bottom: 2em;">1. キーワードを入力する</p>
+                    <p style="margin-left: 1.5em; margin-bottom: 2em;">2. 検索結果の一覧が出る</p>
+                    <p style="margin-left: 1.5em; margin-bottom: 2em;">3. どれか選ぶ</p>
+                    <p style="margin-left: 1.5em; margin-bottom: 2em;">4. 読んで、自分の場合に合うか判断する</p>
+                    <p style="margin-left: 1.5em; margin-bottom: 2em;">5. やっと答えにたどり着く</p>
+                    <p>AIに聞く場合は、この流れです。</p>
+                    <p style="margin-left: 1.5em; margin-bottom: 2em;">1. やりたいことを、言葉で入力する</p>
+                    <p style="margin-left: 1.5em; margin-bottom: 2em;">2. 答えが返ってくる</p>
+                    <p>つまり、AIは</p>
+                    <p><span class="marker-yellow">「入力→結果」</span></p>
+                    <p>で、途中の選択と判断を飛ばしてくれます。</p>
+                    <p>1回で浮くのは、数分のことです。</p>
+                    <p>でも、パソコンの作業では、調べものが何度も出てきます。</p>
+                    <p>1日に何回も、週に何十回も。</p>
+                    <p>積み重なると、大きな時間の差になります。</p>
+                    <p>たとえば、1回の調べもので3分浮くとします。</p>
+                    <p>1日に10回調べれば、30分。</p>
+                    <p>月に20日で、10時間ほどの差になる計算です。</p>
+                    <p><strong>AIの一番の利点は、この時短です。</strong></p>
+
+                    <h3>いいことばかりではない</h3>
+                    <p>AIの答えは、1つだけ返ってきます。</p>
+                    <p>検索のように一覧を見比べられないので、合っているかの確かめが要ります。</p>
+                    <p>もっともらしい顔で、間違えたことを言うこともあります。</p>
+                    <p>そして、自分の職場のことや、自分の事情は知りません。</p>
+                    <p>検索は、選ぶ手間がある代わりに、情報源を見比べられます。</p>
+                    <p>速さのAI、見比べの検索。</p>
+                    <p>場面で使い分けるのが、現実的な使い方です。</p>
+                    <p>たとえば、公式の案内そのものを確かめたいときは、検索で公式のページに行くほうが確実です。</p>
+                    <p>逆に、手順をざっと知りたいだけなら、AIに聞くほうが早い。</p>
+                    <p>この見極めができると、調べもの全体が速くなります。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>AIに聞けること</h2>
+
+                    <h3>操作の手順</h3>
+                    <p>WordやExcelの操作は、AIに聞けます。</p>
+                    <p>やりたいことを言葉で伝えると、手順や数式の候補が返ってきます。</p>
+                    <p>「表の行の高さをそろえたい」「請求書の合計を出す数式が知りたい」。</p>
+                    <p>こんなふうに、やりたいことをそのまま聞けます。</p>
+                    <p>聞き方の基本は、<a href="ai-tools.html">生成AIの使い方の記事</a>で解説しています。</p>
+
+                    <h3>言葉の意味</h3>
+                    <p>画面に出てきた分からない言葉や、Excelの関数の意味も聞けます。</p>
+                    <p>「この言葉、どういう意味ですか」と、そのまま聞いて大丈夫です。</p>
+                    <p>たとえば、Excelで出てくる「絶対参照」という言葉。</p>
+                    <p>教科書で探すより、聞いてしまったほうが早いことが多いです。</p>
+
+                    <h3>文章の下書き</h3>
+                    <p>メールや案内文の下書きも、頼めます。</p>
+                    <p>目上の人へのメールや、断りの文面など、書き出しに困る文章で助かります。</p>
+                    <p>出てきた文章は、そのまま送らず、自分で読み直してから使ってください。</p>
+
+                    <h3>考えの整理</h3>
+                    <p>もやもやした考えを言葉にして、整理を手伝ってもらうこともできます。</p>
+                    <p>転職の理由を言葉にしたいとき、面接で話す内容をまとめたいときにも使えます。</p>
+                    <p>この「壁打ち」のやり方は、<a href="column-chatgpt-basics.html">ChatGPTの基本の記事</a>で紹介しています。</p>
+
+                    <h3>一般的なやり方</h3>
+                    <p>「普通は、どうするものですか」という聞き方もできます。</p>
+                    <p>ただし、そこに自分の職場のやり方は含まれません。</p>
+                    <p>一般的な話と、その職場だけの話は、別です。</p>
+
+                    <div class="instructor-advice instructor-advice--ai">
+                        <b>💡 講師のアドバイス：AIに聞けるのは、一般的なことです</b><br>
+                        <p style="margin-top: 10px;">授業では、「AIに聞けば何でも分かる」と思っている受講生がいます。</p>
+                        <p>AIは便利な相談相手ですが、知らないこともあります。</p>
+                        <p>知らないのに、答えを作ってしまうこともあります。</p>
+                        <p>『AIに聞けるのは、一般的なこと』という線引きを、最初に伝えるようにしています。</p>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <h2>人に聞くこと：その職場・その場だけのことは、AIは知らない</h2>
+
+                    <h3>職場のルール</h3>
+                    <p>仕事でAIを使っていいか、入れてはいけない情報は何か。</p>
+                    <p>これは、その職場のルールです。</p>
+                    <p>AIに聞いても、その職場の決まりは出てきません。</p>
+                    <p>ルールの確かめ方は、<a href="column-chatgpt-work-safety.html">仕事でChatGPTを使うときの注意点の記事</a>で解説しています。</p>
+
+                    <h3>提出先の決まり</h3>
+                    <p>書類の出し方、形式、期限は、提出先が決めています。</p>
+                    <p>履歴書はPDFで送るのか紙で出すのか、写真の大きさはどうするか。</p>
+                    <p>こういう決まりは、提出先ごとに違います。</p>
+                    <p>提出先の案内を読むか、担当の人に聞くのが確実です。</p>
+
+                    <h3>その場だけのやり方</h3>
+                    <p>ファイルの置き場所、誰に渡すか、その職場だけの決まり。</p>
+                    <p>共有フォルダの場所や、印刷のルールも同じです。</p>
+                    <p>こういうことは、その場の人にしか分かりません。</p>
+
+                    <h3>判断そのもの</h3>
+                    <p>「これでいいか」という最後の判断は、AIに任せるものではありません。</p>
+                    <p>自分の経歴をどう書くかも、AIが決めることではなく、自分で選ぶことです。</p>
+                    <p>人に聞く良さは、自分の場合に合わせた答えが返ってくることです。</p>
+                    <p>AIの下書きに、人の目を通すと、文章も判断も確かになります。</p>
+
+                    <div class="info-note-box">
+                        <strong class="note-title">分け方の目安</strong>
+                        <ul>
+                            <li>AIに聞く：操作の手順／言葉の意味／文章の下書き／考えの整理／一般的なやり方</li>
+                            <li>人に聞く：職場のルール／提出先の決まり／その場だけのやり方／最後の判断</li>
+                            <li>自分で確かめる：数字・名前・日付／AIの答えを、自分の画面で試す</li>
+                        </ul>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <h2>自分で確かめること</h2>
+                    <p>AIに聞くにしても、人に聞くにしても、最後に自分で確かめる部分があります。</p>
+                    <p><strong>数字・名前・日付</strong>は、特に入念に見てください。</p>
+                    <p>AIは、この3つを間違えることがあるからです。</p>
+                    <p>確かめ方の詳しい手順は、<a href="column-chatgpt-work-safety.html">注意点の記事</a>にまとめています。</p>
+                    <p>操作の手順を聞いたら、自分の画面で実際に試してみます。</p>
+                    <p>画面と違っていたら、そこで止まって確かめ直す。</p>
+                    <p>この「試して確かめる」ができると、AIはぐっと使いやすくなります。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>授業中での実話</h2>
+                    <p>私の授業では、生成AIを実際に使うところから学びます。</p>
+                    <p>あるとき、4つのAIに、まったく同じ指示を入れてみました。</p>
+                    <p>指示は、「老夫婦が、パソコンを学んでいる水墨画の画像を作ってください」です。</p>
+                    <p>出てきた画像は、4つともまったく違うものでした。</p>
+                    <p>あるAIでは、老夫婦がいろんな国籍の姿で描かれていました。</p>
+                    <p>あるAIでは、周りに本が置いてありました。</p>
+                    <p>畳の部屋で学んでいる絵や、掛け軸が描かれているものもありました。</p>
+                    <p>「老夫婦」「パソコンを学んでいる」という言葉の裏側や背景まで、今のAIは読み取って絵にします。</p>
+                    <p>逆に言えば、指示に書かれていない部分は、AIが自分で補って作る、ということです。</p>
+                    <p><strong>指示が足りないと、残りはAIが補います。</strong></p>
+                    <p>受講生のみなさんは、この違いに本当に驚かれます。</p>
+                    <p>AIの答えが「1つの正解」ではないことが、絵だと一目で分かるからだと思います。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>AIは1つではない：違いを知ると、聞く先が増える</h2>
+                    <p>生成AIは、ChatGPTだけではありません。</p>
+                    <p>Copilot、Gemini、Claudeなど、いくつもあります。</p>
+                    <p>同じ指示でも、出てくる答えや絵は、AIごとに違います。</p>
+                    <p>授業の実話で見たとおりです。</p>
+                    <p>これからは、AIの種類と違いを知って、「どのAIで調べればいいか」を選ぶことが、普通になっていくと思います。</p>
+                    <p>得意なことも、AIごとに違います。</p>
+                    <p>文章が得意なAI、画像が得意なAI。</p>
+                    <p>弱点もそれぞれ違うので、1つのAIの答えだけで決めないことも大事です。</p>
+                    <p>4つのAIの違いと使い分けは、<a href="ai-tools.html">生成AIの使い方の記事</a>で比べています。</p>
+                    <p>パソコンスクールの授業でも、生成AIを実際に使うところから始めて、使い分け、違い、弱点、任せていい内容と任せてはいけない内容まで、順番に学ぶ授業を行っています。</p>
+                    <p><span class="marker-yellow">違いを知っていると、困ったときに聞ける先が増えます。</span></p>
+
+                    <hr class="section-divider">
+
+                    <h2>聞くときの伝え方は、相手で変える</h2>
+                    <p>AIに聞くときは、状況を詳しく伝えます。</p>
+                    <p>使っているソフト、今の状態、やりたいこと。</p>
+                    <p>AIへの伝え方で大事なのは、実話の裏返しです。</p>
+                    <p>指示が足りない部分は、AIが自分で補ってしまうからです。</p>
+                    <p>人に聞くときは、止まった場所を短く伝えます。</p>
+                    <p>「ここまでやって、ここで止まりました」という形です。</p>
+                    <p>相手の時間を、長く取らないための工夫でもあります。</p>
+
+                    <div class="info-note-box">
+                        <strong class="note-title">伝え方の例</strong>
+                        <ul>
+                            <li>AIに聞くとき：「Wordで表を作っています。行の高さをそろえたいのですが、どうすればいいですか」</li>
+                            <li>人に聞くとき：「履歴書を書き終えましたが、PDFで送るのか紙で出すのか、案内が見つかりません。ここで止まっています」</li>
+                        </ul>
+                        <p>どちらも、やりたいことを先に言うと、答えが返ってきやすくなります。</p>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <h2>間違えやすい分け方</h2>
+
+                    <h3>職場のルールを、AIに聞いてしまう</h3>
+                    <p>AIは、その職場のことを知りません。</p>
+                    <p>もっともらしい答えが返ってきても、そのまま信じて使わないでください。</p>
+                    <p>理由は、間違っていたときに困るのが自分だからです。</p>
+                    <p>ルールは、上司や担当の人に聞くのが確実です。</p>
+
+                    <h3>AIに聞けば分かることを、持ち越してしまう</h3>
+                    <p>操作の手順や言葉の意味は、家でAIに聞いて進められます。</p>
+                    <p>授業や出勤の時間は、AIでは聞けないことのために使うほうが、時間が生きてきます。</p>
+
+                    <h3>人に聞く前に、自分で少し試す</h3>
+                    <p>習ったキーワードを思い出す、画面のメニューを見てみる。</p>
+                    <p>少し試してから聞くと、聞く内容が絞れて、相手にも伝わりやすくなります。</p>
+                    <p>この順番は、<a href="column-pc-learning.html">パソコンの覚え方の記事</a>で紹介しています。</p>
+
+                    <hr class="section-divider">
+
+                    <h2>よくある質問</h2>
+                    <div class="faq-box">
+                        <div class="faq-list">
+                            <div class="faq-list-item">
+                                <p class="faq-q">AIに聞いた答えが、職場のルールと違っていたら</p>
+                                <p class="faq-a">職場のルールが先です。AIは、その職場のことを知ずに答えています。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">職場のルールが分からないときは、誰に聞けばいいですか</p>
+                                <p class="faq-a">上司や、職場の担当の人です。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">AIに聞くのが恥ずかしいときは</p>
+                                <p class="faq-a">AIは、相手が人ではありません。同じことを何度聞いても、大丈夫です。言い方を変えて、繰り返し聞くこともできます。それも、AIに聞く良さの1つです。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">人に聞くのが苦手なときは</p>
+                                <p class="faq-a">「ここまでやって、ここで止まりました」と、止まった場所を短く伝える形にすると、聞きやすくなります。例文は、この記事の「伝え方の例」に置いています。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">AIと人、両方に聞いてもいいですか</p>
+                                <p class="faq-a">もちろんです。AIで下調べをして、最後は人に確かめる。この順番が、いちばん確実です。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <div class="summary-box">
+                        <h2 class="section-title--summary">まとめ</h2>
+                        <ul>
+                            <li>困ったときは、まず「AIに聞くこと」か「人に聞くこと」かを分ける</li>
+                            <li>AIは「入力→結果」で速い。積み重なると、大きな時短になる</li>
+                            <li>操作の手順・言葉の意味・下書き・考えの整理は、AIに聞ける</li>
+                            <li>職場のルール・提出先の決まり・最後の判断は、人に聞く</li>
+                            <li>数字・名前・日付は、自分で確かめる</li>
+                            <li>AIは1つではない。違いを知ると、聞ける先が増える</li>
+                            <li>AIを使うかどうかは人それぞれ。分け方だけ知っておくと、迷わない</li>
+                        </ul>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <h2>この記事について</h2>
+                    <p>この記事は、パソコンスクールのインストラクターとして、受講生が「困ったときに、誰に・何に聞けばいいか」で迷う場面を見てきた経験をもとに書いています。</p>
+                    <p>授業で4つのAIに同じ指示を入れて比べた話も、実際に授業であったことです。</p>
+                    <p>職場のルールや提出先の決まりは、職場・提出先ごとに違います。</p>
+                    <p>最終的には、公式の案内や担当の人の説明で確認してください。</p>
+                    <p>AIの種類や機能も変わっていくので、使うときは各サービスの公式の案内も見てください。</p>
+                    <p>運営者については<a href="about.html">運営者情報</a>のページをご覧ください。</p>
+
+                    <div class="article-footer-nav">
+                        <p class="article-footer-nav__text">生成AIの使い方の全体像も、あわせてどうぞ</p>
+                        <div class="summary-nav">
+                            <a href="ai-tools.html" class="btn-main">生成AIの使い方へ</a>
+                            <a href="hub-ai.html" class="summary-btn">生成AIガイドへ</a>
+                            <a href="./" class="summary-btn">ホームへ戻る</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="about.html">運営者情報</a>
+            </div>
+            <p>&copy; 2026 パソトレ！ Produced by miitype - All Rights Reserved.</p>
+        </footer>
+    </div>
+    <a href="#" id="back-to-top" class="back-to-top">↑</a>
+    <script src="js/main.js"></script>
+</body>
+</html>
