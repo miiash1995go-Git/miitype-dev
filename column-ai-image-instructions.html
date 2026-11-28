@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI画像生成の指示（プロンプト）の書き方｜5つの材料と直し方｜ぱそトレ！</title>
+    <meta name="description" content="AIに画像を作ってもらっても、思った絵にならない。その多くは、指示の材料不足です。現役パソコン講師が、画像生成の指示（プロンプト）に入れる5つの材料と、思いどおりにならないときの直し方を、実例の画像つきで解説します。">
+    <link rel="canonical" href="https://miitype.com/column-ai-image-instructions.html">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- アドセンス -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6634013670088700" crossorigin="anonymous"></script>
+
+    <!-- 管理者除外スクリプト -->
+    <script>
+        if (localStorage.getItem('pasotore_admin') === 'true') {
+            window['ga-disable-G-KWS4RPPBVV'] = true;
+            console.log("【ぱそトレ！管理者モード】GA4計測は現在オフになっています。");
+        }
+    </script>
+     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWS4RPPBVV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KWS4RPPBVV');
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portal-shared.css">
+</head>
+<body class="portal-page">
+    <div id="app">
+        <!-- 統合ヘッダー -->
+        <header>
+            <div class="header-inner">
+                <a href="./" class="header-logo-link">
+                    <img src="img/logo.png" alt="ぱそトレ！" class="header-logo-img">
+                </a>
+                <nav class="header-nav">
+                    <div class="nav-grid">
+                        <a href="./" class="nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                        <a href="hub-typing.html" class="nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                        <a href="hub-pcskills.html" class="nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>PCスキル</span></a>
+                        <a href="hub-ai.html" class="nav-item active"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                        <a href="hub-career.html" class="nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                        <a href="hub-column.html" class="nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                    </div>
+                    <button class="mobile-menu-trigger" id="mobile-menu-btn">
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="menu-label">メニュー</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="mobile-nav-overlay" id="mobile-menu-overlay">
+                <button class="menu-close-btn" id="menu-close-btn">×</button>
+                <div class="mobile-nav-grid">
+                    <a href="./" class="mobile-nav-item"><img src="img/icon-home.png" class="nav-icon"><span>ホーム</span></a>
+                    <a href="hub-typing.html" class="mobile-nav-item"><img src="img/icon-typing.png" class="nav-icon"><span>タイピング</span></a>
+                    <a href="hub-pcskills.html" class="mobile-nav-item"><img src="img/icon-windows.png" class="nav-icon"><span>PCスキル</span></a>
+                    <a href="hub-ai.html" class="mobile-nav-item active"><img src="img/icon-ai.png" class="nav-icon"><span>生成AI</span></a>
+                    <a href="hub-career.html" class="mobile-nav-item"><img src="img/icon-career.png" class="nav-icon"><span>就職・転職</span></a>
+                    <a href="hub-column.html" class="mobile-nav-item"><img src="img/icon-genba.png" class="nav-icon"><span>現場コラム</span></a>
+                </div>
+            </div>
+        </header>
+
+        <main class="portal-main">
+            <article class="static-page">
+                <nav class="breadcrumb" id="dynamic-breadcrumb"></nav>
+
+                <h1 class="page-title">AI画像生成の指示（プロンプト）の書き方｜5つの材料と直し方</h1>
+                <p class="page-subtitle">指示が足りないと、残りはAIが補う</p>
+
+                <div class="content-body">
+                    <p>社内の掲示物や、資料の挿絵がほしいとき。</p>
+                    <p>絵を描くのは苦手でも、AIに頼めば数十秒で絵が出てきます。</p>
+                    <p>でも、出てきた絵が思ったものと違うことがあります。</p>
+                    <p>その理由が、授業ではっきり見えたことがあります。</p>
+                    <br>
+                    <p>4つのAIに、まったく同じ指示を入れたときのことです。</p>
+                    <p>「老夫婦が、パソコンを学んでいる水墨画の画像を作ってください」。</p>
+                    <p>出てきた絵は、4つとも全部違いました。</p>
+                    <p>理由は単純で、指示に書いていない部分を、それぞれのAIが自分で補ったからです。</p>
+                    <br>
+                    <p><strong>指示が足りないと、残りはAIが補います</strong></p>
+                    <br>
+                    <p>思いどおりの絵に近づけるには、補われる前に、こちらが材料を渡すことです。</p>
+                    <p>この記事では、指示に入れる材料と、思いどおりにならないときの直し方、仕事で使う前に確かめることを書きます。</p>
+
+                    <div class="info-note-box">
+                        <p><strong class="note-title">目次</strong></p>
+                        <ul>
+                            <li><a href="#image-why">指示が足りないと、絵はAIの想像で補われる</a></li>
+                            <li><a href="#image-materials">指示に入れる5つの材料</a><ul><li><a href="#materials-purpose">何のための絵か</a></li><li><a href="#materials-audience">誰が見るか</a></li><li><a href="#materials-mood">雰囲気と色</a></li><li><a href="#materials-layout">構図と形</a></li><li><a href="#materials-avoid">入れないもの・避けたいもの</a></li><li><a href="#materials-example">実例：同じ場面で、指示だけを変えて比べる</a></li></ul></li>
+                            <li><a href="#image-fix">思いどおりにならないとき、直すのは1つずつ</a></li>
+                            <li><a href="#image-text">文字は、画像に入れない</a></li>
+                            <li><a href="#image-infographic">仕事の実例：長い文書を、1枚の絵にまとめる</a></li>
+                            <li><a href="#image-check">仕事で使う前に、確かめること</a></li>
+                            <li><a href="#image-which">どのAIで作るか</a></li>
+                            <li><a href="#image-story">受講生の話</a></li>
+                            <li><a href="#image-faq">よくある質問</a></li>
+                        </ul>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <h2 id="image-why">指示が足りないと、絵はAIの想像で補われる</h2>
+
+                    <p>水墨画の話を、もう少しだけします。</p>
+                    <p>指示は「老夫婦が、パソコンを学んでいる水墨画の画像を作ってください」の1文だけでした。</p>
+                    <p>人物は、どれも日本人の老夫婦でした。</p>
+                    <p>指示を日本語で書くと、人物は日本人で出てきます。</p>
+                    <p>違ったのは、まわりのほうです。</p>
+                    <p>あるAIは、まわりに本を置きました。</p>
+                    <p>畳の部屋や、掛け軸まで描いたものもありました。</p>
+                    <p>指示に書いていないことは、AIが想像で埋めます。</p>
+                    <p>間違っているのではなく、材料が足りないだけです。</p>
+                    <br>
+                    <p>文章のときは、この補われ方に気づきにくいものです。</p>
+                    <p>絵だと、補われた場所が目で見えます。</p>
+                    <p>だから、指示の書き方を学ぶなら、画像がいちばん分かりやすい題材です。</p>
+                    <p>AIの種類と違いの話は、<a href="column-ai-ask-ai-or-person.html">AIに聞くか人に聞くかの記事</a>に書いています。</p>
+
+                    <div class="instructor-advice instructor-advice--ai">
+                        <b>💡 講師のアドバイス：思いどおりにならないのは、指示の材料不足</b><br>
+                        <p style="margin-top: 10px;">出てきた絵が思ったものと違うとき、AIの出来が悪いとは限りません。</p>
+                        <p>たいていは、伝える材料が足りていません。</p>
+                        <p>何のための絵か、誰が見るか、どんな雰囲気か。</p>
+                        <p>この先の5つの材料を入れて頼むと、絵は大きく変わります。</p>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <h2 id="image-materials">指示に入れる5つの材料</h2>
+
+                    <p>指示（プロンプト）は、長い文章で書く必要はありません。</p>
+                    <p>次の5つの材料が入っていれば、メモのような短い書き方でも伝わります。</p>
+
+                    <h3 id="materials-purpose">① 何のための絵か</h3>
+                    <p>掲示物に使うのか、資料の挿絵か。</p>
+                    <p>置く場所が決まると、絵の大きさや細かさの目安になります。</p>
+                    <p>最初にこれを書いてください。</p>
+
+                    <h3 id="materials-audience">② 誰が見るか</h3>
+                    <p>社内の人が見るのか、お客様が見るのか。</p>
+                    <p>見る人が変わると、ふさわしい雰囲気も変わります。</p>
+
+                    <h3 id="materials-mood">③ 雰囲気と色</h3>
+                    <p>やわらかい色合いか、はっきりした色か。</p>
+                    <p>「明るい雰囲気で」「落ち着いた色で」のように、言葉で伝えます。</p>
+
+                    <h3 id="materials-layout">④ 構図と形</h3>
+                    <p>何を中心に描くか。</p>
+                    <p>余白を多めにするか、横向きか縦向きか。</p>
+                    <p>置く場所の形が決まっているなら、ここで伝えます。</p>
+
+                    <h3 id="materials-avoid">⑤ 入れないもの・避けたいもの</h3>
+                    <p>入れてほしくないものは、先に伝えます。</p>
+                    <p>代表は文字です。</p>
+                    <p>「文字は入れないでください」と書くだけで、後の手直しが減ります。</p>
+
+                    <div class="info-note-box">
+                        <p><strong class="note-title">指示の5つの材料</strong></p>
+                        <ul>
+                            <li>何のための絵か（掲示物か、資料の挿絵か）</li>
+                            <li>誰が見るか（社内か、お客様か）</li>
+                            <li>雰囲気と色（やわらかいか、はっきりしているか）</li>
+                            <li>構図と形（中心に描くもの、余白、横か縦か）</li>
+                            <li>入れないもの（文字など、避けたいもの）</li>
+                        </ul>
+                    </div>
+
+                    <p>例を2つ置きます。</p>
+                    <br>
+
+                    <div class="info-note-box">
+                        <p><strong class="note-title">例1：清掃当番の掲示物</strong></p>
+                        <p>「清掃当番を知らせる掲示物に使うイラストを作ってください。見るのは社内の人です。やわらかい色合いで、明るい雰囲気にしてください。ほうきとバケツを持った人を中心に描いて、まわりは余白を多めにしてください。文字は入れないでください」</p>
+                    </div>
+
+                    <div class="info-note-box">
+                        <p><strong class="note-title">例2：お客様向け資料の挿絵</strong></p>
+                        <p>「お客様向けの会議資料の挿絵に使うイラストを作ってください。落ち着いた青を基調にして、信頼感のある雰囲気にしてください。机に向かって相談している2人の会社員を、横向きの構図で描いてください。右側に文字を置くので、余白を空けてください。文字とロゴは入れないでください」</p>
+                    </div>
+
+                    <p>慣れないうちは、次の型に当てはめるだけでも書けます。</p>
+
+                    <div class="info-note-box">
+                        <p><strong class="note-title">指示の型（かっこの中を自分の言葉に置き換えます）</strong></p>
+                        <p>「（何に使うか）のイラストを作ってください。見るのは（誰か）です。（雰囲気）で、色は（色）にしてください。（中心に描くもの）を（構図）で描いてください。（入れないもの）は入れないでください」</p>
+                    </div>
+
+                    <h3 id="materials-example">実例：同じ場面で、指示だけを変えて比べる</h3>
+
+                    <p>水墨画の場面で、ChatGPTを使って、指示だけを変えて実際に比べました。</p>
+                    <p>まず、授業で使った短い指示のまま作った絵です。</p>
+
+                    <div class="info-note-box">
+                        <p><strong class="note-title">短い指示</strong></p>
+                        <p>「老夫婦が、パソコンを学んでいる水墨画の画像を作ってください」</p>
+                    </div>
+
+                    <div class="article-image article-image--full">
+                        <img src="img/AI/column-ai-image-instructions-before.jpg" alt="短い指示で作った水墨画。老夫婦がノートパソコンを見ていて、後ろにホワイトボードと観葉植物が描かれている" width="1280" height="853" loading="lazy">
+                        <p class="small-text">▲ 短い指示で作った絵</p>
+                    </div>
+
+                    <p>次に、5つの材料を足した指示で作った絵です。</p>
+                    <p>何のための絵か、誰が見るか、場所と雰囲気、入れないものまで入れました。</p>
+
+                    <div class="info-note-box">
+                        <p><strong class="note-title">材料を足した指示</strong></p>
+                        <p>「パソコンを習いたい方向けの案内に使う、水墨画のイラストを作ってください。日本の家の畳の部屋で、老夫婦が、机の上のノートパソコンを2人で見ながら学んでいます。2人とも穏やかな表情です。色は墨の濃淡だけにして、余白を多めにしてください。やさしく落ち着いた雰囲気にしてください。本や掛け軸など、関係のないものは描かないでください。文字は入れないでください」</p>
+                    </div>
+
+                    <div class="article-image article-image--full">
+                        <img src="img/AI/column-ai-image-instructions-after.jpg" alt="材料を足した指示で作った水墨画。畳の部屋で、老夫婦が低い机のノートパソコンを一緒に見ている" width="1280" height="853" loading="lazy">
+                        <p class="small-text">▲ 材料を足した指示で作った絵</p>
+                    </div>
+
+                    <p>違いは、はっきり出ました。</p>
+                    <p>短い指示の絵は、教室のような場面になりました。</p>
+                    <p>ホワイトボードに観葉植物、マウスまで描かれています。</p>
+                    <p>頼んでいない文字まで入りました。ホワイトボードの「はじめてのパソコン」です。</p>
+                    <p>材料を足した絵は、指定どおり畳の部屋です。</p>
+                    <p>低い机に座布団、余白も多めで、文字も余計な小物も入っていません。</p>
+                    <p>AIが補う範囲は、材料を渡したぶんだけ狭くなります。</p>
+                    <p>指示を書く力は、こうして比べると身につきます。</p>
+
+                    <hr class="section-divider">
+
+                    <h2 id="image-fix">思いどおりにならないとき、直すのは1つずつ</h2>
+
+                    <p>材料を入れても、1回で思いどおりになるとは限りません。</p>
+                    <p>そのときの直し方です。</p>
+                    <br>
+                    <p>直すのは、</p>
+                    <br>
+                    <p><strong>1つずつ</strong></p>
+                    <br>
+                    <p>いくつも一度に直すと、どこが変わったのか分からなくなります。</p>
+                    <p>「もっと明るく」のような言い方も、場所と変え方に分けてください。</p>
+                    <p>「背景を白くして、色をやわらかくして」のように言うと、そのまま変わります。</p>
+                    <p>前の絵は残しておいて、比べながら直すと、進んでいるかどうかが見えます。</p>
+                    <p>何度直しても近づかないときは、指示を短く書き直して、最初から作り直すほうが早いこともあります。</p>
+                    <br>
+                    <p>先ほどの短い指示の絵なら、頼んでいない文字（ホワイトボードの「はじめてのパソコン」）が入っていました。</p>
+                    <p>直すなら、「文字は入れないでください」の1文だけを足して作り直します。</p>
+                    <p>畳の部屋にしたいなら、それは次の1回で伝えます。</p>
+
+                    <div class="instructor-advice instructor-advice--ai">
+                        <b>💡 講師のアドバイス：直し方のコツは、変える場所を1つに絞ること</b><br>
+                        <p style="margin-top: 10px;">「なんか違う」と感じたら、まず、どこが違うのかを言葉にしてください。</p>
+                        <p>色なのか、描かれている物なのか、雰囲気なのか。</p>
+                        <p>違う場所が1つ言えれば、それがそのまま次の指示になります。</p>
+                    </div>
+
+                    <p>もう1つ、保存のことです。</p>
+                    <p>生成した画像は、二度と同じものを作れません。</p>
+                    <p>だから、納得のいく仕上がりでなくても、「いい感じかな」と思った時点で、ダウンロードして保存しておくのがおすすめです。</p>
+
+                    <hr class="section-divider">
+
+                    <h2 id="image-text">文字は、画像に入れない</h2>
+
+                    <p>AIが作る画像の中の文字は、誤字になりやすいものです。</p>
+                    <p>読めそうで読めない文字が入っていると、そのままでは使えません。</p>
+                    <p>掲示物のタイトルや説明の文字は、画像に入れないでください。</p>
+                    <p>理由は、文字はあとから自分で入れるほうが、正確で、直しやすいからです。</p>
+                    <p>絵はAIに作ってもらう。</p>
+                    <p>文字は、Wordや資料のソフトで入れる。</p>
+                    <p>分けて作るのが、確実な進め方です。</p>
+                    <p>ただし、文字を入れて使う場面もあります。</p>
+                    <p>長い文書を1枚にまとめる、インフォグラフィックです。</p>
+
+                    <hr class="section-divider">
+
+                    <h2 id="image-infographic">仕事の実例：長い文書を、1枚の絵にまとめる</h2>
+
+                    <p>仕事の資料作りで、画像生成がいちばん役に立つ場面の1つです。</p>
+                    <p>長い文書の要点を、1枚の画像にまとめる。</p>
+                    <p>これをインフォグラフィックと言います。</p>
+                    <p>会議の資料や、掲示物、説明のスライドで使われます。</p>
+                    <br>
+                    <p>やり方は、文書を渡して、まとめ方を指示するだけです。</p>
+                    <p>ただし、挿絵とは逆に、こちらは文字が主役です。</p>
+                    <p>そのぶん、誤字と、数字の間違いが入りやすくなります。</p>
+
+                    <div class="instructor-advice instructor-advice--ai">
+                        <b>💡 講師のアドバイス：作ったあとの照合が、仕事の本体</b><br>
+                        <p style="margin-top: 10px;">インフォグラフィックは、作ること自体は数分で終わります。</p>
+                        <p>仕事として使うなら、大事なのはそのあとです。</p>
+                        <p>数字と、制度や商品の名前を、元の文書と1つずつ照らし合わせてください。</p>
+                        <p>1つでも違っていたら、その場で直すか、作り直します。</p>
+                    </div>
+
+                    <p>文字の崩れを減らすコツが、もう1つあります。</p>
+                    <p>指示に「日本語文章は画像表現ではなく、実際の文字テキストを使用すること」と書き足す方法です。</p>
+                    <p>私の経験では、画数の多い複雑な漢字も、比較的正しく出やすくなります。</p>
+                    <p>ただし、必ず直るわけではないので、照合は変わらず必要です。</p>
+
+                    <h3>実例：求人票の見方を、1枚にまとめる</h3>
+
+                    <p>ハローワークが出している「求人票の見方」は、ページ数のある文書です。</p>
+                    <p>これをChatGPTに渡して、こう頼みました。</p>
+
+                    <div class="info-note-box">
+                        <p><strong class="note-title">インフォグラフィックの指示</strong></p>
+                        <p>「添付した文書を、1枚のインフォグラフィックにまとめてください。見るのは、求人票の言葉が分からない求職者です。要点は5つまでに絞ってください。各項目は、短い見出しと一言の説明にしてください。数字と制度の言葉は、元の文書のまま正確に書いてください。レイアウトは上から下に読める形で、色は青を基調にしてください」</p>
+                    </div>
+
+                    <div class="article-image article-image--full">
+                        <img src="img/AI/column-ai-image-instructions-infographic.jpg" alt="求人票のチェックポイント5つ（受付年月日・紹介期限日、賃金、加入保険等、就業時間、休日・週休二日制）をまとめたインフォグラフィック" width="1280" height="853" loading="lazy">
+                        <p class="small-text">▲ 長い文書を、1枚にまとめたインフォグラフィック</p>
+                        <p class="small-text">出典：<a href="https://jsite.mhlw.go.jp/fukuoka-roudoukyoku/var/rev0/0111/5555/2015151459.pdf" target="_blank" rel="noopener">ハローワーク「求人票の見方」</a>をもとに、ChatGPTで作成</p>
+                    </div>
+
+                    <p>長い文書の要点が、5つのチェックポイントに絞られて、1枚で見渡せるようになりました。</p>
+                    <p>使う前に、文字と制度の言葉を、元の文書と照合しました。</p>
+                    <p>今回は、誤字も数字の間違いもありませんでした。</p>
+                    <p>毎回そうとは限らないので、照合は欠かせません。</p>
+                    <p>求人票の言葉の意味そのものは、<a href="column-ai-kyujinhyo-read.html">求人票の見方の記事</a>にまとめています。</p>
+                    <p>なお、社内の文書をAIに渡すときは、会社のルールで入れていい情報かどうかを先に確かめてください。</p>
+
+                    <hr class="section-divider">
+
+                    <h2 id="image-check">仕事で使う前に、確かめること</h2>
+
+                    <p>作った絵を仕事で使う前に、順番に確かめてください。</p>
+                    <p style="margin-left: 1.5em; margin-bottom: 2em;">1. 会社のルール（仕事でAIを使っていいか、作った絵を仕事で使っていいか）</p>
+                    <p style="margin-left: 1.5em; margin-bottom: 2em;">2. 使うサービスの規約（作った絵を仕事で使える範囲）</p>
+                    <p style="margin-left: 1.5em; margin-bottom: 2em;">3. 絵の中身（個人情報や社内情報が写っていないか、文字の誤字がないか）</p>
+                    <p style="margin-left: 1.5em; margin-bottom: 2em;">4. 似ているものがないか（既存のキャラクターや、他人の作品によく似ていないか）</p>
+                    <p>4つ目のために、指示にキャラクターの名前や、特定の作者の名前を入れるのは避けてください。</p>
+                    <p>似てしまった絵は、仕事では使わないほうが安全です。</p>
+                    <p>会社のルールと、入力してはいけない情報の線引きは、<a href="column-chatgpt-work-safety.html">仕事でChatGPTを使うときの注意点の記事</a>にまとめています。</p>
+
+                    <hr class="section-divider">
+
+                    <h2 id="image-which">どのAIで作るか</h2>
+
+                    <p>画像を作れるAIと、向かないAIがあります。</p>
+                    <p>ChatGPT、Gemini、Copilotは、無料の範囲でも画像を作れます。</p>
+                    <p>回数には上限があるので、たくさん作ると途中で止まることがあります。</p>
+                    <p>Claudeは、写真やイラストのような画像を作る使い方には向いていません。</p>
+                    <p>文章の相談や、画像用の指示の書き方を一緒に考える相手としては使えます。</p>
+                    <p>AIの機能は変わっていくので、画像を作れるかどうかは、使う前に各サービスの案内で確かめてください。</p>
+                    <p>4つのAIの違いと使い分けは、<a href="ai-tools.html">生成AIの使い方と比較の記事</a>にまとめています。</p>
+
+                    <hr class="section-divider">
+
+                    <h2 id="image-story">受講生の話</h2>
+
+                    <p>実際の生成AIの授業での話です。</p>
+                    <p>受講生が、AIの違いをインフォグラフィックにまとめてもらいました。</p>
+                    <p>文字の量が多すぎて、まとまりきりませんでした。</p>
+                    <p>しかも、誤字や脱字がありました。</p>
+                    <br>
+                    <p>「これでは使えないですよね～・・」</p>
+                    <br>
+                    <p>がっかりされていましたが、この失敗で学んだことがあります。</p>
+                    <p>AIは一度で、人間が納得できるものを即座に完成させられない、ということです。</p>
+                    <p>その後、その受講生は、材料をそろえたプロンプトを書いて、納得のいくインフォグラフィックを自分で作成されていました。</p>
+
+                    <hr class="section-divider">
+
+                    <h2 id="image-faq">よくある質問</h2>
+
+                    <div class="faq-box">
+                        <div class="faq-list">
+                            <div class="faq-list-item">
+                                <p class="faq-q">無料でも画像は作れますか</p>
+                                <p class="faq-a">作れます。ChatGPTやGemini、Copilotは、無料の範囲でも画像を作れます。ただし回数に上限があるので、たくさん作りたいときは途中で止まることがあります。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">同じ指示で、何枚も作れますか</p>
+                                <p class="faq-a">作れます。同じ指示でも、出てくる絵は1枚ごとに違います。何枚か作って比べるのも、思いどおりに近づける方法の1つです。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">作った絵を、仕事で使っていいですか</p>
+                                <p class="faq-a">使うサービスの規約と、会社のルールで決まります。使う前に、両方を確かめてください。線引きは、<a href="column-chatgpt-work-safety.html">仕事でChatGPTを使うときの注意点の記事</a>にも書いています。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">文字が入った絵がほしいときは、どうしますか</p>
+                                <p class="faq-a">文字は画像に入れず、絵だけを作って、あとからWordなどで文字を入れてください。AIが作る画像の中の文字は、誤字になりやすいからです。</p>
+                            </div>
+                            <div class="faq-list-item">
+                                <p class="faq-q">Claudeでは、画像は作れないのですか</p>
+                                <p class="faq-a">写真やイラストのような画像を作る使い方には、向いていません。画像を作りたいときは、ChatGPTやGemini、Copilotを使ってください。Claudeは、文章の相談や、画像用の指示の書き方を考えるときに向いています。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <div class="summary-box">
+                        <h2 class="section-title--summary">まとめ</h2>
+                        <ul>
+                            <li>指示が足りないと、残りはAIが補う。思いどおりにならないのは、材料不足のことが多い</li>
+                            <li>指示に入れる材料は5つ（何のため・誰が見る・雰囲気と色・構図と形・入れないもの）</li>
+                            <li>思いどおりにならないときは、直すのは1つずつ。違う場所を言葉にする</li>
+                            <li>文字は画像に入れず、あとから自分で入れる</li>
+                            <li>仕事で使う前に、会社のルール・サービスの規約・絵の中身・似ているものがないかを確かめる</li>
+                            <li>生成した画像は二度と同じものを作れない。「いい感じ」と思った時点で保存する</li>
+                            <li>画像を作れるAIと、向かないAIがある</li>
+                        </ul>
+                    </div>
+
+                    <hr class="section-divider">
+
+                    <h2>この記事について</h2>
+                    <p>この記事は、パソコンスクールのインストラクターとして、授業で生成AIの使い方を教えてきた経験をもとに書いています。</p>
+                    <p>授業で4つのAIに同じ指示を入れて比べた実話は、<a href="column-ai-ask-ai-or-person.html">AIに聞くか人に聞くかの記事</a>にも書いています。</p>
+                    <p>AIの機能や、無料で使える範囲は変わっていくので、使うときは各サービスの公式の案内も見てください（2026年11月に確認）。</p>
+                    <p>運営者については<a href="about.html">運営者情報</a>のページをご覧ください。</p>
+
+                    <div class="article-footer-nav">
+                        <p class="article-footer-nav__text">作るAIを選んだら、指示を書いて作ってみる</p>
+                        <div class="summary-nav">
+                            <a href="ai-tools.html" class="btn-main">AIツールの比較・使い分けへ</a>
+                            <a href="hub-ai.html" class="summary-btn">生成AIハブへ</a>
+                            <a href="./" class="summary-btn">ホームに戻る</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="about.html">運営者情報</a>
+            </div>
+            <p>&copy; 2026 ぱそトレ！ Produced by miitype - All Rights Reserved.</p>
+        </footer>
+    </div>
+    <a href="#" id="back-to-top" class="back-to-top">↑</a>
+    <script src="js/main.js"></script>
+</body>
+</html>
